@@ -31,7 +31,7 @@ public class Duke {
         calList.addActivity(adatetime, 11);
         calList.addActivity(adatetime, 12);
 
-//        System.out.println(calList.toString(adatetime));
-//        System.out.println("Size of activity list: " + calList.getSizeOfActivityList(adatetime));
+        //System.out.println(calList.toString(adatetime));
+        //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(adatetime));
     }
 }
