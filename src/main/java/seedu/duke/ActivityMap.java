@@ -2,7 +2,7 @@ package seedu.duke;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -21,23 +21,23 @@ public class ActivityMap {
     //extracts activity list from map and adds the activity to it
     //Integer to be replaced with activity class added this just to test this implementation
     public void addActivity(LocalDateTime dateTime, Integer activity) {
-        ActivityList alist = this.getValue(dateTime);
+        ActivityList alist = this.getDateTime(dateTime);
 
         if (alist == null) { //if the day specified does not contain an activity list yet, create one first
             activitiesMap.put(dateTime.toLocalDate(), new ActivityList());
         }
-        alist = this.getValue(dateTime);
+        alist = this.getDateTime(dateTime);
         alist.addActivity(activity);
     }
 
     //returns the activityList for the given dateTime
-    public ActivityList getValue(LocalDateTime dateTime) {
+    public ActivityList getDateTime(LocalDateTime dateTime) {
         return activitiesMap.get(dateTime.toLocalDate());
     }
 
-    //retruns the number of activities for the given day
+    //returns the number of activities for the given day
     public int getSizeOfActivityList(LocalDateTime dateTime) {
-        ActivityList alist = this.getValue(dateTime);
+        ActivityList alist = this.getDateTime(dateTime);
         if (alist == null) {
             return 0;
         } else {
@@ -46,7 +46,7 @@ public class ActivityMap {
     }
 
     public String toString(LocalDateTime dateTime) {
-        ActivityList alist = this.getValue(dateTime);
+        ActivityList alist = this.getDateTime(dateTime);
         return dateTime.toLocalDate().toString() + " : " + alist.toString();
     }
 }
