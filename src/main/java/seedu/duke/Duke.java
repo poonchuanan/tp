@@ -1,5 +1,8 @@
 package seedu.duke;
 
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -17,5 +20,18 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
+
+        //example code to use calorie list
+        ActivityMap calList = new ActivityMap();
+
+        LocalDateTime adatetime = LocalDateTime.of(2015,
+                Month.JULY, 29, 19, 30, 40);
+
+        calList.addActivity(adatetime, 10);
+        calList.addActivity(adatetime, 11);
+        calList.addActivity(adatetime, 12);
+
+        //System.out.println(calList.toString(adatetime));
+        //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(adatetime));
     }
 }
