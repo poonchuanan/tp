@@ -5,11 +5,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.ActivityList.INITIALISE;
-
 public class Duke {
-    public static ArrayList<Activity> activities = new ArrayList<>();
-
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -33,7 +29,6 @@ public class Duke {
         /**
          * Calorie List and List
          */
-        /*
         // Example code to use calorie list.
         ActivityMap calList = new ActivityMap();
 
@@ -45,29 +40,25 @@ public class Duke {
 
         //System.out.println(calList.toString(aDateTime));
         //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));
-        */
+
 
         /**
          * Add exercise/food with their respective calories
          */
         Scanner in = new Scanner(System.in);
         String userInput = in.nextLine();
-        int numOfActivities = INITIALISE;
+        ActivityList actList = new ActivityList();
         try {
             if (userInput.startsWith("add f/")) {
                 int calorieIndex = userInput.indexOf("c/");
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + 3));
                 userInput = userInput.substring(6, calorieIndex - 1);
-                Activity item = new Food(userInput, calories);
-                activities.add(item);
-                System.out.println("\t" + activities.get(numOfActivities++).toString());
+                actList.addFood(userInput, calories);
             } else if (userInput.startsWith("add e/")) {
                 int calorieIndex = userInput.indexOf("c/");
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + 3));
                 userInput = userInput.substring(6, calorieIndex - 1);
-                Activity item = new Exercise(userInput, calories);
-                activities.add(item);
-                System.out.println("\t" + activities.get(numOfActivities++).toString());
+                actList.addExercise(userInput, calories);
             }
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("Something went wrong!! I do not understand what you mean.\n"
@@ -89,4 +80,5 @@ public class Duke {
          * Find calorie count
          */
     }
+
 }

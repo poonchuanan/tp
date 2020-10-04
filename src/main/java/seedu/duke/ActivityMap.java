@@ -27,7 +27,7 @@ public class ActivityMap {
             activitiesMap.put(dateTime.toLocalDate(), new ActivityList());
         }
         alist = this.getDateTime(dateTime);
-        alist.addActivity(activity);
+        //alist.addActivity(activity);
     }
 
     //returns the activityList for the given dateTime
@@ -49,4 +49,5 @@ public class ActivityMap {
         ActivityList alist = this.getDateTime(dateTime);
         return dateTime.toLocalDate().toString() + " : " + alist.toString();
     }
+
 }

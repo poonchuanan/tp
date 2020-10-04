@@ -1,5 +1,8 @@
 package seedu.duke;
 
+/**
+ * Store activities attributes.
+ */
 public class Activity {
     protected String description;
     protected int calories;
@@ -9,6 +12,10 @@ public class Activity {
         this.calories = calories;
     }
 
+    /**
+     *
+     * @return String to be printed out.
+     */
     public String toString() {
         return description + ", " + calories;
     }
