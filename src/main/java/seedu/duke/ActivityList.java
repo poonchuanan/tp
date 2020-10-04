@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class ActivityList {
     //Integer to be replaced with the Activity class
-    final static int INITIALISE = 0;
+    public static final int INITIALISE = 0;
     private ArrayList<Integer> activities;
     private int activityCounter;
 

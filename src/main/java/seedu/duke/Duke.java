@@ -32,12 +32,12 @@ public class Duke {
         // Example code to use calorie list.
         ActivityMap calList = new ActivityMap();
 
-        LocalDateTime aDateTime = LocalDateTime.of(2015,
+        LocalDateTime adatetime = LocalDateTime.of(2015,
                 Month.JULY, 29, 19, 30, 40);
 
-        calList.addActivity(aDateTime, 10);
-        calList.addActivity(aDateTime, 11);
-        calList.addActivity(aDateTime, 12);
+        calList.addActivity(adatetime, 10);
+        calList.addActivity(adatetime, 11);
+        calList.addActivity(adatetime, 12);
 
         //System.out.println(calList.toString(aDateTime));
         //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));

@@ -21,13 +21,13 @@ public class ActivityMap {
     //extracts activity list from map and adds the activity to it
     //Integer to be replaced with activity class added this just to test this implementation
     public void addActivity(LocalDateTime dateTime, Integer activity) {
-        ActivityList aList = this.getDateTime(dateTime);
+        ActivityList alist = this.getDateTime(dateTime);
 
-        if (aList == null) { //if the day specified does not contain an activity list yet, create one first
+        if (alist == null) { //if the day specified does not contain an activity list yet, create one first
             activitiesMap.put(dateTime.toLocalDate(), new ActivityList());
         }
-        aList = this.getDateTime(dateTime);
-        aList.addActivity(activity);
+        alist = this.getDateTime(dateTime);
+        alist.addActivity(activity);
     }
 
     //returns the activityList for the given dateTime
@@ -37,16 +37,16 @@ public class ActivityMap {
 
     //returns the number of activities for the given day
     public int getSizeOfActivityList(LocalDateTime dateTime) {
-        ActivityList aList = this.getDateTime(dateTime);
-        if (aList == null) {
+        ActivityList alist = this.getDateTime(dateTime);
+        if (alist == null) {
             return 0;
         } else {
-            return aList.getNumberOfActivity();
+            return alist.getNumberOfActivity();
         }
     }
 
     public String toString(LocalDateTime dateTime) {
-        ActivityList aList = this.getDateTime(dateTime);
-        return dateTime.toLocalDate().toString() + " : " + aList.toString();
+        ActivityList alist = this.getDateTime(dateTime);
+        return dateTime.toLocalDate().toString() + " : " + alist.toString();
     }
 }
