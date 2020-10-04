@@ -2,7 +2,7 @@ package seedu.duke;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -18,20 +18,41 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+        /**
+         * Create user profile for first time user
+         * Edit user profile
+         */
 
-        //example code to use calorie list
+        Scanner input = new Scanner(System.in);
+        System.out.println("Hello " + input.nextLine());
+
+        /**
+         * Calorie List and List
+         */
+        // Example code to use calorie list.
         ActivityMap calList = new ActivityMap();
 
-        LocalDateTime adatetime = LocalDateTime.of(2015,
+        LocalDateTime aDateTime = LocalDateTime.of(2015,
                 Month.JULY, 29, 19, 30, 40);
 
-        calList.addActivity(adatetime, 10);
-        calList.addActivity(adatetime, 11);
-        calList.addActivity(adatetime, 12);
+        calList.addActivity(aDateTime, 10);
+        calList.addActivity(aDateTime, 11);
+        calList.addActivity(aDateTime, 12);
 
-        //System.out.println(calList.toString(adatetime));
-        //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(adatetime));
+        //System.out.println(calList.toString(aDateTime));
+        //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));
+        /**
+         * Add exercise/food with their respective calories
+         */
+
+        /**
+         * Remove/Delete index from current list
+         * Remove/Delete whole list
+         */
+
+        /**
+         * Find exercise/food description
+         * Find calorie count
+         */
     }
 }

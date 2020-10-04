@@ -9,12 +9,13 @@ import java.util.Arrays;
  */
 public class ActivityList {
     //Integer to be replaced with the Activity class
+    final static int INITIALISE = 0;
     private ArrayList<Integer> activities;
     private int activityCounter;
 
     public ActivityList() {
         activities = new ArrayList<>();
-        activityCounter = 0;
+        activityCounter = INITIALISE;
     }
 
     public int getNumberOfActivity() {
