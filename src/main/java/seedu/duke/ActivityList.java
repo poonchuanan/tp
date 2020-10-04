@@ -18,6 +18,7 @@ public class ActivityList extends Duke {
     }
 
     /**
+     * Returns the current number of activities in the list.
      *
      * @return current number of activities in the list
      */
@@ -26,9 +27,10 @@ public class ActivityList extends Duke {
     }
 
     /**
+     * Adds food with its respective calories to activity list.
      *
      * @param userInput Food description.
-     * @param calories Amount of calories.
+     * @param calories  Amount of calories.
      */
     public void addFood(String userInput, int calories) {
         Activity item = new Food(userInput, calories);
@@ -37,9 +39,10 @@ public class ActivityList extends Duke {
     }
 
     /**
+     * Adds exercise with its respective calories to activity list.
      *
      * @param userInput Exercise description.
-     * @param calories Amount of calories.
+     * @param calories  Amount of calories.
      */
     public void addExercise(String userInput, int calories) {
         Activity item = new Exercise(userInput, calories);

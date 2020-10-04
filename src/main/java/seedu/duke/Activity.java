@@ -13,6 +13,7 @@ public class Activity {
     }
 
     /**
+     * Returns String to be printed out.
      *
      * @return String to be printed out.
      */
