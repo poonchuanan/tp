@@ -2,7 +2,7 @@ package seedu.duke;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-//import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -32,8 +32,7 @@ public class Duke {
         // Example code to use calorie list.
         ActivityMap calList = new ActivityMap();
 
-        LocalDateTime adatetime = LocalDateTime.of(2015,
-                Month.JULY, 29, 19, 30, 40);
+        LocalDateTime adatetime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
 
         calList.addActivity(adatetime, 10);
         calList.addActivity(adatetime, 11);
@@ -41,9 +40,35 @@ public class Duke {
 
         //System.out.println(calList.toString(aDateTime));
         //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));
+
+
         /**
          * Add exercise/food with their respective calories
          */
+        Scanner in = new Scanner(System.in);
+        String userInput = in.nextLine();
+        ActivityList actList = new ActivityList();
+        try {
+            if (userInput.startsWith("add f/")) {
+                int calorieIndex = userInput.indexOf("c/");
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + 3));
+                userInput = userInput.substring(6, calorieIndex - 1);
+                actList.addFood(userInput, calories);
+            } else if (userInput.startsWith("add e/")) {
+                int calorieIndex = userInput.indexOf("c/");
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + 3));
+                userInput = userInput.substring(6, calorieIndex - 1);
+                actList.addExercise(userInput, calories);
+            }
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("Something went wrong!! I do not understand what you mean.\n"
+                    + "There could be an error in the way of input.\n"
+                    + "Please do input 'help' for the commands and their respective input format.");
+        } catch (Exception e) {
+            System.out.println("Something went wrong!! I do not understand what you mean.\n"
+                    + "There could be an error in the way of input.\n"
+                    + "Please do input 'help' for the commands and their respective input format.");
+        }
 
         /**
          * Remove/Delete index from current list
@@ -55,4 +80,5 @@ public class Duke {
          * Find calorie count
          */
     }
+
 }
