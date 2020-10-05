@@ -69,7 +69,8 @@ public class Duke {
                     userInput = userInput.substring(7).trim();
                     System.out.println("Here are the matching descriptions: ");
                     for (int i = 0; i < actList.getNumberOfActivity(); i++) {
-                        String description = actList.getActivityList().toArray()[i].toString().substring( 0, actList.getActivityList().toArray()[i].toString().indexOf(",")).trim();
+                        String description = actList.getActivityList().toArray()[i].toString().substring(
+                                0, actList.getActivityList().toArray()[i].toString().indexOf(",")).trim();
                         if (description.contains(userInput)) {
                             System.out.println(actList.getActivityList().toArray()[i]);
                         }
@@ -78,7 +79,8 @@ public class Duke {
                     userInput = userInput.substring(7).trim();
                     System.out.println("Here are the matching descriptions: ");
                     for (int i = 0; i < actList.getNumberOfActivity(); i++) {
-                        String calories = actList.getActivityList().toArray()[i].toString().substring(actList.getActivityList().toArray()[i].toString().indexOf(",") + 1).trim();
+                        String calories = actList.getActivityList().toArray()[i].toString().substring(
+                                actList.getActivityList().toArray()[i].toString().indexOf(",") + 1).trim();
                         if (calories.equals(userInput)) {
                             System.out.println(actList.getActivityList().toArray()[i]);
                         }
