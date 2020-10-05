@@ -10,6 +10,6 @@ public class Exercise extends Activity {
 
     @Override
     public String toString() {
-        return "Got it! Added" + super.toString();
+        return "Got it! Added " + super.toString();
     }
 }
