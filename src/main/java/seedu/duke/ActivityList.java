@@ -26,6 +26,10 @@ public class ActivityList extends Duke {
         return activityCounter;
     }
 
+    public ArrayList getActivityList() {
+        return activities;
+    }
+
     /**
      * Adds food with its respective calories to activity list.
      *
