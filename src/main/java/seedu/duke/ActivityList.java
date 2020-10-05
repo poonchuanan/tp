@@ -32,10 +32,11 @@ public class ActivityList extends Duke {
      * @param userInput Food description.
      * @param calories  Amount of calories.
      */
-    public void addFood(String userInput, int calories) {
+    public int addFood(String userInput, int calories) {
         Activity item = new Food(userInput, calories);
         activities.add(item);
         System.out.println("\t" + activities.get(activityCounter++).toString());
+        return activityCounter;
     }
 
     /**
@@ -44,10 +45,11 @@ public class ActivityList extends Duke {
      * @param userInput Exercise description.
      * @param calories  Amount of calories.
      */
-    public void addExercise(String userInput, int calories) {
+    public int addExercise(String userInput, int calories) {
         Activity item = new Exercise(userInput, calories);
         activities.add(item);
         System.out.println("\t" + activities.get(activityCounter++).toString());
+        return activityCounter;
     }
 
     @Override
