@@ -45,40 +45,42 @@ public class Duke {
         /**
          * Add exercise/food with their respective calories
          */
-        Scanner in = new Scanner(System.in);
-        String userInput = in.nextLine();
-        ActivityList actList = new ActivityList();
-        try {
-            if (userInput.startsWith("add f/")) {
-                int calorieIndex = userInput.indexOf("c/");
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + 3));
-                userInput = userInput.substring(6, calorieIndex - 1);
-                actList.addFood(userInput, calories);
-            } else if (userInput.startsWith("add e/")) {
-                int calorieIndex = userInput.indexOf("c/");
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + 3));
-                userInput = userInput.substring(6, calorieIndex - 1);
-                actList.addExercise(userInput, calories);
+        while (true) {
+            Scanner in = new Scanner(System.in);
+            String userInput = in.nextLine();
+            ActivityList actList = new ActivityList();
+            try {
+                if (userInput.startsWith("add f/")) {
+                    int calorieIndex = userInput.indexOf("c/");
+                    int calories = Integer.parseInt(userInput.substring(calorieIndex + 3));
+                    userInput = userInput.substring(6, calorieIndex - 1);
+                    System.out.println(userInput);
+                    System.out.println(calories);
+                    actList.addFood(userInput, calories);
+                } else if (userInput.startsWith("add e/")) {
+                    int calorieIndex = userInput.indexOf("c/");
+                    int calories = Integer.parseInt(userInput.substring(calorieIndex + 3));
+                    userInput = userInput.substring(6, calorieIndex - 1);
+                    actList.addExercise(userInput, calories);
+                }
+            } catch (StringIndexOutOfBoundsException e) {
+                System.out.println("Something went wrong!! I do not understand what you mean.\n"
+                        + "There could be an error in the way of input.\n"
+                        + "Please do input 'help' for the commands and their respective input format.");
+            } catch (Exception e) {
+                System.out.println("Something went wrong!! I do not understand what you mean.\n"
+                        + "There could be an error in the way of input.\n"
+                        + "Please do input 'help' for the commands and their respective input format.");
             }
-        } catch (StringIndexOutOfBoundsException e) {
-            System.out.println("Something went wrong!! I do not understand what you mean.\n"
-                    + "There could be an error in the way of input.\n"
-                    + "Please do input 'help' for the commands and their respective input format.");
-        } catch (Exception e) {
-            System.out.println("Something went wrong!! I do not understand what you mean.\n"
-                    + "There could be an error in the way of input.\n"
-                    + "Please do input 'help' for the commands and their respective input format.");
+            /**
+             * Remove/Delete index from current list
+             * Remove/Delete whole list
+             */
+
+            /**
+             * Find exercise/food description
+             * Find calorie count
+             */
         }
-
-        /**
-         * Remove/Delete index from current list
-         * Remove/Delete whole list
-         */
-
-        /**
-         * Find exercise/food description
-         * Find calorie count
-         */
     }
-
 }
