@@ -51,13 +51,13 @@ public class Duke {
         try {
             if (userInput.startsWith("add f/")) {
                 int calorieIndex = userInput.indexOf("c/");
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + 3));
-                userInput = userInput.substring(6, calorieIndex - 1);
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
+                userInput = userInput.substring(6, calorieIndex - 1).trim();
                 actList.addFood(userInput, calories);
             } else if (userInput.startsWith("add e/")) {
                 int calorieIndex = userInput.indexOf("c/");
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + 3));
-                userInput = userInput.substring(6, calorieIndex - 1);
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
+                userInput = userInput.substring(6, calorieIndex - 1).trim();
                 actList.addExercise(userInput, calories);
             }
         } catch (StringIndexOutOfBoundsException e) {
