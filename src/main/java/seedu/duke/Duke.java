@@ -1,5 +1,7 @@
 package seedu.duke;
-
+import seedu.duke.UserProfile.initialiseUser;
+import seedu.duke.UserProfile.userInfo;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -11,22 +13,9 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+    public static void main(String[] args) throws IOException {
+        initialiseUser.openingMessage();
 
-        /**
-         * Create user profile for first time user
-         * Edit user profile
-         */
-
-        Scanner input = new Scanner(System.in);
-        System.out.println("Hello " + input.nextLine());
 
         /**
          * Calorie List and List
@@ -85,6 +74,10 @@ public class Duke {
                             System.out.println(actList.getActivityList().toArray()[i]);
                         }
                     }
+                } else if (userInput.startsWith("edit n/")) {
+                    userInfo store = new userInfo();
+                    store.editUserInfo(userInput);
+                    initialiseUser.save();
                 }
             } catch (StringIndexOutOfBoundsException e) {
                 System.out.println("Something went wrong!! I do not understand what you mean.\n"
