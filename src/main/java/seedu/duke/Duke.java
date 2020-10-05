@@ -5,6 +5,8 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static seedu.duke.ActivityList.INITIALISE;
+
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -48,17 +50,20 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         String userInput = in.nextLine();
         ActivityList actList = new ActivityList();
+        int numOfActivities = INITIALISE;
         try {
             if (userInput.startsWith("add f/")) {
                 int calorieIndex = userInput.indexOf("c/");
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                 userInput = userInput.substring(6, calorieIndex - 1).trim();
-                actList.addFood(userInput, calories);
+                numOfActivities = actList.addFood(userInput, calories);
+                System.out.println("Current number of activities is: " + numOfActivities);
             } else if (userInput.startsWith("add e/")) {
                 int calorieIndex = userInput.indexOf("c/");
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                 userInput = userInput.substring(6, calorieIndex - 1).trim();
-                actList.addExercise(userInput, calories);
+                numOfActivities = actList.addExercise(userInput, calories);
+                System.out.println("Current number of activities is: " + numOfActivities);
             }
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("Something went wrong!! I do not understand what you mean.\n"
