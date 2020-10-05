@@ -31,14 +31,10 @@ public class Duke {
          * Calorie List and List
          */
         // Example code to use calorie list.
+
         //DayMap calList = new DayMap();
-
-       // LocalDateTime adatetime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
-
-//        calList.addActivity(adatetime, 10);
-//        calList.addActivity(adatetime, 11);
-//        calList.addActivity(adatetime, 12);
-
+        //LocalDateTime adatetime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
+        //calList.addActivity(adatetime, "description of activity", 500, "food"); //daymap equivalent
         //System.out.println(calList.toString(aDateTime));
         //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));
 
@@ -63,7 +59,6 @@ public class Duke {
                     int calorieIndex = userInput.indexOf("c/");
                     int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                     userInput = userInput.substring(6, calorieIndex - 1).trim();
-//                    numOfActivities = actList.addExercise(userInput, calories);
                     calList.addActivity(date, userInput, calories, "exercise"); //daymap equivalent
                     System.out.println("Current number of activities is: " + calList.getSizeOfActivityList(date));
                 } else if (userInput.startsWith("find d/")) {
