@@ -2,7 +2,6 @@ package seedu.duke;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.duke.ActivityList.INITIALISE;
@@ -32,13 +31,13 @@ public class Duke {
          * Calorie List and List
          */
         // Example code to use calorie list.
-        ActivityMap calList = new ActivityMap();
+        //DayMap calList = new DayMap();
 
-        LocalDateTime adatetime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
+       // LocalDateTime adatetime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
 
-        calList.addActivity(adatetime, 10);
-        calList.addActivity(adatetime, 11);
-        calList.addActivity(adatetime, 12);
+//        calList.addActivity(adatetime, 10);
+//        calList.addActivity(adatetime, 11);
+//        calList.addActivity(adatetime, 12);
 
         //System.out.println(calList.toString(aDateTime));
         //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));
@@ -47,8 +46,8 @@ public class Duke {
         /**
          * Add exercise/food with their respective calories
          */
-        ActivityList actList = new ActivityList();
-        int numOfActivities = INITIALISE;
+        DayMap calList = new DayMap();
+        LocalDateTime date = LocalDateTime.now();
         while (true) {
             Scanner in = new Scanner(System.in);
             String userInput = in.nextLine();
@@ -57,32 +56,40 @@ public class Duke {
                     int calorieIndex = userInput.indexOf("c/");
                     int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                     userInput = userInput.substring(6, calorieIndex - 1).trim();
-                    numOfActivities = actList.addFood(userInput, calories);
-                    System.out.println("Current number of activities is: " + numOfActivities);
+                    calList.addActivity(date, userInput, calories, "food"); //daymap equivalent
+                    //used method inside daymap to get size of the activitylist instead
+                    System.out.println("Current number of activities is: " + calList.getSizeOfActivityList(date));
                 } else if (userInput.startsWith("add e/")) {
                     int calorieIndex = userInput.indexOf("c/");
                     int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                     userInput = userInput.substring(6, calorieIndex - 1).trim();
-                    numOfActivities = actList.addExercise(userInput, calories);
-                    System.out.println("Current number of activities is: " + numOfActivities);
+//                    numOfActivities = actList.addExercise(userInput, calories);
+                    calList.addActivity(date, userInput, calories, "exercise"); //daymap equivalent
+                    System.out.println("Current number of activities is: " + calList.getSizeOfActivityList(date));
                 } else if (userInput.startsWith("find d/")) {
                     userInput = userInput.substring(7).trim();
                     System.out.println("Here are the matching descriptions: ");
-                    for (int i = 0; i < actList.getNumberOfActivity(); i++) {
-                        String description = actList.getActivityList().toArray()[i].toString().substring(
-                                0, actList.getActivityList().toArray()[i].toString().indexOf(",")).trim();
+                    //used method inside daymap to get size of the activitylist instead
+                    for (int i = 0; i < calList.getSizeOfActivityList(date); i++) {
+                        //created new method to get the arraylist inside the activity list from the daymap
+                        //maybe can find a better implementation of this later on
+                        String description = calList.getArrayList(date).toArray()[i].toString().substring(
+                                0, calList.getArrayList(date).toArray()[i].toString().indexOf(",")).trim();
                         if (description.contains(userInput)) {
-                            System.out.println(actList.getActivityList().toArray()[i]);
+                            System.out.println(calList.getArrayList(date).toArray()[i]);
                         }
                     }
                 } else if (userInput.startsWith("find c/")) {
                     userInput = userInput.substring(7).trim();
                     System.out.println("Here are the matching descriptions: ");
-                    for (int i = 0; i < actList.getNumberOfActivity(); i++) {
-                        String calories = actList.getActivityList().toArray()[i].toString().substring(
-                                actList.getActivityList().toArray()[i].toString().indexOf(",") + 1).trim();
+                    //used method inside daymap to get size of the activitylist instead
+                    for (int i = 0; i < calList.getSizeOfActivityList(date); i++) {
+                        //created new method to get the arraylist inside the activity list from the daymap
+                        //maybe can find a better implementation of this later on
+                        String calories = calList.getArrayList(date).toArray()[i].toString().substring(
+                                calList.getArrayList(date).toArray()[i].toString().indexOf(",") + 1).trim();
                         if (calories.equals(userInput)) {
-                            System.out.println(actList.getActivityList().toArray()[i]);
+                            System.out.println(calList.getArrayList(date).toArray()[i]);
                         }
                     }
                 }
