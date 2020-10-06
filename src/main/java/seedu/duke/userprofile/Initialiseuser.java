@@ -45,7 +45,6 @@ public class Initialiseuser {
     }
 
     public static void saveExistingUserInfo() throws IOException {
-        new Userinfo(data[0],data[1],data[2],data[3]);
         Initialiseuser.save();
     }
 
