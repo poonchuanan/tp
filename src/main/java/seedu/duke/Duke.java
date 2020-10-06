@@ -42,7 +42,7 @@ public class Duke {
         //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));
 
 
-        /**
+        /*
          * Add exercise/food with their respective calories
          */
         Scanner in = new Scanner(System.in);
@@ -70,12 +70,13 @@ public class Duke {
                     + "Please do input 'help' for the commands and their respective input format.");
         }
 
-        /**
+        /*
          * Remove/Delete index from current list
          * Remove/Delete whole list
          */
 
-        /**
+
+        /*
          * Find exercise/food description
          * Find calorie count
          */
