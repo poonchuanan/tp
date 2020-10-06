@@ -38,7 +38,8 @@ public class Duke {
             Initialiseuser.gender();
         } else {
             String[] data = new String[4];
-            ArrayList<String> previous = Userinfotextfilestorage.update();
+            ArrayList<String> previous;
+            previous = Userinfotextfilestorage.update();
             for (int i = 0; i < 4; i++) {
                 data[i] = previous.get(i);
             }
