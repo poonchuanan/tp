@@ -40,10 +40,10 @@ public class Userinfo {
 
         if (this.getGender().equals("female")) {
             System.out.println("Your recommend calories requirements is 2000 calories\n"
-                    + "We recommend 1500 calories to lose weight! (ﾉ^ヮ^)ﾉ*:・ﾟ✧\n ");
+                    + "We recommend 1500 calories to lose weight!\n");
         } else {
             System.out.println("Your recommend calories requirements is 2500 calories\n"
-                    + "We recommend 2000 calories to lose weight! (ﾉ^ヮ^)ﾉ*:・ﾟ✧\n");
+                    + "We recommend 2000 calories to lose weight!\n");
         }
     }
 

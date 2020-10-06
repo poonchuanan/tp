@@ -26,11 +26,8 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-        Scanner input = new Scanner(System.in);
-        String name = input.nextLine();
-        System.out.println("Hello " + name);
-
+        String name = Initialiseuser.input("What is your name?\n");
+        System.out.println("Hello " + name + "\n");
         Path path = Paths.get(Userinfotextfilestorage.FILE_PATH);
 
         if (!Files.exists(path)) {
@@ -65,8 +62,7 @@ public class Duke {
         DayMap calList = new DayMap();
         LocalDateTime date = LocalDateTime.now();
         while (true) {
-            Scanner in = new Scanner(System.in);
-            String userInput = in.nextLine();
+            String userInput = Initialiseuser.input2();
             try {
                 if (userInput.startsWith("add f/")) {
                     int calorieIndex = userInput.indexOf("c/");
@@ -111,6 +107,14 @@ public class Duke {
                     Userinfo store = new Userinfo();
                     store.editUserInfo(userInput);
                     Initialiseuser.save();
+                } else if (userInput.startsWith("edit")) {
+                    Userinfo store = new Userinfo();
+                    store.editUserInfo(userInput);
+                    Initialiseuser.save();
+                } else if (userInput.startsWith("bye")) {
+                    System.out.println("bye!\n");
+                    Initialiseuser.closescanner();
+                    System.exit(0);
                 }
             } catch (StringIndexOutOfBoundsException e) {
                 System.out.println("Something went wrong!! I do not understand what you mean.\n"
