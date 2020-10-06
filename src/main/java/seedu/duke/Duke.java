@@ -37,7 +37,7 @@ public class Duke {
             Parser parser = new Parser(userInput.nextLine());
             parser.parseCommand();
         }
-        //TODO bye exit message
+        System.out.println("Thank you for using traKCAL! See you again!");
     }
 }
 
