@@ -1,11 +1,16 @@
 package seedu.duke;
 
+import seedu.duke.storage.Userinfotextfilestorage;
 import seedu.duke.userprofile.Initialiseuser;
 
 import seedu.duke.userprofile.Userinfo;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.duke.ActivityList.INITIALISE;
@@ -15,8 +20,31 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) throws IOException {
-        Initialiseuser.openingMessage();
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
+        System.out.println("What is your name?");
+        Scanner input = new Scanner(System.in);
+        String name = input.nextLine();
+        System.out.println("Hello " + name);
 
+        Path path = Paths.get(Userinfotextfilestorage.FILE_PATH);
+
+        if (!Files.exists(path)) {
+            Initialiseuser.sendname(name);
+            Initialiseuser.gender();
+        } else {
+            String[] data = new String[4];
+            ArrayList<String> previous = Userinfotextfilestorage.update();
+            for (int i = 0; i < 4; i++) {
+                data[i] = previous.get(i);
+            }
+
+            Initialiseuser.saveExistingUserInfo();
+        }
 
         /**
          * Calorie List and List

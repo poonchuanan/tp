@@ -2,10 +2,6 @@ package seedu.duke.userprofile;
 
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -13,45 +9,8 @@ public class Initialiseuser {
     private static Userinfo userInfo = new Userinfo();
     private static String[] data = new String[4];
 
-    public static void openingMessage() throws IOException {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-        run();
-    }
-
-
-    public static void run() throws IOException {
-        checkUserProfilePresent();
-    }
-
-    public static void checkUserProfilePresent() throws IOException {
-        Path path = Paths.get(Userinfotextfilestorage.FILE_PATH);
-        Scanner input = new Scanner(System.in);
-        String name = input.nextLine();
-        System.out.println("Hello " + name);
-
-        if (!Files.exists(path)) {
-            data[0] = name;
-            gender();
-        } else  {
-            String userInput = input.nextLine();
-            if (userInput.startsWith("edit n/")) {
-                Userinfo store = new Userinfo();
-                store.editUserInfo(userInput);
-                Initialiseuser.save();
-            } else {
-                ArrayList<String> previous = Userinfotextfilestorage.update();
-                for (int i = 0; i < 4; i++) {
-                    data[i] = previous.get(i);
-                }
-                saveExistingUserInfo();
-            }
-        }
+    public static void sendname(String userInput)  {
+        data[0] = userInput;
     }
 
     public static void gender() throws IOException {
