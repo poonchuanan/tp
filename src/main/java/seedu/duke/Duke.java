@@ -28,9 +28,10 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         String name = Initialiseuser.input("What is your name?\n");
         System.out.println("Hello " + name + "\n");
-        Path path = Paths.get(Userinfotextfilestorage.FILE_PATH);
+//        Path path = Paths.get(Userinfotextfilestorage.FILE_PATH);
 
-        if (!Files.exists(path)) {
+//        if (!Files.exists(path)) {
+        if (Initialiseuser.input2().startsWith("create new user")) {
             Initialiseuser.sendname(name);
             Initialiseuser.gender();
         } else {
