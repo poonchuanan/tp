@@ -1,10 +1,11 @@
 package seedu.duke;
-import seedu.duke.UserProfile.initialiseUser;
-import seedu.duke.UserProfile.userInfo;
+
+import seedu.duke.userprofile.Initialiseuser;
+
+import seedu.duke.userprofile.Userinfo;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.duke.ActivityList.INITIALISE;
@@ -14,7 +15,7 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) throws IOException {
-        initialiseUser.openingMessage();
+        Initialiseuser.openingMessage();
 
 
         /**
@@ -75,9 +76,9 @@ public class Duke {
                         }
                     }
                 } else if (userInput.startsWith("edit n/")) {
-                    userInfo store = new userInfo();
+                    Userinfo store = new Userinfo();
                     store.editUserInfo(userInput);
-                    initialiseUser.save();
+                    Initialiseuser.save();
                 }
             } catch (StringIndexOutOfBoundsException e) {
                 System.out.println("Something went wrong!! I do not understand what you mean.\n"

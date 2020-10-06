@@ -1,5 +1,6 @@
-package seedu.duke.UserProfile;
-import seedu.duke.Storage.userInfoTextFileStorage;
+package seedu.duke.userprofile;
+
+import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class initialiseUser {
-    private static seedu.duke.UserProfile.userInfo userInfo = new userInfo();
+public class Initialiseuser {
+    private static Userinfo userInfo = new Userinfo();
     private static String[] data = new String[4];
 
     public static void openingMessage() throws IOException {
@@ -29,7 +30,7 @@ public class initialiseUser {
     }
 
     public static void checkUserProfilePresent() throws IOException {
-        Path path = Paths.get(userInfoTextFileStorage.FILE_PATH);
+        Path path = Paths.get(Userinfotextfilestorage.FILE_PATH);
         Scanner input = new Scanner(System.in);
         String name = input.nextLine();
         System.out.println("Hello " + name);
@@ -40,11 +41,11 @@ public class initialiseUser {
         } else  {
             String userInput = input.nextLine();
             if (userInput.startsWith("edit n/")) {
-                userInfo store = new userInfo();
+                Userinfo store = new Userinfo();
                 store.editUserInfo(userInput);
-                initialiseUser.save();
+                Initialiseuser.save();
             } else {
-                ArrayList<String> previous = userInfoTextFileStorage.update();
+                ArrayList<String> previous = Userinfotextfilestorage.update();
                 for (int i = 0; i < 4; i++) {
                     data[i] = previous.get(i);
                 }
@@ -79,18 +80,18 @@ public class initialiseUser {
     }
 
     public static void enterNewUserInfo() throws IOException {
-        new userInfo(data[0],data[1],data[2],data[3]);
+        new Userinfo(data[0],data[1],data[2],data[3]);
         userInfo.printNewUserCalculatedDetails();
-        initialiseUser.save();
+        Initialiseuser.save();
     }
 
     public static void saveExistingUserInfo() throws IOException {
-        new userInfo(data[0],data[1],data[2],data[3]);
-        initialiseUser.save();
+        new Userinfo(data[0],data[1],data[2],data[3]);
+        Initialiseuser.save();
     }
 
     public static void save() throws IOException {
-        userInfoTextFileStorage storage = new userInfoTextFileStorage();
+        Userinfotextfilestorage storage = new Userinfotextfilestorage();
         storage.save(userInfo.toString());
     }
 }
