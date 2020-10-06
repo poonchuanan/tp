@@ -1,10 +1,6 @@
 package seedu.duke;
 
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.Scanner;
-
-import static seedu.duke.ActivityList.INITIALISE;
 
 public class Duke {
     protected Scanner userInput;
@@ -35,9 +31,9 @@ public class Duke {
         //TODO userInput.nextLine() is repeated
         String name = userInput.nextLine();
         System.out.println("Hello " + name);
-        while(!(userInput.nextLine().equals("bye"))) {
-          Parser parser = new Parser(userInput.nextLine());
-          parser.parseCommand();
+        while (!(userInput.nextLine().equals("bye"))) {
+            Parser parser = new Parser(userInput.nextLine());
+            parser.parseCommand();
         }
         //TODO bye exit message
     }
