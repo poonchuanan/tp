@@ -25,7 +25,7 @@ public class ActivityList extends Duke {
     public int getNumberOfActivity() {
         return activityCounter;
     }
-
+    
     public ArrayList getActivityList() {
         return activities;
     }
