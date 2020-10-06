@@ -8,9 +8,11 @@ public class Duke {
     public Duke() {
         this.userInput = new Scanner(System.in);
     }
-    /**
+
+    /*
      * Main entry-point for the java.duke.Duke application.
      */
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
