@@ -22,11 +22,11 @@ public class ActivityList extends Duke {
      *
      * @return current number of activities in the list
      */
-    public int getNumberOfActivity() {
+    public int getNumberOfActivities() {
         return activityCounter;
     }
 
-    public ArrayList getActivityList() {
+    public ArrayList getArrayList() {
         return activities;
     }
 
@@ -36,11 +36,11 @@ public class ActivityList extends Duke {
      * @param userInput Food description.
      * @param calories  Amount of calories.
      */
-    public int addFood(String userInput, int calories) {
+    public void addFood(String userInput, int calories) {
         Activity item = new Food(userInput, calories);
         activities.add(item);
         System.out.println("\t" + activities.get(activityCounter++).toString());
-        return activityCounter;
+        //return activityCounter;
     }
 
     /**
@@ -49,11 +49,11 @@ public class ActivityList extends Duke {
      * @param userInput Exercise description.
      * @param calories  Amount of calories.
      */
-    public int addExercise(String userInput, int calories) {
+    public void addExercise(String userInput, int calories) {
         Activity item = new Exercise(userInput, calories);
         activities.add(item);
         System.out.println("\t" + activities.get(activityCounter++).toString());
-        return activityCounter;
+        //return activityCounter;
     }
 
     @Override
