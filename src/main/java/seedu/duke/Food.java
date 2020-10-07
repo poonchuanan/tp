@@ -10,6 +10,6 @@ public class Food extends Activity {
 
     @Override
     public String toString() {
-        return "Got it! Added " + super.toString();
+        return super.toString();
     }
 }

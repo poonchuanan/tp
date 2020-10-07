@@ -62,9 +62,15 @@ public class DayMap {
         }
     }
 
+    public HashMap<LocalDate, ActivityList> getHashMap(){
+        return dayMap;
+    }
+
     public String toString(LocalDateTime dateTime) {
         ActivityList alist = this.getActivityList(dateTime);
         return dateTime.toLocalDate().toString() + " : " + alist.toString();
     }
+
+
 
 }

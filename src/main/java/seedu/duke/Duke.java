@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Scanner;
@@ -26,6 +28,10 @@ public class Duke {
 
         Scanner input = new Scanner(System.in);
         System.out.println("Hello " + input.nextLine());
+
+        Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
+        storage.loadData();
+
 
         /**
          * Calorie List and List
@@ -87,6 +93,10 @@ public class Duke {
                             System.out.println(calList.getArrayList(date).toArray()[i]);
                         }
                     }
+                } else if (userInput.startsWith("update")) {
+                    storage.updateFile(calList);
+                } else if (userInput.startsWith("tomorrow")) {
+                    date = date.plusDays(1);
                 }
             } catch (StringIndexOutOfBoundsException e) {
                 System.out.println("Something went wrong!! I do not understand what you mean.\n"
@@ -106,6 +116,12 @@ public class Duke {
              * Find exercise/food description
              * Find calorie count
              */
+
+
         }
+    }
+
+    private static String getJarFilePath() {
+        return new File(Duke.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent().replace("%20", " ");
     }
 }
