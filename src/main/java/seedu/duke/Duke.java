@@ -1,7 +1,16 @@
 package seedu.duke;
 
+import seedu.duke.storage.Userinfotextfilestorage;
+import seedu.duke.userprofile.Initialiseuser;
+
+import seedu.duke.userprofile.Userinfo;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.duke.ActivityList.INITIALISE;
@@ -10,22 +19,29 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+        String name = Initialiseuser.input("What is your name?\n");
+        System.out.println("Hello " + name + "\n");
 
-        /**
-         * Create user profile for first time user
-         * Edit user profile
-         */
+        if (Initialiseuser.input2().startsWith("create new user")) {
+            Initialiseuser.sendname(name);
+            Initialiseuser.gender();
+        } else {
+            String[] data = new String[4];
+            ArrayList<String> previous = Userinfotextfilestorage.update();
+            for (int i = 0; i < 4; i++) {
+                data[i] = previous.get(i);
+            }
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("Hello " + input.nextLine());
+            new Userinfo(data[0],data[1],data[2],data[3]);
+            Initialiseuser.saveExistingUserInfo();
+        }
 
         /**
          * Calorie List and List
@@ -45,8 +61,7 @@ public class Duke {
         DayMap calList = new DayMap();
         LocalDateTime date = LocalDateTime.now();
         while (true) {
-            Scanner in = new Scanner(System.in);
-            String userInput = in.nextLine();
+            String userInput = Initialiseuser.input2();
             try {
                 if (userInput.startsWith("add f/")) {
                     int calorieIndex = userInput.indexOf("c/");
@@ -87,6 +102,18 @@ public class Duke {
                             System.out.println(calList.getArrayList(date).toArray()[i]);
                         }
                     }
+                } else if (userInput.startsWith("edit n/")) {
+                    Userinfo store = new Userinfo();
+                    store.editUserInfo(userInput);
+                    Initialiseuser.save();
+                } else if (userInput.startsWith("edit")) {
+                    Userinfo store = new Userinfo();
+                    store.editUserInfo(userInput);
+                    Initialiseuser.save();
+                } else if (userInput.startsWith("bye")) {
+                    System.out.println("bye!\n");
+                    Initialiseuser.closescanner();
+                    System.exit(0);
                 }
             } catch (StringIndexOutOfBoundsException e) {
                 System.out.println("Something went wrong!! I do not understand what you mean.\n"
