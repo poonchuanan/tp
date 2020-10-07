@@ -5,11 +5,6 @@ import seedu.duke.userprofile.Initialiseuser;
 
 import seedu.duke.userprofile.Userinfo;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,21 +32,6 @@ public class Duke {
          */
         String name = Initialiseuser.input("What is your name?\n");
         System.out.println("Hello " + name + "\n");
-
-        if (Initialiseuser.input2().startsWith("create new user")) {
-            Initialiseuser.sendname(name);
-            Initialiseuser.gender();
-        } else {
-            String[] data = new String[4];
-            ArrayList<String> previous = Userinfotextfilestorage.update();
-            for (int i = 0; i < 4; i++) {
-                data[i] = previous.get(i);
-            }
-
-            new Userinfo(data[0],data[1],data[2],data[3]);
-            Initialiseuser.saveExistingUserInfo();
-        }
-
         Duke duke = new Duke();
         duke.run();
     }

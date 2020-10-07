@@ -69,16 +69,10 @@ public class Parser {
                 }
                 break;
             case "edit":
-                //
-                if (arguments[1].startsWith("n/")) {
-                    Userinfo store = new Userinfo();
-                    store.editUserInfo(arguments[1]);
-                    Initialiseuser.save();
-                } else {
-                    Userinfo store = new Userinfo();
-                    store.editUserInfo(arguments[1]);
-                    Initialiseuser.save();
-                }
+                //TODO apply SLAP
+                Userinfo store = new Userinfo();
+                store.editUserInfo(arguments[1]);
+                Initialiseuser.save();
                 break;
 
             //TODO list command
