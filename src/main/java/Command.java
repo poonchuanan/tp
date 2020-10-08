@@ -5,7 +5,9 @@ public class Command {
 
 
     //to be overriden
-    public void execute(){return;}
+    public void execute() {
+        return;
+    }
 
     public void setData(DayMap dayMap) {
         this.dayMap = dayMap;
