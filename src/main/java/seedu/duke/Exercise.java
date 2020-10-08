@@ -10,6 +10,6 @@ public class Exercise extends Activity {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "[E] | " + super.toString();
     }
 }

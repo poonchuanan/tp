@@ -10,6 +10,6 @@ public class Food extends Activity {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "[F] | " + super.toString();
     }
 }
