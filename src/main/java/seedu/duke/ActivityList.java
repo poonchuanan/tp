@@ -56,6 +56,10 @@ public class ActivityList extends Duke {
         //return activityCounter;
     }
 
+    public Activity getActivity(int index) {
+        return activities.get(index);
+    }
+
     @Override
     public String toString() {
         return (Arrays.toString(activities.toArray()));

@@ -1,15 +1,18 @@
 package seedu.duke;
 
+import seedu.duke.Commands.Command;
 import seedu.duke.storage.Userinfotextfilestorage;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     public static Scanner userInput = new Scanner(System.in);
+    public static DayMap calList = new DayMap();
 
     public static void main(String[] args) {
         String logo = " ____        _\n"
@@ -55,6 +58,10 @@ public class Duke {
         }
         System.out.println("THank you for using TraKCAL. See you again!");
     }
+public static void executeCmd(Command cmd){
+        cmd.setData(calList);
+        cmd.execute();
+}
 }
 
 
