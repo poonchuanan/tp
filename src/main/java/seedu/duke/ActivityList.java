@@ -8,13 +8,11 @@ import java.util.Arrays;
  * List of activities for any day.
  */
 public class ActivityList extends Duke {
-    public static final int INITIALISE = 0;
     private ArrayList<Activity> activities;
     private int activityCounter;
 
     public ActivityList() {
         activities = new ArrayList<>();
-        activityCounter = INITIALISE;
     }
 
     /**
@@ -23,7 +21,7 @@ public class ActivityList extends Duke {
      * @return current number of activities in the list
      */
     public int getNumberOfActivities() {
-        return activityCounter;
+        return activities.size();
     }
 
     public ArrayList getArrayList() {
