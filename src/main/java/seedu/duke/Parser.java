@@ -72,7 +72,7 @@ public class Parser {
                 //TODO apply SLAP
                 Userinfo store = new Userinfo();
                 store.editUserInfo(arguments[1]);
-                Initialiseuser.save();
+                Initialiseuser.save(store);
                 break;
 
             //TODO list command

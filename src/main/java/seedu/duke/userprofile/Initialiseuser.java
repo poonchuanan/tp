@@ -1,5 +1,6 @@
 package seedu.duke.userprofile;
 
+import seedu.duke.Duke;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.Scanner;
@@ -7,23 +8,18 @@ import java.util.Scanner;
 public class Initialiseuser {
     private static Userinfo userInfo = new Userinfo();
     private static String[] data = new String[4];
-    private static Scanner scanner = new Scanner(System.in);
 
     public static String input(String text) {
         System.out.print(text);
-        return scanner.nextLine();
+        return Duke.userInput.nextLine();
     }
 
     public static String input2() {
-        return scanner.nextLine();
+        return Duke.userInput.nextLine();
     }
 
-    public static void closescanner() {
-        scanner.close();
-    }
-
-    public static void sendname(String userInput)  {
-        data[0] = userInput;
+    public static void sendname()  {
+        data[0] = input("What is your name?\n");
     }
 
     public static void gender() throws IOException {
@@ -43,20 +39,20 @@ public class Initialiseuser {
     }
 
     public static void enterNewUserInfo() throws IOException {
-        new Userinfo(data[0],data[1],data[2],data[3]);
-        userInfo.printNewUserCalculatedDetails();
-        Initialiseuser.save();
+        Userinfo profile = new Userinfo(data[0],data[1],data[2],data[3]);
+        profile.printNewUserCalculatedDetails();
+        Initialiseuser.save(profile);
 
     }
 
-    public static void saveExistingUserInfo() throws IOException {
-        Initialiseuser.save();
+    public static void saveExistingUserInfo(Userinfo profile) throws IOException {
+        Initialiseuser.save(profile);
 
     }
 
-    public static void save() throws IOException {
+    public static void save(Userinfo profile) throws IOException {
         Userinfotextfilestorage storage = new Userinfotextfilestorage();
-        storage.save(userInfo.toString());
+        storage.save(profile.toString());
 
     }
 }

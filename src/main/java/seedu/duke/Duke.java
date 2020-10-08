@@ -2,23 +2,16 @@ package seedu.duke;
 
 import seedu.duke.storage.Userinfotextfilestorage;
 import seedu.duke.userprofile.Initialiseuser;
-
 import seedu.duke.userprofile.Userinfo;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    protected Scanner userInput;
+    public static Scanner userInput = new Scanner(System.in);
 
-    public Duke() {
-        this.userInput = new Scanner(System.in);
-    }
-
-    /*
-     * Main entry-point for the java.duke.Duke application.
-     */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -30,16 +23,28 @@ public class Duke {
          * Create user profile for first time user
          * Edit user profile
          */
-        String name = Initialiseuser.input("What is your name?\n");
-        System.out.println("Hello " + name + "\n");
-        Duke duke = new Duke();
-        duke.run();
+        Duke.run();
     }
 
-    public void run() {
-        //TODO userInput.nextLine() is repeated
-        String name = userInput.nextLine();
-        System.out.println("Hello " + name);
+    public static void run() {
+        Userinfo profile;
+        try {
+            if (userInput.nextLine().startsWith("create new user")) {
+                Initialiseuser.sendname();
+                Initialiseuser.gender();
+            } else {
+                String[] data = new String[4];
+                ArrayList<String> previous = Userinfotextfilestorage.update();
+                for (int i = 0; i < 4; i++) {
+                    data[i] = previous.get(i);
+                }
+
+                profile = new Userinfo(data[0], data[1], data[2], data[3]);
+                Initialiseuser.saveExistingUserInfo(profile);
+            }
+        } catch (IOException e) {
+            System.out.println("IO exception has occured!");
+        }
         while (!(userInput.nextLine().equals("bye"))) {
             Parser parser = new Parser(userInput.nextLine());
             parser.parseCommand();
