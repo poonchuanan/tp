@@ -80,6 +80,7 @@ public class Parser {
             case "bye":
                 System.out.println("THank you for using TraKCAL. See you again!");
                 System.exit(0);
+                break;
             default:
                 System.out.println("Invalid command. Please type 'help' for more information.");
                 break;

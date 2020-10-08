@@ -48,7 +48,7 @@ public class Duke {
                 parser.parseCommand();
             }
         } catch (IOException e) {
-        System.out.println("IO exception has occured!");
+            System.out.println("IO exception has occured!");
         }
     }
 }
