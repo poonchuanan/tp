@@ -25,6 +25,7 @@ public class Userinfotextfilestorage {
                     String dataString = s.nextLine();
                     data.add(dataString);
                 }
+                s.close();
             } catch (FileNotFoundException e) {
                 System.out.println("File not found");
             } catch (IOException e) {

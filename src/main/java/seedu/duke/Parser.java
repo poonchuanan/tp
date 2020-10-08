@@ -18,22 +18,22 @@ public class Parser {
     }
 
     public void parseCommand() {
-        String[] arguments = userInput.split(" ", 1); //TODO split for all types of spaces etc TAB.
+        String[] arguments = userInput.split(" ", 2); //TODO split for all types of spaces etc TAB.
         try {
-            switch (arguments[1].toLowerCase()) {
+            switch (arguments[0].toLowerCase()) {
             case "add":
                 //TODO apply SLAP
                 if (arguments[1].startsWith("f/")) {
                     int calorieIndex = arguments[1].indexOf("c/");
                     int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
-                    arguments[1] = arguments[1].substring(6, calorieIndex - 1).trim();
+                    arguments[1] = arguments[1].substring(3, calorieIndex - 1).trim();
                     calList.addActivity(date, arguments[1], calories, "food"); //daymap equivalent
                     //used method inside daymap to get size of the activitylist instead
                     System.out.println("Current number of activities is: " + calList.getSizeOfActivityList(date));
                 } else if (arguments[1].startsWith("e/")) {
                     int calorieIndex = arguments[1].indexOf("c/");
                     int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
-                    arguments[1] = arguments[1].substring(6, calorieIndex - 1).trim();
+                    arguments[1] = arguments[1].substring(3, calorieIndex - 1).trim();
                     calList.addActivity(date, arguments[1], calories, "exercise"); //daymap equivalent
                     System.out.println("Current number of activities is: " + calList.getSizeOfActivityList(date));
                 }
