@@ -46,11 +46,10 @@ public class Duke {
             System.out.println("IO exception has occured!");
         }
         while (userInput.hasNextLine()) {
-            if(!(userInput.nextLine().equals("bye"))) {
+            if (!(userInput.nextLine().equals("bye"))) {
                 Parser parser = new Parser(userInput.nextLine());
                 parser.parseCommand();
-            }
-            else {
+            } else {
                 break;
             }
         }
