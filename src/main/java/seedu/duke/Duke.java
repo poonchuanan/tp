@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class Duke {
     public static Scanner in = new Scanner(System.in);
+    protected static DayMap calList = new DayMap();
 
     public static void main(String[] args) {
         String logo = " ____        _\n"
@@ -50,6 +51,10 @@ public class Duke {
         } catch (IOException e) {
             System.out.println("IO exception has occured!");
         }
+    }
+
+    public static DayMap getDayMap() {
+        return calList;
     }
 }
 

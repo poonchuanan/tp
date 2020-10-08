@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
 
 public class Parser {
     protected String userInput;
-    protected DayMap calList;
     protected LocalDateTime date;
+    protected DayMap calList;
 
     public Parser(String userInput) {
         this.userInput = userInput;
-        this.calList = new DayMap();
         this.date = LocalDateTime.now();
+        this.calList = Duke.getDayMap();
     }
 
     public void parseCommand() {
