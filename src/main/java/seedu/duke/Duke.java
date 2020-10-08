@@ -12,8 +12,8 @@ public class Duke {
     public static Scanner userInput = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
+        String logo = " ____        _\n"
+                + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
@@ -45,9 +45,14 @@ public class Duke {
         } catch (IOException e) {
             System.out.println("IO exception has occured!");
         }
-        while (!(userInput.nextLine().equals("bye"))) {
-            Parser parser = new Parser(userInput.nextLine());
-            parser.parseCommand();
+        while (userInput.hasNextLine()) {
+            if(!(userInput.nextLine().equals("bye"))) {
+                Parser parser = new Parser(userInput.nextLine());
+                parser.parseCommand();
+            }
+            else {
+                break;
+            }
         }
         System.out.println("THank you for using TraKCAL. See you again!");
     }
