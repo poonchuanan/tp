@@ -41,7 +41,7 @@ public class Parser {
             case "find":
                 //TODO apply SLAP
                 if (arguments[1].startsWith("d/")) {
-                    arguments[1] = arguments[1].substring(7).trim();
+                    arguments[1] = arguments[1].substring(3).trim();
                     System.out.println("Here are the matching descriptions: ");
                     //used method inside daymap to get size of the activitylist instead
                     for (int i = 0; i < calList.getSizeOfActivityList(date); i++) {
@@ -77,6 +77,9 @@ public class Parser {
 
             //TODO list command
             //TODO delete command
+            case "bye":
+                System.out.println("THank you for using TraKCAL. See you again!");
+                System.exit(0);
             default:
                 System.out.println("Invalid command. Please type 'help' for more information.");
                 break;

@@ -34,7 +34,7 @@ public class Duke {
                 if (userInput.startsWith("create new user")) {
                     Initialiseuser.sendname();
                     Initialiseuser.gender();
-                    break;
+                    continue;
                 } else {
                     String[] data = new String[4];
                     ArrayList<String> previous = Userinfotextfilestorage.update();
@@ -47,7 +47,6 @@ public class Duke {
                 Parser parser = new Parser(userInput);
                 parser.parseCommand();
             }
-            System.out.println("THank you for using TraKCAL. See you again!");
         } catch (IOException e) {
         System.out.println("IO exception has occured!");
         }
