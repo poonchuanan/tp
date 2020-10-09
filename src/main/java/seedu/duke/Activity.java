@@ -18,6 +18,6 @@ public class Activity {
      * @return String to be printed out.
      */
     public String toString() {
-        return description + ", " + calories;
+        return description + " | " + calories;
     }
 }
