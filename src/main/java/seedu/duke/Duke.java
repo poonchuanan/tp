@@ -63,7 +63,7 @@ public class Duke {
                     executeCmd(cmd);
                     storage.updateFile(calList);
                 } catch (NullPointerException e) {
-                    System.out.println("invalid command1");
+                    System.out.println("invalid command!");
 
                 }
             }
