@@ -13,4 +13,12 @@ Your BMI is 18.36547291092746
 Your recommend calories requirements is 2500 calories
 We recommend 2000 calories to lose weight!
 
+	Got it! Added apple, 50
+Current number of activities is: 1
+	Got it! Added banana, 100
+Current number of activities is: 2
+	Got it! Added pushup, 10
+Current number of activities is: 3
+	Got it! Added jogging, 60
+Current number of activities is: 4
 THank you for using TraKCAL. See you again!

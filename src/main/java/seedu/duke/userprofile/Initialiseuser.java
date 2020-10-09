@@ -11,11 +11,11 @@ public class Initialiseuser {
 
     public static String input(String text) {
         System.out.print(text);
-        return Duke.userInput.nextLine();
+        return Duke.in.nextLine();
     }
 
     public static String input2() {
-        return Duke.userInput.nextLine();
+        return Duke.in.nextLine();
     }
 
     public static void sendname()  {

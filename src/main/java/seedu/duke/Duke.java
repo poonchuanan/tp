@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    public static Scanner userInput = new Scanner(System.in);
+    public static Scanner in = new Scanner(System.in);
+    protected static DayMap calList = new DayMap();
 
     public static void main(String[] args) {
         String logo = " ____        _\n"
@@ -29,31 +30,31 @@ public class Duke {
     public static void run() {
         Userinfo profile;
         try {
-            if (userInput.nextLine().startsWith("create new user")) {
-                Initialiseuser.sendname();
-                Initialiseuser.gender();
-            } else {
-                String[] data = new String[4];
-                ArrayList<String> previous = Userinfotextfilestorage.update();
-                for (int i = 0; i < 4; i++) {
-                    data[i] = previous.get(i);
+            while (in.hasNextLine()) {
+                String userInput = in.nextLine();
+                if (userInput.startsWith("create new user")) {
+                    Initialiseuser.sendname();
+                    Initialiseuser.gender();
+                    continue;
+                } else {
+                    String[] data = new String[4];
+                    ArrayList<String> previous = Userinfotextfilestorage.update();
+                    for (int i = 0; i < 4; i++) {
+                        data[i] = previous.get(i);
+                    }
+                    profile = new Userinfo(data[0], data[1], data[2], data[3]);
+                    Initialiseuser.saveExistingUserInfo(profile);
                 }
-
-                profile = new Userinfo(data[0], data[1], data[2], data[3]);
-                Initialiseuser.saveExistingUserInfo(profile);
+                Parser parser = new Parser(userInput);
+                parser.parseCommand();
             }
         } catch (IOException e) {
             System.out.println("IO exception has occured!");
         }
-        while (userInput.hasNextLine()) {
-            if (!(userInput.nextLine().equals("bye"))) {
-                Parser parser = new Parser(userInput.nextLine());
-                parser.parseCommand();
-            } else {
-                break;
-            }
-        }
-        System.out.println("THank you for using TraKCAL. See you again!");
+    }
+
+    public static DayMap getDayMap() {
+        return calList;
     }
 }
 
