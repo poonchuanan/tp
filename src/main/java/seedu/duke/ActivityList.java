@@ -63,7 +63,7 @@ public class ActivityList extends Duke {
     }
 
     /**
-     * Removes an activity from the list via index
+     * Removes an activity from the list via index.
      *
      * @param index index of acitivty in list
      */
@@ -72,23 +72,22 @@ public class ActivityList extends Duke {
             activities.remove(index);
             activityCounter--;
             System.out.print("Activity removed!\n");
-        }
-        else {
+        } else {
             System.out.println("Please make sure index is within range");
         }
     }
 
     /**
-     * Checks if the index is valid
+     * Checks if the index is valid.
      *
      * @param index index of acitvity in list
      * @return true if index is within range, else false
      */
     public boolean isValidIndex(int index) {
-       if ((index >= 0) && (index < activityCounter)) {
-           return true;
-       }
-       return false;
+        if ((index >= 0) && (index < activityCounter)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
