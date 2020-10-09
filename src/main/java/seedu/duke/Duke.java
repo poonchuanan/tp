@@ -52,7 +52,12 @@ public class Duke {
                     Initialiseuser.saveExistingUserInfo(profile);
                 }
                 Parser parser = new Parser(userInput);
-                parser.parseCommand();
+                try {
+                    Command cmd = parser.parseCommand();
+                    executeCmd(cmd);
+                } catch (NullPointerException e) {
+                    System.out.println("invalid command1");
+                }
             }
         } catch (IOException e) {
             System.out.println("IO exception has occured!");
