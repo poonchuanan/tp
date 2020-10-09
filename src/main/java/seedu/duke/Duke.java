@@ -1,127 +1,100 @@
 package seedu.duke;
 
+
 import java.io.File;
+
+import seedu.duke.Commands.Command;
+import seedu.duke.storage.Userinfotextfilestorage;
+import seedu.duke.userprofile.Initialiseuser;
+import seedu.duke.userprofile.Userinfo;
+
+
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.Month;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.ActivityList.INITIALISE;
-
 public class Duke {
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
+
+    public static Scanner userInput = new Scanner(System.in);
+    public static DayMap calList = new DayMap();
+
+    public static Scanner in = new Scanner(System.in);
+    public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
+
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
+        String logo = " ____        _\n"
+                + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
 
-        /**
+        /*
          * Create user profile for first time user
          * Edit user profile
          */
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("Hello " + input.nextLine());
-
-        Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
         storage.loadData();
-
-
-        /**
-         * Calorie List and List
-         */
-        // Example code to use calorie list.
-
-        //DayMap calList = new DayMap();
-        //LocalDateTime adatetime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
-        //calList.addActivity(adatetime, "description of activity", 500, "food"); //daymap equivalent
-        //System.out.println(calList.toString(aDateTime));
-        //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));
-
-
-        /**
-         * Add exercise/food with their respective calories
-         */
-        DayMap calList = new DayMap();
-        LocalDateTime date = LocalDateTime.now();
-        while (true) {
-            Scanner in = new Scanner(System.in);
-            String userInput = in.nextLine();
-            try {
-                if (userInput.startsWith("add f/")) {
-                    int calorieIndex = userInput.indexOf("c/");
-                    int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
-                    userInput = userInput.substring(6, calorieIndex - 1).trim();
-                    calList.addActivity(date, userInput, calories, "food"); //daymap equivalent
-                    //used method inside daymap to get size of the activitylist instead
-                    System.out.println("Current number of activities is: " + calList.getSizeOfActivityList(date));
-                } else if (userInput.startsWith("add e/")) {
-                    int calorieIndex = userInput.indexOf("c/");
-                    int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
-                    userInput = userInput.substring(6, calorieIndex - 1).trim();
-                    calList.addActivity(date, userInput, calories, "exercise"); //daymap equivalent
-                    System.out.println("Current number of activities is: " + calList.getSizeOfActivityList(date));
-                } else if (userInput.startsWith("find d/")) {
-                    userInput = userInput.substring(7).trim();
-                    System.out.println("Here are the matching descriptions: ");
-                    //used method inside daymap to get size of the activitylist instead
-                    for (int i = 0; i < calList.getSizeOfActivityList(date); i++) {
-                        //created new method to get the arraylist inside the activity list from the daymap
-                        //maybe can find a better implementation of this later on
-                        String description = calList.getArrayList(date).toArray()[i].toString().substring(
-                                0, calList.getArrayList(date).toArray()[i].toString().indexOf(",")).trim();
-                        if (description.contains(userInput)) {
-                            System.out.println(calList.getArrayList(date).toArray()[i]);
-                        }
-                    }
-                } else if (userInput.startsWith("find c/")) {
-                    userInput = userInput.substring(7).trim();
-                    System.out.println("Here are the matching descriptions: ");
-                    //used method inside daymap to get size of the activitylist instead
-                    for (int i = 0; i < calList.getSizeOfActivityList(date); i++) {
-                        //created new method to get the arraylist inside the activity list from the daymap
-                        //maybe can find a better implementation of this later on
-                        String calories = calList.getArrayList(date).toArray()[i].toString().substring(
-                                calList.getArrayList(date).toArray()[i].toString().indexOf(",") + 1).trim();
-                        if (calories.equals(userInput)) {
-                            System.out.println(calList.getArrayList(date).toArray()[i]);
-                        }
-                    }
-                } else if (userInput.startsWith("update")) {
-                    storage.updateFile(calList);
-                } else if (userInput.startsWith("tomorrow")) {
-                    date = date.plusDays(1);
-                }
-            } catch (StringIndexOutOfBoundsException e) {
-                System.out.println("Something went wrong!! I do not understand what you mean.\n"
-                        + "There could be an error in the way of input.\n"
-                        + "Please do input 'help' for the commands and their respective input format.");
-            } catch (Exception e) {
-                System.out.println("Something went wrong!! I do not understand what you mean.\n"
-                        + "There could be an error in the way of input.\n"
-                        + "Please do input 'help' for the commands and their respective input format.");
-            }
-            /**
-             * Remove/Delete index from current list
-             * Remove/Delete whole list
-             */
-
-            /**
-             * Find exercise/food description
-             * Find calorie count
-             */
-
-
-        }
+        Duke.run();
     }
 
+
+    public static void run() {
+        Userinfo profile;
+        try {
+            while (in.hasNextLine()) {
+                String userInput = in.nextLine();
+                if (userInput.startsWith("create new user")) {
+                    Initialiseuser.sendname();
+                    Initialiseuser.gender();
+                    continue;
+                } else {
+                    String[] data = new String[4];
+                    ArrayList<String> previous = Userinfotextfilestorage.update();
+                    for (int i = 0; i < 4; i++) {
+                        data[i] = previous.get(i);
+                    }
+                    profile = new Userinfo(data[0], data[1], data[2], data[3]);
+                    Initialiseuser.saveExistingUserInfo(profile);
+                }
+                Parser parser = new Parser(userInput);
+                try {
+                    Command cmd = parser.parseCommand();
+                    executeCmd(cmd);
+                    storage.updateFile(calList);
+                } catch (NullPointerException e) {
+                    System.out.println("invalid command1");
+
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("IO exception has occured!");
+        }
+                    }
+
+    public static DayMap getDayMap() {
+        return calList;
+    }
+    public static void executeCmd(Command cmd){
+        cmd.setData(calList);
+        cmd.execute();
+    }
     private static String getJarFilePath() {
         return new File(Duke.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent().replace("%20", " ");
-    }
+        }
 }
+
+
+
+
+/*
+ * Calorie List and List
+ */
+// Example code to use calorie list.
+//DayMap calList = new DayMap();
+//LocalDateTime adatetime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
+//calList.addActivity(adatetime, "description of activity", 500, "food"); //daymap equivalent
+//System.out.println(calList.toString(aDateTime));
+//System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));
+

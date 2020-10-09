@@ -23,11 +23,11 @@ public class DayMap {
      * Adds activity into activityList under the corresponding dateTime.
      * Creates a new activityList if there are none under the specified date.
      * @param dateTime Specified date to extract activitylist from the dayMap.
-     * @param activityDescription Description of the activity, the userinput
-     * @param calories number of calories
-     * @param activityType food or exercise activity
+     * @param activity Description of the activity, the userinput
+//     * @param calories number of calories
+//     * @param activityType food or exercise activity
      */
-    public void addActivity(LocalDateTime dateTime, String activityDescription, int calories, String activityType) {
+    public void addActivity(LocalDateTime dateTime, Activity activity) {
         ActivityList alist = this.getActivityList(dateTime);
 
         //if the day specified does not contain an activity list yet, create one first
@@ -36,11 +36,12 @@ public class DayMap {
         }
         alist = this.getActivityList(dateTime);
 
-        if (activityType.equals("food")) {
-            alist.addFood(activityDescription, calories);
-        } else if (activityType.equals("exercise")) {
-            alist.addExercise(activityDescription, calories);
-        }
+        alist.addActivity(activity);
+//        if (activityType.equals("food")) {
+//            alist.addFood(activityDescription, calories);
+//        } else if (activityType.equals("exercise")) {
+//            alist.addExercise(activityDescription, calories);
+//        }
     }
 
     public ArrayList getArrayList(LocalDateTime dateTime) {
