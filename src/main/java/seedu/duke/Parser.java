@@ -1,5 +1,9 @@
 package seedu.duke;
 
+import seedu.duke.command.AddExerciseCommand;
+import seedu.duke.command.AddFoodCommand;
+import seedu.duke.command.Command;
+import seedu.duke.command.ListCommand;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
@@ -17,27 +21,15 @@ public class Parser {
         this.calList = Duke.getDayMap();
     }
 
-    public void parseCommand() {
+    public Command parseCommand() {
         String[] arguments = userInput.split(" ", 2); //TODO split for all types of spaces etc TAB.
+
         try {
             switch (arguments[0].toLowerCase()) {
             case "add":
                 //TODO apply SLAP
-                if (arguments[1].startsWith("f/")) {
-                    int calorieIndex = arguments[1].indexOf("c/");
-                    int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
-                    arguments[1] = arguments[1].substring(3, calorieIndex - 1).trim();
-                    calList.addActivity(date, arguments[1], calories, "food"); //daymap equivalent
-                    //used method inside daymap to get size of the activitylist instead
-                    System.out.println("Current number of activities is: " + calList.getSizeOfActivityList(date));
-                } else if (arguments[1].startsWith("e/")) {
-                    int calorieIndex = arguments[1].indexOf("c/");
-                    int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
-                    arguments[1] = arguments[1].substring(3, calorieIndex - 1).trim();
-                    calList.addActivity(date, arguments[1], calories, "exercise"); //daymap equivalent
-                    System.out.println("Current number of activities is: " + calList.getSizeOfActivityList(date));
-                }
-                break;
+                return prepareAddCommand(userInput);
+                //break;
             case "find":
                 //TODO apply SLAP
                 if (arguments[1].startsWith("d/")) {
@@ -74,8 +66,8 @@ public class Parser {
                 store.editUserInfo(arguments[1]);
                 Initialiseuser.save(store);
                 break;
-
-            //TODO list command
+            case "list":
+                return new ListCommand();
             //TODO delete command
             case "bye":
                 System.out.println("THank you for using TraKCAL. See you again!");
@@ -92,5 +84,35 @@ public class Parser {
         } catch (IOException e) {
             System.out.println("IO Exception found!");
         }
+        return null;
     }
+
+    private Command prepareAddCommand(String userInput) {
+        try {
+            String[] arguments = userInput.split(" ", 2);
+            if (arguments[1].startsWith("f/")) {
+                int calorieIndex = arguments[1].indexOf("c/");
+                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
+                arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
+                //calList.addActivity(date, arguments[1], calories, "food"); //daymap equivalent
+                //System.out.println("Current number of activities is: " + calList.getSizeOfActivityList(date));
+                // calList.getSizeOfActivityList(date));
+                return new AddFoodCommand(arguments[1], calories);
+
+            } else if (arguments[1].startsWith("e/")) {
+                int calorieIndex = arguments[1].indexOf("c/");
+                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
+                arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
+                //calList.addActivity(date, arguments[1], calories, "exercise"); //daymap equivalent
+                return new AddExerciseCommand(arguments[1], calories);
+                //System.out.println("Current number of activities is: " + calList.getSizeOfActivityList(date));
+            }
+        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+            return null;
+        }
+        return null;
+    }
+
+
+
 }

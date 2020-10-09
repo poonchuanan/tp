@@ -7,4 +7,5 @@ add f/ apple c/ 50
 add f/ banana c/ 100
 add e/ pushup c/ 10
 add e/ jogging c/ 60
+list
 bye

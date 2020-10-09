@@ -1,3 +1,5 @@
+package seedu.duke.command;
+
 import seedu.duke.DayMap;
 
 public class Command {
