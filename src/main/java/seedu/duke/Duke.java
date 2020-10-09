@@ -3,14 +3,13 @@ package seedu.duke;
 
 import java.io.File;
 
-import seedu.duke.Commands.Command;
+import seedu.duke.command.Command;
 import seedu.duke.storage.Userinfotextfilestorage;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -71,18 +70,21 @@ public class Duke {
         } catch (IOException e) {
             System.out.println("IO exception has occured!");
         }
-                    }
+    }
 
     public static DayMap getDayMap() {
         return calList;
     }
-    public static void executeCmd(Command cmd){
+
+    public static void executeCmd(Command cmd) {
         cmd.setData(calList);
         cmd.execute();
     }
+
     private static String getJarFilePath() {
-        return new File(Duke.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent().replace("%20", " ");
-        }
+        return new File(Duke.class.getProtectionDomain().getCodeSource().getLocation().getPath())
+                .getParent().replace("%20", " ");
+    }
 }
 
 

@@ -1,6 +1,10 @@
 package seedu.duke;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -19,24 +23,23 @@ public class Storage {
     }
 
     private void createFileHierarchy() throws IOException {
-        if(dataFile.getParentFile().exists()) {
+        if (dataFile.getParentFile().exists()) {
             if (dataFile.exists()) {
                 return;
             } else {
                 dataFile.createNewFile();
             }
-        }
-        else {
+        } else {
             dataFile.getParentFile().mkdir();
             dataFile.createNewFile();
         }
     }
 
-    private void appendToFile(String textToAdd){
-        try{
+    private void appendToFile(String textToAdd) {
+        try {
             FileWriter fw = new FileWriter(filePath,true);
             BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter pw= new PrintWriter(bw);
+            PrintWriter pw = new PrintWriter(bw);
             pw.println(textToAdd);
             pw.flush();
             pw.close();
@@ -58,13 +61,13 @@ public class Storage {
 
     }
 
-    public void updateFile(DayMap dayMap) throws IOException {
+    public void updateFile(DayMap dayMap) {
         HashMap<LocalDate, ActivityList> dayHashMap;
         dayHashMap = dayMap.getHashMap();
         Iterator it = dayHashMap.entrySet().iterator();
         writeToFile("");
         final String[] header = new String[]{"Date", "Activities"};
-        while (it.hasNext()){
+        while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
             String activities = pair.getValue().toString();
             activities = activities.substring(1, activities.length() - 1);

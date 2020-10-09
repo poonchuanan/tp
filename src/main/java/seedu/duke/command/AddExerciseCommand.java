@@ -1,13 +1,11 @@
-package seedu.duke.Commands;
+package seedu.duke.command;
 
-import seedu.duke.Activity;
 import seedu.duke.Exercise;
-import seedu.duke.Food;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class AddExerciseCommand extends Command{
+public class AddExerciseCommand extends Command {
     protected Exercise exercise;
     protected LocalDate date;
 
@@ -22,7 +20,7 @@ public class AddExerciseCommand extends Command{
     }
 
     @Override
-    public void execute(){
+    public void execute() {
         dayMap.addActivity(date.atStartOfDay(), exercise);
     }
 
