@@ -17,13 +17,22 @@ We recommend 2000 calories to lose weight!
 record saved
 [F] | banana | 100
 record saved
+1. [F] | apple | 50
+2. [F] | banana | 100
+record saved
+Activity removed!
+record saved
 [E] | pushup | 10
 record saved
 [E] | jogging | 60
 record saved
-1. [F] | apple | 50
-2. [F] | banana | 100
-3. [E] | pushup | 10
-4. [E] | jogging | 60
+1. [F] | banana | 100
+2. [E] | pushup | 10
+3. [E] | jogging | 60
+record saved
+Activity removed!
+record saved
+1. [F] | banana | 100
+2. [E] | jogging | 60
 record saved
 THank you for using TraKCAL. See you again!
