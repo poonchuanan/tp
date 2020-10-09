@@ -37,11 +37,6 @@ public class DayMap {
         alist = this.getActivityList(dateTime);
 
         alist.addActivity(activity);
-//        if (activityType.equals("food")) {
-//            alist.addFood(activityDescription, calories);
-//        } else if (activityType.equals("exercise")) {
-//            alist.addExercise(activityDescription, calories);
-//        }
     }
 
     public ArrayList getArrayList(LocalDateTime dateTime) {
@@ -63,9 +58,15 @@ public class DayMap {
         }
     }
 
+    public HashMap<LocalDate, ActivityList> getHashMap() {
+        return dayMap;
+    }
+
     public String toString(LocalDateTime dateTime) {
         ActivityList alist = this.getActivityList(dateTime);
         return dateTime.toLocalDate().toString() + " : " + alist.toString();
     }
+
+
 
 }

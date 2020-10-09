@@ -31,30 +31,29 @@ public class ActivityList extends Duke {
     /**
      * Adds food with its respective calories to activity list.
      *
-     * @param userInput Food description.
-     * @param calories  Amount of calories.
+     //* @param userInput Food description.
+     //* @param calories  Amount of calories.
      */
-//    public void addFood(String userInput, int calories) {
-//        Activity item = new Food(userInput, calories);
-//        activities.add(item);
-//        System.out.println("\t" + activities.get(activityCounter++).toString());
-//        //return activityCounter;
-//    }
-//
-//    /**
-//     * Adds exercise with its respective calories to activity list.
-//     *
-//     * @param userInput Exercise description.
-//     * @param calories  Amount of calories.
-//     */
-//    public void addExercise(String userInput, int calories) {
-//        Activity item = new Exercise(userInput, calories);
-//        activities.add(item);
-//        System.out.println("\t" + activities.get(activityCounter++).toString());
-//        //return activityCounter;
-//    }
+    //public void addFood(String userInput, int calories) {
+    //Activity item = new Food(userInput, calories);
+    //activities.add(item);
+    //System.out.println("\t" + activities.get(activityCounter++).toString());
+    //return activityCounter;
+    //}
+
+    /**
+     * Adds exercise with its respective calories to activity list.
+     //* @param userInput Exercise description.
+     //* @param calories  Amount of calories.
+     */
+    //public void addExercise(String userInput, int calories) {
+    //Activity item = new Exercise(userInput, calories);
+    //activities.add(item);
+    //System.out.println("\t" + activities.get(activityCounter++).toString());
+    //return activityCounter;
+    // }
     public void addActivity(Activity activity) {
-//        Activity item = new Activity(userInput, calories);
+        //Activity item = new Activity(userInput, calories);
         activities.add(activity);
         System.out.println(activities.get(activityCounter++).toString());
     }
