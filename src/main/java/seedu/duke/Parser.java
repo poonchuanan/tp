@@ -76,7 +76,9 @@ public class Parser {
                 break;
 
             //TODO list command
-            //TODO delete command
+            case "delete":
+                this.calList.getActivityList(date).removeActivity(Integer.parseInt(arguments[1]));
+                break;
             case "bye":
                 System.out.println("THank you for using TraKCAL. See you again!");
                 System.exit(0);
