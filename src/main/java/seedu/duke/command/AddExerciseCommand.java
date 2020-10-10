@@ -9,6 +9,12 @@ public class AddExerciseCommand extends Command {
     protected Exercise exercise;
     protected LocalDate date;
 
+    /**
+     * Subclass of class Activity.
+     *
+     * @param description exercise description
+     * @param calories calories burnt
+     */
     public AddExerciseCommand(String description, int calories) {
         this.exercise = new Exercise(description, calories);
         this.date = LocalDateTime.now().toLocalDate();

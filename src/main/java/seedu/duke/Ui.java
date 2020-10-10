@@ -160,7 +160,7 @@ public class Ui {
     }
 
     /**
-     * Prints error message when NullPointerException occurs in Parser.
+     * Prints error message when error occurs in add command.
      */
     public static void displayAddCommandErrorMessage() {
         drawDivider();
