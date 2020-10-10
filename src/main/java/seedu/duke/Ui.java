@@ -71,6 +71,26 @@ public class Ui {
     }
 
     /**
+     * Prints out acknowledgement of saving current activity list in file.
+     */
+    public static void displaySaveMessage() {
+        System.out.println("The current activity list has been saved.");
+    }
+
+    /**
+     * Prints out error in saving current activity list in file.
+     */
+    public static void displayNotSavedMessage() {
+        System.out.println("The current activity list has not been saved.");
+    }
+
+    public static void displayDefaultMessage() {
+        drawDivider();
+        System.out.println("Invalid command. Please type 'help' for more information.");
+        drawDivider();
+    }
+
+    /**
      * Prints out bye message and let the user know that the current list has been saved to file.
      */
     public static void displayByeMessage() {
@@ -79,5 +99,76 @@ public class Ui {
         drawDivider();
     }
 
+    /**
+     * Prints out message to recommend user to print out help list.
+     */
+    public static void PromptUserOfHelpMessage() {
+        System.out.println("Please do input 'help' for the commands and their respective input format.");
+    }
 
+    /**
+     * Prints error message when StringIndexOutOfBoundsException occurs.
+     */
+    public static void displayStringIndexOutOfBoundsExceptionMessage() {
+        drawDivider();
+        String exceptionMessage = "Something went wrong!! I do not understand what you mean.\n"
+                + "There could be an error in the way of input.";
+        System.out.println(exceptionMessage);
+        PromptUserOfHelpMessage();
+        drawDivider();
+    }
+
+    /**
+     * Prints error message when IOException occurs.
+     */
+    public static void displayIOExceptionMessage() {
+        drawDivider();
+        System.out.println("IO Exception has occurred!");
+        PromptUserOfHelpMessage();
+        drawDivider();
+    }
+
+    /**
+     * Prints error message when NumberFormatException occurs in delete command.
+     */
+    public static void displayDeleteCommandNumberFormatExceptionMessage() {
+        drawDivider();
+        System.out.println("Index is not a number!");
+        PromptUserOfHelpMessage();
+        drawDivider();
+    }
+
+    /**
+     * Prints error message when NullPointerException occurs in delete command.
+     */
+    public static void displayDeleteCommandNullPointerExceptionMessage() {
+        drawDivider();
+        System.out.println("There is not index to remove");
+        PromptUserOfHelpMessage();
+        drawDivider();
+    }
+
+    /**
+     * Prints error message when NullPointerException occurs in Parser.
+     */
+    public static void displayParserNullPointerExceptionMessage() {
+        drawDivider();
+        System.out.println("Invalid command!");
+        PromptUserOfHelpMessage();
+        drawDivider();
+    }
+
+    /**
+     * Prints error message when NullPointerException occurs in Parser.
+     */
+    public static void displayAddCommandErrorMessage() {
+        drawDivider();
+        System.out.println("Invalid input given!");
+        System.out.println("The input format for adding food activity is 'add f/ X c/ Y'"
+                + " - where food is X and calories gained is Y ");
+        System.out.println("The input format for adding exercise activity is 'add e/ X c/ Y'"
+                + " - where exercise done is X and calories gained is Y ");
+        System.out.println("Please do input 'help' for more information.");
+        drawDivider();
+    }
 }

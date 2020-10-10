@@ -32,27 +32,27 @@ Your recommend calories requirements is 2500 calories
 We recommend 2000 calories to lose weight!
 
 [F] | apple | 50
-record saved
+The current activity list has been saved.
 [F] | banana | 100
-record saved
+The current activity list has been saved.
 1. [F] | apple | 50
 2. [F] | banana | 100
-record saved
+The current activity list has been saved.
 Activity removed!
-record saved
+The current activity list has been saved.
 [E] | pushup | 10
-record saved
+The current activity list has been saved.
 [E] | jogging | 60
-record saved
+The current activity list has been saved.
 1. [F] | banana | 100
 2. [E] | pushup | 10
 3. [E] | jogging | 60
-record saved
+The current activity list has been saved.
 Activity removed!
-record saved
+The current activity list has been saved.
 1. [F] | banana | 100
 2. [E] | jogging | 60
-record saved
+The current activity list has been saved.
 ==============================================================
 THank you for using TraKCAL. See you again!
 ==============================================================
