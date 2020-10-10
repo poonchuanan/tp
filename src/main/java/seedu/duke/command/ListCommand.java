@@ -18,16 +18,23 @@ public class ListCommand extends Command {
         this.date = LocalDateTime.now().toLocalDate();
     }
 
+    /**
+     * Prints the list of activities for the given day.
+     * If no date attribute was given by the user, prints the list of activities for today.
+     */
     @Override
     public void execute() {
-        ActivityList activities = dayMap.getActivityList(date.atStartOfDay());
-        int activityCounter = activities.getNumberOfActivities();
-
-        if (activityCounter == 0) {
+        if (!dayMap.getHashMap().containsKey(date)) {
             System.out.println("Nothing was added!");
         } else {
-            for (int i = 0; i < activityCounter; i++) {
-                System.out.println((i + 1) + ". " + activities.getActivity(i).toString());
+            ActivityList activities = dayMap.getActivityList(date.atStartOfDay());
+            int activityCounter = activities.getNumberOfActivities();
+            if (activityCounter == 0) {
+                System.out.println("Nothing was added!");
+            } else {
+                for (int i = 0; i < activityCounter; i++) {
+                    System.out.println((i + 1) + ". " + activities.getActivity(i).toString());
+                }
             }
         }
     }
