@@ -62,6 +62,34 @@ public class ActivityList extends Duke {
         return activities.get(index);
     }
 
+    /**
+     * Removes an activity from the list via index.
+     *
+     * @param index index of acitivty in list
+     */
+    public void removeActivity(int index) {
+        if (isValidIndex(index)) {
+            activities.remove(index);
+            activityCounter--;
+            System.out.print("Activity removed!\n");
+        } else {
+            System.out.println("Please make sure index is within range");
+        }
+    }
+
+    /**
+     * Checks if the index is valid.
+     *
+     * @param index index of acitvity in list
+     * @return true if index is within range, else false
+     */
+    public boolean isValidIndex(int index) {
+        if ((index >= 0) && (index < activityCounter)) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return (Arrays.toString(activities.toArray()));

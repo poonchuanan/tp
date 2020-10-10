@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.command.AddExerciseCommand;
 import seedu.duke.command.AddFoodCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
@@ -27,7 +28,6 @@ public class Parser {
         try {
             switch (arguments[0].toLowerCase()) {
             case "add":
-                //TODO apply SLAP
                 return prepareAddCommand(userInput);
                 //break;
             case "find":
@@ -66,9 +66,10 @@ public class Parser {
                 store.editUserInfo(arguments[1]);
                 Initialiseuser.save(store);
                 break;
+            case "delete":
+                return prepareDeleteCommand(arguments[1]);
             case "list":
                 return new ListCommand();
-            //TODO delete command
             case "bye":
                 System.out.println("THank you for using TraKCAL. See you again!");
                 System.exit(0);
@@ -109,6 +110,18 @@ public class Parser {
             }
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             return null;
+        }
+        return null;
+    }
+
+    private Command prepareDeleteCommand(String userInput) {
+        try {
+            int index = Integer.parseInt(userInput);
+            return new DeleteCommand(index - 1);
+        } catch (NumberFormatException e) {
+            System.out.println("Index is not a number!");
+        } catch (NullPointerException e) {
+            System.out.println("There is not index to remove");
         }
         return null;
     }
