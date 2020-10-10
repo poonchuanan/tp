@@ -96,8 +96,15 @@ public class Ui {
     /**
      * Prints out message to recommend user to print out help list.
      */
-    public static void PromptUserOfHelpMessage() {
+    public static void promptUserOfHelpMessage() {
         System.out.println("Please do input 'help' for the commands and their respective input format.");
+    }
+
+    /**
+     * Prints out message when list command given but activity list is empty.
+     */
+    public static void displayEmptyActivityCounterMessage() {
+        System.out.println("Nothing was added!");
     }
 
     /**
@@ -108,7 +115,7 @@ public class Ui {
         String exceptionMessage = "Something went wrong!! I do not understand what you mean.\n"
                 + "There could be an error in the way of input.";
         System.out.println(exceptionMessage);
-        PromptUserOfHelpMessage();
+        promptUserOfHelpMessage();
         drawDivider();
     }
 
@@ -118,7 +125,7 @@ public class Ui {
     public static void displayIOExceptionMessage() {
         drawDivider();
         System.out.println("IO Exception has occurred!");
-        PromptUserOfHelpMessage();
+        promptUserOfHelpMessage();
         drawDivider();
     }
 
@@ -128,7 +135,7 @@ public class Ui {
     public static void displayDeleteCommandNumberFormatExceptionMessage() {
         drawDivider();
         System.out.println("Index is not a number!");
-        PromptUserOfHelpMessage();
+        promptUserOfHelpMessage();
         drawDivider();
     }
 
@@ -138,7 +145,7 @@ public class Ui {
     public static void displayDeleteCommandNullPointerExceptionMessage() {
         drawDivider();
         System.out.println("There is not index to remove");
-        PromptUserOfHelpMessage();
+        promptUserOfHelpMessage();
         drawDivider();
     }
 
@@ -148,7 +155,7 @@ public class Ui {
     public static void displayParserNullPointerExceptionMessage() {
         drawDivider();
         System.out.println("Invalid command!");
-        PromptUserOfHelpMessage();
+        promptUserOfHelpMessage();
         drawDivider();
     }
 
@@ -162,6 +169,20 @@ public class Ui {
                 + " - where food is X and calories gained is Y ");
         System.out.println("The input format for adding exercise activity is 'add e/ X c/ Y'"
                 + " - where exercise done is X and calories gained is Y ");
+        System.out.println("Please do input 'help' for more information.");
+        drawDivider();
+    }
+
+    /**
+     * Prints error message when error occurs in find command.
+     */
+    public static void displayFindErrorMessage() {
+        drawDivider();
+        System.out.println("I do not understand what you mean!");
+        System.out.println("The input format for finding food or exercise activity via keyword is 'find d/ X'"
+                + " - where keyword is X");
+        System.out.println("The input format for finding calorie count via keyword is 'find c/ X'"
+                + " - where calories count is X");
         System.out.println("Please do input 'help' for more information.");
         drawDivider();
     }

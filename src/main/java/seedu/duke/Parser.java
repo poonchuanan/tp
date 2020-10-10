@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import static seedu.duke.Ui.displayAddCommandErrorMessage;
 import static seedu.duke.Ui.displayByeMessage;
 import static seedu.duke.Ui.displayDefaultMessage;
+import static seedu.duke.Ui.displayFindErrorMessage;
 import static seedu.duke.Ui.displayIOExceptionMessage;
 import static seedu.duke.Ui.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.Ui.displayDeleteCommandNumberFormatExceptionMessage;
@@ -65,6 +66,8 @@ public class Parser {
                             System.out.println(calList.getArrayList(date).toArray()[i]);
                         }
                     }
+                } else {
+                    displayFindErrorMessage();
                 }
                 break;
             case "edit":
