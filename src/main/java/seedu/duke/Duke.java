@@ -1,6 +1,5 @@
 package seedu.duke;
 
-
 import java.io.File;
 
 import seedu.duke.command.Command;
@@ -13,31 +12,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static seedu.duke.Ui.displayIoExceptionMessage;
+import static seedu.duke.Ui.displayParserNullPointerExceptionMessage;
+import static seedu.duke.Ui.displayWelcomeMessage;
+
 public class Duke {
 
-    public static Scanner userInput = new Scanner(System.in);
     public static DayMap calList = new DayMap();
 
     public static Scanner in = new Scanner(System.in);
     public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
 
     public static void main(String[] args) {
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-
-        /*
-         * Create user profile for first time user
-         * Edit user profile
-         */
-
+        displayWelcomeMessage();
         storage.loadData();
         Duke.run();
     }
-
 
     public static void run() {
         Userinfo profile;
@@ -57,18 +47,18 @@ public class Duke {
                     profile = new Userinfo(data[0], data[1], data[2], data[3]);
                     Initialiseuser.saveExistingUserInfo(profile);
                 }
+
                 Parser parser = new Parser(userInput);
                 try {
                     Command cmd = parser.parseCommand();
                     executeCmd(cmd);
                     storage.updateFile(calList);
                 } catch (NullPointerException e) {
-                    System.out.println("invalid command!");
-
+                    displayParserNullPointerExceptionMessage();
                 }
             }
         } catch (IOException e) {
-            System.out.println("IO exception has occured!");
+            displayIoExceptionMessage();
         }
     }
 
@@ -97,4 +87,3 @@ public class Duke {
 //calList.addActivity(adatetime, "description of activity", 500, "food"); //daymap equivalent
 //System.out.println(calList.toString(aDateTime));
 //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));
-

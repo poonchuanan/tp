@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
+
 public class ListCommand extends Command {
 
     protected LocalDate date;
@@ -24,7 +26,7 @@ public class ListCommand extends Command {
         int activityCounter = activities.getNumberOfActivities();
 
         if (activityCounter == 0) {
-            System.out.println("Nothing was added!");
+            displayEmptyActivityCounterMessage();
         } else {
             for (int i = 0; i < activityCounter; i++) {
                 System.out.println((i + 1) + ". " + activities.getActivity(i).toString());

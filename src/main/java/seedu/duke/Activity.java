@@ -7,6 +7,12 @@ public class Activity {
     protected String description;
     protected int calories;
 
+    /**
+     * Activity class constructor.
+     *
+     * @param description activity description
+     * @param calories activity calories count
+     */
     public Activity(String description, int calories) {
         this.description = description;
         this.calories = calories;
