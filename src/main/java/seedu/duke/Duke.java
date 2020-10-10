@@ -1,53 +1,87 @@
 package seedu.duke;
 
+import java.io.File;
+
+import seedu.duke.command.Command;
+import seedu.duke.storage.Userinfotextfilestorage;
+import seedu.duke.userprofile.Initialiseuser;
+import seedu.duke.userprofile.Userinfo;
+
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import static seedu.duke.Ui.displayIoExceptionMessage;
+import static seedu.duke.Ui.displayParserNullPointerExceptionMessage;
+import static seedu.duke.Ui.displayWelcomeMessage;
+
 public class Duke {
-    protected Scanner userInput;
 
-    public Duke() {
-        this.userInput = new Scanner(System.in);
-    }
+    public static DayMap calList = new DayMap();
 
-    /*
-     * Main entry-point for the java.duke.Duke application.
-     */
+    public static Scanner in = new Scanner(System.in);
+    public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-        /*
-         * Create user profile for first time user
-         * Edit user profile
-         */
-        Duke duke = new Duke();
-        duke.run();
+        displayWelcomeMessage();
+        storage.loadData();
+        Duke.run();
     }
 
-    public void run() {
-        //TODO userInput.nextLine() is repeated
-        String name = userInput.nextLine();
-        System.out.println("Hello " + name);
-        while (!(userInput.nextLine().equals("bye"))) {
-            Parser parser = new Parser(userInput.nextLine());
-            parser.parseCommand();
+    public static void run() {
+        Userinfo profile;
+        try {
+            while (in.hasNextLine()) {
+                String userInput = in.nextLine();
+                if (userInput.startsWith("create new user")) {
+                    Initialiseuser.sendname();
+                    Initialiseuser.gender();
+                    continue;
+                } else {
+                    String[] data = new String[4];
+                    ArrayList<String> previous = Userinfotextfilestorage.update();
+                    for (int i = 0; i < 4; i++) {
+                        data[i] = previous.get(i);
+                    }
+                    profile = new Userinfo(data[0], data[1], data[2], data[3]);
+                    Initialiseuser.saveExistingUserInfo(profile);
+                }
+
+                Parser parser = new Parser(userInput);
+                try {
+                    Command cmd = parser.parseCommand();
+                    executeCmd(cmd);
+                    storage.updateFile(calList);
+                } catch (NullPointerException e) {
+                    displayParserNullPointerExceptionMessage();
+                }
+            }
+        } catch (IOException e) {
+            displayIoExceptionMessage();
         }
-        System.out.println("Thank you for using traKCAL! See you again!");
+    }
+
+    public static DayMap getDayMap() {
+        return calList;
+    }
+
+    public static void executeCmd(Command cmd) {
+        cmd.setData(calList);
+        cmd.execute();
+    }
+
+    private static String getJarFilePath() {
+        return new File(Duke.class.getProtectionDomain().getCodeSource().getLocation().getPath())
+                .getParent().replace("%20", " ");
     }
 }
-
 
 
 /*
  * Calorie List and List
  */
 // Example code to use calorie list.
-
 //DayMap calList = new DayMap();
 //LocalDateTime adatetime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
 //calList.addActivity(adatetime, "description of activity", 500, "food"); //daymap equivalent
