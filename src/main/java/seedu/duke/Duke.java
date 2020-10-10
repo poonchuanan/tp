@@ -1,15 +1,25 @@
 package seedu.duke;
 
+
+import java.io.File;
+
+import seedu.duke.command.Command;
 import seedu.duke.storage.Userinfotextfilestorage;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+
     public static Scanner userInput = new Scanner(System.in);
+    public static DayMap calList = new DayMap();
+
+    public static Scanner in = new Scanner(System.in);
+    public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
 
     public static void main(String[] args) {
         String logo = " ____        _\n"
@@ -23,41 +33,59 @@ public class Duke {
          * Create user profile for first time user
          * Edit user profile
          */
+
+        storage.loadData();
         Duke.run();
     }
+
 
     public static void run() {
         Userinfo profile;
         try {
-            if (userInput.nextLine().startsWith("create new user")) {
-                Initialiseuser.sendname();
-                Initialiseuser.gender();
-            } else {
-                String[] data = new String[4];
-                ArrayList<String> previous = Userinfotextfilestorage.update();
-                for (int i = 0; i < 4; i++) {
-                    data[i] = previous.get(i);
+            while (in.hasNextLine()) {
+                String userInput = in.nextLine();
+                if (userInput.startsWith("create new user")) {
+                    Initialiseuser.sendname();
+                    Initialiseuser.gender();
+                    continue;
+                } else {
+                    String[] data = new String[4];
+                    ArrayList<String> previous = Userinfotextfilestorage.update();
+                    for (int i = 0; i < 4; i++) {
+                        data[i] = previous.get(i);
+                    }
+                    profile = new Userinfo(data[0], data[1], data[2], data[3]);
+                    Initialiseuser.saveExistingUserInfo(profile);
                 }
+                Parser parser = new Parser(userInput);
+                try {
+                    Command cmd = parser.parseCommand();
+                    executeCmd(cmd);
+                    storage.updateFile(calList);
+                } catch (NullPointerException e) {
+                    System.out.println("invalid command!");
 
-                profile = new Userinfo(data[0], data[1], data[2], data[3]);
-                Initialiseuser.saveExistingUserInfo(profile);
+                }
             }
         } catch (IOException e) {
             System.out.println("IO exception has occured!");
         }
-        while (userInput.hasNextLine()) {
-            if (!(userInput.nextLine().equals("bye"))) {
-                Parser parser = new Parser(userInput.nextLine());
-                parser.parseCommand();
-            } else {
-                break;
-            }
-        }
-        System.out.println("THank you for using TraKCAL. See you again!");
+    }
+
+    public static DayMap getDayMap() {
+        return calList;
+    }
+
+    public static void executeCmd(Command cmd) {
+        cmd.setData(calList);
+        cmd.execute();
+    }
+
+    private static String getJarFilePath() {
+        return new File(Duke.class.getProtectionDomain().getCodeSource().getLocation().getPath())
+                .getParent().replace("%20", " ");
     }
 }
-
-
 
 
 /*
@@ -69,3 +97,4 @@ public class Duke {
 //calList.addActivity(adatetime, "description of activity", 500, "food"); //daymap equivalent
 //System.out.println(calList.toString(aDateTime));
 //System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));
+
