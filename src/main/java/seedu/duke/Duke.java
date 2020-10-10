@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static seedu.duke.Ui.displayDuke;
+import static seedu.duke.Ui.displayWelcomeMessage;
+
 public class Duke {
 
     public static Scanner userInput = new Scanner(System.in);
@@ -22,12 +25,14 @@ public class Duke {
     public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
 
     public static void main(String[] args) {
-        String logo = " ____        _\n"
+        /*String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello from\n" + logo);*/
+        //displayDuke();
+        displayWelcomeMessage();
 
         /*
          * Create user profile for first time user
@@ -57,6 +62,7 @@ public class Duke {
                     profile = new Userinfo(data[0], data[1], data[2], data[3]);
                     Initialiseuser.saveExistingUserInfo(profile);
                 }
+
                 Parser parser = new Parser(userInput);
                 try {
                     Command cmd = parser.parseCommand();
@@ -68,7 +74,7 @@ public class Duke {
                 }
             }
         } catch (IOException e) {
-            System.out.println("IO exception has occured!");
+            System.out.println("IO exception has occurred!");
         }
     }
 

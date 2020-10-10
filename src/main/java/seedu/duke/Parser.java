@@ -11,6 +11,8 @@ import seedu.duke.userprofile.Userinfo;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+import static seedu.duke.Ui.displayByeMessage;
+
 public class Parser {
     protected String userInput;
     protected LocalDateTime date;
@@ -71,7 +73,7 @@ public class Parser {
             case "list":
                 return new ListCommand();
             case "bye":
-                System.out.println("THank you for using TraKCAL. See you again!");
+                displayByeMessage();
                 System.exit(0);
                 break;
             default:
