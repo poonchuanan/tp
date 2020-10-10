@@ -8,7 +8,7 @@ Hello from
 
 ==============================================================
 Commands available: create new user, list, help, add, delete, find, bye
-The expected format of input values:
+The expected format of input values: 
 	create new user - Adds a new user profile	target X - Adds a target calorie, X
 	help - Prints out commands available and their input format
 	add f/ X c/ Y - Adds food/drinks consumed, X and the calories gained, Y
