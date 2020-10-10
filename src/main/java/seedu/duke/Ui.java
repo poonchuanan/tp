@@ -39,8 +39,8 @@ public class Ui {
     public static void displayHelpMessage() {
         drawDivider();
         String helpList = "Commands available: create new user, list, help, add, delete, find, bye\n"
-                + "The expected format of input values: \n"
-                + "\tcreate new user - Adds a new user profile"
+                + "The expected format of input values:\n"
+                + "\tcreate new user - Adds a new user profile\n"
                 + "\ttarget X - Adds a target calorie, X\n"
                 + "\thelp - Prints out commands available and their input format\n"
                 + "\tadd f/ X c/ Y - Adds food/drinks consumed, X and the calories gained, Y\n"
