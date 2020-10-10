@@ -2,6 +2,9 @@ package seedu.duke.command;
 
 import seedu.duke.DayMap;
 
+/**
+ * Execute command.
+ */
 public class Command {
     protected DayMap dayMap;
 
@@ -12,6 +15,11 @@ public class Command {
         return;
     }
 
+    /**
+     * Set data.
+     *
+     * @param dayMap date
+     */
     public void setData(DayMap dayMap) {
         this.dayMap = dayMap;
     }

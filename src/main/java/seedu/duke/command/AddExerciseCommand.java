@@ -5,12 +5,15 @@ import seedu.duke.Exercise;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Add exercise.
+ */
 public class AddExerciseCommand extends Command {
     protected Exercise exercise;
     protected LocalDate date;
 
     /**
-     * Subclass of class Activity.
+     * Adds exercise and it's respective calories.
      *
      * @param description exercise description
      * @param calories calories burnt

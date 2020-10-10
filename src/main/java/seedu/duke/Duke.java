@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.Ui.displayIOExceptionMessage;
+import static seedu.duke.Ui.displayIoExceptionMessage;
 import static seedu.duke.Ui.displayParserNullPointerExceptionMessage;
 import static seedu.duke.Ui.displayWelcomeMessage;
 
@@ -59,7 +59,7 @@ public class Duke {
                 }
             }
         } catch (IOException e) {
-            displayIOExceptionMessage();
+            displayIoExceptionMessage();
         }
     }
 

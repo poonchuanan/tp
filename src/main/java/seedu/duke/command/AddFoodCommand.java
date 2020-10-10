@@ -5,12 +5,15 @@ import seedu.duke.Food;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Add food.
+ */
 public class AddFoodCommand extends Command {
     protected Food food;
     protected LocalDate date;
 
     /**
-     *
+     * Add food and it's respective calories.
      *
      * @param description food description
      * @param calories calories consumed

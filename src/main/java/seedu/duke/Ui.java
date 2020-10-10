@@ -122,7 +122,7 @@ public class Ui {
     /**
      * Prints error message when IOException occurs.
      */
-    public static void displayIOExceptionMessage() {
+    public static void displayIoExceptionMessage() {
         drawDivider();
         System.out.println("IO Exception has occurred!");
         promptUserOfHelpMessage();
