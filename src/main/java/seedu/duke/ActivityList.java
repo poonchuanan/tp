@@ -70,7 +70,6 @@ public class ActivityList extends Duke {
     public void removeActivity(int index) {
         if (isValidIndex(index)) {
             activities.remove(index);
-            activityCounter--;
             System.out.print("Activity removed!\n");
         } else {
             System.out.println("Please make sure index is within range");
