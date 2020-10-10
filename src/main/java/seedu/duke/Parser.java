@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.command.AddExerciseCommand;
 import seedu.duke.command.AddFoodCommand;
+import seedu.duke.command.ByeCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.ListCommand;
@@ -81,9 +82,7 @@ public class Parser {
             case "list":
                 return new ListCommand();
             case "bye":
-                displayByeMessage();
-                System.exit(0);
-                break;
+                return new ByeCommand();
             default:
                 break;
             }
