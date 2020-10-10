@@ -48,8 +48,11 @@ public class Userinfo {
     }
 
     public void editUserInfo(String userInput) {
-        String[] split = userInput.split(" ");
-        new Userinfo(split[1].substring(2),split[2].substring(2),split[3].substring(2),split[4].substring(2));
+        new Userinfo((userInput.substring(userInput.indexOf("n/") + 2, userInput.indexOf("g/") - 1)),
+                (userInput.substring(userInput.indexOf("g/") + 2, userInput.indexOf("w/") - 1)),
+                (userInput.substring(userInput.indexOf("w/") + 2, userInput.indexOf("h/") - 1)),
+                userInput.substring(userInput.indexOf("h/") + 2));
+
         System.out.println("Noted, I have edited your user profile. Here are your new details: ");
         System.out.println("Name: " + this.getName());
         System.out.println("Gender: " + this.getGender());
