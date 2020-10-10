@@ -1,9 +1,5 @@
 package seedu.duke;
 
-import java.time.LocalDateTime;
-
-import static seedu.duke.Duke.calList;
-
 /**
  * Deals with interactions with the user.
  */
@@ -19,7 +15,6 @@ public class Ui {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        drawDivider();
     }
 
     /**
@@ -34,9 +29,8 @@ public class Ui {
      * Prints out hello message.
      */
     public static void helloMessage() {
-        String hello = "Hello! I'm traKCAL.\n"
-                + "What is your name?";
-        System.out.println(hello);
+        System.out.println("Hello! I'm traKCAL.");
+        drawDivider();
     }
 
     /**
@@ -66,8 +60,8 @@ public class Ui {
      */
     public static void displayWelcomeMessage() {
         displayDuke();
-        helloMessage();
         displayHelpMessage();
+        helloMessage();
     }
 
     /**

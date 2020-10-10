@@ -82,7 +82,6 @@ public class Parser {
                 System.exit(0);
                 break;
             default:
-                displayDefaultMessage();
                 break;
             }
         } catch (StringIndexOutOfBoundsException e) {
