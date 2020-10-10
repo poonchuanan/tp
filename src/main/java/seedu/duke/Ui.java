@@ -69,6 +69,7 @@ public class Ui {
      */
     public static void displaySaveMessage() {
         System.out.println("The current activity list has been saved.");
+        System.out.println();
     }
 
     /**
