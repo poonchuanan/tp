@@ -10,6 +10,10 @@ public class FindCalorieCommand extends Command {
     protected LocalDate date;
     protected String calorie;
 
+    /**
+     * Find matching results based on calorie input.
+     * @param calorie calories to search
+     */
     public FindCalorieCommand(String calorie) {
         this.date = LocalDateTime.now().toLocalDate();;
         this.calorie = calorie;
