@@ -9,7 +9,8 @@ list
 delete 1
 add e/ pushup c/ 10
 add e/ jogging c/ 60
-list
 delete 2
+list
+delete /all
 list
 bye

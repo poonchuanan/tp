@@ -23,10 +23,11 @@ public class DeleteCommand extends Command {
         this.date = LocalDateTime.now().toLocalDate();
         this.index = -1;
     }
+
     @Override
     public void execute() {
         ActivityList activities = dayMap.getActivityList(date.atStartOfDay());
-        if(index != -1) {
+        if (index != -1) {
             activities.removeActivity(index);
         } else {
             activities.clearList();
