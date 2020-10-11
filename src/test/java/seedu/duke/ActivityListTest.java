@@ -19,6 +19,6 @@ class ActivityListTest {
         ActivityList dummyList = new ActivityList();
         createObjects(dummyList);
         dummyList.removeActivity(1);
-        assertEquals("[[F] | Apple | 50, [F] | Orange | 25]", dummyList.toString());
+        assertEquals("[F] | Apple | 50, [F] | Orange | 25", dummyList.toString());
     }
 }
