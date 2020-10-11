@@ -86,4 +86,11 @@ public class ExceptionMessages {
         System.out.println("Please do input 'help' for more information.");
         drawDivider();
     }
+
+    public static void displayIncorrectDateTimeFormatEnteredMessage() {
+        drawDivider();
+        System.out.println("Wrong format of date entered!");
+        promptUserOfHelpMessage();
+        drawDivider();
+    }
 }

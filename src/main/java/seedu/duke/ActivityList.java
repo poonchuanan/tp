@@ -3,6 +3,8 @@ package seedu.duke;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
+
 
 /**
  * List of activities for any day.
@@ -28,30 +30,7 @@ public class ActivityList extends Duke {
         return activities;
     }
 
-    /**
-     * Adds food with its respective calories to activity list.
-     *
-     //* @param userInput Food description.
-     //* @param calories  Amount of calories.
-     */
-    //public void addFood(String userInput, int calories) {
-    //Activity item = new Food(userInput, calories);
-    //activities.add(item);
-    //System.out.println("\t" + activities.get(activityCounter++).toString());
-    //return activityCounter;
-    //}
 
-    /**
-     * Adds exercise with its respective calories to activity list.
-     //* @param userInput Exercise description.
-     //* @param calories  Amount of calories.
-     */
-    //public void addExercise(String userInput, int calories) {
-    //Activity item = new Exercise(userInput, calories);
-    //activities.add(item);
-    //System.out.println("\t" + activities.get(activityCounter++).toString());
-    //return activityCounter;
-    // }
     public void addActivity(Activity activity) {
         //Activity item = new Activity(userInput, calories);
         activities.add(activity);
@@ -78,6 +57,19 @@ public class ActivityList extends Duke {
     }
 
     /**
+     * Prints the list of activities.
+     */
+    public void printList() {
+        if (activityCounter == 0) {
+            displayEmptyActivityCounterMessage();
+        } else {
+            for (int i = 0; i < activityCounter; i++) {
+                System.out.println((i + 1) + ". " + getActivity(i).toString());
+            }
+        }
+    }
+
+    /**
      * Checks if the index is valid.
      *
      * @param index index of acitvity in list
@@ -90,8 +82,15 @@ public class ActivityList extends Duke {
         return false;
     }
 
+    /**
+     * Sets the activities as a string.
+     * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60
+     * @return activities as a string
+     */
     @Override
     public String toString() {
-        return (Arrays.toString(activities.toArray()));
+        String activitiesString = Arrays.toString(activities.toArray());
+        activitiesString = activitiesString.substring(1, activitiesString.length() - 1);
+        return (activitiesString);
     }
 }

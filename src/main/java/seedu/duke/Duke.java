@@ -9,6 +9,9 @@ import seedu.duke.userprofile.Userinfo;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -47,7 +50,6 @@ public class Duke {
                     profile = new Userinfo(data[0], data[1], data[2], data[3]);
                     Initialiseuser.saveExistingUserInfo(profile);
                 }
-
                 Parser parser = new Parser(userInput);
                 try {
                     Command cmd = parser.parseCommand();
