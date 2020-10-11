@@ -15,14 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static seedu.duke.Ui.displayAddCommandErrorMessage;
-import static seedu.duke.Ui.displayByeMessage;
-import static seedu.duke.Ui.displayDefaultMessage;
-import static seedu.duke.Ui.displayFindErrorMessage;
-import static seedu.duke.Ui.displayIoExceptionMessage;
-import static seedu.duke.Ui.displayDeleteCommandNullPointerExceptionMessage;
-import static seedu.duke.Ui.displayDeleteCommandNumberFormatExceptionMessage;
-import static seedu.duke.Ui.displayStringIndexOutOfBoundsExceptionMessage;
+import static seedu.duke.Ui.*;
 
 public class Parser {
     protected String userInput;
@@ -128,7 +121,7 @@ public class Parser {
                 LocalDate date = checkDate(arguments[1]);
                 return new ListCommand(date);
             } catch (DateTimeParseException e) {
-                System.out.println("Wrong format of date entered!");
+                displayIncorrectDateTimeFormatEnteredMessage();
                 return null;
             }
         }

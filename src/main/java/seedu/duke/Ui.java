@@ -150,6 +150,13 @@ public class Ui {
         drawDivider();
     }
 
+    public static void displayIncorrectDateTimeFormatEnteredMessage() {
+        drawDivider();
+        System.out.println("Wrong format of date entered!");
+        promptUserOfHelpMessage();
+        drawDivider();
+    }
+
     /**
      * Prints error message when NullPointerException occurs in Parser.
      */
