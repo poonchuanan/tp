@@ -12,16 +12,19 @@ import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import static seedu.duke.Ui.displayAddCommandErrorMessage;
-import static seedu.duke.Ui.displayByeMessage;
-import static seedu.duke.Ui.displayDefaultMessage;
-import static seedu.duke.Ui.displayFindErrorMessage;
-import static seedu.duke.Ui.displayIoExceptionMessage;
-import static seedu.duke.Ui.displayDeleteCommandNullPointerExceptionMessage;
-import static seedu.duke.Ui.displayDeleteCommandNumberFormatExceptionMessage;
-import static seedu.duke.Ui.displayStringIndexOutOfBoundsExceptionMessage;
+import java.time.format.DateTimeParseException;
+import static seedu.duke.ExceptionMessages.displayAddCommandErrorMessage;
+import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
+import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
+
+
 
 public class Parser {
     protected String userInput;
@@ -52,7 +55,7 @@ public class Parser {
             case "delete":
                 return prepareDeleteCommand(arguments[1]);
             case "list":
-                return new ListCommand();
+                return prepareListCommand(userInput);
             case "bye":
                 return new ByeCommand();
             default:
@@ -88,6 +91,21 @@ public class Parser {
         return null;
     }
 
+    private Command prepareListCommand(String userInput) {
+        if (userInput.toLowerCase().equals("list")) {
+            return new ListCommand();
+        } else {
+            String[] arguments = userInput.split(" ");
+            try {
+                LocalDate date = checkDate(arguments[1]);
+                return new ListCommand(date);
+            } catch (DateTimeParseException e) {
+                displayIncorrectDateTimeFormatEnteredMessage();
+                return null;
+            }
+        }
+    }
+
     private Command prepareDeleteCommand(String userInput) {
         try {
             int index = Integer.parseInt(userInput);
@@ -117,5 +135,10 @@ public class Parser {
             displayFindErrorMessage();
         }
         return null;
+    }
+
+    private LocalDate checkDate(String dateTimeString) throws DateTimeParseException {
+        LocalDate dateTime = LocalDate.parse(dateTimeString);
+        return dateTime;
     }
 }

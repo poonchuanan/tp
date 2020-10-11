@@ -9,12 +9,15 @@ import seedu.duke.userprofile.Userinfo;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.Ui.displayIoExceptionMessage;
-import static seedu.duke.Ui.displayParserNullPointerExceptionMessage;
 import static seedu.duke.Ui.displayWelcomeMessage;
+import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayParserNullPointerExceptionMessage;
 
 public class Duke {
 
@@ -47,7 +50,6 @@ public class Duke {
                     profile = new Userinfo(data[0], data[1], data[2], data[3]);
                     Initialiseuser.saveExistingUserInfo(profile);
                 }
-
                 Parser parser = new Parser(userInput);
                 try {
                     Command cmd = parser.parseCommand();
