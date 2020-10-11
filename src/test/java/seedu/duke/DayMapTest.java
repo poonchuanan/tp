@@ -8,8 +8,8 @@ import java.time.Month;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DayMapTest {
-    LocalDate date= LocalDate.of(2020, Month.AUGUST, 9);
-    LocalDate date2= LocalDate.of(2020, Month.AUGUST, 10);
+    LocalDate date = LocalDate.of(2020, Month.AUGUST, 9);
+    LocalDate date2 = LocalDate.of(2020, Month.AUGUST, 10);
 
 
     void createObjects(DayMap dummyMap) {
@@ -26,9 +26,9 @@ class DayMapTest {
     void listingCorrectKeyValueMatch() {
         DayMap dummyMap = new DayMap();
         createObjects(dummyMap);
-        assertEquals("2020-08-09: [F] | Apple | 50, [F] | Banana | 100, [F] | Orange | 25"
-                , dummyMap.toString(date.atStartOfDay()));
-        assertEquals("2020-08-10: [F] | Apple2 | 51, [F] | Banana2 | 101, [F] | Orange2 | 26"
-                , dummyMap.toString(date2.atStartOfDay()));
+        assertEquals("2020-08-09: [F] | Apple | 50, [F] | Banana | 100, [F] | Orange | 25",
+                dummyMap.toString(date.atStartOfDay()));
+        assertEquals("2020-08-10: [F] | Apple2 | 51, [F] | Banana2 | 101, [F] | Orange2 | 26",
+                dummyMap.toString(date2.atStartOfDay()));
     }
 }
