@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
 
-public class FindDescriptionCommand extends Command{
+public class FindDescriptionCommand extends Command {
     protected LocalDate date;
     protected String description;
 
