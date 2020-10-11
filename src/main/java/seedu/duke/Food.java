@@ -14,6 +14,10 @@ public class Food extends Activity {
         super(description, calories);
     }
 
+    public String getString() {
+        return toString();
+    }
+
     @Override
     public String toString() {
         return "[F] | " + super.toString();
