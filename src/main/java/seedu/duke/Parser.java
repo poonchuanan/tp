@@ -14,12 +14,12 @@ import java.time.LocalDateTime;
 
 import static seedu.duke.Ui.displayByeMessage;
 import static seedu.duke.Ui.displayDefaultMessage;
-import static seedu.duke.exceptionMessages.displayAddCommandErrorMessage;
-import static seedu.duke.exceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
-import static seedu.duke.exceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
-import static seedu.duke.exceptionMessages.displayFindErrorMessage;
-import static seedu.duke.exceptionMessages.displayIoExceptionMessage;
-import static seedu.duke.exceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayAddCommandErrorMessage;
+import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
+import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 
 
 public class Parser {

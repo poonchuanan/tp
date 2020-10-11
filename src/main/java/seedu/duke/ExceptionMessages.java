@@ -6,7 +6,7 @@ import static seedu.duke.Ui.promptUserOfHelpMessage;
 /**
  * Deals with error/exception messages.
  */
-public class exceptionMessages {
+public class ExceptionMessages {
     /**
      * Prints error message when StringIndexOutOfBoundsException occurs.
      */

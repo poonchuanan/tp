@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.duke.Ui.displayWelcomeMessage;
-import static seedu.duke.exceptionMessages.displayIoExceptionMessage;
-import static seedu.duke.exceptionMessages.displayParserNullPointerExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayParserNullPointerExceptionMessage;
 
 public class Duke {
 
