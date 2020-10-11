@@ -82,6 +82,11 @@ public class ActivityList extends Duke {
         return false;
     }
 
+    public void clearList() {
+        activities.clear();
+        activityCounter = 0;
+    }
+
     /**
      * Sets the activities as a string.
      * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60

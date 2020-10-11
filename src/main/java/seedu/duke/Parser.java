@@ -108,9 +108,12 @@ public class Parser {
 
     private Command prepareDeleteCommand(String userInput) {
         try {
-            int index = Integer.parseInt(userInput);
-
-            return new DeleteCommand(index - 1);
+            if (userInput.equals("/all")) {
+                return new DeleteCommand();
+            } else {
+                int index = Integer.parseInt(userInput) - 1;
+                return new DeleteCommand(index);
+            }
         } catch (NumberFormatException e) {
             displayDeleteCommandNumberFormatExceptionMessage();
         } catch (NullPointerException e) {

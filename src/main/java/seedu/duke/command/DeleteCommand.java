@@ -19,10 +19,17 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
+    public DeleteCommand() {
+        this.date = LocalDateTime.now().toLocalDate();
+        this.index = -1;
+    }
     @Override
     public void execute() {
         ActivityList activities = dayMap.getActivityList(date.atStartOfDay());
-        activities.removeActivity(index);
+        if(index != -1) {
+            activities.removeActivity(index);
+        } else {
+            activities.clearList();
+        }
     }
-
 }
