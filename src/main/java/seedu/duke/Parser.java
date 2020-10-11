@@ -5,6 +5,8 @@ import seedu.duke.command.AddFoodCommand;
 import seedu.duke.command.ByeCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.FindCalorieCommand;
+import seedu.duke.command.FindDescriptionCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
@@ -40,37 +42,7 @@ public class Parser {
             case "add":
                 return prepareAddCommand(userInput);
             case "find":
-                //TODO apply SLAP
-                if (arguments[1].startsWith("d/")) {
-                    arguments[1] = arguments[1].substring(3).trim();
-                    System.out.println("Here are the matching descriptions: ");
-                    //used method inside daymap to get size of the activitylist instead
-                    for (int i = 0; i < calList.getSizeOfActivityList(date); i++) {
-                        //created new method to get the arraylist inside the activity list from the daymap
-                        //maybe can find a better implementation of this later on
-                        String description = calList.getArrayList(date).toArray()[i].toString().substring(
-                                0, calList.getArrayList(date).toArray()[i].toString().indexOf(",")).trim();
-                        if (description.contains(arguments[1])) {
-                            System.out.println(calList.getArrayList(date).toArray()[i]);
-                        }
-                    }
-                } else if (arguments[1].startsWith("c/")) {
-                    arguments[1] = arguments[1].substring(7).trim();
-                    System.out.println("Here are the matching descriptions: ");
-                    //used method inside daymap to get size of the activitylist instead
-                    for (int i = 0; i < calList.getSizeOfActivityList(date); i++) {
-                        //created new method to get the arraylist inside the activity list from the daymap
-                        //maybe can find a better implementation of this later on
-                        String calories = calList.getArrayList(date).toArray()[i].toString().substring(
-                                calList.getArrayList(date).toArray()[i].toString().indexOf(",") + 1).trim();
-                        if (calories.equals(arguments[1])) {
-                            System.out.println(calList.getArrayList(date).toArray()[i]);
-                        }
-                    }
-                } else {
-                    displayFindErrorMessage();
-                }
-                break;
+                return prepareFindCommand(userInput);
             case "edit":
                 //TODO apply SLAP
                 Userinfo store = new Userinfo();
@@ -125,6 +97,24 @@ public class Parser {
             displayDeleteCommandNumberFormatExceptionMessage();
         } catch (NullPointerException e) {
             displayDeleteCommandNullPointerExceptionMessage();
+        }
+        return null;
+    }
+
+    private Command prepareFindCommand(String userInput) {
+        try {
+            String[] arguments = userInput.split(" ", 2);
+            if (arguments[1].startsWith("d/")) {
+                String description = arguments[1].substring(2);
+                return new FindDescriptionCommand(description);
+            } else if (arguments[1].startsWith("c/")) {
+                String calorie = arguments[1].substring(2);
+                return new FindCalorieCommand(calorie);
+            } else {
+                displayFindErrorMessage();
+            }
+        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+            displayFindErrorMessage();
         }
         return null;
     }
