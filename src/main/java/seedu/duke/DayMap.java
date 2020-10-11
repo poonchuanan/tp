@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
+
 
 /**
  * Use hashmap of to store all the data.
@@ -24,18 +26,13 @@ public class DayMap {
      * Creates a new activityList if there are none under the specified date.
      * @param dateTime Specified date to extract activitylist from the dayMap.
      * @param activity Description of the activity, the userinput
-//     * @param calories number of calories
-//     * @param activityType food or exercise activity
      */
     public void addActivity(LocalDateTime dateTime, Activity activity) {
         ActivityList alist = this.getActivityList(dateTime);
-
-        //if the day specified does not contain an activity list yet, create one first
         if (alist == null) {
             dayMap.put(dateTime.toLocalDate(), new ActivityList());
+            alist = this.getActivityList(dateTime);
         }
-        alist = this.getActivityList(dateTime);
-
         alist.addActivity(activity);
     }
 
@@ -62,11 +59,26 @@ public class DayMap {
         return dayMap;
     }
 
-    public String toString(LocalDateTime dateTime) {
-        ActivityList alist = this.getActivityList(dateTime);
-        return dateTime.toLocalDate().toString() + " : " + alist.toString();
+    /**
+     * Prints the activities for the given date.
+     * @param date specified date to print the list
+     */
+    public void printActivityList(LocalDate date) {
+        if (!dayMap.containsKey(date)) {
+            displayEmptyActivityCounterMessage();
+        } else {
+            getActivityList(date.atStartOfDay()).printList();
+        }
     }
 
-
-
+    /**
+     * Sets the activities at a given date as a string.
+     * For e.g, 2020-10-11: [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60.
+     * @param dateTime is the specified date
+     * @return activities as a string for the given date
+     */
+    public String toString(LocalDateTime dateTime) {
+        ActivityList alist = this.getActivityList(dateTime);
+        return dateTime.toLocalDate().toString() + ": " + alist.toString();
+    }
 }

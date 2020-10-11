@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import static seedu.duke.Ui.displayNotSavedMessage;
+import static seedu.duke.Ui.displaySaveMessage;
+
 public class Storage {
     String filePath;
     File dataFile;
@@ -43,9 +46,11 @@ public class Storage {
             pw.println(textToAdd);
             pw.flush();
             pw.close();
-            System.out.println("record saved");
+            //System.out.println("record saved");
+            displaySaveMessage();
         } catch (Exception e) {
-            System.out.println("record not saved");
+            //System.out.println("record not saved");
+            displayNotSavedMessage();
         }
     }
 
@@ -70,8 +75,7 @@ public class Storage {
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
             String activities = pair.getValue().toString();
-            activities = activities.substring(1, activities.length() - 1);
-            appendToFile(pair.getKey().toString() + "," + activities);
+            appendToFile(pair.getKey().toString() + ", " + activities);
         }
     }
 
