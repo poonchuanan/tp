@@ -75,8 +75,7 @@ public class Storage {
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
             String activities = pair.getValue().toString();
-            activities = activities.substring(1, activities.length() - 1);
-            appendToFile(pair.getKey().toString() + "," + activities);
+            appendToFile(pair.getKey().toString() + ", " + activities);
         }
     }
 
