@@ -100,6 +100,9 @@ public class ActivityList extends Duke {
         return false;
     }
 
+    /**
+     * Clears the list of activites.
+     */
     public void clearList() {
         activities.clear();
         activityCounter = 0;

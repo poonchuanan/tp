@@ -30,20 +30,30 @@ import static seedu.duke.ExceptionMessages.displayStringIndexOutOfBoundsExceptio
 import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
 import static seedu.duke.Ui.displayHelpMessage;
 
-
+/**
+ * Initialises parser class.
+ */
 public class Parser {
     protected String userInput;
     protected LocalDateTime date;
     protected DayMap calList;
 
+    /**
+     * Store details in the class.
+     * @param userInput user from the user.
+     */
     public Parser(String userInput) {
         this.userInput = userInput;
         this.date = LocalDateTime.now();
         this.calList = Duke.getDayMap();
     }
 
+    /**
+     * Parses commands.
+     * @return Command type
+     */
     public Command parseCommand() {
-        String[] arguments = userInput.split(" ", 2); //TODO split for all types of spaces etc TAB.
+        String[] arguments = userInput.split(" ", 2);
 
         try {
             switch (arguments[0].toLowerCase()) {
@@ -52,7 +62,6 @@ public class Parser {
             case "find":
                 return prepareFindCommand(userInput);
             case "edit":
-                //TODO apply SLAP
                 Userinfo store = new Userinfo();
                 store.editUserInfo(arguments[1]);
                 Initialiseuser.save(store);
@@ -120,6 +129,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares the delete command by checking the userInput.
+     * @param userInput description of the delete command.
+     * @return DeleteCommand
+     */
     private Command prepareDeleteCommand(String userInput) {
         try {
             if (userInput.equals("/all")) {
