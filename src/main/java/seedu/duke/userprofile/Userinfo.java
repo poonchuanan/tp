@@ -1,5 +1,7 @@
 package seedu.duke.userprofile;
 
+import java.text.DecimalFormat;
+
 public class Userinfo {
     protected static String name;
     protected static String gender;
@@ -44,13 +46,14 @@ public class Userinfo {
         return activityfactor;
     }
 
+    private static DecimalFormat df2 = new DecimalFormat("##.##");
 
     public void printNewUserCalculatedDetails() {
         double bmi;
         bmi = (Double.parseDouble(this.getWeight())
                  / (Double.parseDouble(this.getHeight()) * Double.parseDouble(this.getHeight())))
                 * 10000;
-        System.out.println("Your BMI is " + bmi);
+        System.out.println("Your BMI is " + df2.format(bmi));
 
         double activitymultiple;
 
