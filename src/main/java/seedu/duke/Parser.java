@@ -82,12 +82,14 @@ public class Parser {
                 int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
                 arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
 
+                assert(calories > 0);
                 return new AddFoodCommand(arguments[1], calories);
             } else if (arguments[1].startsWith("e/")) {
                 int calorieIndex = arguments[1].indexOf("c/");
                 int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
                 arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
 
+                assert(calories > 0);
                 return new AddExerciseCommand(arguments[1], calories);
             } else {
                 displayEmptyAddActivityErrorMessage();

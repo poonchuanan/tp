@@ -102,7 +102,10 @@ public class ExceptionMessages {
      */
     public static void displayAddActivityNumberFormatExceptionMessage() {
         drawDivider();
-        System.out.println("Sorry the calories count input must be an integer > 0!");
+        System.out.println("Sorry I do not understand what you mean!");
+        System.out.println("One of the following has been violated:");
+        System.out.println("\t1. Description or calories input cannot be empty");
+        System.out.println("\t2. Calories count input must be an integer > 0!");
         drawDivider();
     }
 
