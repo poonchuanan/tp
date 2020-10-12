@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.Activity;
 import seedu.duke.ActivityList;
 
 import java.time.LocalDate;

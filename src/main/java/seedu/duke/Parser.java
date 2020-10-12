@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.command.AddExerciseCommand;
 import seedu.duke.command.AddFoodCommand;
 import seedu.duke.command.ByeCommand;
+import seedu.duke.command.HelpCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.FindCalorieCommand;
@@ -16,14 +17,18 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import java.time.format.DateTimeParseException;
+
+import static seedu.duke.ExceptionMessages.displayAddActivityNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
+import static seedu.duke.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
-
+import static seedu.duke.Ui.displayHelpMessage;
 
 
 public class Parser {
@@ -56,9 +61,12 @@ public class Parser {
                 return prepareDeleteCommand(arguments[1]);
             case "list":
                 return prepareListCommand(userInput);
+            case "help":
+                return new HelpCommand();
             case "bye":
                 return new ByeCommand();
             default:
+                displayInvalidInputErrorMessage();
                 break;
             }
         } catch (StringIndexOutOfBoundsException e) {
@@ -77,16 +85,22 @@ public class Parser {
                 int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
                 arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
 
+                assert calories > 0 : "calories should be greater than 0";
                 return new AddFoodCommand(arguments[1], calories);
             } else if (arguments[1].startsWith("e/")) {
                 int calorieIndex = arguments[1].indexOf("c/");
                 int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
                 arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
 
+                assert calories > 0 : "calories should be greater than 0";
                 return new AddExerciseCommand(arguments[1], calories);
+            } else {
+                displayEmptyAddActivityErrorMessage();
             }
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             displayAddCommandErrorMessage();
+        } catch (NumberFormatException e) {
+            displayAddActivityNumberFormatExceptionMessage();
         }
         return null;
     }
