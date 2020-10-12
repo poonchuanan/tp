@@ -106,6 +106,9 @@ public class ExceptionMessages {
         System.out.println("One of the following has been violated:");
         System.out.println("\t1. Description or calories input cannot be empty");
         System.out.println("\t2. Calories count input must be an integer > 0!");
+        System.out.println("\t3. Input format is:");
+        System.out.println("\t\tadd f/ X c/ Y");
+        System.out.println("\t\tadd e/ X c/ Y");
         drawDivider();
     }
 
