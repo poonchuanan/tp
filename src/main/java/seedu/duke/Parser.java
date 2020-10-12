@@ -21,7 +21,9 @@ import static seedu.duke.ExceptionMessages.displayAddActivityNumberFormatExcepti
 import static seedu.duke.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
+import static seedu.duke.ExceptionMessages.displayInvalidInput;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
@@ -61,6 +63,7 @@ public class Parser {
             case "bye":
                 return new ByeCommand();
             default:
+                displayInvalidInput();
                 break;
             }
         } catch (StringIndexOutOfBoundsException e) {
@@ -86,6 +89,8 @@ public class Parser {
                 arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
 
                 return new AddExerciseCommand(arguments[1], calories);
+            } else {
+                displayEmptyAddActivityErrorMessage();
             }
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             displayAddCommandErrorMessage();

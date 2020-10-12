@@ -87,6 +87,9 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    /**
+     * Prints out error message when date and time format entered is wrong.
+     */
     public static void displayIncorrectDateTimeFormatEnteredMessage() {
         drawDivider();
         System.out.println("Wrong format of date entered!");
@@ -94,9 +97,22 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    /**
+     * Prints out error message when invalid input for add activity given.
+     */
     public static void displayAddActivityNumberFormatExceptionMessage() {
         drawDivider();
         System.out.println("Sorry the calories count input must be an integer > 0!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when input given cannot be understood.
+     */
+    public static void displayInvalidInput() {
+        drawDivider();
+        System.out.println("Sorry I do not understand the input given!");
+        System.out.println("Perhaps pulling out help list via input 'help' may help.");
         drawDivider();
     }
 }
