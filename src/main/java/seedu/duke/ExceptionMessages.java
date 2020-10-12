@@ -93,4 +93,10 @@ public class ExceptionMessages {
         promptUserOfHelpMessage();
         drawDivider();
     }
+
+    public static void displayAddActivityNumberFormatExceptionMessage() {
+        drawDivider();
+        System.out.println("Sorry the calories count input must be an integer > 0!");
+        drawDivider();
+    }
 }
