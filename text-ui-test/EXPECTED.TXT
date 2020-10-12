@@ -51,16 +51,16 @@ The current activity list has been saved.
 [E] | jogging | 60
 The current activity list has been saved.
 
-1. [F] | banana | 100
-2. [E] | pushup | 10
-3. [E] | jogging | 60
-The current activity list has been saved.
-
 Activity removed!
 The current activity list has been saved.
 
 1. [F] | banana | 100
 2. [E] | jogging | 60
+The current activity list has been saved.
+
+The current activity list has been saved.
+
+Nothing was added!
 The current activity list has been saved.
 
 ==============================================================
