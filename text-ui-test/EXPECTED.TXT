@@ -26,10 +26,11 @@ Hello! I'm traKCAL.
 What is your name?
 What is your gender (male/female)?
 What is your weight in kg?
-What is your height in m?
-Your BMI is 18.36547291092746
-Your recommend calories requirements is 2500 calories
-We recommend 2000 calories to lose weight!
+What is your height in cm?
+What is your age?
+How active are you on a scale of 1-5? With 1 being least active and 5 being most active
+Your BMI is 22.59
+Your recommend calories requirements is 1635.3 calories
 
 [F] | apple | 50
 The current activity list has been saved.
