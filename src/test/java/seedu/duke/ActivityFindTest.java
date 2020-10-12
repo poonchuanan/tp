@@ -11,6 +11,7 @@ public class ActivityFindTest {
         dummyList.addActivity(new Food("Apple pie", 55));
         dummyList.addActivity(new Exercise("Juggle Apples", 100));
     }
+
     @Test
     void findActivityDescription_success() {
         ActivityList dummyList = new ActivityList();
@@ -41,6 +42,5 @@ public class ActivityFindTest {
             }
         }
         assertEquals("[F] | Banana | 100 [E] | Juggle Apples | 100 ", output);
-
     }
 }
