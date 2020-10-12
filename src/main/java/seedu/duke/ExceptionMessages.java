@@ -87,10 +87,47 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    /**
+     * Prints out error message when date and time format entered is wrong.
+     */
     public static void displayIncorrectDateTimeFormatEnteredMessage() {
         drawDivider();
         System.out.println("Wrong format of date entered!");
         promptUserOfHelpMessage();
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when invalid input for add activity given.
+     */
+    public static void displayAddActivityNumberFormatExceptionMessage() {
+        drawDivider();
+        System.out.println("Sorry I do not understand what you mean!");
+        System.out.println("One of the following has been violated:");
+        System.out.println("\t1. Description or calories input cannot be empty");
+        System.out.println("\t2. Calories count input must be an integer > 0!");
+        System.out.println("\t3. Input format is:");
+        System.out.println("\t\tadd f/ X c/ Y");
+        System.out.println("\t\tadd e/ X c/ Y");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when attributes input by user is empty.
+     */
+    public static void displayEmptyAddActivityErrorMessage() {
+        drawDivider();
+        System.out.println("Sorry! There is missing input!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when input of user is not understood.
+     */
+    public static void displayInvalidInputErrorMessage() {
+        drawDivider();
+        System.out.println("Sorry I do not understand the input given!");
+        System.out.println("Perhaps pulling out help list via input 'help' may help.");
         drawDivider();
     }
 }
