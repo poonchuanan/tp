@@ -23,7 +23,7 @@ import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExcept
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
-import static seedu.duke.ExceptionMessages.displayInvalidInput;
+import static seedu.duke.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
@@ -63,7 +63,7 @@ public class Parser {
             case "bye":
                 return new ByeCommand();
             default:
-                displayInvalidInput();
+                displayInvalidInputErrorMessage();
                 break;
             }
         } catch (StringIndexOutOfBoundsException e) {

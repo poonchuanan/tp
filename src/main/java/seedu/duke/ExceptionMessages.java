@@ -107,9 +107,18 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints out error message when input given cannot be understood.
+     * Prints out error message when attributes input by user is empty.
      */
-    public static void displayInvalidInput() {
+    public static void displayEmptyAddActivityErrorMessage() {
+        drawDivider();
+        System.out.println("Sorry! There is missing input!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when input of user is not understood.
+     */
+    public static void displayInvalidInputErrorMessage() {
         drawDivider();
         System.out.println("Sorry I do not understand the input given!");
         System.out.println("Perhaps pulling out help list via input 'help' may help.");
