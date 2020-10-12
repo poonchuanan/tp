@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import static seedu.duke.Ui.displayHelpMessage;
 
-public class HelpCommand extends Command{
+public class HelpCommand extends Command {
     public HelpCommand() {
     }
 
