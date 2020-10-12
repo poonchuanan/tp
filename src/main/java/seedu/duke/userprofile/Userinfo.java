@@ -5,15 +5,19 @@ public class Userinfo {
     protected static String gender;
     protected static String weight;
     protected static String height;
+    protected static String age;
+    protected static String activityfactor;
 
     public Userinfo() {
     }
 
-    public Userinfo(String name, String gender, String weight, String height) {
+    public Userinfo(String name, String gender, String weight, String height, String age, String activityfactor) {
         this.name = name;
         this.gender = gender;
         this.weight = weight;
         this.height = height;
+        this.age = age;
+        this.activityfactor = activityfactor;
     }
 
     public String getName() {
@@ -32,18 +36,34 @@ public class Userinfo {
         return height;
     }
 
+    public String getAge() {
+        return age;
+    }
+
+    public String getactivityfactor() {
+        return activityfactor;
+    }
+
+
     public void printNewUserCalculatedDetails() {
         double bmi;
-        bmi = Double.parseDouble(this.getWeight())
-                 / (Double.parseDouble(this.getHeight()) * Double.parseDouble(this.getHeight()));
+        bmi = (Double.parseDouble(this.getWeight())
+                 / (Double.parseDouble(this.getHeight()) * Double.parseDouble(this.getHeight())))
+                * 10000;
         System.out.println("Your BMI is " + bmi);
 
         if (this.getGender().equals("female")) {
-            System.out.println("Your recommend calories requirements is 2000 calories\n"
-                    + "We recommend 1500 calories to lose weight!\n");
+            double calories = ((10 * Double.parseDouble(this.getWeight()))
+                    + (6.25 * Double.parseDouble(this.getHeight()))
+                    - (5 * Double.parseDouble(this.getAge())) - 161)
+                    * Double.parseDouble(this.getactivityfactor());
+            System.out.println("Your recommend calories requirements is " + calories + " calories\n");
         } else {
-            System.out.println("Your recommend calories requirements is 2500 calories\n"
-                    + "We recommend 2000 calories to lose weight!\n");
+            double calories = ((10 * Double.parseDouble(this.getWeight()))
+                    + (6.25 * Double.parseDouble(this.getHeight()))
+                    - (5 * Double.parseDouble(this.getAge())) + 5)
+                    * Double.parseDouble(this.getactivityfactor());
+            System.out.println("Your recommend calories requirements is " + calories + " calories\n");
         }
     }
 
@@ -51,19 +71,24 @@ public class Userinfo {
         new Userinfo((userInput.substring(userInput.indexOf("n/") + 2, userInput.indexOf("g/") - 1)),
                 (userInput.substring(userInput.indexOf("g/") + 2, userInput.indexOf("w/") - 1)),
                 (userInput.substring(userInput.indexOf("w/") + 2, userInput.indexOf("h/") - 1)),
-                userInput.substring(userInput.indexOf("h/") + 2));
+                (userInput.substring(userInput.indexOf("h/") + 2, userInput.indexOf("age/") - 1)),
+                (userInput.substring(userInput.indexOf("age/") + 2, userInput.indexOf("a/") - 1)),
+                userInput.substring(userInput.indexOf("a/") + 2));
 
         System.out.println("Noted, I have edited your user profile. Here are your new details: ");
         System.out.println("Name: " + this.getName());
         System.out.println("Gender: " + this.getGender());
         System.out.println("Weight: " + this.getWeight());
         System.out.println("Height: " + this.getHeight());
+        System.out.println("Age: " + this.getAge());
+        System.out.println("Activity: " + this.getactivityfactor());
         printNewUserCalculatedDetails();
     }
 
     @Override
     public String toString() {
-        return getName() + "," + getGender() + "," + getWeight() + "," + getHeight();
+        return getName() + "," + getGender() + "," + getWeight() + ","
+                + getHeight() + "," + getAge() + "," + getactivityfactor();
     }
 }
 
