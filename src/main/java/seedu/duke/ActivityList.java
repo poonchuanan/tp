@@ -12,9 +12,12 @@ import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
 public class ActivityList extends Duke {
     private ArrayList<Activity> activities;
     private int activityCounter;
+    private int netCalorie;
 
     public ActivityList() {
         activities = new ArrayList<>();
+        activityCounter = 0;
+        netCalorie = 0;
     }
 
     /**
@@ -35,6 +38,15 @@ public class ActivityList extends Duke {
         //Activity item = new Activity(userInput, calories);
         activities.add(activity);
         System.out.println(activities.get(activityCounter++).toString());
+        if (activity instanceof Food) {
+            netCalorie += activity.calories;
+        } else if (activity instanceof Exercise) {
+            netCalorie -= activity.calories;
+        }
+    }
+
+    public int getNetCalorie() {
+        return netCalorie;
     }
 
     public Activity getActivity(int index) {
@@ -48,6 +60,12 @@ public class ActivityList extends Duke {
      */
     public void removeActivity(int index) {
         if (isValidIndex(index)) {
+            Activity activityToRemove = activities.get(index);
+            if (activityToRemove instanceof Food) {
+                netCalorie -= activityToRemove.calories;
+            } else if (activityToRemove instanceof Exercise) {
+                netCalorie += activityToRemove.calories;
+            }
             activities.remove(index);
             activityCounter--;
             System.out.print("Activity removed!\n");

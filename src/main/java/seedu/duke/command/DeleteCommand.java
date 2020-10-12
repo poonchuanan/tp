@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.Activity;
 import seedu.duke.ActivityList;
 
 import java.time.LocalDate;
@@ -22,7 +23,10 @@ public class DeleteCommand extends Command {
     @Override
     public void execute() {
         ActivityList activities = dayMap.getActivityList(date.atStartOfDay());
+        ActivityList alist = dayMap.getActivityList(date.atStartOfDay());
         activities.removeActivity(index);
+        //System.out.println("Total calorie count for " + date.toString() + " = " + alist.getNetCalorie());
+
     }
 
 }
