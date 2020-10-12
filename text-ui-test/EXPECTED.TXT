@@ -30,7 +30,7 @@ What is your height in cm?
 What is your age?
 How active are you on a scale of 1-5? With 1 being least active and 5 being most active
 Your BMI is 22.589551436050055
-Your recommend calories requirements is 1362.75 calories
+Your recommend calories requirements is 1635.3 calories
 
 [F] | apple | 50
 The current activity list has been saved.

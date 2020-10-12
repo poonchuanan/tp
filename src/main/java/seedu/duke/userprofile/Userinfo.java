@@ -52,19 +52,35 @@ public class Userinfo {
                 * 10000;
         System.out.println("Your BMI is " + bmi);
 
+        double activitymultiple;
+
+        switch (Integer.parseInt(this.getactivityfactor())) {
+        case 1: activitymultiple = 1.2;
+        break;
+        case 2: activitymultiple = 1.375;
+        break;
+        case 3: activitymultiple = 1.55;
+        break;
+        case 4: activitymultiple = 1.725;
+        break;
+        case 5: activitymultiple = 1.9;
+        break;
+        default: throw new IllegalStateException("Unexpected value: " + Integer.parseInt(this.getactivityfactor()));
+        }
+
+        double calories;
         if (this.getGender().equals("female")) {
-            double calories = ((10 * Double.parseDouble(this.getWeight()))
+            calories = ((10 * Double.parseDouble(this.getWeight()))
                     + (6.25 * Double.parseDouble(this.getHeight()))
                     - (5 * Double.parseDouble(this.getAge())) - 161)
-                    * Double.parseDouble(this.getactivityfactor());
-            System.out.println("Your recommend calories requirements is " + calories + " calories\n");
+                    * activitymultiple;
         } else {
-            double calories = ((10 * Double.parseDouble(this.getWeight()))
+            calories = ((10 * Double.parseDouble(this.getWeight()))
                     + (6.25 * Double.parseDouble(this.getHeight()))
                     - (5 * Double.parseDouble(this.getAge())) + 5)
-                    * Double.parseDouble(this.getactivityfactor());
-            System.out.println("Your recommend calories requirements is " + calories + " calories\n");
+                    * activitymultiple;
         }
+        System.out.println("Your recommend calories requirements is " + calories + " calories\n");
     }
 
     public void editUserInfo(String userInput) {
