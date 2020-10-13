@@ -51,15 +51,7 @@ public class Userinfo {
 
 
     public void printNewUserCalculatedDetails() {
-        //        try {
-        //            if (Integer.parseInt(this.getactivityfactor()) > 5) {
-        //                throw new IllegalArgumentException();
-        //            }
-        //        } catch (IllegalArgumentException illegalArgumentException) {
-        //            displayInvalidActivityFactorMessage();
-        //        }
-
-        double activityMultiple = 0;
+        double activityMultiple;
 
         switch (Integer.parseInt(this.getactivityfactor())) {
         case 1:
