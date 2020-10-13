@@ -130,4 +130,12 @@ public class ExceptionMessages {
         System.out.println("Perhaps pulling out help list via input 'help' may help.");
         drawDivider();
     }
+
+    public static void displayInvalidActivityFactorMessage() {
+        drawDivider();
+        System.out.println("Sorry this is an invalid activity factor!");
+        System.out.println("Please enter an integer from 1 to 5, with 1 being the least "
+                + "active and 5 being the most active\n");
+    }
+
 }
