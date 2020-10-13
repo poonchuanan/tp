@@ -34,6 +34,8 @@ public class DayMap {
             alist = this.getActivityList(dateTime);
         }
         alist.addActivity(activity);
+        //System.out.println("Total calorie count for "
+        // + dateTime.toLocalDate().toString() + " = " + alist.getNetCalorie());
     }
 
     public ArrayList getArrayList(LocalDateTime dateTime) {
@@ -53,6 +55,11 @@ public class DayMap {
         } else {
             return alist.getNumberOfActivities();
         }
+    }
+
+    public int getNetCalorieOfDay(LocalDate date) {
+        ActivityList alist = getActivityList(date.atStartOfDay());
+        return alist.getNetCalorie();
     }
 
     public HashMap<LocalDate, ActivityList> getHashMap() {

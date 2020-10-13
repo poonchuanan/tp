@@ -7,14 +7,10 @@ import java.util.Scanner;
 
 public class Initialiseuser {
     private static Userinfo userInfo = new Userinfo();
-    private static String[] data = new String[4];
+    private static String[] data = new String[6];
 
     public static String input(String text) {
         System.out.print(text);
-        return Duke.in.nextLine();
-    }
-
-    public static String input2() {
         return Duke.in.nextLine();
     }
 
@@ -33,26 +29,32 @@ public class Initialiseuser {
     }
 
     public static void height() throws IOException {
-        data[3] = input("What is your height in m?\n");
+        data[3] = input("What is your height in cm?\n");
+        age();
+    }
 
+    public static void age() throws IOException {
+        data[4] = input("What is your age?\n");
+        activityfactor();
+    }
+
+    public static void activityfactor() throws IOException {
+        data[5] = input("How active are you on a scale of 1-5? With 1 being least active and 5 being most active\n");
         enterNewUserInfo();
     }
 
     public static void enterNewUserInfo() throws IOException {
-        Userinfo profile = new Userinfo(data[0],data[1],data[2],data[3]);
+        Userinfo profile = new Userinfo(data[0],data[1],data[2],data[3],data[4],data[5]);
         profile.printNewUserCalculatedDetails();
         Initialiseuser.save(profile);
-
     }
 
     public static void saveExistingUserInfo(Userinfo profile) throws IOException {
         Initialiseuser.save(profile);
-
     }
 
     public static void save(Userinfo profile) throws IOException {
         Userinfotextfilestorage storage = new Userinfotextfilestorage();
         storage.save(profile.toString());
-
     }
 }

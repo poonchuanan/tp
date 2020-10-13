@@ -1,15 +1,18 @@
 create new user
-human
-male
-50
-1.65
+test
+female
+63
+167
+30
+1
 add f/ apple c/ 50
 add f/ banana c/ 100
 list
 delete 1
 add e/ pushup c/ 10
 add e/ jogging c/ 60
-list
 delete 2
+list
+delete /all
 list
 bye

@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.command.AddExerciseCommand;
 import seedu.duke.command.AddFoodCommand;
 import seedu.duke.command.ByeCommand;
+import seedu.duke.command.HelpCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.FindCalorieCommand;
@@ -16,29 +17,43 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import java.time.format.DateTimeParseException;
+
+import static seedu.duke.ExceptionMessages.displayAddActivityNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
+import static seedu.duke.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
+import static seedu.duke.Ui.displayHelpMessage;
 
-
-
+/**
+ * Initialises parser class.
+ */
 public class Parser {
     protected String userInput;
     protected LocalDateTime date;
     protected DayMap calList;
 
+    /**
+     * Store details in the class.
+     * @param userInput user from the user.
+     */
     public Parser(String userInput) {
         this.userInput = userInput;
         this.date = LocalDateTime.now();
         this.calList = Duke.getDayMap();
     }
 
+    /**
+     * Parses commands.
+     * @return Command type
+     */
     public Command parseCommand() {
-        String[] arguments = userInput.split(" ", 2); //TODO split for all types of spaces etc TAB.
+        String[] arguments = userInput.split(" ", 2);
 
         try {
             switch (arguments[0].toLowerCase()) {
@@ -47,7 +62,6 @@ public class Parser {
             case "find":
                 return prepareFindCommand(userInput);
             case "edit":
-                //TODO apply SLAP
                 Userinfo store = new Userinfo();
                 store.editUserInfo(arguments[1]);
                 Initialiseuser.save(store);
@@ -56,9 +70,12 @@ public class Parser {
                 return prepareDeleteCommand(arguments[1]);
             case "list":
                 return prepareListCommand(userInput);
+            case "help":
+                return new HelpCommand();
             case "bye":
                 return new ByeCommand();
             default:
+                displayInvalidInputErrorMessage();
                 break;
             }
         } catch (StringIndexOutOfBoundsException e) {
@@ -77,16 +94,22 @@ public class Parser {
                 int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
                 arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
 
+                assert calories > 0 : "calories should be greater than 0";
                 return new AddFoodCommand(arguments[1], calories);
             } else if (arguments[1].startsWith("e/")) {
                 int calorieIndex = arguments[1].indexOf("c/");
                 int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
                 arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
 
+                assert calories > 0 : "calories should be greater than 0";
                 return new AddExerciseCommand(arguments[1], calories);
+            } else {
+                displayEmptyAddActivityErrorMessage();
             }
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             displayAddCommandErrorMessage();
+        } catch (NumberFormatException e) {
+            displayAddActivityNumberFormatExceptionMessage();
         }
         return null;
     }
@@ -106,11 +129,19 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares the delete command by checking the userInput.
+     * @param userInput description of the delete command.
+     * @return DeleteCommand
+     */
     private Command prepareDeleteCommand(String userInput) {
         try {
-            int index = Integer.parseInt(userInput);
-
-            return new DeleteCommand(index - 1);
+            if (userInput.equals("/all")) {
+                return new DeleteCommand();
+            } else {
+                int index = Integer.parseInt(userInput) - 1;
+                return new DeleteCommand(index);
+            }
         } catch (NumberFormatException e) {
             displayDeleteCommandNumberFormatExceptionMessage();
         } catch (NullPointerException e) {
