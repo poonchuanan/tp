@@ -40,17 +40,19 @@ public class Ui {
         drawDivider();
         String helpList = "Commands available: create new user, list, help, add, delete, find, bye\n"
                 + "The expected format of input values:\n"
-                + "\tcreate new user - Adds a new user profile\n"
-                + "\ttarget X - Adds a target calorie, X\n"
-                + "\thelp - Prints out commands available and their input format\n"
-                + "\tadd f/ X c/ Y - Adds food/drinks consumed, X and the calories gained, Y\n"
-                + "\tadd e/ X c/ Y - Adds exercise done, X and the calories gained, Y\n"
-                + "\tlist - Prints out the list of entries.\n"
-                + "\tedit n/W, g/X, w/Y, h/Z - Edit user profile to name, W, gender, X, weight, Y and height Z\n"
-                + "\tfind d/ X - Searches for exercise/food description with X included\n"
-                + "\tfind c/ X - Searches for activity description with calories of X\n"
-                + "\tdelete X - Deletes activity located at index X of the list\n"
-                + "\tbye - Terminates the program";
+                + "\tcreate new user         - Adds a new user profile\n"
+                + "\ttarget X                - Adds a target calorie, X\n"
+                + "\thelp                    - Prints out commands available and their input format\n"
+                + "\tadd f/ X c/ Y           - Adds food/drinks consumed, X and the calories gained, Y\n"
+                + "\tadd e/ X c/ Y           - Adds exercise done, X and the calories gained, Y\n"
+                + "\tlist                    - Prints out the list of entries.\n"
+                + "\tedit n/U, g/V, w/W, h/X, a/Y, af/Z\n"
+                + "\t                        - Edit user profile to name, U, gender, V, weight, W, height, X,\n"
+                + "\t                          age, Y, activity factor(1-5), Z\n"
+                + "\tfind d/ X               - Searches for exercise/food description with X included\n"
+                + "\tfind c/ X               - Searches for activity description with calories of X\n"
+                + "\tdelete X                - Deletes activity located at index X of the list\n"
+                + "\tbye                     - Terminates the program";
         System.out.println(helpList);
         drawDivider();
     }
@@ -60,7 +62,7 @@ public class Ui {
      */
     public static void displayWelcomeMessage() {
         displayDuke();
-        displayHelpMessage();
+        promptUserOfHelpMessage();
         helloMessage();
     }
 
