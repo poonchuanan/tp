@@ -91,7 +91,7 @@ public class Storage {
     }
 
     /**
-     * Loads saved CSV data into the list when the program starts
+     * Loads saved CSV data into the list when the program starts.
      *
      * @param calList used to store the current activities
      */
@@ -106,7 +106,7 @@ public class Storage {
                 lines.add(line);
             }
             //Read line by line
-            for (int i = 0; i < lines.size(); i++){
+            for (int i = 0; i < lines.size(); i++) {
                 processData(calList, lines.get(i));
             }
 
@@ -116,7 +116,7 @@ public class Storage {
     }
 
     /**
-     * Splits the current line of CSV data into date and activity, then processes the activity
+     * Splits the current line of CSV data into date and activity, then processes the activity.
      *
      * @param calList used to store the current activities
      * @param data line of CSV data
@@ -138,7 +138,7 @@ public class Storage {
     }
 
     /**
-     * Splits the activity data into food or exercise, then adds the activity to calList
+     * Splits the activity data into food or exercise, then adds the activity to calList.
      *
      * @param calList used to store the current activities
      * @param activity activity data in to format of type, description and calories
@@ -160,6 +160,8 @@ public class Storage {
             Exercise exercise = new Exercise(description, calories);
             calList.addActivity(date, exercise);
             break;
+        default:
+            System.out.println("Corrupted data. Activity should be either exercise or food");
         }
     }
 }
