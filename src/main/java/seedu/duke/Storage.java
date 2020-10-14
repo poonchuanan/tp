@@ -1,14 +1,26 @@
 package seedu.duke;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 import static seedu.duke.Ui.displayNotSavedMessage;
 import static seedu.duke.Ui.displaySaveMessage;
@@ -17,7 +29,6 @@ public class Storage {
     String filePath;
     File dataFile;
     //ICsvMapWriter writer;
-
 
 
     public Storage(String filePath) {
@@ -40,7 +51,7 @@ public class Storage {
 
     private void appendToFile(String textToAdd) {
         try {
-            FileWriter fw = new FileWriter(filePath,true);
+            FileWriter fw = new FileWriter(filePath, true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
             pw.println(textToAdd);
@@ -54,7 +65,7 @@ public class Storage {
         }
     }
 
-    private void writeToFile(String textToAdd)  {
+    private void writeToFile(String textToAdd) {
         FileWriter fw = null;
         try {
             fw = new FileWriter(filePath);
@@ -73,18 +84,82 @@ public class Storage {
         writeToFile("");
         final String[] header = new String[]{"Date", "Activities"};
         while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
+            Map.Entry pair = (Map.Entry) it.next();
             String activities = pair.getValue().toString();
             appendToFile(pair.getKey().toString() + ", " + activities);
         }
     }
 
-    public void loadData() {
+    /**
+     * Loads saved CSV data into the list when the program starts
+     *
+     * @param calList used to store the current activities
+     */
+    public void loadData(DayMap calList) {
         try {
             createFileHierarchy();
+            //Read from CSV- reads the file line by line and stores the lines in an array list
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            List<String> lines = new ArrayList<>();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+            //Read line by line
+            for (int i = 0; i < lines.size(); i++){
+                processData(calList, lines.get(i));
+            }
+
         } catch (IOException e) {
             System.out.println("Unable to load data");
         }
     }
 
+    /**
+     * Splits the current line of CSV data into date and activity, then processes the activity
+     *
+     * @param calList used to store the current activities
+     * @param data line of CSV data
+     */
+    private void processData(DayMap calList, String data) {
+        String dateString = data.substring(0, data.indexOf(','));
+        LocalDate date = LocalDate.parse(dateString);
+        //If the date is the same as today, append it to our list for the day
+        if (date.compareTo(LocalDate.now()) == 0) {
+            String activities = data.substring(data.indexOf(",") + 1);
+            String firstActivityString = null;
+            while (activities.contains(",")) {
+                firstActivityString = activities.substring(0, activities.indexOf(','));
+                processActivity(calList, firstActivityString, date.atStartOfDay());
+                activities = activities.substring(activities.indexOf(",") + 1);
+            }
+            processActivity(calList, activities, date.atStartOfDay());
+        }
+    }
+
+    /**
+     * Splits the activity data into food or exercise, then adds the activity to calList
+     *
+     * @param calList used to store the current activities
+     * @param activity activity data in to format of type, description and calories
+     * @param date date the activity was conducted
+     */
+    private void processActivity(DayMap calList, String activity, LocalDateTime date) {
+        char typeOfActivity = activity.charAt(2);
+        String description = activity.substring(activity.indexOf("|") + 1);
+        description = description.substring(0, description.indexOf("|")).trim();
+        int calorieStartIndex = activity.lastIndexOf(' ');
+        String calorieString = activity.substring(calorieStartIndex).trim();
+        int calories = Integer.parseInt(calorieString);
+        switch (typeOfActivity) {
+        case 'F':
+            Food food = new Food(description, calories);
+            calList.addActivity(date, food);
+            break;
+        case 'E':
+            Exercise exercise = new Exercise(description, calories);
+            calList.addActivity(date, exercise);
+            break;
+        }
+    }
 }
