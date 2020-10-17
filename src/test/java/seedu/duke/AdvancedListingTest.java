@@ -75,8 +75,8 @@ class AdvancedListingTest {
         Command findCommand = new FindDescriptionCommand("rice");
         findCommand.setData(dummyMap);
         findCommand.execute();
-        assertEquals("[F] | rice with shit | 51, [F] | rice with pork | 101, [F] | rice with tofu | 101, " +
-                "[F] | rice with eggs | 50", dummyMap.getLastSeenList().toString());
+        assertEquals("[F] | rice with shit | 51, [F] | rice with pork | 101, [F] | rice with tofu | 101, "
+                + "[F] | rice with eggs | 50", dummyMap.getLastSeenList().toString());
 
         Command deleteCommand = new DeleteCommand(2);
         deleteCommand.setData(dummyMap);
