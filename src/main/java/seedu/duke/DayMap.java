@@ -1,10 +1,14 @@
 package seedu.duke;
 
+import seedu.duke.exception.KeywordNotFoundException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 //import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
 
@@ -87,6 +91,43 @@ public class DayMap {
         } else {
             getActivityList(date.atStartOfDay()).printList();
         }
+    }
+
+    /**
+     * Finds the activities containing a keyword.
+     * @param description is the keyword where the activity should contain
+     * @throws KeywordNotFoundException when the keyword is not found in any activity
+     */
+    public void listActivitiesContaining(String description) throws KeywordNotFoundException {
+
+        setLastSeenList(new ActivityList());
+
+        Iterator it = dayMap.entrySet().iterator();
+        int activityFindCounter = 0;
+        while (it.hasNext()) {
+
+            Map.Entry pair = (Map.Entry) it.next();
+            String date = pair.getKey().toString();
+            ActivityList activities = (ActivityList) pair.getValue();
+            int activityCounter = activities.getNumberOfActivities();
+
+            if (activityCounter > 0) {
+                for (int i = 0; i < activityCounter; i++) {
+                    String currentLine = activities.getActivity(i).toString();
+                    String descriptionToCheck = currentLine.substring(currentLine.indexOf("|") + 1);
+                    descriptionToCheck = descriptionToCheck.substring(0, descriptionToCheck.indexOf("|")).trim();
+                    if (descriptionToCheck.contains(description)) {
+                        System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
+                        lastSeenList.addActivity(activities.getActivity(i));
+                        activityFindCounter++;
+                    }
+                }
+            }
+        }
+        if (activityFindCounter == 0) {
+            throw new KeywordNotFoundException();
+        }
+
     }
 
     /**
