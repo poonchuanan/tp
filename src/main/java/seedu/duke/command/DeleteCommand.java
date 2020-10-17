@@ -53,8 +53,7 @@ public class DeleteCommand extends Command {
         if (index == -1) {
             dayMap.getLastSeenList().clearList();
             return;
-        }
-        else {
+        } else {
             try {
                 dayMap.deleteActivity(index);
             } catch (IndexOutOfBoundsException e) {
