@@ -127,6 +127,53 @@ public class DayMap {
         if (activityFindCounter == 0) {
             throw new KeywordNotFoundException();
         }
+    }
+
+    /**
+     * Deletes the activity with a given index.
+     * @param index is the index of the activity to be deleted
+     * @throws IndexOutOfBoundsException if the index provided is out of range
+     */
+    public void deleteActivity(int index) throws IndexOutOfBoundsException {
+
+        if (lastSeenList.isValidIndex(index)) {
+            Activity activityToMatch = lastSeenList.getActivity(index);
+            //if previous command was the list command then this will straight away delete the activity
+            // from the list in the daymap
+            lastSeenList.removeActivity(index);
+
+            //if all the activities in a date is deleted, this is the key to be removed from the daymap
+            LocalDate keyToDelete = null;
+
+            //iterating through the entire daymap to find the activity to delete
+            Iterator it = dayMap.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry) it.next();
+                ActivityList activities = (ActivityList) pair.getValue();
+                int activityCounter = activities.getNumberOfActivities();
+
+                if (activityCounter > 0) {
+                    for (int i = 0; i < activityCounter; i++) {
+                        if (activityToMatch.equals(activities.getActivity(i))) {
+                            activities.removeActivity(i);
+                            //if deleted the last item in the ActivityList then obtain the key to be deleted from daymap
+                            if (activities.getNumberOfActivities() == 0) {
+                                keyToDelete = (LocalDate) pair.getKey();
+                            }
+                            break;
+                        }
+                    }
+                    //If encountered a activitylist with a count of 0,
+                    // which will be resulted if deleted the last item of ActivityList from a list command
+                } else if (activityCounter == 0) {
+                    keyToDelete = (LocalDate)pair.getKey();
+                }
+            }
+            //removes key from the daymap
+            dayMap.remove(keyToDelete);
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
 
     }
 
