@@ -20,9 +20,11 @@ public class DayMap {
 
     public DayMap() {
         this.dayMap = new HashMap<>();
+        this.lastSeenList = new ActivityList();
     }
 
-    public void setLastSeenList (ActivityList activityList) {
+    public void setLastSeenList(ActivityList activityList) {
+        this.lastSeenList = new ActivityList();
         this.lastSeenList = activityList;
     }
 

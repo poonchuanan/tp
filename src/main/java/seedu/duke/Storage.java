@@ -81,7 +81,6 @@ public class Storage {
         dayHashMap = dayMap.getHashMap();
         Iterator it = dayHashMap.entrySet().iterator();
         writeToFile("");
-        final String[] header = new String[]{"Date", "Activities"};
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
             String activities = pair.getValue().toString();
