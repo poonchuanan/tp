@@ -38,7 +38,8 @@ class AdvancedListingTest {
         Command listCommand = new ListCommand(date);
         listCommand.setData(dummyMap);
         listCommand.execute();
-        assertEquals("2020-10-09: [F] | rice with eggs | 50, [E] | run 2km | 100", dummyMap.toString(date.atStartOfDay()));
+        assertEquals("2020-10-09: [F] | rice with eggs | 50, [E] | run 2km | 100",
+                dummyMap.toString(date.atStartOfDay()));
 
         Command deleteCommand = new DeleteCommand(0);
         deleteCommand.setData(dummyMap);
@@ -67,23 +68,25 @@ class AdvancedListingTest {
     }
 
     @Test
-    void findDescription_andDeleteFromActivityListShown_successfully()  {
+    void findDescription_andDeleteFromActivityListShown_successfully() {
         DayMap dummyMap = new DayMap();
         createObjects(dummyMap);
 
         Command findCommand = new FindDescriptionCommand("rice");
         findCommand.setData(dummyMap);
         findCommand.execute();
-        assertEquals("[F] | rice with shit | 51, [F] | rice with pork | 101, [F] | rice with tofu | 101, [F] | rice with eggs | 50", dummyMap.getLastSeenList().toString());
+        assertEquals("[F] | rice with shit | 51, [F] | rice with pork | 101, [F] | rice with tofu | 101, " +
+                "[F] | rice with eggs | 50", dummyMap.getLastSeenList().toString());
 
         Command deleteCommand = new DeleteCommand(2);
         deleteCommand.setData(dummyMap);
         deleteCommand.execute();
-        assertEquals("[F] | rice with shit | 51, [F] | rice with pork | 101, [F] | rice with eggs | 50", dummyMap.getLastSeenList().toString());
+        assertEquals("[F] | rice with shit | 51, [F] | rice with pork | 101, [F] | rice with eggs | 50",
+                dummyMap.getLastSeenList().toString());
     }
 
     @Test
-    void deleteAllTasks_andExpect_NullPointerException_fromFindCommand(){
+    void deleteAllTasks_andExpect_NullPointerException_fromFindCommand() {
         DayMap dummyMap = new DayMap();
         createObjects(dummyMap);
 
