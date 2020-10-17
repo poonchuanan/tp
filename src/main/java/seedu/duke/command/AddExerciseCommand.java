@@ -18,13 +18,13 @@ public class AddExerciseCommand extends Command {
      * @param description exercise description
      * @param calories calories burnt
      */
-    public AddExerciseCommand(String description, int calories) {
-        this.exercise = new Exercise(description, calories);
+    public AddExerciseCommand(String description, int calories, boolean isFromFile) {
+        this.exercise = new Exercise(description, calories, isFromFile);
         this.date = LocalDateTime.now().toLocalDate();
     }
 
-    public AddExerciseCommand(String description, int calories, LocalDate date) {
-        this.exercise = new Exercise(description, calories);
+    public AddExerciseCommand(String description, int calories, boolean isFromFile, LocalDate date) {
+        this.exercise = new Exercise(description, calories, isFromFile);
         this.date = date;
     }
 

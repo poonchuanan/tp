@@ -37,7 +37,7 @@ public class ActivityList extends Duke {
     public void addActivity(Activity activity) {
         //Activity item = new Activity(userInput, calories);
         activities.add(activity);
-        System.out.println(activities.get(activityCounter++).toString());
+        activityCounter++;
         if (activity instanceof Food) {
             netCalorie += activity.calories;
         } else if (activity instanceof Exercise) {

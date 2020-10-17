@@ -10,8 +10,8 @@ public class Food extends Activity {
      * @param description food description
      * @param calories calories consumed
      */
-    public Food(String description, int calories) {
-        super(description, calories);
+    public Food(String description, int calories, boolean isFromFile) {
+        super(description, calories, isFromFile);
     }
 
     public String getString() {

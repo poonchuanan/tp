@@ -58,7 +58,6 @@ public class Storage {
             pw.flush();
             pw.close();
             //System.out.println("record saved");
-            displaySaveMessage();
         } catch (Exception e) {
             //System.out.println("record not saved");
             displayNotSavedMessage();
@@ -88,6 +87,7 @@ public class Storage {
             String activities = pair.getValue().toString();
             appendToFile(pair.getKey().toString() + ", " + activities);
         }
+        displaySaveMessage();
     }
 
     /**
@@ -125,16 +125,16 @@ public class Storage {
         String dateString = data.substring(0, data.indexOf(','));
         LocalDate date = LocalDate.parse(dateString);
         //If the date is the same as today, append it to our list for the day
-        if (date.compareTo(LocalDate.now()) == 0) {
-            String activities = data.substring(data.indexOf(",") + 1);
-            String firstActivityString = null;
-            while (activities.contains(",")) {
-                firstActivityString = activities.substring(0, activities.indexOf(','));
-                processActivity(calList, firstActivityString, date.atStartOfDay());
-                activities = activities.substring(activities.indexOf(",") + 1);
-            }
-            processActivity(calList, activities, date.atStartOfDay());
+        //if (date.compareTo(LocalDate.now()) == 0) {
+        String activities = data.substring(data.indexOf(",") + 1);
+        String firstActivityString = null;
+        while (activities.contains(",")) {
+            firstActivityString = activities.substring(0, activities.indexOf(','));
+            processActivity(calList, firstActivityString, date.atStartOfDay());
+            activities = activities.substring(activities.indexOf(",") + 1);
         }
+        processActivity(calList, activities, date.atStartOfDay());
+
     }
 
     /**
@@ -153,11 +153,11 @@ public class Storage {
         int calories = Integer.parseInt(calorieString);
         switch (typeOfActivity) {
         case 'F':
-            Food food = new Food(description, calories);
+            Food food = new Food(description, calories, true);
             calList.addActivity(date, food);
             break;
         case 'E':
-            Exercise exercise = new Exercise(description, calories);
+            Exercise exercise = new Exercise(description, calories, true);
             calList.addActivity(date, exercise);
             break;
         default:
