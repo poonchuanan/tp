@@ -16,9 +16,18 @@ import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
 public class DayMap {
 
     private HashMap<LocalDate, ActivityList> dayMap;
+    private ActivityList lastSeenList;
 
     public DayMap() {
         this.dayMap = new HashMap<>();
+    }
+
+    public void setLastSeenList (ActivityList activityList) {
+        this.lastSeenList = activityList;
+    }
+
+    public ActivityList getLastSeenList() {
+        return this.lastSeenList;
     }
 
     /**
