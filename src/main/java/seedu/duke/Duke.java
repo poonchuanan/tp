@@ -28,7 +28,7 @@ public class Duke {
 
     public static void main(String[] args) {
         displayWelcomeMessage();
-        storage.loadData();
+        storage.loadData(calList);
         Duke.run();
     }
 
