@@ -13,13 +13,13 @@ class DayMapTest {
 
 
     void createObjects(DayMap dummyMap) {
-        dummyMap.addActivity(date.atStartOfDay(), new Food("Apple", 50));
-        dummyMap.addActivity(date.atStartOfDay(), new Food("Banana", 100));
-        dummyMap.addActivity(date.atStartOfDay(), new Food("Orange", 25));
+        dummyMap.addActivity(date.atStartOfDay(), new Food("Apple", 50, false));
+        dummyMap.addActivity(date.atStartOfDay(), new Food("Banana", 100, false));
+        dummyMap.addActivity(date.atStartOfDay(), new Food("Orange", 25, false));
 
-        dummyMap.addActivity(date2.atStartOfDay(), new Food("Apple2", 51));
-        dummyMap.addActivity(date2.atStartOfDay(), new Food("Banana2", 101));
-        dummyMap.addActivity(date2.atStartOfDay(), new Food("Orange2", 26));
+        dummyMap.addActivity(date2.atStartOfDay(), new Food("Apple2", 51, false));
+        dummyMap.addActivity(date2.atStartOfDay(), new Food("Banana2", 101, false));
+        dummyMap.addActivity(date2.atStartOfDay(), new Food("Orange2", 26, false));
     }
 
     @Test

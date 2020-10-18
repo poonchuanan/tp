@@ -9,6 +9,7 @@ public class ListCommand extends Command {
 
     public ListCommand(LocalDate date) {
         this.date = date;
+
     }
 
     public ListCommand() {
@@ -21,6 +22,7 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute() {
-        dayMap.printActivityList(date);
+        dayMap.setLastSeenList(dayMap.getActivityList(date.atStartOfDay()));
+        dayMap.getLastSeenList().printList();
     }
 }

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
 
-public class FindCalorieCommand extends Command {
+public class  FindCalorieCommand extends Command {
     protected LocalDate date;
     protected String calorie;
 
@@ -15,7 +15,7 @@ public class FindCalorieCommand extends Command {
      * @param calorie calories to search
      */
     public FindCalorieCommand(String calorie) {
-        this.date = LocalDateTime.now().toLocalDate();;
+        this.date = LocalDateTime.now().toLocalDate();
         this.calorie = calorie;
     }
 
