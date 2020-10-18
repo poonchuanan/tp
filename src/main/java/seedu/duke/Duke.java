@@ -31,13 +31,8 @@ public class Duke {
     }
 
     public static void run()  {
-        try {
-            if (CheckNewUser.isNewUser()) {
-                Initialiseuser.sendname();
-                Initialiseuser.gender();
-            }
-        } catch (IOException e) {
-            displayIoExceptionMessage();
+        if (CheckNewUser.isNewUser()) {
+            Initialiseuser.createNewProfile();
         }
 
         Userinfo profile;
@@ -45,8 +40,7 @@ public class Duke {
             while (in.hasNextLine()) {
                 String userInput = in.nextLine();
                 if (userInput.startsWith("create new user")) {
-                    Initialiseuser.sendname();
-                    Initialiseuser.gender();
+                    Initialiseuser.createNewProfile();
                     continue;
                 } else {
                     String[] data = new String[6];
