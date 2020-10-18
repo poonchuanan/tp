@@ -5,6 +5,7 @@ female
 167
 30
 1
+maintain
 add f/ apple c/ 50
 add f/ banana c/ 100
 list

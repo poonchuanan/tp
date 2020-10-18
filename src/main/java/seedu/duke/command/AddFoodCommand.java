@@ -18,13 +18,13 @@ public class AddFoodCommand extends Command {
      * @param description food description
      * @param calories calories consumed
      */
-    public AddFoodCommand(String description, int calories) {
-        this.food = new Food(description, calories);
+    public AddFoodCommand(String description, int calories, boolean isFromFile) {
+        this.food = new Food(description, calories, isFromFile);
         this.date = LocalDateTime.now().toLocalDate();
     }
 
-    public AddFoodCommand(String description, int calories, LocalDate date) {
-        this.food = new Food(description, calories);
+    public AddFoodCommand(String description, int calories, boolean isFromFile, LocalDate date) {
+        this.food = new Food(description, calories, isFromFile);
         this.date = date;
     }
 

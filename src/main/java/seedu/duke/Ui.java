@@ -9,11 +9,10 @@ public class Ui {
      */
     public static void displayDuke() {
         drawDivider();
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = "  _                  _  __   ___     _     _\n"
+                + " | |_   _ _   __ _  | |/ /  / __|   /_\\   | |\n"
+                + " |  _| | '_| / _` | | ' <  | (__   / _ \\  | |__\n"
+                + "  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|\n";
         System.out.println("Hello from\n" + logo);
     }
 
@@ -62,8 +61,8 @@ public class Ui {
      */
     public static void displayWelcomeMessage() {
         displayDuke();
-        promptUserOfHelpMessage();
         helloMessage();
+        promptUserOfHelpMessage();
     }
 
     /**
@@ -92,7 +91,7 @@ public class Ui {
      */
     public static void displayByeMessage() {
         drawDivider();
-        System.out.println("THank you for using TraKCAL. See you again!");
+        System.out.println("Thank you for using TraKCAL. See you again!");
         drawDivider();
     }
 

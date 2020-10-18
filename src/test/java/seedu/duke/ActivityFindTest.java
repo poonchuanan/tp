@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ActivityFindTest {
     void createObjects(ActivityList dummyList) {
-        dummyList.addActivity(new Food("Apple", 50));
-        dummyList.addActivity(new Food("Banana", 100));
-        dummyList.addActivity(new Food("Apple pie", 55));
-        dummyList.addActivity(new Exercise("Juggle Apples", 100));
+        dummyList.addActivity(new Food("Apple", 50, false));
+        dummyList.addActivity(new Food("Banana", 100, false));
+        dummyList.addActivity(new Food("Apple pie", 55, false));
+        dummyList.addActivity(new Exercise("Juggle Apples", 100, false));
     }
 
     @Test

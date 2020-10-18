@@ -37,7 +37,7 @@ public class ActivityList extends Duke {
     public void addActivity(Activity activity) {
         //Activity item = new Activity(userInput, calories);
         activities.add(activity);
-        System.out.println(activities.get(activityCounter++).toString());
+        activityCounter++;
         if (activity instanceof Food) {
             netCalorie += activity.calories;
         } else if (activity instanceof Exercise) {
@@ -58,7 +58,7 @@ public class ActivityList extends Duke {
      *
      * @param index index of acitivty in list
      */
-    public void removeActivity(int index) {
+    public void removeActivity(int index) throws IndexOutOfBoundsException {
         if (isValidIndex(index)) {
             Activity activityToRemove = activities.get(index);
             if (activityToRemove instanceof Food) {
@@ -67,10 +67,12 @@ public class ActivityList extends Duke {
                 netCalorie += activityToRemove.calories;
             }
             activities.remove(index);
+            System.out.println("Activity pointed to is: " + activityToRemove.toString());
             activityCounter--;
             System.out.print("Activity removed!\n");
         } else {
             System.out.println("Please make sure index is within range");
+            throw new IndexOutOfBoundsException();
         }
     }
 

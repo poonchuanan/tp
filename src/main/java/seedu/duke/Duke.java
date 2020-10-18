@@ -6,12 +6,10 @@ import seedu.duke.command.Command;
 import seedu.duke.storage.Userinfotextfilestorage;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
+import seedu.duke.userprofile.CheckNewUser;
 
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,22 +30,25 @@ public class Duke {
         Duke.run();
     }
 
-    public static void run() {
+    public static void run()  {
+        if (CheckNewUser.isNewUser()) {
+            Initialiseuser.createNewProfile();
+        }
+
         Userinfo profile;
         try {
             while (in.hasNextLine()) {
                 String userInput = in.nextLine();
                 if (userInput.startsWith("create new user")) {
-                    Initialiseuser.sendname();
-                    Initialiseuser.gender();
+                    Initialiseuser.createNewProfile();
                     continue;
                 } else {
-                    String[] data = new String[6];
+                    String[] data = new String[7];
                     ArrayList<String> previous = Userinfotextfilestorage.update();
-                    for (int i = 0; i < 6; i++) {
+                    for (int i = 0; i < 7; i++) {
                         data[i] = previous.get(i);
                     }
-                    profile = new Userinfo(data[0], data[1], data[2], data[3], data[4], data[5]);
+                    profile = new Userinfo(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
                     Initialiseuser.saveExistingUserInfo(profile);
                 }
                 Parser parser = new Parser(userInput);
@@ -78,14 +79,3 @@ public class Duke {
                 .getParent().replace("%20", " ");
     }
 }
-
-
-/*
- * Calorie List and List
- */
-// Example code to use calorie list.
-//DayMap calList = new DayMap();
-//LocalDateTime adatetime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
-//calList.addActivity(adatetime, "description of activity", 500, "food"); //daymap equivalent
-//System.out.println(calList.toString(aDateTime));
-//System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));
