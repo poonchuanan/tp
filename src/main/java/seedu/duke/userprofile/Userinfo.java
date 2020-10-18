@@ -10,17 +10,20 @@ public class Userinfo {
     protected static String height;
     protected static String age;
     protected static String activityfactor;
+    protected static String weightGoal;
 
     public Userinfo() {
     }
 
-    public Userinfo(String name, String gender, String weight, String height, String age, String activityfactor) {
+    public Userinfo(String name, String gender, String weight, String height,
+                    String age, String activityfactor, String weightGoal) {
         this.name = name;
         this.gender = gender;
         this.weight = weight;
         this.height = height;
         this.age = age;
         this.activityfactor = activityfactor;
+        this.weightGoal = weightGoal;
     }
 
     public String getName() {
@@ -45,6 +48,10 @@ public class Userinfo {
 
     public String getactivityfactor() {
         return activityfactor;
+    }
+
+    public String getWeightGoal() {
+        return weightGoal;
     }
 
     private static DecimalFormat df2 = new DecimalFormat("##.##");
@@ -92,9 +99,18 @@ public class Userinfo {
                     - (5 * Double.parseDouble(this.getAge())) + 5)
                     * activityMultiple;
         }
-        System.out.println("Your recommend calories requirements is " + calories + " calories\n");
-    }
+        System.out.println("Your recommend daily calories intake is " + calories + " calories.");
 
+        if (this.getWeightGoal().equals("lose")) {
+            System.out.println("To " + this.getWeightGoal() + " weight, you should consume "
+                    + (calories - 500) + " calories instead.\n");
+        } else if (this.getWeightGoal().equals("gain")) {
+            System.out.println("To " + this.getWeightGoal() + " weight, you should consume "
+                    + (calories + 500) + " calories instead.\n");
+        } else {
+            System.out.println("\n");
+        }
+    }
 
     public void editUserInfo(String userInput) {
         new Userinfo((userInput.substring(userInput.indexOf("n/") + 2, userInput.indexOf("g/") - 1)),
@@ -102,7 +118,8 @@ public class Userinfo {
                 (userInput.substring(userInput.indexOf("w/") + 2, userInput.indexOf("h/") - 1)),
                 (userInput.substring(userInput.indexOf("h/") + 2, userInput.indexOf("a/") - 1)),
                 (userInput.substring(userInput.indexOf("a/") + 2, userInput.indexOf("af/") - 1)),
-                userInput.substring(userInput.indexOf("af/") + 3));
+                (userInput.substring(userInput.indexOf("af/") + 3, userInput.indexOf("goal/") - 1)),
+                userInput.substring(userInput.indexOf("goal/") + 5));
 
         System.out.println("Noted, I have edited your user profile. Here are your new details: ");
         System.out.println("Name: " + this.getName());
@@ -111,13 +128,14 @@ public class Userinfo {
         System.out.println("Height: " + this.getHeight());
         System.out.println("Age: " + this.getAge());
         System.out.println("Activity: " + this.getactivityfactor());
+        System.out.println("Weight Goal: " + this.getWeightGoal());
         printNewUserCalculatedDetails();
     }
 
     @Override
     public String toString() {
         return getName() + "," + getGender() + "," + getWeight() + ","
-                + getHeight() + "," + getAge() + "," + getactivityfactor();
+                + getHeight() + "," + getAge() + "," + getactivityfactor() + "," + getWeightGoal();
     }
 }
 
