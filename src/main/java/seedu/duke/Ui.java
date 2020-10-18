@@ -9,9 +9,9 @@ public class Ui {
      */
     public static void displayDuke() {
         drawDivider();
-        String logo = "  _                  _  __   ___     _     _    \n"
-                + " | |_   _ _   __ _  | |/ /  / __|   /_\\   | |   \n"
-                + " |  _| | '_| / _` | | ' <  | (__   / _ \\  | |__ \n"
+        String logo = "  _                  _  __   ___     _     _\n"
+                + " | |_   _ _   __ _  | |/ /  / __|   /_\\   | |\n"
+                + " |  _| | '_| / _` | | ' <  | (__   / _ \\  | |__\n"
                 + "  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|\n";
         System.out.println("Hello from\n" + logo);
     }
