@@ -10,8 +10,8 @@ public class Exercise extends Activity {
      * @param description exercise description
      * @param calories calories burnt
      */
-    public Exercise(String description, int calories) {
-        super(description, calories);
+    public Exercise(String description, int calories, boolean isFromFile) {
+        super(description, calories, isFromFile);
     }
 
     @Override

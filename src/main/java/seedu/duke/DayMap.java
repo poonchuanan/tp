@@ -1,9 +1,13 @@
 package seedu.duke;
 
+import seedu.duke.exception.KeywordNotFoundException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
 
@@ -15,9 +19,20 @@ import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
 public class DayMap {
 
     private HashMap<LocalDate, ActivityList> dayMap;
+    private ActivityList lastSeenList;
 
     public DayMap() {
         this.dayMap = new HashMap<>();
+        this.lastSeenList = new ActivityList();
+    }
+
+    public void setLastSeenList(ActivityList activityList) {
+        this.lastSeenList = new ActivityList();
+        this.lastSeenList = activityList;
+    }
+
+    public ActivityList getLastSeenList() {
+        return this.lastSeenList;
     }
 
     /**
@@ -75,6 +90,90 @@ public class DayMap {
         } else {
             getActivityList(date.atStartOfDay()).printList();
         }
+    }
+
+    /**
+     * Finds the activities containing a keyword.
+     * @param description is the keyword where the activity should contain
+     * @throws KeywordNotFoundException when the keyword is not found in any activity
+     */
+    public void listActivitiesContaining(String description) throws KeywordNotFoundException {
+
+        setLastSeenList(new ActivityList());
+
+        Iterator it = dayMap.entrySet().iterator();
+        int activityFindCounter = 0;
+        while (it.hasNext()) {
+
+            Map.Entry pair = (Map.Entry) it.next();
+            String date = pair.getKey().toString();
+            ActivityList activities = (ActivityList) pair.getValue();
+            int activityCounter = activities.getNumberOfActivities();
+
+            if (activityCounter > 0) {
+                for (int i = 0; i < activityCounter; i++) {
+                    String currentLine = activities.getActivity(i).toString();
+                    String descriptionToCheck = currentLine.substring(currentLine.indexOf("|") + 1);
+                    descriptionToCheck = descriptionToCheck.substring(0, descriptionToCheck.indexOf("|")).trim();
+                    if (descriptionToCheck.contains(description)) {
+                        System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
+                        lastSeenList.addActivity(activities.getActivity(i));
+                        activityFindCounter++;
+                    }
+                }
+            }
+        }
+        if (activityFindCounter == 0) {
+            throw new KeywordNotFoundException();
+        }
+    }
+
+    /**
+     * Deletes the activity with a given index.
+     * @param index is the index of the activity to be deleted
+     * @throws IndexOutOfBoundsException if the index provided is out of range
+     */
+    public void deleteActivity(int index) throws IndexOutOfBoundsException {
+
+        if (lastSeenList.isValidIndex(index)) {
+            Activity activityToMatch = lastSeenList.getActivity(index);
+            //if previous command was the list command then this will straight away delete the activity
+            // from the list in the daymap
+            lastSeenList.removeActivity(index);
+
+            //if all the activities in a date is deleted, this is the key to be removed from the daymap
+            LocalDate keyToDelete = null;
+
+            //iterating through the entire daymap to find the activity to delete
+            Iterator it = dayMap.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry) it.next();
+                ActivityList activities = (ActivityList) pair.getValue();
+                int activityCounter = activities.getNumberOfActivities();
+
+                if (activityCounter > 0) {
+                    for (int i = 0; i < activityCounter; i++) {
+                        if (activityToMatch.equals(activities.getActivity(i))) {
+                            activities.removeActivity(i);
+                            //if deleted the last item in the ActivityList then obtain the key to be deleted from daymap
+                            if (activities.getNumberOfActivities() == 0) {
+                                keyToDelete = (LocalDate) pair.getKey();
+                            }
+                            break;
+                        }
+                    }
+                    //If encountered a activitylist with a count of 0,
+                    // which will be resulted if deleted the last item of ActivityList from a list command
+                } else if (activityCounter == 0) {
+                    keyToDelete = (LocalDate)pair.getKey();
+                }
+            }
+            //removes key from the daymap
+            dayMap.remove(keyToDelete);
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
+
     }
 
     /**

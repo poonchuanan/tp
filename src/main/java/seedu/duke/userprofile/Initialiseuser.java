@@ -3,6 +3,7 @@ package seedu.duke.userprofile;
 import seedu.duke.Duke;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
+import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 
 public class Initialiseuser {
     private static Userinfo userInfo = new Userinfo();
@@ -11,6 +12,15 @@ public class Initialiseuser {
     public static String input(String text) {
         System.out.print(text);
         return Duke.in.nextLine();
+    }
+
+    public static void createNewProfile() {
+        sendname();
+        try {
+            gender();
+        } catch (IOException e) {
+            displayIoExceptionMessage();
+        }
     }
 
     public static void sendname()  {

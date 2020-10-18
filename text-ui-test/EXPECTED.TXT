@@ -7,7 +7,12 @@ Hello from
 
 Hello! I'm traKCAL.
 ==============================================================
+<<<<<<< HEAD
 Please do input 'help' for the commands and their respective input format.
+=======
+Hey there! We do not have a record of your profile. Please create one now! :)
+
+>>>>>>> master
 What is your name?
 What is your gender (male/female)?
 What is your weight in kg?

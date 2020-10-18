@@ -6,6 +6,7 @@ import seedu.duke.command.Command;
 import seedu.duke.storage.Userinfotextfilestorage;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
+import seedu.duke.userprofile.CheckNewUser;
 
 
 import java.io.IOException;
@@ -29,14 +30,17 @@ public class Duke {
         Duke.run();
     }
 
-    public static void run() {
+    public static void run()  {
+        if (CheckNewUser.isNewUser()) {
+            Initialiseuser.createNewProfile();
+        }
+
         Userinfo profile;
         try {
             while (in.hasNextLine()) {
                 String userInput = in.nextLine();
                 if (userInput.startsWith("create new user")) {
-                    Initialiseuser.sendname();
-                    Initialiseuser.gender();
+                    Initialiseuser.createNewProfile();
                     continue;
                 } else {
                     String[] data = new String[6];

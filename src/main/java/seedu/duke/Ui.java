@@ -91,7 +91,7 @@ public class Ui {
      */
     public static void displayByeMessage() {
         drawDivider();
-        System.out.println("THank you for using TraKCAL. See you again!");
+        System.out.println("Thank you for using TraKCAL. See you again!");
         drawDivider();
     }
 
