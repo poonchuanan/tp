@@ -7,21 +7,27 @@ Hello from
 
 Hello! I'm traKCAL.
 ==============================================================
-<<<<<<< HEAD
 Please do input 'help' for the commands and their respective input format.
-=======
 Hey there! We do not have a record of your profile. Please create one now! :)
 
->>>>>>> master
 What is your name?
 What is your gender (male/female)?
 What is your weight in kg?
 What is your height in cm?
 What is your age?
 How active are you on a scale of 1-5? With 1 being least active and 5 being most active
-Your BMI is 22.59
-Your recommend calories requirements is 1635.3 calories
+==============================================================
+Sorry this is an invalid activity factor!
+Please enter an integer from 1 to 5, with 1 being the least active and 5 being the most active
 
+==============================================================
+Sorry I do not understand the input given!
+Perhaps pulling out help list via input 'help' may help.
+==============================================================
+==============================================================
+Invalid command!
+Please do input 'help' for the commands and their respective input format.
+==============================================================
 [F] | apple | 50
 The current activity list has been saved.
 
@@ -32,6 +38,7 @@ The current activity list has been saved.
 2. [F] | banana | 100
 The current activity list has been saved.
 
+Activity pointed to is: [F] | apple | 50
 Activity removed!
 The current activity list has been saved.
 
@@ -41,6 +48,7 @@ The current activity list has been saved.
 [E] | jogging | 60
 The current activity list has been saved.
 
+Activity pointed to is: [E] | pushup | 10
 Activity removed!
 The current activity list has been saved.
 
@@ -54,5 +62,5 @@ Nothing was added!
 The current activity list has been saved.
 
 ==============================================================
-THank you for using TraKCAL. See you again!
+Thank you for using TraKCAL. See you again!
 ==============================================================
