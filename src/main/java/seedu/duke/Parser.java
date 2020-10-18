@@ -3,6 +3,8 @@ package seedu.duke;
 import seedu.duke.command.AddExerciseCommand;
 import seedu.duke.command.AddFoodCommand;
 import seedu.duke.command.ByeCommand;
+import seedu.duke.command.EditExerciseCommand;
+import seedu.duke.command.EditFoodCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.DeleteCommand;
@@ -42,6 +44,7 @@ public class Parser {
 
     /**
      * Store details in the class.
+     *
      * @param userInput user from the user.
      */
     public Parser(String userInput) {
@@ -52,6 +55,7 @@ public class Parser {
 
     /**
      * Parses commands.
+     *
      * @return Command type
      */
     public Command parseCommand() {
@@ -68,6 +72,8 @@ public class Parser {
                 store.editUserInfo(arguments[1]);
                 Initialiseuser.save(store);
                 break;
+            case "editA":
+                return prepareEditCommand(arguments[1]);
             case "delete":
                 return prepareDeleteCommand(arguments[1]);
             case "list":
@@ -84,6 +90,39 @@ public class Parser {
             displayStringIndexOutOfBoundsExceptionMessage();
         } catch (IOException e) {
             displayIoExceptionMessage();
+        }
+        return null;
+    }
+
+    private Command prepareEditCommand(String userInput) {
+        int index = Integer.parseInt(userInput.substring(0, 1).trim());
+        userInput = userInput.substring(1).trim();
+        try {
+            if (userInput.startsWith("f/")) {
+                int calorieIndex = userInput.indexOf("c/");
+                int dateIndex = userInput.indexOf("d/");
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2, dateIndex).trim());
+                LocalDate date = processDate(userInput.substring(dateIndex + 2).trim());
+
+                String foodDescription = userInput.substring(2, calorieIndex - 1).trim();
+
+                return new EditFoodCommand(index, foodDescription, calories, true, date);
+            } else if (userInput.startsWith("e/")) {
+                int calorieIndex = userInput.indexOf("c/");
+                int dateIndex = userInput.indexOf("d/");
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2, dateIndex).trim());
+                LocalDate date = processDate(userInput.substring(dateIndex + 2).trim());
+
+                String exerciseDescription = userInput.substring(2, calorieIndex - 1).trim();
+
+                return new EditExerciseCommand(index, exerciseDescription, calories, true, date);
+            } else {
+                displayEmptyAddActivityErrorMessage();
+            }
+        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+            displayAddCommandErrorMessage();
+        } catch (NumberFormatException e) {
+            displayAddActivityNumberFormatExceptionMessage();
         }
         return null;
     }
@@ -174,6 +213,7 @@ public class Parser {
 
     /**
      * Prepares the delete command by checking the userInput.
+     *
      * @param userInput description of the delete command.
      * @return DeleteCommand
      */
