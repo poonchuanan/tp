@@ -106,6 +106,7 @@ public class Parser {
 
                 String foodDescription = userInput.substring(2, calorieIndex - 1).trim();
 
+                new DeleteCommand(index);
                 return new EditFoodCommand(index, foodDescription, calories, true, date);
             } else if (userInput.startsWith("e/")) {
                 int calorieIndex = userInput.indexOf("c/");
@@ -115,6 +116,7 @@ public class Parser {
 
                 String exerciseDescription = userInput.substring(2, calorieIndex - 1).trim();
 
+                new DeleteCommand(index);
                 return new EditExerciseCommand(index, exerciseDescription, calories, true, date);
             } else {
                 displayEmptyAddActivityErrorMessage();
