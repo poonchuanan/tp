@@ -6,12 +6,10 @@ import seedu.duke.command.Command;
 import seedu.duke.storage.Userinfotextfilestorage;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
+import seedu.duke.userprofile.CheckNewUser;
 
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,7 +30,16 @@ public class Duke {
         Duke.run();
     }
 
-    public static void run() {
+    public static void run()  {
+        try {
+            if (CheckNewUser.isNewUser()) {
+                Initialiseuser.sendname();
+                Initialiseuser.gender();
+            }
+        } catch (IOException e) {
+            displayIoExceptionMessage();
+        }
+
         Userinfo profile;
         try {
             while (in.hasNextLine()) {
