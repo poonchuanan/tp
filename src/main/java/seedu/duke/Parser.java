@@ -13,6 +13,7 @@ import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -20,6 +21,7 @@ import java.time.format.DateTimeParseException;
 
 import static seedu.duke.ExceptionMessages.displayAddActivityNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayAddCommandErrorMessage;
+import static seedu.duke.ExceptionMessages.displayDateTimeExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
@@ -91,18 +93,24 @@ public class Parser {
             String[] arguments = userInput.split(" ", 2);
             if (arguments[1].startsWith("f/")) {
                 int calorieIndex = arguments[1].indexOf("c/");
-                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
-                arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
+                int dateIndex = arguments[1].indexOf("d/");
+                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2, dateIndex).trim());
+                LocalDate date = processDate(arguments[1].substring(dateIndex + 2).trim());
+
+                String foodDescription = arguments[1].substring(2, calorieIndex - 1).trim();
 
                 assert calories > 0 : "calories should be greater than 0";
-                return new AddFoodCommand(arguments[1], calories, false);
+                return new AddFoodCommand(foodDescription, calories, false, date);
             } else if (arguments[1].startsWith("e/")) {
                 int calorieIndex = arguments[1].indexOf("c/");
-                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
-                arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
+                int dateIndex = arguments[1].indexOf("d/");
+                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2, dateIndex).trim());
+                LocalDate date = processDate(arguments[1].substring(dateIndex + 2).trim());
+
+                String exerciseDescription = arguments[1].substring(2, calorieIndex - 1).trim();
 
                 assert calories > 0 : "calories should be greater than 0";
-                return new AddExerciseCommand(arguments[1], calories, false);
+                return new AddExerciseCommand(exerciseDescription, calories, false, date);
             } else {
                 displayEmptyAddActivityErrorMessage();
             }
@@ -112,6 +120,41 @@ public class Parser {
             displayAddActivityNumberFormatExceptionMessage();
         }
         return null;
+    }
+
+    private LocalDate processDate(String dateInput) {
+        try {
+            LocalDate date = LocalDate.parse(dateInput);
+
+            return date;
+        } catch (DateTimeException e) {
+            //displayDateTimeExceptionMessage();
+            return currentDate();
+        }
+    }
+
+    private LocalDate currentDate() {
+        LocalDate date = LocalDate.now();
+
+        return date;
+    }
+
+    private String processingDate(String dateInput) {
+        int extra = dateInput.indexOf("&&");
+        dateInput = dateInput.substring(0, extra);
+
+        try {
+            LocalDate data = LocalDate.parse(dateInput);
+            String day = data.getDayOfMonth() + " ";
+            String month = data.getMonth() + " ";
+            String year = data.getYear() + "";
+            String date = day + month + year;
+
+            return date;
+        } catch (DateTimeException e) {
+            displayDateTimeExceptionMessage();
+            return null;
+        }
     }
 
     private Command prepareListCommand(String userInput) {
