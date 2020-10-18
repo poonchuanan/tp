@@ -8,6 +8,7 @@ import seedu.duke.command.Command;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.FindCalorieCommand;
 import seedu.duke.command.FindDescriptionCommand;
+import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
@@ -75,8 +76,7 @@ public class Parser {
             case "bye":
                 return new ByeCommand();
             default:
-                displayInvalidInputErrorMessage();
-                break;
+                return new InvalidCommand();
             }
         } catch (StringIndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
