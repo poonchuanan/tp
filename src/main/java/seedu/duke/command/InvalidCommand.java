@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import static seedu.duke.ExceptionMessages.displayInvalidInputErrorMessage;
 
-public class InvalidCommand extends Command{
+public class InvalidCommand extends Command {
 
     public InvalidCommand() {
     }
