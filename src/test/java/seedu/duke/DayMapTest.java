@@ -11,7 +11,6 @@ class DayMapTest {
     LocalDate date = LocalDate.of(2020, Month.AUGUST, 9);
     LocalDate date2 = LocalDate.of(2020, Month.AUGUST, 10);
 
-
     void createObjects(DayMap dummyMap) {
         dummyMap.addActivity(date.atStartOfDay(), new Food("Apple", 50));
         dummyMap.addActivity(date.atStartOfDay(), new Food("Banana", 100));
