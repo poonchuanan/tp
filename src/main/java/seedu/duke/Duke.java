@@ -79,13 +79,3 @@ public class Duke {
                 .getParent().replace("%20", " ");
     }
 }
-
-
-/*
- * Calorie List and List
- */
-// Example code to use calorie list.
-//DayMap calList = new DayMap();
-//LocalDateTime adatetime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
-//System.out.println(calList.toString(aDateTime));
-//System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));

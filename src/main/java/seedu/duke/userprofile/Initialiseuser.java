@@ -4,7 +4,6 @@ import seedu.duke.Duke;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
-import java.util.Scanner;
 
 public class Initialiseuser {
     private static Userinfo userInfo = new Userinfo();
