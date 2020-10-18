@@ -18,7 +18,8 @@ What is your height in cm?
 What is your age?
 How active are you on a scale of 1-5? With 1 being least active and 5 being most active
 Your BMI is 22.59
-Your recommend calories requirements is 1635.3 calories
+Your recommend calories requirements is 1635.3 calories.
+but to lose weight, you should consume 1135.3 calories instead.
 
 [F] | apple | 50
 The current activity list has been saved.

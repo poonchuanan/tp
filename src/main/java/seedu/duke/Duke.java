@@ -43,12 +43,12 @@ public class Duke {
                     Initialiseuser.createNewProfile();
                     continue;
                 } else {
-                    String[] data = new String[6];
+                    String[] data = new String[7];
                     ArrayList<String> previous = Userinfotextfilestorage.update();
-                    for (int i = 0; i < 6; i++) {
+                    for (int i = 0; i < 7; i++) {
                         data[i] = previous.get(i);
                     }
-                    profile = new Userinfo(data[0], data[1], data[2], data[3], data[4], data[5]);
+                    profile = new Userinfo(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
                     Initialiseuser.saveExistingUserInfo(profile);
                 }
                 Parser parser = new Parser(userInput);
