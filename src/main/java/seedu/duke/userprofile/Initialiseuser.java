@@ -3,7 +3,6 @@ package seedu.duke.userprofile;
 import seedu.duke.Duke;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Initialiseuser {
     private static Userinfo userInfo = new Userinfo();

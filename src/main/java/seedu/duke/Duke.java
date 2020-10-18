@@ -9,9 +9,6 @@ import seedu.duke.userprofile.Userinfo;
 
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -78,14 +75,3 @@ public class Duke {
                 .getParent().replace("%20", " ");
     }
 }
-
-
-/*
- * Calorie List and List
- */
-// Example code to use calorie list.
-//DayMap calList = new DayMap();
-//LocalDateTime adatetime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
-//calList.addActivity(adatetime, "description of activity", 500, "food"); //daymap equivalent
-//System.out.println(calList.toString(aDateTime));
-//System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));

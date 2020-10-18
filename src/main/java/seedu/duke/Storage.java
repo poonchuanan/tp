@@ -7,20 +7,13 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
-
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 import static seedu.duke.Ui.displayNotSavedMessage;
 import static seedu.duke.Ui.displaySaveMessage;
