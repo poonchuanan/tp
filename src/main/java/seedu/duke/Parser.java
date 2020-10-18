@@ -95,14 +95,14 @@ public class Parser {
                 arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
 
                 assert calories > 0 : "calories should be greater than 0";
-                return new AddFoodCommand(arguments[1], calories);
+                return new AddFoodCommand(arguments[1], calories, false);
             } else if (arguments[1].startsWith("e/")) {
                 int calorieIndex = arguments[1].indexOf("c/");
                 int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2).trim());
                 arguments[1] = arguments[1].substring(2, calorieIndex - 1).trim();
 
                 assert calories > 0 : "calories should be greater than 0";
-                return new AddExerciseCommand(arguments[1], calories);
+                return new AddExerciseCommand(arguments[1], calories, false);
             } else {
                 displayEmptyAddActivityErrorMessage();
             }

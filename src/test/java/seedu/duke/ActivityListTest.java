@@ -10,9 +10,9 @@ class ActivityListTest {
     protected ActivityList dummyList = new ActivityList();
 
     void createObjects(ActivityList dummyList) {
-        dummyList.addActivity(new Food("Apple", 50));
-        dummyList.addActivity(new Food("Banana", 100));
-        dummyList.addActivity(new Food("Orange", 25));
+        dummyList.addActivity(new Food("Apple", 50, false));
+        dummyList.addActivity(new Food("Banana", 100, false));
+        dummyList.addActivity(new Food("Orange", 25, false));
     }
 
     @Test
