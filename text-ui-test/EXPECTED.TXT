@@ -16,9 +16,6 @@ What is your weight in kg?
 What is your height in cm?
 What is your age?
 How active are you on a scale of 1-5? With 1 being least active and 5 being most active
-==============================================================
-Sorry this is an invalid activity factor!
-Please enter an integer from 1 to 5, with 1 being the least active and 5 being the most active
 
 ==============================================================
 Sorry I do not understand the input given!
