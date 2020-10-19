@@ -42,20 +42,6 @@ If you can type fast, traKCAL can get your calorie intake input recorded faster 
 >* Input format should strictly adhere to the one in the help list or in this user guide.
 >* Input commands such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended to follow format stated in help list or this user guide.
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
-
-Format: `todo n/**TODO_NAME** d/**DEADLINE**`
-
-* The `**DEADLINE**` can be in a natural language format.
-* The `**TODO_NAME**` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
-
 ### Setting up program in Intellij
 
 ### Viewing help
@@ -63,7 +49,7 @@ Prints out the commands available, and their respective input format.
 
 Format: `help`
 
-Example:
+Example of usage:
 * `help`
 ```javascript
 ==============================================================
@@ -104,7 +90,7 @@ Parameters:
 * `**CALORIE_COUNT**`: Amount of calories consumed.
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
-Examples:
+Examples of usage:
 * `add f/ ice cream c/ 78 d/ 2020-10-19`
 ```javascript
 [F] | ice cream | 78
@@ -121,7 +107,7 @@ Parameters:
 * `**CALORIE_COUNT**`: Amount of calories lost.
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
-Examples:
+Examples of usage:
 *`add e/ jumping c/ 65 d/ 2020-10-19`
 ```javascript
 [E] | jumping | 65
@@ -145,7 +131,7 @@ Saves the current list to file and exits program.
 
 Format: `bye`
 
-Example:
+Example of usage:
 * `bye`
 ```javascript
 ==============================================================
