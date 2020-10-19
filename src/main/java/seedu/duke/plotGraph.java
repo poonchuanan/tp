@@ -52,6 +52,20 @@ public class plotGraph {
         for (int i = 0; i < column ; i++) {
             Table[targetRow][i] = 2;
         }
+        for (int j = 0; j < 7 ; j++) {
+            calories[j] = round(calories[j] - min_calories, divisor)/divisor;
+        }
+        System.out.println(Arrays.toString(calories));
+        for (int i = 9; i >= 0 ; i--) {
+            for (int j = 0; j< 7; j++) {
+                if (calories[j] == i) {
+                    Table[i][j] = 4;
+                }
+                else if (calories[j] > i) {
+                    Table[i][j]++;
+                }
+            }
+        }
         System.out.println(Arrays.deepToString(Table));
     }
     public String plot_x_axis() {
