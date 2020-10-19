@@ -3,13 +3,15 @@ package seedu.duke.command;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * List command.
+ */
 public class ListCommand extends Command {
 
     protected LocalDate date;
 
     public ListCommand(LocalDate date) {
         this.date = date;
-
     }
 
     public ListCommand() {

@@ -52,6 +52,18 @@ public class DayMap {
         // + dateTime.toLocalDate().toString() + " = " + alist.getNetCalorie());
     }
 
+    public void addNewActivity(int index, LocalDateTime dateTime, Activity activity) {
+        ActivityList alist = this.getActivityList(dateTime);
+        if (alist == null) {
+            dayMap.put(dateTime.toLocalDate(), new ActivityList());
+            //dayMap.replace(dateTime.toLocalDate(), dayMap.get(index), new ActivityList());
+            alist = this.getActivityList(dateTime);
+        }
+        alist.addNewActivity(index, activity);
+        //System.out.println("Total calorie count for "
+        // + dateTime.toLocalDate().toString() + " = " + alist.getNetCalorie());
+    }
+
     public ArrayList getArrayList(LocalDateTime dateTime) {
         return getActivityList(dateTime).getArrayList();
     }
