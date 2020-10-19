@@ -14,7 +14,12 @@
 ### Value proposition
 
 {Describe the value proposition: what problem does it solve?}
->traKCAL is able to help the user calculate daily surplus or deficit, saving time.
+>traKCAL is fast and simple, removing the need to navigate GUI.
+>traKCAL enables user to input custom exercises and/or food.
+>traKCAL removes the need for manual calculation of the intake and loss of calories.
+>traKCAL allows user to pre-set repetitive actions.
+>traKCAL allows user to import and export data to excel for daily use.
+>traKCAL checks recommended calorie intake per day based on user’s input of age, gender and weight, and able to tell whether there is a calorie deficit/surplus at the end of the day.
 
 ## User Stories
 
@@ -42,6 +47,7 @@
 ## Glossary
 
 * *glossary item* - Definition
+* *GUI* - Graphics User Interface
 
 ## Instructions for manual testing
 
