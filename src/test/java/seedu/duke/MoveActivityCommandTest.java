@@ -75,7 +75,7 @@ public class MoveActivityCommandTest {
      * Tests if both the index is within the boundaries.
      */
     @Test
-    void InvalidCommand_ifIndexEnteredIsOutOfBounds() {
+    void invalidCommand_ifIndexEnteredIsOutOfBounds() {
         DayMap dummyMap = new DayMap();
         createObjects(dummyMap);
         Command listCommand = new ListCommand(date);
