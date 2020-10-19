@@ -17,7 +17,7 @@ public class GraphProperty {
     int[][] Table;
     int targetRow;
     int[] calories;
-    private static final int DIVISOR = 10;
+    private final int DIVISOR = 10;
 
     //Appropirate division for y axis -> assume 10 for now
     //Round of each calories of the day
@@ -51,11 +51,12 @@ public class GraphProperty {
         int minCalories = dayMap.getNetCalorieOfDay(keys.get(0));
         int maxCalories = dayMap.getNetCalorieOfDay(keys.get(0));
         this.calories = new int[keys.size()];
+        calories[0] = dayMap.getNetCalorieOfDay(keys.get(0));
         for (int i = 1; i < keys.size(); i++) {
-            if (min_calories > dayMap.getNetCalorieOfDay(keys.get(i))) {
-                min_calories = dayMap.getNetCalorieOfDay(keys.get(i));
-            } else if (max_calories < dayMap.getNetCalorieOfDay(keys.get(i))) {
-                max_calories = dayMap.getNetCalorieOfDay(keys.get(i));
+            if (minCalories > dayMap.getNetCalorieOfDay(keys.get(i))) {
+                minCalories = dayMap.getNetCalorieOfDay(keys.get(i));
+            } else if (maxCalories < dayMap.getNetCalorieOfDay(keys.get(i))) {
+                maxCalories = dayMap.getNetCalorieOfDay(keys.get(i));
             }
             calories[i] = dayMap.getNetCalorieOfDay(keys.get(i));
         }
@@ -79,15 +80,16 @@ public class GraphProperty {
 
     public void fillTable() {
         int divisor = calculateDivisor();
-        int target = round(targetCalories, divisor);
+        int target = round(targetCalories, divisor) ;
         int low = round(min_calories, divisor);
         int high = round(max_calories, divisor);
-        this.targetRow = (target - low)/divisor;
+        System.out.println(target-low);
+        this.targetRow = (targetCalories - min_calories)/divisor;
         for (int i = 0; i < COLUMN ; i++) {
             Table[targetRow][i] = 2;
         }
         for (int j = 0; j < 7 ; j++) {
-            calories[j] = round(calories[j] - min_calories, divisor)/divisor;
+            calories[j] = (calories[j] - min_calories)/divisor;
         }
         System.out.println(Arrays.toString(calories));
         for (int i = ROW - 1; i >= 0 ; i--) {
@@ -122,6 +124,8 @@ public class GraphProperty {
 
     //Draws out the graph
     public void drawGraph() {
+        setSortedKeys();
+        setCaloriesBound();
         initTable();
         fillTable();
         String drawing = "";
