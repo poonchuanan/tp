@@ -38,7 +38,7 @@
 |v2.0|underweight student|calculate the estimated amount of calories gained|facilitate my weight gain regime|
 |v2.0|weight conscious person|track the amount of calories gained or lost|maintain my weight|
 |v2.0|careless student|go back and edit entries entered earlier|correct the errors I have made|
-
+|v2.0|frequent user|have pre-set repetitive actions entered by me|save time when inputting data|
 
 ## Non-Functional Requirements
 
