@@ -9,6 +9,7 @@ import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.FindCalorieCommand;
 import seedu.duke.command.FindDescriptionCommand;
 import seedu.duke.command.ListCommand;
+import seedu.duke.command.graphCommand;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
@@ -74,6 +75,8 @@ public class Parser {
                 return new HelpCommand();
             case "bye":
                 return new ByeCommand();
+            case "graph":
+                return new graphCommand();
             default:
                 displayInvalidInputErrorMessage();
                 break;
