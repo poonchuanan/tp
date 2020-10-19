@@ -9,12 +9,12 @@
 ### Target user profile
 
 {Describe the target user profile}
-Tech savvy university students that have knowledge on the exercise and calories or know where to get the information before inputting it in the application.
+>Tech savvy university students that have knowledge on the exercise and calories or know where to get the information before inputting it in the application.
 
 ### Value proposition
 
 {Describe the value proposition: what problem does it solve?}
-traKCAL is able to help the user calculate daily surplus or deficit, saving the time.
+>traKCAL is able to help the user calculate daily surplus or deficit, saving time.
 
 ## User Stories
 
