@@ -188,8 +188,8 @@ public class DayMap {
 
     }
 
-    public void insert(int indexToBeChanged, int indexToBeInsertedBelow) {
-        lastSeenList.insertActivityAt(indexToBeChanged - 1, indexToBeInsertedBelow);
+    public void move(int indexToBeMovedFrom, int indexToBeInsertedBelow) throws IndexOutOfBoundsException {
+        lastSeenList.moveActivity(indexToBeMovedFrom - 1, indexToBeInsertedBelow);
     }
 
     /**

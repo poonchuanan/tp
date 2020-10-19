@@ -63,16 +63,16 @@ public class ActivityList extends Duke {
     }
 
     /**
-     * This method inserts a activity from a given index and moves it to another index.
-     * @param indexToBeChanged this is the index at which the activity will be moved from
+     * This method moves a activity from a given index and to a place below a given index.
+     * @param indexToBeMovedFrom this is the index at which the activity will be moved from
      * @param indexToBeInsertedBelow this is the index at which the activity will be moved to below
      * @throws IndexOutOfBoundsException if the index is not within the limits
      */
-    public void insertActivityAt(int indexToBeChanged, int indexToBeInsertedBelow) throws IndexOutOfBoundsException {
+    public void moveActivity(int indexToBeMovedFrom, int indexToBeInsertedBelow) throws IndexOutOfBoundsException {
 
-        if (isValidIndex(indexToBeChanged) && isValidIndex(indexToBeInsertedBelow)) {
-            Activity activity = getActivity(indexToBeChanged );
-            removeActivity(indexToBeChanged);
+        if (isValidIndex(indexToBeMovedFrom) && isValidIndex(indexToBeInsertedBelow)) {
+            Activity activity = getActivity(indexToBeMovedFrom);
+            removeActivity(indexToBeMovedFrom);
             activities.add(indexToBeInsertedBelow, activity);
             activityCounter++;
             if (activity instanceof Food) {

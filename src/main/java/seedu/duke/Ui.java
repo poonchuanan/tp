@@ -54,6 +54,7 @@ public class Ui {
                 + "\t                          calories lost, Y and date(YYYY-MM-DD), Z\n"
                 + "\tfind d/ X               - Searches for exercise/food description with X included\n"
                 + "\tfind c/ X               - Searches for activity description with calories of X\n"
+                + "\tmove index/ X below/ Y  - Moves the activity at X to the index below Y\n"
                 + "\tdelete X                - Deletes activity located at index X of the list\n"
                 + "\tbye                     - Terminates the program";
         System.out.println(helpList);
