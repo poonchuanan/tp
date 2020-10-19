@@ -1,26 +1,66 @@
 package seedu.duke;
 
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class plotGraph {
-    //Assumption
-    int row = 10;
-    int column = 7;
-    int max_calories = 3000;
-    int min_calories = 1800;
-    int target_calories = 2500;
-    int targetRow;
-    int[] calories = {1800,2000,2500,2250,2500,3000, 2750};
+public class GraphProperty {
+    //Number of intervals - 10
+    private static final int ROW = 11;
+    //Number of Days = 7
+    private static final int COLUMN = 7;
+    DayMap dayMap;
+    ArrayList<LocalDate> keys;
+    int targetCalories;
+    int max_calories;
+    int min_calories;
     int[][] Table;
-    //upperbound_y_axis = max(max_calories, target_calories);
-    //lowerbound_y_axis = min(min_caloires, target_calories);
+    int targetRow;
+    int[] calories;
+    private static final int DIVISOR = 10;
+
     //Appropirate division for y axis -> assume 10 for now
     //Round of each calories of the day
     //Assume x axis length to be always 7 for now
 
-    public void plotGraph() {
+    public GraphProperty(DayMap dayMap, int targetCalories) {
+        this.dayMap = dayMap;
+        this.targetCalories = targetCalories;
+    }
+    public void setColumn() {
+
+    }
+    public void initTable(){
+        this.Table = new int[ROW][COLUMN];
+        for(int[] row : Table) {
+            Arrays.fill(row, 0);
+        }
+    }
+
+    public void setSortedKeys() {
+        ArrayList<LocalDate> keys = new ArrayList<>();
+        for (LocalDate key : dayMap.getHashMap().keySet()) {
+            keys.add(key);
+        }
+        //sort the keys by date
+        keys.sort(LocalDate::compareTo);
+        this.keys = keys;
+    }
+
+    public void setCaloriesBound() {
+        int minCalories = dayMap.getNetCalorieOfDay(keys.get(0));
+        int maxCalories = dayMap.getNetCalorieOfDay(keys.get(0));
+        this.calories = new int[keys.size()];
+        for (int i = 1; i < keys.size(); i++) {
+            if (min_calories > dayMap.getNetCalorieOfDay(keys.get(i))) {
+                min_calories = dayMap.getNetCalorieOfDay(keys.get(i));
+            } else if (max_calories < dayMap.getNetCalorieOfDay(keys.get(i))) {
+                max_calories = dayMap.getNetCalorieOfDay(keys.get(i));
+            }
+            calories[i] = dayMap.getNetCalorieOfDay(keys.get(i));
+        }
+        this.min_calories = minCalories;
+        this.max_calories = maxCalories;
     }
 
     public int round(int x, int y) {
@@ -33,31 +73,24 @@ public class plotGraph {
         }
     }
 
-    public void initTable(){
-        this.Table = new int[row][column];
-        for(int[] row : Table) {
-            Arrays.fill(row, 0);
-        }
-    }
-
     public int calculateDivisor() {
-        return (max_calories - min_calories)/10;
+        return (max_calories - min_calories)/DIVISOR;
     }
 
     public void fillTable() {
         int divisor = calculateDivisor();
-        int target = round(target_calories, divisor);
+        int target = round(targetCalories, divisor);
         int low = round(min_calories, divisor);
         int high = round(max_calories, divisor);
         this.targetRow = (target - low)/divisor;
-        for (int i = 0; i < column ; i++) {
+        for (int i = 0; i < COLUMN ; i++) {
             Table[targetRow][i] = 2;
         }
         for (int j = 0; j < 7 ; j++) {
             calories[j] = round(calories[j] - min_calories, divisor)/divisor;
         }
         System.out.println(Arrays.toString(calories));
-        for (int i = 9; i >= 0 ; i--) {
+        for (int i = ROW - 1; i >= 0 ; i--) {
             for (int j = 0; j< 7; j++) {
                 if (calories[j] == i) {
                     Table[i][j] = 4;
@@ -92,8 +125,9 @@ public class plotGraph {
         initTable();
         fillTable();
         String drawing = "";
-        for(int i = row - 1; i >= 0; i--) {
-            for (int j = 0; j < column; j++) {
+        for(int i = ROW - 1; i >= 0; i--) {
+            drawing += "      ";
+            for (int j = 0; j < COLUMN; j++) {
                 if (Table[i][j] == 0) {
                     drawing += "   ";
                 }
@@ -110,7 +144,7 @@ public class plotGraph {
                     drawing += "|-|";
                 }
                 else if (Table[i][j] == 5) {
-                    drawing += "|-|";
+                    drawing += "|*|";
                 }
                 if (i == targetRow) {
                     drawing += "***";
@@ -121,5 +155,6 @@ public class plotGraph {
             drawing += "\n";
         }
         System.out.println(drawing);
+        System.out.println(plot_x_axis());
     }
 }

@@ -1,14 +1,15 @@
 package seedu.duke.command;
 
-import seedu.duke.plotGraph;
+import seedu.duke.DayMap;
+import seedu.duke.GraphProperty;
 
 public class graphCommand extends Command{
     public graphCommand() {
-
     }
 
     @Override
     public void execute() {
-        new plotGraph().drawGraph();
+        new GraphProperty(super.dayMap, 2500).drawGraph();
     }
+
 }
