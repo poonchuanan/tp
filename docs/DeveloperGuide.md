@@ -21,6 +21,10 @@ traKCAL is able to help the user calculate daily surplus or deficit, saving the 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
+|v1.0|user|add food consumed/exercise done|keep track of my daily activities|
+|v1.0|user|list out the activities done for the day|track it and amend it if any errors occur|
+|v1.0|user|delete entries entered|remove erroneous entries|
+|v1.0|forgetful user|find activities via keyword|pull out the entries that I want|
 |v1.0|beginner in working out|track the calories intake|feel assured that my workout is on the right track|
 |v1.0|student who is a health enthusiast|keep track of my daily intake of calories|better manage my health|
 |v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
@@ -28,7 +32,7 @@ traKCAL is able to help the user calculate daily surplus or deficit, saving the 
 |v2.0|overweight student|calculate the estimated amount of calories lost|facilitate my weight loss regime|
 |v2.0|underweight student|calculate the estimated amount of calories gained|facilitate my weight gain regime|
 |v2.0|weight conscious person|track the amount of calories gained or lost|maintain my weight|
-|v2.0|careless student|go back adn edit entries entered earlier|correct the errors I have made|
+|v2.0|careless student|go back and edit entries entered earlier|correct the errors I have made|
 
 
 ## Non-Functional Requirements
