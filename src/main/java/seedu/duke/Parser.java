@@ -27,6 +27,7 @@ import static seedu.duke.ExceptionMessages.displayDateTimeExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
+import static seedu.duke.ExceptionMessages.displayEmptyEditActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
 import static seedu.duke.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
@@ -72,7 +73,7 @@ public class Parser {
                 store.editUserInfo(arguments[1]);
                 Initialiseuser.save(store);
                 break;
-            case "editA":
+            case "edita":
                 return prepareEditCommand(arguments[1]);
             case "delete":
                 return prepareDeleteCommand(arguments[1]);
@@ -95,7 +96,7 @@ public class Parser {
     }
 
     private Command prepareEditCommand(String userInput) {
-        int index = Integer.parseInt(userInput.substring(0, 1).trim());
+        int index = Integer.parseInt(userInput.substring(0, 1).trim()) - 1;
         userInput = userInput.substring(1).trim();
         try {
             if (userInput.startsWith("f/")) {
@@ -119,7 +120,7 @@ public class Parser {
                 new DeleteCommand(index);
                 return new EditExerciseCommand(index, exerciseDescription, calories, false, date);
             } else {
-                displayEmptyAddActivityErrorMessage();
+                displayEmptyEditActivityErrorMessage();
             }
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             displayAddCommandErrorMessage();
