@@ -45,6 +45,18 @@ public class ActivityList extends Duke {
         }
     }
 
+    public void addNewActivity(int index, Activity activity) {
+        //Activity item = new Activity(userInput, calories);
+        //activities.add(index, activity);
+        activities.set(index, activity);
+        //activityCounter++;
+        if (activity instanceof Food) {
+            netCalorie += activity.calories;
+        } else if (activity instanceof Exercise) {
+            netCalorie -= activity.calories;
+        }
+    }
+
     public int getNetCalorie() {
         return netCalorie;
     }
