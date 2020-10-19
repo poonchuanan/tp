@@ -13,14 +13,14 @@ If you can type fast, traKCAL can get your calorie intake input recorded faster 
     * [Viewing help](#viewing-help): `help`
     * [Adding a profile for new user](#adding-a-profile-for-new-user): `create new user`
     * [Adding a target calorie](#adding-a-target-calorie): `target`
-    * [Adding a food entry]
-    * [Adding an exercise entry]
-    * [Listing entries for the day]
-    * [Editing user profile]
-    * [Editing an entry in list]
-    * [Finding entries via keyword]
-    * [Deleting entry in list]
-    * [Deleting all entries in list]
+    * [Adding a food entry](#adding-a-food-entry): `add`
+    * [Adding an exercise entry](#adding-an-exercise-entry): `add`
+    * [Listing entries for the day](#listing-entries-for-the-day): `list`
+    * [Editing user profile](#editing-user-profile): `edit`
+    * [Editing an entry in list](#editing-an-entry-in-list): `editA`
+    * [Finding entries via keyword](#finding-entries-via-keyword): `find`
+    * [Deleting entry in list](#deleting-entry-in-list): `delete`
+    * [Deleting all entries in list](#deleting-all-entries-in-list): `deleteALL`
     * [Exiting the program](#exiting-the-program): `bye`
 * [Command Summary] 
 
@@ -65,7 +65,7 @@ Example of usage:
 
 ### Adding a food entry
 
-### Add an exercise entry
+### Adding an exercise entry
 
 ### Listing entries for the day
 
