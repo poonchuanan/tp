@@ -32,7 +32,6 @@
 |v1.0|forgetful user|find activities via keyword|pull out the entries that I want|
 |v1.0|beginner in working out|track the calories intake|feel assured that my workout is on the right track|
 |v1.0|student who is a health enthusiast|keep track of my daily intake of calories|better manage my health|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 |v2.0|gym user|upload the amount of calories consumed or lost|track the surplus or deficit of calories|
 |v2.0|overweight student|calculate the estimated amount of calories lost|facilitate my weight loss regime|
 |v2.0|underweight student|calculate the estimated amount of calories gained|facilitate my weight gain regime|
