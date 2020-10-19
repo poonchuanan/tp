@@ -48,6 +48,10 @@ public class Ui {
                 + "\tedit n/U, g/V, w/W, h/X, a/Y, af/Z\n"
                 + "\t                        - Edit user profile to name, U, gender, V, weight, W, height, X,\n"
                 + "\t                          age, Y, activity factor(1-5), Z\n"
+                + "\tedita W f/ X c/ Y d/ Z  - Edits activity at index W of list to food consumed, X,\n" +
+                "                              calories gained, Y and date(YYYY-MM-DD), Z\n"
+                + "\tedita W e/ X c/ Y d/ Z  - Edits activity at index W of list to exercise done, X,\n" +
+                "                              calories lost, Y and date(YYYY-MM-DD), Z\n"
                 + "\tfind d/ X               - Searches for exercise/food description with X included\n"
                 + "\tfind c/ X               - Searches for activity description with calories of X\n"
                 + "\tdelete X                - Deletes activity located at index X of the list\n"

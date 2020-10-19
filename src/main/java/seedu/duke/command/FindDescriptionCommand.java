@@ -5,6 +5,9 @@ import seedu.duke.exception.KeywordNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Initialises Command to find activity description.
+ */
 public class FindDescriptionCommand extends Command {
     protected LocalDate date;
     protected String description;

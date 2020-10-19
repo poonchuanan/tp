@@ -95,6 +95,13 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Prepares the edit command by checking the userInput.
+     *
+     * @param userInput description of the edit command.
+     * @return EditFoodCommand
+     * @return EditExerciseCommand
+     */
     private Command prepareEditCommand(String userInput) {
         int index = Integer.parseInt(userInput.substring(0, 1).trim()) - 1;
         userInput = userInput.substring(1).trim();
@@ -130,6 +137,13 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Prepares the add command by checking the userInput.
+     *
+     * @param userInput description of the add command.
+     * @return AddFoodCommand
+     * @return AddExerciseCommand
+     */
     private Command prepareAddCommand(String userInput) {
         try {
             String[] arguments = userInput.split(" ", 2);
@@ -164,6 +178,12 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Process date input by user.
+     *
+     * @param dateInput date input by user.
+     * @return date
+     */
     private LocalDate processDate(String dateInput) {
         try {
             LocalDate date = LocalDate.parse(dateInput);
@@ -175,12 +195,23 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns current date.
+     *
+     * @return current date
+     */
     private LocalDate currentDate() {
         LocalDate date = LocalDate.now();
 
         return date;
     }
 
+    /**
+     * Process the date input by user.
+     *
+     * @param dateInput date input by user.
+     * @return date
+     */
     private String processingDate(String dateInput) {
         int extra = dateInput.indexOf("&&");
         dateInput = dateInput.substring(0, extra);
@@ -199,6 +230,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares the list command by checking the userInput.
+     *
+     * @param userInput description of the list command.
+     * @return ListCommand
+     */
     private Command prepareListCommand(String userInput) {
         if (userInput.toLowerCase().equals("list")) {
             return new ListCommand();
@@ -236,6 +273,15 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Prepares the find command by checking the userInput.
+     * If the keyword contains activity description, returns FindDescriptionCommand.
+     * Else if the keyword contains calories count, returns FindCalorieCommand.
+     *
+     * @param userInput description of the find command.
+     * @return FindDescriptionCommand
+     * @return FindCalorieCommand
+     */
     private Command prepareFindCommand(String userInput) {
         try {
             String[] arguments = userInput.split(" ", 2);

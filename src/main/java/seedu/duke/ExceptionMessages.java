@@ -12,7 +12,8 @@ public class ExceptionMessages {
      */
     public static void displayStringIndexOutOfBoundsExceptionMessage() {
         drawDivider();
-        String exceptionMessage = "Something went wrong!! I do not understand what you mean.\n" + "There could be an error in the way of input.";
+        String exceptionMessage = "Something went wrong!! I do not understand what you mean.\n"
+                + "There could be an error in the way of input.";
         System.out.println(exceptionMessage);
         promptUserOfHelpMessage();
         drawDivider();
@@ -64,8 +65,10 @@ public class ExceptionMessages {
     public static void displayAddCommandErrorMessage() {
         drawDivider();
         System.out.println("Invalid input given!");
-        System.out.println("The input format for adding food activity is 'add f/ X c/ Y d/ Z" + " - where food is X, calories lost is Y and date(YYYY-MM-DD) is Z");
-        System.out.println("The input format for adding exercise activity is 'add e/ X c/ Y d/ Z'" + " - where exercise done is X, calories lost is Y and date(YYYY-MM-DD) is Z");
+        System.out.println("The input format for adding food activity is 'add f/ X c/ Y d/ Z"
+                + " - where food is X, calories lost is Y and date(YYYY-MM-DD) is Z");
+        System.out.println("The input format for adding exercise activity is 'add e/ X c/ Y d/ Z'"
+                + " - where exercise done is X, calories lost is Y and date(YYYY-MM-DD) is Z");
         System.out.println("Please do input 'help' for more information.");
         drawDivider();
     }
@@ -76,8 +79,10 @@ public class ExceptionMessages {
     public static void displayFindErrorMessage() {
         drawDivider();
         System.out.println("I do not understand what you mean!");
-        System.out.println("The input format for finding food or exercise activity via keyword is 'find d/ X'" + " - where keyword is X");
-        System.out.println("The input format for finding calorie count via keyword is 'find c/ X'" + " - where calories count is X");
+        System.out.println("The input format for finding food or exercise activity via keyword is 'find d/ X'"
+                + " - where keyword is X");
+        System.out.println("The input format for finding calorie count via keyword is 'find c/ X'"
+                + " - where calories count is X");
         System.out.println("Please do input 'help' for more information.");
         drawDivider();
     }
@@ -132,7 +137,8 @@ public class ExceptionMessages {
     public static void displayInvalidActivityFactorMessage() {
         drawDivider();
         System.out.println("Sorry this is an invalid activity factor!");
-        System.out.println("Please enter an integer from 1 to 5, with 1 being the least " + "active and 5 being the most active\n");
+        System.out.println("Please enter an integer from 1 to 5, with 1 being the least "
+                + "active and 5 being the most active\n");
     }
 
     /**
@@ -151,6 +157,5 @@ public class ExceptionMessages {
         drawDivider();
         System.out.println("Sorry! There is missing input!");
         drawDivider();
-
     }
 }

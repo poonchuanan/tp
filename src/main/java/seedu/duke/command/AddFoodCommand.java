@@ -15,14 +15,22 @@ public class AddFoodCommand extends Command {
     /**
      * Add food and it's respective calories.
      *
-     * @param description food description
-     * @param calories calories consumed
+     * @param description food description.
+     * @param calories calories gained.
      */
     public AddFoodCommand(String description, int calories, boolean isFromFile) {
         this.food = new Food(description, calories, isFromFile);
         this.date = LocalDateTime.now().toLocalDate();
     }
 
+    /**
+     * Add food and it's respective calories.
+     *
+     * @param description food description.
+     * @param calories calories gained.
+     * @param isFromFile if data is from csv file.
+     * @param date date of activity.
+     */
     public AddFoodCommand(String description, int calories, boolean isFromFile, LocalDate date) {
         this.food = new Food(description, calories, isFromFile);
         this.date = date;
