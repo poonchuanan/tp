@@ -11,6 +11,7 @@ public class plotGraph {
     int max_calories = 3000;
     int min_calories = 1800;
     int target_calories = 2500;
+    int targetRow;
     int[] calories = {1800,2000,2500,2250,2500,3000, 2750};
     int[][] Table;
     //upperbound_y_axis = max(max_calories, target_calories);
@@ -48,7 +49,7 @@ public class plotGraph {
         int target = round(target_calories, divisor);
         int low = round(min_calories, divisor);
         int high = round(max_calories, divisor);
-        int targetRow = (target - low)/divisor;
+        this.targetRow = (target - low)/divisor;
         for (int i = 0; i < column ; i++) {
             Table[targetRow][i] = 2;
         }
@@ -90,5 +91,35 @@ public class plotGraph {
     public void drawGraph() {
         initTable();
         fillTable();
+        String drawing = "";
+        for(int i = row - 1; i >= 0; i--) {
+            for (int j = 0; j < column; j++) {
+                if (Table[i][j] == 0) {
+                    drawing += "   ";
+                }
+                else if (Table[i][j] == 1) {
+                    drawing += "| |";
+                }
+                else if (Table[i][j] == 2) {
+                    drawing += "***";
+                }
+                else if (Table[i][j] == 3) {
+                    drawing += "|*|";
+                }
+                else if (Table[i][j] == 4) {
+                    drawing += "|-|";
+                }
+                else if (Table[i][j] == 5) {
+                    drawing += "|-|";
+                }
+                if (i == targetRow) {
+                    drawing += "***";
+                } else {
+                    drawing += "   ";
+                }
+            }
+            drawing += "\n";
+        }
+        System.out.println(drawing);
     }
 }
