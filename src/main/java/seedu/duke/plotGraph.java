@@ -12,12 +12,23 @@ public class plotGraph {
     //Appropirate division for y axis -> assume 10 for now
     //Round of each calories of the day
     //Assume x axis length to be always 7 for now
-    public String draw_x_axis() {
-        String x_axis = "___________________________________________\n";
-        return x_axis;
+    public String plot_x_axis() {
+        String x_axis_line = "_____|_____|_____|_____|_____|_____|_____|____\n";
+        String x_axis_labels = "    Mon   Tue   Wed   Thu   Fri   Sat   Sun\n";
+        return x_axis_line + x_axis_labels;
     }
+
+    public String plot_y_axis() {
+        String y_axis = "";
+        for(int i = 0; i < 10; i++) {
+            y_axis += "|\n";
+        }
+        return y_axis;
+    }
+
     //Draws out the graph
     public void drawGraph() {
-        System.out.print(draw_x_axis());
+        System.out.print(plot_y_axis());
+        System.out.print(plot_x_axis());
     }
 }
