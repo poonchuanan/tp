@@ -188,6 +188,10 @@ public class DayMap {
 
     }
 
+    public void insert(int indexToBeChanged, int indexToBeInsertedBelow) {
+        lastSeenList.insertActivityAt(indexToBeChanged - 1, indexToBeInsertedBelow);
+    }
+
     /**
      * Sets the activities at a given date as a string.
      * For e.g, 2020-10-11: [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60.

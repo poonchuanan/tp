@@ -1,15 +1,16 @@
 package seedu.duke;
 
 import seedu.duke.command.AddExerciseCommand;
-import seedu.duke.command.AddFoodCommand;
 import seedu.duke.command.ByeCommand;
-import seedu.duke.command.EditExerciseCommand;
-import seedu.duke.command.EditFoodCommand;
-import seedu.duke.command.HelpCommand;
 import seedu.duke.command.Command;
-import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.AddFoodCommand;
+import seedu.duke.command.EditFoodCommand;
+import seedu.duke.command.EditExerciseCommand;
 import seedu.duke.command.FindCalorieCommand;
 import seedu.duke.command.FindDescriptionCommand;
+import seedu.duke.command.HelpCommand;
+import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.InsertActivityBelow;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.userprofile.Initialiseuser;
@@ -30,11 +31,9 @@ import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExcep
 import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayEmptyEditActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
-import static seedu.duke.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
-import static seedu.duke.Ui.displayHelpMessage;
 
 /**
  * Initialises parser class.
@@ -82,6 +81,8 @@ public class Parser {
                 return prepareListCommand(userInput);
             case "help":
                 return new HelpCommand();
+            case "insert":
+                return prepareEditIndexCommand(userInput);
             case "bye":
                 return new ByeCommand();
             default:
@@ -176,6 +177,23 @@ public class Parser {
             displayAddActivityNumberFormatExceptionMessage();
         }
         return null;
+    }
+
+    private Command prepareEditIndexCommand(String userInput) {
+        //Removing additional spaces in the user's input
+        String after = userInput.trim().replaceAll(" +", " ");
+        String[] words = after.split(" ");
+        try {
+            int indexToBeChanged = Integer.parseInt(words[1]);
+            int indexToBeInsertedBelow = Integer.parseInt(words[2]);
+            return new InsertActivityBelow(indexToBeChanged, indexToBeInsertedBelow);
+        } catch (NumberFormatException e) {
+            displayDeleteCommandNumberFormatExceptionMessage();
+        } catch (IndexOutOfBoundsException e) {
+            displayStringIndexOutOfBoundsExceptionMessage();
+        }
+        return null;
+
     }
 
     /**

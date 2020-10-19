@@ -35,7 +35,6 @@ public class ActivityList extends Duke {
 
 
     public void addActivity(Activity activity) {
-        //Activity item = new Activity(userInput, calories);
         activities.add(activity);
         activityCounter++;
         if (activity instanceof Food) {
@@ -45,6 +44,12 @@ public class ActivityList extends Duke {
         }
     }
 
+    /**
+     * This method replaces the current activity at index with a new activity.
+     * To change the description of the current activity.
+     * @param index is the index of the current activity to be replaced
+     * @param activity is the new activity that will be replacing the current activity
+     */
     public void addNewActivity(int index, Activity activity) {
         //Activity item = new Activity(userInput, calories);
         //activities.add(index, activity);
@@ -57,12 +62,39 @@ public class ActivityList extends Duke {
         }
     }
 
+    /**
+     * This method inserts a activity from a given index and moves it to another index.
+     * @param indexToBeChanged this is the index at which the activity will be moved from
+     * @param indexToBeInsertedBelow this is the index at which the activity will be moved to below
+     * @throws IndexOutOfBoundsException if the index is not within the limits
+     */
+    public void insertActivityAt(int indexToBeChanged, int indexToBeInsertedBelow) throws IndexOutOfBoundsException {
+
+        if (isValidIndex(indexToBeChanged) && isValidIndex(indexToBeInsertedBelow)) {
+            Activity activity = getActivity(indexToBeChanged );
+            removeActivity(indexToBeChanged);
+            activities.add(indexToBeInsertedBelow, activity);
+            activityCounter++;
+            if (activity instanceof Food) {
+                netCalorie += activity.calories;
+            } else if (activity instanceof Exercise) {
+                netCalorie -= activity.calories;
+            }
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
     public int getNetCalorie() {
         return netCalorie;
     }
 
-    public Activity getActivity(int index) {
-        return activities.get(index);
+    public Activity getActivity(int index) throws IndexOutOfBoundsException {
+        if (isValidIndex(index)) {
+            return activities.get(index);
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     /**
