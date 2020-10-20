@@ -72,14 +72,9 @@ public class ActivityList extends Duke {
 
         if (isValidIndex(indexToBeMovedFrom) && isValidIndex(indexToBeInsertedBelow)) {
             Activity activity = getActivity(indexToBeMovedFrom);
-            removeActivity(indexToBeMovedFrom);
+            activities.remove(indexToBeMovedFrom);
             activities.add(indexToBeInsertedBelow, activity);
-            activityCounter++;
-            if (activity instanceof Food) {
-                netCalorie += activity.calories;
-            } else if (activity instanceof Exercise) {
-                netCalorie -= activity.calories;
-            }
+
         } else {
             throw new IndexOutOfBoundsException();
         }
@@ -111,7 +106,6 @@ public class ActivityList extends Duke {
                 netCalorie += activityToRemove.calories;
             }
             activities.remove(index);
-            System.out.println("Activity pointed to is: " + activityToRemove.toString());
             activityCounter--;
             System.out.print("Activity removed!\n");
         } else {
