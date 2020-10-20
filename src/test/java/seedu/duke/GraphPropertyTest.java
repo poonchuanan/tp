@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.Month;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class GraphPropertyTest {
     private LocalDate date1 = LocalDate.of(2020, Month.AUGUST, 9);
@@ -34,33 +33,29 @@ class GraphPropertyTest {
     @Test
     public void plotgraph_success() {
         DayMap dummyMap = setDummyMap(7, 1800, date1, 4);
-        GraphProperty hello = new GraphProperty(dummyMap, 2000, 7);
+        GraphDrawing hello = new GraphDrawing(dummyMap, 2000, 7);
         hello.drawGraph();
-        hello.parseDate();
 
     }
 
     @Test
     public void plotgraph2_success() {
         DayMap dummyMap = setDummyMap(7, 2200, date2, 2);
-        GraphProperty hello = new GraphProperty(dummyMap, 2300, 7);
+        GraphDrawing hello = new GraphDrawing(dummyMap, 2300, 7);
         hello.drawGraph();
-        hello.parseDate();
     }
 
     @Test
     public void plotgraph3_success() {
         DayMap dummyMap = setDummyMap(7, 2200, date2, 2);
-        GraphProperty hello = new GraphProperty(dummyMap, 3500, 7);
+        GraphDrawing hello = new GraphDrawing(dummyMap, 3500, 7);
         hello.drawGraph();
-        hello.parseDate();
     }
 
     @Test
     public void plotgraph4_success() {
         DayMap dummyMap = setDummyMap(5, 2200, date2, 3);
-        GraphProperty hello = new GraphProperty(dummyMap, 2000, 5);
+        GraphDrawing hello = new GraphDrawing(dummyMap, 2000, 5);
         hello.drawGraph();
-        hello.parseDate();
     }
 }
