@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GraphProperty {
-    //Number of intervals - 10
     private static final int ROW = 11;
+    private static final String dateStyle= "dd/MM";
+    private static final int INTERVAL_PRECISION = 2;
+
     private int Column;
     DayMap dayMap;
     ArrayList<LocalDate> keys;
@@ -19,15 +21,20 @@ public class GraphProperty {
     int[] calories;
     private final int DIVISOR = 10;
 
-    //Appropirate division for y axis -> assume 10 for now
-    //Round of each calories of the day
-    //Assume x axis length to be always 7 for now
-
-    public GraphProperty(DayMap dayMap, int targetCalories) {
+    /**
+     * Constructor for the graph.
+     * @param dayMap hashmap containing dates
+     * @param targetCalories tagret calories from userprofile
+     */
+    public GraphProperty(DayMap dayMap, int targetCalories, int days) {
         this.dayMap = dayMap;
         this.targetCalories = targetCalories;
+        this.Column = days;
     }
 
+    /**
+     * Initiates a 2 dimension table and fills the table with 0.
+     */
     public void initTable(){
         this.Table = new int[ROW][Column];
         for(int[] row : Table) {
@@ -68,22 +75,32 @@ public class GraphProperty {
         this.max_calories = maxCalories;
     }
 
-    public int round(int x, int y) {
-        if (x % y < y/2) {
-            return x - (x%y);
-        } else if (x % y > y/2) {
-            return x + (y - (x%y));
+    /**
+     * Round off the number to the nearest interval.
+     * @param number number to be rounded off
+     * @param interval precision of the round off
+     * @return estimated number
+     */
+    public int round(int number, int interval) {
+        if (number % interval < interval / INTERVAL_PRECISION) {
+            return number - (number % interval);
+        } else if (number % interval > interval / INTERVAL_PRECISION) {
+            return number + (interval - (number % interval));
         } else {
-            return x + y/2;
+            return number + interval/ INTERVAL_PRECISION;
         }
     }
 
-    public int calculateDivisor() {
+    /**
+     * Calculates interval of the graph.
+     * @return interval value
+     */
+    public int calculateInterval() {
         return (max_calories - min_calories)/DIVISOR;
     }
 
     public void fillTable() {
-        int divisor = calculateDivisor();
+        int divisor = calculateInterval();
         int target = round(targetCalories, divisor) ;
         int low = round(min_calories, divisor);
         int high = round(max_calories, divisor);
@@ -117,7 +134,11 @@ public class GraphProperty {
     }
 
 
-
+    /**
+     * Gets the character size of a number.
+     * @param number
+     * @return character size of number
+     */
     public int getSizeOfCharacters(int number) {
         int size = 0;
         while (number != 0) {
@@ -126,7 +147,13 @@ public class GraphProperty {
         }
         return size;
     }
-    
+
+    /**
+     * Repeats character back to back.
+     * @param character
+     * @param size
+     * @return
+     */
     public String repeatCharacter(String character, int size) {
         String characterText = "";
         for (int i = 0 ; i < size; i++) {
@@ -134,10 +161,15 @@ public class GraphProperty {
         }
         return characterText;
     }
+
+    /**
+     * Parses the date into string
+     * @return date in dd/MM formate
+     */
     public String parseDate() {
         String formattedDate = "";
         for (LocalDate key : keys) {
-            formattedDate += key.format(DateTimeFormatter.ofPattern("dd/MM"));
+            formattedDate += key.format(DateTimeFormatter.ofPattern(dateStyle));
             formattedDate += " ";
         }
         return formattedDate;
@@ -150,21 +182,22 @@ public class GraphProperty {
         initTable();
         fillTable();
         String drawing = "";
-        int round_max = round(max_calories, calculateDivisor());
-        int round_target = round(targetCalories, calculateDivisor());
-        int round_min = round(min_calories, calculateDivisor());
+        int round_max = round(max_calories, calculateInterval());
+        int round_target = round(targetCalories, calculateInterval());
+        int round_min = round(min_calories, calculateInterval());
         int size = getSizeOfCharacters(round_max);
         String space = repeatCharacter(" ", size);
         for(int i = ROW - 1; i >= 0; i--) {
             if (i == ROW - 1) {
-                drawing += Integer.toString(max_calories) + "|";
+                drawing += Integer.toString(max_calories);
             } else if (i == targetRow) {
-                drawing += Integer.toString(targetCalories) + repeatCharacter(" ", Integer.toString(max_calories).length() - Integer.toString(targetCalories).length()) + "|";
+                drawing += Integer.toString(targetCalories) + repeatCharacter(" ", Integer.toString(max_calories).length() - Integer.toString(targetCalories).length());
             } else if (i == 0) {
-                drawing += Integer.toString(min_calories) + repeatCharacter(" ", Integer.toString(max_calories).length() - Integer.toString(min_calories).length()) + "|";
+                drawing += Integer.toString(min_calories) + repeatCharacter(" ", Integer.toString(max_calories).length() - Integer.toString(min_calories).length());
             } else {
-                drawing += space + "|";
+                drawing += space;
             }
+            drawing += "|";
             for (int j = 0; j < Column; j++) {
                 if (Table[i][j] == 0) {
                     drawing += repeatCharacter(" ", 3);

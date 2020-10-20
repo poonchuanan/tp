@@ -9,7 +9,7 @@ public class graphCommand extends Command{
 
     @Override
     public void execute() {
-        new GraphProperty(super.dayMap, 2500).drawGraph();
+        new GraphProperty(super.dayMap, 2500, 7).drawGraph();
     }
 
 }
