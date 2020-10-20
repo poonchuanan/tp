@@ -2,9 +2,8 @@
 
 ## Introduction
 
-{Give a product intro}
-traKCAL is an application for managing calories intake, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, traKCAL can get your calorie intake input recorded faster than traditional GUI applications.
+**traKCAL** is an application for managing calories intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
+If you can type fast, traKCAL is suited just for you.
 
 ## Table of Contents
 * [Quick Start](#quick-start)
@@ -29,8 +28,22 @@ If you can type fast, traKCAL can get your calorie intake input recorded faster 
 
 {Give steps to get started quickly}
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Ensure that you have Java 11 or above installed
+2. Down the latest version of `Duke` from [here](http://link.to/duke)
+3. Create an empty folder in a convenient location eg. Desktop and copy jar file there
+4. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar tp.jar`
+5. Upon successful run, the following greeting message will be shown
+```
+==============================================================
+Hello from
+  _                  _  __   ___     _     _
+ | |_   _ _   __ _  | |/ /  / __|   /_\   | |
+ |  _| | '_| / _` | | ' <  | (__   / _ \  | |__
+  \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|
+
+Hello! I'm traKCAL.
+==============================================================
+````
 
 ## Features 
 
@@ -77,8 +90,42 @@ The current activity list has been saved.
 ```
 
 ### Adding a profile for new user
+Automatically checks for new user and prompt them to create a new user profile by asking a series of questions
+
+Example of usage:
+````
+Hey there! We do not have a record of your profile. Please create one now! :)
+
+What is your name?
+**Sam**
+What is your gender (male/female)?
+**female**
+What is your weight in kg?
+**50**
+What is your height in cm?
+**100**
+What is your age?
+**10**
+How active are you on a scale of 1-5? With 1 being least active and 5 being most active.
+**4**
+Do you want to lose/maintain/gain weight?
+**gain**
+````
 
 ### Adding a target calorie
+Interprets the answers from the user profile questionnaire to calculate health profile
+
+tracKCAL calculates: 
+* BMI
+* Recommended daily calorie
+* Calorie goal to reach weight goal
+
+Example of calculated health profile: 
+````
+Your BMI is 20.
+Your recommend daily calories intake is 1576.65 calories.
+To gain weight, you should consume 2076.65 calories instead.
+````
 
 ### Adding a food entry
 Adds a food entry with its respective calories to the list.
@@ -107,8 +154,8 @@ Parameters:
 * `**CALORIE_COUNT**`: Amount of calories lost.
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
-Examples of usage:
-*`add e/ jumping c/ 65 d/ 2020-10-19`
+Examples of usage: 
+* `add e/ jumping c/ 65 d/ 2020-10-19`
 ```javascript
 [E] | jumping | 65
 The current activity list has been saved.
@@ -117,6 +164,36 @@ The current activity list has been saved.
 ### Listing entries for the day
 
 ### Editing user profile
+Edits user profile of an existing user
+
+Format: `edit n/**NAME** g/**GENDER** w/**WEIGHT** h/**HEIGHT** a/**AGE** af/**ACTIVITY_FACTOR** goal/**WEIGHT_GOALS**`
+
+Parameters: 
+* `**NAME**`: Name of user
+* `**GENDER**`: Gender of user
+* `**WEIGHT_KG**`: Weight of user in kg
+* `**HEIGHT_CM**`: Height of user in cm
+* `**AGE**`: Age of user 
+* `**ACTIVITY_FACTOR**`: How active user is, with 1 being most active and 5 being least active
+* `**WEIGHT_GOALS**`: whether user wants to lose/maintain/gain weight 
+
+Example of usage: 
+* `edit n/Sam g/female w/50 h/100 a/10 af/4 goal/gain`
+````
+==============================================================
+Noted, I have edited your user profile. Here are your new details: 
+Name: Sam
+Gender: female
+Weight: 50
+Height: 100
+Age: 10
+Activity: 4
+Weight Goal: gain
+Your BMI is 50
+Your recommend daily calories intake is 1576.65 calories.
+To gain weight, you should consume 2076.65 calories instead.
+==============================================================
+````
 
 ### Editing an entry in list
 
@@ -149,9 +226,11 @@ Thank you for using TraKCAL. See you again!
 
 {Give a 'cheat sheet' of commands here}
 
-Action     | Format, Example
----------- | ----------
-Help | `help`
-Exit | `bye`
+Action     | Format | Example
+---------- | ---------- | --------
+Help | `help` |
+Exit | `bye` |
+
+
 
 ### --- END OF USER GUIDE ---

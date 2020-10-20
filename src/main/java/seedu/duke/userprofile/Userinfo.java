@@ -1,6 +1,7 @@
 package seedu.duke.userprofile;
 
 import java.text.DecimalFormat;
+import seedu.duke.Ui;
 import static seedu.duke.ExceptionMessages.displayInvalidActivityFactorMessage;
 
 public class Userinfo {
@@ -106,7 +107,7 @@ public class Userinfo {
                     + (calories - 500) + " calories instead.\n");
         } else if (this.getWeightGoal().equals("gain")) {
             System.out.println("To " + this.getWeightGoal() + " weight, you should consume "
-                    + (calories + 500) + " calories instead.\n");
+                    + (calories + 500) + " calories instead.");
         } else {
             System.out.println("\n");
         }
@@ -121,6 +122,7 @@ public class Userinfo {
                 (userInput.substring(userInput.indexOf("af/") + 3, userInput.indexOf("goal/") - 1)),
                 userInput.substring(userInput.indexOf("goal/") + 5));
 
+        Ui.drawDivider();
         System.out.println("Noted, I have edited your user profile. Here are your new details: ");
         System.out.println("Name: " + this.getName());
         System.out.println("Gender: " + this.getGender());
@@ -130,6 +132,7 @@ public class Userinfo {
         System.out.println("Activity: " + this.getactivityfactor());
         System.out.println("Weight Goal: " + this.getWeightGoal());
         printNewUserCalculatedDetails();
+
     }
 
     @Override
