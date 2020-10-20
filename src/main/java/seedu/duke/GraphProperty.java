@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GraphProperty {
-    public static final int ROW = 11;
-    private static final String dateStyle= "dd/MM";
-    private static final int INTERVAL_PRECISION = 2;
-    private static int TARGET_TYPE = 2;
+    public final int ROW = 11;
+    private final String dateStyle= "dd/MM";
+    private final int INTERVAL_PRECISION = 2;
+    private static  int TARGET_TYPE = 2;
     private static int LIMIT_TYPE = 4;
     public int targetRow;
     public final int Column;
@@ -34,11 +34,15 @@ public class GraphProperty {
 
     }
 
+    /**
+     * set othere properties by calculation.
+     */
     public void setProperties() {
         this.keys = sortKeys();
         ArrayList<Integer> calories = getCalories();
         this.Table = initiateTable(calories);
     }
+
     /**
      * Initiates a 2 dimension table and fills the table with 0.
      */
@@ -50,7 +54,7 @@ public class GraphProperty {
     }
 
     /**
-     * get and sort keys from hashmap
+     * get and sort keys from hashmap.
      * @return sorted keys in arraylist
      */
     public ArrayList<LocalDate> sortKeys() {
@@ -64,7 +68,7 @@ public class GraphProperty {
     }
 
     /**
-     * get calories from the dates
+     * get calories from the dates.
      * @return array of calories
      */
     public ArrayList<Integer> getCalories() {
