@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -107,11 +106,15 @@ public class GraphProperty {
         }
         System.out.println(Arrays.deepToString(Table));
     }
-    public String plot_x_axis() {
-        String x_axis_line = "\t _____|_____|_____|_____|_____|_____|_____|____\n";
-        String x_axis_labels = "     1/11   2/11   3/11   4/11   5/11   6/11   Sun\n";
-        return x_axis_line + x_axis_labels;
+    public String generate_x_axis() {
+        String x_axis_line = "|-+";
+        for (int i = 0; i < COLUMN - 1; i++) {
+            x_axis_line += repeatCharacter("-", 5) + "+";
+        }
+        return x_axis_line;
     }
+
+
 
     public int getSizeOfCharacters(int number) {
         int size = 0;
@@ -122,10 +125,10 @@ public class GraphProperty {
         return size;
     }
 
-    public String whiteSpace_generator(int size) {
+    public String repeatCharacter(String character, int size) {
         String whitespace = "";
         for (int i = 0 ; i < size; i++) {
-            whitespace += " ";
+            whitespace += character;
         }
         return whitespace;
     }
@@ -149,14 +152,14 @@ public class GraphProperty {
         int round_target = round(targetCalories, calculateDivisor());
         int round_min = round(min_calories, calculateDivisor());
         int size = getSizeOfCharacters(round_max);
-        String space = whiteSpace_generator(size);
+        String space = repeatCharacter(" ", size);
         for(int i = ROW - 1; i >= 0; i--) {
             if (i == ROW - 1) {
-                drawing += Integer.toString(round_max) + "|";
+                drawing += Integer.toString(max_calories) + "|";
             } else if (i == targetRow) {
-                drawing += Integer.toString(targetCalories) + whiteSpace_generator(Integer.toString(round_max).length() - Integer.toString(round_target).length()) + "|";
+                drawing += Integer.toString(targetCalories) + repeatCharacter(" ", Integer.toString(max_calories).length() - Integer.toString(targetCalories).length()) + "|";
             } else if (i == 0) {
-                drawing += Integer.toString(round_min) + whiteSpace_generator(Integer.toString(round_max).length() - Integer.toString(round_min).length()) + "|";
+                drawing += Integer.toString(min_calories) + repeatCharacter(" ", Integer.toString(max_calories).length() - Integer.toString(min_calories).length()) + "|";
             } else {
                 drawing += space + "|";
             }
@@ -188,19 +191,21 @@ public class GraphProperty {
             drawing += "\n";
         }
         System.out.print(drawing);
-        System.out.println(whiteSpace_generator(size - 1) + " " + parseDate());
+        System.out.println(repeatCharacter(" ", size) + generate_x_axis());
+        System.out.println(repeatCharacter(" ", size - 1) + " " + parseDate());
+        System.out.println(repeatCharacter(" ", size));
     }
 
     public String plot_y_axis() {
         String y_axis = "";
         int round_max = round(max_calories, calculateDivisor());
         int size = getSizeOfCharacters(round_max);
-        String space = whiteSpace_generator(size);
+        String space = repeatCharacter(" ", size);
         for(int i = 10; i >= 1; i--) {
             if (i == 10) {
                 y_axis += Integer.toString(round_max) + "|\n";
             } else {
-                y_axis += whiteSpace_generator(size) + "|\n";
+                y_axis += repeatCharacter(" ", size) + "|\n";
             }
         }
         return y_axis;
