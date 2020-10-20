@@ -1,15 +1,16 @@
 package seedu.duke;
 
 import seedu.duke.command.AddExerciseCommand;
-import seedu.duke.command.AddFoodCommand;
 import seedu.duke.command.ByeCommand;
-import seedu.duke.command.EditExerciseCommand;
-import seedu.duke.command.EditFoodCommand;
-import seedu.duke.command.HelpCommand;
 import seedu.duke.command.Command;
-import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.AddFoodCommand;
+import seedu.duke.command.EditFoodCommand;
+import seedu.duke.command.EditExerciseCommand;
 import seedu.duke.command.FindCalorieCommand;
 import seedu.duke.command.FindDescriptionCommand;
+import seedu.duke.command.HelpCommand;
+import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.command.GraphCommand;
@@ -61,7 +62,6 @@ public class Parser {
      */
     public Command parseCommand() {
         String[] arguments = userInput.split(" ", 2);
-
         try {
             switch (arguments[0].toLowerCase()) {
             case "add":
@@ -81,6 +81,8 @@ public class Parser {
                 return prepareListCommand(userInput);
             case "help":
                 return new HelpCommand();
+            case "move":
+                return prepareMoveIndexCommand(userInput);
             case "bye":
                 return new ByeCommand();
             case "graph":
@@ -177,6 +179,22 @@ public class Parser {
             displayAddActivityNumberFormatExceptionMessage();
         }
         return null;
+    }
+
+    private Command prepareMoveIndexCommand(String userInput) throws IndexOutOfBoundsException {
+        //Removing additional spaces in the user's input
+        String after = userInput.trim().replaceAll(" +", " ");
+        String firstIndexKey = "from/";
+        String secondIndexKey = "below/";
+
+        int firstIndex = after.indexOf(firstIndexKey) + firstIndexKey.length(); //index after first keyword
+        int secondIndex = after.indexOf(secondIndexKey) + secondIndexKey.length(); //index after second keyword
+
+        String firstIndexString = after.substring(firstIndex).trim().split(" ")[0];
+        String secondIndexString = after.substring(secondIndex).trim().split(" ")[0];
+        int indexToBeChanged = Integer.parseInt(firstIndexString);
+        int indexToBeInsertedBelow = Integer.parseInt(secondIndexString);
+        return new MoveActivityCommand(indexToBeChanged, indexToBeInsertedBelow);
     }
 
     /**
