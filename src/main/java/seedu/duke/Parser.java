@@ -12,7 +12,7 @@ import seedu.duke.command.FindCalorieCommand;
 import seedu.duke.command.FindDescriptionCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
-import seedu.duke.command.graphCommand;
+import seedu.duke.command.GraphCommand;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
@@ -31,11 +31,9 @@ import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExcep
 import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayEmptyEditActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
-import static seedu.duke.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
-import static seedu.duke.Ui.displayHelpMessage;
 
 /**
  * Initialises parser class.
@@ -86,7 +84,7 @@ public class Parser {
             case "bye":
                 return new ByeCommand();
             case "graph":
-                return new graphCommand();
+                return prepareGraphCommand();
             default:
                 return new InvalidCommand();
             }
@@ -306,5 +304,13 @@ public class Parser {
     private LocalDate checkDate(String dateTimeString) throws DateTimeParseException {
         LocalDate dateTime = LocalDate.parse(dateTimeString);
         return dateTime;
+    }
+
+    private Command prepareGraphCommand() {
+        int size = calList.getHashMap().size();
+        if (size < GraphCommand.MAXIMUM_DAYS) {
+            return new GraphCommand(size);
+        }
+        return new GraphCommand(GraphCommand.MAXIMUM_DAYS);
     }
 }

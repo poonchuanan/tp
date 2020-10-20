@@ -29,7 +29,7 @@ public class GraphDrawing {
     public GraphDrawing(DayMap dayMap, int targetCalories, int days) {
         this.graphProperty = new GraphProperty(dayMap, targetCalories, days);
         this.row = graphProperty.ROW;
-        this.column = graphProperty.Column;
+        this.column = graphProperty.column;
         this.targetRow = graphProperty.targetRow;
         this.maxCalories = graphProperty.max_calories;
         this.minCalories = graphProperty.min_calories;
@@ -168,7 +168,7 @@ public class GraphDrawing {
 
         drawing += generate_x_axis(maxCalorieSize);
         drawing += generateDateLabels(maxCalorieSize);
-        System.out.print(drawing);
+        System.out.println(drawing);
     }
 
 }

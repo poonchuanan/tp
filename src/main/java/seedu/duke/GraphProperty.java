@@ -12,7 +12,7 @@ public class GraphProperty {
     private static  int TARGET_TYPE = 2;
     private static int LIMIT_TYPE = 4;
     public int targetRow;
-    public final int Column;
+    public final int column;
     public final DayMap dayMap;
     ArrayList<LocalDate> keys;
     public int targetCalories;
@@ -29,7 +29,7 @@ public class GraphProperty {
     public GraphProperty(DayMap dayMap, int targetCalories, int days) {
         this.dayMap = dayMap;
         this.targetCalories = targetCalories;
-        this.Column = days;
+        this.column = days;
         setProperties();
 
     }
@@ -64,7 +64,11 @@ public class GraphProperty {
         }
         //sort the keys by date
         keys.sort(LocalDate::compareTo);
-        return keys;
+        ArrayList<LocalDate> newKeys = new ArrayList<>();
+        for(int i = keys.size() - column; i < keys.size(); i++) {
+            newKeys.add(keys.get(i));
+        }
+        return newKeys;
     }
 
     /**
@@ -137,7 +141,7 @@ public class GraphProperty {
         this.targetRow = calculateRowNumber(targetCalories);
         int rowNumber;
         for (int i = ROW - 1; i >= 0 ; i--) {
-            for (int j = 0; j< Column; j++) {
+            for (int j = 0; j< column; j++) {
                 rowNumber = calculateRowNumber(calories.get(j));
                 if (rowNumber == i) {
                     table[i][j] = LIMIT_TYPE;
@@ -169,7 +173,7 @@ public class GraphProperty {
      * @return table
      */
     public int[][] initiateTable(ArrayList<Integer> calories) {
-        int [][]table = new int[ROW][Column];
+        int [][]table = new int[ROW][column];
         setEmptyTable(table);
         fillTable(table, calories);
         return table;
