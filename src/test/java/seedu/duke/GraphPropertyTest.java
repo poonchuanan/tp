@@ -26,6 +26,9 @@ class GraphPropertyTest {
     @Test
     public void plotgraph_success() {
         DayMap dummyMap = setDummyMap();
-        new GraphProperty(dummyMap, targetCalories).drawGraph();
+        GraphProperty hello = new GraphProperty(dummyMap, targetCalories);
+        hello.drawGraph();
+        hello.parseDate();
+
     }
 }
