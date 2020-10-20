@@ -41,7 +41,6 @@ import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEntered
 public class Parser {
     protected String userInput;
     protected LocalDateTime date;
-    protected DayMap calList;
 
     /**
      * Store details in the class.
@@ -49,9 +48,9 @@ public class Parser {
      * @param userInput user from the user.
      */
     public Parser(String userInput) {
-        this.userInput = userInput;
+        //Trims and removes additional spaces between words
+        this.userInput = userInput.trim().replaceAll(" +", " ");
         this.date = LocalDateTime.now();
-        this.calList = Duke.getDayMap();
     }
 
     /**
@@ -253,12 +252,13 @@ public class Parser {
      * @return ListCommand
      */
     private Command prepareListCommand(String userInput) {
+
         if (userInput.toLowerCase().equals("list")) {
             return new ListCommand();
         } else {
-            String[] arguments = userInput.split(" ");
+            String dateString = userInput.split(" ")[1];
             try {
-                LocalDate date = checkDate(arguments[1]);
+                LocalDate date = checkDate(dateString);
                 return new ListCommand(date);
             } catch (DateTimeParseException e) {
                 displayIncorrectDateTimeFormatEnteredMessage();
@@ -302,10 +302,10 @@ public class Parser {
         try {
             String[] arguments = userInput.split(" ", 2);
             if (arguments[1].startsWith("d/")) {
-                String description = arguments[1].substring(2);
+                String description = arguments[1].substring(2).trim();
                 return new FindDescriptionCommand(description);
             } else if (arguments[1].startsWith("c/")) {
-                String calorie = arguments[1].substring(2);
+                String calorie = arguments[1].substring(2).trim();
                 return new FindCalorieCommand(calorie);
             } else {
                 displayFindErrorMessage();
