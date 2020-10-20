@@ -8,9 +8,7 @@ import java.util.Arrays;
 public class GraphProperty {
     //Number of intervals - 10
     private static final int ROW = 11;
-    //Number of Days = 7
-    private static final int COLUMN = 7;
-    private static final String WIDTH = "   ";
+    private int Column;
     DayMap dayMap;
     ArrayList<LocalDate> keys;
     int targetCalories;
@@ -29,11 +27,9 @@ public class GraphProperty {
         this.dayMap = dayMap;
         this.targetCalories = targetCalories;
     }
-    public void setColumn() {
 
-    }
     public void initTable(){
-        this.Table = new int[ROW][COLUMN];
+        this.Table = new int[ROW][Column];
         for(int[] row : Table) {
             Arrays.fill(row, 0);
         }
@@ -47,6 +43,7 @@ public class GraphProperty {
         //sort the keys by date
         keys.sort(LocalDate::compareTo);
         this.keys = keys;
+        this.Column = keys.size();
     }
 
     public void setCaloriesBound() {
@@ -61,6 +58,11 @@ public class GraphProperty {
                 maxCalories = dayMap.getNetCalorieOfDay(keys.get(i));
             }
             calories[i] = dayMap.getNetCalorieOfDay(keys.get(i));
+        }
+        if (targetCalories > maxCalories) {
+            maxCalories = targetCalories;
+        } else if (targetCalories < minCalories) {
+            minCalories = targetCalories;
         }
         this.min_calories = minCalories;
         this.max_calories = maxCalories;
@@ -87,15 +89,15 @@ public class GraphProperty {
         int high = round(max_calories, divisor);
         System.out.println(target-low);
         this.targetRow = (targetCalories - min_calories)/divisor;
-        for (int i = 0; i < COLUMN ; i++) {
+        for (int i = 0; i < Column ; i++) {
             Table[targetRow][i] = 2;
         }
-        for (int j = 0; j < 7 ; j++) {
+        for (int j = 0; j < Column ; j++) {
             calories[j] = (calories[j] - min_calories)/divisor;
         }
         System.out.println(Arrays.toString(calories));
         for (int i = ROW - 1; i >= 0 ; i--) {
-            for (int j = 0; j< 7; j++) {
+            for (int j = 0; j< Column; j++) {
                 if (calories[j] == i) {
                     Table[i][j] = 4;
                 }
@@ -108,7 +110,7 @@ public class GraphProperty {
     }
     public String generate_x_axis() {
         String x_axis_line = "|-+";
-        for (int i = 0; i < COLUMN - 1; i++) {
+        for (int i = 0; i < Column - 1; i++) {
             x_axis_line += repeatCharacter("-", 5) + "+";
         }
         return x_axis_line;
@@ -124,13 +126,13 @@ public class GraphProperty {
         }
         return size;
     }
-
+    
     public String repeatCharacter(String character, int size) {
-        String whitespace = "";
+        String characterText = "";
         for (int i = 0 ; i < size; i++) {
-            whitespace += character;
+            characterText += character;
         }
-        return whitespace;
+        return characterText;
     }
     public String parseDate() {
         String formattedDate = "";
@@ -163,9 +165,9 @@ public class GraphProperty {
             } else {
                 drawing += space + "|";
             }
-            for (int j = 0; j < COLUMN; j++) {
+            for (int j = 0; j < Column; j++) {
                 if (Table[i][j] == 0) {
-                    drawing += WIDTH;
+                    drawing += repeatCharacter(" ", 3);
                 }
                 else if (Table[i][j] == 1) {
                     drawing += "| |";
@@ -191,23 +193,9 @@ public class GraphProperty {
             drawing += "\n";
         }
         System.out.print(drawing);
-        System.out.println(repeatCharacter(" ", size) + generate_x_axis());
+        System.out.println(repeatCharacter(" ", size) + generate_x_axis() + "--");
         System.out.println(repeatCharacter(" ", size - 1) + " " + parseDate());
         System.out.println(repeatCharacter(" ", size));
     }
 
-    public String plot_y_axis() {
-        String y_axis = "";
-        int round_max = round(max_calories, calculateDivisor());
-        int size = getSizeOfCharacters(round_max);
-        String space = repeatCharacter(" ", size);
-        for(int i = 10; i >= 1; i--) {
-            if (i == 10) {
-                y_axis += Integer.toString(round_max) + "|\n";
-            } else {
-                y_axis += repeatCharacter(" ", size) + "|\n";
-            }
-        }
-        return y_axis;
-    }
 }
