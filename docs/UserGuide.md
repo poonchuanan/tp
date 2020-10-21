@@ -150,7 +150,7 @@ Adds an exercise entry with its respective calories to the list.
 Format: `add e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**`
 
 Parameters:
-* `**EXERCISE_DESCRIPTION**`: Description of exercise lost.
+* `**EXERCISE_DESCRIPTION**`: Description of exercise done.
 * `**CALORIE_COUNT**`: Amount of calories lost.
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
@@ -196,7 +196,24 @@ To gain weight, you should consume 2076.65 calories instead.
 ````
 
 ### Editing an entry in list
+Edits activity, food or exercise at the stated index in the list.  
+> In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
 
+Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**` OR `edita **LIST_INDEX** f/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**`
+
+Parameters:
+* `**LIST_INDEX`: Index of activity to be edited in list.
+* `**FOOD_DESCRIPTION**`: Description of food consumed.
+* `**EXERCISE_DESCRIPTION**`: Description of exercise done.
+* `**CALORIE_COUNT**`: Amount of calories consumed.
+* `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
+
+Example of usage:
+* `edita 1 e/ running c/100 d/ 2020-10-21`
+```javascript
+[E] | running | 100
+The current activity list has been saved.
+```
 ### Finding entries via keyword
 
 ### Deleting entry in list
@@ -228,8 +245,12 @@ Thank you for using TraKCAL. See you again!
 
 Action     | Format | Example
 ---------- | ---------- | --------
-Help | `help` |
-Exit | `bye` |
+Add food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice cream c/ 78 d/ 2020-10-19`
+Add exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
+Edit activity | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 f/ ice kacang c/150 d/ 2020-10-21`
+Edit activity | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 e/ running c/100 d/ 2020-10-21`
+Help | `help` | `help`
+Exit | `bye` | `bye`
 
 
 
