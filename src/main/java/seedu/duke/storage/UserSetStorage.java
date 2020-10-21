@@ -1,6 +1,12 @@
 package seedu.duke.storage;
 
-import java.io.*;
+//import java.io.;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -41,7 +47,7 @@ public class UserSetStorage {
                 }
 
                 if (s.endsWith(" ")) {
-                    s = s.substring(0, s.length()-1);
+                    s = s.substring(0, s.length() - 1);
                 }
 
                 bw.write(s);
