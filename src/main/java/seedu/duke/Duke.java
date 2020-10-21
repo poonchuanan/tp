@@ -42,9 +42,15 @@ public class Duke {
             String userInput = in.nextLine();
             Parser parser = new Parser(userInput);
             try {
-                Command cmd = parser.parseCommand();
+                Command cmd;
+                if (userInput.contains("&&")) {
+                    cmd = parser.prepareChaining(userInput);
+                } else {
+                    cmd = parser.parseCommand();
+                }
                 executeCmd(cmd);
                 storage.updateFile(calList);
+
             } catch (NullPointerException e) {
                 displayParserNullPointerExceptionMessage();
             }

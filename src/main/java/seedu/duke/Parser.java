@@ -26,7 +26,6 @@ import java.time.format.DateTimeParseException;
 
 import static seedu.duke.ExceptionMessages.displayAddActivityNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayAddCommandErrorMessage;
-import static seedu.duke.ExceptionMessages.displayDateTimeExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
@@ -60,6 +59,7 @@ public class Parser {
      * @return Command type
      */
     public Command parseCommand() {
+
         String[] arguments = userInput.split(" ", 2);
         try {
             switch (arguments[0].toLowerCase()) {
@@ -93,17 +93,72 @@ public class Parser {
             displayStringIndexOutOfBoundsExceptionMessage();
         } catch (IOException e) {
             displayIoExceptionMessage();
+        } return null;
+    }
+
+    public Command prepareChaining(String userInput) {
+        while (userInput.contains("&&")) {
+            userInput = userInput + " &&";
+            int chainIndex = userInput.indexOf("&&");
+            String firstString = userInput.substring(0, chainIndex).trim();
+            processCommand(firstString);
+
+            userInput = userInput.substring(chainIndex + 2).trim();
         }
         return null;
     }
 
+    private void processCommand(String userInput) {
+        String[] arguments = userInput.split(" ", 2);
+        try {
+            switch (arguments[0].toLowerCase()) {
+            case "create":
+                new CreateNewUserCommand();
+                return;
+            case "add":
+                prepareAddCommand(userInput);
+                return;
+            case "find":
+                prepareFindCommand(userInput);
+                return;
+            case "edit":
+                Userinfo store = new Userinfo();
+                store.editUserInfo(arguments[1]);
+                Initialiseuser.save(store);
+                break;
+            case "edita":
+                prepareEditActivityCommand(arguments[1]);
+                return;
+            case "delete":
+                prepareDeleteCommand(arguments[1]);
+                return;
+            case "list":
+                prepareListCommand(userInput);
+                return;
+            case "help":
+                new HelpCommand();
+                return;
+            case "move":
+                prepareMoveIndexCommand(userInput);
+                return;
+            case "bye":
+                new ByeCommand();
+                return;
+            default:
+                new InvalidCommand();
+            }
+        } catch (StringIndexOutOfBoundsException e) {
+            displayStringIndexOutOfBoundsExceptionMessage();
+        } catch (IOException e) {
+            displayIoExceptionMessage();
+        }
+    }
 
 
     /**
      * Prepares the edit command by checking the userInput.
      *
      * @param userInput description of the edit command.
-     * @return EditFoodCommand
      * @return EditExerciseCommand
      */
     private Command prepareEditActivityCommand(String userInput) {
@@ -145,7 +200,6 @@ public class Parser {
      * Prepares the add command by checking the userInput.
      *
      * @param userInput description of the add command.
-     * @return AddFoodCommand
      * @return AddExerciseCommand
      */
     private Command prepareAddCommand(String userInput) {
@@ -276,7 +330,6 @@ public class Parser {
      * Else if the keyword contains calories count, returns FindCalorieCommand.
      *
      * @param userInput description of the find command.
-     * @return FindDescriptionCommand
      * @return FindCalorieCommand
      */
     private Command prepareFindCommand(String userInput) {
