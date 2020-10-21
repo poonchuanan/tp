@@ -33,6 +33,7 @@ If you can type fast, traKCAL is suited just for you.
 1. Create an empty folder in a convenient location eg. Desktop and copy jar file there
 1. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar tp.jar`
 1. Upon successful run, the following greeting message will be shown
+
 ```javascript
 ==============================================================
 Hello from
@@ -64,6 +65,7 @@ Format: `help`
 
 Example of usage:
 * `help`
+
 ```javascript
 ==============================================================
 Commands available: create new user, list, help, add, delete, find, bye
@@ -93,6 +95,7 @@ The current activity list has been saved.
 Automatically checks for new user and prompt them to create a new user profile by asking a series of questions
 
 Example of usage:
+
 ```javascript
 Hey there! We do not have a record of your profile. Please create one now! :)
 
@@ -121,6 +124,7 @@ tracKCAL calculates:
 * Calorie goal to reach weight goal
 
 Example of calculated health profile: 
+
 ```javascript
 Your BMI is 20.
 Your recommend daily calories intake is 1576.65 calories.
@@ -139,6 +143,7 @@ Parameters:
 
 Examples of usage:
 * `add f/ ice cream c/ 78 d/ 2020-10-19`
+
 ```javascript
 [F] | ice cream | 78
 The current activity list has been saved.
@@ -156,6 +161,7 @@ Parameters:
 
 Examples of usage: 
 * `add e/ jumping c/ 65 d/ 2020-10-19`
+
 ```javascript
 [E] | jumping | 65
 The current activity list has been saved.
@@ -179,6 +185,7 @@ Parameters:
 
 Example of usage: 
 * `edit n/Sam g/female w/50 h/100 a/10 af/4 goal/gain`
+
 ```javascript
 ==============================================================
 Noted, I have edited your user profile. Here are your new details: 
@@ -210,6 +217,7 @@ Parameters:
 
 Example of usage:
 * `edita 1 e/ running c/100 d/ 2020-10-21`
+
 ```javascript
 [E] | running | 100
 The current activity list has been saved.
@@ -227,6 +235,7 @@ Format: `bye`
 
 Example of usage:
 * `bye`
+
 ```javascript
 ==============================================================
 Thank you for using TraKCAL. See you again!
