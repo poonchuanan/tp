@@ -43,7 +43,7 @@ public class FindEitherCommand extends Command {
     }
 
     /**
-     * Checks if all keywords inputted by user is present in entry.
+     * Checks if one of the keywords inputted by user is present in entry.
      * @param currentLine current entry to be checked
      * @return  hasOneWord true if just one word is present, false otherwise
      */
