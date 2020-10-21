@@ -32,6 +32,6 @@ public class EditFoodCommand extends Command {
 
     @Override
     public void execute() {
-        dayMap.addNewActivity(index, date.atStartOfDay(), food);
+        dayMap.insertActivity(index, date.atStartOfDay(), food);
     }
 }

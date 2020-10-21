@@ -29,6 +29,6 @@ public class EditExerciseCommand extends Command {
 
     @Override
     public void execute() {
-        dayMap.addNewActivity(index, date.atStartOfDay(), exercise);
+        dayMap.insertActivity(index, date.atStartOfDay(), exercise);
     }
 }

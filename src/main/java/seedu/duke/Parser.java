@@ -75,7 +75,7 @@ public class Parser {
                 Initialiseuser.save(store);
                 break;
             case "edita":
-                return prepareEditCommand(arguments[1]);
+                return prepareEditActivityCommand(arguments[1]);
             case "delete":
                 return prepareDeleteCommand(arguments[1]);
             case "list":
@@ -106,7 +106,7 @@ public class Parser {
      * @return EditFoodCommand
      * @return EditExerciseCommand
      */
-    private Command prepareEditCommand(String userInput) {
+    private Command prepareEditActivityCommand(String userInput) {
         int index = Integer.parseInt(userInput.substring(0, 1).trim()) - 1;
         userInput = userInput.substring(1).trim();
         try {

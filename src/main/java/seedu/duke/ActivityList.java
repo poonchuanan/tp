@@ -47,14 +47,13 @@ public class ActivityList extends Duke {
     /**
      * This method replaces the current activity at index with a new activity.
      * To change the description of the current activity.
+     *
      * @param index is the index of the current activity to be replaced
      * @param activity is the new activity that will be replacing the current activity
      */
-    public void addNewActivity(int index, Activity activity) {
-        //Activity item = new Activity(userInput, calories);
-        //activities.add(index, activity);
+    public void insertActivity(int index, Activity activity) {
         activities.set(index, activity);
-        //activityCounter++;
+        activityCounter++;
         if (activity instanceof Food) {
             netCalorie += activity.calories;
         } else if (activity instanceof Exercise) {
