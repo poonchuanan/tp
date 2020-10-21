@@ -74,6 +74,7 @@ The expected format of input values:
 	add f/ X c/ Y d/ Z      - Adds food consumed, X, calories gained, Y and date(YYYY-MM-DD), Z
 	add e/ X c/ Y d/ Z      - Adds exercise done, X, calories lost, Y and date(YYYY-MM-DD), Z
 	list                    - Prints out the list of entries.
+    move from/ X below/ Y   - Moves an activity from index X to the slot below index Y
 	edit n/U, g/V, w/W, h/X, a/Y, af/Z
 	                        - Edit user profile to name, U, gender, V, weight, W, height, X,
 	                          age, Y, activity factor(1-5), Z
@@ -162,6 +163,40 @@ The current activity list has been saved.
 ```
 
 ### Listing entries for the day
+Displays the list of activities for the given day
+
+Format: `list` or `list **DATE**`
+
+Parameters:
+* `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
+* NOTE: Typing list without any parameters displays the list of activities for the current date.
+
+Examples of usage: 
+* `list`
+* `list 2020-11-06`
+```javascript
+1. [F] | apple | 10
+2. [E] | Ran 2km | 200
+The current activity list has been saved.
+```
+
+### Move an activity to another position in the current list
+Displays the list of activities for the given day
+
+Format: `list` or `list **DATE**`
+
+Parameters:
+* `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
+* NOTE: Typing list without any parameters displays the list of activities for the current date.
+
+Examples of usage: 
+* `list`
+* `list 2020-11-06`
+```javascript
+1. [F] | apple | 10
+2. [E] | Ran 2km | 200
+The current activity list has been saved.
+```
 
 ### Editing user profile
 Edits user profile of an existing user
@@ -199,7 +234,10 @@ To gain weight, you should consume 2076.65 calories instead.
 
 ### Finding entries via keyword
 
+
 ### Deleting entry in list
+
+
 
 ### Deleting all entries in list
 
