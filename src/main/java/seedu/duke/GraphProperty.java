@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import seedu.duke.command.Command;
 import seedu.duke.command.GraphCommand;
 
 import java.time.LocalDate;
@@ -10,9 +9,10 @@ import java.util.Arrays;
 
 public class GraphProperty {
     public final int row = 11;
-    private final String dateStyle = "dd/MM";
-    private static  int TARGET_TYPE = 2;
+    private static String DATE_FORMAT = "dd/MM";
+    private static int TARGET_TYPE = 2;
     private static int LIMIT_TYPE = 4;
+    private static int DIVISOR = 10;
     public int targetRow;
     public final int column;
     public final DayMap dayMap;
@@ -21,7 +21,6 @@ public class GraphProperty {
     public int maxCalories;
     public int minCalories;
     public int[][] table;
-    private final int divisor = 10;
 
     /**
      * Constructor for the graph.
@@ -103,29 +102,29 @@ public class GraphProperty {
 
     /**
      * Compares and finds the minimum between 2 numbers.
-     * @param number1 first number to compare
-     * @param number2 second number to compare
+     * @param firstNumber first number to compare
+     * @param secondNumber second number to compare
      * @return the lesser number
      */
-    public int findMinimum(int number1, int number2) {
-        if (number1 < number2) {
-            return number1;
+    public int findMinimum(int firstNumber, int secondNumber) {
+        if (firstNumber < secondNumber) {
+            return firstNumber;
         } else {
-            return number2;
+            return secondNumber;
         }
     }
 
     /**
      * Compares and finds the maximum between 2 numbers.
-     * @param number1 first number to compare
-     * @param number2 second number to compare
+     * @param firstNumber first number to compare
+     * @param secondNumber second number to compare
      * @return the greater number
      */
-    public int findMaximum(int number1, int number2) {
-        if (number1 < number2) {
-            return number2;
+    public int findMaximum(int firstNumber, int secondNumber) {
+        if (firstNumber < secondNumber) {
+            return secondNumber;
         }
-        return number1;
+        return firstNumber;
     }
 
     /**
@@ -133,7 +132,7 @@ public class GraphProperty {
      * @return interval value
      */
     public int calculateInterval() {
-        return (maxCalories - minCalories) / divisor;
+        return (maxCalories - minCalories) / DIVISOR;
     }
 
 
@@ -172,7 +171,7 @@ public class GraphProperty {
     public String parseDate(ArrayList<LocalDate> keys) {
         String formattedDate = "";
         for (LocalDate key : keys) {
-            formattedDate += key.format(DateTimeFormatter.ofPattern(dateStyle));
+            formattedDate += key.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
             formattedDate += " ";
         }
         return formattedDate;

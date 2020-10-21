@@ -14,11 +14,11 @@ public class GraphDrawing {
     private final int minCalories;
     private final int targetCalories;
 
-    private final String blankWidth = "   ";
-    private final String targetWidth = "***";
-    private final String barWidth = "| |";
-    private final String targetBarWidth = "|*|";
-    private final String topBarWidth = "|-|";
+    private static final String BLANK_WIDTH = "   ";
+    private static final String TARGET_WIDTH = "***";
+    private static final String BAR_WIDTH = "| |";
+    private static final String targetBarWidth = "|*|";
+    private static final String TOP_BAR_WIDTH = "|-|";
 
     /**
      * Constructor.
@@ -99,15 +99,15 @@ public class GraphDrawing {
 
     /**
      * Calculate difference in string size.
-     * @param string1 first string
-     * @param string2 second string
+     * @param firstString first string
+     * @param secondString second string
      * @return string length differemnce
      */
-    public int calculateSizeDifference(String string1, String string2) {
-        if (string1.length() > string2.length()) {
-            return string1.length() - string2.length();
+    public int calculateSizeDifference(String firstString, String secondString) {
+        if (firstString.length() > secondString.length()) {
+            return firstString.length() - secondString.length();
         } else {
-            return string1.length() - string2.length();
+            return firstString.length() - secondString.length();
         }
     }
 
@@ -119,9 +119,9 @@ public class GraphDrawing {
     public String addWidth(int number) {
         String width = "";
         if (number == targetRow) {
-            width += targetWidth;
+            width += TARGET_WIDTH;
         } else {
-            width += blankWidth;
+            width += BLANK_WIDTH;
         }
         return width;
     }
@@ -142,19 +142,19 @@ public class GraphDrawing {
             for (int j = 0; j < column; j++) {
                 switch (table[i][j]) {
                 case 0:
-                    drawing += blankWidth;
+                    drawing += BLANK_WIDTH;
                     break;
                 case 1:
-                    drawing += barWidth;
+                    drawing += BAR_WIDTH;
                     break;
                 case 2:
-                    drawing += targetWidth;
+                    drawing += TARGET_WIDTH;
                     break;
                 case 3:
                     drawing += targetBarWidth;
                     break;
                 case 4:
-                    drawing += topBarWidth;
+                    drawing += TOP_BAR_WIDTH;
                     break;
                 default:
                     //does nothing
