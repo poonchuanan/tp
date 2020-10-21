@@ -227,30 +227,6 @@ public class Parser {
     }
 
     /**
-     * Process the date input by user.
-     *
-     * @param dateInput date input by user.
-     * @return date
-     */
-    private String processingDate(String dateInput) {
-        int extra = dateInput.indexOf("&&");
-        dateInput = dateInput.substring(0, extra);
-
-        try {
-            LocalDate data = LocalDate.parse(dateInput);
-            String day = data.getDayOfMonth() + " ";
-            String month = data.getMonth() + " ";
-            String year = data.getYear() + "";
-            String date = day + month + year;
-
-            return date;
-        } catch (DateTimeException e) {
-            displayDateTimeExceptionMessage();
-            return null;
-        }
-    }
-
-    /**
      * Prepares the list command by checking the userInput.
      *
      * @param userInput description of the list command.
