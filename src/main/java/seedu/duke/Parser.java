@@ -93,7 +93,8 @@ public class Parser {
             displayStringIndexOutOfBoundsExceptionMessage();
         } catch (IOException e) {
             displayIoExceptionMessage();
-        } return null;
+        }
+        return null;
     }
 
     public Command prepareChaining(String userInput) {
