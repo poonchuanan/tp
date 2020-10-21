@@ -217,9 +217,57 @@ The current activity list has been saved.
 ### Finding entries via keyword
 
 ### Deleting entry in list
+Deletes an entry via index in list.
+
+Format: `delete **INDEX**`
+
+Parameters:
+* `**INDEX**`: Index of activity to be deleted in list.
+
+Example of usage:
+* `list` before deletion
+```javascript
+1. [F] | apple | 200
+2. [F] | melon | 300
+3. [F] | banana | 150
+4. [F] | orange | 100
+The current activity list has been saved.
+```
+* `delete 2`
+```javascript
+Activity removed!
+The current activity list has been saved.
+```
+* `list` after deletion
+```javascript
+1. [F] | apple | 200
+2. [F] | banana | 150
+3. [F] | orange | 100
+The current activity list has been saved.
+```
 
 ### Deleting all entries in list
+Deletes all entry in list.
 
+Format : `delete /all`
+
+Example of usage:
+* `list` before deletion
+```javascript
+1. [F] | apple | 200
+2. [F] | banana | 150
+3. [F] | orange | 100
+The current activity list has been saved.
+```
+* `delete /all`
+```javascript
+The current activity list has been saved.
+```
+* `list` after deletion
+```javascript
+Nothing was added!
+The current activity list has been saved.
+```
 ### Exiting the program
 Saves the current list to file and exits program.
 
@@ -249,6 +297,8 @@ Add food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice crea
 Add exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
 Edit activity | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 f/ ice kacang c/150 d/ 2020-10-21`
 Edit activity | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 e/ running c/100 d/ 2020-10-21`
+Delete entry | `delete INDEX` | `delete 2`
+Delete all | `delete /all` | `delete /all`
 Help | `help` | `help`
 Exit | `bye` | `bye`
 
