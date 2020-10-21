@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.command.AddExerciseCommand;
+import seedu.duke.command.AddNewRepeatedSet;
 import seedu.duke.command.ByeCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.AddFoodCommand;
@@ -65,6 +66,8 @@ public class Parser {
             switch (arguments[0].toLowerCase()) {
             case "create":
                 return new CreateNewUserCommand();
+            case "createset":
+                return new AddNewRepeatedSet(arguments[1]);
             case "add":
                 return prepareAddCommand(userInput);
             case "find":
