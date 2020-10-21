@@ -174,29 +174,21 @@ Parameters:
 Examples of usage: 
 * `list`
 * `list 2020-11-06`
-```javascript
-1. [F] | apple | 10
-2. [E] | Ran 2km | 200
-The current activity list has been saved.
-```
 
-### Move an activity to another position in the current list
-Displays the list of activities for the given day
 
-Format: `list` or `list **DATE**`
+### Move an activity to another position
+Moves an activity to another position in the current list
+
+Format: `move from/ **INDEX1** below/ **INDEX2**`
 
 Parameters:
-* `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
-* NOTE: Typing list without any parameters displays the list of activities for the current date.
+* `**INDEX1**`: The index of the activity to be moved from.
+* `**INDEX2**`: The index of the activity to be inserted below.
 
 Examples of usage: 
-* `list`
+* `move from/ 5 below/ 2`
 * `list 2020-11-06`
-```javascript
-1. [F] | apple | 10
-2. [E] | Ran 2km | 200
-The current activity list has been saved.
-```
+
 
 ### Editing user profile
 Edits user profile of an existing user
@@ -287,6 +279,8 @@ Add food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice crea
 Add exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
 Edit activity | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 f/ ice kacang c/150 d/ 2020-10-21`
 Edit activity | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 e/ running c/100 d/ 2020-10-21`
+List | `list` OR `list DATE` |
+Move activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/2`
 Help | `help` | `help`
 Exit | `bye` | `bye`
 
