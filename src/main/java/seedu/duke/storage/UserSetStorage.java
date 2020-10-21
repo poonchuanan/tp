@@ -1,9 +1,6 @@
 package seedu.duke.storage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -32,12 +29,27 @@ public class UserSetStorage {
         updateTextFile(filePath, toTrim);
     }
 
-    public static void prepareSetUserInput(String userInput) {
-    }
-
-    public static void updateTextFile(String path, String trimmed) {
+    public static void updateTextFile(String path, String toTrim) {
         try {
-            Files.writeString(Path.of(path),trimmed);
+            FileOutputStream fos = new FileOutputStream(path);
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+            String[] activity = toTrim.split("&&");
+
+            for (String s : activity) {
+                if (s.startsWith(" ")) {
+                    s = s.substring(1);
+                }
+
+                if (s.endsWith(" ")) {
+                    s = s.substring(0, s.length()-1);
+                }
+
+                bw.write(s);
+                bw.newLine();
+            }
+
+            bw.close();
+
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("Error\n");
         } catch (IOException e) {

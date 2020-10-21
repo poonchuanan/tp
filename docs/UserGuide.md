@@ -16,7 +16,7 @@ If you can type fast, traKCAL is for you.
     * [Adding an exercise entry](#adding-an-exercise-entry): `add`
     * [Listing entries for the day](#listing-entries-for-the-day): `list`
     * [Editing user profile](#editing-user-profile): `edit`
-    * [Editing an entry in list](#editing-an-entry-in-list): `editA`
+    * [Editing an entry in list](#editing-an-entry-in-list): `edita`
     * [Finding entries via keyword](#finding-entries-via-keyword): `find`
     * [Deleting entry in list](#deleting-entry-in-list): `delete`
     * [Deleting all entries in list](#deleting-all-entries-in-list): `deleteALL`
@@ -245,13 +245,11 @@ Thank you for using TraKCAL. See you again!
 
 Action     | Format | Example
 ---------- | ---------- | --------
-Add food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice cream c/ 78 d/ 2020-10-19`
-Add exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
-Edit activity | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 f/ ice kacang c/150 d/ 2020-10-21`
-Edit activity | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 e/ running c/100 d/ 2020-10-21`
-Help | `help` | `help`
-Exit | `bye` | `bye`
-
-
-
+Edit user profile | `edit n/**NAME** g/**GENDER** w/**WEIGHT** h/**HEIGHT** a/**AGE** af/**ACTIVITY_FACTOR** goal/**WEIGHT_GOALS**` | `edit n/Sam g/female w/50 h/100 a/10 af/4 goal/gain`
+Add food | `add e/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**` | `add e/ ice cream c/ 78 d/ 2020-10-19`
+Add exercise | `add e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**` | `add e/ jumping c/ 65 d/ 2020-10-19`
+Edit activity | `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**` | `edita 1 f/ ice kacang c/150 d/ 2020-10-21`
+Edit activity | `edita **LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 e/ running c/100 d/ 2020-10-21`
+Help | `help` | 
+Exit | `bye` | 
 ### --- END OF USER GUIDE ---
