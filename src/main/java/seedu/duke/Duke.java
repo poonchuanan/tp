@@ -20,6 +20,7 @@ import static seedu.duke.ExceptionMessages.displayParserNullPointerExceptionMess
 public class Duke {
 
     public static DayMap calList = new DayMap();
+    public static Userinfo profile;
 
     public static Scanner in = new Scanner(System.in);
     public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
@@ -27,47 +28,30 @@ public class Duke {
     public static void main(String[] args) {
         displayWelcomeMessage();
         storage.loadData(calList);
+        if (CheckNewUser.isNewUser()) {
+            Initialiseuser.createNewProfile();
+        } else {
+            Initialiseuser.loadProfile();
+        }
         Duke.run();
     }
 
     public static void run()  {
-        if (CheckNewUser.isNewUser()) {
-            Initialiseuser.createNewProfile();
-        }
 
-        Userinfo profile;
-        try {
-            while (in.hasNextLine()) {
-                String userInput = in.nextLine();
-                if (userInput.startsWith("create new user")) {
-                    Initialiseuser.createNewProfile();
-                    continue;
-                } else {
-                    String[] data = new String[7];
-                    ArrayList<String> previous = Userinfotextfilestorage.update();
-                    for (int i = 0; i < 7; i++) {
-                        data[i] = previous.get(i);
-                    }
-                    profile = new Userinfo(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
-                    Initialiseuser.saveExistingUserInfo(profile);
-                }
-                Parser parser = new Parser(userInput);
-                try {
-                    Command cmd = parser.parseCommand();
-                    executeCmd(cmd);
-                    storage.updateFile(calList);
-                } catch (NullPointerException e) {
-                    displayParserNullPointerExceptionMessage();
-                }
+        while (in.hasNextLine()) {
+            String userInput = in.nextLine();
+            Parser parser = new Parser(userInput);
+            try {
+                Command cmd = parser.parseCommand();
+                executeCmd(cmd);
+                storage.updateFile(calList);
+            } catch (NullPointerException e) {
+                displayParserNullPointerExceptionMessage();
             }
-        } catch (IOException e) {
-            displayIoExceptionMessage();
         }
+
     }
 
-    public static DayMap getDayMap() {
-        return calList;
-    }
 
     public static void executeCmd(Command cmd) {
         cmd.setData(calList);
