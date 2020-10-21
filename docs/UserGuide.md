@@ -3,7 +3,7 @@
 ## Introduction
 
 **traKCAL** is an application for managing calories intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
-If you can type fast, traKCAL is suited just for you.
+If you can type fast, traKCAL is for you.
 
 ## Table of Contents
 * [Quick Start](#quick-start)

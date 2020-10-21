@@ -14,7 +14,7 @@ public class UserSetStorage {
 
     public static void prepareNewSet(String userInput) {
         String fileName = userInput.substring(0, userInput.indexOf("/") - 2);
-        createNewTextFile("/" + fileName + ".txt", userInput.substring(userInput.indexOf("c/")));
+        createNewTextFile("/" + fileName + ".txt", userInput.substring(userInput.indexOf("/") - 1));
     }
 
     public static void createNewTextFile(String fileName, String toTrim) {
