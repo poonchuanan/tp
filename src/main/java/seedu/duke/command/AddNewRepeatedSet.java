@@ -5,7 +5,7 @@ import seedu.duke.storage.UserSetStorage;
 public class AddNewRepeatedSet extends Command {
     protected String trimmedInput;
 
-    public AddNewRepeatedSet (String trimmedUserInput) {
+    public AddNewRepeatedSet(String trimmedUserInput) {
         this.trimmedInput = trimmedUserInput;
     }
 

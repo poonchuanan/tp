@@ -13,13 +13,13 @@ public class UserSetStorage {
     private static final String PATH = new File("").getAbsolutePath();
 
     public static void prepareNewSet(String userInput) {
-        String fileName = userInput.substring(0, userInput.indexOf("/")-2);
+        String fileName = userInput.substring(0, userInput.indexOf("/") - 2);
         createNewTextFile("/" + fileName + ".txt", userInput.substring(userInput.indexOf("c/")));
     }
 
     public static void createNewTextFile(String fileName, String toTrim) {
-        String FILE_PATH = PATH + fileName;
-        File file = new File(FILE_PATH);
+        String filePath = PATH + fileName;
+        File file = new File(filePath);
 
         try {
             boolean isFileCreated = file.createNewFile();
@@ -29,13 +29,13 @@ public class UserSetStorage {
         } catch (IOException e) {
             displayExistingFileMessage();
         }
-        updateTextFile(FILE_PATH, toTrim);
+        updateTextFile(filePath, toTrim);
     }
 
-    public static void prepareSetUserInput (String userInput) {
+    public static void prepareSetUserInput(String userInput) {
     }
 
-    public static void updateTextFile (String path, String trimmed) {
+    public static void updateTextFile(String path, String trimmed) {
         try {
             Files.writeString(Path.of(path),trimmed);
         } catch (FileNotFoundException fileNotFoundException) {
