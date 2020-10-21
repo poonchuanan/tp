@@ -24,6 +24,9 @@ import java.time.LocalDateTime;
 
 import java.time.format.DateTimeParseException;
 
+import static seedu.duke.Duke.calList;
+import static seedu.duke.Duke.executeCmd;
+import static seedu.duke.Duke.storage;
 import static seedu.duke.ExceptionMessages.displayAddActivityNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
@@ -101,58 +104,56 @@ public class Parser {
         while (userInput.contains("&&")) {
             userInput = userInput + " &&";
             int chainIndex = userInput.indexOf("&&");
+            if (chainIndex < 5) {
+                break;
+            }
             String firstString = userInput.substring(0, chainIndex).trim();
-            processCommand(firstString);
+
+            Command cmd = processCommand(firstString);
+            executeCmd(cmd);
+            storage.updateFile(calList);
 
             userInput = userInput.substring(chainIndex + 2).trim();
         }
         return null;
     }
 
-    private void processCommand(String userInput) {
+    private Command processCommand(String userInput) {
         String[] arguments = userInput.split(" ", 2);
         try {
             switch (arguments[0].toLowerCase()) {
             case "create":
-                new CreateNewUserCommand();
-                return;
+                return new CreateNewUserCommand();
             case "add":
-                prepareAddCommand(userInput);
-                return;
+                return prepareAddCommand(userInput);
             case "find":
-                prepareFindCommand(userInput);
-                return;
+                return prepareFindCommand(userInput);
             case "edit":
                 Userinfo store = new Userinfo();
                 store.editUserInfo(arguments[1]);
                 Initialiseuser.save(store);
                 break;
             case "edita":
-                prepareEditActivityCommand(arguments[1]);
-                return;
+                return prepareEditActivityCommand(arguments[1]);
             case "delete":
-                prepareDeleteCommand(arguments[1]);
-                return;
+                return prepareDeleteCommand(arguments[1]);
             case "list":
-                prepareListCommand(userInput);
-                return;
+                return prepareListCommand(userInput);
             case "help":
-                new HelpCommand();
-                return;
+                return new HelpCommand();
             case "move":
-                prepareMoveIndexCommand(userInput);
-                return;
+                return prepareMoveIndexCommand(userInput);
             case "bye":
-                new ByeCommand();
-                return;
+                return new ByeCommand();
             default:
-                new InvalidCommand();
+                return new InvalidCommand();
             }
         } catch (StringIndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
         } catch (IOException e) {
             displayIoExceptionMessage();
         }
+        return null;
     }
 
 

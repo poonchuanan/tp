@@ -44,12 +44,14 @@ public class Duke {
             try {
                 Command cmd;
                 if (userInput.contains("&&")) {
-                    cmd = parser.prepareChaining(userInput);
+                    parser.prepareChaining(userInput);
                 } else {
                     cmd = parser.parseCommand();
+                    executeCmd(cmd);
+                    storage.updateFile(calList);
                 }
-                executeCmd(cmd);
-                storage.updateFile(calList);
+//                executeCmd(cmd);
+//                storage.updateFile(calList);
 
             } catch (NullPointerException e) {
                 displayParserNullPointerExceptionMessage();
