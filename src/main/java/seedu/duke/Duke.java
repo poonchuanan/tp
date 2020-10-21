@@ -50,9 +50,6 @@ public class Duke {
                     executeCmd(cmd);
                     storage.updateFile(calList);
                 }
-//                executeCmd(cmd);
-//                storage.updateFile(calList);
-
             } catch (NullPointerException e) {
                 displayParserNullPointerExceptionMessage();
             }
