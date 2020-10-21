@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.GraphDrawing;
 
-public class GraphCommand extends Command{
+public class GraphCommand extends Command {
     public static final int MAXIMUM_DAYS = 7;
     private int days;
 

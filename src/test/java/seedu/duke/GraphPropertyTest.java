@@ -33,8 +33,8 @@ class GraphPropertyTest {
     @Test
     public void plotgraph_success() {
         DayMap dummyMap = setDummyMap(10, 1800, date1, 4);
-        GraphDrawing hello = new GraphDrawing(dummyMap, 2000, 7);
-        hello.drawGraph();
+        GraphProperty hello = new GraphProperty(dummyMap, 2000, 7);
+
 
     }
 

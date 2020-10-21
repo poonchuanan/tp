@@ -14,26 +14,26 @@ public class GraphDrawing {
     private final int minCalories;
     private final int targetCalories;
 
-    private final String BLANK_WIDTH = "   ";
-    private final String TARGET_WIDTH  = "***";
-    private final String BAR_WIDTH  = "| |";
-    private final String TARGET_BAR_WIDTH  = "|*|";
-    private final String TOP_BAR_WIDTH  = "|-|";
+    private final String blankWidth = "   ";
+    private final String targetWidth = "***";
+    private final String barWidth = "| |";
+    private final String targetBarWidth = "|*|";
+    private final String topBarWidth = "|-|";
 
     /**
-     * Constructor
+     * Constructor.
      * @param dayMap Hashmap
      * @param targetCalories target calories set by user
      * @param days number of days shown in graph
      */
     public GraphDrawing(DayMap dayMap, int targetCalories, int days) {
         this.graphProperty = new GraphProperty(dayMap, targetCalories, days);
-        this.row = graphProperty.ROW;
+        this.row = graphProperty.row;
         this.column = graphProperty.column;
         this.targetRow = graphProperty.targetRow;
-        this.maxCalories = graphProperty.max_calories;
-        this.minCalories = graphProperty.min_calories;
-        this.targetCalories = graphProperty.max_calories;
+        this.maxCalories = graphProperty.maxCalories;
+        this.minCalories = graphProperty.minCalories;
+        this.targetCalories = graphProperty.maxCalories;
     }
 
     /**
@@ -44,23 +44,23 @@ public class GraphDrawing {
      */
     public String repeatCharacter(String character, int size) {
         String characterText = "";
-        for (int i = 0 ; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             characterText += character;
         }
         return characterText;
     }
 
     /**
-     * Generates the x_axis
+     * Generates the x_axis.
      * @return x_axis String
      */
     public String generate_x_axis(int maxCalorieSize) {
-        String x_axis_line = "|-+";
+        String horizontalLine = "|-+";
         for (int i = 0; i < column - 1; i++) {
-            x_axis_line += repeatCharacter("-", 5) + "+";
+            horizontalLine += repeatCharacter("-", 5) + "+";
         }
-        x_axis_line = repeatCharacter(" ", maxCalorieSize) + x_axis_line + "--\n";
-        return x_axis_line;
+        horizontalLine = repeatCharacter(" ", maxCalorieSize) + horizontalLine + "--\n";
+        return horizontalLine;
     }
 
     /**
@@ -74,12 +74,12 @@ public class GraphDrawing {
     }
 
     /**
-     * generates the y axis
+     * generates the y axis.
      * @param space space width set by number of characters in maximum calories.
      * @param columnNumber column number
      * @return y_axis string for that row
      */
-    private String generate_y_axis(String space, int columnNumber) {
+    private String generateVerticalAxis(String space, int columnNumber) {
         String targetCaloriesString = Integer.toString(targetCalories);
         String maxCaloriesString = Integer.toString(maxCalories);
         String minCaloriesString = Integer.toString(minCalories);
@@ -113,49 +113,49 @@ public class GraphDrawing {
     }
 
     /**
-     * adds width based on the row type
+     * adds width based on the row type.
      * @param number row number
      * @return width
      */
     public String addWidth(int number) {
         String width = "";
         if (number == targetRow) {
-            width += TARGET_WIDTH;
+            width += targetWidth;
         } else {
-            width += BLANK_WIDTH;
+            width += blankWidth;
         }
         return width;
     }
 
     /**
-     * draws the graph
+     * draws the graph.
      */
     public void drawGraph() {
-        int[][] table = graphProperty.Table;
+        int[][] table = graphProperty.table;
         ArrayList<LocalDate> keys = graphProperty.keys;
         int maxCalorieSize = Integer.toString(maxCalories).length();
         String space = repeatCharacter(" ", maxCalorieSize);
 
         String drawing = "";
 
-        for(int i = row - 1; i >= 0; i--) {
-            drawing += generate_y_axis(space, i) + "|";
+        for (int i = row - 1; i >= 0; i--) {
+            drawing += generateVerticalAxis(space, i) + "|";
             for (int j = 0; j < column; j++) {
                 switch (table[i][j]) {
                 case 0:
-                    drawing += BLANK_WIDTH;
+                    drawing += blankWidth;
                     break;
                 case 1:
-                    drawing += BAR_WIDTH;
+                    drawing += barWidth;
                     break;
                 case 2:
-                    drawing += TARGET_WIDTH;
+                    drawing += targetWidth;
                     break;
                 case 3:
-                    drawing += TARGET_BAR_WIDTH;
+                    drawing += targetBarWidth;
                     break;
                 case 4:
-                    drawing += TOP_BAR_WIDTH;
+                    drawing += topBarWidth;
                     break;
                 default:
                     //does nothing

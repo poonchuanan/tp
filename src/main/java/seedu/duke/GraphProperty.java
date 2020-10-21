@@ -1,14 +1,13 @@
 package seedu.duke;
-;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GraphProperty {
-    public final int ROW = 11;
-    private final String dateStyle= "dd/MM";
-    private final int INTERVAL_PRECISION = 2;
+    public final int row = 11;
+    private final String dateStyle = "dd/MM";
     private static  int TARGET_TYPE = 2;
     private static int LIMIT_TYPE = 4;
     public int targetRow;
@@ -16,10 +15,10 @@ public class GraphProperty {
     public final DayMap dayMap;
     ArrayList<LocalDate> keys;
     public int targetCalories;
-    public int max_calories;
-    public int min_calories;
-    public int[][] Table;
-    private final int DIVISOR = 10;
+    public int maxCalories;
+    public int minCalories;
+    public int[][] table;
+    private final int divisor = 10;
 
     /**
      * Constructor for the graph.
@@ -40,14 +39,14 @@ public class GraphProperty {
     public void setProperties() {
         this.keys = sortKeys();
         ArrayList<Integer> calories = getCalories();
-        this.Table = initiateTable(calories);
+        this.table = initiateTable(calories);
     }
 
     /**
      * Initiates a 2 dimension table and fills the table with 0.
      */
-    public int[][] setEmptyTable(int[][] table){
-        for(int[] row : table) {
+    public int[][] setEmptyTable(int[][] table) {
+        for (int[] row : table) {
             Arrays.fill(row, 0);
         }
         return table;
@@ -65,7 +64,7 @@ public class GraphProperty {
         //sort the keys by date
         keys.sort(LocalDate::compareTo);
         ArrayList<LocalDate> newKeys = new ArrayList<>();
-        for(int i = keys.size() - column; i < keys.size(); i++) {
+        for (int i = keys.size() - column; i < keys.size(); i++) {
             newKeys.add(keys.get(i));
         }
         return newKeys;
@@ -86,8 +85,8 @@ public class GraphProperty {
             maxCalories = findMaximum(maxCalories, currentCalories);
             minCalories = findMinimum(minCalories, currentCalories);
         }
-        this.min_calories = minCalories;
-        this.max_calories = maxCalories;
+        this.minCalories = minCalories;
+        this.maxCalories = maxCalories;
         return calories;
     }
 
@@ -123,7 +122,7 @@ public class GraphProperty {
      * @return interval value
      */
     public int calculateInterval() {
-        return (max_calories - min_calories)/DIVISOR;
+        return (maxCalories - minCalories) / divisor;
     }
 
 
@@ -140,8 +139,8 @@ public class GraphProperty {
     public void fillTable(int[][] table, ArrayList<Integer> calories) {
         this.targetRow = calculateRowNumber(targetCalories);
         int rowNumber;
-        for (int i = ROW - 1; i >= 0 ; i--) {
-            for (int j = 0; j< column; j++) {
+        for (int i = row - 1; i >= 0; i--) {
+            for (int j = 0; j < column; j++) {
                 rowNumber = calculateRowNumber(calories.get(j));
                 if (rowNumber == i) {
                     table[i][j] = LIMIT_TYPE;
@@ -173,18 +172,18 @@ public class GraphProperty {
      * @return table
      */
     public int[][] initiateTable(ArrayList<Integer> calories) {
-        int [][]table = new int[ROW][column];
+        int [][]table = new int[row][column];
         setEmptyTable(table);
         fillTable(table, calories);
         return table;
     }
 
     /**
-     * find the row number corresponding to the calories
+     * find the row number corresponding to the calories.
      */
     public int calculateRowNumber(int calories) {
         int interval = calculateInterval();
-        return (calories - min_calories)/interval;
+        return (calories - minCalories) / interval;
     }
 
 }
