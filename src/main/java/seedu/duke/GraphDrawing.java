@@ -24,7 +24,6 @@ public class GraphDrawing {
      * Constructor.
      * @param dayMap Hashmap
      * @param targetCalories target calories set by user
-     * @param days number of days shown in graph
      */
     public GraphDrawing(DayMap dayMap, int targetCalories) {
         this.graphProperty = new GraphProperty(dayMap, targetCalories);

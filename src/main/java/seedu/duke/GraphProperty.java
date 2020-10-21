@@ -43,6 +43,7 @@ public class GraphProperty {
         }
         return GraphCommand.MAXIMUM_DAYS;
     }
+
     /**
      * set othere properties by calculation.
      */
