@@ -14,6 +14,7 @@ import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
+import seedu.duke.command.GraphCommand;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
@@ -89,6 +90,8 @@ public class Parser {
                 return prepareMoveIndexCommand(userInput);
             case "bye":
                 return new ByeCommand();
+            case "graph":
+                return new GraphCommand();
             default:
                 return new InvalidCommand();
             }
@@ -356,4 +359,5 @@ public class Parser {
         LocalDate dateTime = LocalDate.parse(dateTimeString);
         return dateTime;
     }
+
 }
