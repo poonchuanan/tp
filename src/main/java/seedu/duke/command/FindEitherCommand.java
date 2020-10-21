@@ -10,7 +10,7 @@ import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
 /**
  * Initialises Command to find all description tags.
  */
-public class FindAllCommand extends Command {
+public class FindEitherCommand extends Command {
     protected LocalDate date;
     protected String userInput;
 
@@ -18,7 +18,7 @@ public class FindAllCommand extends Command {
      * Find matching results based on input tags.
      * @param userInput keywords to be matched
      */
-    public FindAllCommand(String userInput) {
+    public FindEitherCommand(String userInput) {
         this.date = LocalDateTime.now().toLocalDate();
         this.userInput = userInput;
     }
@@ -30,12 +30,12 @@ public class FindAllCommand extends Command {
         if (activityCounter == 0) {
             displayEmptyActivityCounterMessage();
         } else {
-            System.out.println("Here are the matching results based on all keywords typed:");
-            boolean hasAllWords;
+            System.out.println("Here are the matching results based on keywords typed (either):");
+            boolean hasOneWord;
             for (int i = 0; i < activityCounter; i++) {
                 String currentLine = activities.getActivity(i).toString();
-                hasAllWords = checkAllWords(currentLine);
-                if (hasAllWords) {
+                hasOneWord = checkEitherWords(currentLine);
+                if (hasOneWord) {
                     System.out.println(currentLine);
                 }
             }
@@ -45,17 +45,17 @@ public class FindAllCommand extends Command {
     /**
      * Checks if all keywords inputted by user is present in entry.
      * @param currentLine current entry to be checked
-     * @return true if all words are present, false otherwise
+     * @return  hasOneWord true if just one word is present, false otherwise
      */
-    private boolean checkAllWords(String currentLine) {
+    private boolean checkEitherWords(String currentLine) {
         ArrayList<String> wordsToCheck = new ArrayList<>();
         wordsToCheck = getAllTags(userInput);
         for (String word : wordsToCheck) {
-            if (!currentLine.contains(word)) {
-                return false;
+            if (currentLine.contains(word)) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     /**
@@ -64,7 +64,7 @@ public class FindAllCommand extends Command {
      */
     private ArrayList<String> getAllTags(String userInput) {
         ArrayList<String> tags = new ArrayList<>();
-        while (userInput.contains("a/")) {
+        while (userInput.contains("e/")) {
             if (!userInput.contains(" ")) {
                 userInput = userInput.substring(2);
                 tags.add(userInput);
