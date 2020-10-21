@@ -33,7 +33,7 @@ class GraphPropertyTest {
     @Test
     public void plotgraph_success() {
         DayMap dummyMap = setDummyMap(10, 1800, date1, 4);
-        GraphProperty hello = new GraphProperty(dummyMap, 2000, 7);
+        GraphProperty hello = new GraphProperty(dummyMap, 2000);
 
 
     }
@@ -41,21 +41,21 @@ class GraphPropertyTest {
     @Test
     public void plotgraph2_success() {
         DayMap dummyMap = setDummyMap(7, 2200, date2, 2);
-        GraphDrawing hello = new GraphDrawing(dummyMap, 2300, 7);
+        GraphDrawing hello = new GraphDrawing(dummyMap, 2300);
         hello.drawGraph();
     }
 
     @Test
     public void plotgraph3_success() {
         DayMap dummyMap = setDummyMap(7, 2200, date2, 2);
-        GraphDrawing hello = new GraphDrawing(dummyMap, 3500, 7);
+        GraphDrawing hello = new GraphDrawing(dummyMap, 3500);
         hello.drawGraph();
     }
 
     @Test
     public void plotgraph4_success() {
         DayMap dummyMap = setDummyMap(5, 2200, date2, 3);
-        GraphDrawing hello = new GraphDrawing(dummyMap, 2000, 5);
+        GraphDrawing hello = new GraphDrawing(dummyMap, 2000);
         hello.drawGraph();
     }
 }

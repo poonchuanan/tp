@@ -1,5 +1,8 @@
 package seedu.duke;
 
+import seedu.duke.command.Command;
+import seedu.duke.command.GraphCommand;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -25,14 +28,21 @@ public class GraphProperty {
      * @param dayMap hashmap containing dates
      * @param targetCalories tagret calories from userprofile
      */
-    public GraphProperty(DayMap dayMap, int targetCalories, int days) {
+    public GraphProperty(DayMap dayMap, int targetCalories) {
         this.dayMap = dayMap;
         this.targetCalories = targetCalories;
-        this.column = days;
+        this.column = checkSize();
         setProperties();
 
     }
 
+    private int checkSize() {
+        int size = dayMap.getHashMap().size();
+        if (size < GraphCommand.MAXIMUM_DAYS) {
+            return size;
+        }
+        return GraphCommand.MAXIMUM_DAYS;
+    }
     /**
      * set othere properties by calculation.
      */

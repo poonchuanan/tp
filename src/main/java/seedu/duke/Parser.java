@@ -88,7 +88,7 @@ public class Parser {
             case "bye":
                 return new ByeCommand();
             case "graph":
-                return prepareGraphCommand();
+                return new GraphCommand();
             default:
                 return new InvalidCommand();
             }
@@ -329,11 +329,4 @@ public class Parser {
         return dateTime;
     }
 
-    private Command prepareGraphCommand() {
-        int size = calList.getHashMap().size();
-        if (size < GraphCommand.MAXIMUM_DAYS) {
-            return new GraphCommand(size);
-        }
-        return new GraphCommand(GraphCommand.MAXIMUM_DAYS);
-    }
 }

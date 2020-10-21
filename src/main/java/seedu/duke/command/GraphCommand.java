@@ -1,18 +1,19 @@
 package seedu.duke.command;
 
+import seedu.duke.DayMap;
 import seedu.duke.GraphDrawing;
 
 public class GraphCommand extends Command {
     public static final int MAXIMUM_DAYS = 7;
-    private int days;
+    private DayMap dayMap;
 
-    public GraphCommand(int days) {
-        this.days = days;
+    public GraphCommand() {
+        this.dayMap = super.dayMap;
     }
 
     @Override
     public void execute() {
-        new GraphDrawing(super.dayMap, 2500, days).drawGraph();
+        new GraphDrawing(dayMap, 2500).drawGraph();
     }
 
 }
