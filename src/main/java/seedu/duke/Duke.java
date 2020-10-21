@@ -37,21 +37,23 @@ public class Duke {
     }
 
     public static void run()  {
-
         while (in.hasNextLine()) {
             String userInput = in.nextLine();
             Parser parser = new Parser(userInput);
             try {
-                Command cmd = parser.parseCommand();
-                executeCmd(cmd);
-                storage.updateFile(calList);
+                Command cmd;
+                if (userInput.contains("&&")) {
+                    parser.prepareChaining(userInput);
+                } else {
+                    cmd = parser.parseCommand();
+                    executeCmd(cmd);
+                    storage.updateFile(calList);
+                }
             } catch (NullPointerException e) {
                 displayParserNullPointerExceptionMessage();
             }
         }
-
     }
-
 
     public static void executeCmd(Command cmd) {
         cmd.setData(calList);
