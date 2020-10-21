@@ -37,7 +37,6 @@ public class Duke {
     }
 
     public static void run()  {
-
         while (in.hasNextLine()) {
             String userInput = in.nextLine();
             Parser parser = new Parser(userInput);
@@ -54,9 +53,7 @@ public class Duke {
                 displayParserNullPointerExceptionMessage();
             }
         }
-
     }
-
 
     public static void executeCmd(Command cmd) {
         cmd.setData(calList);
