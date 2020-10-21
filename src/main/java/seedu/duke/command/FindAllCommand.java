@@ -43,7 +43,7 @@ public class FindAllCommand extends Command {
     }
 
     /**
-     * Checks if all keywords inputted by user is present in entry
+     * Checks if all keywords inputted by user is present in entry.
      * @param hasAllWords true if all words are present, false otherwise
      * @param currentLine current entry to be checked
      */
@@ -59,7 +59,7 @@ public class FindAllCommand extends Command {
     }
 
     /**
-     * Parses all keywords inputted by user into an arraylist
+     * Parses all keywords inputted by user into an arraylist.
      * @param userInput String user typed into CLI
      */
     private ArrayList<String> getAllTags(String userInput) {
