@@ -18,17 +18,22 @@ public class EditExerciseCommand extends Command {
      *
      * @param description exercise description.
      * @param calories calories lost.
-     * @param isFromFile if data is from csv file.
-     * @param date date of activity.
      */
-    public EditExerciseCommand(int index, String description, int calories, boolean isFromFile, LocalDate date) {
+    public EditExerciseCommand(int index, String description, int calories) {
         this.index = index;
-        this.exercise = new Exercise(description, calories, isFromFile);
-        this.date = date;
+        this.exercise = new Exercise(description, calories, false);
+        this.canBeChained = true;
+
     }
 
     @Override
     public void execute() {
-        dayMap.insertActivity(index, date.atStartOfDay(), exercise);
+
+        try {
+            dayMap.insertActivity(index, exercise);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Index entered is not within the range!");
+        }
+
     }
 }

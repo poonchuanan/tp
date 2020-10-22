@@ -20,6 +20,7 @@ public class  FindCalorieCommand extends Command {
     public FindCalorieCommand(String calorie) {
         this.date = LocalDateTime.now().toLocalDate();
         this.calorie = calorie;
+
     }
 
     @Override

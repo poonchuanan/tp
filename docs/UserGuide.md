@@ -76,6 +76,7 @@ The expected format of input values:
 	add f/ X c/ Y d/ Z      - Adds food consumed, X, calories gained, Y and date(YYYY-MM-DD), Z
 	add e/ X c/ Y d/ Z      - Adds exercise done, X, calories lost, Y and date(YYYY-MM-DD), Z
 	list                    - Prints out the list of entries.
+    move from/ X below/ Y   - Moves an activity from index X to the slot below index Y
 	edit n/U, g/V, w/W, h/X, a/Y, af/Z
 	                        - Edit user profile to name, U, gender, V, weight, W, height, X,
 	                          age, Y, activity factor(1-5), Z
@@ -168,6 +169,32 @@ The current activity list has been saved.
 ```
 
 ### Listing entries for the day
+Displays the list of activities for the given day
+
+Format: `list` or `list **DATE**`
+
+Parameters:
+* `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
+* NOTE: Typing list without any parameters displays the list of activities for the current date.
+
+Examples of usage: 
+* `list`
+* `list 2020-11-06`
+
+
+### Move an activity to another position
+Moves an activity to another position in the current list
+
+Format: `move from/ **INDEX1** below/ **INDEX2**`
+
+Parameters:
+* `**INDEX1**`: The index of the activity to be moved from.
+* `**INDEX2**`: The index of the activity to be inserted below.
+
+Examples of usage: 
+* `move from/ 5 below/ 2`
+* `list 2020-11-06`
+
 
 ### Editing user profile
 Edits user profile of an existing user
@@ -224,6 +251,7 @@ The current activity list has been saved.
 ```
 ### Finding entries via keyword
 
+
 ### Deleting entry in list
 Deletes an entry via index in list.
 
@@ -253,6 +281,8 @@ The current activity list has been saved.
 3. [F] | orange | 100
 The current activity list has been saved.
 ```
+
+
 
 ### Deleting all entries in list
 Deletes all entry in list.
@@ -306,6 +336,10 @@ Add food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice crea
 Add exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
 Edit activity | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 f/ ice kacang c/150 d/ 2020-10-21`
 Edit activity | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 e/ running c/100 d/ 2020-10-21`
+<<<<<<< HEAD
+List | `list` OR `list DATE` |
+Move activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/2`
+=======
 Delete entry | `delete INDEX` | `delete 2`
 Delete all | `delete /all` | `delete /all`
 Help | `help` | `help`

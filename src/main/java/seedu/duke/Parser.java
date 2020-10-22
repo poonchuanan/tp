@@ -63,6 +63,7 @@ public class Parser {
      *
      * @return Command type
      */
+
     public Command parseCommand() {
 
         String[] arguments = userInput.split(" ", 2);
@@ -115,49 +116,17 @@ public class Parser {
             }
             String firstString = userInput.substring(0, chainIndex).trim();
 
-            Command cmd = processCommand(firstString);
-            executeCmd(cmd);
+            Parser parser = new Parser(firstString);
+            Command cmd = parser.parseCommand();
+            if (cmd.getCanBeChained()) {
+                executeCmd(cmd);
+            } else {
+                System.out.println("The commands entered cannot be chained together!");
+                break;
+            }
             storage.updateFile(calList);
 
             userInput = userInput.substring(chainIndex + 2).trim();
-        }
-        return null;
-    }
-
-    private Command processCommand(String userInput) {
-        String[] arguments = userInput.split(" ", 2);
-        try {
-            switch (arguments[0].toLowerCase()) {
-            case "create":
-                return new CreateNewUserCommand();
-            case "add":
-                return prepareAddCommand(userInput);
-            case "find":
-                return prepareFindCommand(userInput);
-            case "edit":
-                Userinfo store = new Userinfo();
-                store.editUserInfo(arguments[1]);
-                Initialiseuser.save(store);
-                break;
-            case "edita":
-                return prepareEditActivityCommand(arguments[1]);
-            case "delete":
-                return prepareDeleteCommand(arguments[1]);
-            case "list":
-                return prepareListCommand(userInput);
-            case "help":
-                return new HelpCommand();
-            case "move":
-                return prepareMoveIndexCommand(userInput);
-            case "bye":
-                return new ByeCommand();
-            default:
-                return new InvalidCommand();
-            }
-        } catch (StringIndexOutOfBoundsException e) {
-            displayStringIndexOutOfBoundsExceptionMessage();
-        } catch (IOException e) {
-            displayIoExceptionMessage();
         }
         return null;
     }
@@ -169,35 +138,30 @@ public class Parser {
      * @param userInput description of the edit command.
      * @return EditExerciseCommand
      */
+
     private Command prepareEditActivityCommand(String userInput) {
         String[] arguments = userInput.split(" ", 2);
         int index = Integer.parseInt(arguments[0]) - 1;
         userInput = arguments[1];
+
         try {
             if (userInput.startsWith("f/")) {
                 int calorieIndex = userInput.indexOf("c/");
-                int dateIndex = userInput.indexOf("d/");
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2, dateIndex).trim());
-                LocalDate date = processDate(userInput.substring(dateIndex + 2).trim());
-
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                 String foodDescription = userInput.substring(2, calorieIndex - 1).trim();
+                return new EditFoodCommand(index, foodDescription, calories);
 
-                new DeleteCommand(index);
-                return new EditFoodCommand(index, foodDescription, calories, false, date);
             } else if (userInput.startsWith("e/")) {
                 int calorieIndex = userInput.indexOf("c/");
-                int dateIndex = userInput.indexOf("d/");
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2, dateIndex).trim());
-                LocalDate date = processDate(userInput.substring(dateIndex + 2).trim());
 
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                 String exerciseDescription = userInput.substring(2, calorieIndex - 1).trim();
+                return new EditExerciseCommand(index, exerciseDescription, calories);
 
-                new DeleteCommand(index);
-                return new EditExerciseCommand(index, exerciseDescription, calories, false, date);
             } else {
                 displayEmptyEditActivityErrorMessage();
             }
-        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
             displayAddCommandErrorMessage();
         } catch (NumberFormatException e) {
             displayAddActivityNumberFormatExceptionMessage();
@@ -241,6 +205,8 @@ public class Parser {
             displayAddCommandErrorMessage();
         } catch (NumberFormatException e) {
             displayAddActivityNumberFormatExceptionMessage();
+        } catch (DateTimeParseException e) {
+            displayIncorrectDateTimeFormatEnteredMessage();
         }
         return null;
     }
@@ -266,16 +232,11 @@ public class Parser {
      *
      * @param dateInput date input by user.
      * @return date
+     * @throws DateTimeParseException if the string is in the incorrect format
      */
-    private LocalDate processDate(String dateInput) {
-        try {
-            LocalDate date = LocalDate.parse(dateInput);
-
-            return date;
-        } catch (DateTimeException e) {
-            //displayDateTimeExceptionMessage();
-            return currentDate();
-        }
+    private LocalDate processDate(String dateInput) throws DateTimeParseException {
+        LocalDate dateTime = LocalDate.parse(dateInput);
+        return dateTime;
     }
 
     /**
@@ -306,7 +267,7 @@ public class Parser {
         } else {
             String dateString = userInput.split(" ")[1];
             try {
-                LocalDate date = checkDate(dateString);
+                LocalDate date = processDate(dateString);
                 return new ListCommand(date);
             } catch (DateTimeParseException e) {
                 displayIncorrectDateTimeFormatEnteredMessage();
@@ -363,9 +324,6 @@ public class Parser {
         return null;
     }
 
-    private LocalDate checkDate(String dateTimeString) throws DateTimeParseException {
-        LocalDate dateTime = LocalDate.parse(dateTimeString);
-        return dateTime;
-    }
+
 
 }

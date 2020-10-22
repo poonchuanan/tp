@@ -19,6 +19,7 @@ public class FindDescriptionCommand extends Command {
     public FindDescriptionCommand(String description) {
         this.date = LocalDateTime.now().toLocalDate();;
         this.description = description;
+
     }
 
     @Override

@@ -9,6 +9,7 @@ public class GraphCommand extends Command {
 
     public GraphCommand() {
         this.dayMap = super.dayMap;
+
     }
 
     @Override

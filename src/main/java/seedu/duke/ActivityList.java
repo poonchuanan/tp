@@ -54,11 +54,14 @@ public class ActivityList extends Duke {
      * @param activity is the new activity that will be replacing the current activity
      */
     public void insertActivity(int index, Activity activity) throws IndexOutOfBoundsException {
-        activities.set(index, activity);
-        if (activity instanceof Food) {
-            netCalorie += activity.calories;
-        } else if (activity instanceof Exercise) {
-            netCalorie -= activity.calories;
+        if (isValidIndex(index)) {
+            activities.set(index, activity);
+
+            if (activity instanceof Food) {
+                netCalorie += activity.calories;
+            } else if (activity instanceof Exercise) {
+                netCalorie -= activity.calories;
+            }
         } else {
             throw new IndexOutOfBoundsException();
         }

@@ -21,6 +21,7 @@ public class AddExerciseCommand extends Command {
     public AddExerciseCommand(String description, int calories, boolean isFromFile) {
         this.exercise = new Exercise(description, calories, isFromFile);
         this.date = LocalDateTime.now().toLocalDate();
+        this.canBeChained = true;
     }
 
     /**
@@ -34,6 +35,7 @@ public class AddExerciseCommand extends Command {
     public AddExerciseCommand(String description, int calories, boolean isFromFile, LocalDate date) {
         this.exercise = new Exercise(description, calories, isFromFile);
         this.date = date;
+        this.canBeChained = true;
     }
 
     @Override
