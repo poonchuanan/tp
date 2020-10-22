@@ -159,4 +159,10 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    public static void displayExistingFileMessage() {
+        drawDivider();
+        System.out.println("Sorry! There is an existing set with this name, please use another name!");
+        drawDivider();
+    }
+
 }

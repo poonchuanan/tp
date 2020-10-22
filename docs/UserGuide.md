@@ -74,6 +74,7 @@ The expected format of input values:
 	add f/ X c/ Y d/ Z      - Adds food consumed, X, calories gained, Y and date(YYYY-MM-DD), Z
 	add e/ X c/ Y d/ Z      - Adds exercise done, X, calories lost, Y and date(YYYY-MM-DD), Z
 	list                    - Prints out the list of entries.
+    move from/ X below/ Y   - Moves an activity from index X to the slot below index Y
 	edit n/U, g/V, w/W, h/X, a/Y, af/Z
 	                        - Edit user profile to name, U, gender, V, weight, W, height, X,
 	                          age, Y, activity factor(1-5), Z
@@ -150,7 +151,7 @@ Adds an exercise entry with its respective calories to the list.
 Format: `add e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**`
 
 Parameters:
-* `**EXERCISE_DESCRIPTION**`: Description of exercise lost.
+* `**EXERCISE_DESCRIPTION**`: Description of exercise done.
 * `**CALORIE_COUNT**`: Amount of calories lost.
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
@@ -162,6 +163,32 @@ The current activity list has been saved.
 ```
 
 ### Listing entries for the day
+Displays the list of activities for the given day
+
+Format: `list` or `list **DATE**`
+
+Parameters:
+* `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
+* NOTE: Typing list without any parameters displays the list of activities for the current date.
+
+Examples of usage: 
+* `list`
+* `list 2020-11-06`
+
+
+### Move an activity to another position
+Moves an activity to another position in the current list
+
+Format: `move from/ **INDEX1** below/ **INDEX2**`
+
+Parameters:
+* `**INDEX1**`: The index of the activity to be moved from.
+* `**INDEX2**`: The index of the activity to be inserted below.
+
+Examples of usage: 
+* `move from/ 5 below/ 2`
+* `list 2020-11-06`
+
 
 ### Editing user profile
 Edits user profile of an existing user
@@ -196,10 +223,30 @@ To gain weight, you should consume 2076.65 calories instead.
 ````
 
 ### Editing an entry in list
+Edits activity, food or exercise at the stated index in the list.  
+> In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
 
+Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**` OR `edita **LIST_INDEX** f/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**`
+
+Parameters:
+* `**LIST_INDEX`: Index of activity to be edited in list.
+* `**FOOD_DESCRIPTION**`: Description of food consumed.
+* `**EXERCISE_DESCRIPTION**`: Description of exercise done.
+* `**CALORIE_COUNT**`: Amount of calories consumed.
+* `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
+
+Example of usage:
+* `edita 1 e/ running c/100 d/ 2020-10-21`
+```javascript
+[E] | running | 100
+The current activity list has been saved.
+```
 ### Finding entries via keyword
 
+
 ### Deleting entry in list
+
+
 
 ### Deleting all entries in list
 
@@ -228,8 +275,14 @@ Thank you for using TraKCAL. See you again!
 
 Action     | Format | Example
 ---------- | ---------- | --------
-Help | `help` |
-Exit | `bye` |
+Add food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice cream c/ 78 d/ 2020-10-19`
+Add exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
+Edit activity | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 f/ ice kacang c/150 d/ 2020-10-21`
+Edit activity | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 e/ running c/100 d/ 2020-10-21`
+List | `list` OR `list DATE` |
+Move activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/2`
+Help | `help` | `help`
+Exit | `bye` | `bye`
 
 
 
