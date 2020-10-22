@@ -113,33 +113,26 @@ public class Parser {
      * @return EditExerciseCommand
      */
     private Command prepareEditCommand(String userInput) {
-        int index = Integer.parseInt(userInput.substring(0, 1).trim()) - 1;
-        userInput = userInput.substring(1).trim();
+        int index = Integer.parseInt(userInput.substring(0, 2).trim()) - 1;
+        userInput = userInput.substring(2).trim();
         try {
             if (userInput.startsWith("f/")) {
                 int calorieIndex = userInput.indexOf("c/");
-                int dateIndex = userInput.indexOf("d/");
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2, dateIndex).trim());
-                LocalDate date = processDate(userInput.substring(dateIndex + 2).trim());
-
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                 String foodDescription = userInput.substring(2, calorieIndex - 1).trim();
+                return new EditFoodCommand(index, foodDescription, calories);
 
-                new DeleteCommand(index);
-                return new EditFoodCommand(index, foodDescription, calories, false, date);
             } else if (userInput.startsWith("e/")) {
                 int calorieIndex = userInput.indexOf("c/");
-                int dateIndex = userInput.indexOf("d/");
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2, dateIndex).trim());
-                LocalDate date = processDate(userInput.substring(dateIndex + 2).trim());
 
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                 String exerciseDescription = userInput.substring(2, calorieIndex - 1).trim();
+                return new EditExerciseCommand(index, exerciseDescription, calories);
 
-                new DeleteCommand(index);
-                return new EditExerciseCommand(index, exerciseDescription, calories, false, date);
             } else {
                 displayEmptyEditActivityErrorMessage();
             }
-        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
             displayAddCommandErrorMessage();
         } catch (NumberFormatException e) {
             displayAddActivityNumberFormatExceptionMessage();

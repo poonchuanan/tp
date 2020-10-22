@@ -14,24 +14,26 @@ import static seedu.duke.Ui.displaySaveMessage;
 public class EditFoodCommand extends Command {
     protected int index;
     protected Food food;
-    protected LocalDate date;
+
 
     /**
      * Edit food and it's respective calories.
      *
      * @param description food description.
      * @param calories calories gained.
-     * @param isFromFile if data is from csv file.
-     * @param date date of activity.
      */
-    public EditFoodCommand(int index, String description, int calories, boolean isFromFile, LocalDate date) {
+    public EditFoodCommand(int index, String description, int calories) {
         this.index = index;
-        this.food = new Food(description, calories, isFromFile);
-        this.date = date;
+        this.food = new Food(description, calories, false);
+
     }
 
     @Override
     public void execute() {
-        dayMap.addNewActivity(index, date.atStartOfDay(), food);
+        try {
+            dayMap.addNewActivity(index, food);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Index entered is not within the range!");
+        }
     }
 }
