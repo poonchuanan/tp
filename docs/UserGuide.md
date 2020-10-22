@@ -380,10 +380,8 @@ Add food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice crea
 Add exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
 Edit activity | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 f/ ice kacang c/150 d/ 2020-10-21`
 Edit activity | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 e/ running c/100 d/ 2020-10-21`
-<<<<<<< HEAD
 List | `list` OR `list DATE` |
 Move activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/2`
-=======
 Delete entry | `delete INDEX` | `delete 2`
 Delete all | `delete /all` | `delete /all`
 Help | `help` | `help`
