@@ -9,11 +9,10 @@ public class Ui {
      */
     public static void displayDuke() {
         drawDivider();
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = "  _                  _  __   ___     _     _\n"
+                + " | |_   _ _   __ _  | |/ /  / __|   /_\\   | |\n"
+                + " |  _| | '_| / _` | | ' <  | (__   / _ \\  | |__\n"
+                + "  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|\n";
         System.out.println("Hello from\n" + logo);
     }
 
@@ -43,14 +42,19 @@ public class Ui {
                 + "\tcreate new user         - Adds a new user profile\n"
                 + "\ttarget X                - Adds a target calorie, X\n"
                 + "\thelp                    - Prints out commands available and their input format\n"
-                + "\tadd f/ X c/ Y           - Adds food/drinks consumed, X and the calories gained, Y\n"
-                + "\tadd e/ X c/ Y           - Adds exercise done, X and the calories gained, Y\n"
+                + "\tadd f/ X c/ Y d/ Z      - Adds food consumed, X, calories gained, Y and date(YYYY-MM-DD), Z\n"
+                + "\tadd e/ X c/ Y d/ Z      - Adds exercise done, X, calories lost, Y and date(YYYY-MM-DD), Z\n"
                 + "\tlist                    - Prints out the list of entries.\n"
                 + "\tedit n/U, g/V, w/W, h/X, a/Y, af/Z\n"
                 + "\t                        - Edit user profile to name, U, gender, V, weight, W, height, X,\n"
                 + "\t                          age, Y, activity factor(1-5), Z\n"
+                + "\tedita W f/ X c/ Y d/ Z  - Edits activity at index W of list to food consumed, X,\n"
+                + "\t                          calories gained, Y and date(YYYY-MM-DD), Z\n"
+                + "\tedita W e/ X c/ Y d/ Z  - Edits activity at index W of list to exercise done, X,\n"
+                + "\t                          calories lost, Y and date(YYYY-MM-DD), Z\n"
                 + "\tfind d/ X               - Searches for exercise/food description with X included\n"
                 + "\tfind c/ X               - Searches for activity description with calories of X\n"
+                + "\tmove index/ X below/ Y  - Moves the activity at X to the index below Y\n"
                 + "\tdelete X                - Deletes activity located at index X of the list\n"
                 + "\tbye                     - Terminates the program";
         System.out.println(helpList);
@@ -62,8 +66,8 @@ public class Ui {
      */
     public static void displayWelcomeMessage() {
         displayDuke();
-        promptUserOfHelpMessage();
         helloMessage();
+        promptUserOfHelpMessage();
     }
 
     /**
@@ -92,7 +96,7 @@ public class Ui {
      */
     public static void displayByeMessage() {
         drawDivider();
-        System.out.println("THank you for using TraKCAL. See you again!");
+        System.out.println("Thank you for using TraKCAL. See you again!");
         drawDivider();
     }
 

@@ -23,6 +23,14 @@ public class AddExerciseCommand extends Command {
         this.date = LocalDateTime.now().toLocalDate();
     }
 
+    /**
+     * Add exercise and it's respective calories.
+     *
+     * @param description exercise description.
+     * @param calories calories lost.
+     * @param isFromFile if data is from csv file.
+     * @param date date of activity.
+     */
     public AddExerciseCommand(String description, int calories, boolean isFromFile, LocalDate date) {
         this.exercise = new Exercise(description, calories, isFromFile);
         this.date = date;

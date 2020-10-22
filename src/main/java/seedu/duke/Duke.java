@@ -6,12 +6,10 @@ import seedu.duke.command.Command;
 import seedu.duke.storage.Userinfotextfilestorage;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
+import seedu.duke.userprofile.CheckNewUser;
 
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,6 +20,7 @@ import static seedu.duke.ExceptionMessages.displayParserNullPointerExceptionMess
 public class Duke {
 
     public static DayMap calList = new DayMap();
+    public static Userinfo profile;
 
     public static Scanner in = new Scanner(System.in);
     public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
@@ -29,44 +28,30 @@ public class Duke {
     public static void main(String[] args) {
         displayWelcomeMessage();
         storage.loadData(calList);
+        if (CheckNewUser.isNewUser()) {
+            Initialiseuser.createNewProfile();
+        } else {
+            Initialiseuser.loadProfile();
+        }
         Duke.run();
     }
 
-    public static void run() {
-        Userinfo profile;
-        try {
-            while (in.hasNextLine()) {
-                String userInput = in.nextLine();
-                if (userInput.startsWith("create new user")) {
-                    Initialiseuser.sendname();
-                    Initialiseuser.gender();
-                    continue;
-                } else {
-                    String[] data = new String[6];
-                    ArrayList<String> previous = Userinfotextfilestorage.update();
-                    for (int i = 0; i < 6; i++) {
-                        data[i] = previous.get(i);
-                    }
-                    profile = new Userinfo(data[0], data[1], data[2], data[3], data[4], data[5]);
-                    Initialiseuser.saveExistingUserInfo(profile);
-                }
-                Parser parser = new Parser(userInput);
-                try {
-                    Command cmd = parser.parseCommand();
-                    executeCmd(cmd);
-                    storage.updateFile(calList);
-                } catch (NullPointerException e) {
-                    displayParserNullPointerExceptionMessage();
-                }
+    public static void run()  {
+
+        while (in.hasNextLine()) {
+            String userInput = in.nextLine();
+            Parser parser = new Parser(userInput);
+            try {
+                Command cmd = parser.parseCommand();
+                executeCmd(cmd);
+                storage.updateFile(calList);
+            } catch (NullPointerException e) {
+                displayParserNullPointerExceptionMessage();
             }
-        } catch (IOException e) {
-            displayIoExceptionMessage();
         }
+
     }
 
-    public static DayMap getDayMap() {
-        return calList;
-    }
 
     public static void executeCmd(Command cmd) {
         cmd.setData(calList);
@@ -78,13 +63,3 @@ public class Duke {
                 .getParent().replace("%20", " ");
     }
 }
-
-
-/*
- * Calorie List and List
- */
-// Example code to use calorie list.
-//DayMap calList = new DayMap();
-//LocalDateTime adatetime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
-//System.out.println(calList.toString(aDateTime));
-//System.out.println("Size of activity list: " + calList.getSizeOfActivityList(aDateTime));

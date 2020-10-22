@@ -4,7 +4,6 @@ import seedu.duke.exception.KeywordNotFoundException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-//import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -49,6 +48,18 @@ public class DayMap {
             alist = this.getActivityList(dateTime);
         }
         alist.addActivity(activity);
+        //System.out.println("Total calorie count for "
+        // + dateTime.toLocalDate().toString() + " = " + alist.getNetCalorie());
+    }
+
+    public void addNewActivity(int index, LocalDateTime dateTime, Activity activity) {
+        ActivityList alist = this.getActivityList(dateTime);
+        if (alist == null) {
+            dayMap.put(dateTime.toLocalDate(), new ActivityList());
+            //dayMap.replace(dateTime.toLocalDate(), dayMap.get(index), new ActivityList());
+            alist = this.getActivityList(dateTime);
+        }
+        alist.addNewActivity(index, activity);
         //System.out.println("Total calorie count for "
         // + dateTime.toLocalDate().toString() + " = " + alist.getNetCalorie());
     }
@@ -175,6 +186,10 @@ public class DayMap {
             throw new IndexOutOfBoundsException();
         }
 
+    }
+
+    public void move(int indexToBeMovedFrom, int indexToBeInsertedBelow) throws IndexOutOfBoundsException {
+        lastSeenList.moveActivity(indexToBeMovedFrom - 1, indexToBeInsertedBelow);
     }
 
     /**

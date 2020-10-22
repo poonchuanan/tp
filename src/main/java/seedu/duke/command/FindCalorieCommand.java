@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 
 import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
 
+/**
+ * Initialises Command to find calorie count.
+ */
 public class  FindCalorieCommand extends Command {
     protected LocalDate date;
     protected String calorie;

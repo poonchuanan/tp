@@ -65,10 +65,10 @@ public class ExceptionMessages {
     public static void displayAddCommandErrorMessage() {
         drawDivider();
         System.out.println("Invalid input given!");
-        System.out.println("The input format for adding food activity is 'add f/ X c/ Y'"
-                + " - where food is X and calories gained is Y ");
-        System.out.println("The input format for adding exercise activity is 'add e/ X c/ Y'"
-                + " - where exercise done is X and calories gained is Y ");
+        System.out.println("The input format for adding food activity is 'add f/ X c/ Y d/ Z"
+                + " - where food is X, calories lost is Y and date(YYYY-MM-DD) is Z");
+        System.out.println("The input format for adding exercise activity is 'add e/ X c/ Y d/ Z'"
+                + " - where exercise done is X, calories lost is Y and date(YYYY-MM-DD) is Z");
         System.out.println("Please do input 'help' for more information.");
         drawDivider();
     }
@@ -131,11 +131,32 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    /**
+     * Prints out error message when invalid activity factor input.
+     */
     public static void displayInvalidActivityFactorMessage() {
         drawDivider();
         System.out.println("Sorry this is an invalid activity factor!");
         System.out.println("Please enter an integer from 1 to 5, with 1 being the least "
                 + "active and 5 being the most active\n");
+    }
+
+    /**
+     * Prints out error message when DateTimeException occurs.
+     */
+    public static void displayDateTimeExceptionMessage() {
+        drawDivider();
+        System.out.println("Sorry, I do not understand!");
+        System.out.println("The input format of date is YYYY-MM-DD.");
+    }
+
+    /**
+     * Prints out error message when attributes input by user is empty.
+     */
+    public static void displayEmptyEditActivityErrorMessage() {
+        drawDivider();
+        System.out.println("Sorry! There is missing input!");
+        drawDivider();
     }
 
 }
