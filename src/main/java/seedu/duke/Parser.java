@@ -8,8 +8,10 @@ import seedu.duke.command.AddFoodCommand;
 import seedu.duke.command.CreateNewUserCommand;
 import seedu.duke.command.EditFoodCommand;
 import seedu.duke.command.EditExerciseCommand;
+import seedu.duke.command.FindAllCommand;
 import seedu.duke.command.FindCalorieCommand;
 import seedu.duke.command.FindDescriptionCommand;
+import seedu.duke.command.FindEitherCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.MoveActivityCommand;
@@ -315,6 +317,10 @@ public class Parser {
             } else if (arguments[1].startsWith("c/")) {
                 String calorie = arguments[1].substring(2).trim();
                 return new FindCalorieCommand(calorie);
+            } else if (arguments[1].startsWith("a/")) {
+                return new FindAllCommand(arguments[1]);
+            } else if (arguments[1].startsWith("e/")) {
+                return new FindEitherCommand(arguments[1]);
             } else {
                 displayFindErrorMessage();
             }
