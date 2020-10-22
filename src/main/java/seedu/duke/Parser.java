@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.command.AddExerciseCommand;
+import seedu.duke.command.AddNewRepeatedSet;
 import seedu.duke.command.ByeCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.AddFoodCommand;
@@ -14,6 +15,7 @@ import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
+import seedu.duke.command.GraphCommand;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
@@ -65,6 +67,8 @@ public class Parser {
             switch (arguments[0].toLowerCase()) {
             case "create":
                 return new CreateNewUserCommand();
+            case "createset":
+                return new AddNewRepeatedSet(arguments[1]);
             case "add":
                 return prepareAddCommand(userInput);
             case "find":
@@ -86,6 +90,8 @@ public class Parser {
                 return prepareMoveIndexCommand(userInput);
             case "bye":
                 return new ByeCommand();
+            case "graph":
+                return new GraphCommand();
             default:
                 return new InvalidCommand();
             }
@@ -325,4 +331,5 @@ public class Parser {
         LocalDate dateTime = LocalDate.parse(dateTimeString);
         return dateTime;
     }
+
 }
