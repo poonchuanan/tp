@@ -7,7 +7,7 @@ If you can type fast, traKCAL is suited just for you.
 
 ## Table of Contents
 * [Quick Start](#quick-start)
-* [Features]
+* [Features](#features)
     * [Setting up program in Intellij](#setting-up-program-in-intellij)
     * [Viewing help](#viewing-help): `help`
     * [Adding a profile for new user](#adding-a-profile-for-new-user): `create new user`
@@ -29,11 +29,12 @@ If you can type fast, traKCAL is suited just for you.
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed
-2. Down the latest version of `Duke` from [here](http://link.to/duke)
-3. Create an empty folder in a convenient location eg. Desktop and copy jar file there
-4. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar tp.jar`
-5. Upon successful run, the following greeting message will be shown
-```
+1. Down the latest version of `Duke` from [here](http://link.to/duke)
+1. Create an empty folder in a convenient location eg. Desktop and copy jar file there
+1. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar tp.jar`
+1. Upon successful run, the following greeting message will be shown
+
+```javascript
 ==============================================================
 Hello from
   _                  _  __   ___     _     _
@@ -43,7 +44,7 @@ Hello from
 
 Hello! I'm traKCAL.
 ==============================================================
-````
+```
 
 ## Features 
 
@@ -64,6 +65,7 @@ Format: `help`
 
 Example of usage:
 * `help`
+
 ```javascript
 ==============================================================
 Commands available: create new user, list, help, add, delete, find, bye
@@ -94,7 +96,8 @@ The current activity list has been saved.
 Automatically checks for new user and prompt them to create a new user profile by asking a series of questions
 
 Example of usage:
-````
+
+```javascript
 Hey there! We do not have a record of your profile. Please create one now! :)
 
 What is your name?
@@ -111,7 +114,7 @@ How active are you on a scale of 1-5? With 1 being least active and 5 being most
 **4**
 Do you want to lose/maintain/gain weight?
 **gain**
-````
+```
 
 ### Adding a target calorie
 Interprets the answers from the user profile questionnaire to calculate health profile
@@ -122,11 +125,12 @@ tracKCAL calculates:
 * Calorie goal to reach weight goal
 
 Example of calculated health profile: 
-````
+
+```javascript
 Your BMI is 20.
 Your recommend daily calories intake is 1576.65 calories.
 To gain weight, you should consume 2076.65 calories instead.
-````
+```
 
 ### Adding a food entry
 Adds a food entry with its respective calories to the list.
@@ -140,6 +144,7 @@ Parameters:
 
 Examples of usage:
 * `add f/ ice cream c/ 78 d/ 2020-10-19`
+
 ```javascript
 [F] | ice cream | 78
 The current activity list has been saved.
@@ -157,6 +162,7 @@ Parameters:
 
 Examples of usage: 
 * `add e/ jumping c/ 65 d/ 2020-10-19`
+
 ```javascript
 [E] | jumping | 65
 The current activity list has been saved.
@@ -206,7 +212,8 @@ Parameters:
 
 Example of usage: 
 * `edit n/Sam g/female w/50 h/100 a/10 af/4 goal/gain`
-````
+
+```javascript
 ==============================================================
 Noted, I have edited your user profile. Here are your new details: 
 Name: Sam
@@ -220,7 +227,7 @@ Your BMI is 50
 Your recommend daily calories intake is 1576.65 calories.
 To gain weight, you should consume 2076.65 calories instead.
 ==============================================================
-````
+```
 
 ### Editing an entry in list
 Edits activity, food or exercise at the stated index in the list.  
@@ -237,6 +244,7 @@ Parameters:
 
 Example of usage:
 * `edita 1 e/ running c/100 d/ 2020-10-21`
+
 ```javascript
 [E] | running | 100
 The current activity list has been saved.
@@ -245,11 +253,59 @@ The current activity list has been saved.
 
 
 ### Deleting entry in list
+Deletes an entry via index in list.
+
+Format: `delete **INDEX**`
+
+Parameters:
+* `**INDEX**`: Index of activity to be deleted in list.
+
+Example of usage:
+* `list` before deletion
+```javascript
+1. [F] | apple | 200
+2. [F] | melon | 300
+3. [F] | banana | 150
+4. [F] | orange | 100
+The current activity list has been saved.
+```
+* `delete 2`
+```javascript
+Activity removed!
+The current activity list has been saved.
+```
+* `list` after deletion
+```javascript
+1. [F] | apple | 200
+2. [F] | banana | 150
+3. [F] | orange | 100
+The current activity list has been saved.
+```
 
 
 
 ### Deleting all entries in list
+Deletes all entry in list.
 
+Format : `delete /all`
+
+Example of usage:
+* `list` before deletion
+```javascript
+1. [F] | apple | 200
+2. [F] | banana | 150
+3. [F] | orange | 100
+The current activity list has been saved.
+```
+* `delete /all`
+```javascript
+The current activity list has been saved.
+```
+* `list` after deletion
+```javascript
+Nothing was added!
+The current activity list has been saved.
+```
 ### Exiting the program
 Saves the current list to file and exits program.
 
@@ -257,6 +313,7 @@ Format: `bye`
 
 Example of usage:
 * `bye`
+
 ```javascript
 ==============================================================
 Thank you for using TraKCAL. See you again!
@@ -279,8 +336,12 @@ Add food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice crea
 Add exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
 Edit activity | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 f/ ice kacang c/150 d/ 2020-10-21`
 Edit activity | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 e/ running c/100 d/ 2020-10-21`
+<<<<<<< HEAD
 List | `list` OR `list DATE` |
 Move activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/2`
+=======
+Delete entry | `delete INDEX` | `delete 2`
+Delete all | `delete /all` | `delete /all`
 Help | `help` | `help`
 Exit | `bye` | `bye`
 

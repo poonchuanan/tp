@@ -52,8 +52,14 @@ public class DayMap {
         // + dateTime.toLocalDate().toString() + " = " + alist.getNetCalorie());
     }
 
-    public void addNewActivity(int index, Activity activity) {
-        lastSeenList.addNewActivity(index, activity);
+
+
+
+    public void insertActivity(int index, Activity activity) {
+
+        lastSeenList.insertActivity(index, activity);
+
+
     }
 
     public ArrayList getArrayList(LocalDateTime dateTime) {

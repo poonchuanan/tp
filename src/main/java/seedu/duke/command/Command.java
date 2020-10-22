@@ -9,6 +9,7 @@ import seedu.duke.exception.KeywordNotFoundException;
  */
 public class Command {
     protected DayMap dayMap;
+    protected boolean canBeChained = false;
 
     /**
      * This method is to be override by the specific commands.
@@ -24,5 +25,9 @@ public class Command {
      */
     public void setData(DayMap dayMap) {
         this.dayMap = dayMap;
+    }
+
+    public boolean getCanBeChained() {
+        return canBeChained;
     }
 }

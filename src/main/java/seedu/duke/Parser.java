@@ -26,9 +26,11 @@ import java.time.LocalDateTime;
 
 import java.time.format.DateTimeParseException;
 
+import static seedu.duke.Duke.calList;
+import static seedu.duke.Duke.executeCmd;
+import static seedu.duke.Duke.storage;
 import static seedu.duke.ExceptionMessages.displayAddActivityNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayAddCommandErrorMessage;
-import static seedu.duke.ExceptionMessages.displayDateTimeExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
@@ -61,7 +63,9 @@ public class Parser {
      *
      * @return Command type
      */
+
     public Command parseCommand() {
+
         String[] arguments = userInput.split(" ", 2);
         try {
             switch (arguments[0].toLowerCase()) {
@@ -79,7 +83,7 @@ public class Parser {
                 Initialiseuser.save(store);
                 break;
             case "edita":
-                return prepareEditCommand(arguments[1]);
+                return prepareEditActivityCommand(arguments[1]);
             case "delete":
                 return prepareDeleteCommand(arguments[1]);
             case "list":
@@ -103,18 +107,43 @@ public class Parser {
         return null;
     }
 
+    public Command prepareChaining(String userInput) {
+        while (userInput.contains("&&")) {
+            userInput = userInput + " &&";
+            int chainIndex = userInput.indexOf("&&");
+            if (chainIndex < 5) {
+                break;
+            }
+            String firstString = userInput.substring(0, chainIndex).trim();
+
+            Parser parser = new Parser(firstString);
+            Command cmd = parser.parseCommand();
+            if(cmd.getCanBeChained()) {
+                executeCmd(cmd);
+            } else {
+                System.out.println("The commands entered cannot be chained together!");
+                break;
+            }
+            storage.updateFile(calList);
+
+            userInput = userInput.substring(chainIndex + 2).trim();
+        }
+        return null;
+    }
 
 
     /**
      * Prepares the edit command by checking the userInput.
      *
      * @param userInput description of the edit command.
-     * @return EditFoodCommand
      * @return EditExerciseCommand
      */
-    private Command prepareEditCommand(String userInput) {
-        int index = Integer.parseInt(userInput.substring(0, 2).trim()) - 1;
-        userInput = userInput.substring(2).trim();
+
+    private Command prepareEditActivityCommand(String userInput) {
+        String[] arguments = userInput.split(" ", 2);
+        int index = Integer.parseInt(arguments[0]) - 1;
+        userInput = arguments[1];
+
         try {
             if (userInput.startsWith("f/")) {
                 int calorieIndex = userInput.indexOf("c/");
@@ -144,7 +173,6 @@ public class Parser {
      * Prepares the add command by checking the userInput.
      *
      * @param userInput description of the add command.
-     * @return AddFoodCommand
      * @return AddExerciseCommand
      */
     private Command prepareAddCommand(String userInput) {
@@ -177,6 +205,8 @@ public class Parser {
             displayAddCommandErrorMessage();
         } catch (NumberFormatException e) {
             displayAddActivityNumberFormatExceptionMessage();
+        } catch (DateTimeParseException e) {
+            displayIncorrectDateTimeFormatEnteredMessage();
         }
         return null;
     }
@@ -202,16 +232,11 @@ public class Parser {
      *
      * @param dateInput date input by user.
      * @return date
+     * @throws DateTimeParseException if the string is in the incorrect format
      */
-    private LocalDate processDate(String dateInput) {
-        try {
-            LocalDate date = LocalDate.parse(dateInput);
-
-            return date;
-        } catch (DateTimeException e) {
-            //displayDateTimeExceptionMessage();
-            return currentDate();
-        }
+    private LocalDate processDate(String dateInput) throws DateTimeParseException {
+        LocalDate dateTime = LocalDate.parse(dateInput);
+        return dateTime;
     }
 
     /**
@@ -222,31 +247,11 @@ public class Parser {
     private LocalDate currentDate() {
         LocalDate date = LocalDate.now();
 
+
+
+
+
         return date;
-    }
-
-    /**
-     * Process the date input by user.
-     *
-     * @param dateInput date input by user.
-     * @return date
-     */
-    private String processingDate(String dateInput) {
-        int extra = dateInput.indexOf("&&");
-        dateInput = dateInput.substring(0, extra);
-
-        try {
-            LocalDate data = LocalDate.parse(dateInput);
-            String day = data.getDayOfMonth() + " ";
-            String month = data.getMonth() + " ";
-            String year = data.getYear() + "";
-            String date = day + month + year;
-
-            return date;
-        } catch (DateTimeException e) {
-            displayDateTimeExceptionMessage();
-            return null;
-        }
     }
 
     /**
@@ -262,7 +267,7 @@ public class Parser {
         } else {
             String dateString = userInput.split(" ")[1];
             try {
-                LocalDate date = checkDate(dateString);
+                LocalDate date = processDate(dateString);
                 return new ListCommand(date);
             } catch (DateTimeParseException e) {
                 displayIncorrectDateTimeFormatEnteredMessage();
@@ -299,7 +304,6 @@ public class Parser {
      * Else if the keyword contains calories count, returns FindCalorieCommand.
      *
      * @param userInput description of the find command.
-     * @return FindDescriptionCommand
      * @return FindCalorieCommand
      */
     private Command prepareFindCommand(String userInput) {
@@ -320,9 +324,6 @@ public class Parser {
         return null;
     }
 
-    private LocalDate checkDate(String dateTimeString) throws DateTimeParseException {
-        LocalDate dateTime = LocalDate.parse(dateTimeString);
-        return dateTime;
-    }
+
 
 }

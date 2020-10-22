@@ -22,15 +22,18 @@ public class EditExerciseCommand extends Command {
     public EditExerciseCommand(int index, String description, int calories) {
         this.index = index;
         this.exercise = new Exercise(description, calories, false);
+        this.canBeChained = true;
 
     }
 
     @Override
     public void execute() {
+
         try {
-            dayMap.addNewActivity(index, exercise);
+            dayMap.insertActivity(index, exercise);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Index entered is not within the range!");
         }
+
     }
 }

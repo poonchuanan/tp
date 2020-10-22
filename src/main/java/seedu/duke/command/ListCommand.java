@@ -15,10 +15,14 @@ public class ListCommand extends Command {
 
     public ListCommand(LocalDate date) {
         this.date = date;
+        this.canBeChained = true;
+
     }
 
     public ListCommand() {
         this.date = LocalDateTime.now().toLocalDate();
+        this.canBeChained = true;
+
     }
 
     /**

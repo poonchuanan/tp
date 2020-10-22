@@ -21,6 +21,7 @@ public class AddFoodCommand extends Command {
     public AddFoodCommand(String description, int calories, boolean isFromFile) {
         this.food = new Food(description, calories, isFromFile);
         this.date = LocalDateTime.now().toLocalDate();
+        this.canBeChained = true;
     }
 
     /**
@@ -34,6 +35,7 @@ public class AddFoodCommand extends Command {
     public AddFoodCommand(String description, int calories, boolean isFromFile, LocalDate date) {
         this.food = new Food(description, calories, isFromFile);
         this.date = date;
+        this.canBeChained = true;
     }
 
     @Override
