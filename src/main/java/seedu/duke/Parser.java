@@ -118,7 +118,7 @@ public class Parser {
 
             Parser parser = new Parser(firstString);
             Command cmd = parser.parseCommand();
-            if(cmd.getCanBeChained()) {
+            if (cmd.getCanBeChained()) {
                 executeCmd(cmd);
             } else {
                 System.out.println("The commands entered cannot be chained together!");
