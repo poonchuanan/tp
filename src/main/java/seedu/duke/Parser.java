@@ -27,6 +27,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import java.time.format.DateTimeParseException;
 
@@ -175,14 +177,16 @@ public class Parser {
     }
 
     private Command prepareAddSet(String fileName) {
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = formatter.format(date);
         try {
             String initialPath = new File("").getAbsolutePath();
             String filePath = initialPath + "/" + fileName + ".txt";
-            System.out.println(filePath);
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line = reader.readLine();
             while (line != null) {
-                Parser parser = new Parser("add " + line);
+                Parser parser = new Parser("add " + line + " d/ " + strDate);
                 Command cmd = parser.parseCommand();
                 executeCmd(cmd);
                 storage.updateFile(calList);

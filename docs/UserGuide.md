@@ -15,6 +15,7 @@ If you can type fast, traKCAL is suited just for you.
     * [Adding a target calorie](#adding-a-target-calorie): `target`
     * [Adding a food entry](#adding-a-food-entry): `add`
     * [Adding an exercise entry](#adding-an-exercise-entry): `add`
+    * [Adding a set of entries](#adding-a-set-of-entries): `addSet`
     * [Listing entries for the day](#listing-entries-for-the-day): `list`
     * [Editing user profile](#editing-user-profile): `edit`
     * [Editing an entry in list](#editing-an-entry-in-list): `editA`
@@ -129,7 +130,7 @@ Parameters:
 * `**SHORTCUT_NAME**`: Name of shortcut/set
 
 Example of usage: 
-*  `createSet bfast f/ ice cream c/ 78 d/ 2020-10-23 && e/ jumping jacks c/ 100 d/ 2020-10-23`
+*  `createSet bfast f/ ice cream c/ 78 && e/ jumping jacks c/ 100`
 
 ```javascript
 The current activity list has been saved.
@@ -184,6 +185,25 @@ Examples of usage:
 
 ```javascript
 [E] | jumping | 65
+The current activity list has been saved.
+```
+
+### Adding a set of entries
+Adds a set of repeated entries at once 
+
+Format: `addSet **SHORTCUT_NAME**`
+
+Parameters:
+* `**SHORTCUT_NAME**`: Name of shortcut 
+
+Example of usage: 
+* `addSet bfast`
+
+```javascript
+[F] | ice cream | 78
+The current activity list has been saved.
+
+[E] | jumping jacks | 100
 The current activity list has been saved.
 ```
 
