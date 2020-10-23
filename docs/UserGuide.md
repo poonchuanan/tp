@@ -11,11 +11,12 @@ If you can type fast, traKCAL is suited just for you.
     * [Setting up program in Intellij](#setting-up-program-in-intellij)
     * [Viewing help](#viewing-help): `help`
     * [Adding a profile for new user](#adding-a-profile-for-new-user): `create new user`
+    * [Editing user profile](#editing-user-profile): `edit`
     * [Adding a target calorie](#adding-a-target-calorie): `target`
     * [Adding a food entry](#adding-a-food-entry): `add`
     * [Adding an exercise entry](#adding-an-exercise-entry): `add`
     * [Listing entries for the day](#listing-entries-for-the-day): `list`
-    * [Editing user profile](#editing-user-profile): `edit`
+    * [Moving an entry to another position](#moving): `move`
     * [Editing an entry in list](#editing-an-entry-in-list): `editA`
     * [Finding entries via keyword](#finding-entries-via-keyword): `find`
     * [Deleting entry in list](#deleting-entry-in-list): `delete`
@@ -29,10 +30,10 @@ If you can type fast, traKCAL is suited just for you.
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed
-1. Down the latest version of `Duke` from [here](http://link.to/duke)
-1. Create an empty folder in a convenient location eg. Desktop and copy jar file there
-1. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar tp.jar`
-1. Upon successful run, the following greeting message will be shown
+2. Down the latest version of `Duke` from [here](http://link.to/duke)
+3. Create an empty folder in a convenient location eg. Desktop and copy jar file there
+4. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar tp.jar`
+5. Upon successful run, the following greeting message will be shown
 
 ```javascript
 ==============================================================
@@ -45,6 +46,13 @@ Hello from
 Hello! I'm traKCAL.
 ==============================================================
 ```
+6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window<br/>
+   Some example commands you can try:
+    * `list`: Lists all activities for today
+    * `add` f/ rice with eggs c/ 200: Adds a food entry named `rice with eggs` to traKCAL.
+    * `delete 3`: Deletes the 3rd contact shown in the current list.
+    * `bye`: Exits the app.
+7. Refer to the [Features](#features) below for details of each command
 
 ## Features 
 
@@ -75,7 +83,8 @@ The expected format of input values:
 	help                    - Prints out commands available and their input format
 	add f/ X c/ Y d/ Z      - Adds food consumed, X, calories gained, Y and date(YYYY-MM-DD), Z
 	add e/ X c/ Y d/ Z      - Adds exercise done, X, calories lost, Y and date(YYYY-MM-DD), Z
-	list                    - Prints out the list of entries.
+	list                    - Prints out the list of entries for the current date.
+    list X                  - Prints out the list of entries for the specified date(YYYY-MM-DD), X
     move from/ X below/ Y   - Moves an activity from index X to the slot below index Y
 	edit n/U, g/V, w/W, h/X, a/Y, af/Z
 	                        - Edit user profile to name, U, gender, V, weight, W, height, X,
@@ -132,6 +141,39 @@ Your recommend daily calories intake is 1576.65 calories.
 To gain weight, you should consume 2076.65 calories instead.
 ```
 
+### Editing user profile
+Edits user profile of an existing user
+
+Format: `edit n/**NAME** g/**GENDER** w/**WEIGHT** h/**HEIGHT** a/**AGE** af/**ACTIVITY_FACTOR** goal/**WEIGHT_GOALS**`
+
+Parameters: 
+* `**NAME**`: Name of user
+* `**GENDER**`: Gender of user
+* `**WEIGHT_KG**`: Weight of user in kg
+* `**HEIGHT_CM**`: Height of user in cm
+* `**AGE**`: Age of user 
+* `**ACTIVITY_FACTOR**`: How active user is, with 1 being most active and 5 being least active
+* `**WEIGHT_GOALS**`: whether user wants to lose/maintain/gain weight 
+
+Example of usage: 
+* `edit n/Sam g/female w/50 h/100 a/10 af/4 goal/gain`
+
+```javascript
+==============================================================
+Noted, I have edited your user profile. Here are your new details: 
+Name: Sam
+Gender: female
+Weight: 50
+Height: 100
+Age: 10
+Activity: 4
+Weight Goal: gain
+Your BMI is 50
+Your recommend daily calories intake is 1576.65 calories.
+To gain weight, you should consume 2076.65 calories instead.
+==============================================================
+```
+
 ### Adding a food entry
 Adds a food entry with its respective calories to the list.
 
@@ -168,7 +210,7 @@ Examples of usage:
 The current activity list has been saved.
 ```
 
-### Listing entries for the day
+### Listing entries for the specified day
 Displays the list of activities for the given day
 
 Format: `list` or `list **DATE**`
@@ -183,7 +225,7 @@ Examples of usage:
 
 
 ### Move an activity to another position
-Moves an activity to another position in the current list
+Moves an activity to another position in the last shown list
 
 Format: `move from/ **INDEX1** below/ **INDEX2**`
 
@@ -191,63 +233,52 @@ Parameters:
 * `**INDEX1**`: The index of the activity to be moved from.
 * `**INDEX2**`: The index of the activity to be inserted below.
 
-Examples of usage: 
-* `move from/ 5 below/ 2`
-* `list 2020-11-06`
+Example of usage:
+* After a `list 2020-10-11` command, <\br>
+ `move from/ 3 below/ 1` moves the 3rd entry in the list for below the 1st entry as shown below.
 
-
-### Editing user profile
-Edits user profile of an existing user
-
-Format: `edit n/**NAME** g/**GENDER** w/**WEIGHT** h/**HEIGHT** a/**AGE** af/**ACTIVITY_FACTOR** goal/**WEIGHT_GOALS**`
-
-Parameters: 
-* `**NAME**`: Name of user
-* `**GENDER**`: Gender of user
-* `**WEIGHT_KG**`: Weight of user in kg
-* `**HEIGHT_CM**`: Height of user in cm
-* `**AGE**`: Age of user 
-* `**ACTIVITY_FACTOR**`: How active user is, with 1 being most active and 5 being least active
-* `**WEIGHT_GOALS**`: whether user wants to lose/maintain/gain weight 
-
-Example of usage: 
-* `edit n/Sam g/female w/50 h/100 a/10 af/4 goal/gain`
-
+*`list 2020-10-11` before moving
 ```javascript
-==============================================================
-Noted, I have edited your user profile. Here are your new details: 
-Name: Sam
-Gender: female
-Weight: 50
-Height: 100
-Age: 10
-Activity: 4
-Weight Goal: gain
-Your BMI is 50
-Your recommend daily calories intake is 1576.65 calories.
-To gain weight, you should consume 2076.65 calories instead.
-==============================================================
+1. [F] | breakfast | 100
+2. [F] | second breakfast | 100
+3. [F] | tea break | 200
+```
+*`list 2020-10-11` after `move from/ 3 below/ 1`
+```
+1. [F] | breakfast | 100
+2. [F] | tea break | 200
+3. [F] | second breakfast | 100
 ```
 
+
+
 ### Editing an entry in list
-Edits activity, food or exercise at the stated index in the list.  
+Edits activity, food or exercise at the stated index in the last shown list.  
 > In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
 
-Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**` OR `edita **LIST_INDEX** f/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**`
+Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**` OR `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 Parameters:
 * `**LIST_INDEX`: Index of activity to be edited in list.
 * `**FOOD_DESCRIPTION**`: Description of food consumed.
 * `**EXERCISE_DESCRIPTION**`: Description of exercise done.
 * `**CALORIE_COUNT**`: Amount of calories consumed.
-* `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 Example of usage:
-* `edita 1 e/ running c/100 d/ 2020-10-21`
+* After a `list 2020-10-11` command, <\br>
+ `edita 3 e/ running c/100` changes the 3rd activity in the list for `2020-10-11` as shown below.
 
+*`list 2020-10-11` before editing
 ```javascript
-[E] | running | 100
-The current activity list has been saved.
+1. [F] | breakfast | 100
+2. [F] | second breakfast | 100
+3. [F] | tea break | 200
+```
+*`list 2020-10-11` after `edita 3 e/ running c/100`
+```
+1. [F] | breakfast | 100
+2. [F] | second breakfast | 100
+3. [E] | running | 100
 ```
 ### Finding entries via keyword
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
@@ -297,12 +328,12 @@ Example of usage:
 
 
 ### Deleting entry in list
-Deletes an entry via index in list.
+Deletes an entry via index in the last shown list.
 
 Format: `delete **INDEX**`
 
 Parameters:
-* `**INDEX**`: Index of activity to be deleted in list.
+* `**INDEX**`: Index of activity to be deleted in the last shown list.
 
 Example of usage:
 * `list` before deletion
@@ -378,8 +409,8 @@ Action     | Format | Example
 ---------- | ---------- | --------
 Add food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice cream c/ 78 d/ 2020-10-19`
 Add exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
-Edit activity | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 f/ ice kacang c/150 d/ 2020-10-21`
-Edit activity | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `edita 1 e/ running c/100 d/ 2020-10-21`
+Edit activity | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` | `edita 1 f/ ice kacang c/150`
+Edit activity | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT` | `edita 1 e/ running c/100`
 List | `list` OR `list DATE` |
 Move activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/2`
 Delete entry | `delete INDEX` | `delete 2`
