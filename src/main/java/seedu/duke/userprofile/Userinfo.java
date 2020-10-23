@@ -86,6 +86,8 @@ public class Userinfo {
         bmi = (Double.parseDouble(this.getWeight())
                 / (Double.parseDouble(this.getHeight()) * Double.parseDouble(this.getHeight())))
                 * 10000;
+        assert bmi > 0 : "bmi should be more than 0";
+
         System.out.println("Your BMI is " + df2.format(bmi));
 
         double calories;
@@ -100,6 +102,9 @@ public class Userinfo {
                     - (5 * Double.parseDouble(this.getAge())) + 5)
                     * activityMultiple;
         }
+
+        assert calories > 0 : "calories should be greater than 0";
+
         System.out.println("Your recommend daily calories intake is " + calories + " calories.");
 
         if (this.getWeightGoal().equals("lose")) {

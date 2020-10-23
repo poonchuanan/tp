@@ -69,7 +69,6 @@ public class Parser {
      */
 
     public Command parseCommand() {
-
         String[] arguments = userInput.split(" ", 2);
         try {
             switch (arguments[0].toLowerCase()) {
@@ -179,14 +178,18 @@ public class Parser {
         try {
             String initialPath = new File("").getAbsolutePath();
             String filePath = initialPath + "/" + fileName + ".txt";
+            System.out.println(filePath);
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line = reader.readLine();
             while (line != null) {
-                prepareAddCommand("add " + line);
+                Parser parser = new Parser("add " + line);
+                Command cmd = parser.parseCommand();
+                executeCmd(cmd);
+                storage.updateFile(calList);
                 line = reader.readLine();
             }
             reader.close();
-            return null;
+            return new Command();
         } catch (IOException e) {
             displayIoExceptionMessage();
         }
