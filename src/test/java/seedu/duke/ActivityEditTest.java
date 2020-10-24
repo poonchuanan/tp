@@ -2,6 +2,8 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.EditExerciseCommand;
+import seedu.duke.command.EditFoodCommand;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,6 +29,11 @@ public class ActivityEditTest {
     }
 
     @Test
+    void editActivityFoodToExercise2_success() {
+        EditFoodCommand food = new EditFoodCommand(0, "jumping", 900);
+    }
+
+    @Test
     void editActivityExerciseToFood_success() {
         ActivityList dummyList = new ActivityList();
         createObjects(dummyList);
@@ -36,6 +43,11 @@ public class ActivityEditTest {
 
         assertEquals("[F] | Apple | 50, [F] | Banana | 100, [F] | Apple pie | 55, "
                 + "[F] | Pineapple | 77", dummyList.toString());
+    }
+
+    @Test
+    void editActivityExerciseToFood2_success() {
+        EditExerciseCommand exercise = new EditExerciseCommand(3, "Pineapple", 77);
     }
 
     @Test
@@ -51,6 +63,11 @@ public class ActivityEditTest {
     }
 
     @Test
+    void editActivityExerciseToExercise2_success() {
+        EditExerciseCommand exercise = new EditExerciseCommand(3, "jumping", 900);
+    }
+
+    @Test
     void editActivityFoodToFood_success() {
         ActivityList dummyList = new ActivityList();
         createObjects(dummyList);
@@ -60,5 +77,10 @@ public class ActivityEditTest {
 
         assertEquals("[F] | Apple | 50, [F] | Banana | 100, [F] | Pineapple | 77, "
                 + "[E] | Juggle Apples | 100", dummyList.toString());
+    }
+
+    @Test
+    void editActivityFoodToFood2_success() {
+        EditFoodCommand food = new EditFoodCommand(2, "jumping", 900);
     }
 }
