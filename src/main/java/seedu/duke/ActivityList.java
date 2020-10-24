@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
 import static seedu.duke.Ui.displayNotSavedMessage;
-import static seedu.duke.Ui.displaySaveMessage;
+import static seedu.duke.Ui.displaySavedMessage;
 
 
 /**
@@ -52,6 +52,7 @@ public class ActivityList extends Duke {
         } else {
             throw new IndexOutOfBoundsException();
         }
+        displaySavedMessage();
     }
 
     /**
@@ -70,7 +71,7 @@ public class ActivityList extends Duke {
             } else if (activity instanceof Exercise) {
                 netCalorie -= activity.calories;
             }
-            displaySaveMessage();
+            displaySavedMessage();
         } else {
             throw new IndexOutOfBoundsException();
         }
@@ -89,7 +90,7 @@ public class ActivityList extends Duke {
             Activity activity = getActivity(indexToBeMovedFrom);
             activities.remove(indexToBeMovedFrom);
             activities.add(indexToBeInsertedBelow, activity);
-
+            displaySavedMessage();
         } else {
             throw new IndexOutOfBoundsException();
         }

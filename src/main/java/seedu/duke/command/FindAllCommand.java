@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
+import static seedu.duke.Ui.displaySavedMessage;
 
 /**
  * Initialises Command to find all description tags.
@@ -40,6 +41,7 @@ public class FindAllCommand extends Command {
                 }
             }
         }
+        displaySavedMessage();
     }
 
     /**

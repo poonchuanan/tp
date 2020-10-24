@@ -28,6 +28,3 @@ public class MoveActivityCommand extends Command {
         }
     }
 }
-/**
- *
- **/
