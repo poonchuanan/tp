@@ -27,7 +27,11 @@ public class Duke {
 
     public static void main(String[] args) {
         displayWelcomeMessage();
-        storage.loadData(calList);
+        try {
+            storage.loadData(calList);
+        } catch (StringIndexOutOfBoundsException stringIndexOutOfBoundsException) {
+            displayIoExceptionMessage();
+        }
         if (CheckNewUser.isNewUser()) {
             Initialiseuser.createNewProfile();
         } else {
@@ -42,7 +46,7 @@ public class Duke {
             Parser parser = new Parser(userInput);
             try {
                 Command cmd;
-                if (userInput.contains("&&")) {
+                if (userInput.contains("&&") && userInput.charAt(userInput.indexOf("&&") + 4) != '/') {
                     parser.prepareChaining(userInput);
                 } else {
                     cmd = parser.parseCommand();

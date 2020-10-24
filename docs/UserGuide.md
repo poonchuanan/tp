@@ -10,10 +10,12 @@ If you can type fast, traKCAL is suited just for you.
 * [Features](#features)
     * [Setting up program in Intellij](#setting-up-program-in-intellij)
     * [Viewing help](#viewing-help): `help`
-    * [Adding a profile for new user](#adding-a-profile-for-new-user): `create new user`
+    * [Creating a profile for new user](#creating-a-profile-for-new-user): `create new user`
+    * [Creating a set of entries](#creating-a-set-of-entries): `createSet`
     * [Adding a target calorie](#adding-a-target-calorie): `target`
     * [Adding a food entry](#adding-a-food-entry): `add`
     * [Adding an exercise entry](#adding-an-exercise-entry): `add`
+    * [Adding a set of entries](#adding-a-set-of-entries): `addSet`
     * [Listing entries for the day](#listing-entries-for-the-day): `list`
     * [Editing user profile](#editing-user-profile): `edit`
     * [Editing an entry in list](#editing-an-entry-in-list): `editA`
@@ -92,7 +94,7 @@ The expected format of input values:
 The current activity list has been saved.
 ```
 
-### Adding a profile for new user
+### Creating a profile for new user
 Automatically checks for new user and prompt them to create a new user profile by asking a series of questions
 
 Example of usage:
@@ -114,6 +116,24 @@ How active are you on a scale of 1-5? With 1 being least active and 5 being most
 **4**
 Do you want to lose/maintain/gain weight?
 **gain**
+```
+
+### Creating a set of entries 
+Creates a shortcut for commonly called exercise and/or food entries
+
+Format: `createSet **SHORTCUT_NAME** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** && f/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+
+Parameters:
+* `**EXERCISE_DESCRIPTION**`: Description of exercise done
+* `**CALORIE_COUNT**`: Amount of calories lost
+* `**EXERCISE_DESCRIPTION**`: Description of exercise done
+* `**SHORTCUT_NAME**`: Name of shortcut/set
+
+Example of usage: 
+*  `createSet bfast f/ ice cream c/ 78 && e/ jumping jacks c/ 100`
+
+```javascript
+The current activity list has been saved.
 ```
 
 ### Adding a target calorie
@@ -165,6 +185,25 @@ Examples of usage:
 
 ```javascript
 [E] | jumping | 65
+The current activity list has been saved.
+```
+
+### Adding a set of entries
+Adds a set of repeated entries at once 
+
+Format: `addSet **SHORTCUT_NAME**`
+
+Parameters:
+* `**SHORTCUT_NAME**`: Name of shortcut 
+
+Example of usage: 
+* `addSet bfast`
+
+```javascript
+[F] | ice cream | 78
+The current activity list has been saved.
+
+[E] | jumping jacks | 100
 The current activity list has been saved.
 ```
 

@@ -1,7 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.command.AddExerciseCommand;
-import seedu.duke.command.AddNewRepeatedSet;
+import seedu.duke.command.CreateNewRepeatedSet;
 import seedu.duke.command.ByeCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.AddFoodCommand;
@@ -21,10 +21,14 @@ import seedu.duke.command.GraphCommand;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import java.time.format.DateTimeParseException;
 
@@ -67,16 +71,17 @@ public class Parser {
      */
 
     public Command parseCommand() {
-
         String[] arguments = userInput.split(" ", 2);
         try {
             switch (arguments[0].toLowerCase()) {
             case "create":
                 return new CreateNewUserCommand();
             case "createset":
-                return new AddNewRepeatedSet(arguments[1]);
+                return new CreateNewRepeatedSet(arguments[1]);
             case "add":
                 return prepareAddCommand(userInput);
+            case "addset":
+                return prepareAddSet(arguments[1]);
             case "find":
                 return prepareFindCommand(userInput);
             case "edit":
@@ -167,6 +172,30 @@ public class Parser {
             displayAddCommandErrorMessage();
         } catch (NumberFormatException e) {
             displayAddActivityNumberFormatExceptionMessage();
+        }
+        return null;
+    }
+
+    private Command prepareAddSet(String fileName) {
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = formatter.format(date);
+        try {
+            String initialPath = new File("").getAbsolutePath();
+            String filePath = initialPath + "/" + fileName + ".txt";
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            String line = reader.readLine();
+            while (line != null) {
+                Parser parser = new Parser("add " + line + " d/ " + strDate);
+                Command cmd = parser.parseCommand();
+                executeCmd(cmd);
+                storage.updateFile(calList);
+                line = reader.readLine();
+            }
+            reader.close();
+            return new Command();
+        } catch (IOException e) {
+            displayIoExceptionMessage();
         }
         return null;
     }
