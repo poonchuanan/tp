@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GraphProperty {
-    public final int row = 11;
+    public static final int ROW = 11;
     private static String DATE_FORMAT = "dd/MM";
     private static int TARGET_TYPE = 2;
     private static int LIMIT_TYPE = 4;
     private static int DIVISOR = 10;
     public int targetRow;
-    public final int column;
+    public int column;
     public final DayMap dayMap;
     ArrayList<LocalDate> keys;
     public int targetCalories;
@@ -30,8 +30,6 @@ public class GraphProperty {
     public GraphProperty(DayMap dayMap, int targetCalories) {
         this.dayMap = dayMap;
         this.targetCalories = targetCalories;
-        this.column = checkSize();
-        setProperties();
 
     }
 
@@ -47,6 +45,7 @@ public class GraphProperty {
      * set othere properties by calculation.
      */
     public void setProperties() {
+        this.column = checkSize();
         this.keys = sortKeys();
         ArrayList<Integer> calories = getCalories();
         this.table = initiateTable(calories);
@@ -149,7 +148,7 @@ public class GraphProperty {
     public void fillTable(int[][] table, ArrayList<Integer> calories) {
         this.targetRow = calculateRowNumber(targetCalories);
         int rowNumber;
-        for (int i = row - 1; i >= 0; i--) {
+        for (int i = ROW - 1; i >= 0; i--) {
             for (int j = 0; j < column; j++) {
                 rowNumber = calculateRowNumber(calories.get(j));
                 if (rowNumber == i) {
@@ -182,7 +181,7 @@ public class GraphProperty {
      * @return table
      */
     public int[][] initiateTable(ArrayList<Integer> calories) {
-        int [][]table = new int[row][column];
+        int [][]table = new int[ROW][column];
         setEmptyTable(table);
         fillTable(table, calories);
         return table;

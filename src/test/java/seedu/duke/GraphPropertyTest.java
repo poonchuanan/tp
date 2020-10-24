@@ -30,7 +30,7 @@ class GraphPropertyTest {
         }
     }
 
-    @Test
+/**    @Test
     public void plotgraph_success() {
         DayMap dummyMap = setDummyMap(10, 1800, date1, 4);
         GraphProperty hello = new GraphProperty(dummyMap, 2000);
@@ -57,5 +57,5 @@ class GraphPropertyTest {
         DayMap dummyMap = setDummyMap(5, 2200, date2, 3);
         GraphDrawing hello = new GraphDrawing(dummyMap, 2000);
         hello.drawGraph();
-    }
+    } **/
 }

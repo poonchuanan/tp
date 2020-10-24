@@ -12,6 +12,7 @@ public class Userinfo {
     protected static String age;
     protected static String activityfactor;
     protected static String weightGoal;
+    protected static double calories;
 
     public Userinfo() {
     }
@@ -55,6 +56,10 @@ public class Userinfo {
         return weightGoal;
     }
 
+    public static double getCalories() {
+        return calories;
+    }
+
     private static DecimalFormat df2 = new DecimalFormat("##.##");
 
 
@@ -90,7 +95,6 @@ public class Userinfo {
 
         System.out.println("Your BMI is " + df2.format(bmi));
 
-        double calories;
         if (this.getGender().equals("female")) {
             calories = ((10 * Double.parseDouble(this.getWeight()))
                     + (6.25 * Double.parseDouble(this.getHeight()))
@@ -108,11 +112,13 @@ public class Userinfo {
         System.out.println("Your recommend daily calories intake is " + calories + " calories.");
 
         if (this.getWeightGoal().equals("lose")) {
+            calories -= 500;
             System.out.println("To " + this.getWeightGoal() + " weight, you should consume "
-                    + (calories - 500) + " calories instead.\n");
+                    + calories + " calories instead.\n");
         } else if (this.getWeightGoal().equals("gain")) {
+            calories += 500;
             System.out.println("To " + this.getWeightGoal() + " weight, you should consume "
-                    + (calories + 500) + " calories instead.");
+                    + calories + " calories instead.");
         } else {
             System.out.println("\n");
         }
