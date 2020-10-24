@@ -3,21 +3,19 @@ package seedu.duke.command;
 import seedu.duke.Food;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-import static seedu.duke.Ui.displayHelpMessage;
-import static seedu.duke.Ui.displaySaveMessage;
 
 /**
- * Edit food.
+ * Edits food and its attributes at the indicated index.
  */
 public class EditFoodCommand extends Command {
     protected int index;
     protected Food food;
+    protected LocalDate date;
 
 
     /**
-     * Edit food and it's respective calories.
+     * Edits food and it's respective calories.
      *
      * @param description food description.
      * @param calories calories gained.
@@ -26,12 +24,10 @@ public class EditFoodCommand extends Command {
         this.index = index;
         this.food = new Food(description, calories, false);
         this.canBeChained = true;
-
     }
 
     @Override
     public void execute() {
-
         try {
             dayMap.insertActivity(index, food);
         } catch (IndexOutOfBoundsException e) {

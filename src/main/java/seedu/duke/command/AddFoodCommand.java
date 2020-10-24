@@ -13,7 +13,7 @@ public class AddFoodCommand extends Command {
     protected LocalDate date;
 
     /**
-     * Add food and it's respective calories.
+     * Adds food and it's respective calories.
      *
      * @param description food description.
      * @param calories calories gained.
@@ -25,7 +25,7 @@ public class AddFoodCommand extends Command {
     }
 
     /**
-     * Add food and it's respective calories.
+     * Adds food, it's respective calories and date.
      *
      * @param description food description.
      * @param calories calories gained.
