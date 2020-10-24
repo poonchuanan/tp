@@ -17,6 +17,10 @@ import static seedu.duke.Ui.displayWelcomeMessage;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayParserNullPointerExceptionMessage;
 
+/**
+ * Entry point of the traKCAL application.
+ * Initialises the application and starts the interaction with the user.
+ */
 public class Duke {
 
     public static DayMap calList = new DayMap();

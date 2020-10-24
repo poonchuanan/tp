@@ -106,9 +106,10 @@ public class ExceptionMessages {
         System.out.println("One of the following has been violated:");
         System.out.println("\t1. Description or calories input cannot be empty");
         System.out.println("\t2. Calories count input must be an integer > 0!");
-        System.out.println("\t3. Input format is:");
-        System.out.println("\t\tadd f/ X c/ Y");
-        System.out.println("\t\tadd e/ X c/ Y");
+        System.out.println("\t3. Wrong input format");
+        System.out.println("\t\tInput format is:");
+        System.out.println("\t\tadd f/ W c/ X d/ YYYY-MM-DD");
+        System.out.println("\t\tadd e/ W c/ X d/ YYYY-MM-DD");
         drawDivider();
     }
 
@@ -159,9 +160,21 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    /**
+     * Prints message when there is a presence of a duplicated naming for file.
+     */
     public static void displayExistingFileMessage() {
         drawDivider();
         System.out.println("Sorry! There is an existing set with this name, please use another name!");
+        drawDivider();
+    }
+
+    /**
+     * Prints message when there is a presence of a duplicated naming for file.
+     */
+    public static void displayNegativeCalorieInputExceptionMessage() {
+        drawDivider();
+        System.out.println("Calorie input must be an integer and positive!");
         drawDivider();
     }
 

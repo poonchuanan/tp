@@ -34,6 +34,12 @@ public class ActivityList extends Duke {
     }
 
 
+    /**
+     * Adds new activity to the list and updates the netCalorie accordingly to the activity type added.
+     *
+     * @param activity new activity that will be added to the current activity
+     * @throws IndexOutOfBoundsException if the calories is not within the limits
+     */
     public void addActivity(Activity activity) throws IndexOutOfBoundsException {
         activities.add(activity);
         activityCounter++;
@@ -50,7 +56,7 @@ public class ActivityList extends Duke {
      * This method replaces the current activity at index with a new activity.
      * To change the description of the current activity.
      *
-     * @param index is the index of the current activity to be replaced
+     * @param index    is the index of the current activity to be replaced
      * @param activity is the new activity that will be replacing the current activity
      */
     public void insertActivity(int index, Activity activity) throws IndexOutOfBoundsException {
@@ -69,7 +75,8 @@ public class ActivityList extends Duke {
 
     /**
      * This method moves a activity from a given index and to a place below a given index.
-     * @param indexToBeMovedFrom this is the index at which the activity will be moved from
+     *
+     * @param indexToBeMovedFrom     this is the index at which the activity will be moved from
      * @param indexToBeInsertedBelow this is the index at which the activity will be moved to below
      * @throws IndexOutOfBoundsException if the index is not within the limits
      */
@@ -146,7 +153,7 @@ public class ActivityList extends Duke {
     }
 
     /**
-     * Clears the list of activites.
+     * Clears the list of activities.
      */
     public void clearList() {
         activities.clear();
@@ -157,6 +164,7 @@ public class ActivityList extends Duke {
     /**
      * Sets the activities as a string.
      * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60
+     *
      * @return activities as a string
      */
     @Override
