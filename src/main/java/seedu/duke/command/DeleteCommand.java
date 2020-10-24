@@ -46,6 +46,7 @@ public class DeleteCommand extends Command {
 
         if (index == -1) {
             dayMap.getLastSeenList().clearList();
+            dayMap.getHashMap().remove(this.date);
             return;
         } else {
             try {
