@@ -22,7 +22,8 @@ public class ActivityEditTest {
         Activity activity = new Exercise("jumping",900, false);
         dummyList.insertActivity(0, activity);
 
-        assertEquals("[E] | jumping | 900, [F] | Banana | 100, [F] | Apple pie | 55, [E] | Juggle Apples | 100", dummyList.toString());
+        assertEquals("[E] | jumping | 900, [F] | Banana | 100, [F] | Apple pie | 55, "
+                + "[E] | Juggle Apples | 100", dummyList.toString());
     }
 
     @Test
@@ -33,7 +34,8 @@ public class ActivityEditTest {
         Activity activity = new Food("Pineapple",77, false);
         dummyList.insertActivity(3, activity);
 
-        assertEquals("[F] | Apple | 50, [F] | Banana | 100, [F] | Apple pie | 55, [F] | Pineapple | 77", dummyList.toString());
+        assertEquals("[F] | Apple | 50, [F] | Banana | 100, [F] | Apple pie | 55, "
+                + "[F] | Pineapple | 77", dummyList.toString());
     }
 
     @Test
@@ -44,7 +46,8 @@ public class ActivityEditTest {
         Activity activity = new Exercise("jumping",900, false);
         dummyList.insertActivity(3, activity);
 
-        assertEquals("[F] | Apple | 50, [F] | Banana | 100, [F] | Apple pie | 55, [E] | jumping | 900", dummyList.toString());
+        assertEquals("[F] | Apple | 50, [F] | Banana | 100, [F] | Apple pie | 55, "
+                + "[E] | jumping | 900", dummyList.toString());
     }
 
     @Test
@@ -55,6 +58,7 @@ public class ActivityEditTest {
         Activity activity = new Food("Pineapple",77, false);
         dummyList.insertActivity(2, activity);
 
-        assertEquals("[F] | Apple | 50, [F] | Banana | 100, [F] | Pineapple | 77, [E] | Juggle Apples | 100", dummyList.toString());
+        assertEquals("[F] | Apple | 50, [F] | Banana | 100, [F] | Pineapple | 77, "
+                + "[E] | Juggle Apples | 100", dummyList.toString());
     }
 }
