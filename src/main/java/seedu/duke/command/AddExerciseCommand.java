@@ -42,6 +42,4 @@ public class AddExerciseCommand extends Command {
     public void execute() {
         dayMap.addActivity(date.atStartOfDay(), exercise);
     }
-
-
 }

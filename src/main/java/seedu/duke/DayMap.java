@@ -56,10 +56,7 @@ public class DayMap {
 
 
     public void insertActivity(int index, Activity activity) {
-
         lastSeenList.insertActivity(index, activity);
-
-
     }
 
     public ArrayList getArrayList(LocalDateTime dateTime) {

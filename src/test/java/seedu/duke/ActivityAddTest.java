@@ -9,13 +9,13 @@ public class ActivityAddTest {
     void addActivityFood_success() {
         Food food = new Food("Apple", 50, false);
         String output = food.toString();
-        assertEquals(output, "[F] | Apple | 50");
+        assertEquals("[F] | Apple | 50", output);
     }
 
     @Test
     void addActivityExercise_success() {
         Exercise exercise = new Exercise("Running", 450, false);
         String output = exercise.toString();
-        assertEquals(output, "[E] | Running | 450");
+        assertEquals("[E] | Running | 450", output);
     }
 }

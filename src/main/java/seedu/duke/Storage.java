@@ -79,7 +79,7 @@ public class Storage {
             String activities = pair.getValue().toString();
             appendToFile(pair.getKey().toString() + ", " + activities);
         }
-        displaySaveMessage();
+        //displaySaveMessage();
     }
 
     /**

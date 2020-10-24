@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
+import static seedu.duke.Ui.displayNotSavedMessage;
+import static seedu.duke.Ui.displaySaveMessage;
 
 
 /**
@@ -68,6 +70,7 @@ public class ActivityList extends Duke {
             } else if (activity instanceof Exercise) {
                 netCalorie -= activity.calories;
             }
+            displaySaveMessage();
         } else {
             throw new IndexOutOfBoundsException();
         }

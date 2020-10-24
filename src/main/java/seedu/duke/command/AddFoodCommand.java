@@ -42,6 +42,4 @@ public class AddFoodCommand extends Command {
     public void execute() {
         dayMap.addActivity(date.atStartOfDay(), food);
     }
-
-
 }
