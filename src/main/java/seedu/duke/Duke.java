@@ -27,11 +27,7 @@ public class Duke {
 
     public static void main(String[] args) {
         displayWelcomeMessage();
-        try {
             storage.loadData(calList);
-        } catch (StringIndexOutOfBoundsException stringIndexOutOfBoundsException) {
-            displayIoExceptionMessage();
-        }
         if (CheckNewUser.isNewUser()) {
             Initialiseuser.createNewProfile();
         } else {
