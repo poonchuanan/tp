@@ -29,8 +29,15 @@ public class ActivityEditTest {
     }
 
     @Test
-    void editActivityFoodToExercise2_success() {
-        EditFoodCommand food = new EditFoodCommand(0, "jumping", 900);
+    void editActivityFoodToExercise2_success() throws NullPointerException {
+        ActivityList dummyList = new ActivityList();
+        createObjects(dummyList);
+        try {
+            EditFoodCommand food = new EditFoodCommand(0, "jumping", 900);
+            food.execute();
+        } catch (NullPointerException e) {
+            System.out.println("null!");
+        }
     }
 
     @Test
@@ -47,7 +54,15 @@ public class ActivityEditTest {
 
     @Test
     void editActivityExerciseToFood2_success() {
-        EditExerciseCommand exercise = new EditExerciseCommand(3, "Pineapple", 77);
+        ActivityList dummyList = new ActivityList();
+        createObjects(dummyList);
+
+        try {
+            EditExerciseCommand exercise = new EditExerciseCommand(3, "Pineapple", 77);
+            exercise.execute();
+        } catch (NullPointerException e) {
+            System.out.println("null!");
+        }
     }
 
     @Test
@@ -62,10 +77,15 @@ public class ActivityEditTest {
                 + "[E] | jumping | 900", dummyList.toString());
     }
 
+    /*
     @Test
     void editActivityExerciseToExercise2_success() {
+        ActivityList dummyList = new ActivityList();
+        createObjects(dummyList);
+
         EditExerciseCommand exercise = new EditExerciseCommand(3, "jumping", 900);
-    }
+        exercise.execute();
+    }*/
 
     @Test
     void editActivityFoodToFood_success() {
@@ -79,8 +99,13 @@ public class ActivityEditTest {
                 + "[E] | Juggle Apples | 100", dummyList.toString());
     }
 
+    /*
     @Test
     void editActivityFoodToFood2_success() {
+        ActivityList dummyList = new ActivityList();
+        createObjects(dummyList);
+
         EditFoodCommand food = new EditFoodCommand(2, "jumping", 900);
-    }
+        food.execute();
+    }*/
 }
