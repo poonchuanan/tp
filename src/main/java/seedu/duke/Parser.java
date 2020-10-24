@@ -194,7 +194,7 @@ public class Parser {
     }
 
     /**
-     * Prepares file to be read from and added into the current list
+     * Prepares file to be read from and added into the current list.
      *
      * @param fileName file to be read from
      * @return Command
