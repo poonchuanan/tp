@@ -68,7 +68,7 @@ public class Duke {
         }
     }
 
-    public static void executeCmd(Command cmd) {
+    public static void executeCmd(Command cmd) throws NullPointerException {
         cmd.setData(calList);
         cmd.execute();
     }

@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.DayMap;
 import seedu.duke.Duke;
 import seedu.duke.GraphDrawing;
 import seedu.duke.GraphProperty;
@@ -11,11 +12,16 @@ public class GraphCommand extends Command {
     }
 
     @Override
-    public void execute() {
-        //TODO Catch exception here for dayMap
+    public void execute() throws NullPointerException {
+        if (isMapValid(dayMap)) {
+            throw new NullPointerException();
+        }
         GraphProperty graphProperties = new GraphProperty(dayMap, (int) Duke.profile.getCalories());
         graphProperties.setProperties();
         System.out.println(new GraphDrawing(graphProperties).drawGraph());
     }
 
+    boolean isMapValid(DayMap dayMap) {
+        return dayMap != null;
+    }
 }
