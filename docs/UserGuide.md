@@ -8,7 +8,6 @@ If you can type fast, traKCAL is suited just for you.
 ## Table of Contents
 * [Quick Start](#quick-start)
 * [Features](#features)
-    * [Setting up program in Intellij](#setting-up-program-in-intellij)
     * [Viewing help](#viewing-help): `help`
     * [Creating a profile for new user](#creating-a-profile-for-new-user): `create new user`
     * [Creating a set of entries](#creating-a-set-of-entries): `createSet`
@@ -58,8 +57,6 @@ Hello! I'm traKCAL.
 >* Input format should strictly adhere to the one in the help list or in this user guide.
 >* Input commands such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended to follow format stated in help list or this user guide.
 
-### Setting up program in Intellij
-
 ### Viewing help
 Prints out the commands available, and their respective input format.
 
@@ -95,7 +92,9 @@ The current activity list has been saved.
 ```
 
 ### Creating a profile for new user
-Automatically checks for new user and prompt them to create a new user profile by asking a series of questions
+tracKCAL will check for first time user automatically. But if the user wants to create a totally new profile, this command allows user to add one
+
+Format: `create new user`
 
 Example of usage:
 
@@ -220,7 +219,6 @@ Examples of usage:
 * `list`
 * `list 2020-11-06`
 
-
 ### Move an activity to another position
 Moves an activity to another position in the current list
 
@@ -233,7 +231,6 @@ Parameters:
 Examples of usage: 
 * `move from/ 5 below/ 2`
 * `list 2020-11-06`
-
 
 ### Editing user profile
 Edits user profile of an existing user
@@ -337,7 +334,6 @@ Example of usage:
  The current activity list has been saved.
  ```
 
-
 ### Deleting entry in list
 Deletes an entry via index in list.
 
@@ -368,8 +364,6 @@ The current activity list has been saved.
 The current activity list has been saved.
 ```
 
-
-
 ### Deleting all entries in list
 Deletes all entry in list.
 
@@ -392,6 +386,7 @@ The current activity list has been saved.
 Nothing was added!
 The current activity list has been saved.
 ```
+
 ### Exiting the program
 Saves the current list to file and exits program.
 
@@ -428,7 +423,3 @@ Delete entry | `delete INDEX` | `delete 2`
 Delete all | `delete /all` | `delete /all`
 Help | `help` | `help`
 Exit | `bye` | `bye`
-
-
-
-### --- END OF USER GUIDE ---
