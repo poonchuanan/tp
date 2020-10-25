@@ -5,15 +5,25 @@ package seedu.duke;
  */
 public class Ui {
     /**
+     * Prints out welcome message to user when program is run.
+     */
+    public static void displayWelcomeMessage() {
+        displayDuke();
+        helloMessage();
+        promptUserOfHelpMessage();
+    }
+
+    /**
      * Prints out traKCAL logo.
      */
     public static void displayDuke() {
         drawDivider();
-        String logo = "  _                  _  __   ___     _     _\n"
-                + " | |_   _ _   __ _  | |/ /  / __|   /_\\   | |\n"
-                + " |  _| | '_| / _` | | ' <  | (__   / _ \\  | |__\n"
-                + "  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|\n";
-        System.out.println("Hello from\n" + logo);
+        String logo = "|  _                  _  __   ___     _     _                                           |\n"
+                + "| | |_   _ _   __ _  | |/ /  / __|   /_\\   | |                                          |\n"
+                + "| |  _| | '_| / _` | | ' <  | (__   / _ \\  | |__                                        |\n"
+                + "|  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|                                       |\n"
+                + "|                                                                                       |";
+        System.out.println("| Hello from                                                                            |\n" + logo);
     }
 
     /**
@@ -28,7 +38,7 @@ public class Ui {
      * Prints out hello message.
      */
     public static void helloMessage() {
-        System.out.println("Hello! I'm traKCAL.");
+        System.out.println("| Hello! I'm traKCAL.                                                                   |");
         drawDivider();
     }
 
@@ -59,15 +69,6 @@ public class Ui {
                 + "\tbye                     - Terminates the program";
         System.out.println(helpList);
         drawDivider();
-    }
-
-    /**
-     * Prints out welcome message to user when program is run.
-     */
-    public static void displayWelcomeMessage() {
-        displayDuke();
-        helloMessage();
-        promptUserOfHelpMessage();
     }
 
     /**

@@ -1,27 +1,31 @@
 # User Guide for traKCAL
+By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 ## Introduction
 
-**traKCAL** is an application for managing calories intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
-If you can type fast, traKCAL is suited just for you.
+**traKCAL** is a desktop application for managing calories' intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
+If you type fast, traKCAL can manage your activities faster than traditional GUI applications, and is perfect for you.
+
+The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
+
+**traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
 
 ## Table of Contents
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [Viewing help](#viewing-help): `help`
-    * [Adding a profile for new user](#adding-a-profile-for-new-user): `create new user`
-    * [Editing user profile](#editing-user-profile): `edit`
     * [Creating a profile for new user](#creating-a-profile-for-new-user): `create new user`
     * [Creating a set of entries](#creating-a-set-of-entries): `createSet`
     * [Adding a target calorie](#adding-a-target-calorie): `target`
+    * [Editing user profile](#editing-user-profile): `edit`
     * [Adding a food entry](#adding-a-food-entry): `add`
     * [Adding an exercise entry](#adding-an-exercise-entry): `add`
     * [Adding a set of entries](#adding-a-set-of-entries): `addSet`
     * [Listing entries for the day](#listing-entries-for-the-day): `list`
-    * [Moving an entry to another position](#moving): `move`
-    * [Editing an entry in list](#editing-an-entry-in-list): `editA`
+    * [Moving an entry to another position](#moving-an-activity-to-another-position): `move`
+    * [Editing an entry in list](#editing-an-entry-in-list): `edita`
     * [Finding entries via keyword](#finding-entries-via-keyword): `find`
-    * [Deleting entry in list](#deleting-entry-in-list): `delete`
+    * [Deleting an entry in list](#deleting-an-entry-in-list): `delete`
     * [Deleting all entries in list](#deleting-all-entries-in-list): `deleteALL`
     * [Exiting the program](#exiting-the-program): `bye`
 * [Frequently asked questions](#frequently-asked-questions)
@@ -37,8 +41,8 @@ If you can type fast, traKCAL is suited just for you.
 4. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar tp.jar`
 5. Upon successful run, the following greeting message will be shown
 
-```javascript
-==============================================================
+```
+=========================================================================================
 Hello from
   _                  _  __   ___     _     _
  | |_   _ _   __ _  | |/ /  / __|   /_\   | |
@@ -46,14 +50,15 @@ Hello from
   \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|
 
 Hello! I'm traKCAL.
-==============================================================
+=========================================================================================
+Please do input 'help' for the commands and their respective input format.
 ```
 6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window<br/>
    Some example commands you can try:
     * `list`: Lists all activities for today
-    * `add` f/ rice with eggs c/ 200: Adds a food entry named `rice with eggs` to traKCAL.
+    * `add f/ rice with eggs c/ 200`: Adds a food entry named `rice with eggs` to traKCAL.
     * `delete 3`: Deletes the 3rd contact shown in the current list.
-    * `bye`: Exits the app.
+    * `bye`: Exits the application.
 7. Refer to the [Features](#features) below for details of each command
 
 ## Features 
@@ -262,7 +267,7 @@ Examples of usage:
 * `list`
 * `list 2020-11-06`
 
-### Move an activity to another position
+### Moving an activity to another position
 Moves an activity to another position in the last shown list
 
 Format: `move from/ **INDEX1** below/ **INDEX2**`
@@ -291,27 +296,6 @@ Examples of usage:
 2. [F] | tea break | 200
 3. [F] | second breakfast | 100
 ```
-
-### Editing user profile
-Edits user profile of an existing user
-
-Format: `edit n/**NAME** g/**GENDER** w/**WEIGHT** h/**HEIGHT** a/**AGE** af/**ACTIVITY_FACTOR** goal/**WEIGHT_GOALS**`
-
-Parameters: 
-* `**NAME**`: Name of user
-* `**GENDER**`: Gender of user
-* `**WEIGHT_KG**`: Weight of user in kg
-* `**HEIGHT_CM**`: Height of user in cm
-* `**AGE**`: Age of user 
-* `**ACTIVITY_FACTOR**`: How active user is, with 1 being most active and 5 being least active
-* `**WEIGHT_GOALS**`: whether user wants to lose/maintain/gain weight 
-
-Example of usage: 
-* `edit n/Sam g/female w/50 h/100 a/10 af/4 goal/gain`
-
-
-
-
 
 ### Editing an entry in list
 Edits activity, food or exercise at the stated index in the list.  
@@ -391,7 +375,7 @@ Example of usage:
  The current activity list has been saved.
  ```
 
-### Deleting entry in list
+### Deleting an entry in list
 Deletes an entry via index in the last shown list.
 
 Format: `delete **INDEX**`
