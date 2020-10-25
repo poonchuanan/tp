@@ -86,7 +86,7 @@ public class Initialiseuser {
         Userinfo profile =  new Userinfo(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
         profile.calculateNewUserDetails();
         try {
-            Initialiseuser.saveExistingUserInfo(userInfo);
+            Initialiseuser.saveExistingUserInfo(profile);
         } catch (IOException e) {
             displayIoExceptionMessage();
         }

@@ -27,7 +27,7 @@ public class GraphDrawing {
         this.targetRow = graphProperty.targetRow;
         this.maxCalories = graphProperty.maxCalories;
         this.minCalories = graphProperty.minCalories;
-        this.targetCalories = graphProperty.maxCalories;
+        this.targetCalories = graphProperty.targetCalories;
     }
 
     /**

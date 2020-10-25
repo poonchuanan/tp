@@ -201,7 +201,7 @@ public class GraphProperty {
      */
     public int calculateRowNumber(int calories) {
         int interval = calculateInterval();
-        return (maxCalories - minCalories) / interval;
+        return (calories - minCalories) / interval;
     }
 
 }
