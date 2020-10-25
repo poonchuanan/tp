@@ -107,9 +107,9 @@ public class GraphProperty {
 
     public void checkBoundaries(int minCalories, int maxCalories) {
         assert maxCalories != 0;
-        if (minCalories == maxCalories) {
-            minCalories = 0;
-            maxCalories += maxCalories;
+        if (maxCalories - minCalories < DIVISOR) {
+            minCalories -= DIVISOR/2;
+            maxCalories += DIVISOR/2;
         }
         this.minCalories = minCalories;
         this.maxCalories = maxCalories;
@@ -215,6 +215,7 @@ public class GraphProperty {
     public int calculateRowNumber(int calories) {
         assert calories >= minCalories;
         int interval = calculateInterval();
+        assert interval != 0;
         return (calories - minCalories) / interval;
     }
 

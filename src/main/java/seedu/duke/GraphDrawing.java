@@ -37,6 +37,7 @@ public class GraphDrawing {
      * @return concatenated string
      */
     public String repeatCharacter(String character, int size) {
+        assert size >= 0;
         String characterText = "";
         for (int i = 0; i < size; i++) {
             characterText += character;
@@ -63,6 +64,8 @@ public class GraphDrawing {
      * @return date labels
      */
     public String generateDateLabels(int maxCalorieSize,  ArrayList<LocalDate> keys) {
+        assert keys != null;
+        assert maxCalorieSize >= 1;
         return repeatCharacter(" ", maxCalorieSize - 1) + " " + graphProperty.parseDate(keys);
     }
 
@@ -123,9 +126,11 @@ public class GraphDrawing {
     /**
      * draws the graph.
      */
-    public void drawGraph() {
+    public String drawGraph() {
         int[][] table = graphProperty.table;
+        assert table != null;
         ArrayList<LocalDate> keys = graphProperty.keys;
+        assert keys != null;
         int maxCalorieSize = Integer.toString(maxCalories).length();
         String space = repeatCharacter(" ", maxCalorieSize);
         int column = graphProperty.column;
@@ -162,7 +167,7 @@ public class GraphDrawing {
 
         drawing += generate_x_axis(maxCalorieSize, column);
         drawing += generateDateLabels(maxCalorieSize, keys);
-        System.out.println(drawing);
+        return drawing;
     }
 
 }
