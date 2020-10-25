@@ -267,7 +267,10 @@ To gain weight, you should consume 2076.65 calories instead.
 
 ### Editing an entry in list
 Edits activity, food or exercise at the stated index in the list.  
-> In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
+>Things to take note of:
+>* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
+>* The list in which you want to edit to have to be pulled out first before being able to edit on it.
+>* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
 
 Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**` OR `edita **LIST_INDEX** f/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**`
 

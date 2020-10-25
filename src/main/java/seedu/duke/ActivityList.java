@@ -52,7 +52,7 @@ public class ActivityList extends Duke {
         } else {
             throw new IndexOutOfBoundsException();
         }
-        displaySavedMessage();
+        //displaySavedMessage();
     }
 
     /**
@@ -71,7 +71,7 @@ public class ActivityList extends Duke {
             } else if (activity instanceof Exercise) {
                 netCalorie -= activity.calories;
             }
-            displaySavedMessage();
+            //displaySavedMessage();
         } else {
             throw new IndexOutOfBoundsException();
         }
@@ -90,7 +90,7 @@ public class ActivityList extends Duke {
             Activity activity = getActivity(indexToBeMovedFrom);
             activities.remove(indexToBeMovedFrom);
             activities.add(indexToBeInsertedBelow, activity);
-            displaySavedMessage();
+            //displaySavedMessage();
         } else {
             throw new IndexOutOfBoundsException();
         }

@@ -39,6 +39,7 @@ import static seedu.duke.ExceptionMessages.displayAddActivityNumberFormatExcepti
 import static seedu.duke.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayEditActivityExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayEmptyEditActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
@@ -184,11 +185,11 @@ public class Parser {
                 displayEmptyEditActivityErrorMessage();
             }
         } catch (NullPointerException e) {
-            displayAddCommandErrorMessage();
+            displayEditActivityExceptionMessage();
         } catch (NumberFormatException e) {
-            displayAddActivityNumberFormatExceptionMessage();
+            displayEditActivityExceptionMessage();
         } catch (Exception e) {
-            displayNegativeCalorieInputExceptionMessage();
+            displayEditActivityExceptionMessage();
         }
         return null;
     }
@@ -268,7 +269,7 @@ public class Parser {
         } catch (DateTimeParseException e) {
             displayIncorrectDateTimeFormatEnteredMessage();
         } catch (Exception e) {
-            displayNegativeCalorieInputExceptionMessage();
+            displayAddActivityNumberFormatExceptionMessage();
         }
         return null;
     }

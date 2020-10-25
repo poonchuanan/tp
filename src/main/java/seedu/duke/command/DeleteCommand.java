@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import static seedu.duke.Ui.displaySavedMessage;
+
 /**
  * Initialises Command to delete activities.
  */
@@ -55,6 +57,6 @@ public class DeleteCommand extends Command {
                 System.out.println("Invalid index!");
             }
         }
-
+        displaySavedMessage();
     }
 }

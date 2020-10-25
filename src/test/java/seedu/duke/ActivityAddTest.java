@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.AddExerciseCommand;
 import seedu.duke.command.AddFoodCommand;
@@ -14,7 +15,6 @@ public class ActivityAddTest {
         dummyList.addActivity(new Exercise("Juggle Apples", 100, false));
     }
 
-
     @Test
     void addActivityFood_success() {
         Food food = new Food("Apple", 50, false);
@@ -22,15 +22,17 @@ public class ActivityAddTest {
         assertEquals("[F] | Apple | 50", output);
     }
 
-    /*
     @Test
     void addActivityFood2_success() {
         ActivityList dummyList = new ActivityList();
         createObjects(dummyList);
 
         AddFoodCommand food = new AddFoodCommand("Apple", 50, false);
-        food.execute();
-    }*/
+
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            food.execute();
+        });
+    }
 
     @Test
     void addActivityExercise_success() {
@@ -39,13 +41,15 @@ public class ActivityAddTest {
         assertEquals("[E] | Running | 450", output);
     }
 
-    /*
     @Test
     void addActivityExercise2_success() {
         ActivityList dummyList = new ActivityList();
         createObjects(dummyList);
 
         AddExerciseCommand exercise = new AddExerciseCommand("Running", 450, false);
-        exercise.execute();
-    }*/
+
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            exercise.execute();
+        });
+    }
 }
