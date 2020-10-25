@@ -8,13 +8,18 @@ If you can type fast, traKCAL is suited just for you.
 ## Table of Contents
 * [Quick Start](#quick-start)
 * [Features](#features)
-    * [Setting up program in Intellij](#setting-up-program-in-intellij)
     * [Viewing help](#viewing-help): `help`
+<<<<<<< HEAD
     * [Adding a profile for new user](#adding-a-profile-for-new-user): `create new user`
     * [Editing user profile](#editing-user-profile): `edit`
+=======
+    * [Creating a profile for new user](#creating-a-profile-for-new-user): `create new user`
+    * [Creating a set of entries](#creating-a-set-of-entries): `createSet`
+>>>>>>> 85987052c34f3688af467a99ce32fc9e4023f6b0
     * [Adding a target calorie](#adding-a-target-calorie): `target`
     * [Adding a food entry](#adding-a-food-entry): `add`
     * [Adding an exercise entry](#adding-an-exercise-entry): `add`
+    * [Adding a set of entries](#adding-a-set-of-entries): `addSet`
     * [Listing entries for the day](#listing-entries-for-the-day): `list`
     * [Moving an entry to another position](#moving): `move`
     * [Editing an entry in list](#editing-an-entry-in-list): `editA`
@@ -64,8 +69,6 @@ Hello! I'm traKCAL.
 >* Input format should strictly adhere to the one in the help list or in this user guide.
 >* Input commands such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended to follow format stated in help list or this user guide.
 
-### Setting up program in Intellij
-
 ### Viewing help
 Prints out the commands available, and their respective input format.
 
@@ -101,8 +104,10 @@ The expected format of input values:
 The current activity list has been saved.
 ```
 
-### Adding a profile for new user
-Automatically checks for new user and prompt them to create a new user profile by asking a series of questions
+### Creating a profile for new user
+tracKCAL will check for first time user automatically. But if the user wants to create a totally new profile, this command allows user to add one
+
+Format: `create new user`
 
 Example of usage:
 
@@ -123,6 +128,24 @@ How active are you on a scale of 1-5? With 1 being least active and 5 being most
 **4**
 Do you want to lose/maintain/gain weight?
 **gain**
+```
+
+### Creating a set of entries 
+Creates a shortcut for commonly called exercise and/or food entries
+
+Format: `createSet **SHORTCUT_NAME** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** && f/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+
+Parameters:
+* `**EXERCISE_DESCRIPTION**`: Description of exercise done
+* `**CALORIE_COUNT**`: Amount of calories lost
+* `**EXERCISE_DESCRIPTION**`: Description of exercise done
+* `**SHORTCUT_NAME**`: Name of shortcut/set
+
+Example of usage: 
+*  `createSet bfast f/ ice cream c/ 78 && e/ jumping jacks c/ 100`
+
+```javascript
+The current activity list has been saved.
 ```
 
 ### Adding a target calorie
@@ -210,6 +233,25 @@ Examples of usage:
 The current activity list has been saved.
 ```
 
+### Adding a set of entries
+Adds a set of repeated entries at once 
+
+Format: `addSet **SHORTCUT_NAME**`
+
+Parameters:
+* `**SHORTCUT_NAME**`: Name of shortcut 
+
+Example of usage: 
+* `addSet bfast`
+
+```javascript
+[F] | ice cream | 78
+The current activity list has been saved.
+
+[E] | jumping jacks | 100
+The current activity list has been saved.
+```
+
 ### Listing entries for the specified day
 Displays the list of activities for the given day
 
@@ -223,7 +265,6 @@ Examples of usage:
 * `list`
 * `list 2020-11-06`
 
-
 ### Move an activity to another position
 Moves an activity to another position in the last shown list
 
@@ -233,9 +274,13 @@ Parameters:
 * `**INDEX1**`: The index of the activity to be moved from.
 * `**INDEX2**`: The index of the activity to be inserted below.
 
+
 Example of usage:
 * After a `list 2020-10-11` command, <\br>
  `move from/ 3 below/ 1` moves the 3rd entry in the list for below the 1st entry as shown below.
+
+Examples of usage: 
+* `move from/ 5 below/ 2`
 
 *`list 2020-10-11` before moving
 ```javascript
@@ -250,11 +295,34 @@ Example of usage:
 3. [F] | second breakfast | 100
 ```
 
+### Editing user profile
+Edits user profile of an existing user
+
+Format: `edit n/**NAME** g/**GENDER** w/**WEIGHT** h/**HEIGHT** a/**AGE** af/**ACTIVITY_FACTOR** goal/**WEIGHT_GOALS**`
+
+Parameters: 
+* `**NAME**`: Name of user
+* `**GENDER**`: Gender of user
+* `**WEIGHT_KG**`: Weight of user in kg
+* `**HEIGHT_CM**`: Height of user in cm
+* `**AGE**`: Age of user 
+* `**ACTIVITY_FACTOR**`: How active user is, with 1 being most active and 5 being least active
+* `**WEIGHT_GOALS**`: whether user wants to lose/maintain/gain weight 
+
+Example of usage: 
+* `edit n/Sam g/female w/50 h/100 a/10 af/4 goal/gain`
+
+
+
 
 
 ### Editing an entry in list
-Edits activity, food or exercise at the stated index in the last shown list.  
-> In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
+Edits activity, food or exercise at the stated index in the list.  
+>Things to take note of:
+>* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
+>* The list in which you want to edit to have to be pulled out first before being able to edit on it.
+>* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
+
 
 Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**` OR `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
 
@@ -326,7 +394,6 @@ Example of usage:
  The current activity list has been saved.
  ```
 
-
 ### Deleting entry in list
 Deletes an entry via index in the last shown list.
 
@@ -357,8 +424,6 @@ The current activity list has been saved.
 The current activity list has been saved.
 ```
 
-
-
 ### Deleting all entries in list
 Deletes all entry in list.
 
@@ -381,6 +446,7 @@ The current activity list has been saved.
 Nothing was added!
 The current activity list has been saved.
 ```
+
 ### Exiting the program
 Saves the current list to file and exits program.
 
@@ -417,7 +483,3 @@ Delete entry | `delete INDEX` | `delete 2`
 Delete all | `delete /all` | `delete /all`
 Help | `help` | `help`
 Exit | `bye` | `bye`
-
-
-
-### --- END OF USER GUIDE ---

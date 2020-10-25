@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import static seedu.duke.Ui.displaySavedMessage;
+
 /**
  * Initialises Command to delete activities.
  */
@@ -18,7 +20,7 @@ public class DeleteCommand extends Command {
 
 
     /**
-     * Delete Command Constructor.
+     * Deletes Command Constructor.
      * @param index index of the activities.
      */
     public DeleteCommand(int index) {
@@ -29,7 +31,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Delete Command Constructor.
+     * Deletes Command Constructor.
      */
     public DeleteCommand() {
         this.date = LocalDateTime.now().toLocalDate();
@@ -46,6 +48,7 @@ public class DeleteCommand extends Command {
 
         if (index == -1) {
             dayMap.getLastSeenList().clearList();
+            dayMap.getHashMap().remove(this.date);
             return;
         } else {
             try {
@@ -54,6 +57,6 @@ public class DeleteCommand extends Command {
                 System.out.println("Invalid index!");
             }
         }
-
+        displaySavedMessage();
     }
 }

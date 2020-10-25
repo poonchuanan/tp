@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static seedu.duke.Ui.displayNotSavedMessage;
-import static seedu.duke.Ui.displaySaveMessage;
+import static seedu.duke.Ui.displaySavedMessage;
 
 public class Storage {
     String filePath;
@@ -51,6 +51,7 @@ public class Storage {
             pw.flush();
             pw.close();
             //System.out.println("record saved");
+            //displaySavedMessage();
         } catch (Exception e) {
             //System.out.println("record not saved");
             displayNotSavedMessage();
@@ -79,7 +80,7 @@ public class Storage {
             String activities = pair.getValue().toString();
             appendToFile(pair.getKey().toString() + ", " + activities);
         }
-        displaySaveMessage();
+        //displaySaveMessage();
     }
 
     /**

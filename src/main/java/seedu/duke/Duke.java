@@ -13,10 +13,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static seedu.duke.Ui.displayNotSavedMessage;
 import static seedu.duke.Ui.displayWelcomeMessage;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayParserNullPointerExceptionMessage;
 
+/**
+ * Entry point of the traKCAL application.
+ * Initialises the application and starts the interaction with the user.
+ */
 public class Duke {
 
     public static DayMap calList = new DayMap();
@@ -27,7 +32,12 @@ public class Duke {
 
     public static void main(String[] args) {
         displayWelcomeMessage();
-        storage.loadData(calList);
+        System.out.println();
+        try {
+            storage.loadData(calList);
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("here");
+        }
         if (CheckNewUser.isNewUser()) {
             Initialiseuser.createNewProfile();
         } else {
@@ -42,15 +52,18 @@ public class Duke {
             Parser parser = new Parser(userInput);
             try {
                 Command cmd;
-                if (userInput.contains("&&")) {
+                if (userInput.contains("&&") && userInput.charAt(userInput.indexOf("&&") + 4) != '/') {
                     parser.prepareChaining(userInput);
                 } else {
                     cmd = parser.parseCommand();
                     executeCmd(cmd);
                     storage.updateFile(calList);
                 }
+                System.out.println();
             } catch (NullPointerException e) {
                 displayParserNullPointerExceptionMessage();
+            } catch (IndexOutOfBoundsException e) {
+                displayNotSavedMessage();
             }
         }
     }

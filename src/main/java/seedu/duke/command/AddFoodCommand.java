@@ -5,6 +5,8 @@ import seedu.duke.Food;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import static seedu.duke.Ui.displaySavedMessage;
+
 /**
  * Add food.
  */
@@ -13,7 +15,7 @@ public class AddFoodCommand extends Command {
     protected LocalDate date;
 
     /**
-     * Add food and it's respective calories.
+     * Adds food and it's respective calories.
      *
      * @param description food description.
      * @param calories calories gained.
@@ -25,7 +27,7 @@ public class AddFoodCommand extends Command {
     }
 
     /**
-     * Add food and it's respective calories.
+     * Adds food, it's respective calories and date.
      *
      * @param description food description.
      * @param calories calories gained.
@@ -41,7 +43,6 @@ public class AddFoodCommand extends Command {
     @Override
     public void execute() {
         dayMap.addActivity(date.atStartOfDay(), food);
+        displaySavedMessage();
     }
-
-
 }

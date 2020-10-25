@@ -57,7 +57,7 @@ public class UserSetStorage {
             bw.close();
 
         } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println("Error\n");
+            System.out.println("There is no such set! Please create a new one first.\n");
         } catch (IOException e) {
             displayExistingFileMessage();
         }
