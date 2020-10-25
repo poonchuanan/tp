@@ -80,7 +80,10 @@ This section gives a detailed description of each feature available in **trakCAL
 >* Input commands such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is RECOMMENDED to follow format stated in help list or this user guide.
 
 
-### Viewing help
+
+
+
+## Viewing help
 
 Prints out the commands available, and their respective input format.
 
@@ -118,7 +121,7 @@ The expected format of input values:
 ```
 
 
-### Creating a profile for new user
+## Creating a profile for new user
 
 **traKCAL** will check for first time user automatically. 
 >However, if you want to create a totally new profile, this command allows you to do so
@@ -148,7 +151,7 @@ Do you want to lose/maintain/gain weight?
 ```
 
 
-### Creating a set of entries 
+## Creating a set of entries 
 
 Creates a shortcut for commonly called exercise and/or food entries.
 
@@ -168,7 +171,7 @@ The current activity list has been saved.
 ```
 
 
-### Adding a target calorie
+## Adding a target calorie
 
 Interprets the answers from the user profile questionnaire to calculate health profile.
 
@@ -186,7 +189,7 @@ To gain weight, you should consume 2076.65 calories instead.
 ```
 
 
-### Editing user profile
+## Editing user profile
 
 Edits user profile of an existing user.
 
@@ -221,7 +224,7 @@ To gain weight, you should consume 2076.65 calories instead.
 ```
 
 
-### Adding a food entry
+## Adding a food entry
 
 Adds a food entry with its respective calories to the list.
 
@@ -241,7 +244,7 @@ The current activity list has been saved.
 ```
 
 
-### Adding an exercise entry
+## Adding an exercise entry
 
 Adds an exercise entry with its respective calories to the list.
 
@@ -261,7 +264,7 @@ The current activity list has been saved.
 ```
 
 
-### Adding a set of entries
+## Adding a set of entries
 
 Adds a set of repeated entries at once.
 
@@ -282,7 +285,7 @@ The current activity list has been saved.
 ```
 
 
-### Listing entries for the specified day
+## Listing entries for the specified day
 
 Displays the list of activities for the given day.
 
@@ -306,7 +309,7 @@ Examples of usage:
 ```
 
 
-### Moving an activity to another position
+## Moving an activity to another position
 
 Moves an activity to another position in the last shown list.
 
@@ -340,7 +343,7 @@ Examples of usage:
 ```
 
 
-### Editing an entry in list
+## Editing an entry in list
 
 Edits activity, food or exercise at the stated index in the list.  
 >Things to take note of:
@@ -371,7 +374,7 @@ The current activity list has been saved.
 ```
 
 
-### Finding entries via keyword
+## Finding entries via keyword
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
 >Additionally, you can use the advanced find commands to find all matching keywords or just one matching keyword.
@@ -435,7 +438,7 @@ The current activity list has been saved.
 ```
 
 
-### Deleting an entry in list
+## Deleting an entry in list
 
 Deletes an entry via index in the last shown list.
 
@@ -470,7 +473,7 @@ The current activity list has been saved.
 ```
 
 
-### Deleting all entries in list
+## Deleting all entries in list
 
 Deletes all entry in list.
 
@@ -498,7 +501,7 @@ Nothing was added!
 ```
 
 
-### Exiting the program
+## Exiting the program
 
 Saves the current list to file and exits program.
 
