@@ -25,7 +25,7 @@ public class AddExerciseCommand extends Command {
     }
 
     /**
-     * Add exercise and it's respective calories.
+     * Adds exercise, it's respective calories and date.
      *
      * @param description exercise description.
      * @param calories calories lost.
@@ -42,6 +42,4 @@ public class AddExerciseCommand extends Command {
     public void execute() {
         dayMap.addActivity(date.atStartOfDay(), exercise);
     }
-
-
 }

@@ -5,7 +5,7 @@ package seedu.duke;
  */
 public class Ui {
     /**
-     * Prints out Duke logo.
+     * Prints out traKCAL logo.
      */
     public static void displayDuke() {
         drawDivider();
@@ -20,7 +20,7 @@ public class Ui {
      * Prints out a line divider.
      */
     public static void drawDivider() {
-        String divider = "==============================================================";
+        String divider = "=========================================================================================";
         System.out.println(divider);
     }
 
@@ -33,7 +33,7 @@ public class Ui {
     }
 
     /**
-     * Prints out commands available.
+     * Prints out help list showing the commands available.
      */
     public static void displayHelpMessage() {
         drawDivider();
@@ -73,7 +73,7 @@ public class Ui {
     /**
      * Prints out acknowledgement of saving current activity list in file.
      */
-    public static void displaySaveMessage() {
+    public static void displaySavedMessage() {
         System.out.println("The current activity list has been saved.");
         System.out.println();
     }
