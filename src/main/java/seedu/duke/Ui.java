@@ -82,6 +82,9 @@ public class Ui {
      */
     public static void displayNotSavedMessage() {
         System.out.println("The current activity list has not been saved.");
+        System.out.println("An error has occurred!");
+        promptUserOfHelpMessage();
+        System.out.println();
     }
 
     public static void displayDefaultMessage() {

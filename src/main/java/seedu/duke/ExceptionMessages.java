@@ -65,9 +65,9 @@ public class ExceptionMessages {
     public static void displayAddCommandErrorMessage() {
         drawDivider();
         System.out.println("Invalid input given!");
-        System.out.println("The input format for adding food activity is 'add f/ X c/ Y d/ Z"
+        System.out.println("The input format for adding food activity is 'add f/ X c/ Y d/ Z\n"
                 + " - where food is X, calories lost is Y and date(YYYY-MM-DD) is Z");
-        System.out.println("The input format for adding exercise activity is 'add e/ X c/ Y d/ Z'"
+        System.out.println("The input format for adding exercise activity is 'add e/ X c/ Y d/ Z\n"
                 + " - where exercise done is X, calories lost is Y and date(YYYY-MM-DD) is Z");
         System.out.println("Please do input 'help' for more information.");
         drawDivider();
@@ -79,9 +79,9 @@ public class ExceptionMessages {
     public static void displayFindErrorMessage() {
         drawDivider();
         System.out.println("I do not understand what you mean!");
-        System.out.println("The input format for finding food or exercise activity via keyword is 'find d/ X'"
+        System.out.println("The input format for finding food or exercise activity via keyword is 'find d/ X'\n"
                 + " - where keyword is X");
-        System.out.println("The input format for finding calorie count via keyword is 'find c/ X'"
+        System.out.println("The input format for finding calorie count via keyword is 'find c/ X'\n"
                 + " - where calories count is X");
         System.out.println("Please do input 'help' for more information.");
         drawDivider();
@@ -93,6 +93,8 @@ public class ExceptionMessages {
     public static void displayIncorrectDateTimeFormatEnteredMessage() {
         drawDivider();
         System.out.println("Wrong format of date entered!");
+        System.out.println("The accepted format is YYYY-MM-DD!");
+        System.out.println("Also, ensure that the date input actually exists!");
         promptUserOfHelpMessage();
         drawDivider();
     }
@@ -116,7 +118,7 @@ public class ExceptionMessages {
     /**
      * Prints out error message when invalid input for add activity given.
      */
-    public static void displayEditActivityNumberFormatExceptionMessage() {
+    public static void displayEditActivityExceptionMessage() {
         drawDivider();
         System.out.println("Sorry I do not understand what you mean!");
         System.out.println("One of the following has been violated:");

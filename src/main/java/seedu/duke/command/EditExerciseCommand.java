@@ -30,10 +30,10 @@ public class EditExerciseCommand extends Command {
     public void execute() {
         try {
             dayMap.insertActivity(index, exercise);
+            displaySavedMessage();
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Index entered is not within the range!\n"
-                    + "Please pull out the list for the day before editing on it!\n");
+                    + "Please pull out the list for the day before editing on it!");
         }
-        displaySavedMessage();
     }
 }
