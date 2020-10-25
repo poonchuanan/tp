@@ -33,9 +33,9 @@ public class Duke {
             displayIoExceptionMessage();
         }
         if (CheckNewUser.isNewUser()) {
-            Initialiseuser.createNewProfile();
+            profile = Initialiseuser.createNewProfile();
         } else {
-            Initialiseuser.loadProfile();
+            profile = Initialiseuser.loadProfile();
         }
         Duke.run();
     }

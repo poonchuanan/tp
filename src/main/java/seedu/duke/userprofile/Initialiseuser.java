@@ -16,53 +16,56 @@ public class Initialiseuser {
         return Duke.in.nextLine();
     }
 
-    public static void createNewProfile() {
+    public static Userinfo createNewProfile() {
+        Userinfo profile = null;
         sendname();
+        gender();
+        weight();
+        height();
+        age();
+        activityfactor();
+        weightGoal();
         try {
-            gender();
+            profile = enterNewUserInfo();
         } catch (IOException e) {
             displayIoExceptionMessage();
         }
+        return profile;
     }
 
     public static void sendname()  {
         data[0] = input("What is your name?\n");
     }
 
-    public static void gender() throws IOException {
+    public static void gender() {
         data[1] = input("What is your gender (male/female)?\n");
-        weight();
     }
 
-    public static void weight() throws IOException {
+    public static void weight() {
         data[2] = input("What is your weight in kg?\n");
-        height();
     }
 
-    public static void height() throws IOException {
+    public static void height() {
         data[3] = input("What is your height in cm?\n");
-        age();
     }
 
-    public static void age() throws IOException {
+    public static void age() {
         data[4] = input("What is your age?\n");
-        activityfactor();
     }
 
-    public static void activityfactor() throws IOException {
+    public static void activityfactor() {
         data[5] = input("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.\n");
-        weightGoal();
     }
 
-    public static void weightGoal() throws IOException {
+    public static void weightGoal() {
         data[6] = input("Do you want to lose/maintain/gain weight?\n");
-        enterNewUserInfo();
     }
 
-    public static void enterNewUserInfo() throws IOException {
+    public static Userinfo enterNewUserInfo() throws IOException {
         Userinfo profile = new Userinfo(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
-        profile.printNewUserCalculatedDetails();
+        System.out.println(profile.calculateNewUserDetails());
         Initialiseuser.save(profile);
+        return profile;
     }
 
     public static void saveExistingUserInfo(Userinfo profile) throws IOException {
@@ -74,17 +77,19 @@ public class Initialiseuser {
         storage.save(profile.toString());
     }
 
-    public static void loadProfile() {
+    public static Userinfo loadProfile() {
         String[] data = new String[7];
         ArrayList<String> previous = Userinfotextfilestorage.update();
         for (int i = 0; i < 7; i++) {
             data[i] = previous.get(i);
         }
-        userInfo = new Userinfo(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
+        Userinfo profile =  new Userinfo(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
+        profile.calculateNewUserDetails();
         try {
             Initialiseuser.saveExistingUserInfo(userInfo);
         } catch (IOException e) {
             displayIoExceptionMessage();
         }
+        return profile;
     }
 }
