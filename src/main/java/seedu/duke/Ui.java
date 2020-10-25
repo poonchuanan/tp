@@ -23,7 +23,8 @@ public class Ui {
                 + "| |  _| | '_| / _` | | ' <  | (__   / _ \\  | |__                                        |\n"
                 + "|  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|                                       |\n"
                 + "|                                                                                       |";
-        System.out.println("| Hello from                                                                            |\n" + logo);
+        System.out.println("| Hello from                                                                            |\n"
+                + logo);
     }
 
     /**
@@ -48,16 +49,19 @@ public class Ui {
     public static void displayHelpMessage() {
         drawDivider();
         String helpList = "Commands available: create new user, list, help, add, delete, find, bye\n"
+                + "\n"
                 + "The expected format of input values:\n"
                 + "\tcreate new user         - Adds a new user profile\n"
                 + "\ttarget X                - Adds a target calorie, X\n"
                 + "\thelp                    - Prints out commands available and their input format\n"
-                + "\tadd f/ X c/ Y d/ Z      - Adds food consumed, X, calories gained, Y and date(YYYY-MM-DD), Z\n"
-                + "\tadd e/ X c/ Y d/ Z      - Adds exercise done, X, calories lost, Y and date(YYYY-MM-DD), Z\n"
+                + "\tadd f/ X c/ Y d/ Z      - Adds food consumed, X, calories gained, Y\n"
+                + "\t                          and date(YYYY-MM-DD), Z\n"
+                + "\tadd e/ X c/ Y d/ Z      - Adds exercise done, X, calories lost, Y\n"
+                + "\t                          and date(YYYY-MM-DD), Z\n"
                 + "\tlist                    - Prints out the list of entries.\n"
                 + "\tedit n/U, g/V, w/W, h/X, a/Y, af/Z\n"
-                + "\t                        - Edit user profile to name, U, gender, V, weight, W, height, X,\n"
-                + "\t                          age, Y, activity factor(1-5), Z\n"
+                + "\t                        - Edit user profile to name, U, gender, V, weight, W,\n"
+                + "\t                          height, X, age, Y, activity factor(1-5), Z\n"
                 + "\tedita W f/ X c/ Y       - Edits activity at index W of list to food consumed, X,\n"
                 + "\t                          calories gained, Y\n"
                 + "\tedita W e/ X c/ Y       - Edits activity at index W of list to exercise done, X,\n"
@@ -99,7 +103,7 @@ public class Ui {
      */
     public static void displayByeMessage() {
         drawDivider();
-        System.out.println("Thank you for using TraKCAL. See you again!");
+        System.out.println("| Thank you for using traKCAL. See you again!                                           |");
         drawDivider();
     }
 
