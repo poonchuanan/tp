@@ -12,6 +12,7 @@ public class GraphCommand extends Command {
 
     @Override
     public void execute() {
+        //TODO Catch exception here for dayMap
         GraphProperty graphProperties = new GraphProperty(dayMap, (int) Duke.profile.getCalories());
         graphProperties.setProperties();
         new GraphDrawing(graphProperties).drawGraph();
