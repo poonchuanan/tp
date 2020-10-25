@@ -2,6 +2,7 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import seedu.duke.command.Command;
 import seedu.duke.command.EditExerciseCommand;
 import seedu.duke.command.EditFoodCommand;
 
@@ -18,7 +19,7 @@ public class ActivityEditTest {
         dummyList.addActivity(new Exercise("Juggle Apples", 100, false));
     }
 
-    LocalDate date = LocalDate.of(2020, Month.OCTOBER, 9);
+    LocalDate date = LocalDate.of(2020, Month.OCTOBER, 25);
     LocalDate date2 = LocalDate.of(2020, Month.NOVEMBER, 10);
     LocalDate date3 = LocalDate.of(2020, Month.DECEMBER, 11);
 
@@ -135,10 +136,26 @@ public class ActivityEditTest {
         DayMap dummyMap = new DayMap();
         createObjects2(dummyMap);
 
-        EditFoodCommand food = new EditFoodCommand(2, "jumping", 900);
+        EditFoodCommand food = new EditFoodCommand(2, "Pineapple", 77);
 
         Assertions.assertThrows(NullPointerException.class, () -> {
             food.execute();
         });
     }
+
+    /*
+    @Test
+    void editActivity_success() {
+        String userInput0 = "list 2020-10-25";
+        Parser parser = new Parser(userInput0);
+        parser.parseCommand();
+
+        String userInput1 = "edita a f/ Pineapple c/ 77";
+        Parser parser1 = new Parser(userInput1);
+        Command command = parser1.parseCommand();
+
+        Assertions.assertThrows(NumberFormatException.class, () -> {
+            command.execute();
+        });
+    }*/
 }
