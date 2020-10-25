@@ -5,7 +5,7 @@ package seedu.duke;
  */
 public class Ui {
     /**
-     * Prints out Duke logo.
+     * Prints out traKCAL logo.
      */
     public static void displayDuke() {
         drawDivider();
@@ -20,7 +20,7 @@ public class Ui {
      * Prints out a line divider.
      */
     public static void drawDivider() {
-        String divider = "==============================================================";
+        String divider = "=========================================================================================";
         System.out.println(divider);
     }
 
@@ -33,7 +33,7 @@ public class Ui {
     }
 
     /**
-     * Prints out commands available.
+     * Prints out help list showing the commands available.
      */
     public static void displayHelpMessage() {
         drawDivider();
@@ -48,10 +48,10 @@ public class Ui {
                 + "\tedit n/U, g/V, w/W, h/X, a/Y, af/Z\n"
                 + "\t                        - Edit user profile to name, U, gender, V, weight, W, height, X,\n"
                 + "\t                          age, Y, activity factor(1-5), Z\n"
-                + "\tedita W f/ X c/ Y d/ Z  - Edits activity at index W of list to food consumed, X,\n"
-                + "\t                          calories gained, Y and date(YYYY-MM-DD), Z\n"
-                + "\tedita W e/ X c/ Y d/ Z  - Edits activity at index W of list to exercise done, X,\n"
-                + "\t                          calories lost, Y and date(YYYY-MM-DD), Z\n"
+                + "\tedita W f/ X c/ Y       - Edits activity at index W of list to food consumed, X,\n"
+                + "\t                          calories gained, Y\n"
+                + "\tedita W e/ X c/ Y       - Edits activity at index W of list to exercise done, X,\n"
+                + "\t                          calories lost, Y\n"
                 + "\tfind d/ X               - Searches for exercise/food description with X included\n"
                 + "\tfind c/ X               - Searches for activity description with calories of X\n"
                 + "\tmove index/ X below/ Y  - Moves the activity at X to the index below Y\n"
@@ -73,9 +73,8 @@ public class Ui {
     /**
      * Prints out acknowledgement of saving current activity list in file.
      */
-    public static void displaySaveMessage() {
+    public static void displaySavedMessage() {
         System.out.println("The current activity list has been saved.");
-        System.out.println();
     }
 
     /**
@@ -83,6 +82,9 @@ public class Ui {
      */
     public static void displayNotSavedMessage() {
         System.out.println("The current activity list has not been saved.");
+        System.out.println("An error has occurred!");
+        promptUserOfHelpMessage();
+        System.out.println();
     }
 
     public static void displayDefaultMessage() {

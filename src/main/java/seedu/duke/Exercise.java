@@ -14,6 +14,10 @@ public class Exercise extends Activity {
         super(description, calories, isFromFile);
     }
 
+    public String getString() {
+        return toString();
+    }
+
     @Override
     public String toString() {
         return "[E] | " + super.toString();
