@@ -13,10 +13,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static seedu.duke.Ui.displayNotSavedMessage;
 import static seedu.duke.Ui.displayWelcomeMessage;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayParserNullPointerExceptionMessage;
 
+/**
+ * Entry point of the traKCAL application.
+ * Initialises the application and starts the interaction with the user.
+ */
 public class Duke {
 
     public static DayMap calList = new DayMap();
@@ -27,6 +32,7 @@ public class Duke {
 
     public static void main(String[] args) {
         displayWelcomeMessage();
+        System.out.println();
         try {
             storage.loadData(calList);
         } catch (StringIndexOutOfBoundsException e) {
@@ -53,8 +59,11 @@ public class Duke {
                     executeCmd(cmd);
                     storage.updateFile(calList);
                 }
+                System.out.println();
             } catch (NullPointerException e) {
                 displayParserNullPointerExceptionMessage();
+            } catch (IndexOutOfBoundsException e) {
+                displayNotSavedMessage();
             }
         }
     }

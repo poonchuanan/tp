@@ -18,7 +18,7 @@ public class DeleteCommand extends Command {
 
 
     /**
-     * Delete Command Constructor.
+     * Deletes Command Constructor.
      * @param index index of the activities.
      */
     public DeleteCommand(int index) {
@@ -29,7 +29,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Delete Command Constructor.
+     * Deletes Command Constructor.
      */
     public DeleteCommand() {
         this.date = LocalDateTime.now().toLocalDate();
