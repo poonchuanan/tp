@@ -130,7 +130,7 @@ public class Userinfo {
         return details;
     }
 
-    public void editUserInfo(String userInput) {
+    public static Userinfo editUserInfo(String userInput) {
         Userinfo profile = new Userinfo((userInput.substring(userInput.indexOf("n/") + 2, userInput.indexOf("g/") - 1)),
                 (userInput.substring(userInput.indexOf("g/") + 2, userInput.indexOf("w/") - 1)),
                 (userInput.substring(userInput.indexOf("w/") + 2, userInput.indexOf("h/") - 1)),
@@ -141,15 +141,15 @@ public class Userinfo {
 
         Ui.drawDivider();
         System.out.println("Noted, I have edited your user profile. Here are your new details: ");
-        System.out.println("Name: " + this.getName());
-        System.out.println("Gender: " + this.getGender());
-        System.out.println("Weight: " + this.getWeight());
-        System.out.println("Height: " + this.getHeight());
-        System.out.println("Age: " + this.getAge());
-        System.out.println("Activity: " + this.getactivityfactor());
-        System.out.println("Weight Goal: " + this.getWeightGoal());
+        System.out.println("Name: " + profile.getName());
+        System.out.println("Gender: " + profile.getGender());
+        System.out.println("Weight: " + profile.getWeight());
+        System.out.println("Height: " + profile.getHeight());
+        System.out.println("Age: " + profile.getAge());
+        System.out.println("Activity: " + profile.getactivityfactor());
+        System.out.println("Weight Goal: " + profile.getWeightGoal());
         System.out.println(profile.calculateNewUserDetails());
-
+        return profile;
     }
 
     @Override

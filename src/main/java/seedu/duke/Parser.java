@@ -85,9 +85,8 @@ public class Parser {
             case "find":
                 return prepareFindCommand(userInput);
             case "edit":
-                Userinfo store = new Userinfo();
-                store.editUserInfo(arguments[1]);
-                Initialiseuser.save(store);
+                Duke.profile = Userinfo.editUserInfo(arguments[1]);
+                Initialiseuser.save(Duke.profile);
                 break;
             case "edita":
                 return prepareEditActivityCommand(arguments[1]);

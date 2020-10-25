@@ -160,7 +160,7 @@ public class GraphDrawing {
             drawing += "\n";
         }
 
-        drawing += generate_x_axis(maxCalorieSize, column );
+        drawing += generate_x_axis(maxCalorieSize, column);
         drawing += generateDateLabels(maxCalorieSize, keys);
         System.out.println(drawing);
     }
