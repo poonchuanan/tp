@@ -1,12 +1,13 @@
 package seedu.duke.command;
 
 import seedu.duke.Exercise;
-import seedu.duke.Food;
 
 import java.time.LocalDate;
 
+import static seedu.duke.Ui.displaySavedMessage;
+
 /**
- * Edit exercise.
+ * Edits exercise and its attributes at the indicated index.
  */
 public class EditExerciseCommand extends Command {
     protected int index;
@@ -14,7 +15,7 @@ public class EditExerciseCommand extends Command {
     protected LocalDate date;
 
     /**
-     * Add exercise and it's respective calories.
+     * Edits exercise and it's respective calories.
      *
      * @param description exercise description.
      * @param calories calories lost.
@@ -23,17 +24,16 @@ public class EditExerciseCommand extends Command {
         this.index = index;
         this.exercise = new Exercise(description, calories, false);
         this.canBeChained = true;
-
     }
 
     @Override
     public void execute() {
-
         try {
             dayMap.insertActivity(index, exercise);
+            displaySavedMessage();
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index entered is not within the range!");
+            System.out.println("Index entered is not within the range!\n"
+                    + "Please pull out the list for the day before editing on it!");
         }
-
     }
 }

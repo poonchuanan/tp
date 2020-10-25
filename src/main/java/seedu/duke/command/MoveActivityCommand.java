@@ -3,6 +3,7 @@ package seedu.duke.command;
 
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
+import static seedu.duke.Ui.displaySavedMessage;
 
 public class MoveActivityCommand extends Command {
     private int indexToBeMovedFrom;
@@ -26,8 +27,6 @@ public class MoveActivityCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
         }
+        displaySavedMessage();
     }
 }
-/**
- *
- **/
