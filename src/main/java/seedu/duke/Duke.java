@@ -35,8 +35,8 @@ public class Duke {
         System.out.println();
         try {
             storage.loadData(calList);
-        } catch (StringIndexOutOfBoundsException stringIndexOutOfBoundsException) {
-            displayIoExceptionMessage();
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("here");
         }
         if (CheckNewUser.isNewUser()) {
             Initialiseuser.createNewProfile();

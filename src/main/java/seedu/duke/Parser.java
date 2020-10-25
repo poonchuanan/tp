@@ -216,7 +216,7 @@ public class Parser {
                 line = reader.readLine();
             }
             reader.close();
-            return new Command();
+            return null;
         } catch (IOException e) {
             displayIoExceptionMessage();
         }
