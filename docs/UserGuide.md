@@ -33,6 +33,7 @@ The section displays the table of contents showing all the available features in
     * [Finding entries via keyword](#finding-entries-via-keyword): `find`
     * [Deleting an entry in list](#deleting-an-entry-in-list): `delete`
     * [Deleting all entries in list](#deleting-all-entries-in-list): `deleteALL`
+    * [Showing past net calories](#showing-past-net-calories): `graph`
     * [Exiting the program](#exiting-the-program): `bye`
 * [Frequently asked questions](#frequently-asked-questions)
 * [Command Summary](#command-summary)
@@ -501,6 +502,34 @@ Nothing was added!
 ```
 
 
+## Showing past net calories
+
+Shows a graph of target calorie and net calorie obtained upto last 7 days.
+
+Format: `graph`
+
+Example of usage:
+* `graph`
+
+```
+2100|      |-|                           
+    |      | |                           
+    |      | |                           
+1886|******|*|***************************
+    |      | |         |-|               
+    ||-|   | |         | |               
+    || |   | |   |-|   | |               
+    || |   | |   | |   | |               
+    || |   | |   | |   | |               
+    || |   | |   | |   | |   |-|         
+1210|| |   | |   | |   | |   | |   |-|   
+    |-+-----+-----+-----+-----+-----+--
+    21/10 22/10 23/10 24/10 25/10 26/10 
+```
+> `***` shows the target calories.
+> If less than 7 days are stored, all the days will be displayed
+
+
 ## Exiting the program
 
 Saves the current list to file and exits program.
@@ -537,5 +566,6 @@ List | `list` OR `list DATE` | `list` OR `list 2020-10-24`
 Move activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
 Delete entry | `delete INDEX` | `delete 2`
 Delete all | `delete /all` | `delete /all`
+graph | `graph` | `graph`
 Help | `help` | `help`
 Exit | `bye` | `bye`
