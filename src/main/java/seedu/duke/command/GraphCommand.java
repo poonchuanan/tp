@@ -13,7 +13,7 @@ public class GraphCommand extends Command {
 
     @Override
     public void execute() throws NullPointerException {
-        if (isMapValid(dayMap)) {
+        if (!isMapValid(dayMap)) {
             throw new NullPointerException();
         }
         GraphProperty graphProperties = new GraphProperty(dayMap, (int) Duke.profile.getCalories());
