@@ -5,6 +5,8 @@ import seedu.duke.Exercise;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import static seedu.duke.Ui.displaySavedMessage;
+
 /**
  * Add exercise.
  */
@@ -41,5 +43,6 @@ public class AddExerciseCommand extends Command {
     @Override
     public void execute() {
         dayMap.addActivity(date.atStartOfDay(), exercise);
+        displaySavedMessage();
     }
 }

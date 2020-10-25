@@ -51,7 +51,7 @@ public class Storage {
             pw.flush();
             pw.close();
             //System.out.println("record saved");
-            displaySavedMessage();
+            //displaySavedMessage();
         } catch (Exception e) {
             //System.out.println("record not saved");
             displayNotSavedMessage();

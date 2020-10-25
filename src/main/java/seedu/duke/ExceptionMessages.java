@@ -108,8 +108,24 @@ public class ExceptionMessages {
         System.out.println("\t2. Calories count input must be an integer > 0!");
         System.out.println("\t3. Wrong input format");
         System.out.println("\t\tInput format is:");
-        System.out.println("\t\tadd f/ W c/ X d/ YYYY-MM-DD");
-        System.out.println("\t\tadd e/ W c/ X d/ YYYY-MM-DD");
+        System.out.println("\t\tadd f/ FOOD_DESCRIPTION c/ CALORIES d/ YYYY-MM-DD");
+        System.out.println("\t\tadd e/ EXERCISE_DESCRIPTION c/ CALORIES d/ YYYY-MM-DD");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when invalid input for add activity given.
+     */
+    public static void displayEditActivityNumberFormatExceptionMessage() {
+        drawDivider();
+        System.out.println("Sorry I do not understand what you mean!");
+        System.out.println("One of the following has been violated:");
+        System.out.println("\t1. Description or calories input cannot be empty");
+        System.out.println("\t2. Calories count input must be an integer > 0!");
+        System.out.println("\t3. Wrong input format");
+        System.out.println("\t\tInput format is:");
+        System.out.println("\t\tedita INDEX f/ FOOD_DESCRIPTION c/ CALORIES d/ YYYY-MM-DD");
+        System.out.println("\t\tedita INDEX e/ EXERCISE_DESCRIPTION c/ CALORIES d/ YYYY-MM-DD");
         drawDivider();
     }
 

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
+import static seedu.duke.Ui.displaySavedMessage;
 
 /**
  * List command.
@@ -38,5 +39,6 @@ public class ListCommand extends Command {
         } catch (NullPointerException e) {
             System.out.println("There is no data for " + date.toString());
         }
+        //displaySavedMessage();
     }
 }

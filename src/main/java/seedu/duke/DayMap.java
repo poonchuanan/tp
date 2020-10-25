@@ -134,7 +134,7 @@ public class DayMap {
         if (activityFindCounter == 0) {
             throw new KeywordNotFoundException();
         }
-        displaySavedMessage();
+        //displaySavedMessage();
     }
 
     /**
@@ -179,7 +179,7 @@ public class DayMap {
             }
             //removes key from the daymap
             dayMap.remove(keyToDelete);
-            displaySavedMessage();
+            //displaySavedMessage();
         } else {
             throw new IndexOutOfBoundsException();
         }

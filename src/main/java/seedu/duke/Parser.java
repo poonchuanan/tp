@@ -39,6 +39,7 @@ import static seedu.duke.ExceptionMessages.displayAddActivityNumberFormatExcepti
 import static seedu.duke.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
+import static seedu.duke.ExceptionMessages.displayEditActivityNumberFormatExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayEmptyEditActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
@@ -186,7 +187,7 @@ public class Parser {
         } catch (NullPointerException e) {
             displayAddCommandErrorMessage();
         } catch (NumberFormatException e) {
-            displayAddActivityNumberFormatExceptionMessage();
+            displayEditActivityNumberFormatExceptionMessage();
         } catch (Exception e) {
             displayNegativeCalorieInputExceptionMessage();
         }
