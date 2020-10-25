@@ -94,9 +94,18 @@ public class GraphProperty {
             maxCalories = findMaximum(maxCalories, currentCalories);
             minCalories = findMinimum(minCalories, currentCalories);
         }
+        checkBoundaries(minCalories, maxCalories);
+        return calories;
+    }
+
+    public void checkBoundaries(int minCalories, int maxCalories) {
+        if (minCalories == maxCalories) {
+            minCalories = 0;
+            maxCalories += targetCalories;
+        }
         this.minCalories = minCalories;
         this.maxCalories = maxCalories;
-        return calories;
+
     }
 
     /**
@@ -192,7 +201,7 @@ public class GraphProperty {
      */
     public int calculateRowNumber(int calories) {
         int interval = calculateInterval();
-        return (calories - minCalories) / interval;
+        return (maxCalories - minCalories) / interval;
     }
 
 }
