@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
+import static seedu.duke.Ui.displaySavedMessage;
 
 
 /**
@@ -56,10 +57,7 @@ public class DayMap {
 
 
     public void insertActivity(int index, Activity activity) {
-
         lastSeenList.insertActivity(index, activity);
-
-
     }
 
     public ArrayList getArrayList(LocalDateTime dateTime) {
@@ -136,6 +134,7 @@ public class DayMap {
         if (activityFindCounter == 0) {
             throw new KeywordNotFoundException();
         }
+        displaySavedMessage();
     }
 
     /**
@@ -180,6 +179,7 @@ public class DayMap {
             }
             //removes key from the daymap
             dayMap.remove(keyToDelete);
+            displaySavedMessage();
         } else {
             throw new IndexOutOfBoundsException();
         }

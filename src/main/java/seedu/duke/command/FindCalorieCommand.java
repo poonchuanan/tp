@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
+import static seedu.duke.Ui.displaySavedMessage;
 
 /**
  * Initialises Command to find calorie count.
@@ -40,5 +41,6 @@ public class  FindCalorieCommand extends Command {
                 }
             }
         }
+        displaySavedMessage();
     }
 }
