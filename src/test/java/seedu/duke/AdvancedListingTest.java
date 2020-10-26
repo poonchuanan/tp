@@ -7,6 +7,9 @@ import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.FindDescriptionCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.exception.KeywordNotFoundException;
+import seedu.duke.model.DayMap;
+import seedu.duke.model.Exercise;
+import seedu.duke.model.Food;
 
 import java.time.LocalDate;
 import java.time.Month;

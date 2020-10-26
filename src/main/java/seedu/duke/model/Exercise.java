@@ -1,18 +1,18 @@
-package seedu.duke;
+package seedu.duke.model;
 
 import java.time.LocalDate;
 
 /**
  * Sub-class of Activity.
  */
-public class Food extends Activity {
+public class Exercise extends Activity {
     /**
      * Subclass of class Activity.
      *
-     * @param description food description
-     * @param calories calories consumed
+     * @param description exercise description
+     * @param calories calories burnt
      */
-    public Food(String description, int calories, LocalDate date, boolean isFromFile) {
+    public Exercise(String description, int calories, LocalDate date, boolean isFromFile) {
         super(description, calories, date, isFromFile);
     }
 
@@ -22,6 +22,6 @@ public class Food extends Activity {
 
     @Override
     public String toString() {
-        return "[F] | " + super.toString();
+        return "[E] | " + super.toString();
     }
 }

@@ -1,7 +1,7 @@
-package seedu.duke;
+package seedu.duke.ui;
 
-import static seedu.duke.Ui.drawDivider;
-import static seedu.duke.Ui.promptUserOfHelpMessage;
+import static seedu.duke.ui.Ui.drawDivider;
+import static seedu.duke.ui.Ui.promptUserOfHelpMessage;
 
 /**
  * Deals with error/exception messages.
@@ -12,8 +12,7 @@ public class ExceptionMessages {
      */
     public static void displayStringIndexOutOfBoundsExceptionMessage() {
         drawDivider();
-        String exceptionMessage = "Something went wrong!! I do not understand what you mean.\n"
-                + "There could be an error in the way of input.";
+        String exceptionMessage = "The index entered is not within the range!";
         System.out.println(exceptionMessage);
         promptUserOfHelpMessage();
         drawDivider();
@@ -45,6 +44,16 @@ public class ExceptionMessages {
     public static void displayDeleteCommandNullPointerExceptionMessage() {
         drawDivider();
         System.out.println("There is not index to remove");
+        promptUserOfHelpMessage();
+        drawDivider();
+    }
+
+    /**
+     * Prints error message when attempting to access an empty list.
+     */
+    public static void displayListNotFoundExceptionMessage() {
+        drawDivider();
+        System.out.println("The list to work on is empty!");
         promptUserOfHelpMessage();
         drawDivider();
     }

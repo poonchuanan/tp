@@ -1,8 +1,8 @@
 package seedu.duke.userprofile;
 
 import java.text.DecimalFormat;
-import seedu.duke.Ui;
-import static seedu.duke.ExceptionMessages.displayInvalidActivityFactorMessage;
+import seedu.duke.ui.Ui;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityFactorMessage;
 
 public class Userinfo {
     protected String name;

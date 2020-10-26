@@ -1,11 +1,11 @@
 package seedu.duke.command;
 
-import seedu.duke.ActivityList;
-import seedu.duke.Food;
+import seedu.duke.model.ActivityList;
+import seedu.duke.model.Food;
 
 import java.time.LocalDate;
 
-import static seedu.duke.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.displaySavedMessage;
 
 
 /**
@@ -15,6 +15,8 @@ public class EditFoodCommand extends Command {
     protected int index;
     protected Food food;
     protected LocalDate date;
+    protected String description;
+    protected int calories;
 
 
     /**
@@ -25,15 +27,17 @@ public class EditFoodCommand extends Command {
      */
     public EditFoodCommand(int index, String description, int calories) {
         this.index = index;
-        ActivityList lastSeenList = dayMap.getLastSeenList();
-        LocalDate dateOfActivityToBeEdited = lastSeenList.getDateOfActivityAtIndex(index);
-        this.food = new Food(description, calories, dateOfActivityToBeEdited, false);
+        this.description = description;
+        this.calories = calories;
         this.canBeChained = true;
     }
 
     @Override
     public void execute() {
         try {
+            ActivityList lastSeenList = dayMap.getLastSeenList();
+            LocalDate dateOfActivityToBeEdited = lastSeenList.getDateOfActivityAtIndex(index);
+            this.food = new Food(description, calories, dateOfActivityToBeEdited, false);
             dayMap.insertActivity(index, food);
             displaySavedMessage();
         } catch (IndexOutOfBoundsException e) {

@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.ListDrawer;
+import seedu.duke.model.ListDrawer;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -34,8 +34,8 @@ public class ListCommand extends Command {
     public void execute() {
         try {
             dayMap.setLastSeenList(dayMap.getActivityList(date.atStartOfDay()));
-            dayMap.printList(date);
-            System.out.println(dayMap.toString(date.atStartOfDay()));
+            //dayMap.printList(date);
+            //System.out.println(dayMap.toString(date.atStartOfDay()));
             listDrawer = new ListDrawer(date, dayMap.getLastSeenList());
             listDrawer.printListDrawing();
         } catch (NullPointerException e) {

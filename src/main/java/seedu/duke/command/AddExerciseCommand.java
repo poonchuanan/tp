@@ -1,11 +1,11 @@
 package seedu.duke.command;
 
-import seedu.duke.Exercise;
+import seedu.duke.model.Exercise;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import static seedu.duke.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.displaySavedMessage;
 
 /**
  * Add exercise.

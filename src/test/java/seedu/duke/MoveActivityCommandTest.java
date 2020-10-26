@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.Command;
 import seedu.duke.command.ListCommand;
+import seedu.duke.logic.Parser;
+import seedu.duke.model.DayMap;
+import seedu.duke.model.Food;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -68,7 +71,9 @@ public class MoveActivityCommandTest {
 
         Parser parser = new Parser("move from/a below/2");
 
-        Assertions.assertThrows(NumberFormatException.class, parser::parseCommand);
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            parser.parseCommand().execute();
+        });
     }
 
     /**

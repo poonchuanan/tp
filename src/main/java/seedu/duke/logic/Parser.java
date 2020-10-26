@@ -1,5 +1,6 @@
-package seedu.duke;
+package seedu.duke.logic;
 
+import seedu.duke.Trakcal;
 import seedu.duke.command.AddExerciseCommand;
 import seedu.duke.command.CreateNewRepeatedSet;
 import seedu.duke.command.ByeCommand;
@@ -32,21 +33,20 @@ import java.util.Date;
 
 import java.time.format.DateTimeParseException;
 
-import static seedu.duke.Duke.calList;
-import static seedu.duke.Duke.executeCmd;
-import static seedu.duke.Duke.storage;
-import static seedu.duke.ExceptionMessages.displayAddActivityNumberFormatExceptionMessage;
-import static seedu.duke.ExceptionMessages.displayAddCommandErrorMessage;
-import static seedu.duke.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
-import static seedu.duke.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
-import static seedu.duke.ExceptionMessages.displayEditActivityExceptionMessage;
-import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
-import static seedu.duke.ExceptionMessages.displayEmptyEditActivityErrorMessage;
-import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
-import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
-import static seedu.duke.ExceptionMessages.displayNegativeCalorieInputExceptionMessage;
-import static seedu.duke.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
-import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
+import static seedu.duke.Trakcal.calList;
+import static seedu.duke.Trakcal.executeCmd;
+import static seedu.duke.Trakcal.storage;
+import static seedu.duke.ui.ExceptionMessages.displayAddActivityNumberFormatExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayAddCommandErrorMessage;
+import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyAddActivityErrorMessage;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyEditActivityErrorMessage;
+import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
+import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
 
 /**
  * Initialises parser class.
@@ -85,8 +85,8 @@ public class Parser {
             case "find":
                 return prepareFindCommand(userInput);
             case "edit":
-                Duke.profile = Userinfo.editUserInfo(arguments[1]);
-                Initialiseuser.save(Duke.profile);
+                Trakcal.profile = Userinfo.editUserInfo(arguments[1]);
+                Initialiseuser.save(Trakcal.profile);
                 break;
             case "edita":
                 return prepareEditActivityCommand(arguments[1]);
@@ -155,18 +155,21 @@ public class Parser {
     private Command prepareEditActivityCommand(String userInput) {
         String[] arguments = userInput.split(" ", 2);
         int index = Integer.parseInt(arguments[0]) - 1;
+        System.out.println("index is" + index);
         userInput = arguments[1];
 
         try {
+            System.out.println("hello");
             if (userInput.startsWith("f/")) {
                 int calorieIndex = userInput.indexOf("c/");
 
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
+                System.out.println("calories is " + calories);
                 if (calories < 0) {
-                    throw new Exception();
+                    //throw new Exception();
                 }
                 String foodDescription = userInput.substring(2, calorieIndex - 1).trim();
-
+                System.out.println("food description is " + foodDescription);
                 assert calories > 0 : "calories should be greater than 0";
                 return new EditFoodCommand(index, foodDescription, calories);
             } else if (userInput.startsWith("e/")) {
@@ -174,7 +177,7 @@ public class Parser {
 
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                 if (calories < 0) {
-                    throw new Exception();
+                    //throw new Exception();
                 }
                 String exerciseDescription = userInput.substring(2, calorieIndex - 1).trim();
 
@@ -284,9 +287,17 @@ public class Parser {
 
         String firstIndexString = after.substring(firstIndex).trim().split(" ")[0];
         String secondIndexString = after.substring(secondIndex).trim().split(" ")[0];
-        int indexToBeChanged = Integer.parseInt(firstIndexString);
-        int indexToBeInsertedBelow = Integer.parseInt(secondIndexString);
-        return new MoveActivityCommand(indexToBeChanged, indexToBeInsertedBelow);
+        int indexToBeChanged = 0;
+        int indexToBeInsertedBelow = 0;
+        try {
+            indexToBeChanged = Integer.parseInt(firstIndexString);
+            indexToBeInsertedBelow = Integer.parseInt(secondIndexString);
+            return new MoveActivityCommand(indexToBeChanged, indexToBeInsertedBelow);
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid index!");
+        }
+        return null;
+
     }
 
     /**

@@ -1,11 +1,11 @@
 package seedu.duke.command;
 
-import seedu.duke.Food;
+import seedu.duke.model.Food;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import static seedu.duke.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.displaySavedMessage;
 
 /**
  * Add food.

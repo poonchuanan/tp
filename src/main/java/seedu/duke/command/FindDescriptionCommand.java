@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.model.FindDrawer;
 import seedu.duke.exception.KeywordNotFoundException;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import static seedu.duke.Ui.displayByeMessage;
+import static seedu.duke.ui.Ui.displayByeMessage;
 
 /**
  * Bye command.

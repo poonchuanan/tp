@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.DayMap;
+import seedu.duke.model.DayMap;
 
 /**
  * Execute command.

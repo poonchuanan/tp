@@ -2,9 +2,13 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import seedu.duke.command.Command;
 import seedu.duke.command.EditExerciseCommand;
 import seedu.duke.command.EditFoodCommand;
+import seedu.duke.model.Activity;
+import seedu.duke.model.ActivityList;
+import seedu.duke.model.DayMap;
+import seedu.duke.model.Exercise;
+import seedu.duke.model.Food;
 
 import java.time.LocalDate;
 import java.time.Month;
