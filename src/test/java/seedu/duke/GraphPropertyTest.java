@@ -1,6 +1,7 @@
 package seedu.duke;
 
-import org.junit.jupiter.api.Test;
+import seedu.duke.model.DayMap;
+import seedu.duke.model.Food;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -20,42 +21,13 @@ class GraphPropertyTest {
     private void generateDays(int days, LocalDate date, int calories, DayMap dayMap, int divisor) {
         for (int i = 0; i < days; i++) {
             if ((i % divisor != 0) || (i == 0)) {
-                dayMap.addActivity(date.atStartOfDay(), new Food("Apple", calories, false));
+                dayMap.addActivity(date.atStartOfDay(), new Food("Apple", calories, date, false));
                 date = date.plusDays(1);
                 calories += 100;
             } else {
-                dayMap.addActivity(date.atStartOfDay(), new Food("Apple", calories - 500, false));
+                dayMap.addActivity(date.atStartOfDay(), new Food("Apple", calories - 500, date, false));
                 date = date.plusDays(1);
             }
         }
-    }
-
-    @Test
-    public void plotgraph_success() {
-        DayMap dummyMap = setDummyMap(10, 1800, date1, 4);
-        GraphProperty hello = new GraphProperty(dummyMap, 2000);
-
-
-    }
-
-    @Test
-    public void plotgraph2_success() {
-        DayMap dummyMap = setDummyMap(7, 2200, date2, 2);
-        GraphDrawing hello = new GraphDrawing(dummyMap, 2300);
-        hello.drawGraph();
-    }
-
-    @Test
-    public void plotgraph3_success() {
-        DayMap dummyMap = setDummyMap(7, 2200, date2, 2);
-        GraphDrawing hello = new GraphDrawing(dummyMap, 3500);
-        hello.drawGraph();
-    }
-
-    @Test
-    public void plotgraph4_success() {
-        DayMap dummyMap = setDummyMap(5, 2200, date2, 3);
-        GraphDrawing hello = new GraphDrawing(dummyMap, 2000);
-        hello.drawGraph();
     }
 }

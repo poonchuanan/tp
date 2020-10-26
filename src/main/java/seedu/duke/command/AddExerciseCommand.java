@@ -1,11 +1,11 @@
 package seedu.duke.command;
 
-import seedu.duke.Exercise;
+import seedu.duke.model.Exercise;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import static seedu.duke.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.displaySavedMessage;
 
 /**
  * Add exercise.
@@ -21,7 +21,7 @@ public class AddExerciseCommand extends Command {
      * @param calories calories burnt
      */
     public AddExerciseCommand(String description, int calories, boolean isFromFile) {
-        this.exercise = new Exercise(description, calories, isFromFile);
+        this.exercise = new Exercise(description, calories, LocalDate.now(), isFromFile);
         this.date = LocalDateTime.now().toLocalDate();
         this.canBeChained = true;
     }
@@ -35,7 +35,7 @@ public class AddExerciseCommand extends Command {
      * @param date date of activity.
      */
     public AddExerciseCommand(String description, int calories, boolean isFromFile, LocalDate date) {
-        this.exercise = new Exercise(description, calories, isFromFile);
+        this.exercise = new Exercise(description, calories, date, isFromFile);
         this.date = date;
         this.canBeChained = true;
     }

@@ -7,10 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
-import static seedu.duke.ExceptionMessages.displayExistingFileMessage;
+import static seedu.duke.ui.ExceptionMessages.displayExistingFileMessage;
 
 public class UserSetStorage {
     private static final String PATH = new File("").getAbsolutePath();

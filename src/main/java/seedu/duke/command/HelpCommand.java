@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import static seedu.duke.Ui.displayHelpMessage;
+import static seedu.duke.ui.Ui.displayHelpMessage;
 
 /**
  * Help command.
