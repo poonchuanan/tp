@@ -26,6 +26,8 @@ public class FindDescriptionCommand extends Command {
     public void execute() {
         try {
             dayMap.listActivitiesContainingDescription(description);
+            FindDrawer findDrawer = new FindDrawer(dayMap.getLastSeenList());
+            findDrawer.printListDrawing();
         } catch (KeywordNotFoundException e) {
             System.out.println("No results were found!");
         }

@@ -12,27 +12,29 @@ import java.time.Month;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ActivityEditTest {
-    void createObjects(ActivityList dummyList) {
-        dummyList.addActivity(new Food("Apple", 50, false));
-        dummyList.addActivity(new Food("Banana", 100, false));
-        dummyList.addActivity(new Food("Apple pie", 55, false));
-        dummyList.addActivity(new Exercise("Juggle Apples", 100, false));
-    }
 
     LocalDate date = LocalDate.of(2020, Month.OCTOBER, 25);
     LocalDate date2 = LocalDate.of(2020, Month.NOVEMBER, 10);
     LocalDate date3 = LocalDate.of(2020, Month.DECEMBER, 11);
 
 
+    void createObjects(ActivityList dummyList) {
+        dummyList.addActivity(new Food("Apple", 50, date, false));
+        dummyList.addActivity(new Food("Banana", 100, date, false));
+        dummyList.addActivity(new Food("Apple pie", 55, date, false));
+        dummyList.addActivity(new Exercise("Juggle Apples", 100, date, false));
+    }
+
+
     void createObjects2(DayMap dummyMap) {
-        dummyMap.addActivity(date.atStartOfDay(), new Food("rice with eggs", 50, false));
-        dummyMap.addActivity(date.atStartOfDay(), new Exercise("run 2km", 100, false));
+        dummyMap.addActivity(date.atStartOfDay(), new Food("rice with eggs", 50, date, false));
+        dummyMap.addActivity(date.atStartOfDay(), new Exercise("run 2km", 100, date, false));
 
-        dummyMap.addActivity(date2.atStartOfDay(), new Exercise("run 10km", 51, false));
-        dummyMap.addActivity(date2.atStartOfDay(), new Food("rice with tofu", 101, false));
+        dummyMap.addActivity(date2.atStartOfDay(), new Exercise("run 10km", 51, date2, false));
+        dummyMap.addActivity(date2.atStartOfDay(), new Food("rice with tofu", 101, date2, false));
 
-        dummyMap.addActivity(date3.atStartOfDay(), new Food("rice with shit", 51, false));
-        dummyMap.addActivity(date3.atStartOfDay(), new Food("rice with pork", 101, false));
+        dummyMap.addActivity(date3.atStartOfDay(), new Food("rice with shit", 51, date3, false));
+        dummyMap.addActivity(date3.atStartOfDay(), new Food("rice with pork", 101, date3, false));
     }
 
     @Test
@@ -40,7 +42,7 @@ public class ActivityEditTest {
         ActivityList dummyList = new ActivityList();
         createObjects(dummyList);
 
-        Activity activity = new Exercise("jumping", 900, false);
+        Activity activity = new Exercise("jumping", 900, date, false);
         dummyList.insertActivity(0, activity);
 
         assertEquals("[E] | jumping | 900, [F] | Banana | 100, [F] | Apple pie | 55, "
@@ -55,9 +57,10 @@ public class ActivityEditTest {
         DayMap dummyMap = new DayMap();
         createObjects2(dummyMap);
 
-        EditExerciseCommand exercise = new EditExerciseCommand(0, "jumping", 900);
 
         Assertions.assertThrows(NullPointerException.class, () -> {
+            EditExerciseCommand exercise = new EditExerciseCommand(0, "jumping", 900);
+
             exercise.execute();
         });
     }
@@ -67,7 +70,7 @@ public class ActivityEditTest {
         ActivityList dummyList = new ActivityList();
         createObjects(dummyList);
 
-        Activity activity = new Food("Pineapple", 77, false);
+        Activity activity = new Food("Pineapple", 77, date,false);
         dummyList.insertActivity(3, activity);
 
         assertEquals("[F] | Apple | 50, [F] | Banana | 100, [F] | Apple pie | 55, "
@@ -82,9 +85,10 @@ public class ActivityEditTest {
         DayMap dummyMap = new DayMap();
         createObjects2(dummyMap);
 
-        EditFoodCommand food = new EditFoodCommand(3, "Pineapple", 77);
 
         Assertions.assertThrows(NullPointerException.class, () -> {
+            EditFoodCommand food = new EditFoodCommand(3, "Pineapple", 77);
+
             food.execute();
         });
     }
@@ -94,7 +98,7 @@ public class ActivityEditTest {
         ActivityList dummyList = new ActivityList();
         createObjects(dummyList);
 
-        Activity activity = new Exercise("jumping", 900, false);
+        Activity activity = new Exercise("jumping", 900, date,false);
         dummyList.insertActivity(3, activity);
 
         assertEquals("[F] | Apple | 50, [F] | Banana | 100, [F] | Apple pie | 55, "
@@ -109,9 +113,10 @@ public class ActivityEditTest {
         DayMap dummyMap = new DayMap();
         createObjects2(dummyMap);
 
-        EditExerciseCommand exercise = new EditExerciseCommand(3, "jumping", 900);
 
         Assertions.assertThrows(NullPointerException.class, () -> {
+            EditExerciseCommand exercise = new EditExerciseCommand(3, "jumping", 900);
+
             exercise.execute();
         });
     }
@@ -121,7 +126,7 @@ public class ActivityEditTest {
         ActivityList dummyList = new ActivityList();
         createObjects(dummyList);
 
-        Activity activity = new Food("Pineapple", 77, false);
+        Activity activity = new Food("Pineapple", 77,  date,false);
         dummyList.insertActivity(2, activity);
 
         assertEquals("[F] | Apple | 50, [F] | Banana | 100, [F] | Pineapple | 77, "
@@ -136,9 +141,9 @@ public class ActivityEditTest {
         DayMap dummyMap = new DayMap();
         createObjects2(dummyMap);
 
-        EditFoodCommand food = new EditFoodCommand(2, "Pineapple", 77);
 
         Assertions.assertThrows(NullPointerException.class, () -> {
+            EditFoodCommand food = new EditFoodCommand(2, "Pineapple", 77);
             food.execute();
         });
     }

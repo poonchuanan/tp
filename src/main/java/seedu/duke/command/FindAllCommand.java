@@ -30,6 +30,8 @@ public class FindAllCommand extends Command {
     public void execute() {
         try {
             dayMap.listActivitiesContainingAll(userInput);
+            FindDrawer findDrawer = new FindDrawer(dayMap.getLastSeenList());
+            findDrawer.printListDrawing();
         } catch (KeywordNotFoundException e) {
             System.out.println("No results were found!");
         }

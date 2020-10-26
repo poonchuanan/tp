@@ -120,7 +120,7 @@ public class DayMap {
                     String descriptionToCheck = currentLine.substring(currentLine.indexOf("|") + 1);
                     descriptionToCheck = descriptionToCheck.substring(0, descriptionToCheck.indexOf("|")).trim();
                     if (descriptionToCheck.contains(description)) {
-                        System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
+                        //System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
                         lastSeenList.addActivity(activities.getActivity(i));
                         activityFindCounter++;
                     }
@@ -184,7 +184,6 @@ public class DayMap {
                     String currentLine = activities.getActivity(i).toString();
                     hasAllWords = checkAllWords(currentLine, userInput);
                     if (hasAllWords) {
-                        System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
                         lastSeenList.addActivity(activities.getActivity(i));
                         activityFindCounter++;
                     }
@@ -216,7 +215,6 @@ public class DayMap {
                     String currentLine = activities.getActivity(i).toString();
                     hasOneWord = checkEitherWords(currentLine, userInput);
                     if (hasOneWord) {
-                        System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
                         lastSeenList.addActivity(activities.getActivity(i));
                         activityFindCounter++;
                     }
@@ -342,6 +340,11 @@ public class DayMap {
      */
     public String toString(LocalDateTime dateTime) {
         ActivityList alist = this.getActivityList(dateTime);
-        return dateTime.toLocalDate().toString() + ": " + alist.toString();
+        return dateTime.toLocalDate().toString() + ", " + alist.toString();
+    }
+
+    public void printList(LocalDate date) {
+        System.out.println(date.toString());
+        getActivityList(date.atStartOfDay()).printList();
     }
 }

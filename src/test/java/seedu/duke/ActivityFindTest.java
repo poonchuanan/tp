@@ -2,14 +2,18 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ActivityFindTest {
+    private final LocalDate date = LocalDate.now();
+
     void createObjects(ActivityList dummyList) {
-        dummyList.addActivity(new Food("Apple", 50, false));
-        dummyList.addActivity(new Food("Banana", 100, false));
-        dummyList.addActivity(new Food("Apple pie", 55, false));
-        dummyList.addActivity(new Exercise("Juggle Apples", 100, false));
+        dummyList.addActivity(new Food("Apple", 50, date,false));
+        dummyList.addActivity(new Food("Banana", 100, date, false));
+        dummyList.addActivity(new Food("Apple pie", 55, date, false));
+        dummyList.addActivity(new Exercise("Juggle Apples", 100, date, false));
     }
 
     @Test

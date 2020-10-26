@@ -30,6 +30,8 @@ public class FindEitherCommand extends Command {
     public void execute() {
         try {
             dayMap.listActivitiesContainingEither(userInput);
+            FindDrawer findDrawer = new FindDrawer(dayMap.getLastSeenList());
+            findDrawer.printListDrawing();
         } catch (KeywordNotFoundException e) {
             System.out.println("No results were found!");
         }

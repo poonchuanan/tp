@@ -20,11 +20,11 @@ class GraphPropertyTest {
     private void generateDays(int days, LocalDate date, int calories, DayMap dayMap, int divisor) {
         for (int i = 0; i < days; i++) {
             if ((i % divisor != 0) || (i == 0)) {
-                dayMap.addActivity(date.atStartOfDay(), new Food("Apple", calories, false));
+                dayMap.addActivity(date.atStartOfDay(), new Food("Apple", calories, date, false));
                 date = date.plusDays(1);
                 calories += 100;
             } else {
-                dayMap.addActivity(date.atStartOfDay(), new Food("Apple", calories - 500, false));
+                dayMap.addActivity(date.atStartOfDay(), new Food("Apple", calories - 500, date, false));
                 date = date.plusDays(1);
             }
         }

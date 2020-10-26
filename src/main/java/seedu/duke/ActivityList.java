@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -176,5 +177,9 @@ public class ActivityList extends Duke {
         String activitiesString = Arrays.toString(activities.toArray());
         activitiesString = activitiesString.substring(1, activitiesString.length() - 1);
         return (activitiesString);
+    }
+
+    public LocalDate getDateOfActivityAtIndex(int index) {
+        return getActivity(index).date;
     }
 }

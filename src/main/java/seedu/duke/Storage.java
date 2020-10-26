@@ -146,11 +146,11 @@ public class Storage {
         int calories = Integer.parseInt(calorieString);
         switch (typeOfActivity) {
         case 'F':
-            Food food = new Food(description, calories, true);
+            Food food = new Food(description, calories,date.toLocalDate(), true);
             calList.addActivity(date, food);
             break;
         case 'E':
-            Exercise exercise = new Exercise(description, calories, true);
+            Exercise exercise = new Exercise(description, calories, date.toLocalDate(), true);
             calList.addActivity(date, exercise);
             break;
         default:
