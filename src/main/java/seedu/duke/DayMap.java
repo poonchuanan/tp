@@ -198,6 +198,11 @@ public class DayMap {
      */
     public String toString(LocalDateTime dateTime) {
         ActivityList alist = this.getActivityList(dateTime);
-        return dateTime.toLocalDate().toString() + ": " + alist.toString();
+        return dateTime.toLocalDate().toString() + ", " + alist.toString();
+    }
+
+    public void printList(LocalDate date) {
+        System.out.println(date.toString());
+        getActivityList(date.atStartOfDay()).printList();
     }
 }

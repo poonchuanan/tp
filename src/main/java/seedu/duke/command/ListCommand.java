@@ -1,5 +1,7 @@
 package seedu.duke.command;
 
+import seedu.duke.listDrawer;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -13,6 +15,7 @@ import static seedu.duke.Ui.displaySavedMessage;
 public class ListCommand extends Command {
 
     protected LocalDate date;
+    private listDrawer listDrawer;
 
     public ListCommand(LocalDate date) {
         this.date = date;
@@ -35,10 +38,13 @@ public class ListCommand extends Command {
     public void execute() {
         try {
             dayMap.setLastSeenList(dayMap.getActivityList(date.atStartOfDay()));
-            dayMap.getLastSeenList().printList();
+            dayMap.printList(date);
+            System.out.println(dayMap.toString(date.atStartOfDay()));
+            listDrawer = new listDrawer(date, dayMap.getLastSeenList());
+            listDrawer.printListDrawing();
         } catch (NullPointerException e) {
             System.out.println("There is no data for " + date.toString());
         }
-        //displaySavedMessage();
+
     }
 }
