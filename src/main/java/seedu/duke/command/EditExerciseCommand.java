@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.ActivityList;
 import seedu.duke.Exercise;
 
 import java.time.LocalDate;
@@ -22,7 +23,9 @@ public class EditExerciseCommand extends Command {
      */
     public EditExerciseCommand(int index, String description, int calories) {
         this.index = index;
-        this.exercise = new Exercise(description, calories, false);
+        ActivityList lastSeenList = dayMap.getLastSeenList();
+        LocalDate dateOfActivityToBeEdited = lastSeenList.getDateOfActivityAtIndex(index);
+        this.exercise = new Exercise(description, calories,dateOfActivityToBeEdited, false);
         this.canBeChained = true;
     }
 

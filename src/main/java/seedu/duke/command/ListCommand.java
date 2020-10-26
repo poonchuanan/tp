@@ -41,7 +41,7 @@ public class ListCommand extends Command {
             dayMap.printList(date);
             System.out.println(dayMap.toString(date.atStartOfDay()));
             listDrawer = new listDrawer(date, dayMap.getLastSeenList());
-            listDrawer.printListDrawing();
+            //listDrawer.printListDrawing();
         } catch (NullPointerException e) {
             System.out.println("There is no data for " + date.toString());
         }

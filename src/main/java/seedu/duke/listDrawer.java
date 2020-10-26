@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ * This class is used to create a responsive interface for the listing feature
+ */
+
 public class listDrawer {
     private String date;
     private ActivityList activityList;
@@ -26,7 +30,11 @@ public class listDrawer {
     private final int START_INDEX_FOR_EXERCISE_TYPE = 9;
 
 
-
+    /**
+     * Sets the date and activity list to be printed
+     * @param date date which activity list to be used
+     * @param activityList is the list to be used when creating the list
+     */
     public listDrawer(LocalDate date, ActivityList activityList) {
         this.date = date.toString();
         this.activityList = activityList;
