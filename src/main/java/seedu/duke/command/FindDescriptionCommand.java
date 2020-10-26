@@ -29,6 +29,5 @@ public class FindDescriptionCommand extends Command {
         } catch (KeywordNotFoundException e) {
             System.out.println("No results were found!");
         }
-
     }
 }

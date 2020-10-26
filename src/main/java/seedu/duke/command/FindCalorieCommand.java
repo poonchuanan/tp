@@ -37,21 +37,4 @@ public class  FindCalorieCommand extends Command {
 
     }
 }
-//        ActivityList activities = dayMap.getActivityList(date.atStartOfDay());
-//        int activityCounter = activities.getNumberOfActivities();
-//        if (activityCounter == 0) {
-//            displayEmptyActivityCounterMessage();
-//        } else {
-//            System.out.println("Here are the matching results based on calories:");
-//            for (int i = 0; i < activityCounter; i++) {
-//                String currentLine = activities.getActivity(i).toString();
-//                int calorieStartIndex = currentLine.lastIndexOf(' ');
-//                String calorieToCheck = currentLine.substring(calorieStartIndex).trim();
-//                if (calorieToCheck.equals(calorie)) {
-//                    System.out.println((i + 1) + ". " + currentLine);
-//                }
-//            }
-//        }
-//        displaySavedMessage();
-//    }
-//}
+

@@ -134,7 +134,7 @@ public class DayMap {
 
     /**
      * Finds the activities containing a keyword.
-     * @param calorie is the keyword where the activity should contain
+     * @param calorie is the calorie to be matched
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
     public void listActivitiesContainingCalorie(String calorie) throws KeywordNotFoundException {
@@ -197,7 +197,7 @@ public class DayMap {
     }
 
     /**
-     * Finds the activities containing all keywords.
+     * Finds the activities containing at least one of the keywords inputted.
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
