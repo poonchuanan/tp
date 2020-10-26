@@ -60,9 +60,11 @@ public class listDrawer {
     }
 
     protected String listHeaderString() {
-        String toPrint = NUMBERS + increaseStringLength(INDENT, 1) + ACTIVITY_TYPE + increaseStringLength(INDENT, 3) + DESCRIPTION + increaseStringLength(INDENT,3) + CALORIES_GAIN_OR_LOST;
-        //String startDivider = increaseStringLength(DIVIDER, toPrint.length());
-        return toPrint;// + NEWLINE + startDivider + NEWLINE;
+        String header = NUMBERS
+                + increaseStringLength(INDENT, 1) + ACTIVITY_TYPE
+                + increaseStringLength(INDENT, 3) + DESCRIPTION
+                + increaseStringLength(INDENT,3) + CALORIES_GAIN_OR_LOST;
+        return header;
     }
 
     protected String dateHeaderString() {
@@ -73,17 +75,23 @@ public class listDrawer {
 
     protected String singleActivityString(int index) {
         ArrayList<String> descriptions = new ArrayList<>();
-        String descriptions2="";
+        String restOfDescription="";
 
         String indexString = Integer.toString(index + 1);
+        int lengthOfIndex = indexString.length();
+
         String descriptionString = activityList.getActivity(index).description;
+        int lengthOfDescription = descriptionString.length();
+
         String calorieString = Integer.toString(activityList.getActivity(index).calories);
         String typeString;
         int lengthOfType;
+
         int lengthLeftForWhiteSpaceType;
+        int lengthLeftForWhiteSpaceDescription;
+        int lengthLeftForWhiteSpace;
 
 
-        int lengthOfIndex = indexString.length();
 
         if(activityList.getActivity(index) instanceof Food) {
             typeString = FOOD_TYPE;
@@ -96,25 +104,21 @@ public class listDrawer {
             lengthLeftForWhiteSpaceType = START_INDEX_FOR_EXERCISE_TYPE - lengthOfIndex;
         }
 
+        lengthLeftForWhiteSpaceDescription = START_INDEX_FOR_DESCRIPTION
+                - lengthOfIndex - lengthLeftForWhiteSpaceType - lengthOfType;
 
 
-
-        int lengthLeftForWhiteSpaceDescription = START_INDEX_FOR_DESCRIPTION - lengthOfIndex - lengthLeftForWhiteSpaceType - lengthOfType;
-
-
-
-
-        int lengthOfDescription = descriptionString.length();
-        int lengthLeftForWhiteSpace;
 
         if(lengthOfDescription > MAX_STRING_FOR_DESCRIPTION) {
-            lengthLeftForWhiteSpace = START_INDEX_FOR_CALORIES - lengthOfIndex - lengthOfType - lengthLeftForWhiteSpaceType - lengthLeftForWhiteSpaceDescription - MAX_STRING_FOR_DESCRIPTION;
+            lengthLeftForWhiteSpace = START_INDEX_FOR_CALORIES - lengthOfIndex - lengthOfType
+                    - lengthLeftForWhiteSpaceType - lengthLeftForWhiteSpaceDescription - MAX_STRING_FOR_DESCRIPTION;
         } else {
-            lengthLeftForWhiteSpace = START_INDEX_FOR_CALORIES - lengthOfIndex - lengthOfType - lengthLeftForWhiteSpaceType  - lengthLeftForWhiteSpaceDescription - lengthOfDescription;
+            lengthLeftForWhiteSpace = START_INDEX_FOR_CALORIES - lengthOfIndex - lengthOfType
+                    - lengthLeftForWhiteSpaceType  - lengthLeftForWhiteSpaceDescription - lengthOfDescription;
         }
 
 
-        //-------------------------------------------
+        //if the length of the description exceeds the maximum length, extract the rest of the description
         while (lengthOfDescription > MAX_STRING_FOR_DESCRIPTION) {
             String description = descriptionString.substring(0, MAX_STRING_FOR_DESCRIPTION);
             descriptions.add(description);
@@ -125,25 +129,30 @@ public class listDrawer {
         }
         descriptions.add(descriptionString);
 
-
         if(descriptions.size()>1) {
             for (int i = 1; i < descriptions.size(); i++){
-                descriptions2 = descriptions2 + increaseStringLength(" ", START_INDEX_FOR_DESCRIPTION)+ descriptions.get(i) + NEWLINE;
+                restOfDescription = restOfDescription
+                        + increaseStringLength(" ", START_INDEX_FOR_DESCRIPTION)
+                        + descriptions.get(i)
+                        + NEWLINE;
             }
-            System.out.println(descriptions2);
 
 
         }
         //    ----------------------------------------
 
-            String singleActivity = indexString + increaseStringLength(" ", lengthLeftForWhiteSpaceType) + typeString+ increaseStringLength(" ", lengthLeftForWhiteSpaceDescription) + descriptions.get(0) + increaseStringLength("_", lengthLeftForWhiteSpace) + calorieString + NEWLINE + descriptions2;
-            return singleActivity;
+        return indexString
+                + increaseStringLength(" ", lengthLeftForWhiteSpaceType) + typeString
+                + increaseStringLength(" ", lengthLeftForWhiteSpaceDescription) + descriptions.get(0)
+                + increaseStringLength("_", lengthLeftForWhiteSpace) + calorieString
+                + NEWLINE
+                + restOfDescription;
 
     }
 
     protected String allActivityString() {
         String allActivityString = "";
-        for(int i = 0; i< activityList.getNumberOfActivities(); i++) {
+        for(int i = 0; i < activityList.getNumberOfActivities(); i++) {
             allActivityString = allActivityString + singleActivityString(i) + NEWLINE;
         }
         return allActivityString;
