@@ -7,8 +7,6 @@ public class GraphDrawing {
 
     public GraphProperty graphProperty;
 
-    private final int row;
-    private final int column;
     private final int targetRow;
     private final int maxCalories;
     private final int minCalories;
@@ -22,17 +20,14 @@ public class GraphDrawing {
 
     /**
      * Constructor.
-     * @param dayMap Hashmap
-     * @param targetCalories target calories set by user
+     * @param graphProperty properties of graph
      */
-    public GraphDrawing(DayMap dayMap, int targetCalories) {
-        this.graphProperty = new GraphProperty(dayMap, targetCalories);
-        this.row = graphProperty.row;
-        this.column = graphProperty.column;
+    public GraphDrawing(GraphProperty graphProperty) {
+        this.graphProperty = graphProperty;
         this.targetRow = graphProperty.targetRow;
         this.maxCalories = graphProperty.maxCalories;
         this.minCalories = graphProperty.minCalories;
-        this.targetCalories = graphProperty.maxCalories;
+        this.targetCalories = graphProperty.targetCalories;
     }
 
     /**
@@ -42,6 +37,7 @@ public class GraphDrawing {
      * @return concatenated string
      */
     public String repeatCharacter(String character, int size) {
+        assert size >= 0;
         String characterText = "";
         for (int i = 0; i < size; i++) {
             characterText += character;
@@ -53,7 +49,7 @@ public class GraphDrawing {
      * Generates the x_axis.
      * @return x_axis String
      */
-    public String generate_x_axis(int maxCalorieSize) {
+    public String generate_x_axis(int maxCalorieSize, int column) {
         String horizontalLine = "|-+";
         for (int i = 0; i < column - 1; i++) {
             horizontalLine += repeatCharacter("-", 5) + "+";
@@ -67,8 +63,9 @@ public class GraphDrawing {
      * @param maxCalorieSize Character length of maxCalorieSize
      * @return date labels
      */
-    public String generateDateLabels(int maxCalorieSize) {
-        ArrayList<LocalDate> keys = graphProperty.keys;
+    public String generateDateLabels(int maxCalorieSize,  ArrayList<LocalDate> keys) {
+        assert keys != null;
+        assert maxCalorieSize >= 1;
         return repeatCharacter(" ", maxCalorieSize - 1) + " " + graphProperty.parseDate(keys);
     }
 
@@ -78,7 +75,7 @@ public class GraphDrawing {
      * @param columnNumber column number
      * @return y_axis string for that row
      */
-    private String generateVerticalAxis(String space, int columnNumber) {
+    private String generateVerticalAxis(String space, int columnNumber, int row) {
         String targetCaloriesString = Integer.toString(targetCalories);
         String maxCaloriesString = Integer.toString(maxCalories);
         String minCaloriesString = Integer.toString(minCalories);
@@ -129,16 +126,19 @@ public class GraphDrawing {
     /**
      * draws the graph.
      */
-    public void drawGraph() {
+    public String drawGraph() {
         int[][] table = graphProperty.table;
+        assert table != null;
         ArrayList<LocalDate> keys = graphProperty.keys;
+        assert keys != null;
         int maxCalorieSize = Integer.toString(maxCalories).length();
         String space = repeatCharacter(" ", maxCalorieSize);
-
+        int column = graphProperty.column;
+        int row = GraphProperty.ROW;
         String drawing = "";
 
         for (int i = row - 1; i >= 0; i--) {
-            drawing += generateVerticalAxis(space, i) + "|";
+            drawing += generateVerticalAxis(space, i, row) + "|";
             for (int j = 0; j < column; j++) {
                 switch (table[i][j]) {
                 case 0:
@@ -165,9 +165,9 @@ public class GraphDrawing {
             drawing += "\n";
         }
 
-        drawing += generate_x_axis(maxCalorieSize);
-        drawing += generateDateLabels(maxCalorieSize);
-        System.out.println(drawing);
+        drawing += generate_x_axis(maxCalorieSize, column);
+        drawing += generateDateLabels(maxCalorieSize, keys);
+        return drawing;
     }
 
 }
