@@ -9,13 +9,10 @@ If you can type fast, traKCAL is suited just for you.
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [Viewing help](#viewing-help): `help`
-<<<<<<< HEAD
     * [Adding a profile for new user](#adding-a-profile-for-new-user): `create new user`
     * [Editing user profile](#editing-user-profile): `edit`
-=======
     * [Creating a profile for new user](#creating-a-profile-for-new-user): `create new user`
     * [Creating a set of entries](#creating-a-set-of-entries): `createSet`
->>>>>>> 85987052c34f3688af467a99ce32fc9e4023f6b0
     * [Adding a target calorie](#adding-a-target-calorie): `target`
     * [Adding a food entry](#adding-a-food-entry): `add`
     * [Adding an exercise entry](#adding-an-exercise-entry): `add`
