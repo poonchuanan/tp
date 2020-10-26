@@ -1,17 +1,18 @@
-package seedu.duke;
+package seedu.duke.model;
 
+import seedu.duke.Trakcal;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
-import static seedu.duke.Ui.displayNotSavedMessage;
-import static seedu.duke.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
 
 
 /**
  * List of activities for any day.
  */
-public class ActivityList extends Duke {
+public class ActivityList extends Trakcal {
     private ArrayList<Activity> activities;
     private int activityCounter;
     private int netCalorie;
@@ -176,5 +177,9 @@ public class ActivityList extends Duke {
         String activitiesString = Arrays.toString(activities.toArray());
         activitiesString = activitiesString.substring(1, activitiesString.length() - 1);
         return (activitiesString);
+    }
+
+    public LocalDate getDateOfActivityAtIndex(int index) {
+        return getActivity(index).getActivityDate();
     }
 }

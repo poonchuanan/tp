@@ -1,8 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.ActivityList;
-import seedu.duke.DayMap;
-import seedu.duke.exception.KeywordNotFoundException;
+import seedu.duke.model.DayMap;
 
 /**
  * Execute command.

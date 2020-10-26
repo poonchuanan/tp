@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import static seedu.duke.ExceptionMessages.displayInvalidInputErrorMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
 
 public class InvalidCommand extends Command {
 
