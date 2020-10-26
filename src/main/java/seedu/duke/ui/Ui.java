@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.ui;
 
 /**
  * Deals with interactions with the user.

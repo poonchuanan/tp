@@ -1,11 +1,11 @@
 package seedu.duke.userprofile;
 
-import seedu.duke.Duke;
+import seedu.duke.Trakcal;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 
 public class Initialiseuser {
     private static Userinfo userInfo = new Userinfo();
@@ -13,7 +13,7 @@ public class Initialiseuser {
 
     public static String input(String text) {
         System.out.print(text);
-        return Duke.in.nextLine();
+        return Trakcal.in.nextLine();
     }
 
     public static Userinfo createNewProfile() {

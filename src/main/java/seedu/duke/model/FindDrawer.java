@@ -1,8 +1,4 @@
-package seedu.duke.command;
-
-import seedu.duke.ActivityList;
-import seedu.duke.Food;
-import seedu.duke.ListDrawer;
+package seedu.duke.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;

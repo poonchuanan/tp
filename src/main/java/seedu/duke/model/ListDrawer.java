@@ -1,8 +1,10 @@
-package seedu.duke;
+package seedu.duke.model;
+
+import seedu.duke.model.ActivityList;
+import seedu.duke.model.Food;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -45,7 +47,7 @@ public class ListDrawer {
     }
 
     public void printListDrawing() {
-        System.out.println(dateHeaderString()
+        System.out.println(headerBox()
                 + listHeaderString()
                 + NEWLINE
                 + increaseStringLength(DIVIDER, listHeaderString().length())
@@ -67,10 +69,14 @@ public class ListDrawer {
         return header;
     }
 
-    protected String dateHeaderString() {
-        String dateHeaderString = "|  " + date + "  |";
-        String dividerString = increaseStringLength(DIVIDER, dateHeaderString.length());
-        return dividerString + NEWLINE + dateHeaderString + NEWLINE + dividerString + NEWLINE;
+    protected String headerBox() {
+        String headerString = "|  " + date + "  " + netCalorieString();
+        String dividerString = increaseStringLength(DIVIDER, headerString.length());
+        return dividerString + NEWLINE + headerString + NEWLINE + dividerString + NEWLINE;
+    }
+
+    protected String netCalorieString() {
+        return "|  " + "Net Calorie: " + activityList.getNetCalorie() + " kcal  |";
     }
 
     protected String singleActivityString(int index) {
@@ -80,7 +86,7 @@ public class ListDrawer {
         String indexString = Integer.toString(index + 1);
         int lengthOfIndex = indexString.length();
 
-        String descriptionString = activityList.getActivity(index).description;
+        String descriptionString = activityList.getActivity(index).getActivityDescription();
         int lengthOfDescription = descriptionString.length();
 
         String typeString;
@@ -121,7 +127,6 @@ public class ListDrawer {
         while (lengthOfDescription > MAX_STRING_FOR_DESCRIPTION) {
             String description = descriptionString.substring(0, MAX_STRING_FOR_DESCRIPTION);
             descriptions.add(description);
-            System.out.println(Arrays.toString(descriptions.toArray()));
             descriptionString = descriptionString.substring(MAX_STRING_FOR_DESCRIPTION);
             lengthOfDescription = descriptionString.length();
 
@@ -139,7 +144,7 @@ public class ListDrawer {
 
         }
         //    ----------------------------------------
-        String calorieString = Integer.toString(activityList.getActivity(index).calories);
+        String calorieString = Integer.toString(activityList.getActivity(index).getActivityCalories());
 
         return indexString
                 + increaseStringLength(" ", lengthLeftForWhiteSpaceType) + typeString

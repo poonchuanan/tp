@@ -1,4 +1,9 @@
-package seedu.duke;
+package seedu.duke.storage;
+
+import seedu.duke.model.ActivityList;
+import seedu.duke.model.DayMap;
+import seedu.duke.model.Exercise;
+import seedu.duke.model.Food;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,8 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static seedu.duke.Ui.displayNotSavedMessage;
-import static seedu.duke.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.displayNotSavedMessage;
 
 public class Storage {
     String filePath;

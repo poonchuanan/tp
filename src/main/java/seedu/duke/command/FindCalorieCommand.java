@@ -1,13 +1,9 @@
 package seedu.duke.command;
 
-import seedu.duke.ActivityList;
 import seedu.duke.exception.KeywordNotFoundException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
-import static seedu.duke.Ui.displaySavedMessage;
 
 /**
  * Initialises Command to find calorie count.

@@ -1,6 +1,8 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.model.ActivityList;
+import seedu.duke.model.Food;
 
 import java.time.LocalDate;
 

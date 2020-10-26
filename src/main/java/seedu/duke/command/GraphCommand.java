@@ -1,9 +1,9 @@
 package seedu.duke.command;
 
-import seedu.duke.DayMap;
-import seedu.duke.Duke;
-import seedu.duke.GraphDrawing;
-import seedu.duke.GraphProperty;
+import seedu.duke.model.DayMap;
+import seedu.duke.Trakcal;
+import seedu.duke.model.GraphDrawing;
+import seedu.duke.model.GraphProperty;
 
 public class GraphCommand extends Command {
     public static final int MAXIMUM_DAYS = 7;
@@ -16,7 +16,7 @@ public class GraphCommand extends Command {
         if (!isMapValid(dayMap)) {
             throw new NullPointerException();
         }
-        GraphProperty graphProperties = new GraphProperty(dayMap, (int) Duke.profile.getCalories());
+        GraphProperty graphProperties = new GraphProperty(dayMap, (int) Trakcal.profile.getCalories());
         graphProperties.setProperties();
         System.out.println(new GraphDrawing(graphProperties).drawGraph());
     }

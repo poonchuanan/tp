@@ -3,26 +3,25 @@ package seedu.duke;
 import java.io.File;
 
 import seedu.duke.command.Command;
-import seedu.duke.storage.Userinfotextfilestorage;
+import seedu.duke.logic.Parser;
+import seedu.duke.model.DayMap;
+import seedu.duke.storage.Storage;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 import seedu.duke.userprofile.CheckNewUser;
 
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.Ui.displayNotSavedMessage;
-import static seedu.duke.Ui.displayWelcomeMessage;
-import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
-import static seedu.duke.ExceptionMessages.displayParserNullPointerExceptionMessage;
+import static seedu.duke.ui.Ui.displayNotSavedMessage;
+import static seedu.duke.ui.Ui.displayWelcomeMessage;
+import static seedu.duke.ui.ExceptionMessages.displayParserNullPointerExceptionMessage;
 
 /**
  * Entry point of the traKCAL application.
  * Initialises the application and starts the interaction with the user.
  */
-public class Duke {
+public class Trakcal {
 
     public static DayMap calList = new DayMap();
     public static Userinfo profile;
@@ -43,7 +42,7 @@ public class Duke {
         } else {
             profile = Initialiseuser.loadProfile();
         }
-        Duke.run();
+        Trakcal.run();
     }
 
     public static void run()  {
@@ -74,7 +73,7 @@ public class Duke {
     }
 
     private static String getJarFilePath() {
-        return new File(Duke.class.getProtectionDomain().getCodeSource().getLocation().getPath())
+        return new File(Trakcal.class.getProtectionDomain().getCodeSource().getLocation().getPath())
                 .getParent().replace("%20", " ");
     }
 }

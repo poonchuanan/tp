@@ -1,6 +1,7 @@
-package seedu.duke;
+package seedu.duke.model;
 
 import seedu.duke.command.GraphCommand;
+import seedu.duke.model.DayMap;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

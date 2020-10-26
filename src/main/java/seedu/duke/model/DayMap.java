@@ -1,6 +1,7 @@
-package seedu.duke;
+package seedu.duke.model;
 
 import seedu.duke.exception.KeywordNotFoundException;
+import seedu.duke.exception.ListNotFoundException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,8 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
-import static seedu.duke.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
 
 
 /**
@@ -30,6 +30,10 @@ public class DayMap {
     public void setLastSeenList(ActivityList activityList) {
         this.lastSeenList = new ActivityList();
         this.lastSeenList = activityList;
+    }
+
+    public LocalDate getDateFromLastSeenListAtIndex(int index) {
+        return lastSeenList.getActivity(index).getActivityDate();
     }
 
     public ActivityList getLastSeenList() {
@@ -328,8 +332,13 @@ public class DayMap {
 
     }
 
-    public void move(int indexToBeMovedFrom, int indexToBeInsertedBelow) throws IndexOutOfBoundsException {
-        lastSeenList.moveActivity(indexToBeMovedFrom - 1, indexToBeInsertedBelow);
+    public void move(int indexToBeMovedFrom, int indexToBeInsertedBelow)
+            throws IndexOutOfBoundsException, ListNotFoundException {
+        if (lastSeenList.getNumberOfActivities() == 0) {
+            throw new ListNotFoundException();
+        } else {
+            lastSeenList.moveActivity(indexToBeMovedFrom - 1, indexToBeInsertedBelow);
+        }
     }
 
     /**

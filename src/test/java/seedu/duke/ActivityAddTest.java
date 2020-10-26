@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.AddExerciseCommand;
 import seedu.duke.command.AddFoodCommand;
+import seedu.duke.model.ActivityList;
+import seedu.duke.model.Exercise;
+import seedu.duke.model.Food;
 
 import java.time.LocalDate;
 

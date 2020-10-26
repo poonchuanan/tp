@@ -1,15 +1,9 @@
 package seedu.duke.command;
 
-import seedu.duke.Activity;
-import seedu.duke.ActivityList;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
-import static seedu.duke.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.displaySavedMessage;
 
 /**
  * Initialises Command to delete activities.
