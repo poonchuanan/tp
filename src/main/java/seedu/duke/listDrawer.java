@@ -11,23 +11,23 @@ import java.util.Collections;
 
 public class listDrawer {
     private String date;
-    private ActivityList activityList;
-    private final String INDENT = "        ";
-    private final String DIVIDER = "-";
-    private final String DELIMITER = ",";
-    private final String DESCRIPTION = "Description";
-    private final String DATE = "Date";
-    private final String NUMBERS = "No.";
-    private final String NEWLINE = "\n";
-    private final String ACTIVITY_TYPE = "Type";
-    private final String FOOD_TYPE = "Food";
-    private final String EXERCISE_TYPE ="Exercise";
-    private final String CALORIES_GAIN_OR_LOST = "Calories gain or lost";
-    private final int START_INDEX_FOR_DESCRIPTION = 14 + INDENT.length() + ACTIVITY_TYPE.length();
-    private final int START_INDEX_FOR_CALORIES = 72 + INDENT.length() + ACTIVITY_TYPE.length();
-    private final int MAX_STRING_FOR_DESCRIPTION = 36 + DESCRIPTION.length();
-    private final int START_INDEX_FOR_FOOD_TYPE = 11;
-    private final int START_INDEX_FOR_EXERCISE_TYPE = 9;
+    protected ActivityList activityList;
+    protected final String INDENT = "        ";
+    protected final String DIVIDER = "-";
+    protected final String DELIMITER = ",";
+    protected final String DESCRIPTION = "Description";
+    protected final String DATE = "Date";
+    protected final String NUMBERS = "No.";
+    protected final String NEWLINE = "\n";
+    protected final String ACTIVITY_TYPE = "Type";
+    protected final String FOOD_TYPE = "Food";
+    protected final String EXERCISE_TYPE ="Exercise";
+    protected final String CALORIES_GAIN_OR_LOST = "Calories gain or lost";
+    protected final int START_INDEX_FOR_DESCRIPTION = 14 + INDENT.length() + ACTIVITY_TYPE.length();
+    protected final int START_INDEX_FOR_CALORIES = 72 + INDENT.length() + ACTIVITY_TYPE.length();
+    protected final int MAX_STRING_FOR_DESCRIPTION = 36 + DESCRIPTION.length();
+    protected final int START_INDEX_FOR_EXERCISE_TYPE = 9;
+    protected final int START_INDEX_FOR_FOOD_TYPE = 11;
 
 
     /**
@@ -40,31 +40,38 @@ public class listDrawer {
         this.activityList = activityList;
     }
 
+    public listDrawer(ActivityList lastSeenList) {
+        this.activityList = lastSeenList;
+    }
+
     public void printListDrawing() {
         System.out.println(dateHeaderString()
                 + listHeaderString()
+                + NEWLINE
+                + increaseStringLength(DIVIDER, listHeaderString().length())
+                + NEWLINE
                 + allActivityString());
     }
 
 
-    private String increaseStringLength(String stringToIncrease, int length) {
+    protected String increaseStringLength(String stringToIncrease, int length) {
 
         return String.join("", Collections.nCopies(length, stringToIncrease));
     }
 
-    private String listHeaderString() {
+    protected String listHeaderString() {
         String toPrint = NUMBERS + increaseStringLength(INDENT, 1) + ACTIVITY_TYPE + increaseStringLength(INDENT, 3) + DESCRIPTION + increaseStringLength(INDENT,3) + CALORIES_GAIN_OR_LOST;
-        String startDivider = increaseStringLength(DIVIDER, toPrint.length());
-        return toPrint + NEWLINE + startDivider + NEWLINE;
+        //String startDivider = increaseStringLength(DIVIDER, toPrint.length());
+        return toPrint;// + NEWLINE + startDivider + NEWLINE;
     }
 
-    private String dateHeaderString() {
+    protected String dateHeaderString() {
         String dateHeaderString = "|  " + date + "  |";
         String dividerString = increaseStringLength(DIVIDER, dateHeaderString.length());
         return dividerString + NEWLINE + dateHeaderString + NEWLINE + dividerString + NEWLINE;
     }
 
-    private String singleActivityString(int index) {
+    protected String singleActivityString(int index) {
         ArrayList<String> descriptions = new ArrayList<>();
         String descriptions2="";
 
@@ -134,9 +141,9 @@ public class listDrawer {
 
     }
 
-    private String allActivityString() {
+    protected String allActivityString() {
         String allActivityString = "";
-        for(int i=0; i<activityList.getNumberOfActivities(); i++) {
+        for(int i = 0; i< activityList.getNumberOfActivities(); i++) {
             allActivityString = allActivityString + singleActivityString(i) + NEWLINE;
         }
         return allActivityString;

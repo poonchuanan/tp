@@ -124,7 +124,7 @@ public class DayMap {
                     String descriptionToCheck = currentLine.substring(currentLine.indexOf("|") + 1);
                     descriptionToCheck = descriptionToCheck.substring(0, descriptionToCheck.indexOf("|")).trim();
                     if (descriptionToCheck.contains(description)) {
-                        System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
+                        //System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
                         lastSeenList.addActivity(activities.getActivity(i));
                         activityFindCounter++;
                     }

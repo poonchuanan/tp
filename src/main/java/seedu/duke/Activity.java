@@ -29,6 +29,17 @@ public class Activity {
         }
     }
 
+    public String getActivityDescription() {
+        return this.description;
+    }
+
+    public int getActivityCalories() {
+        return this.calories;
+    }
+    public LocalDate getActivityDate() {
+        return this.date;
+    }
+
     /**
      * Returns String to be printed out.
      *

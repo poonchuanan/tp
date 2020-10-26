@@ -36,15 +36,15 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute() {
-        try {
+        //try {
             dayMap.setLastSeenList(dayMap.getActivityList(date.atStartOfDay()));
             dayMap.printList(date);
             System.out.println(dayMap.toString(date.atStartOfDay()));
-            listDrawer = new listDrawer(date, dayMap.getLastSeenList());
-            //listDrawer.printListDrawing();
-        } catch (NullPointerException e) {
-            System.out.println("There is no data for " + date.toString());
-        }
+            FindDrawer findDrawer = new FindDrawer(dayMap.getLastSeenList());
+            findDrawer.printListDrawing();
+//        } catch (NullPointerException e) {
+//            System.out.println("There is no data for " + date.toString());
+//        }
 
     }
 }
