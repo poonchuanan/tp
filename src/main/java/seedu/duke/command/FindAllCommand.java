@@ -1,6 +1,8 @@
 package seedu.duke.command;
 
 import seedu.duke.ActivityList;
+import seedu.duke.exception.KeywordNotFoundException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,58 +28,10 @@ public class FindAllCommand extends Command {
 
     @Override
     public void execute() {
-        ActivityList activities = dayMap.getActivityList(date.atStartOfDay());
-        int activityCounter = activities.getNumberOfActivities();
-        if (activityCounter == 0) {
-            displayEmptyActivityCounterMessage();
-        } else {
-            System.out.println("Here are the matching results based on all keywords typed:");
-            boolean hasAllWords;
-            for (int i = 0; i < activityCounter; i++) {
-                String currentLine = activities.getActivity(i).toString();
-                hasAllWords = checkAllWords(currentLine);
-                if (hasAllWords) {
-                    System.out.println(currentLine);
-                }
-            }
+        try {
+            dayMap.listActivitiesContainingAll(userInput);
+        } catch (KeywordNotFoundException e) {
+            System.out.println("No results were found!");
         }
-        displaySavedMessage();
-    }
-
-    /**
-     * Checks if all keywords inputted by user is present in entry.
-     * @param currentLine current entry to be checked
-     * @return true if all words are present, false otherwise
-     */
-    private boolean checkAllWords(String currentLine) {
-        ArrayList<String> wordsToCheck = new ArrayList<>();
-        wordsToCheck = getAllTags(userInput);
-        for (String word : wordsToCheck) {
-            if (!currentLine.contains(word)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Parses all keywords inputted by user into an arraylist.
-     * @param userInput String user typed into CLI
-     */
-    private ArrayList<String> getAllTags(String userInput) {
-        ArrayList<String> tags = new ArrayList<>();
-        while (userInput.contains("a/")) {
-            if (!userInput.contains(" ")) {
-                userInput = userInput.substring(2);
-                tags.add(userInput);
-                break;
-            }
-            int spaceIndex = userInput.indexOf(" ");
-            String firstWord = userInput.substring(0, spaceIndex);
-            userInput = userInput.substring(spaceIndex).trim();
-            firstWord = firstWord.substring(2);
-            tags.add(firstWord);
-        }
-        return tags;
     }
 }

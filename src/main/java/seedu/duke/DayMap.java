@@ -105,19 +105,15 @@ public class DayMap {
      * @param description is the keyword where the activity should contain
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
-    public void listActivitiesContaining(String description) throws KeywordNotFoundException {
-
+    public void listActivitiesContainingDescription(String description) throws KeywordNotFoundException {
         setLastSeenList(new ActivityList());
-
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
         while (it.hasNext()) {
-
             Map.Entry pair = (Map.Entry) it.next();
             String date = pair.getKey().toString();
             ActivityList activities = (ActivityList) pair.getValue();
             int activityCounter = activities.getNumberOfActivities();
-
             if (activityCounter > 0) {
                 for (int i = 0; i < activityCounter; i++) {
                     String currentLine = activities.getActivity(i).toString();
@@ -134,7 +130,155 @@ public class DayMap {
         if (activityFindCounter == 0) {
             throw new KeywordNotFoundException();
         }
-        //displaySavedMessage();
+    }
+
+    /**
+     * Finds the activities containing a keyword.
+     * @param calorie is the calorie to be matched
+     * @throws KeywordNotFoundException when the keyword is not found in any activity
+     */
+    public void listActivitiesContainingCalorie(String calorie) throws KeywordNotFoundException {
+        setLastSeenList(new ActivityList());
+        Iterator it = dayMap.entrySet().iterator();
+        int activityFindCounter = 0;
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+            String date = pair.getKey().toString();
+            ActivityList activities = (ActivityList) pair.getValue();
+            int activityCounter = activities.getNumberOfActivities();
+            if (activityCounter > 0) {
+                for (int i = 0; i < activityCounter; i++) {
+                    String currentLine = activities.getActivity(i).toString();
+                    int calorieStartIndex = currentLine.lastIndexOf(' ');
+                    String calorieToCheck = currentLine.substring(calorieStartIndex).trim();
+                    if (calorieToCheck.equals(calorie)) {
+                        System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
+                        lastSeenList.addActivity(activities.getActivity(i));
+                        activityFindCounter++;
+                    }
+                }
+            }
+        }
+        if (activityFindCounter == 0) {
+            throw new KeywordNotFoundException();
+        }
+    }
+
+    /**
+     * Finds the activities containing all keywords.
+     * @param userInput is the unparsed activity description
+     * @throws KeywordNotFoundException when the keyword is not found in any activity
+     */
+    public void listActivitiesContainingAll(String userInput) throws KeywordNotFoundException {
+        setLastSeenList(new ActivityList());
+        Iterator it = dayMap.entrySet().iterator();
+        int activityFindCounter = 0;
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+            String date = pair.getKey().toString();
+            ActivityList activities = (ActivityList) pair.getValue();
+            int activityCounter = activities.getNumberOfActivities();
+            if (activityCounter > 0) {
+                for (int i = 0; i < activityCounter; i++) {
+                    boolean hasAllWords;
+                    String currentLine = activities.getActivity(i).toString();
+                    hasAllWords = checkAllWords(currentLine, userInput);
+                    if (hasAllWords) {
+                        System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
+                        lastSeenList.addActivity(activities.getActivity(i));
+                        activityFindCounter++;
+                    }
+                }
+            }
+        }
+        if (activityFindCounter == 0) {
+            throw new KeywordNotFoundException();
+        }
+    }
+
+    /**
+     * Finds the activities containing at least one of the keywords inputted.
+     * @param userInput is the unparsed activity description
+     * @throws KeywordNotFoundException when the keyword is not found in any activity
+     */
+    public void listActivitiesContainingEither(String userInput) throws KeywordNotFoundException {
+        setLastSeenList(new ActivityList());
+        Iterator it = dayMap.entrySet().iterator();
+        int activityFindCounter = 0;
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+            String date = pair.getKey().toString();
+            ActivityList activities = (ActivityList) pair.getValue();
+            int activityCounter = activities.getNumberOfActivities();
+            if (activityCounter > 0) {
+                for (int i = 0; i < activityCounter; i++) {
+                    boolean hasOneWord;
+                    String currentLine = activities.getActivity(i).toString();
+                    hasOneWord = checkEitherWords(currentLine, userInput);
+                    if (hasOneWord) {
+                        System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
+                        lastSeenList.addActivity(activities.getActivity(i));
+                        activityFindCounter++;
+                    }
+                }
+            }
+        }
+        if (activityFindCounter == 0) {
+            throw new KeywordNotFoundException();
+        }
+    }
+
+    /**
+     * Checks if all keywords inputted by user is present in entry.
+     * @param currentLine current entry to be checked
+     * @return true if all words are present, false otherwise
+     */
+    private boolean checkAllWords(String currentLine, String userInput) {
+        ArrayList<String> wordsToCheck = new ArrayList<>();
+        wordsToCheck = getAllTags(userInput);
+        for (String word : wordsToCheck) {
+            if (!currentLine.contains(word)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Checks if one of the keywords inputted by user is present in entry.
+     * @param currentLine current entry to be checked
+     * @return  hasOneWord true if just one word is present, false otherwise
+     */
+    private boolean checkEitherWords(String currentLine, String userInput) {
+        ArrayList<String> wordsToCheck = new ArrayList<>();
+        wordsToCheck = getAllTags(userInput);
+        for (String word : wordsToCheck) {
+            if (currentLine.contains(word)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Parses all keywords inputted by user into an arraylist.
+     * @param userInput String user typed into CLI
+     */
+    private ArrayList<String> getAllTags(String userInput) {
+        ArrayList<String> tags = new ArrayList<>();
+        while (userInput.contains("/")) {
+            if (!userInput.contains(" ")) {
+                userInput = userInput.substring(2);
+                tags.add(userInput);
+                break;
+            }
+            int spaceIndex = userInput.indexOf(" ");
+            String firstWord = userInput.substring(0, spaceIndex);
+            userInput = userInput.substring(spaceIndex).trim();
+            firstWord = firstWord.substring(2);
+            tags.add(firstWord);
+        }
+        return tags;
     }
 
     /**

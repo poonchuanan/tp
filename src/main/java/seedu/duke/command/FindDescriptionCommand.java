@@ -25,12 +25,9 @@ public class FindDescriptionCommand extends Command {
     @Override
     public void execute() {
         try {
-            dayMap.listActivitiesContaining(description);
+            dayMap.listActivitiesContainingDescription(description);
         } catch (KeywordNotFoundException e) {
-            System.out.println("Invalid keyword!");
+            System.out.println("No results were found!");
         }
-
     }
-
-
 }
