@@ -1,20 +1,27 @@
 package seedu.duke.command;
 
 import seedu.duke.DayMap;
+import seedu.duke.Duke;
 import seedu.duke.GraphDrawing;
+import seedu.duke.GraphProperty;
 
 public class GraphCommand extends Command {
     public static final int MAXIMUM_DAYS = 7;
-    private DayMap dayMap;
 
     public GraphCommand() {
-        this.dayMap = super.dayMap;
-
     }
 
     @Override
-    public void execute() {
-        new GraphDrawing(dayMap, 2500).drawGraph();
+    public void execute() throws NullPointerException {
+        if (!isMapValid(dayMap)) {
+            throw new NullPointerException();
+        }
+        GraphProperty graphProperties = new GraphProperty(dayMap, (int) Duke.profile.getCalories());
+        graphProperties.setProperties();
+        System.out.println(new GraphDrawing(graphProperties).drawGraph());
     }
 
+    boolean isMapValid(DayMap dayMap) {
+        return dayMap != null;
+    }
 }

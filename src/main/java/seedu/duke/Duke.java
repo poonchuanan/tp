@@ -39,9 +39,9 @@ public class Duke {
             System.out.println("here");
         }
         if (CheckNewUser.isNewUser()) {
-            Initialiseuser.createNewProfile();
+            profile = Initialiseuser.createNewProfile();
         } else {
-            Initialiseuser.loadProfile();
+            profile = Initialiseuser.loadProfile();
         }
         Duke.run();
     }
@@ -68,7 +68,7 @@ public class Duke {
         }
     }
 
-    public static void executeCmd(Command cmd) {
+    public static void executeCmd(Command cmd) throws NullPointerException {
         cmd.setData(calList);
         cmd.execute();
     }

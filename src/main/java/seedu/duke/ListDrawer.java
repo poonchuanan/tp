@@ -6,41 +6,41 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
- * This class is used to create a responsive interface for the listing feature
+ * This class is used to create a responsive interface for the listing feature.
  */
 
-public class listDrawer {
+public class ListDrawer {
     private String date;
     protected ActivityList activityList;
-    protected final String INDENT = "        ";
-    protected final String DIVIDER = "-";
-    protected final String DELIMITER = ",";
-    protected final String DESCRIPTION = "Description";
-    protected final String DATE = "Date";
-    protected final String NUMBERS = "No.";
-    protected final String NEWLINE = "\n";
-    protected final String ACTIVITY_TYPE = "Type";
-    protected final String FOOD_TYPE = "Food";
-    protected final String EXERCISE_TYPE ="Exercise";
-    protected final String CALORIES_GAIN_OR_LOST = "Calories gain or lost";
-    protected final int START_INDEX_FOR_DESCRIPTION = 14 + INDENT.length() + ACTIVITY_TYPE.length();
-    protected final int START_INDEX_FOR_CALORIES = 72 + INDENT.length() + ACTIVITY_TYPE.length();
-    protected final int MAX_STRING_FOR_DESCRIPTION = 36 + DESCRIPTION.length();
-    protected final int START_INDEX_FOR_EXERCISE_TYPE = 9;
-    protected final int START_INDEX_FOR_FOOD_TYPE = 11;
+    protected static final String INDENT = "        ";
+    protected static final String DIVIDER = "-";
+    protected static final String DELIMITER = ",";
+    protected static final String DESCRIPTION = "Description";
+    protected static final String DATE = "Date";
+    protected static final String NUMBERS = "No.";
+    protected static final String NEWLINE = "\n";
+    protected static final String ACTIVITY_TYPE = "Type";
+    protected static final String FOOD_TYPE = "Food";
+    protected static final String EXERCISE_TYPE = "Exercise";
+    protected static final String CALORIES_GAIN_OR_LOST = "Calories gain or lost";
+    protected static final int START_INDEX_FOR_DESCRIPTION = 14 + INDENT.length() + ACTIVITY_TYPE.length();
+    protected static final int START_INDEX_FOR_CALORIES = 72 + INDENT.length() + ACTIVITY_TYPE.length();
+    protected static final int MAX_STRING_FOR_DESCRIPTION = 36 + DESCRIPTION.length();
+    protected static final int START_INDEX_FOR_EXERCISE_TYPE = 9;
+    protected static final int START_INDEX_FOR_FOOD_TYPE = 11;
 
 
     /**
-     * Sets the date and activity list to be printed
+     * Sets the date and activity list to be printed.
      * @param date date which activity list to be used
      * @param activityList is the list to be used when creating the list
      */
-    public listDrawer(LocalDate date, ActivityList activityList) {
+    public ListDrawer(LocalDate date, ActivityList activityList) {
         this.date = date.toString();
         this.activityList = activityList;
     }
 
-    public listDrawer(ActivityList lastSeenList) {
+    public ListDrawer(ActivityList lastSeenList) {
         this.activityList = lastSeenList;
     }
 
@@ -75,7 +75,7 @@ public class listDrawer {
 
     protected String singleActivityString(int index) {
         ArrayList<String> descriptions = new ArrayList<>();
-        String restOfDescription="";
+        String restOfDescription = "";
 
         String indexString = Integer.toString(index + 1);
         int lengthOfIndex = indexString.length();
@@ -83,7 +83,6 @@ public class listDrawer {
         String descriptionString = activityList.getActivity(index).description;
         int lengthOfDescription = descriptionString.length();
 
-        String calorieString = Integer.toString(activityList.getActivity(index).calories);
         String typeString;
         int lengthOfType;
 
@@ -93,7 +92,7 @@ public class listDrawer {
 
 
 
-        if(activityList.getActivity(index) instanceof Food) {
+        if (activityList.getActivity(index) instanceof Food) {
             typeString = FOOD_TYPE;
             lengthOfType = FOOD_TYPE.length();
             lengthLeftForWhiteSpaceType = START_INDEX_FOR_FOOD_TYPE - lengthOfIndex;
@@ -109,7 +108,7 @@ public class listDrawer {
 
 
 
-        if(lengthOfDescription > MAX_STRING_FOR_DESCRIPTION) {
+        if (lengthOfDescription > MAX_STRING_FOR_DESCRIPTION) {
             lengthLeftForWhiteSpace = START_INDEX_FOR_CALORIES - lengthOfIndex - lengthOfType
                     - lengthLeftForWhiteSpaceType - lengthLeftForWhiteSpaceDescription - MAX_STRING_FOR_DESCRIPTION;
         } else {
@@ -129,8 +128,8 @@ public class listDrawer {
         }
         descriptions.add(descriptionString);
 
-        if(descriptions.size()>1) {
-            for (int i = 1; i < descriptions.size(); i++){
+        if (descriptions.size() > 1) {
+            for (int i = 1; i < descriptions.size(); i++) {
                 restOfDescription = restOfDescription
                         + increaseStringLength(" ", START_INDEX_FOR_DESCRIPTION)
                         + descriptions.get(i)
@@ -140,6 +139,7 @@ public class listDrawer {
 
         }
         //    ----------------------------------------
+        String calorieString = Integer.toString(activityList.getActivity(index).calories);
 
         return indexString
                 + increaseStringLength(" ", lengthLeftForWhiteSpaceType) + typeString
@@ -152,7 +152,7 @@ public class listDrawer {
 
     protected String allActivityString() {
         String allActivityString = "";
-        for(int i = 0; i < activityList.getNumberOfActivities(); i++) {
+        for (int i = 0; i < activityList.getNumberOfActivities(); i++) {
             allActivityString = allActivityString + singleActivityString(i) + NEWLINE;
         }
         return allActivityString;

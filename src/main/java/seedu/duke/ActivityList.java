@@ -179,7 +179,7 @@ public class ActivityList extends Duke {
         return (activitiesString);
     }
 
-    public LocalDate getDateOfActivityAtIndex(int index){
+    public LocalDate getDateOfActivityAtIndex(int index) {
         return getActivity(index).date;
     }
 }

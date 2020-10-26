@@ -17,7 +17,7 @@ public class Activity {
      * @param description activity description
      * @param calories activity calories count
      */
-    public Activity(String description, int calories, LocalDate date ,boolean isFromFile) {
+    public Activity(String description, int calories, LocalDate date, boolean isFromFile) {
         this.description = description;
         this.calories = calories;
         this.isFromFile = isFromFile;
@@ -36,6 +36,7 @@ public class Activity {
     public int getActivityCalories() {
         return this.calories;
     }
+
     public LocalDate getActivityDate() {
         return this.date;
     }

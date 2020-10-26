@@ -1,6 +1,8 @@
 package seedu.duke.command;
 
 import seedu.duke.ActivityList;
+import seedu.duke.exception.KeywordNotFoundException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -16,6 +18,7 @@ public class  FindCalorieCommand extends Command {
 
     /**
      * Find matching results based on calorie input.
+     *
      * @param calorie calories to search
      */
     public FindCalorieCommand(String calorie) {
@@ -26,21 +29,12 @@ public class  FindCalorieCommand extends Command {
 
     @Override
     public void execute() {
-        ActivityList activities = dayMap.getActivityList(date.atStartOfDay());
-        int activityCounter = activities.getNumberOfActivities();
-        if (activityCounter == 0) {
-            displayEmptyActivityCounterMessage();
-        } else {
-            System.out.println("Here are the matching results based on calories:");
-            for (int i = 0; i < activityCounter; i++) {
-                String currentLine = activities.getActivity(i).toString();
-                int calorieStartIndex = currentLine.lastIndexOf(' ');
-                String calorieToCheck = currentLine.substring(calorieStartIndex).trim();
-                if (calorieToCheck.equals(calorie)) {
-                    System.out.println((i + 1) + ". " + currentLine);
-                }
-            }
+        try {
+            dayMap.listActivitiesContainingCalorie(calorie);
+        } catch (KeywordNotFoundException e) {
+            System.out.println("No results were found!");
         }
-        displaySavedMessage();
+
     }
 }
+

@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GraphProperty {
-    public final int row = 11;
+    public static final int ROW = 11;
     private static String DATE_FORMAT = "dd/MM";
     private static int TARGET_TYPE = 2;
     private static int LIMIT_TYPE = 4;
     private static int DIVISOR = 10;
+    private static int EMPTY = 0;
     public int targetRow;
-    public final int column;
+    public int column;
     public final DayMap dayMap;
     ArrayList<LocalDate> keys;
     public int targetCalories;
@@ -28,15 +29,19 @@ public class GraphProperty {
      * @param targetCalories tagret calories from userprofile
      */
     public GraphProperty(DayMap dayMap, int targetCalories) {
+        assert dayMap != null;
         this.dayMap = dayMap;
         this.targetCalories = targetCalories;
-        this.column = checkSize();
-        setProperties();
 
     }
 
+    /**
+     * Maximum days in graph is 7 or lower.
+     * @return number of days to be shown in graph
+     */
     private int checkSize() {
         int size = dayMap.getHashMap().size();
+        assert size != 0;
         if (size < GraphCommand.MAXIMUM_DAYS) {
             return size;
         }
@@ -47,6 +52,7 @@ public class GraphProperty {
      * set othere properties by calculation.
      */
     public void setProperties() {
+        this.column = checkSize();
         this.keys = sortKeys();
         ArrayList<Integer> calories = getCalories();
         this.table = initiateTable(calories);
@@ -57,7 +63,7 @@ public class GraphProperty {
      */
     public int[][] setEmptyTable(int[][] table) {
         for (int[] row : table) {
-            Arrays.fill(row, 0);
+            Arrays.fill(row, EMPTY);
         }
         return table;
     }
@@ -95,9 +101,19 @@ public class GraphProperty {
             maxCalories = findMaximum(maxCalories, currentCalories);
             minCalories = findMinimum(minCalories, currentCalories);
         }
+        checkBoundaries(minCalories, maxCalories);
+        return calories;
+    }
+
+    public void checkBoundaries(int minCalories, int maxCalories) {
+        assert maxCalories != 0;
+        if (maxCalories - minCalories < DIVISOR) {
+            minCalories -= DIVISOR / 2;
+            maxCalories += DIVISOR / 2;
+        }
         this.minCalories = minCalories;
         this.maxCalories = maxCalories;
-        return calories;
+
     }
 
     /**
@@ -132,6 +148,7 @@ public class GraphProperty {
      * @return interval value
      */
     public int calculateInterval() {
+        assert maxCalories - minCalories != 0;
         return (maxCalories - minCalories) / DIVISOR;
     }
 
@@ -147,9 +164,11 @@ public class GraphProperty {
      * @param calories calories list
      */
     public void fillTable(int[][] table, ArrayList<Integer> calories) {
+        assert table != null;
+        assert calories != null;
         this.targetRow = calculateRowNumber(targetCalories);
         int rowNumber;
-        for (int i = row - 1; i >= 0; i--) {
+        for (int i = ROW - 1; i >= 0; i--) {
             for (int j = 0; j < column; j++) {
                 rowNumber = calculateRowNumber(calories.get(j));
                 if (rowNumber == i) {
@@ -169,6 +188,7 @@ public class GraphProperty {
      * @return date in dd/MM formate
      */
     public String parseDate(ArrayList<LocalDate> keys) {
+        assert keys != null;
         String formattedDate = "";
         for (LocalDate key : keys) {
             formattedDate += key.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
@@ -182,7 +202,8 @@ public class GraphProperty {
      * @return table
      */
     public int[][] initiateTable(ArrayList<Integer> calories) {
-        int [][]table = new int[row][column];
+        assert calories != null;
+        int [][]table = new int[ROW][column];
         setEmptyTable(table);
         fillTable(table, calories);
         return table;
@@ -192,7 +213,9 @@ public class GraphProperty {
      * find the row number corresponding to the calories.
      */
     public int calculateRowNumber(int calories) {
+        assert calories >= minCalories;
         int interval = calculateInterval();
+        assert interval != 0;
         return (calories - minCalories) / interval;
     }
 
