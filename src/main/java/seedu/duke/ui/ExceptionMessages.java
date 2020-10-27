@@ -259,4 +259,22 @@ public class ExceptionMessages {
                 + "Please pull out the list for the day before editing on it!");
         drawDivider();
     }
+
+    /**
+     * Prints out error message when a shortcut has not been created in addSet command.
+     */
+    public static void displayShortcutDoesNotExistMessage() {
+        drawDivider();
+        System.out.println("This shortcut does not exists, please create a shortcut before adding it!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when calorie has not been input as integer.
+     */
+    public static void displayInvalidCalorieEntryMessage() {
+        drawDivider();
+        System.out.println("Please enter calories as an integer");
+        drawDivider();
+    }
 }

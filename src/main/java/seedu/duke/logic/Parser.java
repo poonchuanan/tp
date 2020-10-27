@@ -1,31 +1,12 @@
 package seedu.duke.logic;
 
 import seedu.duke.Trakcal;
-import seedu.duke.command.AddExerciseCommand;
-import seedu.duke.command.CreateNewRepeatedSet;
-import seedu.duke.command.ByeCommand;
-import seedu.duke.command.Command;
-import seedu.duke.command.AddFoodCommand;
-import seedu.duke.command.CreateNewUserCommand;
-import seedu.duke.command.EditFoodCommand;
-import seedu.duke.command.EditExerciseCommand;
-import seedu.duke.command.FindAllCommand;
-import seedu.duke.command.FindCalorieCommand;
-import seedu.duke.command.FindDescriptionCommand;
-import seedu.duke.command.FindEitherCommand;
-import seedu.duke.command.HelpCommand;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.MoveActivityCommand;
-import seedu.duke.command.InvalidCommand;
-import seedu.duke.command.ListCommand;
-import seedu.duke.command.GraphCommand;
+import seedu.duke.command.*;
+import seedu.duke.ui.ExceptionMessages;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.text.SimpleDateFormat;
@@ -154,13 +135,17 @@ public class Parser {
                     storage.updateFile(calList);
                     line = reader.readLine();
                 }
+            } else {
+                throw new FileNotFoundException();
             }
             reader.close();
-            return null;
+            return new AddSetCommand();
+        } catch (FileNotFoundException e) {
+            ExceptionMessages.displayShortcutDoesNotExistMessage();
         } catch (IOException e) {
-            displayIoExceptionMessage();
+            ExceptionMessages.displayIoExceptionMessage();
         }
-        return null;
+        return new AddSetCommand();
     }
 
     /**
