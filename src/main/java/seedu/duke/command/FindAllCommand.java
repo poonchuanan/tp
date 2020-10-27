@@ -15,6 +15,7 @@ public class FindAllCommand extends Command {
 
     /**
      * Find matching results based on input tags.
+     *
      * @param userInput keywords to be matched
      */
     public FindAllCommand(String userInput) {

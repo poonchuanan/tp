@@ -24,8 +24,8 @@ public class EditFoodCommand extends Command {
     /**
      * Edits food and it's respective calories.
      *
-     * @param description food description.
-     * @param calories calories gained.
+     * @param description food description
+     * @param calories calories gained
      */
     public EditFoodCommand(int index, String description, int calories) {
         this.index = index;

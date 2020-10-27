@@ -7,7 +7,7 @@ import java.time.LocalDate;
  */
 public class Food extends Activity {
     /**
-     * Subclass of class Activity.
+     * Constructor of class Food.
      *
      * @param description food description
      * @param calories calories consumed
@@ -16,6 +16,11 @@ public class Food extends Activity {
         super(description, calories, date, isFromFile);
     }
 
+    /**
+     * Gets food string.
+     *
+     * @return food string
+     */
     public String getString() {
         return toString();
     }

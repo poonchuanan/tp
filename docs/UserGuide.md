@@ -208,6 +208,20 @@ You can solve this by ....
 
 ##Adding a target calorie
 
+Adds target calorie.
+
+Format: `target **CALORIE**`
+
+Parameters:
+* `**CALORIE**`: target calorie of user.
+
+Example of usage:
+* `target 500`
+
+```
+
+```
+
 <\br>
 <\br>
 

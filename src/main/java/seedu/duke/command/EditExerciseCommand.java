@@ -21,8 +21,8 @@ public class EditExerciseCommand extends Command {
     /**
      * Edits exercise and it's respective calories.
      *
-     * @param description exercise description.
-     * @param calories calories lost.
+     * @param description exercise description
+     * @param calories calories lost
      */
     public EditExerciseCommand(int index, String description, int calories) {
         this.index = index;
