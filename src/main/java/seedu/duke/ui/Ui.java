@@ -143,35 +143,59 @@ public class Ui {
         System.out.println("Nothing was added!");
     }
 
+    /**
+     * Prints out message asking for gender.
+     */
     public static void displayAskUserGenderMessage() {
         System.out.println("What is your gender (male/female)?");
     }
 
+    /**
+     * Prints out message asking for weight goal.
+     */
     public static void displayAskUserWeightGoalMessage() {
         System.out.println("Do you want to lose/maintain/gain weight?");
     }
 
+    /**
+     * Prints out message asking for weight.
+     */
     public static void displayAskUserWeightMessage() {
         System.out.println("What is your weight in kg?");
     }
 
+    /**
+     * Prints out message asking for height.
+     */
     public static void displayAskUserHeightMessage() {
         System.out.println("What is your height in cm?");
     }
 
+    /**
+     * Prints out message asking for age.
+     */
     public static void displayAskUserAgeMessage() {
         System.out.println("What is your age?");
     }
 
+    /**
+     * Prints out message asking for activity level.
+     */
     public static void displayAskUserActivityLevelMessage() {
         System.out.println("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.");
     }
 
+    /**
+     * Prints out message when editing activity successful.
+     */
     public static void displayEditMessage() {
         drawDivider();
         System.out.println("Noted! The following has been edited:");
     }
 
+    /**
+     * Prints out message when adding activity successful.
+     */
     public static void displayAddMessage() {
         drawDivider();
         System.out.println("Noted! The following has been added into list:");

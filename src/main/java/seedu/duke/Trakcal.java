@@ -13,6 +13,8 @@ import seedu.duke.userprofile.CheckNewUser;
 
 import java.util.Scanner;
 
+import static seedu.duke.logic.Parser.CHAIN_SEPARATOR;
+import static seedu.duke.logic.Parser.SPACE;
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
 import static seedu.duke.ui.Ui.displayWelcomeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayParserNullPointerExceptionMessage;
@@ -51,7 +53,8 @@ public class Trakcal {
             Parser parser = new Parser(userInput);
             try {
                 Command cmd;
-                if (userInput.contains("&&") && userInput.charAt(userInput.indexOf("&&") + 4) != '/') {
+                if (userInput.contains(CHAIN_SEPARATOR) &&
+                        userInput.charAt(userInput.indexOf(CHAIN_SEPARATOR) + 4) != '/') {
                     parser.prepareChaining(userInput);
                 } else {
                     cmd = parser.parseCommand();
@@ -74,6 +77,6 @@ public class Trakcal {
 
     private static String getJarFilePath() {
         return new File(Trakcal.class.getProtectionDomain().getCodeSource().getLocation().getPath())
-                .getParent().replace("%20", " ");
+                .getParent().replace("%20", SPACE);
     }
 }

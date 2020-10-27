@@ -12,7 +12,7 @@ public class Activity {
     protected LocalDate date;
 
     /**
-     * Activity class constructor.
+     * Constructor of class Activity.
      *
      * @param description activity description
      * @param calories activity calories count
@@ -29,14 +29,29 @@ public class Activity {
         }
     }
 
+    /**
+     * Gets activity description.
+     *
+     * @return activity description
+     */
     public String getActivityDescription() {
         return this.description;
     }
 
+    /**
+     * Gets activity calories.
+     *
+     * @return activity calories
+     */
     public int getActivityCalories() {
         return this.calories;
     }
 
+    /**
+     * Gets activity date.
+     *
+     * @return activity date
+     */
     public LocalDate getActivityDate() {
         return this.date;
     }

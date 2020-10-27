@@ -11,6 +11,10 @@ public class GraphCommand extends Command {
     public GraphCommand() {
     }
 
+    boolean isMapValid(DayMap dayMap) {
+        return dayMap != null;
+    }
+
     @Override
     public void execute() throws NullPointerException {
         if (!isMapValid(dayMap)) {
@@ -19,9 +23,5 @@ public class GraphCommand extends Command {
         GraphProperty graphProperties = new GraphProperty(dayMap, (int) Trakcal.profile.getCalories());
         graphProperties.setProperties();
         System.out.println(new GraphDrawing(graphProperties).drawGraph());
-    }
-
-    boolean isMapValid(DayMap dayMap) {
-        return dayMap != null;
     }
 }

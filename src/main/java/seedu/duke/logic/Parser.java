@@ -49,7 +49,6 @@ import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExcep
 import static seedu.duke.ui.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
 import static seedu.duke.ui.Ui.displayAddMessage;
 import static seedu.duke.ui.Ui.displayEditMessage;
-import static seedu.duke.ui.Ui.drawDivider;
 
 /**
  * Initialises parser class.
@@ -59,8 +58,8 @@ public class Parser {
     protected LocalDateTime date;
 
     protected static final int ALPHABET_WITH_SLASH = 2;
-    protected static final String SPACE = " ";
-    protected static final String CHAIN_SEPARATOR = "&&";
+    public static final String SPACE = " ";
+    public static final String CHAIN_SEPARATOR = "&&";
     protected static final int CHAIN_SEPARATOR_LENGTH = 2;
 
     protected static final String FOOD_TAG = "f/";
@@ -74,10 +73,10 @@ public class Parser {
     /**
      * Store details in the class.
      *
-     * @param userInput user from the user.
+     * @param userInput user from the user
      */
     public Parser(String userInput) {
-        this.userInput = userInput.trim().replaceAll(" +", " ");
+        this.userInput = userInput.trim().replaceAll(" +", SPACE);
         this.date = LocalDateTime.now();
     }
 
@@ -87,7 +86,7 @@ public class Parser {
      * @return Command type
      */
     public Command parseCommand() {
-        String[] arguments = userInput.split(" ", 2);
+        String[] arguments = userInput.split(SPACE, 2);
         try {
             switch (arguments[0].toLowerCase()) {
             case "create":
@@ -205,7 +204,7 @@ public class Parser {
      * @return EditFoodCommand or EditExerciseCommand
      */
     private Command prepareEditActivityCommand(String userInput) {
-        String[] arguments = userInput.split(" ", 2);
+        String[] arguments = userInput.split(SPACE, 2);
         int index = Integer.parseInt(arguments[0]) - 1;
         userInput = arguments[1];
 
@@ -252,22 +251,22 @@ public class Parser {
     /**
      * Prepares the add command by checking the userInput.
      *
-     * @param userInput description of the add command.
+     * @param userInput description of the add command
      * @return AddFoodCommand or AddExerciseCommand
      */
     private Command prepareAddCommand(String userInput) {
         try {
-            String[] arguments = userInput.split(" ", 2);
+            String[] arguments = userInput.split(SPACE, 2);
             if (arguments[1].startsWith(FOOD_TAG)) {
                 int calorieIndex = arguments[1].indexOf(CALORIE_TAG);
                 int dateIndex = arguments[1].indexOf(DATE_TAG);
 
                 int calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH,
                         dateIndex).trim());
-
                 if (calories < 0) {
                     throw new Exception();
                 }
+
                 LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
                 String foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
 
@@ -281,10 +280,10 @@ public class Parser {
 
                 int calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH,
                         dateIndex).trim());
-
                 if (calories < 0) {
                     throw new Exception();
                 }
+
                 LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
                 String exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
 
@@ -334,7 +333,7 @@ public class Parser {
     /**
      * Process date input by user.
      *
-     * @param dateInput date input by user.
+     * @param dateInput date input by user
      * @return date
      * @throws DateTimeParseException if the string is in the incorrect format
      */
@@ -358,7 +357,7 @@ public class Parser {
     /**
      * Prepares the list command by checking the userInput.
      *
-     * @param userInput description of the list command.
+     * @param userInput description of the list command
      * @return ListCommand
      */
     private Command prepareListCommand(String userInput) {
@@ -380,7 +379,7 @@ public class Parser {
     /**
      * Prepares the delete command by checking the userInput.
      *
-     * @param userInput description of the delete command.
+     * @param userInput description of the delete command
      * @return DeleteCommand
      */
     private Command prepareDeleteCommand(String userInput) {
@@ -404,7 +403,7 @@ public class Parser {
      * If the keyword contains activity description, returns FindDescriptionCommand.
      * Else if the keyword contains calories count, returns FindCalorieCommand.
      *
-     * @param userInput description of the find command.
+     * @param userInput description of the find command
      * @return FindCalorieCommand
      */
     private Command prepareFindCommand(String userInput) {
@@ -428,5 +427,4 @@ public class Parser {
         }
         return null;
     }
-
 }

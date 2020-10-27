@@ -196,42 +196,63 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    /**
+     * Prints out error message when invalid gender input.
+     */
     public static void displayInvalidGenderMessage() {
         drawDivider();
         System.out.println("Please input female or male as gender only!");
         drawDivider();
     }
 
+    /**
+     * Prints out error message when invalid weight goal input.
+     */
     public static void displayInvalidWeightGoalMessage() {
         drawDivider();
         System.out.println("Please input lose or maintain or gain as weight goal only!");
         drawDivider();
     }
 
+    /**
+     * Prints out error message when invalid weight input.
+     */
     public static void displayInvalidWeightMessage() {
         drawDivider();
         System.out.println("Please enter a valid weight format!");
         drawDivider();
     }
 
+    /**
+     * Prints out error message when invalid height input.
+     */
     public static void displayInvalidHeightMessage() {
         drawDivider();
         System.out.println("Please enter a valid height format!");
         drawDivider();
     }
 
+    /**
+     * Prints out error message when invalid age input.
+     */
     public static void displayInvalidAgeMessage() {
         drawDivider();
         System.out.println("Please enter a valid age!");
         drawDivider();
     }
 
+    /**
+     * Prints out error message when invalid activity level input.
+     */
     public static void displayInvalidActivityLevelMessage() {
         drawDivider();
         System.out.println("Please enter a number from 1 to 5 only!");
         drawDivider();
     }
 
+    /**
+     * Prints out error message when IndexOutOfBoundsException occurs in edit command.
+     */
     public static void displayEditIndexOutOfBoundsExceptionMessage() {
         drawDivider();
         System.out.println("Index entered is not within the range!\n"

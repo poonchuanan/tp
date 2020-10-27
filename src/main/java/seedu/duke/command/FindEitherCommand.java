@@ -15,6 +15,7 @@ public class FindEitherCommand extends Command {
 
     /**
      * Find matching results based on input tags.
+     *
      * @param userInput keywords to be matched
      */
     public FindEitherCommand(String userInput) {
