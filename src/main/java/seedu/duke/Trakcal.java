@@ -6,8 +6,8 @@ import seedu.duke.command.Command;
 import seedu.duke.logic.Parser;
 import seedu.duke.model.DayMap;
 import seedu.duke.storage.Storage;
-import seedu.duke.userprofile.Initialiseuser;
-import seedu.duke.userprofile.Userinfo;
+import seedu.duke.userprofile.SaveAndAskForUserProfile;
+import seedu.duke.userprofile.InitialiseAndCalculateUserProfile;
 import seedu.duke.userprofile.CheckNewUser;
 
 
@@ -26,7 +26,7 @@ import static seedu.duke.ui.ExceptionMessages.displayParserNullPointerExceptionM
 public class Trakcal {
 
     public static DayMap calList = new DayMap();
-    public static Userinfo profile;
+    public static InitialiseAndCalculateUserProfile profile;
 
     public static Scanner in = new Scanner(System.in);
     public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
@@ -40,9 +40,9 @@ public class Trakcal {
             System.out.println("here");
         }
         if (CheckNewUser.isNewUser()) {
-            profile = Initialiseuser.createNewProfile();
+            profile = SaveAndAskForUserProfile.createNewProfile();
         } else {
-            profile = Initialiseuser.loadProfile();
+            profile = SaveAndAskForUserProfile.loadProfile();
         }
         Trakcal.run();
     }

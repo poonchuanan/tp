@@ -5,7 +5,6 @@ import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.InputMismatchException;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeMessage;
@@ -16,8 +15,8 @@ import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightGoalMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 
-public class Initialiseuser {
-    private static Userinfo userInfo = new Userinfo();
+public class SaveAndAskForUserProfile {
+    private static InitialiseAndCalculateUserProfile userInfo = new InitialiseAndCalculateUserProfile();
     private static String[] data = new String[7];
 
     public static String input(String text) {
@@ -29,8 +28,8 @@ public class Initialiseuser {
         return Trakcal.in.nextLine();
     }
 
-    public static Userinfo createNewProfile() {
-        Userinfo profile = null;
+    public static InitialiseAndCalculateUserProfile createNewProfile() {
+        InitialiseAndCalculateUserProfile profile = null;
         name();
         gender();
         weight();
@@ -143,32 +142,34 @@ public class Initialiseuser {
         }
     }
 
-    public static Userinfo enterNewUserInfo() throws IOException {
-        Userinfo profile = new Userinfo(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
+    public static InitialiseAndCalculateUserProfile enterNewUserInfo() throws IOException {
+        InitialiseAndCalculateUserProfile profile =
+                new InitialiseAndCalculateUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
         System.out.println(profile.calculateNewUserDetails());
-        Initialiseuser.save(profile);
+        SaveAndAskForUserProfile.save(profile);
         return profile;
     }
 
-    public static void saveExistingUserInfo(Userinfo profile) throws IOException {
-        Initialiseuser.save(profile);
+    public static void saveExistingUserInfo(InitialiseAndCalculateUserProfile profile) throws IOException {
+        SaveAndAskForUserProfile.save(profile);
     }
 
-    public static void save(Userinfo profile) throws IOException {
+    public static void save(InitialiseAndCalculateUserProfile profile) throws IOException {
         Userinfotextfilestorage storage = new Userinfotextfilestorage();
         storage.save(profile.toString());
     }
 
-    public static Userinfo loadProfile() {
+    public static InitialiseAndCalculateUserProfile loadProfile() {
         String[] data = new String[7];
         ArrayList<String> previous = Userinfotextfilestorage.update();
         for (int i = 0; i < 7; i++) {
             data[i] = previous.get(i);
         }
-        Userinfo profile =  new Userinfo(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
+        InitialiseAndCalculateUserProfile profile =
+                new InitialiseAndCalculateUserProfile(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
         profile.calculateNewUserDetails();
         try {
-            Initialiseuser.saveExistingUserInfo(profile);
+            SaveAndAskForUserProfile.saveExistingUserInfo(profile);
         } catch (IOException e) {
             displayIoExceptionMessage();
         }

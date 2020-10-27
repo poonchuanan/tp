@@ -22,8 +22,8 @@ import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.ui.ExceptionMessages;
-import seedu.duke.userprofile.Initialiseuser;
-import seedu.duke.userprofile.Userinfo;
+import seedu.duke.userprofile.SaveAndAskForUserProfile;
+import seedu.duke.userprofile.InitialiseAndCalculateUserProfile;
 
 //import java.io.*;
 
@@ -106,8 +106,8 @@ public class Parser {
             case "find":
                 return prepareFindCommand(userInput);
             case "edit":
-                Trakcal.profile = Userinfo.editUserInfo(arguments[1]);
-                Initialiseuser.save(Trakcal.profile);
+                Trakcal.profile = InitialiseAndCalculateUserProfile.editUserInfo(arguments[1]);
+                SaveAndAskForUserProfile.save(Trakcal.profile);
                 break;
             case "edita":
                 return prepareEditActivityCommand(arguments[1]);
