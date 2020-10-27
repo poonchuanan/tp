@@ -53,8 +53,8 @@ public class Trakcal {
             Parser parser = new Parser(userInput);
             try {
                 Command cmd;
-                if (userInput.contains(CHAIN_SEPARATOR) &&
-                        userInput.charAt(userInput.indexOf(CHAIN_SEPARATOR) + 4) != '/') {
+                if (userInput.contains(CHAIN_SEPARATOR)
+                        && userInput.charAt(userInput.indexOf(CHAIN_SEPARATOR) + 4) != '/') {
                     parser.prepareChaining(userInput);
                 } else {
                     cmd = parser.parseCommand();
