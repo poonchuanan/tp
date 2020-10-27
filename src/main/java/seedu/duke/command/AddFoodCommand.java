@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static seedu.duke.ui.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.drawDivider;
 
 /**
  * Add food.
@@ -43,6 +44,8 @@ public class AddFoodCommand extends Command {
     @Override
     public void execute() {
         dayMap.addActivity(date.atStartOfDay(), food);
+        System.out.println();
         displaySavedMessage();
+        drawDivider();
     }
 }

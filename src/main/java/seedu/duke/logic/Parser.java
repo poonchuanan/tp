@@ -47,6 +47,7 @@ import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
+import static seedu.duke.ui.Ui.drawDivider;
 
 /**
  * Initialises parser class.
@@ -54,6 +55,11 @@ import static seedu.duke.ui.ExceptionMessages.displayIncorrectDateTimeFormatEnte
 public class Parser {
     protected String userInput;
     protected LocalDateTime date;
+
+    protected static final int ALPHABET_WITH_SLASH = 2;
+    protected static final String SPACE = " ";
+    protected static final String CHAIN_SEPARATOR = "&&";
+    protected static final String FOOD_TAG = "f/";
 
     /**
      * Store details in the class.
@@ -160,24 +166,29 @@ public class Parser {
         try {
             if (userInput.startsWith("f/")) {
                 int calorieIndex = userInput.indexOf("c/");
-
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
-                System.out.println("calories is " + calories);
                 if (calories < 0) {
                     throw new Exception();
                 }
+
                 String foodDescription = userInput.substring(2, calorieIndex - 1).trim();
-                System.out.println("food description is " + foodDescription);
+
+                drawDivider();
+                System.out.println("Noted! The following has been edited:");
+
                 assert calories > 0 : "calories should be greater than 0";
                 return new EditFoodCommand(index, foodDescription, calories);
             } else if (userInput.startsWith("e/")) {
                 int calorieIndex = userInput.indexOf("c/");
-
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                 if (calories < 0) {
-                    //throw new Exception();
+                    throw new Exception();
                 }
+
                 String exerciseDescription = userInput.substring(2, calorieIndex - 1).trim();
+
+                drawDivider();
+                System.out.println("Noted! The following has been edited:");
 
                 assert calories > 0 : "calories should be greater than 0";
                 return new EditExerciseCommand(index, exerciseDescription, calories);
@@ -249,6 +260,9 @@ public class Parser {
                 LocalDate date = processDate(arguments[1].substring(dateIndex + 2).trim());
                 String foodDescription = arguments[1].substring(2, calorieIndex - 1).trim();
 
+                drawDivider();
+                System.out.println("Noted! The following has been added into list:");
+
                 assert calories > 0 : "calories should be greater than 0";
                 return new AddFoodCommand(foodDescription, calories, false, date);
             } else if (arguments[1].startsWith("e/")) {
@@ -261,6 +275,9 @@ public class Parser {
                 }
                 LocalDate date = processDate(arguments[1].substring(dateIndex + 2).trim());
                 String exerciseDescription = arguments[1].substring(2, calorieIndex - 1).trim();
+
+                drawDivider();
+                System.out.println("Noted! The following has been added into list:");
 
                 assert calories > 0 : "calories should be greater than 0";
                 return new AddExerciseCommand(exerciseDescription, calories, false, date);

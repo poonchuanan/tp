@@ -119,12 +119,6 @@ public class Ui {
         System.out.println();
     }
 
-    public static void displayDefaultMessage() {
-        drawDivider();
-        System.out.println("Invalid command. Please type 'help' for more information.");
-        drawDivider();
-    }
-
     /**
      * Prints out bye message and let the user know that the current list has been saved to file.
      */
