@@ -43,7 +43,8 @@ public class DayMap {
     /**
      * Adds activity into activityList under the corresponding dateTime.
      * Creates a new activityList if there are none under the specified date.
-     * @param dateTime Specified date to extract activitylist from the dayMap.
+     *
+     * @param dateTime Specified date to extract activitylist from the dayMap
      * @param activity Description of the activity, the userinput
      */
     public void addActivity(LocalDateTime dateTime, Activity activity) {
@@ -56,9 +57,6 @@ public class DayMap {
         //System.out.println("Total calorie count for "
         // + dateTime.toLocalDate().toString() + " = " + alist.getNetCalorie());
     }
-
-
-
 
     public void insertActivity(int index, Activity activity) {
         lastSeenList.insertActivity(index, activity);
@@ -94,6 +92,7 @@ public class DayMap {
 
     /**
      * Prints the activities for the given date.
+     *
      * @param date specified date to print the list
      */
     public void printActivityList(LocalDate date) {
@@ -106,6 +105,7 @@ public class DayMap {
 
     /**
      * Finds the activities containing a keyword.
+     *
      * @param description is the keyword where the activity should contain
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
@@ -138,6 +138,7 @@ public class DayMap {
 
     /**
      * Finds the activities containing a keyword.
+     *
      * @param calorie is the calorie to be matched
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
@@ -170,6 +171,7 @@ public class DayMap {
 
     /**
      * Finds the activities containing all keywords.
+     *
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
@@ -201,6 +203,7 @@ public class DayMap {
 
     /**
      * Finds the activities containing at least one of the keywords inputted.
+     *
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
@@ -232,6 +235,7 @@ public class DayMap {
 
     /**
      * Checks if all keywords inputted by user is present in entry.
+     *
      * @param currentLine current entry to be checked
      * @return true if all words are present, false otherwise
      */
@@ -264,6 +268,7 @@ public class DayMap {
 
     /**
      * Parses all keywords inputted by user into an arraylist.
+     *
      * @param userInput String user typed into CLI
      */
     private ArrayList<String> getAllTags(String userInput) {
@@ -285,6 +290,7 @@ public class DayMap {
 
     /**
      * Deletes the activity with a given index.
+     *
      * @param index is the index of the activity to be deleted
      * @throws IndexOutOfBoundsException if the index provided is out of range
      */
@@ -344,6 +350,7 @@ public class DayMap {
     /**
      * Sets the activities at a given date as a string.
      * For e.g, 2020-10-11: [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60.
+     *
      * @param dateTime is the specified date
      * @return activities as a string for the given date
      */

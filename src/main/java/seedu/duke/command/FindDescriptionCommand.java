@@ -15,6 +15,7 @@ public class FindDescriptionCommand extends Command {
 
     /**
      * Find matching results based on description input.
+     *
      * @param description description to search
      */
     public FindDescriptionCommand(String description) {

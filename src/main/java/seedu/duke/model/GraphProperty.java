@@ -26,6 +26,7 @@ public class GraphProperty {
 
     /**
      * Constructor for the graph.
+     *
      * @param dayMap hashmap containing dates
      * @param targetCalories tagret calories from userprofile
      */
@@ -38,6 +39,7 @@ public class GraphProperty {
 
     /**
      * Maximum days in graph is 7 or lower.
+     *
      * @return number of days to be shown in graph
      */
     private int checkSize() {
@@ -50,7 +52,7 @@ public class GraphProperty {
     }
 
     /**
-     * set othere properties by calculation.
+     * Set other properties by calculation.
      */
     public void setProperties() {
         this.column = checkSize();
@@ -70,7 +72,8 @@ public class GraphProperty {
     }
 
     /**
-     * get and sort keys from hashmap.
+     * Get and sort keys from hashmap.
+     *
      * @return sorted keys in arraylist
      */
     public ArrayList<LocalDate> sortKeys() {
@@ -88,7 +91,8 @@ public class GraphProperty {
     }
 
     /**
-     * get calories from the dates.
+     * Get calories from the dates.
+     *
      * @return array of calories
      */
     public ArrayList<Integer> getCalories() {
@@ -119,6 +123,7 @@ public class GraphProperty {
 
     /**
      * Compares and finds the minimum between 2 numbers.
+     *
      * @param firstNumber first number to compare
      * @param secondNumber second number to compare
      * @return the lesser number
@@ -133,6 +138,7 @@ public class GraphProperty {
 
     /**
      * Compares and finds the maximum between 2 numbers.
+     *
      * @param firstNumber first number to compare
      * @param secondNumber second number to compare
      * @return the greater number
@@ -146,6 +152,7 @@ public class GraphProperty {
 
     /**
      * Calculates interval of the graph.
+     *
      * @return interval value
      */
     public int calculateInterval() {
@@ -155,12 +162,13 @@ public class GraphProperty {
 
 
     /**
-     * fills up the table with appropriate values.
+     * Fills up the table with appropriate values.
      * 0 -> empty spaces.
      * 1 -> middle portion of the bar.
      * 2 -> target row.
      * 3 -> target row  + middle portion of the bar.
      * 4 -> top symbol of the bar.
+     *
      * @param table representation of graph in 2d array.
      * @param calories calories list
      */
@@ -186,7 +194,8 @@ public class GraphProperty {
 
     /**
      * Parses the date into string.
-     * @return date in dd/MM formate
+     *
+     * @return date in dd/MM format
      */
     public String parseDate(ArrayList<LocalDate> keys) {
         assert keys != null;
@@ -200,6 +209,7 @@ public class GraphProperty {
 
     /**
      * Initiates a table.
+     *
      * @return table
      */
     public int[][] initiateTable(ArrayList<Integer> calories) {
@@ -211,7 +221,7 @@ public class GraphProperty {
     }
 
     /**
-     * find the row number corresponding to the calories.
+     * Find the row number corresponding to the calories.
      */
     public int calculateRowNumber(int calories) {
         assert calories >= minCalories;

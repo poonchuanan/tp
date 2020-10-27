@@ -17,6 +17,9 @@ public class ActivityList extends Trakcal {
     private int activityCounter;
     private int netCalorie;
 
+    /**
+     * Constructor of class ActivityList.
+     */
     public ActivityList() {
         activities = new ArrayList<>();
         activityCounter = 0;

@@ -4,7 +4,16 @@ import seedu.duke.Trakcal;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.InputMismatchException;
 
+import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidHeightMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightMessage;
+import seedu.duke.ui.Ui;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightGoalMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 
 public class Initialiseuser {
@@ -16,14 +25,18 @@ public class Initialiseuser {
         return Trakcal.in.nextLine();
     }
 
+    public static String input() {
+        return Trakcal.in.nextLine();
+    }
+
     public static Userinfo createNewProfile() {
         Userinfo profile = null;
-        sendname();
+        name();
         gender();
         weight();
         height();
         age();
-        activityfactor();
+        activityLevel();
         weightGoal();
         try {
             profile = enterNewUserInfo();
@@ -33,32 +46,101 @@ public class Initialiseuser {
         return profile;
     }
 
-    public static void sendname()  {
+    public static void name()  {
         data[0] = input("What is your name?\n");
     }
 
+    public enum GenderEnum {
+        male, female;
+    }
+
     public static void gender() {
-        data[1] = input("What is your gender (male/female)?\n");
+        Ui.displayAskUserGenderMessage();
+        String gender = input();
+
+        try {
+            if (Arrays.toString(GenderEnum.values()).contains(gender)) {
+                data[1] = gender;
+            } else {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            displayInvalidGenderMessage();
+            gender();
+        }
     }
 
     public static void weight() {
-        data[2] = input("What is your weight in kg?\n");
+        Ui.displayAskUserWeightMessage();
+        String weight = input();
+        try {
+            Double.parseDouble(weight);
+        } catch (NumberFormatException e) {
+            displayInvalidWeightMessage();
+            weight();
+        }
+        data[2] = weight;
     }
 
     public static void height() {
-        data[3] = input("What is your height in cm?\n");
+        Ui.displayAskUserHeightMessage();
+        String height = input();
+        try {
+            Double.parseDouble(height);
+        } catch (NumberFormatException e) {
+            displayInvalidHeightMessage();
+            height();
+        }
+        data[3] = height;
     }
 
     public static void age() {
-        data[4] = input("What is your age?\n");
+        Ui.displayAskUserAgeMessage();
+        String age = input();
+        try {
+            Integer.parseInt(age);
+        } catch (NumberFormatException e) {
+            displayInvalidAgeMessage();
+            age();
+        }
+        data[4] = age;
     }
 
-    public static void activityfactor() {
-        data[5] = input("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.\n");
+    public static void activityLevel() {
+        Ui.displayAskUserActivityLevelMessage();
+        String activityLevel = input();
+        try {
+            int checkRange = Integer.parseInt(activityLevel);
+
+            if (checkRange < 0 || checkRange > 5) {
+                throw new IllegalArgumentException();
+            }
+
+        } catch (IllegalArgumentException e) {
+            displayInvalidActivityLevelMessage();
+            activityLevel();
+        }
+        data[5] = activityLevel;
+    }
+
+    public enum WeightGoalEnum {
+        lose, maintain, gain;
     }
 
     public static void weightGoal() {
-        data[6] = input("Do you want to lose/maintain/gain weight?\n");
+        Ui.displayAskUserWeightGoalMessage();
+        String weightGoal = input();
+
+        try {
+            if (Arrays.toString(WeightGoalEnum.values()).contains(weightGoal)) {
+                data[6] = weightGoal;
+            } else {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            displayInvalidWeightGoalMessage();
+            weightGoal();
+        }
     }
 
     public static Userinfo enterNewUserInfo() throws IOException {

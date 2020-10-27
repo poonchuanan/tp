@@ -13,11 +13,14 @@ public class GraphCommand extends Command {
     public GraphCommand() {
     }
 
+    boolean isMapValid(DayMap dayMap) {
+        return dayMap != null;
+    }
+
     @Override
     public void execute() {
         GraphProperty graphProperties = new GraphProperty(dayMap, (int) Trakcal.profile.getCalories());
         graphProperties.setProperties();
         System.out.println(new GraphDrawing(graphProperties).drawGraph());
     }
-
 }
