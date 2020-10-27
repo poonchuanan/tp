@@ -167,4 +167,14 @@ public class Ui {
         System.out.println("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.");
     }
 
+    public static void displayEditMessage() {
+        drawDivider();
+        System.out.println("Noted! The following has been edited:");
+    }
+
+    public static void displayAddMessage() {
+        drawDivider();
+        System.out.println("Noted! The following has been added into list:");
+    }
+
 }

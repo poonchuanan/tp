@@ -47,6 +47,8 @@ import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
+import static seedu.duke.ui.Ui.displayAddMessage;
+import static seedu.duke.ui.Ui.displayEditMessage;
 import static seedu.duke.ui.Ui.drawDivider;
 
 /**
@@ -173,8 +175,7 @@ public class Parser {
 
                 String foodDescription = userInput.substring(2, calorieIndex - 1).trim();
 
-                drawDivider();
-                System.out.println("Noted! The following has been edited:");
+                displayEditMessage();
 
                 assert calories > 0 : "calories should be greater than 0";
                 return new EditFoodCommand(index, foodDescription, calories);
@@ -187,8 +188,7 @@ public class Parser {
 
                 String exerciseDescription = userInput.substring(2, calorieIndex - 1).trim();
 
-                drawDivider();
-                System.out.println("Noted! The following has been edited:");
+                displayEditMessage();
 
                 assert calories > 0 : "calories should be greater than 0";
                 return new EditExerciseCommand(index, exerciseDescription, calories);
@@ -260,8 +260,7 @@ public class Parser {
                 LocalDate date = processDate(arguments[1].substring(dateIndex + 2).trim());
                 String foodDescription = arguments[1].substring(2, calorieIndex - 1).trim();
 
-                drawDivider();
-                System.out.println("Noted! The following has been added into list:");
+                displayAddMessage();
 
                 assert calories > 0 : "calories should be greater than 0";
                 return new AddFoodCommand(foodDescription, calories, false, date);
@@ -276,8 +275,7 @@ public class Parser {
                 LocalDate date = processDate(arguments[1].substring(dateIndex + 2).trim());
                 String exerciseDescription = arguments[1].substring(2, calorieIndex - 1).trim();
 
-                drawDivider();
-                System.out.println("Noted! The following has been added into list:");
+                displayAddMessage();
 
                 assert calories > 0 : "calories should be greater than 0";
                 return new AddExerciseCommand(exerciseDescription, calories, false, date);
