@@ -23,7 +23,7 @@ class GraphPropertyTest {
     }
 
     @Test
-    public void GraphProperty_TargetCalorieAsMiddle_success() {
+    public void setProperty_TargetCalorieAsMiddle_success() {
         DayMap dummyMap = setDummyMap();
         dummyMap.addActivity(date1.atStartOfDay(), new Food("apple", 1000, date1, false));
         dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
@@ -35,7 +35,7 @@ class GraphPropertyTest {
     }
 
     @Test
-    public void GraphProperty_TargetCalorieInLower_success() {
+    public void setProperty_TargetCalorieInLower_success() {
         DayMap dummyMap = setDummyMap();
         dummyMap.addActivity(date1.atStartOfDay(), new Food("apple", 1000, date1, false));
         dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
@@ -47,7 +47,7 @@ class GraphPropertyTest {
     }
 
     @Test
-    public void GraphProperty_TargetCalorieInHigher_success() {
+    public void setProperty_TargetCalorieInHigher_success() {
         DayMap dummyMap = setDummyMap();
         dummyMap.addActivity(date1.atStartOfDay(), new Food("apple", 1000, date1, false));
         dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
@@ -59,7 +59,7 @@ class GraphPropertyTest {
     }
 
     @Test
-    public void GraphProperty_EmptyList_Exception() {
+    public void setProperty_EmptyList_Exception() {
         DayMap dummyMap = setDummyMap();
         Assertions.assertThrows(AssertionError.class, () -> {
             GraphProperty graphProperty = new GraphProperty(dummyMap, 3000);
@@ -68,7 +68,7 @@ class GraphPropertyTest {
     }
 
     @Test
-    public void GraphProperty_NegativeCalories_success() {
+    public void setProperty_NegativeCalories_success() {
         DayMap dummyMap = setDummyMap();
         dummyMap.addActivity(date1.atStartOfDay(), new Food("apple", -1000, date1, false));
         dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
