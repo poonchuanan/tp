@@ -125,4 +125,8 @@ public class Ui {
         System.out.println("What is your gender (male/female)?");
     }
 
+    public static void displayAskUserWeightGoalMessage() {
+        System.out.println("Do you want to lose/maintain/gain weight?");
+    }
+
 }

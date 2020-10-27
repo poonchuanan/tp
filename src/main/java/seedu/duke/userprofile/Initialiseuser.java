@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import seedu.duke.ui.Ui;
-
+import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightGoalMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 
@@ -31,7 +31,7 @@ public class Initialiseuser {
         weight();
         height();
         age();
-        activityfactor();
+        activityLevel();
         weightGoal();
         try {
             profile = enterNewUserInfo();
@@ -41,12 +41,12 @@ public class Initialiseuser {
         return profile;
     }
 
-    public enum GenderEnum {
-        male, female;
-    }
-
     public static void name()  {
         data[0] = input("What is your name?\n");
+    }
+
+    public enum GenderEnum {
+        male, female;
     }
 
     public static void gender() {
@@ -77,12 +77,29 @@ public class Initialiseuser {
         data[4] = input("What is your age?\n");
     }
 
-    public static void activityfactor() {
+    public static void activityLevel() {
         data[5] = input("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.\n");
     }
 
+    public enum WeightGoalEnum {
+        lose, maintain, gain;
+    }
+
     public static void weightGoal() {
-        data[6] = input("Do you want to lose/maintain/gain weight?\n");
+        Ui.displayAskUserWeightGoalMessage();
+        String weightGoal = input();
+
+        try {
+            if (Arrays.toString(WeightGoalEnum.values()).contains(weightGoal)) {
+                data[6] = weightGoal;
+                System.out.println("here");
+            } else {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            displayInvalidWeightGoalMessage();
+            weightGoal();
+        }
     }
 
     public static Userinfo enterNewUserInfo() throws IOException {

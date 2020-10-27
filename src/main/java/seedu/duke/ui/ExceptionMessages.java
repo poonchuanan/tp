@@ -211,4 +211,10 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    public static void displayInvalidWeightGoalMessage() {
+        drawDivider();
+        System.out.println("Please input lose or maintain or gain as weight goal only!");
+        drawDivider();
+    }
+
 }
