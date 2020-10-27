@@ -79,5 +79,17 @@ class GraphPropertyTest {
         assertEquals(-1000, graphProperty.minCalories);
     }
 
+    @Test
+    public void setProperty_sameCalories_success() {
+        DayMap dummyMap = setDummyMap();
+        dummyMap.addActivity(date1.atStartOfDay(), new Food("apple", 1000, date1, false));
+        dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 1000, date2, false));
+        GraphProperty graphProperty = new GraphProperty(dummyMap, 1000);
+        graphProperty.setProperties();
+        assertEquals(2, graphProperty.column);
+        assertEquals(1005, graphProperty.maxCalories);
+        assertEquals(995, graphProperty.minCalories);
+    }
+
 
 }
