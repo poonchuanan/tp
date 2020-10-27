@@ -4,7 +4,12 @@ import seedu.duke.Trakcal;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import seedu.duke.ui.Ui;
+import seedu.duke.ui.ExceptionMessages;
+
+import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 
 public class Initialiseuser {
@@ -16,9 +21,13 @@ public class Initialiseuser {
         return Trakcal.in.nextLine();
     }
 
+    public static String input() {
+        return Trakcal.in.nextLine();
+    }
+
     public static Userinfo createNewProfile() {
         Userinfo profile = null;
-        sendname();
+        name();
         gender();
         weight();
         height();
@@ -33,12 +42,28 @@ public class Initialiseuser {
         return profile;
     }
 
-    public static void sendname()  {
+    public enum genderEnum {
+        male, female;
+    }
+
+    public static void name()  {
         data[0] = input("What is your name?\n");
     }
 
     public static void gender() {
-        data[1] = input("What is your gender (male/female)?\n");
+        Ui.displayAskUserGenderMessage();
+        String gender = input();
+
+        try {
+            if (Arrays.toString(genderEnum.values()).contains(gender)) {
+                data[1] = gender;
+            } else {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            displayInvalidGenderMessage();
+            gender();
+        }
     }
 
     public static void weight() {

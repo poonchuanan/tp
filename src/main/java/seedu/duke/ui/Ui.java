@@ -121,4 +121,8 @@ public class Ui {
         System.out.println("Nothing was added!");
     }
 
+    public static void displayAskUserGenderMessage() {
+        System.out.println("What is your gender (male/female)?");
+    }
+
 }

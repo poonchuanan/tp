@@ -205,4 +205,10 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    public static void displayInvalidGenderMessage() {
+        drawDivider();
+        System.out.println("Please input female or male as gender only!");
+        drawDivider();
+    }
+
 }
