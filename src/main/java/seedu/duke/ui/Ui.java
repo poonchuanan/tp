@@ -137,4 +137,8 @@ public class Ui {
         System.out.println("What is your height in cm?");
     }
 
+    public static void displayAskUserAgeMessage() {
+        System.out.println("What is your age?");
+    }
+
 }

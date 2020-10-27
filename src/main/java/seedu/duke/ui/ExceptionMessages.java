@@ -229,4 +229,10 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    public static void displayInvalidAgeMessage() {
+        drawDivider();
+        System.out.println("Please enter a valid age!");
+        drawDivider();
+    }
+
 }

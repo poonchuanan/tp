@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidHeightMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightMessage;
 import seedu.duke.ui.Ui;
@@ -92,7 +93,15 @@ public class Initialiseuser {
     }
 
     public static void age() {
-        data[4] = input("What is your age?\n");
+        Ui.displayAskUserAgeMessage();
+        String age = input();
+        try {
+            Integer.parseInt(age);
+        } catch (NumberFormatException e) {
+            displayInvalidAgeMessage();
+            age();
+        }
+        data[4] = age;
     }
 
     public static void activityLevel() {
