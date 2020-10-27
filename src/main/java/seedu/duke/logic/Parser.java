@@ -36,7 +36,7 @@ import java.time.format.DateTimeParseException;
 import static seedu.duke.Trakcal.calList;
 import static seedu.duke.Trakcal.executeCmd;
 import static seedu.duke.Trakcal.storage;
-import static seedu.duke.ui.ExceptionMessages.displayAddActivityNumberFormatExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayAddActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
@@ -164,7 +164,7 @@ public class Parser {
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                 System.out.println("calories is " + calories);
                 if (calories < 0) {
-                    //throw new Exception();
+                    throw new Exception();
                 }
                 String foodDescription = userInput.substring(2, calorieIndex - 1).trim();
                 System.out.println("food description is " + foodDescription);
@@ -270,11 +270,11 @@ public class Parser {
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             displayAddCommandErrorMessage();
         } catch (NumberFormatException e) {
-            displayAddActivityNumberFormatExceptionMessage();
+            displayAddActivityExceptionMessage();
         } catch (DateTimeParseException e) {
             displayIncorrectDateTimeFormatEnteredMessage();
         } catch (Exception e) {
-            displayAddActivityNumberFormatExceptionMessage();
+            displayAddActivityExceptionMessage();
         }
         return null;
     }
