@@ -172,6 +172,10 @@ public class Parser {
      */
     public Command prepareChaining(String userInput) {
         while (userInput.contains(CHAIN_SEPARATOR)) {
+            if (userInput.equals(CHAIN_SEPARATOR)) {
+                break;
+            }
+
             userInput = userInput + SPACE + CHAIN_SEPARATOR;
             int chainIndex = userInput.indexOf(CHAIN_SEPARATOR);
 
