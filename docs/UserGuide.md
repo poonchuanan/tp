@@ -210,7 +210,7 @@ You can solve this by ....
 
 Adds target calorie.
 
-Format: `target **CALORIR**`
+Format: `target **CALORIE**`
 
 Parameters:
 * `**CALORIE**`: target calorie of user.
