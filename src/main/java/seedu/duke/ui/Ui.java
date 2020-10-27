@@ -141,4 +141,8 @@ public class Ui {
         System.out.println("What is your age?");
     }
 
+    public static void displayAskUserActivityLevelMessage() {
+        System.out.println("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.");
+    }
+
 }

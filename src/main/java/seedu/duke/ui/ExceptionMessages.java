@@ -235,4 +235,9 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    public static void displayInvalidActivityLevelMessage() {
+        drawDivider();
+        System.out.println("Please enter a number from 1 to 5 only!");
+        drawDivider();
+    }
 }

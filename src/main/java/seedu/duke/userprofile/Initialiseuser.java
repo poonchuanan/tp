@@ -5,7 +5,9 @@ import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 
+import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidHeightMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightMessage;
@@ -105,7 +107,20 @@ public class Initialiseuser {
     }
 
     public static void activityLevel() {
-        data[5] = input("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.\n");
+        Ui.displayAskUserActivityLevelMessage();
+        String activityLevel = input();
+        try {
+            int checkRange = Integer.parseInt(activityLevel);
+
+            if (checkRange<0 || checkRange>5) {
+                throw new IllegalArgumentException();
+            }
+
+        } catch (IllegalArgumentException e) {
+            displayInvalidActivityLevelMessage();
+            activityLevel();
+        }
+        data[5] = activityLevel;
     }
 
     public enum WeightGoalEnum {
@@ -119,7 +134,6 @@ public class Initialiseuser {
         try {
             if (Arrays.toString(WeightGoalEnum.values()).contains(weightGoal)) {
                 data[6] = weightGoal;
-                System.out.println("here");
             } else {
                 throw new IllegalArgumentException();
             }
