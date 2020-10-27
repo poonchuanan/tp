@@ -129,4 +129,8 @@ public class Ui {
         System.out.println("Do you want to lose/maintain/gain weight?");
     }
 
+    public static void displayAskUserWeightMessage() {
+        System.out.println("What is your weight in kg?");
+    }
+
 }

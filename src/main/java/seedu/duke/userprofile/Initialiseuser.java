@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightMessage;
 import seedu.duke.ui.Ui;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightGoalMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
@@ -66,7 +67,15 @@ public class Initialiseuser {
     }
 
     public static void weight() {
-        data[2] = input("What is your weight in kg?\n");
+        Ui.displayAskUserWeightMessage();
+        String weight = input();
+        try {
+            Double.parseDouble(weight);
+        } catch (NumberFormatException e) {
+            displayInvalidWeightMessage();
+            weight();
+        }
+        data[2] = weight;
     }
 
     public static void height() {

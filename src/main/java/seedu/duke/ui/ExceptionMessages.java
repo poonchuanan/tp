@@ -217,4 +217,10 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    public static void displayInvalidWeightMessage() {
+        drawDivider();
+        System.out.println("Please enter a valid weight format!");
+        drawDivider();
+    }
+
 }
