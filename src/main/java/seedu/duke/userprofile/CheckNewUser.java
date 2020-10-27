@@ -9,7 +9,7 @@ public class CheckNewUser {
     public static final String FILE_PATH = PATH + "/tp.txt";
 
     /**
-     * Check if it is a new user
+     * Check if it is a new user.
      *
      * @return boolean for new user outcome
      */

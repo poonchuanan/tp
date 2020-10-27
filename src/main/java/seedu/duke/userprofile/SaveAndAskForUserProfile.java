@@ -23,7 +23,7 @@ public class SaveAndAskForUserProfile {
     private static String[] data = new String[7];
 
     /**
-     * Reading user input after printing question
+     * Reading user input after printing question.
      *
      * @param text question to be printed
      */
@@ -33,8 +33,9 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * Reading user input
+     * Reading user input.
      *
+     * @return user input
      */
     public static String input() {
         return Trakcal.in.nextLine();
@@ -58,7 +59,7 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * ask user for name and save in an array entry
+     * ask user for name and save in an array entry.
      *
      */
     public static void name()  {
@@ -66,7 +67,7 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * user gender restricted to what is stated in enum
+     * user gender restricted to what is stated in enum.
      *
      */
     public enum GenderEnum {
@@ -74,7 +75,7 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * ask user for gender and save in an array entry
+     * ask user for gender and save in an array entry.
      *
      */
     public static void gender() {
@@ -94,7 +95,7 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * ask user for weight and save in an array entry
+     * ask user for weight and save in an array entry.
      *
      */
     public static void weight() {
@@ -110,7 +111,7 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * ask user for height and save in an array entry
+     * ask user for height and save in an array entry.
      *
      */
     public static void height() {
@@ -126,7 +127,7 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * ask user for age and save in an array entry
+     * ask user for age and save in an array entry.
      *
      */
     public static void age() {
@@ -142,7 +143,7 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * ask user for activity level and save in an array entry
+     * ask user for activity level and save in an array entry.
      *
      */
     public static void activityLevel() {
@@ -163,7 +164,7 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * user weight goal restricted to what is stated in enum
+     * user weight goal restricted to what is stated in enum.
      *
      */
     public enum WeightGoalEnum {
@@ -171,7 +172,7 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * ask user for weight goal and save in an array entry
+     * ask user for weight goal and save in an array entry.
      *
      */
     public static void weightGoal() {
@@ -199,7 +200,7 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * override and save user details in text file
+     * override and save user details in text file.
      *
      * @param profile to be saved in text file
      */
@@ -208,7 +209,7 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * create a new text file and save user input into the text file
+     * create a new text file and save user input into the text file.
      *
      * @param profile question to be printed
      */
@@ -218,7 +219,7 @@ public class SaveAndAskForUserProfile {
     }
 
     /**
-     * Reading user input from existing text file and save a profile type
+     * Reading user input from existing text file and save a profile type.
      *
      * @return Storage type
      */
