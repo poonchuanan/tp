@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import seedu.duke.ui.Ui;
-import seedu.duke.ui.ExceptionMessages;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
@@ -42,7 +41,7 @@ public class Initialiseuser {
         return profile;
     }
 
-    public enum genderEnum {
+    public enum GenderEnum {
         male, female;
     }
 
@@ -55,7 +54,7 @@ public class Initialiseuser {
         String gender = input();
 
         try {
-            if (Arrays.toString(genderEnum.values()).contains(gender)) {
+            if (Arrays.toString(GenderEnum.values()).contains(gender)) {
                 data[1] = gender;
             } else {
                 throw new IllegalArgumentException();
