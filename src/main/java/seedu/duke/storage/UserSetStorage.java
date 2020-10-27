@@ -11,7 +11,11 @@ import java.nio.file.FileSystemAlreadyExistsException;
 
 import seedu.duke.ui.Ui;
 
-import static seedu.duke.ui.ExceptionMessages.*;
+//import static seedu.duke.ui.ExceptionMessages.*;
+import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayShortcutDoesNotExistMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieEntryMessage;
+import static seedu.duke.ui.ExceptionMessages.displayExistingFileMessage;
 
 public class UserSetStorage {
     private static final String PATH = new File("").getAbsolutePath();
@@ -60,15 +64,17 @@ public class UserSetStorage {
                 String calories = s.substring(s.indexOf("c/") + 2);
                 Integer.parseInt(calories);
 
-                if (index==1) {
+                if (index == 1) {
                     Ui.drawDivider();
                     System.out.println("You have created a shortcut containing:");
                 }
 
                 if (s.startsWith("f/")) {
-                    System.out.println(index + ". " + "Food: " + s.substring(2,s.indexOf("c/") - 1) + ", Calories: " + calories);
+                    System.out.println(index + ". " + "Food: " + s.substring(2,s.indexOf("c/") - 1)
+                            + ", Calories: " + calories);
                 } else if (s.startsWith("e/")) {
-                    System.out.println(index + ". " + "Exercise: " + s.substring(2,s.indexOf("c/") - 1) + ", Calories: " + calories);
+                    System.out.println(index + ". " + "Exercise: " + s.substring(2,s.indexOf("c/") - 1)
+                            + ", Calories: " + calories);
                 }
                 index++;
 
