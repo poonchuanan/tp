@@ -36,7 +36,7 @@ import java.time.format.DateTimeParseException;
 import static seedu.duke.Trakcal.calList;
 import static seedu.duke.Trakcal.executeCmd;
 import static seedu.duke.Trakcal.storage;
-import static seedu.duke.ui.ExceptionMessages.displayAddActivityNumberFormatExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayAddActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
@@ -155,18 +155,16 @@ public class Parser {
     private Command prepareEditActivityCommand(String userInput) {
         String[] arguments = userInput.split(" ", 2);
         int index = Integer.parseInt(arguments[0]) - 1;
-        System.out.println("index is" + index);
         userInput = arguments[1];
 
         try {
-            System.out.println("hello");
             if (userInput.startsWith("f/")) {
                 int calorieIndex = userInput.indexOf("c/");
 
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
                 System.out.println("calories is " + calories);
                 if (calories < 0) {
-                    //throw new Exception();
+                    throw new Exception();
                 }
                 String foodDescription = userInput.substring(2, calorieIndex - 1).trim();
                 System.out.println("food description is " + foodDescription);
@@ -209,14 +207,19 @@ public class Parser {
         try {
             String initialPath = new File("").getAbsolutePath();
             String filePath = initialPath + "/" + fileName + ".txt";
+            File file = new File(filePath);
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            String line = reader.readLine();
-            while (line != null) {
-                Parser parser = new Parser("add " + line + " d/ " + strDate);
-                Command cmd = parser.parseCommand();
-                executeCmd(cmd);
-                storage.updateFile(calList);
-                line = reader.readLine();
+
+            if (file.exists()) {
+                String line = reader.readLine();
+
+                while (line != null) {
+                    Parser parser = new Parser("add " + line + " d/ " + strDate);
+                    Command cmd = parser.parseCommand();
+                    executeCmd(cmd);
+                    storage.updateFile(calList);
+                    line = reader.readLine();
+                }
             }
             reader.close();
             return null;
@@ -267,11 +270,11 @@ public class Parser {
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             displayAddCommandErrorMessage();
         } catch (NumberFormatException e) {
-            displayAddActivityNumberFormatExceptionMessage();
+            displayAddActivityExceptionMessage();
         } catch (DateTimeParseException e) {
             displayIncorrectDateTimeFormatEnteredMessage();
         } catch (Exception e) {
-            displayAddActivityNumberFormatExceptionMessage();
+            displayAddActivityExceptionMessage();
         }
         return null;
     }

@@ -21,7 +21,7 @@ The section displays the table of contents showing all the available features in
 * [Features](#features)
     * [Viewing help](#viewing-help): `help`
     * [Creating a profile for new user](#creating-a-profile-for-new-user): `create new user`
-    * [Creating a set of entries](#creating-a-set-of-entries): `createSet`
+    * [Creating a set of entries](#creating-a-shortcut-for-a-set-of-entries): `createSet`
     * [Adding a target calorie](#adding-a-target-calorie): `target`
     * [Editing user profile](#editing-user-profile): `edit`
     * [Adding a food entry](#adding-a-food-entry): `add`
@@ -43,11 +43,11 @@ The section displays the table of contents showing all the available features in
 
 This section gives the steps you need to get started quickly.
 
-1. Ensure that you have Java 11 or above installed
+1. Ensure that you have Java 11 or above installed, if not, it can be found [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html)
 2. Down the latest version of `Duke` from [here](http://link.to/duke)
 3. Create an empty folder in a convenient location eg. Desktop and copy jar file there
 4. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar tp.jar`
-5. Upon successful run, the following greeting message will be shown
+5. Upon successful run, you will get the following greeting message
 
 ```
 =========================================================================================
@@ -61,7 +61,7 @@ This section gives the steps you need to get started quickly.
 =========================================================================================
 Please do input 'help' for the commands and their respective input format.
 ```
-6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window<br/>
+6. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window<br/>
    Some example commands you can try:
     * `list`: Lists all activities for today
     * `add f/ rice with eggs c/ 200`: Adds a food entry named `rice with eggs` to **traKCAL**.
@@ -72,15 +72,12 @@ Please do input 'help' for the commands and their respective input format.
 
 ## Features 
 
-This section gives a detailed description of each feature available in **trakCAL**.
-> **traKCAL** has many commands available. Such as 'create new user', 'add', 'edit', 'delete', 'list', 'find'.
+This section gives you a detailed description of each feature available in **trakCAL**.
 
 >Things to take note of:
 >* Input that look like `**this**` are parameters to be supplied by user.
 >* Input format should STRICTLY adhere to the one in the help list or in this user guide.
->* Input commands such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is RECOMMENDED to follow format stated in help list or this user guide.
-
-
+>* Commands such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow format stated in help list or this user guide.
 
 
 
@@ -124,8 +121,14 @@ The expected format of input values:
 
 ## Creating a profile for new user
 
-**traKCAL** will check for first time user automatically. 
->However, if you want to create a totally new profile, this command allows you to do so
+If this is your first time using **tracKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input this command.
+**TracKCAL** will then use these details from your user profile to calculate the following: 
+
+* BMI
+* Recommended daily calorie
+* Calorie goal to reach weight goal
+
+>However, if you want to create a new profile for an existing user, you will need to use this command
 
 Format: `create new user`
 
@@ -152,11 +155,11 @@ Do you want to lose/maintain/gain weight?
 ```
 
 
-## Creating a set of entries 
+## Creating a shortcut for a set of entries 
 
-Creates a shortcut for commonly called exercise and/or food entries.
+This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add in multiple common entries. 
 
-Format: `createSet **SHORTCUT_NAME** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** && f/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+Format: `createSet **SHORTCUT_NAME** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** && f/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** && ...`
 
 Parameters:
 * `**FOOD_DESCRIPTION**`: Description of food consumed.
@@ -167,27 +170,14 @@ Parameters:
 Example of usage: 
 *  `createSet bfast f/ ice cream c/ 78 && e/ jumping jacks c/ 100`
 
+Snippet of code for correct usage: 
 ```
 The current activity list has been saved.
 ```
 
-
-## Adding a target calorie
-
-Interprets the answers from the user profile questionnaire to calculate health profile.
-
-tracKCAL calculates: 
-* BMI
-* Recommended daily calorie
-* Calorie goal to reach weight goal
-
-Example of calculated health profile: 
-
-```
-Your BMI is 20.
-Your recommend daily calories intake is 1576.65 calories.
-To gain weight, you should consume 2076.65 calories instead.
-```
+Possible error message: 
+* ```Place holder```
+You can solve this by ....
 
 
 ## Editing user profile
@@ -545,12 +535,14 @@ Example of usage:
 =========================================================================================
 ```
 
+
 ## Frequently asked questions
 This section answers questions you may have.
 
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
+
 
 ## Command Summary
 
@@ -565,7 +557,7 @@ Edit activity | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT` | `e
 List | `list` OR `list DATE` | `list` OR `list 2020-10-24` 
 Move activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
 Delete entry | `delete INDEX` | `delete 2`
-Delete all | `delete /all` | `delete /all`
-graph | `graph` | `graph`
-Help | `help` | `help`
-Exit | `bye` | `bye`
+Delete all | `delete /all` | 
+graph | `graph` | 
+Help | `help` | 
+Exit | `bye` | 

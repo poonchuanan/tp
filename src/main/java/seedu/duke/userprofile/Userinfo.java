@@ -64,7 +64,7 @@ public class Userinfo {
 
 
     public String calculateNewUserDetails() {
-        double activityMultiple;
+        double activityMultiple = 0;
 
         switch (Integer.parseInt(this.getactivityfactor())) {
         case 1:
@@ -84,8 +84,6 @@ public class Userinfo {
             break;
         default:
             displayInvalidActivityFactorMessage();
-            activityMultiple = 1.55;
-            //Throw exception here or sth
             break;
         }
 
@@ -123,9 +121,8 @@ public class Userinfo {
             calories += 500;
             details += "To " + this.getWeightGoal() + " weight, you should consume "
                     + calories + " calories instead.\n";
-        } else {
-            details += "\n";
         }
+
         this.calories = calories;
         return details;
     }
