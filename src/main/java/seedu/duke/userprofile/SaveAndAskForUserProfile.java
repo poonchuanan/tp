@@ -15,15 +15,27 @@ import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightGoalMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 
+/**
+ * Initialises user profile after asking for user input.
+ */
 public class SaveAndAskForUserProfile {
     private static InitialiseAndCalculateUserProfile userInfo = new InitialiseAndCalculateUserProfile();
     private static String[] data = new String[7];
 
+    /**
+     * Reading user input after printing question
+     *
+     * @param text question to be printed
+     */
     public static String input(String text) {
         System.out.print(text);
         return Trakcal.in.nextLine();
     }
 
+    /**
+     * Reading user input
+     *
+     */
     public static String input() {
         return Trakcal.in.nextLine();
     }
@@ -45,14 +57,26 @@ public class SaveAndAskForUserProfile {
         return profile;
     }
 
+    /**
+     * ask user for name and save in an array entry
+     *
+     */
     public static void name()  {
         data[0] = input("What is your name?\n");
     }
 
+    /**
+     * user gender restricted to what is stated in enum
+     *
+     */
     public enum GenderEnum {
         male, female;
     }
 
+    /**
+     * ask user for gender and save in an array entry
+     *
+     */
     public static void gender() {
         Ui.displayAskUserGenderMessage();
         String gender = input();
@@ -69,6 +93,10 @@ public class SaveAndAskForUserProfile {
         }
     }
 
+    /**
+     * ask user for weight and save in an array entry
+     *
+     */
     public static void weight() {
         Ui.displayAskUserWeightMessage();
         String weight = input();
@@ -81,6 +109,10 @@ public class SaveAndAskForUserProfile {
         data[2] = weight;
     }
 
+    /**
+     * ask user for height and save in an array entry
+     *
+     */
     public static void height() {
         Ui.displayAskUserHeightMessage();
         String height = input();
@@ -93,6 +125,10 @@ public class SaveAndAskForUserProfile {
         data[3] = height;
     }
 
+    /**
+     * ask user for age and save in an array entry
+     *
+     */
     public static void age() {
         Ui.displayAskUserAgeMessage();
         String age = input();
@@ -105,6 +141,10 @@ public class SaveAndAskForUserProfile {
         data[4] = age;
     }
 
+    /**
+     * ask user for activity level and save in an array entry
+     *
+     */
     public static void activityLevel() {
         Ui.displayAskUserActivityLevelMessage();
         String activityLevel = input();
@@ -122,10 +162,18 @@ public class SaveAndAskForUserProfile {
         data[5] = activityLevel;
     }
 
+    /**
+     * user weight goal restricted to what is stated in enum
+     *
+     */
     public enum WeightGoalEnum {
         lose, maintain, gain;
     }
 
+    /**
+     * ask user for weight goal and save in an array entry
+     *
+     */
     public static void weightGoal() {
         Ui.displayAskUserWeightGoalMessage();
         String weightGoal = input();
@@ -150,15 +198,30 @@ public class SaveAndAskForUserProfile {
         return profile;
     }
 
+    /**
+     * override and save user details in text file
+     *
+     * @param profile to be saved in text file
+     */
     public static void saveExistingUserInfo(InitialiseAndCalculateUserProfile profile) throws IOException {
         SaveAndAskForUserProfile.save(profile);
     }
 
+    /**
+     * create a new text file and save user input into the text file
+     *
+     * @param profile question to be printed
+     */
     public static void save(InitialiseAndCalculateUserProfile profile) throws IOException {
         Userinfotextfilestorage storage = new Userinfotextfilestorage();
         storage.save(profile.toString());
     }
 
+    /**
+     * Reading user input from existing text file and save a profile type
+     *
+     * @return Storage type
+     */
     public static InitialiseAndCalculateUserProfile loadProfile() {
         String[] data = new String[7];
         ArrayList<String> previous = Userinfotextfilestorage.update();
