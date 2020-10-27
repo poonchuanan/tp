@@ -130,6 +130,41 @@ public class Parser {
     }
 
     /**
+     * Prepares file to be read from and added into the current list.
+     *
+     * @param fileName file to be read from
+     * @return Command
+     */
+    private Command prepareAddSet(String fileName) {
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = formatter.format(date);
+        try {
+            String initialPath = new File("").getAbsolutePath();
+            String filePath = initialPath + "/" + fileName + ".txt";
+            File file = new File(filePath);
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+            if (file.exists()) {
+                String line = reader.readLine();
+
+                while (line != null) {
+                    Parser parser = new Parser("add " + line + " d/ " + strDate);
+                    Command cmd = parser.parseCommand();
+                    executeCmd(cmd);
+                    storage.updateFile(calList);
+                    line = reader.readLine();
+                }
+            }
+            reader.close();
+            return null;
+        } catch (IOException e) {
+            displayIoExceptionMessage();
+        }
+        return null;
+    }
+
+    /**
      * Prepares chained input by user into their respective commands to be read.
      *
      * @param userInput input given by user
@@ -206,41 +241,6 @@ public class Parser {
             displayEditActivityExceptionMessage();
         } catch (Exception e) {
             displayEditActivityExceptionMessage();
-        }
-        return null;
-    }
-
-    /**
-     * Prepares file to be read from and added into the current list.
-     *
-     * @param fileName file to be read from
-     * @return Command
-     */
-    private Command prepareAddSet(String fileName) {
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String strDate = formatter.format(date);
-        try {
-            String initialPath = new File("").getAbsolutePath();
-            String filePath = initialPath + "/" + fileName + ".txt";
-            File file = new File(filePath);
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-
-            if (file.exists()) {
-                String line = reader.readLine();
-
-                while (line != null) {
-                    Parser parser = new Parser("add " + line + " d/ " + strDate);
-                    Command cmd = parser.parseCommand();
-                    executeCmd(cmd);
-                    storage.updateFile(calList);
-                    line = reader.readLine();
-                }
-            }
-            reader.close();
-            return null;
-        } catch (IOException e) {
-            displayIoExceptionMessage();
         }
         return null;
     }
