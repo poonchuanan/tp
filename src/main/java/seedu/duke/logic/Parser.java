@@ -155,11 +155,9 @@ public class Parser {
     private Command prepareEditActivityCommand(String userInput) {
         String[] arguments = userInput.split(" ", 2);
         int index = Integer.parseInt(arguments[0]) - 1;
-        System.out.println("index is" + index);
         userInput = arguments[1];
 
         try {
-            System.out.println("hello");
             if (userInput.startsWith("f/")) {
                 int calorieIndex = userInput.indexOf("c/");
 
