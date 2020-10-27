@@ -209,14 +209,19 @@ public class Parser {
         try {
             String initialPath = new File("").getAbsolutePath();
             String filePath = initialPath + "/" + fileName + ".txt";
+            File file = new File(filePath);
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            String line = reader.readLine();
-            while (line != null) {
-                Parser parser = new Parser("add " + line + " d/ " + strDate);
-                Command cmd = parser.parseCommand();
-                executeCmd(cmd);
-                storage.updateFile(calList);
-                line = reader.readLine();
+
+            if (file.exists()) {
+                String line = reader.readLine();
+
+                while (line != null) {
+                    Parser parser = new Parser("add " + line + " d/ " + strDate);
+                    Command cmd = parser.parseCommand();
+                    executeCmd(cmd);
+                    storage.updateFile(calList);
+                    line = reader.readLine();
+                }
             }
             reader.close();
             return null;
