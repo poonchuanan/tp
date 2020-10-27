@@ -95,7 +95,7 @@ public class InitialiseAndCalculateUserProfile {
                 * 10000;
         assert bmi > 0 : "bmi should be more than 0";
 
-        details += "Your BMI is " + df2.format(bmi) + "\n";
+        details += "\nYour BMI is " + df2.format(bmi) + "\n";
 
         if (this.getGender().equals("female")) {
             calories = ((10 * Double.parseDouble(this.getWeight()))

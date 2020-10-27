@@ -33,11 +33,7 @@ public class UserSetStorage {
             boolean isFileCreated = file.createNewFile();
             if (!isFileCreated) {
                 file.createNewFile();
-            } else {
-                throw new FileSystemAlreadyExistsException();
             }
-        } catch (FileSystemAlreadyExistsException e) {
-            displayShortcutDoesNotExistMessage();
         } catch (IOException e) {
             displayIoExceptionMessage();
         }
