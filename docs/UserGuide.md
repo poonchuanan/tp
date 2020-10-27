@@ -2,6 +2,7 @@
 
 By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
+<br>
 
 ## Introduction
 
@@ -12,6 +13,7 @@ The purpose of this user guide is to guide the users on the commands available i
 
 **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
 
+<br>
 
 ## Table of Contents
 
@@ -38,6 +40,7 @@ The section displays the table of contents showing all the available features in
 * [Frequently asked questions](#frequently-asked-questions)
 * [Command Summary](#command-summary)
 
+<br>
 
 ## Quick Start
 
@@ -69,6 +72,7 @@ Please do input 'help' for the commands and their respective input format.
     * `bye`: Exits the application.
 7. Refer to the [Features](#features) below for details of each command
 
+<br>
 
 ## Features 
 
@@ -79,7 +83,8 @@ This section gives you a detailed description of each feature available in **tra
 >* Input format should STRICTLY adhere to the one in the help list or in this user guide.
 >* Commands such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow format stated in help list or this user guide.
 
-<\br>
+<br>
+<br>
 
 ## Viewing help
 
@@ -133,8 +138,8 @@ Words in CAPS are parameters to be filled in by you!
 =====================================================================================================
 ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Creating a profile for new user
 
@@ -171,8 +176,8 @@ Do you want to lose/maintain/gain weight?
 **gain**
 ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Creating a shortcut for a set of entries 
 
@@ -225,8 +230,8 @@ Examples of usage:
 The current activity list has been saved.
 ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Adding an exercise entry
 
@@ -247,8 +252,8 @@ Examples of usage:
 The current activity list has been saved.
 ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Adding a set of entries
 
@@ -270,8 +275,8 @@ The current activity list has been saved.
 The current activity list has been saved.
 ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Listing entries for the specified day
 
@@ -296,8 +301,8 @@ Examples of usage:
 1. [F] | burger | 90
 ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Editing user profile
 
@@ -333,8 +338,8 @@ To gain weight, you should consume 2076.65 calories instead.
 ==============================================================
 ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Editing an entry in list
 
@@ -366,8 +371,8 @@ Example of usage:
 The current activity list has been saved.
 ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Finding entries via keyword
 
@@ -432,8 +437,8 @@ Example of usage:
 The current activity list has been saved.
 ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Moving an activity to another position
 
@@ -468,8 +473,8 @@ Examples of usage:
 3. [F] | second breakfast | 100
 ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Deleting an entry in list
 
@@ -505,8 +510,8 @@ The current activity list has been saved.
 3. [F] | orange | 100
 ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Deleting all entries in list
 
@@ -535,8 +540,8 @@ The current activity list has been saved.
 Nothing was added!
 ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Showing past net calories
 
@@ -565,8 +570,8 @@ Example of usage:
 > `***` shows the target calories.
 > If less than 7 days are stored in storage file, all the days will be displayed
 
-<\br>
-<\br>
+<br>
+<br>
 
 ## Exiting the program
 
@@ -583,7 +588,7 @@ Example of usage:
 =====================================================================================================
 ```
 
-<\br>
+<br>
 
 ## Frequently asked questions
 This section answers questions you may have.
