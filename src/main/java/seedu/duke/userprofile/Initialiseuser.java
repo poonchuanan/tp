@@ -112,7 +112,7 @@ public class Initialiseuser {
         try {
             int checkRange = Integer.parseInt(activityLevel);
 
-            if (checkRange<0 || checkRange>5) {
+            if (checkRange < 0 || checkRange > 5) {
                 throw new IllegalArgumentException();
             }
 
