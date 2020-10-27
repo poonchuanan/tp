@@ -223,4 +223,10 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    public static void displayInvalidHeightMessage() {
+        drawDivider();
+        System.out.println("Please enter a valid height format!");
+        drawDivider();
+    }
+
 }

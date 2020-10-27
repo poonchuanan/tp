@@ -133,4 +133,8 @@ public class Ui {
         System.out.println("What is your weight in kg?");
     }
 
+    public static void displayAskUserHeightMessage() {
+        System.out.println("What is your height in cm?");
+    }
+
 }

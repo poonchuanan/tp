@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static seedu.duke.ui.ExceptionMessages.displayInvalidHeightMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightMessage;
 import seedu.duke.ui.Ui;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightGoalMessage;
@@ -79,7 +80,15 @@ public class Initialiseuser {
     }
 
     public static void height() {
-        data[3] = input("What is your height in cm?\n");
+        Ui.displayAskUserHeightMessage();
+        String height = input();
+        try {
+            Double.parseDouble(height);
+        } catch (NumberFormatException e) {
+            displayInvalidHeightMessage();
+            height();
+        }
+        data[3] = height;
     }
 
     public static void age() {
