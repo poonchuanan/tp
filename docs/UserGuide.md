@@ -1,5 +1,5 @@
 # User Guide for traKCAL
-
+---
 By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 <br>
