@@ -4,7 +4,9 @@ import seedu.duke.model.Exercise;
 
 import java.time.LocalDate;
 
+import static seedu.duke.ui.ExceptionMessages.displayEditIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ui.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.drawDivider;
 
 /**
  * Edits exercise and its attributes at the indicated index.
@@ -35,10 +37,11 @@ public class EditExerciseCommand extends Command {
             LocalDate dateOfActivityToBeEdited = dayMap.getDateFromLastSeenListAtIndex(index);
             this.exercise = new Exercise(description, calories,dateOfActivityToBeEdited, false);
             dayMap.insertActivity(index, exercise);
+            System.out.println();
             displaySavedMessage();
+            drawDivider();
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index entered is not within the range!\n"
-                    + "Please pull out the list for the day before editing on it!");
+            displayEditIndexOutOfBoundsExceptionMessage();
         }
     }
 }

@@ -59,15 +59,19 @@ public class Ui {
         String helpList = "Commands available: create new user, list, help, add, delete, find, bye\n"
                 + "\n"
                 + "The expected format of input values:\n"
-                + "\tcreate new user        - Creates a new user profile\n"
-                + "\ttarget CALORIE         - Adds a target calorie, CALORIE\n"
                 + "\thelp                   - Prints out commands available and their input format\n"
+                + "\tcreate new user        - Creates a new user profile\n"
+                + "\tcreateSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT"
+                + "&& e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT && ..."
+                + "\t                       - Creates shortcut for adding food and/or exercise\n"
+                + "\ttarget CALORIE         - Adds a target calorie, CALORIE\n"
                 + "\tadd f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
                 + "\t                       - Adds food consumed, FOOD_DESCRIPTION calories gained, CALORIE_COUNT\n"
                 + "\t                         and date(YYYY-MM-DD), DATE\n"
                 + "\tadd e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
                 + "\t                       - Adds exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT\n"
                 + "\t                         and date(YYYY-MM-DD), DATE\n"
+                + "\taddSet SHORTCUT_NAME   - Adds SHORTCUT_NAME into current date list"
                 + "\tlist                   - Prints out the list of entries.\n"
                 + "\tlist DATE              - Prints out the list of entries for the date(YYYY-MM-DD), DATE\n"
                 + "\tedit n/ NAME, g/ GENDER, w/ WEIGHT, h/HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS\n"
@@ -83,8 +87,8 @@ public class Ui {
                 + "\t                         to exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT\n"
                 + "\tfind d/ DESCRIPTION    - Searches for exercise/food description with DESCRIPTION included\n"
                 + "\tfind c/ CALORIE_COUNT  - Searches through activity list with calories of CALORIE_COUNT\n"
-                + "\tfind a/ ANYTHING      - \n"
-                + "\tfind e/ SOME          - \n"
+                + "\tfind e/ EITHER         - \n"
+                + "\tfind a/ ALL            - \n"
                 + "\tmove from/ INDEX1 below/ INDEX2\n"
                 + "\t                       - Moves the activity at index INDEX1 to the index below INDEX2\n"
                 + "\tdelete LIST_INDEX      - Deletes activity located at index LIST_INDEX of latest list printed out\n"
@@ -113,12 +117,6 @@ public class Ui {
         System.out.println("An error has occurred!");
         promptUserOfHelpMessage();
         System.out.println();
-    }
-
-    public static void displayDefaultMessage() {
-        drawDivider();
-        System.out.println("Invalid command. Please type 'help' for more information.");
-        drawDivider();
     }
 
     /**
@@ -167,6 +165,16 @@ public class Ui {
 
     public static void displayAskUserActivityLevelMessage() {
         System.out.println("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.");
+    }
+
+    public static void displayEditMessage() {
+        drawDivider();
+        System.out.println("Noted! The following has been edited:");
+    }
+
+    public static void displayAddMessage() {
+        drawDivider();
+        System.out.println("Noted! The following has been added into list:");
     }
 
 }

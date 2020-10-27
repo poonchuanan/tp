@@ -196,15 +196,6 @@ public class ExceptionMessages {
         drawDivider();
     }
 
-    /**
-     * Prints message when there is a presence of a duplicated naming for file.
-     */
-    public static void displayNegativeCalorieInputExceptionMessage() {
-        drawDivider();
-        System.out.println("Calorie input must be an integer and positive!");
-        drawDivider();
-    }
-
     public static void displayInvalidGenderMessage() {
         drawDivider();
         System.out.println("Please input female or male as gender only!");
@@ -238,6 +229,13 @@ public class ExceptionMessages {
     public static void displayInvalidActivityLevelMessage() {
         drawDivider();
         System.out.println("Please enter a number from 1 to 5 only!");
+        drawDivider();
+    }
+
+    public static void displayEditIndexOutOfBoundsExceptionMessage() {
+        drawDivider();
+        System.out.println("Index entered is not within the range!\n"
+                + "Please pull out the list for the day before editing on it!");
         drawDivider();
     }
 }

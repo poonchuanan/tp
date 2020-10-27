@@ -5,7 +5,9 @@ import seedu.duke.model.Food;
 
 import java.time.LocalDate;
 
+import static seedu.duke.ui.ExceptionMessages.displayEditIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ui.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.drawDivider;
 
 
 /**
@@ -39,10 +41,11 @@ public class EditFoodCommand extends Command {
             LocalDate dateOfActivityToBeEdited = lastSeenList.getDateOfActivityAtIndex(index);
             this.food = new Food(description, calories, dateOfActivityToBeEdited, false);
             dayMap.insertActivity(index, food);
+            System.out.println();
             displaySavedMessage();
+            drawDivider();
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index entered is not within the range!\n"
-                    + "Please pull out the list for the day before editing on it!");
+            displayEditIndexOutOfBoundsExceptionMessage();
         }
     }
 }
