@@ -82,7 +82,34 @@ Aspect: How to add activity
 >* Pros: Tags are obvious in what input is expected.
 >* Cons: More wordy input needed from user.
 
-### Advance List feature
+### 3.3 Listing feature for find and list commands
+The listing mechanism used by ListCommand and FindCommand to display the required list of activities is facilitated by the lastSeenList of class ActivityList. 
+The following operations could be applied to the lastSeenList which would change the actual data in the database:
+
+- delete
+- move
+- edit (note: edit only modifies entries in the database after list command)
+
+The details of those operations can be found further down.
+
+#### 3.3.1 List
+This feature is used to list the entries of a specified date where the extracted activityList would be used as the lastSeenList itself.
+
+The following sequence diagram shows how the lastSeenList is set after a “list date" command where date is of YYYY-MM-DD 
+or after a “list” command where the date is the current date.
+
+![List Sequence Diagram](diagrams/ListSequenceDiagram.png)
+*Figure 6. Sequence diagram of setting the lastSeenList after a listCommand*
+
+#### 3.3.2 Find
+
+The editing mechanism is used by the basic find features: `FindDescriptionCommand`, `FindCalorieCommand`, 
+as well as the advanced find features: `FindAllCommand` and `FindEitherCommand` to look for keywords in the list.
+
+The following sequence diagram shows how the lastSeenList is set after a find command.
+
+![Find Sequence Diagram](diagrams/FindSequenceDiagram.png)
+*Figure 7. Sequence diagram of setting the lastSeenList after a find command*
 
 ### 3.5 Edit activity in list feature
 
