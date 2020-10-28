@@ -273,18 +273,15 @@ public class DayMap {
      */
     private ArrayList<String> getAllTags(String userInput) {
         ArrayList<String> tags = new ArrayList<>();
-        while (userInput.contains("/")) {
-            if (!userInput.contains(" ")) {
-                userInput = userInput.substring(2);
-                tags.add(userInput);
-                break;
-            }
-            int spaceIndex = userInput.indexOf(" ");
-            String firstWord = userInput.substring(0, spaceIndex);
-            userInput = userInput.substring(spaceIndex).trim();
-            firstWord = firstWord.substring(2);
+        while (userInput.indexOf("/") != userInput.lastIndexOf("/")) {
+            int firstIndex = userInput.indexOf("/");
+            int secondIndex = userInput.indexOf("/", userInput.indexOf("/") + 1);
+            String firstWord = userInput.substring(firstIndex + 1, secondIndex).trim();
+            userInput = userInput.substring(secondIndex);
             tags.add(firstWord);
         }
+        userInput = userInput.substring(userInput.indexOf("/") + 1).trim();
+        tags.add(userInput);
         return tags;
     }
 
