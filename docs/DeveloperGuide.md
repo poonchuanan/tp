@@ -160,7 +160,7 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 
 > `EditExerciseCommand` diagram has a similar logic.
 
-#### 3.6.2 Design Considerations
+#### 3.5.2 Design Considerations
 
 Aspect: How to edit activity
 
@@ -199,12 +199,12 @@ Aspect: Which features to chain
 >* Pros: Easy to implement.
 >* Cons: May give abnormal behaviour.
 
-### 3.6 Move feature
+### 3.7 Move feature
 This feature allows the user to manually `move` activities from one position to another position <br>
 The following sequence diagram shows how the `move` command is executed, where index1 is the position to be moved from and index 2 is the position to be moved below. <br>
 ![Move_command](diagrams/moveCommand.png)
 
-### 3.7 Graph feature
+### 3.8 Graph feature
 
 The graph implementation shows the progress of the daily net 
 calories over the period of 7 days. The GraphProperty class extracts the available days from the 
