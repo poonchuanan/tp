@@ -1,4 +1,4 @@
-# Developer Guide
+# Developer Guide for trakCAL
 
 The purpose of this developer guide is as reference for future collaborators of **trakCAL**.
 
@@ -15,7 +15,7 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
  * Intellij IDE
     
 ### Setting up:    
-* Download the latest tracKCAL jar file (here)
+* Download the latest **tracKCAL** jar file (here)
 * Copy jar file into an empty folder in a convenient location (eg. Desktop)
 * Open terminal and navigate directory to the folder containing jar file 
 * Enter the following command line to run program: ```java -jar trakCAL.jar```   
@@ -215,12 +215,12 @@ Aspect: Which features to chain
 >* Pros: Easy to implement.
 >* Cons: May give abnormal behaviour.
 
-### Move feature
+### 3.6 Move feature
 This feature allows the user to manually `move` activities from one position to another position <br>
 The following sequence diagram shows how the `move` command is executed, where index1 is the position to be moved from and index 2 is the position to be moved below. <br>
 ![Move_command](diagrams/moveCommand.png)
 
-### Graph feature
+### 3.7 Graph feature
 
 The graph implementation shows the progress of the daily net 
 calories over the period of 7 days. The GraphProperty class extracts the available days from the 
