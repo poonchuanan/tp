@@ -1,5 +1,7 @@
 package seedu.duke.command;
 
+import seedu.duke.model.Activity;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -15,7 +17,8 @@ public class DeleteCommand extends Command {
 
     /**
      * Deletes Command Constructor.
-     * @param index index of the activities.
+     *
+     * @param index index of the activities
      */
     public DeleteCommand(int index) {
         this.date = LocalDateTime.now().toLocalDate();
@@ -46,6 +49,7 @@ public class DeleteCommand extends Command {
             return;
         } else {
             try {
+
                 dayMap.deleteActivity(index);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Invalid index!");

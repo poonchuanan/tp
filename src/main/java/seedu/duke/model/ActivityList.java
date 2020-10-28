@@ -17,6 +17,9 @@ public class ActivityList extends Trakcal {
     private int activityCounter;
     private int netCalorie;
 
+    /**
+     * Constructor of class ActivityList.
+     */
     public ActivityList() {
         activities = new ArrayList<>();
         activityCounter = 0;
@@ -166,6 +169,7 @@ public class ActivityList extends Trakcal {
         netCalorie = 0;
     }
 
+
     /**
      * Sets the activities as a string.
      * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60
@@ -179,6 +183,11 @@ public class ActivityList extends Trakcal {
         return (activitiesString);
     }
 
+    /**
+     * Returns the date of activity.
+     * @param index index of activity
+     * @return date
+     */
     public LocalDate getDateOfActivityAtIndex(int index) {
         return getActivity(index).getActivityDate();
     }

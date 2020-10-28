@@ -15,6 +15,7 @@ public class FindDescriptionCommand extends Command {
 
     /**
      * Find matching results based on description input.
+     *
      * @param description description to search
      */
     public FindDescriptionCommand(String description) {
@@ -28,7 +29,7 @@ public class FindDescriptionCommand extends Command {
         try {
             dayMap.listActivitiesContainingDescription(description);
             FindDrawer findDrawer = new FindDrawer(dayMap.getLastSeenList());
-            findDrawer.printListDrawing();
+            findDrawer.printList();
         } catch (KeywordNotFoundException e) {
             System.out.println("No results were found!");
         }

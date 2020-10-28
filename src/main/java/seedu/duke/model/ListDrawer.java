@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * This class is used to create a responsive interface for the listing feature.
+ * This class is used to create a responsive interface for the listing feature after a list command.
  */
 
 public class ListDrawer {
@@ -34,6 +34,7 @@ public class ListDrawer {
 
     /**
      * Sets the date and activity list to be printed.
+     *
      * @param date date which activity list to be used
      * @param activityList is the list to be used when creating the list
      */
@@ -42,12 +43,19 @@ public class ListDrawer {
         this.activityList = activityList;
     }
 
+    /**
+     * Constructor for the listDrawer class.
+     * @param lastSeenList list to be drawn.
+     */
     public ListDrawer(ActivityList lastSeenList) {
         this.activityList = lastSeenList;
     }
 
-    public void printListDrawing() {
-        System.out.println(headerBox()
+    /**
+     * Prints the list of activities.
+     */
+    public void printList() {
+        System.out.print(headerBox()
                 + listHeaderString()
                 + NEWLINE
                 + increaseStringLength(DIVIDER, listHeaderString().length())
@@ -56,11 +64,21 @@ public class ListDrawer {
     }
 
 
+    /**
+     * Multiplies the length of a string by a given length.
+     * @param stringToIncrease string to multiply in length
+     * @param length length to increase by
+     * @return a string of the increased length
+     */
     protected String increaseStringLength(String stringToIncrease, int length) {
 
         return String.join("", Collections.nCopies(length, stringToIncrease));
     }
 
+    /**
+     * Generates the header for the list.
+     * @return string of header
+     */
     protected String listHeaderString() {
         String header = NUMBERS
                 + increaseStringLength(INDENT, 1) + ACTIVITY_TYPE
@@ -69,6 +87,10 @@ public class ListDrawer {
         return header;
     }
 
+    /**
+     * Generates the header as a box with the net calorie and date information.
+     * @return string for the header box
+     */
     protected String headerBox() {
         String headerString = "|  " + date + "  " + netCalorieString();
         String dividerString = increaseStringLength(DIVIDER, headerString.length());
@@ -79,6 +101,12 @@ public class ListDrawer {
         return "|  " + "Net Calorie: " + activityList.getNetCalorie() + " kcal  |";
     }
 
+
+    /**
+     * Generates the string for a single activity.
+     * @param index index of the activity
+     * @return string of single activity
+     */
     protected String singleActivityString(int index) {
         ArrayList<String> descriptions = new ArrayList<>();
         String restOfDescription = "";
@@ -155,6 +183,10 @@ public class ListDrawer {
 
     }
 
+    /**
+     * Generates the content for the list.
+     * @return string of the content
+     */
     protected String allActivityString() {
         String allActivityString = "";
         for (int i = 0; i < activityList.getNumberOfActivities(); i++) {

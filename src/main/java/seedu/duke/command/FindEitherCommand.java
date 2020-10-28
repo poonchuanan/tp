@@ -15,6 +15,7 @@ public class FindEitherCommand extends Command {
 
     /**
      * Find matching results based on input tags.
+     *
      * @param userInput keywords to be matched
      */
     public FindEitherCommand(String userInput) {
@@ -27,7 +28,7 @@ public class FindEitherCommand extends Command {
         try {
             dayMap.listActivitiesContainingEither(userInput);
             FindDrawer findDrawer = new FindDrawer(dayMap.getLastSeenList());
-            findDrawer.printListDrawing();
+            findDrawer.printList();
         } catch (KeywordNotFoundException e) {
             System.out.println("No results were found!");
         }

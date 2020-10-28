@@ -3,7 +3,11 @@ package seedu.duke.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Displays the graph of the net calorie gain/loss throughout the period.
+ */
 public class GraphDrawing {
+
 
     public GraphProperty graphProperty;
 
@@ -20,6 +24,7 @@ public class GraphDrawing {
 
     /**
      * Constructor.
+     *
      * @param graphProperty properties of graph
      */
     public GraphDrawing(GraphProperty graphProperty) {
@@ -32,6 +37,7 @@ public class GraphDrawing {
 
     /**
      * Repeats character back to back.
+     *
      * @param character character
      * @param size number of times to repeat
      * @return concatenated string
@@ -47,6 +53,7 @@ public class GraphDrawing {
 
     /**
      * Generates the x_axis.
+     *
      * @return x_axis String
      */
     public String generate_x_axis(int maxCalorieSize, int column) {
@@ -59,7 +66,8 @@ public class GraphDrawing {
     }
 
     /**
-     * generate date labels for the x-axis.
+     * Generates date labels for the x-axis.
+     *
      * @param maxCalorieSize Character length of maxCalorieSize
      * @return date labels
      */
@@ -70,7 +78,7 @@ public class GraphDrawing {
     }
 
     /**
-     * generates the y axis.
+     * Generates the y axis.
      * @param space space width set by number of characters in maximum calories.
      * @param columnNumber column number
      * @return y_axis string for that row
@@ -96,6 +104,7 @@ public class GraphDrawing {
 
     /**
      * Calculate difference in string size.
+     *
      * @param firstString first string
      * @param secondString second string
      * @return string length differemnce
@@ -109,7 +118,8 @@ public class GraphDrawing {
     }
 
     /**
-     * adds width based on the row type.
+     * Adds width based on the row type.
+     *
      * @param number row number
      * @return width
      */
@@ -124,7 +134,7 @@ public class GraphDrawing {
     }
 
     /**
-     * draws the graph.
+     * Draws the graph.
      */
     public String drawGraph() {
         int[][] table = graphProperty.table;

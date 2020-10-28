@@ -6,6 +6,9 @@ import seedu.duke.exception.ListNotFoundException;
 import static seedu.duke.ui.ExceptionMessages.displayListNotFoundExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 
+/**
+ * This command moves an activity from one index to another.
+ */
 public class MoveActivityCommand extends Command {
     private int indexToBeMovedFrom;
     private int indexToBeInsertedBelow;

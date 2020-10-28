@@ -1,29 +1,34 @@
 package seedu.duke.logic;
 
 import seedu.duke.Trakcal;
+//import seedu.duke.command.*;
 import seedu.duke.command.AddExerciseCommand;
-import seedu.duke.command.CreateNewRepeatedSet;
+import seedu.duke.command.AddFoodCommand;
+import seedu.duke.command.AddSetCommand;
 import seedu.duke.command.ByeCommand;
 import seedu.duke.command.Command;
-import seedu.duke.command.AddFoodCommand;
+import seedu.duke.command.CreateNewRepeatedSet;
 import seedu.duke.command.CreateNewUserCommand;
-import seedu.duke.command.EditFoodCommand;
+import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.EditExerciseCommand;
+import seedu.duke.command.EditFoodCommand;
 import seedu.duke.command.FindAllCommand;
 import seedu.duke.command.FindCalorieCommand;
 import seedu.duke.command.FindDescriptionCommand;
 import seedu.duke.command.FindEitherCommand;
+import seedu.duke.command.GraphCommand;
 import seedu.duke.command.HelpCommand;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
-import seedu.duke.command.GraphCommand;
-import seedu.duke.userprofile.Initialiseuser;
-import seedu.duke.userprofile.Userinfo;
+
+import seedu.duke.command.MoveActivityCommand;
+import seedu.duke.ui.ExceptionMessages;
+import seedu.duke.userprofile.SaveAndAskForUserProfile;
+import seedu.duke.userprofile.InitialiseAndCalculateUserProfile;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -32,11 +37,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
 
 import static seedu.duke.Trakcal.calList;
 import static seedu.duke.Trakcal.executeCmd;
 import static seedu.duke.Trakcal.storage;
-import static seedu.duke.ui.ExceptionMessages.displayAddActivityNumberFormatExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayAddActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
@@ -47,6 +53,8 @@ import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
+import static seedu.duke.ui.Ui.displayAddMessage;
+import static seedu.duke.ui.Ui.displayEditMessage;
 
 /**
  * Initialises parser class.
@@ -55,13 +63,26 @@ public class Parser {
     protected String userInput;
     protected LocalDateTime date;
 
+    protected static final int ALPHABET_WITH_SLASH = 2;
+    public static final String SPACE = " ";
+    public static final String CHAIN_SEPARATOR = "&&";
+    protected static final int CHAIN_SEPARATOR_LENGTH = 2;
+
+    protected static final String FOOD_TAG = "f/";
+    protected static final String EXERCISE_TAG = "e/";
+    protected static final String CALORIE_TAG = "c/";
+    protected static final String DATE_TAG = "d/";
+
+    protected static final boolean FALSE = false;
+
+
     /**
      * Store details in the class.
      *
-     * @param userInput user from the user.
+     * @param userInput user from the user
      */
     public Parser(String userInput) {
-        this.userInput = userInput.trim().replaceAll(" +", " ");
+        this.userInput = userInput.trim().replaceAll(" +", SPACE);
         this.date = LocalDateTime.now();
     }
 
@@ -71,7 +92,7 @@ public class Parser {
      * @return Command type
      */
     public Command parseCommand() {
-        String[] arguments = userInput.split(" ", 2);
+        String[] arguments = userInput.split(SPACE, 2);
         try {
             switch (arguments[0].toLowerCase()) {
             case "create":
@@ -85,8 +106,8 @@ public class Parser {
             case "find":
                 return prepareFindCommand(userInput);
             case "edit":
-                Trakcal.profile = Userinfo.editUserInfo(arguments[1]);
-                Initialiseuser.save(Trakcal.profile);
+                Trakcal.profile = InitialiseAndCalculateUserProfile.editUserInfo(arguments[1]);
+                SaveAndAskForUserProfile.save(Trakcal.profile);
                 break;
             case "edita":
                 return prepareEditActivityCommand(arguments[1]);
@@ -101,7 +122,7 @@ public class Parser {
             case "bye":
                 return new ByeCommand();
             case "graph":
-                return new GraphCommand();
+                return prepareGraphCommand(arguments);
             default:
                 return new InvalidCommand();
             }
@@ -109,89 +130,8 @@ public class Parser {
             displayStringIndexOutOfBoundsExceptionMessage();
         } catch (IOException e) {
             displayIoExceptionMessage();
-        }
-        return null;
-    }
-
-    /**
-     * Prepares chained input by user into their respective commands to be read.
-     *
-     * @param userInput input given by user
-     * @return null
-     */
-    public Command prepareChaining(String userInput) {
-        while (userInput.contains("&&")) {
-            userInput = userInput + " &&";
-            int chainIndex = userInput.indexOf("&&");
-
-            if (chainIndex < 5) {
-                break;
-            }
-            String firstString = userInput.substring(0, chainIndex).trim();
-
-            Parser parser = new Parser(firstString);
-            Command cmd = parser.parseCommand();
-
-            if (cmd.getCanBeChained()) {
-                executeCmd(cmd);
-            } else {
-                System.out.println("The commands entered cannot be chained together!");
-                break;
-            }
-            storage.updateFile(calList);
-
-            userInput = userInput.substring(chainIndex + 2).trim();
-        }
-        return null;
-    }
-
-
-    /**
-     * Prepares the edit command by checking the userInput.
-     *
-     * @param userInput description of the edit command
-     * @return EditFoodCommand or EditExerciseCommand
-     */
-    private Command prepareEditActivityCommand(String userInput) {
-        String[] arguments = userInput.split(" ", 2);
-        int index = Integer.parseInt(arguments[0]) - 1;
-        System.out.println("index is" + index);
-        userInput = arguments[1];
-
-        try {
-            System.out.println("hello");
-            if (userInput.startsWith("f/")) {
-                int calorieIndex = userInput.indexOf("c/");
-
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
-                System.out.println("calories is " + calories);
-                if (calories < 0) {
-                    //throw new Exception();
-                }
-                String foodDescription = userInput.substring(2, calorieIndex - 1).trim();
-                System.out.println("food description is " + foodDescription);
-                assert calories > 0 : "calories should be greater than 0";
-                return new EditFoodCommand(index, foodDescription, calories);
-            } else if (userInput.startsWith("e/")) {
-                int calorieIndex = userInput.indexOf("c/");
-
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
-                if (calories < 0) {
-                    //throw new Exception();
-                }
-                String exerciseDescription = userInput.substring(2, calorieIndex - 1).trim();
-
-                assert calories > 0 : "calories should be greater than 0";
-                return new EditExerciseCommand(index, exerciseDescription, calories);
-            } else {
-                displayEmptyEditActivityErrorMessage();
-            }
-        } catch (NullPointerException e) {
-            displayEditActivityExceptionMessage();
-        } catch (NumberFormatException e) {
-            displayEditActivityExceptionMessage();
         } catch (Exception e) {
-            displayEditActivityExceptionMessage();
+            System.out.println(e.getLocalizedMessage());
         }
         return null;
     }
@@ -209,19 +149,114 @@ public class Parser {
         try {
             String initialPath = new File("").getAbsolutePath();
             String filePath = initialPath + "/" + fileName + ".txt";
+            File file = new File(filePath);
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            String line = reader.readLine();
-            while (line != null) {
-                Parser parser = new Parser("add " + line + " d/ " + strDate);
-                Command cmd = parser.parseCommand();
-                executeCmd(cmd);
-                storage.updateFile(calList);
-                line = reader.readLine();
+
+            if (file.exists()) {
+                String line = reader.readLine();
+
+                while (line != null) {
+                    Parser parser = new Parser("add " + line + " d/ " + strDate);
+                    Command cmd = parser.parseCommand();
+                    executeCmd(cmd);
+                    storage.updateFile(calList);
+                    line = reader.readLine();
+                }
+            } else {
+                throw new FileNotFoundException();
             }
             reader.close();
-            return null;
+            return new AddSetCommand();
+        } catch (FileNotFoundException e) {
+            ExceptionMessages.displayShortcutDoesNotExistMessage();
         } catch (IOException e) {
-            displayIoExceptionMessage();
+            ExceptionMessages.displayIoExceptionMessage();
+        }
+        return new AddSetCommand();
+    }
+
+    /**
+     * Prepares chained input by user into their respective commands to be read.
+     *
+     * @param userInput input given by user
+     * @return null
+     */
+    public Command prepareChaining(String userInput) {
+        while (userInput.contains(CHAIN_SEPARATOR)) {
+            if (userInput.equals(CHAIN_SEPARATOR)) {
+                break;
+            }
+
+            userInput = userInput + SPACE + CHAIN_SEPARATOR;
+            int chainIndex = userInput.indexOf(CHAIN_SEPARATOR);
+
+            String firstString = userInput.substring(0, chainIndex).trim();
+
+            Parser parser = new Parser(firstString);
+            Command cmd = parser.parseCommand();
+
+            if (cmd.getCanBeChained()) {
+                executeCmd(cmd);
+            } else {
+                System.out.println("This command entered cannot be chained together!");
+                break;
+            }
+            storage.updateFile(calList);
+
+            userInput = userInput.substring(chainIndex + CHAIN_SEPARATOR_LENGTH).trim();
+        }
+        return null;
+    }
+
+
+    /**
+     * Prepares the edit command by checking the userInput.
+     *
+     * @param userInput description of the edit command
+     * @return EditFoodCommand or EditExerciseCommand
+     */
+    private Command prepareEditActivityCommand(String userInput) {
+        String[] arguments = userInput.split(SPACE, 2);
+        int index = Integer.parseInt(arguments[0]) - 1;
+        userInput = arguments[1];
+
+        try {
+
+            if (userInput.startsWith(FOOD_TAG)) {
+                int calorieIndex = userInput.indexOf(CALORIE_TAG);
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + ALPHABET_WITH_SLASH).trim());
+                if (calories < 0) {
+                    throw new Exception();
+                }
+
+                String foodDescription = userInput.substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+
+                displayEditMessage();
+
+                assert calories > 0 : "calories should be greater than 0";
+                return new EditFoodCommand(index, foodDescription, calories);
+            } else if (userInput.startsWith(EXERCISE_TAG)) {
+                int calorieIndex = userInput.indexOf(CALORIE_TAG);
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + ALPHABET_WITH_SLASH).trim());
+                if (calories < 0) {
+                    throw new Exception();
+                }
+
+                String exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+
+                displayEditMessage();
+
+                assert calories > 0 : "calories should be greater than 0";
+                return new EditExerciseCommand(index, exerciseDescription, calories);
+            } else {
+                displayEmptyEditActivityErrorMessage();
+            }
+        } catch (NullPointerException e) {
+            displayEditActivityExceptionMessage();
+        } catch (NumberFormatException e) {
+            displayEditActivityExceptionMessage();
+        } catch (Exception e) {
+            displayEditActivityExceptionMessage();
         }
         return null;
     }
@@ -229,53 +264,67 @@ public class Parser {
     /**
      * Prepares the add command by checking the userInput.
      *
-     * @param userInput description of the add command.
+     * @param userInput description of the add command
      * @return AddFoodCommand or AddExerciseCommand
      */
     private Command prepareAddCommand(String userInput) {
         try {
-            String[] arguments = userInput.split(" ", 2);
-            if (arguments[1].startsWith("f/")) {
-                int calorieIndex = arguments[1].indexOf("c/");
-                int dateIndex = arguments[1].indexOf("d/");
+            String[] arguments = userInput.split(SPACE, 2);
+            if (arguments[1].startsWith(FOOD_TAG)) {
+                int calorieIndex = arguments[1].indexOf(CALORIE_TAG);
+                int dateIndex = arguments[1].indexOf(DATE_TAG);
 
-                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2, dateIndex).trim());
+                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH,
+                        dateIndex).trim());
                 if (calories < 0) {
                     throw new Exception();
                 }
-                LocalDate date = processDate(arguments[1].substring(dateIndex + 2).trim());
-                String foodDescription = arguments[1].substring(2, calorieIndex - 1).trim();
+
+                LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
+                String foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+
+                displayAddMessage();
 
                 assert calories > 0 : "calories should be greater than 0";
-                return new AddFoodCommand(foodDescription, calories, false, date);
-            } else if (arguments[1].startsWith("e/")) {
-                int calorieIndex = arguments[1].indexOf("c/");
-                int dateIndex = arguments[1].indexOf("d/");
+                return new AddFoodCommand(foodDescription, calories, FALSE, date);
+            } else if (arguments[1].startsWith(EXERCISE_TAG)) {
+                int calorieIndex = arguments[1].indexOf(CALORIE_TAG);
+                int dateIndex = arguments[1].indexOf(DATE_TAG);
 
-                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + 2, dateIndex).trim());
+                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH,
+                        dateIndex).trim());
                 if (calories < 0) {
                     throw new Exception();
                 }
-                LocalDate date = processDate(arguments[1].substring(dateIndex + 2).trim());
-                String exerciseDescription = arguments[1].substring(2, calorieIndex - 1).trim();
+
+                LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
+                String exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+
+                displayAddMessage();
 
                 assert calories > 0 : "calories should be greater than 0";
-                return new AddExerciseCommand(exerciseDescription, calories, false, date);
+                return new AddExerciseCommand(exerciseDescription, calories, FALSE, date);
             } else {
                 displayEmptyAddActivityErrorMessage();
             }
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             displayAddCommandErrorMessage();
         } catch (NumberFormatException e) {
-            displayAddActivityNumberFormatExceptionMessage();
+            displayAddActivityExceptionMessage();
         } catch (DateTimeParseException e) {
             displayIncorrectDateTimeFormatEnteredMessage();
         } catch (Exception e) {
-            displayAddActivityNumberFormatExceptionMessage();
+            displayAddActivityExceptionMessage();
         }
         return null;
     }
 
+    /**
+     * Prepares the arguments needed for moving an activity from one index to another.
+     * @param userInput description of the move command
+     * @return the moveCommand
+     * @throws IndexOutOfBoundsException if the index is not valid
+     */
     private Command prepareMoveIndexCommand(String userInput) throws IndexOutOfBoundsException {
         //Removing additional spaces in the user's input
         String after = userInput.trim().replaceAll(" +", " ");
@@ -303,7 +352,7 @@ public class Parser {
     /**
      * Process date input by user.
      *
-     * @param dateInput date input by user.
+     * @param dateInput date input by user
      * @return date
      * @throws DateTimeParseException if the string is in the incorrect format
      */
@@ -327,7 +376,7 @@ public class Parser {
     /**
      * Prepares the list command by checking the userInput.
      *
-     * @param userInput description of the list command.
+     * @param userInput description of the list command
      * @return ListCommand
      */
     private Command prepareListCommand(String userInput) {
@@ -349,12 +398,12 @@ public class Parser {
     /**
      * Prepares the delete command by checking the userInput.
      *
-     * @param userInput description of the delete command.
+     * @param userInput description of the delete command
      * @return DeleteCommand
      */
     private Command prepareDeleteCommand(String userInput) {
         try {
-            if (userInput.equals("/all")) {
+            if (userInput.equals("all/")) {
                 return new DeleteCommand();
             } else {
                 int index = Integer.parseInt(userInput) - 1;
@@ -373,7 +422,7 @@ public class Parser {
      * If the keyword contains activity description, returns FindDescriptionCommand.
      * Else if the keyword contains calories count, returns FindCalorieCommand.
      *
-     * @param userInput description of the find command.
+     * @param userInput description of the find command
      * @return FindCalorieCommand
      */
     private Command prepareFindCommand(String userInput) {
@@ -382,7 +431,7 @@ public class Parser {
             if (arguments[1].startsWith("d/")) {
                 String description = arguments[1].substring(2).trim();
                 return new FindDescriptionCommand(description);
-            } else if (arguments[1].startsWith("c/")) {
+            } else if (arguments[1].startsWith(CALORIE_TAG)) {
                 String calorie = arguments[1].substring(2).trim();
                 return new FindCalorieCommand(calorie);
             } else if (arguments[1].startsWith("a/")) {
@@ -397,5 +446,22 @@ public class Parser {
         }
         return null;
     }
+
+    /**
+     * Prepares the arguments needed for the graph command.
+     * @param userInput description of the graph command
+     * @return graphCommand
+     * @throws Exception if no records are found
+     */
+    private Command prepareGraphCommand(String[] userInput) throws Exception {
+        if (userInput.length != 1) {
+            throw new Exception("Graph has has no description");
+        }
+        if (Trakcal.calList.getHashMap().size() == 0) {
+            throw new Exception("No records found!");
+        }
+        return new GraphCommand();
+    }
+
 
 }

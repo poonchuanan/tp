@@ -27,17 +27,39 @@ public class DayMap {
         this.lastSeenList = new ActivityList();
     }
 
+    /**
+     * Sets the last seen list.
+     * @param activityList is the list to be passed into the lastSeenList
+     */
     public void setLastSeenList(ActivityList activityList) {
         this.lastSeenList = new ActivityList();
         this.lastSeenList = activityList;
     }
 
+    /**
+     * Gets the date from the specified index of the lastSeenList.
+     * @param index index of the lastSeenList
+     * @return localDate
+     */
     public LocalDate getDateFromLastSeenListAtIndex(int index) {
         return lastSeenList.getActivity(index).getActivityDate();
     }
 
+    /**
+     * Returns the last seen list.
+     * @return the lastSeenList
+     */
     public ActivityList getLastSeenList() {
         return this.lastSeenList;
+    }
+
+    /**
+     * Displays the list using the drawer classes.
+     * @param date is the date of the list to be drawn.
+     */
+    public void drawListAfterListCommand(LocalDate date) {
+        ListDrawer listDrawer = new ListDrawer(date, lastSeenList);
+        listDrawer.printList();
     }
 
     /**
@@ -58,22 +80,31 @@ public class DayMap {
     }
 
 
-
-
+    /**
+     * This function removes an activity and replaces it with a new one, to work with edit command.
+     * @param index the index of the activity to be deleted
+     * @param activity the activity to replace the old one.
+     */
     public void insertActivity(int index, Activity activity) {
         lastSeenList.insertActivity(index, activity);
+
     }
 
-    public ArrayList getArrayList(LocalDateTime dateTime) {
-        return getActivityList(dateTime).getArrayList();
-    }
 
-    //returns the activityList for the given dateTime
+    /**
+     * Returns the activityList of the specified date.
+     * @param dateTime is the date specified to extract the list from
+     * @return activityList
+     */
     public ActivityList getActivityList(LocalDateTime dateTime) {
         return dayMap.get(dateTime.toLocalDate());
     }
 
-    //returns the number of activities for the given day
+    /**
+     * Returns the size of the specified activity list.
+     * @param dateTime the date of which the activitylist should be extracted from
+     * @return the size of the list
+     */
     public int getSizeOfActivityList(LocalDateTime dateTime) {
         ActivityList alist = this.getActivityList(dateTime);
         if (alist == null) {
@@ -83,6 +114,11 @@ public class DayMap {
         }
     }
 
+    /**
+     * Returns the net calorie.
+     * @param date is the date of which to extract the activitylist from
+     * @return the net calorie
+     */
     public int getNetCalorieOfDay(LocalDate date) {
         ActivityList alist = getActivityList(date.atStartOfDay());
         return alist.getNetCalorie();
@@ -268,18 +304,15 @@ public class DayMap {
      */
     private ArrayList<String> getAllTags(String userInput) {
         ArrayList<String> tags = new ArrayList<>();
-        while (userInput.contains("/")) {
-            if (!userInput.contains(" ")) {
-                userInput = userInput.substring(2);
-                tags.add(userInput);
-                break;
-            }
-            int spaceIndex = userInput.indexOf(" ");
-            String firstWord = userInput.substring(0, spaceIndex);
-            userInput = userInput.substring(spaceIndex).trim();
-            firstWord = firstWord.substring(2);
+        while (userInput.indexOf("/") != userInput.lastIndexOf("/")) {
+            int firstIndex = userInput.indexOf("/");
+            int secondIndex = userInput.indexOf("/", userInput.indexOf("/") + 1);
+            String firstWord = userInput.substring(firstIndex + 1, secondIndex).trim();
+            userInput = userInput.substring(secondIndex);
             tags.add(firstWord);
         }
+        userInput = userInput.substring(userInput.indexOf("/") + 1).trim();
+        tags.add(userInput);
         return tags;
     }
 
@@ -332,6 +365,14 @@ public class DayMap {
 
     }
 
+
+    /**
+     * Moves an activity from one index to another.
+     * @param indexToBeMovedFrom the index to be moved from
+     * @param indexToBeInsertedBelow the index to be moved to
+     * @throws IndexOutOfBoundsException when index is not within the bounds
+     * @throws ListNotFoundException when the list is not found
+     */
     public void move(int indexToBeMovedFrom, int indexToBeInsertedBelow)
             throws IndexOutOfBoundsException, ListNotFoundException {
         if (lastSeenList.getNumberOfActivities() == 0) {
@@ -352,6 +393,10 @@ public class DayMap {
         return dateTime.toLocalDate().toString() + ", " + alist.toString();
     }
 
+    /**
+     * Prints the primitive list of activities for the given date.
+     * @param date is the date specified to extract the activitylist from
+     */
     public void printList(LocalDate date) {
         System.out.println(date.toString());
         getActivityList(date.atStartOfDay()).printList();
