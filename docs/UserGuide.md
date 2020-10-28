@@ -92,7 +92,7 @@ The expected format of input values:
 	                         and date(YYYY-MM-DD), DATE
 	list                   - Prints out the list of entries.
 	list DATE              - Prints out the list of entries for the date(YYYY-MM-DD), DATE
-	edit n/ NAME, g/ GENDER, w/ WEIGHT, h/HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS
+	edit n/ NAME, g/ GENDER, w/ WEIGHT, h/ HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS
 	                       - Edits your name, NAME, your gender(male/female), GENDER,
 	                         your weight in kg, WEIGHT, your height, HEIGHT in cm, your age, AGE,
 	                         activity factor(1-5) with 1 being the most active, ACTIVITY_FACTOR,

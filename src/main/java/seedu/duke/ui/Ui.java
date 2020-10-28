@@ -73,7 +73,7 @@ public class Ui {
                 + "\taddSet SHORTCUT_NAME   - Adds SHORTCUT_NAME into current date list"
                 + "\tlist                   - Prints out the list of entries.\n"
                 + "\tlist DATE              - Prints out the list of entries for the date(YYYY-MM-DD), DATE\n"
-                + "\tedit n/ NAME, g/ GENDER, w/ WEIGHT, h/HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS\n"
+                + "\tedit n/ NAME, g/ GENDER, w/ WEIGHT, h/ HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS\n"
                 + "\t                       - Edits your name, NAME, your gender(male/female), GENDER,\n"
                 + "\t                         your weight in kg, WEIGHT, your height, HEIGHT in cm, your age, AGE,\n"
                 + "\t                         activity factor(1-5) with 1 being the most active, ACTIVITY_FACTOR,\n"
