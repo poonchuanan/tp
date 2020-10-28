@@ -1,5 +1,5 @@
 # User Guide for traKCAL
----
+
 By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 <br>
@@ -22,13 +22,12 @@ The section displays the table of contents showing all the available features in
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [Viewing help](#viewing-help): `help`
-    * [Creating a profile for new user](#creating-a-profile-for-new-user): `create new user`
+    * [Creating a new user profile](#creating-a-new-user-profile): `create new user`
     * [Creating a set of entries](#creating-a-shortcut-for-a-set-of-entries): `createSet`
-    * [Adding a target calorie](#adding-a-target-calorie): `target`
     * [Adding a food entry](#adding-a-food-entry): `add`
     * [Adding an exercise entry](#adding-an-exercise-entry): `add`
     * [Adding a set of entries](#adding-a-set-of-entries): `addSet`
-    * [Listing entries for the day](#listing-entries-for-the-day): `list`
+    * [Listing entries for the specified day](#listing-entries-for-the-specified-day): `list`
     * [Editing user profile](#editing-user-profile): `edit`
     * [Editing an entry in list](#editing-an-entry-in-list): `edita`
     * [Finding entries via keyword](#finding-entries-via-keyword): `find`
@@ -141,9 +140,9 @@ Words in CAPS are parameters to be filled in by you!
 <br>
 <br>
 
-## Creating a profile for new user
+## Creating a new user profile
 
-If this is your first time using **tracKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input this command.
+If this is your first time using **tracKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
 **TracKCAL** will then use these details from your user profile to calculate the following: 
 
 * BMI
@@ -155,7 +154,6 @@ If this is your first time using **tracKCAL**, you will be automatically prompte
 Format: `create new user`
 
 Example of usage:
-* `create new user`
 
 ```
 Hey there! We do not have a record of your profile. Please create one now! :)
@@ -174,6 +172,40 @@ How active are you on a scale of 1-5? With 1 being least active and 5 being most
 **4**
 Do you want to lose/maintain/gain weight?
 **gain**
+
+Your BMI is 50.0
+Your recommend daily calories intake is 1576.65 calories.
+To gain weight, you should consume 2076.65 calories instead.
+```
+
+#### Possible error messages and how to solve them:
+
+tracKCAL only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
+```
+=====================================================================================================
+Please input female or male as gender only!
+=====================================================================================================
+```
+
+tracKCAL only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
+```
+=====================================================================================================
+Please enter a valid number format!
+=====================================================================================================
+```
+
+tracKCAL only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
+```
+=====================================================================================================
+Please enter a number from 1 to 5 only!
+=====================================================================================================
+```
+
+tracKCAL only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
+```
+=====================================================================================================
+Please input lose or maintain or gain as weight goal only!
+=====================================================================================================
 ```
 
 <br>
@@ -183,7 +215,7 @@ Do you want to lose/maintain/gain weight?
 
 This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add in multiple common entries. 
 
-Format: `createSet **SHORTCUT_NAME** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** && f/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** && ...`
+Format: `createSet **SHORTCUT_NAME** f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** + f/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** + ...`
 
 Parameters:
 * `**FOOD_DESCRIPTION**`: Description of food consumed.
@@ -192,38 +224,28 @@ Parameters:
 * `**SHORTCUT_NAME**`: Name of shortcut/set.
 
 Example of usage: 
-*  `createSet bfast f/ ice cream c/ 78 && e/ jumping jacks c/ 100`
+*  `createSet bfast f/ice cream c/78 + e/jumping jacks c/100`
 
-Snippet of code for correct usage: 
 ```
-The current activity list has been saved.
+=====================================================================================================
+You have created a shortcut containing:
+1. Food: ice cream, Calories: 78
+2. Exercise: jumping jacks, Calories: 100
+=====================================================================================================
 ```
 
-Possible error message: 
-* ```Place holder```
-You can solve this by ....
+#### Possible error message and how to solve them: 
+
+tracKCAL only accepts integers for calories. If you were to enter `createSet bfast f/ice cream c/haha + e/jumping jacks c/100`, this error message will be shown.
+ ```
+=====================================================================================================
+Please enter calories as an integer
+=====================================================================================================
+ ```
 
 <\br>
 <\br>
 
-##Adding a target calorie
-
-Adds target calorie.
-
-Format: `target **CALORIE**`
-
-Parameters:
-* `**CALORIE**`: target calorie of user.
-
-Example of usage:
-* `target 500`
-
-```
-
-```
-
-<\br>
-<\br>
 
 ## Adding a food entry
 
@@ -282,12 +304,25 @@ Example of usage:
 * `addSet bfast`
 
 ```
+=====================================================================================================
+Noted! The following has been added into list:
 [F] | ice cream | 78
 The current activity list has been saved.
-
+=====================================================================================================
+=====================================================================================================
 [E] | jumping jacks | 100
 The current activity list has been saved.
+=====================================================================================================
 ```
+
+#### Possible error message and how to solve them: 
+
+If you were to add a new shortcut without creating it first, this error message will be shown
+ ```
+=====================================================================================================
+This shortcut does not exists, please create a shortcut before adding it!
+=====================================================================================================
+ ```
 
 <br>
 <br>

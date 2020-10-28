@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class GraphDrawing {
 
+
     public GraphProperty graphProperty;
 
     private final int targetRow;

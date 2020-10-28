@@ -1,33 +1,95 @@
 package seedu.duke;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import seedu.duke.model.DayMap;
 import seedu.duke.model.Food;
+import seedu.duke.model.GraphProperty;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Arrays;
 
 
 class GraphPropertyTest {
     private LocalDate date1 = LocalDate.of(2020, Month.AUGUST, 9);
     private LocalDate date2 = LocalDate.of(2020, Month.MARCH, 12);
 
-    public DayMap setDummyMap(int days, int startCalories, LocalDate date, int divisor) {
-        int calories = startCalories;
+    public DayMap setDummyMap() {
         DayMap dayMap = new DayMap();
-        generateDays(days, date, calories, dayMap, divisor);
         return dayMap;
     }
 
-    private void generateDays(int days, LocalDate date, int calories, DayMap dayMap, int divisor) {
-        for (int i = 0; i < days; i++) {
-            if ((i % divisor != 0) || (i == 0)) {
-                dayMap.addActivity(date.atStartOfDay(), new Food("Apple", calories, date, false));
-                date = date.plusDays(1);
-                calories += 100;
-            } else {
-                dayMap.addActivity(date.atStartOfDay(), new Food("Apple", calories - 500, date, false));
-                date = date.plusDays(1);
-            }
-        }
+    @Test
+    public void setProperty_TargetCalorieAsMiddle_success() {
+        DayMap dummyMap = setDummyMap();
+        dummyMap.addActivity(date1.atStartOfDay(), new Food("apple", 1000, date1, false));
+        dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
+        GraphProperty graphProperty = new GraphProperty(dummyMap, 1500);
+        graphProperty.setProperties();
+        assertEquals(2, graphProperty.column);
+        assertEquals(2000, graphProperty.maxCalories);
+        assertEquals(1000, graphProperty.minCalories);
     }
+
+    @Test
+    public void setProperty_TargetCalorieInLower_success() {
+        DayMap dummyMap = setDummyMap();
+        dummyMap.addActivity(date1.atStartOfDay(), new Food("apple", 1000, date1, false));
+        dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
+        GraphProperty graphProperty = new GraphProperty(dummyMap, 500);
+        graphProperty.setProperties();
+        assertEquals(2, graphProperty.column);
+        assertEquals(2000, graphProperty.maxCalories);
+        assertEquals(500, graphProperty.minCalories);
+    }
+
+    @Test
+    public void setProperty_TargetCalorieInHigher_success() {
+        DayMap dummyMap = setDummyMap();
+        dummyMap.addActivity(date1.atStartOfDay(), new Food("apple", 1000, date1, false));
+        dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
+        GraphProperty graphProperty = new GraphProperty(dummyMap, 3000);
+        graphProperty.setProperties();
+        assertEquals(2, graphProperty.column);
+        assertEquals(3000, graphProperty.maxCalories);
+        assertEquals(1000, graphProperty.minCalories);
+    }
+
+    @Test
+    public void setProperty_EmptyList_Exception() {
+        DayMap dummyMap = setDummyMap();
+        Assertions.assertThrows(AssertionError.class, () -> {
+            GraphProperty graphProperty = new GraphProperty(dummyMap, 3000);
+            graphProperty.setProperties();
+        });
+    }
+
+    @Test
+    public void setProperty_NegativeCalories_success() {
+        DayMap dummyMap = setDummyMap();
+        dummyMap.addActivity(date1.atStartOfDay(), new Food("apple", -1000, date1, false));
+        dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
+        GraphProperty graphProperty = new GraphProperty(dummyMap, 1000);
+        graphProperty.setProperties();
+        assertEquals(2, graphProperty.column);
+        assertEquals(2000, graphProperty.maxCalories);
+        assertEquals(-1000, graphProperty.minCalories);
+    }
+
+    @Test
+    public void setProperty_sameCalories_success() {
+        DayMap dummyMap = setDummyMap();
+        dummyMap.addActivity(date1.atStartOfDay(), new Food("apple", 1000, date1, false));
+        dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 1000, date2, false));
+        GraphProperty graphProperty = new GraphProperty(dummyMap, 1000);
+        graphProperty.setProperties();
+        assertEquals(2, graphProperty.column);
+        assertEquals(1005, graphProperty.maxCalories);
+        assertEquals(995, graphProperty.minCalories);
+    }
+
+
 }
