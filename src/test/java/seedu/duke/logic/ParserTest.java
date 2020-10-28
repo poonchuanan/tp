@@ -23,13 +23,4 @@ class ParserTest {
         assertTrue(cmd instanceof DeleteCommand);
     }
 
-    @Test
-    public void deleteNull_Exception() {
-        Parser parser = new Parser("delete");
-
-        Assertions.assertThrows(NumberFormatException.class, () -> {
-            Command cmd = parser.parseCommand();
-        });
-    }
-
 }
