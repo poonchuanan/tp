@@ -1,5 +1,9 @@
 # Developer Guide
- 
+
+The purpose of this developer guide is as reference for future collaborators of **trakCAL**.
+
+By: CS2113-T09-4    Since: September 2020   Licence: MIT
+
 
 * Table of Contents
 {:toc}
@@ -15,15 +19,15 @@
 * Copy jar file into an empty folder in a convenient location (eg. Desktop)
 * Open terminal and navigate directory to the folder containing jar file 
 * Enter the following command line to run program: ```java -jar trakCAL.jar```   
-* Look through the user guide for a full detailed explanation on the functionality of trakCAL
+* Look through the user guide for a full detailed explanation on the functionality of **trakCAL**
     
 ## Design 
 
 ### Architecture
 
-The Architecture Diagram shown above explains the high-level design of trakCAL.
+The Architecture Diagram shown above explains the high-level design of **trakCAL**.
 
-trakCAL is made up of mainly 6 components.
+**trakCAL** is made up of mainly 6 components.
 
 `trakCAL`:
 
@@ -41,11 +45,14 @@ trakCAL is made up of mainly 6 components.
 
 ![Logic Component](diagrams/LogicComponent.png)
 
-In the logic component, 
+The main bulk of data processing takes place in the logic component. In this component, 
+the data from the userinput is checked for its validity and parsed down futher to its respective command blocks.
+These blocks of command are derived from the abstract Command class. Each different command block deals with the 
+proposed functionality which can be associated with `Ui`,`storage` or `model` components. 
 
-* trakCAL uses the parser class to filter based on command words by user.
+* **trakCAL** uses the parser class to filter based on command words by user.
 * Description that comes after is further parsed down by the Parser.
-* Respective Command object is created and is executed by trakCAL.
+* Respective Command object is created and is executed by **trakCAL**.
 * Respective execution methods can be further associated with `UI`, `Storage` and `Model` components.
 
 ### Storage component
@@ -68,15 +75,15 @@ In the Model component, <br>
 
 #### 3.2.1 Current Implementation
 
-The adding mechanism is used by AddFoodCommand and AddExerciseCommand to add to the list of date stated in user input.
+The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add to the list of date stated in user input.
 
-The following Sequence Diagram shows how add command is carried out when the user issues add command, in this case, `add f/ food c/ 170 d/ 2020-10-22`:
+The following Sequence Diagram shows how `AddFoodCommand` is carried out when the user issues add command, in this case, `add f/ food c/ 170 d/ 2020-10-22`:
 
 ![Add Activity](diagrams/AddFoodFeature.jpg)
 
 *Figure 5. Component interactions for add food command*
 
-> Add exercise diagram has a similar logic.
+> `AddExerciseCommand` diagram has a similar logic.
 
 #### 3.2.2 Design Considerations
 
@@ -91,7 +98,7 @@ Aspect: How to add activity
 >* Cons: More wordy input needed from user.
 
 ### 3.3 Listing feature for find and list commands
-The listing mechanism used by ListCommand and FindCommand to display the required list of activities is facilitated by the lastSeenList of class ActivityList. 
+The listing mechanism used by `ListCommand` and `FindCommand` to display the required list of activities is facilitated by the lastSeenList of class `ActivityList`. 
 The following operations could be applied to the lastSeenList which would change the actual data in the database:
 
 - delete
@@ -150,15 +157,15 @@ The following sequence diagram shows how the listDrawer class is used to display
 
 #### 3.6.1 Current Implementation
 
-The editing mechanism is used by EditFoodCommand and EditExerciseCommand to amend the current list of activities.
+The editing mechanism is used by `EditFoodCommand` and `EditExerciseCommand` to amend the current list of activities.
 
-The following Sequence Diagram shows how edit command is carried out when the user issues edit command, in this case, `edit 1 f/ egg c/ 10`:
+The following Sequence Diagram shows how `EditFoodCommand` is carried out when the user issues edit command, in this case, `edit 1 f/ egg c/ 10`:
 
 ![Edit Activity](diagrams/EditActivityFeature.jpg)
 
 *Figure 8. Sequence diagram of edit food feature*
 
-> Edit exercise diagram has a similar logic.
+> `EditExerciseCommand` diagram has a similar logic.
 
 #### 3.4.2 Design Considerations
 
@@ -177,9 +184,9 @@ Aspect: How to edit activity
 #### 3.5.1 Current Implementation
 
 The chaining mechanism can be used by the various commands available The following are the types of command that can be chained:
->list
->add
->edit
+- list
+- add
+- edit
 
 The following sequence diagram shows how the chaining works after command is entered:
 
@@ -189,7 +196,7 @@ The following sequence diagram shows how the chaining works after command is ent
 
 #### 3.5.2 Design Considerations
 
-Aspect: Which commands to chain
+Aspect: Which features to chain
 
 >Alternative 1 (current choice): Allow only certain commands to be chained.
 >* Pros: Able to guarantee that no abnormal behaviour will happen.
@@ -199,12 +206,31 @@ Aspect: Which commands to chain
 >* Pros: Easy to implement.
 >* Cons: May give abnormal behaviour.
 
-### Graph feature
-
 ### Move feature
 This feature allows the user to manually `move` activities from one position to another position <br>
 The following sequence diagram shows how the `move` command is executed, where index1 is the position to be moved from and index 2 is the position to be moved below. <br>
 ![Move_command](diagrams/moveCommand.png)
+
+### Graph feature
+
+The graph implementation shows the progress of the daily net 
+calories over the period of 7 days. The GraphProperty class extracts the available days from the 
+hashmap.
+<br> 
+<br>
+The days are sorted accordingly and the latest 7 days are chosen from the sorted list. 
+The properties of the graph such as axis range are also calculated. The GraphDrawing class makes use of these properties
+to draw the graph.
+<br>
+
+![Graph_Sequence_Diagram](diagrams/GraphSequenceDiagram.png)
+
+As shown above, when the execute command of GraphCommand is called, the GraphProperty object 
+is created, the properties of the graph are then stored and calculated in setProperty function.
+<br>
+<br>
+Next, the graphDrawing object is created and uses the properties calculated earlier to print out the graph.
+> In the case where there are less than 7  days stored, all the days will be displayed.
 
 ## Appendix: Requirements
 
