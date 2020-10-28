@@ -53,7 +53,7 @@ public class ExceptionMessages {
      */
     public static void displayListNotFoundExceptionMessage() {
         drawDivider();
-        System.out.println("The list to work on is empty!");
+        System.out.println("The list to work on is empty!" + "\nTry entering a list command first.");
         promptUserOfHelpMessage();
         drawDivider();
     }

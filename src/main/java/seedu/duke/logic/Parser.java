@@ -155,21 +155,17 @@ public class Parser {
     private Command prepareEditActivityCommand(String userInput) {
         String[] arguments = userInput.split(" ", 2);
         int index = Integer.parseInt(arguments[0]) - 1;
-        System.out.println("index is" + index);
         userInput = arguments[1];
 
         try {
-            System.out.println("hello");
             if (userInput.startsWith("f/")) {
                 int calorieIndex = userInput.indexOf("c/");
 
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + 2).trim());
-                System.out.println("calories is " + calories);
                 if (calories < 0) {
                     //throw new Exception();
                 }
                 String foodDescription = userInput.substring(2, calorieIndex - 1).trim();
-                System.out.println("food description is " + foodDescription);
                 assert calories > 0 : "calories should be greater than 0";
                 return new EditFoodCommand(index, foodDescription, calories);
             } else if (userInput.startsWith("e/")) {

@@ -39,7 +39,6 @@ public class EditFoodCommand extends Command {
             LocalDate dateOfActivityToBeEdited = lastSeenList.getDateOfActivityAtIndex(index);
             this.food = new Food(description, calories, dateOfActivityToBeEdited, false);
             dayMap.insertActivity(index, food);
-            displaySavedMessage();
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Index entered is not within the range!\n"
                     + "Please pull out the list for the day before editing on it!");

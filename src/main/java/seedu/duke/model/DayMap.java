@@ -37,7 +37,13 @@ public class DayMap {
     }
 
     public ActivityList getLastSeenList() {
+
         return this.lastSeenList;
+    }
+
+    public void drawListAfterListCommand(LocalDate date) {
+        ListDrawer listDrawer = new ListDrawer(date, lastSeenList);
+        listDrawer.printList();
     }
 
     /**
@@ -61,7 +67,9 @@ public class DayMap {
 
 
     public void insertActivity(int index, Activity activity) {
-        lastSeenList.insertActivity(index, activity);
+        LocalDate date = getDateFromLastSeenListAtIndex(index);
+        ActivityList activityList = getActivityList(date.atStartOfDay());
+        activityList.insertActivity(index, activity);
     }
 
     public ArrayList getArrayList(LocalDateTime dateTime) {
@@ -291,46 +299,20 @@ public class DayMap {
     public void deleteActivity(int index) throws IndexOutOfBoundsException {
 
         if (lastSeenList.isValidIndex(index)) {
-            Activity activityToMatch = lastSeenList.getActivity(index);
-            //if previous command was the list command then this will straight away delete the activity
-            // from the list in the daymap
-            lastSeenList.removeActivity(index);
-
-            //if all the activities in a date is deleted, this is the key to be removed from the daymap
-            LocalDate keyToDelete = null;
-
-            //iterating through the entire daymap to find the activity to delete
-            Iterator it = dayMap.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry pair = (Map.Entry) it.next();
-                ActivityList activities = (ActivityList) pair.getValue();
-                int activityCounter = activities.getNumberOfActivities();
-
-                if (activityCounter > 0) {
-                    for (int i = 0; i < activityCounter; i++) {
-                        if (activityToMatch.equals(activities.getActivity(i))) {
-                            activities.removeActivity(i);
-                            //if deleted the last item in the ActivityList then obtain the key to be deleted from daymap
-                            if (activities.getNumberOfActivities() == 0) {
-                                keyToDelete = (LocalDate) pair.getKey();
-                            }
-                            break;
-                        }
-                    }
-                    //If encountered a activitylist with a count of 0,
-                    // which will be resulted if deleted the last item of ActivityList from a list command
-                } else if (activityCounter == 0) {
-                    keyToDelete = (LocalDate)pair.getKey();
-                }
+            LocalDate date = getDateFromLastSeenListAtIndex(index);
+            ActivityList activityList = getActivityList(date.atStartOfDay());
+            activityList.removeActivity(index);
+            //removes key from the daymap if the activity removed is the last activity
+            if (activityList.getNumberOfActivities() == 0) {
+                dayMap.remove(date);
             }
-            //removes key from the daymap
-            dayMap.remove(keyToDelete);
-            //displaySavedMessage();
         } else {
             throw new IndexOutOfBoundsException();
         }
 
     }
+
+
 
     public void move(int indexToBeMovedFrom, int indexToBeInsertedBelow)
             throws IndexOutOfBoundsException, ListNotFoundException {

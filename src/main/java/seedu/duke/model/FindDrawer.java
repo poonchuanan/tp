@@ -19,7 +19,7 @@ public class FindDrawer extends ListDrawer {
     }
 
     @Override
-    public void printListDrawing() {
+    public void printList() {
         System.out.println(listHeaderString()
                 + NEWLINE
                 + increaseStringLength(DIVIDER, listHeaderString().length())

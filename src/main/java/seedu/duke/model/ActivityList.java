@@ -166,6 +166,7 @@ public class ActivityList extends Trakcal {
         netCalorie = 0;
     }
 
+
     /**
      * Sets the activities as a string.
      * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60

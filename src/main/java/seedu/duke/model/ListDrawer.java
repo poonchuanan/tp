@@ -46,8 +46,8 @@ public class ListDrawer {
         this.activityList = lastSeenList;
     }
 
-    public void printListDrawing() {
-        System.out.println(headerBox()
+    public void printList() {
+        System.out.print(headerBox()
                 + listHeaderString()
                 + NEWLINE
                 + increaseStringLength(DIVIDER, listHeaderString().length())
