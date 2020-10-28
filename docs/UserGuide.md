@@ -143,7 +143,7 @@ Words in CAPS are parameters to be filled in by you!
 ## Creating a new user profile
 
 If this is your first time using **tracKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
-**TracKCAL** will then use these details from your user profile to calculate the following: 
+**tracKCAL** will then use these details from your user profile to calculate the following: 
 
 * BMI
 * Recommended daily calorie
@@ -180,28 +180,28 @@ To gain weight, you should consume 2076.65 calories instead.
 
 #### Possible error messages and how to solve them:
 
-tracKCAL only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
+**tracKCAL** only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
 ```
 =====================================================================================================
 Please input female or male as gender only!
 =====================================================================================================
 ```
 
-tracKCAL only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
+**tracKCAL** only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
 ```
 =====================================================================================================
 Please enter a valid number format!
 =====================================================================================================
 ```
 
-tracKCAL only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
+**tracKCAL** only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
 ```
 =====================================================================================================
 Please enter a number from 1 to 5 only!
 =====================================================================================================
 ```
 
-tracKCAL only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
+**tracKCAL** only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
 ```
 =====================================================================================================
 Please input lose or maintain or gain as weight goal only!
@@ -236,15 +236,15 @@ You have created a shortcut containing:
 
 #### Possible error message and how to solve them: 
 
-tracKCAL only accepts integers for calories. If you were to enter `createSet bfast f/ice cream c/haha + e/jumping jacks c/100`, this error message will be shown.
+**tracKCAL** only accepts integers for calories. If you were to enter `createSet bfast f/ice cream c/haha + e/jumping jacks c/100`, this error message will be shown.
  ```
 =====================================================================================================
 Please enter calories as an integer
 =====================================================================================================
  ```
 
-<\br>
-<\br>
+<br>
+<br>
 
 
 ## Adding a food entry
@@ -264,6 +264,13 @@ Examples of usage:
 ```
 [F] | ice cream | 78
 The current activity list has been saved.
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
 ```
 
 <br>
@@ -286,6 +293,13 @@ Examples of usage:
 ```
 [E] | jumping | 65
 The current activity list has been saved.
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
 ```
 
 <br>
@@ -350,6 +364,13 @@ Examples of usage:
 1. [F] | burger | 90
 ```
 
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
 <br>
 <br>
 
@@ -387,6 +408,37 @@ To gain weight, you should consume 2076.65 calories instead.
 ==============================================================
 ```
 
+#### Possible error messages and how to solve them:
+
+**tracKCAL** only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
+```
+=====================================================================================================
+Please input female or male as gender only!
+=====================================================================================================
+```
+
+**tracKCAL** only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
+```
+=====================================================================================================
+Please enter a valid number format!
+=====================================================================================================
+```
+
+**tracKCAL** only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
+```
+=====================================================================================================
+Please enter a number from 1 to 5 only!
+=====================================================================================================
+```
+
+**tracKCAL** only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
+```
+=====================================================================================================
+Please input lose or maintain or gain as weight goal only!
+=====================================================================================================
+```
+
+
 <br>
 <br>
 
@@ -418,6 +470,13 @@ Example of usage:
 ```
 [E] | running | 100
 The current activity list has been saved.
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
 ```
 
 <br>
@@ -486,6 +545,13 @@ Example of usage:
 The current activity list has been saved.
 ```
 
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
 <br>
 <br>
 
@@ -520,6 +586,13 @@ Examples of usage:
 1. [F] | breakfast | 100
 2. [F] | tea break | 200
 3. [F] | second breakfast | 100
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
 ```
 
 <br>
@@ -559,6 +632,13 @@ The current activity list has been saved.
 3. [F] | orange | 100
 ```
 
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
 <br>
 <br>
 
@@ -587,6 +667,13 @@ The current activity list has been saved.
 
 ```
 Nothing was added!
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
 ```
 
 <br>
@@ -619,6 +706,13 @@ Example of usage:
 > `***` shows the target calories.
 > If less than 7 days are stored in storage file, all the days will be displayed
 
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
 <br>
 <br>
 
@@ -646,9 +740,9 @@ This section answers questions you may have.
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
 
-**Q**: Q2
+**Q**: How do I know if the data I have input is saved?
 
-**A**: ANS2
+**A**: **trakCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
 **Q**: Q3
 
@@ -666,7 +760,6 @@ Action         | Format | Example
 -------------- | ---------- | --------
 Help | `help` | `help`
 Create User Profile | `create new user` | `create new user`
-Add Target Calorie | `target CALORIE` | `target 500`
 Add Food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice cream c/ 78 d/ 2020-10-19`
 Add Exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
 List | `list` OR `list DATE` | `list` OR `list 2020-10-24` 

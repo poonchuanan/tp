@@ -64,7 +64,6 @@ public class Ui {
                 + "\tcreateSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT"
                 + "&& e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT && ..."
                 + "\t                       - Creates shortcut for adding food and/or exercise\n"
-                + "\ttarget CALORIE         - Adds a target calorie, CALORIE\n"
                 + "\tadd f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
                 + "\t                       - Adds food consumed, FOOD_DESCRIPTION calories gained, CALORIE_COUNT\n"
                 + "\t                         and date(YYYY-MM-DD), DATE\n"
