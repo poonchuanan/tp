@@ -234,6 +234,7 @@ The current activity list has been saved.
 ```
 
 * `list` after adding
+
 ```
 ------------------------------------------
 |  2020-10-28  |  Net Calorie: 107 kcal  |
@@ -244,8 +245,6 @@ No.        Type                        Description                        Calori
 
 2          Food           mushroom soup_____________________________________________77
 ```
-
-
 
 <br>
 <br>
@@ -263,6 +262,7 @@ Parameters:
 
 Examples of usage: 
 * `list` before adding
+
 ```
 ------------------------------------------
 |  2020-10-28  |  Net Calorie: 107 kcal  |
@@ -286,6 +286,7 @@ The current activity list has been saved.
 ```
 
 * `list` after adding
+
 ```
 -----------------------------------------
 |  2020-10-28  |  Net Calorie: 42 kcal  |
@@ -298,8 +299,6 @@ No.        Type                        Description                        Calori
 
 3        Exercise         jumping___________________________________________________65
 ```
-
-
 
 <br>
 <br>
@@ -327,7 +326,6 @@ The current activity list has been saved.
 The current activity list has been saved.
 =====================================================================================================
 ```
-
 
 <br>
 <br>
@@ -456,6 +454,7 @@ Parameters:
 
 Example of usage:
 * `list` before editing
+
 ```
 -----------------------------------------
 |  2020-10-28  |  Net Calorie: 42 kcal  |
@@ -481,6 +480,7 @@ The current activity list has been saved.
 ```
 
 * `list` after editing
+
 ```
 -----------------------------------------
 |  2020-10-28  |  Net Calorie: 77 kcal  |
@@ -514,6 +514,7 @@ Parameters:
 
 Example of usage:
 * `list` before editing
+
 ```
 -----------------------------------------
 |  2020-10-28  |  Net Calorie: 42 kcal  |
@@ -539,6 +540,7 @@ The current activity list has been saved.
 ```
 
 * `list` after editing
+
 ```
 ------------------------------------------
 |  2020-10-28  |  Net Calorie: -52 kcal  |
@@ -572,6 +574,7 @@ Parameters:
 
 Example of usage:
 * `list` before editing
+
 ```
 list
 ------------------------------------------
@@ -598,6 +601,7 @@ The current activity list has been saved.
 ```
 
 * `list` after editing
+
 ```
 ------------------------------------------
 |  2020-10-28  |  Net Calorie: -62 kcal  |
@@ -632,6 +636,7 @@ Parameters:
 
 Example of usage:
 * `list` before editing
+
 ```
 ------------------------------------------
 |  2020-10-28  |  Net Calorie: -62 kcal  |
@@ -657,6 +662,7 @@ The current activity list has been saved.
 ```
 
 * `list` after editing
+
 ```
 -----------------------------------------
 |  2020-10-28  |  Net Calorie: 88 kcal  |
@@ -846,6 +852,7 @@ No.        Type                        Description                        Calori
 3          Food           orange__________________________________________________200
 
 ```
+
 <br>
 <br>
 
@@ -883,11 +890,11 @@ The current activity list has been saved.
 ```
 Nothing was added!
 ```
+
 <br>
 <br>
 
 ## 9.0 Graph
-
 
 ### 9.1 Showing past net calories
 
@@ -913,10 +920,9 @@ Example of usage:
     |-+-----+-----+-----+-----+-----+--
     21/10 22/10 23/10 24/10 25/10 26/10 
 ```
+
 > `***` shows the target calories.
 > If less than 7 days are stored in storage file, all the days will be displayed
-
-
 
 <br>
 <br>
