@@ -1,8 +1,9 @@
 # Developer Guide
 
-The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
+The purpose of this developer guide is as reference for future collaborators of **trakCAL**.
 
 By: CS2113-T09-4    Since: September 2020   Licence: MIT
+
 
 * Table of Contents
 {:toc}
@@ -44,7 +45,10 @@ The Architecture Diagram shown above explains the high-level design of **trakCAL
 
 ![Logic Component](diagrams/LogicComponent.png)
 
-In the logic component, 
+The main bulk of data processing takes place in the logic component. In this component, 
+the data from the userinput is checked for its validity and parsed down futher to its respective command blocks.
+These blocks of command are derived from the abstract Command class. Each different command block deals with the 
+proposed functionality which can be associated with `Ui`,`storage` or `model` components. 
 
 * **trakCAL** uses the parser class to filter based on command words by user.
 * Description that comes after is further parsed down by the Parser.
@@ -202,12 +206,31 @@ Aspect: Which features to chain
 >* Pros: Easy to implement.
 >* Cons: May give abnormal behaviour.
 
-### Graph feature
-
 ### Move feature
 This feature allows the user to manually `move` activities from one position to another position <br>
 The following sequence diagram shows how the `move` command is executed, where index1 is the position to be moved from and index 2 is the position to be moved below. <br>
 ![Move_command](diagrams/moveCommand.png)
+
+### Graph feature
+
+The graph implementation shows the progress of the daily net 
+calories over the period of 7 days. The GraphProperty class extracts the available days from the 
+hashmap.
+<br> 
+<br>
+The days are sorted accordingly and the latest 7 days are chosen from the sorted list. 
+The properties of the graph such as axis range are also calculated. The GraphDrawing class makes use of these properties
+to draw the graph.
+<br>
+
+![Graph_Sequence_Diagram](diagrams/GraphSequenceDiagram.png)
+
+As shown above, when the execute command of GraphCommand is called, the GraphProperty object 
+is created, the properties of the graph are then stored and calculated in setProperty function.
+<br>
+<br>
+Next, the graphDrawing object is created and uses the properties calculated earlier to print out the graph.
+> In the case where there are less than 7  days stored, all the days will be displayed.
 
 ## Appendix: Requirements
 
