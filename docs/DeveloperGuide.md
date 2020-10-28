@@ -8,24 +8,28 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 * Table of Contents
 {:toc}
 
-## Setting up
+## 1.0 Setting up
 
-### Prerequisites
- * Java 11 (can be download from here)
+### 1.1 Prerequisites
+ * Java 11 (can be download from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html))
  * Intellij IDE
     
-### Setting up:    
-* Download the latest **tracKCAL** jar file (here)
+### 1.2 Setting up:    
+* Download the latest **traKCAL** jar file ([here](https://github.com/AY2021S1-CS2113T-T09-4/tp/releases))
 * Copy jar file into an empty folder in a convenient location (eg. Desktop)
 * Open terminal and navigate directory to the folder containing jar file 
 * Enter the following command line to run program: ```java -jar trakCAL.jar```   
 * Look through the user guide for a full detailed explanation on the functionality of **trakCAL**
     
-## Design 
+## 2.0 Design 
 
-### Architecture
+### 2.1 Architecture
 
 ![Architecture](diagrams/Architecture.png)
+
+*Figure 1. Diagram for Model component*
+
+<br>
 
 The Architecture Diagram shown above explains the high-level design of **trakCAL**.
 
@@ -43,9 +47,13 @@ The Architecture Diagram shown above explains the high-level design of **trakCAL
 
 `Model`: Visualize data into graph
 
-### Logic component
+### 2.2 Logic component
 
 ![Logic Component](diagrams/LogicComponent.png)
+
+*Figure 2. Diagram for logic component*
+
+<br>
 
 The main bulk of data processing takes place in the logic component. In this component, 
 the data from the userinput is checked for its validity and parsed down futher to its respective command blocks.
@@ -57,28 +65,40 @@ proposed functionality which can be associated with `Ui`,`storage` or `model` co
 * Respective Command object is created and is executed by **trakCAL**.
 * Respective execution methods can be further associated with `UI`, `Storage` and `Model` components.
 
-### Storage component
+### 2.3 Model component
 
-### Model component
-![Model_Component](diagrams/LogicComponent.png)
-*Figure 4. Diagram for Model component*<br>
-**API**: Model.java <br>
-In the Model component, <br>
+![Model_Component](diagrams/model.png)
+
+*Figure 3. Diagram for Model component*
+
+<br>
+
+**API**: Model.java 
+
+<br>
+
+In the Model component, 
+
+<br>
+
 * Stores a DayMap object that holds the data for each date.
 * Stores an ActivityList that holds the list of Activities, Food or Exercise for each day 
 * Does not depend on any of the other components.
 
+<br>
+<br>
 
-
-
-## Implementation
+## 3.0 Implementation
 
 ### 3.1 Create User Profile
 
 The sequence diagram below shows how the components will react to a new user or for a returning user. 
 
 ![CreateNewUser](diagrams/CreateNewUser.png)
+
 *Figure 4. Components interactions for tracKCAL checks for new or existing user*
+
+<br>
 
 ### 3.2 Add activity feature
 
@@ -91,6 +111,8 @@ The following Sequence Diagram shows how `AddFoodCommand` is carried out when th
 ![Add Activity](diagrams/AddFoodFeature.jpg)
 
 *Figure 5. Component interactions for add food command*
+
+<br>
 
 > `AddExerciseCommand` diagram has a similar logic.
 
@@ -118,14 +140,19 @@ The details of those operations can be found further down.
 
 #### 3.3.1 List
 
-This feature is used to list the entries of a specified date where the extracted activityList would be used as the lastSeenList itself. <br>
-The following sequence diagram shows how the lastSeenList is set after a “list date" command where date is of YYYY-MM-DD or after a “list” command where the date is the current date.<br>
+This feature is used to list the entries of a specified date where the extracted activityList would be used as the lastSeenList itself. 
+
+<br>
+
+The following sequence diagram shows how the lastSeenList is set after a “list date" command where date is of YYYY-MM-DD or after a “list” command where the date is the current date.
+
+<br>
 
 ![Listing feature for find and list commands](diagrams/setLastSeenList.png)
 
-Figure 6. Sequence diagram of setting the lastSeenList after a `list` command
+*Figure 6. Sequence diagram of setting the lastSeenList after a `list` command*
 
-
+<br>
 
 #### 3.3.2 Find
 
@@ -133,18 +160,28 @@ The editing mechanism is used by the basic find features: `FindDescriptionComman
 as well as the advanced find features: `FindAllCommand` and `FindEitherCommand` to look for keywords in the list.
 
 The following sequence diagram shows how the lastSeenList is set after a find command.
+
 ![Find Sequence Diagram](diagrams/FindSequenceDiagram.png)
+
 *Figure 7. Sequence diagram of setting the lastSeenList after a find command*
 
+<br>
 
 ### 3.4 Displaying the list after `find` or `list` commands
 #### 3.4.1 Current implementation
 The mechanism used to display the lastSeenList invoked by the list or find commands is facilitated by the listDrawer and findDrawer class respectively. They both work the same way but the list produced by findDrawer has an extra column which contains the dates of the respective entries.
+
 <br>
-The following sequence diagram shows how the listDrawer class is used to display the lastSeenList.<br>
+
+The following sequence diagram shows how the listDrawer class is used to display the lastSeenList.
+
+<br>
+
 ![list_Drawer](diagrams/listDrawer.png)
 
 *Figure 8. Sequence diagram of the usage of listDrawer to display the list*
+
+<br>
 
 ### 3.5 Edit activity in list feature
 
@@ -156,7 +193,9 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 
 ![Edit Activity](diagrams/EditActivityFeature.jpg)
 
-*Figure 8. Sequence diagram of edit food feature*
+*Figure 9. Sequence diagram of edit food feature*
+
+<br>
 
 > `EditExerciseCommand` diagram has a similar logic.
 
@@ -185,7 +224,9 @@ The following sequence diagram shows how the chaining works after command is ent
 
 ![ChainCommandFeature](diagrams/ChainCommandFeature.jpg)
 
-*Figure 9. Sequence diagram of chaining feature*
+*Figure 10. Sequence diagram of chaining feature*
+
+<br>
 
 #### 3.6.2 Design Considerations
 
@@ -195,41 +236,62 @@ Aspect: Which features to chain
 >* Pros: Able to guarantee that no abnormal behaviour will happen.
 >* Cons: User must know which commands can be chained.
 
->Alternative 2: Allow all commands to be chained
+>Alternative 2: Allow all commands to be chained.
 >* Pros: Easy to implement.
 >* Cons: May give abnormal behaviour.
 
 ### 3.7 Move feature
-This feature allows the user to manually `move` activities from one position to another position <br>
-The following sequence diagram shows how the `move` command is executed, where index1 is the position to be moved from and index 2 is the position to be moved below. <br>
+This feature allows the user to manually `move` activities from one position to another position 
+
+<br>
+
+The following sequence diagram shows how the `move` command is executed, where index1 is the position to be moved from and index 2 is the position to be moved below. 
+
+<br>
+
 ![Move_command](diagrams/moveCommand.png)
+
+*Figure 11. Sequence diagram of move feature*
+
+<br>
 
 ### 3.8 Graph feature
 
 The graph implementation shows the progress of the daily net 
 calories over the period of 7 days. The GraphProperty class extracts the available days from the 
 hashmap.
-<br> 
+
 <br>
+ 
+<br>
+
 The days are sorted accordingly and the latest 7 days are chosen from the sorted list. 
 The properties of the graph such as axis range are also calculated. The GraphDrawing class makes use of these properties
 to draw the graph.
+
 <br>
 
 ![Graph_Sequence_Diagram](diagrams/GraphSequenceDiagram.png)
 
+*Figure 12. Sequence diagram of move feature*
+
+<br>
+
 As shown above, when the execute command of GraphCommand is called, the GraphProperty object 
 is created, the properties of the graph are then stored and calculated in setProperty function.
+
 <br>
+
 <br>
+
 Next, the graphDrawing object is created and uses the properties calculated earlier to print out the graph.
 > In the case where there are less than 7  days stored, all the days will be displayed.
 
-## Appendix: Requirements
+## 4.0 Appendix: Requirements
 
-### Product scope
+### 4.1 Product scope
 
-#### Target user profile
+#### 4.1.1 Target user profile
 
 {Describe the target user profile}
 * Tech savvy university students that have knowledge on the exercise and calories or know where to get the information before inputting it in the application.
@@ -242,7 +304,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-#### Value proposition
+#### 4.1.2 Value proposition
 
 {Describe the value proposition: what problem does it solve?}
 * Functionality
@@ -257,7 +319,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### User Stories
+### 4.2 User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -277,7 +339,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### Non-Functional Requirements
+### 4.3 Non-Functional Requirements
 
 {Give non-functional requirements}
 
@@ -286,7 +348,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### Glossary
+### 4.4 Glossary
 
 * *glossary item* - Definition
 * *GUI* - Graphics User Interface
@@ -298,7 +360,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### Instructions for manual testing
+### 4.5 Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 

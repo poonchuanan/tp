@@ -27,9 +27,9 @@ If you are a fast typer, **traKCAL** is perfect for you!
 This section gives the steps you need to get started quickly.
 
 1. Ensure that you have Java 11 or above installed, if not, it can be found [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html)
-2. Down the latest version of `trakCAL` from [here](http://link.to/duke)
+2. Down the latest version of `trakCAL` from [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/releases)
 3. Create an empty folder in a convenient location eg. Desktop and copy jar file there
-4. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar tp.jar`
+4. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar trakCAL.jar`
 5. Upon successful run, you will get the following greeting message
 
 ```
@@ -47,7 +47,7 @@ Please do input 'help' for the commands and their respective input format.
 6. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window<br/>
    Some example commands you can try:
     * `list`: Lists all activities for today
-    * `add f/ rice with eggs c/ 200`: Adds a food entry named `rice with eggs` to **traKCAL**.
+    * `add f/ rice with eggs c/ 200`: Adds a food entry named `rice with eggs` to **trakCAL**.
     * `delete 3`: Deletes the 3rd contact shown in the current list.
     * `bye`: Exits the application.
 7. Refer to the [Features](#features) below for details of each command
@@ -130,8 +130,8 @@ Words in CAPS are parameters to be filled in by you!
 
 ### 2.1 Creating a new user profile
 
-If this is your first time using **tracKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
-**tracKCAL** will then use these details from your user profile to calculate the following: 
+If this is your first time using **trakCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
+**trakCAL** will then use these details from your user profile to calculate the following: 
 
 * BMI
 * Recommended daily calorie
@@ -405,28 +405,28 @@ To gain weight, you should consume 2076.65 calories instead.
 ```
 
 
-**tracKCAL** only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
+**trakCAL** only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
 ```
 =====================================================================================================
 Please input female or male as gender only!
 =====================================================================================================
 ```
 
-**tracKCAL** only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
+**trakCAL** only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
 ```
 =====================================================================================================
 Please enter a valid number format!
 =====================================================================================================
 ```
 
-**tracKCAL** only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
+**trakCAL** only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
 ```
 =====================================================================================================
 Please enter a number from 1 to 5 only!
 =====================================================================================================
 ```
 
-**tracKCAL** only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
+**trakCAL** only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
 ```
 =====================================================================================================
 Please input lose or maintain or gain as weight goal only!
@@ -966,15 +966,11 @@ This section answers questions you may have.
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **trakCAL** folder.
 
 **Q**: How do I know if the data I have input is saved?
 
 **A**: **trakCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
-
-**Q**: Q3
-
-**A**: ANS3
 
 <br>
 
