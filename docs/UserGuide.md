@@ -16,7 +16,7 @@ If you are a fast typer, **traKCAL** is perfect for you!
 
 <br>
 
-##Table of Contents
+## Table of Contents
 
 <br>
 
