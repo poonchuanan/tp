@@ -1,6 +1,6 @@
 # User Guide for traKCAL
 
-The purpose of this developer guide is as reference for future collaborators of **trakCAL**.
+The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
 
 By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
@@ -16,11 +16,9 @@ If you are a fast typer, **traKCAL** is perfect for you!
 
 <br>
 
-# Table of Contents
+* Table of Contents
+{:toc}
 
-The section displays the table of contents showing all the available features in **trakCAL**
-
-[ToC]
 
 <br>
 

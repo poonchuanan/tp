@@ -1,8 +1,9 @@
 # Developer Guide
 
-The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
+The purpose of this developer guide is as reference for future collaborators of **trakCAL**.
 
 By: CS2113-T09-4    Since: September 2020   Licence: MIT
+
 
 * Table of Contents
 {:toc}
