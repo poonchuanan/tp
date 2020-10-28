@@ -25,11 +25,13 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 ### Architecture
 
+![Architecture](diagrams/Architecture.png)
+
 The Architecture Diagram shown above explains the high-level design of **trakCAL**.
 
 **trakCAL** is made up of mainly 6 components.
 
-`trakCAL`:
+`trakCAL`: tracKCAL starts here
 
 `Ui`: Displays any message that the user can see and interact with
 
@@ -70,6 +72,13 @@ In the Model component, <br>
 
 
 ## Implementation
+
+### 3.1 Create User Profile
+
+The sequence diagram below shows how the components will react to a new user or for a returning user. 
+
+![CreateNewUser](diagrams/CreateNewUser.png)
+*Figure 4. Components interactions for tracKCAL checks for new or existing user*
 
 ### 3.2 Add activity feature
 
