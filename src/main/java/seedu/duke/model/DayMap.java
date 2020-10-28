@@ -46,7 +46,7 @@ public class DayMap {
     }
 
     /**
-     * Returns the last seen list
+     * Returns the last seen list.
      * @return the lastSeenList
      */
     public ActivityList getLastSeenList() {
@@ -61,6 +61,7 @@ public class DayMap {
         ListDrawer listDrawer = new ListDrawer(date, lastSeenList);
         listDrawer.printList();
     }
+
     /**
      * Adds activity into activityList under the corresponding dateTime.
      * Creates a new activityList if there are none under the specified date.

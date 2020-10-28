@@ -33,7 +33,7 @@ public class Trakcal {
 
     /**
      * Main function.
-     * @param args
+     * @param args args
      */
     public static void main(String[] args) {
         displayWelcomeMessage();

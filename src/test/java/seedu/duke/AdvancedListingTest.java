@@ -113,7 +113,7 @@ class AdvancedListingTest {
         deleteCommand.execute();
         assertEquals("", dummyMap.getLastSeenList().toString());
         Assertions.assertThrows(KeywordNotFoundException.class, () -> {
-        dummyMap.listActivitiesContainingDescription("run");
+            dummyMap.listActivitiesContainingDescription("run");
         });
     }
 
