@@ -6,13 +6,15 @@ import seedu.duke.command.Command;
 import seedu.duke.logic.Parser;
 import seedu.duke.model.DayMap;
 import seedu.duke.storage.Storage;
-import seedu.duke.userprofile.Initialiseuser;
-import seedu.duke.userprofile.Userinfo;
+import seedu.duke.userprofile.SaveAndAskForUserProfile;
+import seedu.duke.userprofile.InitialiseAndCalculateUserProfile;
 import seedu.duke.userprofile.CheckNewUser;
 
 
 import java.util.Scanner;
 
+import static seedu.duke.logic.Parser.CHAIN_SEPARATOR;
+import static seedu.duke.logic.Parser.SPACE;
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
 import static seedu.duke.ui.Ui.displayWelcomeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayParserNullPointerExceptionMessage;
@@ -24,7 +26,7 @@ import static seedu.duke.ui.ExceptionMessages.displayParserNullPointerExceptionM
 public class Trakcal {
 
     public static DayMap calList = new DayMap();
-    public static Userinfo profile;
+    public static InitialiseAndCalculateUserProfile profile;
 
     public static Scanner in = new Scanner(System.in);
     public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
@@ -38,9 +40,9 @@ public class Trakcal {
             System.out.println("here");
         }
         if (CheckNewUser.isNewUser()) {
-            profile = Initialiseuser.createNewProfile();
+            profile = SaveAndAskForUserProfile.createNewProfile();
         } else {
-            profile = Initialiseuser.loadProfile();
+            profile = SaveAndAskForUserProfile.loadProfile();
         }
         Trakcal.run();
     }
@@ -51,7 +53,7 @@ public class Trakcal {
             Parser parser = new Parser(userInput);
             try {
                 Command cmd;
-                if (userInput.contains("&&") && userInput.charAt(userInput.indexOf("&&") + 4) != '/') {
+                if (userInput.contains(CHAIN_SEPARATOR)) {
                     parser.prepareChaining(userInput);
                 } else {
                     cmd = parser.parseCommand();
@@ -74,6 +76,6 @@ public class Trakcal {
 
     private static String getJarFilePath() {
         return new File(Trakcal.class.getProtectionDomain().getCodeSource().getLocation().getPath())
-                .getParent().replace("%20", " ");
+                .getParent().replace("%20", SPACE);
     }
 }

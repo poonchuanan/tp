@@ -34,6 +34,7 @@ public class ListDrawer {
 
     /**
      * Sets the date and activity list to be printed.
+     *
      * @param date date which activity list to be used
      * @param activityList is the list to be used when creating the list
      */

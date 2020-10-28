@@ -4,27 +4,27 @@ import java.text.DecimalFormat;
 import seedu.duke.ui.Ui;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityFactorMessage;
 
-public class Userinfo {
+public class InitialiseAndCalculateUserProfile {
     protected String name;
     protected String gender;
     protected String weight;
     protected String height;
     protected String age;
-    protected String activityfactor;
+    protected String activityLevel;
     protected String weightGoal;
     protected double calories;
 
-    public Userinfo() {
+    public InitialiseAndCalculateUserProfile() {
     }
 
-    public Userinfo(String name, String gender, String weight, String height,
-                    String age, String activityfactor, String weightGoal) {
+    public InitialiseAndCalculateUserProfile(String name, String gender, String weight, String height,
+                                             String age, String activityLevel, String weightGoal) {
         this.name = name;
         this.gender = gender;
         this.weight = weight;
         this.height = height;
         this.age = age;
-        this.activityfactor = activityfactor;
+        this.activityLevel = activityLevel;
         this.weightGoal = weightGoal;
     }
 
@@ -49,7 +49,7 @@ public class Userinfo {
     }
 
     public String getactivityfactor() {
-        return activityfactor;
+        return activityLevel;
     }
 
     public String getWeightGoal() {
@@ -60,11 +60,11 @@ public class Userinfo {
         return calories;
     }
 
-    private static DecimalFormat df2 = new DecimalFormat("##.##");
+    private static DecimalFormat df2 = new DecimalFormat(".##");
 
 
     public String calculateNewUserDetails() {
-        double activityMultiple;
+        double activityMultiple = 0;
 
         switch (Integer.parseInt(this.getactivityfactor())) {
         case 1:
@@ -84,8 +84,6 @@ public class Userinfo {
             break;
         default:
             displayInvalidActivityFactorMessage();
-            activityMultiple = 1.55;
-            //Throw exception here or sth
             break;
         }
 
@@ -97,7 +95,7 @@ public class Userinfo {
                 * 10000;
         assert bmi > 0 : "bmi should be more than 0";
 
-        details += "Your BMI is " + df2.format(bmi) + "\n";
+        details += "\nYour BMI is " + df2.format(bmi) + "\n";
 
         if (this.getGender().equals("female")) {
             calories = ((10 * Double.parseDouble(this.getWeight()))
@@ -123,15 +121,15 @@ public class Userinfo {
             calories += 500;
             details += "To " + this.getWeightGoal() + " weight, you should consume "
                     + calories + " calories instead.\n";
-        } else {
-            details += "\n";
         }
+
         this.calories = calories;
         return details;
     }
 
-    public static Userinfo editUserInfo(String userInput) {
-        Userinfo profile = new Userinfo((userInput.substring(userInput.indexOf("n/") + 2, userInput.indexOf("g/") - 1)),
+    public static InitialiseAndCalculateUserProfile editUserInfo(String userInput) {
+        InitialiseAndCalculateUserProfile profile = new InitialiseAndCalculateUserProfile(
+                (userInput.substring(userInput.indexOf("n/") + 2, userInput.indexOf("g/") - 1)),
                 (userInput.substring(userInput.indexOf("g/") + 2, userInput.indexOf("w/") - 1)),
                 (userInput.substring(userInput.indexOf("w/") + 2, userInput.indexOf("h/") - 1)),
                 (userInput.substring(userInput.indexOf("h/") + 2, userInput.indexOf("a/") - 1)),

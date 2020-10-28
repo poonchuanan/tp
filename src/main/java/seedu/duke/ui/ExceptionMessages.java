@@ -111,7 +111,7 @@ public class ExceptionMessages {
     /**
      * Prints out error message when invalid input for add activity given.
      */
-    public static void displayAddActivityNumberFormatExceptionMessage() {
+    public static void displayAddActivityExceptionMessage() {
         drawDivider();
         System.out.println("Sorry I do not understand what you mean!");
         System.out.println("One of the following has been violated:");
@@ -135,8 +135,8 @@ public class ExceptionMessages {
         System.out.println("\t2. Calories count input must be an integer > 0!");
         System.out.println("\t3. Wrong input format");
         System.out.println("\t\tInput format is:");
-        System.out.println("\t\tedita INDEX f/ FOOD_DESCRIPTION c/ CALORIES d/ YYYY-MM-DD");
-        System.out.println("\t\tedita INDEX e/ EXERCISE_DESCRIPTION c/ CALORIES d/ YYYY-MM-DD");
+        System.out.println("\t\tedita INDEX f/ FOOD_DESCRIPTION c/ CALORIES");
+        System.out.println("\t\tedita INDEX e/ EXERCISE_DESCRIPTION c/ CALORIES");
         drawDivider();
     }
 
@@ -197,12 +197,84 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints message when there is a presence of a duplicated naming for file.
+     * Prints out error message when invalid gender input.
      */
-    public static void displayNegativeCalorieInputExceptionMessage() {
+    public static void displayInvalidGenderMessage() {
         drawDivider();
-        System.out.println("Calorie input must be an integer and positive!");
+        System.out.println("Please input female or male as gender only!");
         drawDivider();
     }
 
+    /**
+     * Prints out error message when invalid weight goal input.
+     */
+    public static void displayInvalidWeightGoalMessage() {
+        drawDivider();
+        System.out.println("Please input lose or maintain or gain as weight goal only!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when invalid weight input.
+     */
+    public static void displayInvalidWeightMessage() {
+        drawDivider();
+        System.out.println("Please enter a valid weight format!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when invalid height input.
+     */
+    public static void displayInvalidHeightMessage() {
+        drawDivider();
+        System.out.println("Please enter a valid height format!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when invalid age input.
+     */
+    public static void displayInvalidAgeMessage() {
+        drawDivider();
+        System.out.println("Please enter a valid age!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when invalid activity level input.
+     */
+    public static void displayInvalidActivityLevelMessage() {
+        drawDivider();
+        System.out.println("Please enter a number from 1 to 5 only!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when IndexOutOfBoundsException occurs in edit command.
+     */
+    public static void displayEditIndexOutOfBoundsExceptionMessage() {
+        drawDivider();
+        System.out.println("Index entered is not within the range!\n"
+                + "Please pull out the list for the day before editing on it!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when a shortcut has not been created in addSet command.
+     */
+    public static void displayShortcutDoesNotExistMessage() {
+        drawDivider();
+        System.out.println("This shortcut does not exists, please create a shortcut before adding it!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when calorie has not been input as integer.
+     */
+    public static void displayInvalidCalorieEntryMessage() {
+        drawDivider();
+        System.out.println("Please enter calories as an integer");
+        drawDivider();
+    }
 }

@@ -11,6 +11,7 @@ import seedu.duke.model.DayMap;
 import seedu.duke.model.Food;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -104,7 +105,6 @@ public class MoveActivityCommandTest {
     void listNotFoundException_IfTryToAccessEmptyLastSeenList() {
         DayMap dummyMap = new DayMap();
         createObjects(dummyMap);
-        dummyMap.setLastSeenList(dummyMap.getActivityList(date.atStartOfDay()));
 
         Assertions.assertThrows(ListNotFoundException.class, () -> {
             dummyMap.move(1,2);
