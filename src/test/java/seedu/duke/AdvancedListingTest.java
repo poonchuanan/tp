@@ -16,6 +16,10 @@ import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+/**
+ * This test is to test whether the delete functions can work on indexes produced from the list and find commands.
+ */
 class AdvancedListingTest {
     LocalDate date = LocalDate.of(2020, Month.OCTOBER, 9);
     LocalDate date2 = LocalDate.of(2020, Month.NOVEMBER, 10);
@@ -29,10 +33,13 @@ class AdvancedListingTest {
         dummyMap.addActivity(date2.atStartOfDay(), new Exercise("run 10km", 51,  date2,false));
         dummyMap.addActivity(date2.atStartOfDay(), new Food("rice with tofu", 101, date2, false));
 
-        dummyMap.addActivity(date3.atStartOfDay(), new Food("rice with shit", 51, date3, false));
+        dummyMap.addActivity(date3.atStartOfDay(), new Food("rice with vegs", 51, date3, false));
         dummyMap.addActivity(date3.atStartOfDay(), new Food("rice with pork", 101, date3, false));
     }
 
+    /**
+     * This test the delete function on the list commands for different dates.
+     */
     @Test
     void listDate_andDeleteFromActivityListShown_successfully() {
         DayMap dummyMap = new DayMap();
@@ -50,8 +57,11 @@ class AdvancedListingTest {
         assertEquals("2020-10-09, [E] | run 2km | 100", dummyMap.toString(date.atStartOfDay()));
     }
 
+    /**
+     * This tests expects a null pointer exception once deletes all items from a list.
+     */
     @Test
-    void deleteAllTasks_andExpect_NullPointerException_fromListCommand() throws KeywordNotFoundException {
+    void deleteAllTasks_andExpect_NullPointerException_fromListCommand() {
         DayMap dummyMap = new DayMap();
         createObjects(dummyMap);
 
@@ -65,11 +75,14 @@ class AdvancedListingTest {
         assertEquals("2020-10-09, [E] | run 2km | 100", dummyMap.toString(date.atStartOfDay()));
         deleteCommand.execute();
 
-        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+        Assertions.assertThrows(NullPointerException.class, () -> {
             dummyMap.getActivityList(date.atStartOfDay()).getActivity(0);
         });
     }
 
+    /**
+     * This tests the delete function after a find command.
+     */
     @Test
     void findDescription_andDeleteFromActivityListShown_successfully() {
         DayMap dummyMap = new DayMap();
@@ -78,19 +91,22 @@ class AdvancedListingTest {
         Command findCommand = new FindDescriptionCommand("rice");
         findCommand.setData(dummyMap);
         findCommand.execute();
-        assertEquals("[F] | rice with shit | 51, [F] | rice with pork | 101, [F] | rice with tofu | 101, "
+        assertEquals("[F] | rice with vegs | 51, [F] | rice with pork | 101, [F] | rice with tofu | 101, "
                 + "[F] | rice with eggs | 50", dummyMap.getLastSeenList().toString());
 
         Command deleteCommand = new DeleteCommand(2);
         deleteCommand.setData(dummyMap);
         deleteCommand.execute();
 
-        assertEquals("[F] | rice with shit | 51, [F] | rice with pork | 101, [F] | rice with eggs | 50",
+        assertEquals("[F] | rice with vegs | 51, [F] | rice with pork | 101, [F] | rice with eggs | 50",
                 dummyMap.getLastSeenList().toString());
     }
 
+    /**
+     * This tests expects a keyword not found exception once all results containing the keyword has been deleted.
+     */
     @Test
-    void deleteAllTasks_andExpect_NullPointerException_fromFindCommand() {
+    void deleteAllTasks_andExpect_KeywordNotFoundExceptions_fromFindCommand() {
         DayMap dummyMap = new DayMap();
         createObjects(dummyMap);
 
@@ -107,10 +123,10 @@ class AdvancedListingTest {
 
 
         deleteCommand.execute();
-
-        //Assertions.assertThrows(KeywordNotFoundException.class, () -> {
-        //dummyMap.listActivitiesContainingDescription("run");
-        //});
+        assertEquals("", dummyMap.getLastSeenList().toString());
+        Assertions.assertThrows(KeywordNotFoundException.class, () -> {
+        dummyMap.listActivitiesContainingDescription("run");
+        });
     }
 
 }
