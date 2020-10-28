@@ -41,6 +41,7 @@ public class EditFoodCommand extends Command {
             LocalDate dateOfActivityToBeEdited = lastSeenList.getDateOfActivityAtIndex(index);
             this.food = new Food(description, calories, dateOfActivityToBeEdited, false);
             dayMap.insertActivity(index, food);
+
             System.out.println();
             displaySavedMessage();
             drawDivider();
