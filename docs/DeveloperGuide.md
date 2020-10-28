@@ -32,7 +32,7 @@ In the logic component,
 * Trakcal uses the parser class to filter based on command words by user.
 * Description that comes after is further parsed down by the Parser.
 * Respective Command object is created and is executed by Trackcal.
-* Respective execution methods can be further associated with `UI`, `Storage` and `Model` components.
+* Respective execution methods can be further calls methods from `UI`, `Storage` and `Model` components.
 
 ### Storage component
 
@@ -51,6 +51,9 @@ In the logic component,
 ### Find feature
 
 ### Graph feature
+
+![Graph_Sequence_Diagram](diagrams/GraphSequenceDiagram.png)
+
 
 
 ## Appendix: Requirements
