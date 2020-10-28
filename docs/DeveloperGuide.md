@@ -8,22 +8,22 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 * Table of Contents
 {:toc}
 
-## Setting up
+## 1.0 Setting up
 
-### Prerequisites
+### 1.1 Prerequisites
  * Java 11 (can be download from here)
  * Intellij IDE
     
-### Setting up:    
+### 1.2 Setting up:    
 * Download the latest **tracKCAL** jar file (here)
 * Copy jar file into an empty folder in a convenient location (eg. Desktop)
 * Open terminal and navigate directory to the folder containing jar file 
 * Enter the following command line to run program: ```java -jar trakCAL.jar```   
 * Look through the user guide for a full detailed explanation on the functionality of **trakCAL**
     
-## Design 
+## 2.0 Design 
 
-### Architecture
+### 2.1 Architecture
 
 ![Architecture](diagrams/Architecture.png)
 
@@ -43,7 +43,7 @@ The Architecture Diagram shown above explains the high-level design of **trakCAL
 
 `Model`: Visualize data into graph
 
-### Logic component
+### 2.2 Logic component
 
 ![Logic Component](diagrams/LogicComponent.png)
 
@@ -57,9 +57,9 @@ proposed functionality which can be associated with `Ui`,`storage` or `model` co
 * Respective Command object is created and is executed by **trakCAL**.
 * Respective execution methods can be further associated with `UI`, `Storage` and `Model` components.
 
-### Storage component
+### 2.3 Storage component
 
-### Model component
+### 2.4 Model component
 ![Model_Component](diagrams/LogicComponent.png)
 *Figure 4. Diagram for Model component*<br>
 **API**: Model.java <br>
@@ -71,7 +71,7 @@ In the Model component, <br>
 
 
 
-## Implementation
+## 3.0 Implementation
 
 ### 3.1 Create User Profile
 
@@ -241,11 +241,11 @@ is created, the properties of the graph are then stored and calculated in setPro
 Next, the graphDrawing object is created and uses the properties calculated earlier to print out the graph.
 > In the case where there are less than 7  days stored, all the days will be displayed.
 
-## Appendix: Requirements
+## 4.0 Appendix: Requirements
 
-### Product scope
+### 4.1 Product scope
 
-#### Target user profile
+#### 4.1.1 Target user profile
 
 {Describe the target user profile}
 * Tech savvy university students that have knowledge on the exercise and calories or know where to get the information before inputting it in the application.
@@ -258,7 +258,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-#### Value proposition
+#### 4.1.2 Value proposition
 
 {Describe the value proposition: what problem does it solve?}
 * Functionality
@@ -273,7 +273,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### User Stories
+### 4.2 User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -293,7 +293,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### Non-Functional Requirements
+### 4.3 Non-Functional Requirements
 
 {Give non-functional requirements}
 
@@ -302,7 +302,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### Glossary
+### 4.4 Glossary
 
 * *glossary item* - Definition
 * *GUI* - Graphics User Interface
@@ -314,7 +314,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### Instructions for manual testing
+### 4.5 Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
