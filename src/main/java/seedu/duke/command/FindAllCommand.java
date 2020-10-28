@@ -28,7 +28,7 @@ public class FindAllCommand extends Command {
         try {
             dayMap.listActivitiesContainingAll(userInput);
             FindDrawer findDrawer = new FindDrawer(dayMap.getLastSeenList());
-            findDrawer.printListDrawing();
+            findDrawer.printList();
         } catch (KeywordNotFoundException e) {
             System.out.println("No results were found!");
         }

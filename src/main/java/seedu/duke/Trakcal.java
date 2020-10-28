@@ -31,6 +31,10 @@ public class Trakcal {
     public static Scanner in = new Scanner(System.in);
     public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
 
+    /**
+     * Main function.
+     * @param args args
+     */
     public static void main(String[] args) {
         displayWelcomeMessage();
         System.out.println();
@@ -47,6 +51,9 @@ public class Trakcal {
         Trakcal.run();
     }
 
+    /**
+     * Main running loop.
+     */
     public static void run()  {
         while (in.hasNextLine()) {
             String userInput = in.nextLine();
@@ -69,11 +76,20 @@ public class Trakcal {
         }
     }
 
-    public static void executeCmd(Command cmd) throws NullPointerException {
-        cmd.setData(calList);
-        cmd.execute();
+    /**
+     * Sets the data for each command and executes the command.
+     * @param command command to execute
+     * @throws NullPointerException if invalid command
+     */
+    public static void executeCmd(Command command) throws NullPointerException {
+        command.setData(calList);
+        command.execute();
     }
 
+    /**
+     * Gets the file path of the jar file.
+     * @return string of the file path
+     */
     private static String getJarFilePath() {
         return new File(Trakcal.class.getProtectionDomain().getCodeSource().getLocation().getPath())
                 .getParent().replace("%20", SPACE);
