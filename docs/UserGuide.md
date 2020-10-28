@@ -30,7 +30,8 @@ The section displays the table of contents showing all the available features in
     * [Listing entries for the specified day](#listing-entries-for-the-specified-day): `list`
     * [Editing user profile](#editing-user-profile): `edit`
     * [Editing an entry in list](#editing-an-entry-in-list): `edita`
-    * [Finding entries via keyword](#finding-entries-via-keyword): `find`
+    * [Finding entries via keyword (basic)](#finding-entries-via-keyword-(basic)): `find`
+    * [Finding entries via keywords (advanced)](#finding-entries-via-keywords-(advanced)): `find`
     * [Moving an entry to another position](#moving-an-activity-to-another-position): `move`
     * [Deleting an entry in list](#deleting-an-entry-in-list): `delete`
     * [Deleting all entries in list](#deleting-all-entries-in-list): `deleteALL`
@@ -423,66 +424,71 @@ The current activity list has been saved.
 <br>
 <br>
 
-## Finding entries via keyword
+## Finding entries via keyword (basic)
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
 >Additionally, you can use the advanced find commands to find all matching keywords or just one matching keyword.
 
-Format for find by description: `find d/**DESCRIPTION**`
+Format for find by description: `find d/ **DESCRIPTION**`
 
 Parameters:
 * `**DESCRIPTION**`: Keyword to look for from description list.
 
 Example of usage:
-* `find d/running`
+* `find d/ running`
 
 ```
 1. 2020-10-19 [E] | running | 100
 The current activity list has been saved.
 ```
 
-Format for find by calorie: `find c/**CALORIE**`
+Format for find by calorie: `find c/ **CALORIE**`
 
 Parameters:
 * `**CALORIE**`: Keyword to look for from calorie list.
 
 Example of usage:
-* `find c/100` 
+* `find c/ 100` 
 
 ```
 1. 2020-10-19 [E] | running | 100
 The current activity list has been saved.
 ```
 
-Format for find by just one matching description: `find e/**DESCRIPTION1** e/**DESCRIPTION2** e/**DESCRIPTION3** ...`
+<br>
+<br>
+
+## Finding entries via keywords (advanced)
+
+Format for find by just one matching description: `find e/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 > As long as just one of the description keywords matches in the entry, the activity will be listed. There is no limit to the number of descriptions allowed.
 
 Parameters:
-* `**DESCRIPTION**`: Keyword to look for from calorie list.
-* `**DESCRIPTION1**`: Keyword to look for from calorie list.
+* `**DESCRIPTION1**`: Keyword to look for from activity.
+* `**DESCRIPTION2**`: Keyword to look for from activity.
 * so on...
 
 Example of usage:
-* `find e/sleeping e/5pm` 
+* `find e/ sleeping / 5pm` 
 
 ```
-1. 2020-10-19 [E] | running at stadium for 10km at 5pm evening| 100
+1. 2020-10-19 [E] | running at stadium for 10km at 5pm evening | 100
 The current activity list has been saved.
 ```
 
-Format for find by all descriptions: `find a/**DESCRIPTION1** a/**DESCRIPTION2** a/**DESCRIPTION3** ...`
+Format for find by all descriptions: `find a/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 > This command will search of entries matching ALL description keywords typed. There is no limit to the number of descriptions allowed.
 
 Parameters:
-* `**DESCRIPTION**`: Keyword to look for from calorie list.
-* `**DESCRIPTION1**`: Keyword to look for from calorie list.
+* `**DESCRIPTION1**`: Keyword to look for from activity.
+* `**DESCRIPTION2**`: Keyword to look for from activity.
 * so on...
 
 Example of usage:
- * `find a/running a/10km a/5pm`
+ * `find a/ running / 10km / 5pm`
  
 ```
-1. 2020-10-19 [E] | running at stadium for 10km at 5pm evening| 100
+1. 2020-10-19 [E] | running at stadium for 10km at 5pm evening | 100
 The current activity list has been saved.
 ```
 
