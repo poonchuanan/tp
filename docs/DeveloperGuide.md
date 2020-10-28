@@ -61,7 +61,32 @@ The Sequence Diagram below shows how the components interact with each other for
 
 The sections below describe more features available.
 
-### Advance List feature
+### 3.3 Listing feature for find and list commands
+The listing mechanism used by ListCommand and FindCommand to display the required list of activities is facilitated by the lastSeenList of class ActivityList. 
+The following operations could be applied to the lastSeenList which would change the actual data in the database:
+
+- delete
+- move
+- edit (note: edit only modifies entries in the database after list command)
+
+The details of those operations can be found further down.
+
+#### 3.3.1 List
+This feature is used to list the entries of a specified date where the extracted activityList would be used as the lastSeenList itself.
+
+The following sequence diagram shows how the lastSeenList is set after a “list date" command where date is of YYYY-MM-DD 
+or after a “list” command where the date is the current date.
+
+<diagram>
+
+#### 3.3.2 Find
+
+The editing mechanism is used by the basic find features: FindDescriptionCommand, FindCalorieCommand, 
+as well as the advanced find features: FindAllCommand and FindEitherCommand to look for keywords in the list.
+
+The following sequence diagram shows how the lastSeenList is set after a find command.
+
+![Find Sequence Diagram](diagrams/FindSequenceDiagram.png)
 
 ### 3.4 Edit activity in list feature
 
