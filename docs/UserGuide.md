@@ -1,15 +1,16 @@
 # User Guide for traKCAL
 
+The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
+
 By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 <br>
 
 # Introduction
 
-**traKCAL** is a desktop application for managing calories' intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
-If you type fast, **traKCAL** can manage your activities faster than traditional GUI applications, and is perfect for you.
+**traKCAL** is a desktop application for managing and visualizing your calorie intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
 
-The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
+If you are a fast typer, **traKCAL** is perfect for you!
 
 **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
 
