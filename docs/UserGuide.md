@@ -4,7 +4,7 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 <br>
 
-## Introduction
+# Introduction
 
 **traKCAL** is a desktop application for managing calories' intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
 If you type fast, **traKCAL** can manage your activities faster than traditional GUI applications, and is perfect for you.
@@ -15,33 +15,15 @@ The purpose of this user guide is to guide the users on the commands available i
 
 <br>
 
-## Table of Contents
+# Table of Contents
 
 The section displays the table of contents showing all the available features in **trakCAL**
 
-* [Quick Start](#quick-start)
-* [Features](#features)
-    * [Viewing help](#viewing-help): `help`
-    * [Creating a new user profile](#creating-a-new-user-profile): `create new user`
-    * [Creating a set of entries](#creating-a-shortcut-for-a-set-of-entries): `createSet`
-    * [Adding a food entry](#adding-a-food-entry): `add`
-    * [Adding an exercise entry](#adding-an-exercise-entry): `add`
-    * [Adding a set of entries](#adding-a-set-of-entries): `addSet`
-    * [Listing entries for the specified day](#listing-entries-for-the-specified-day): `list`
-    * [Editing user profile](#editing-user-profile): `edit`
-    * [Editing an entry in list](#editing-an-entry-in-list): `edita`
-    * [Finding entries via keyword](#finding-entries-via-keyword): `find`
-    * [Moving an entry to another position](#moving-an-activity-to-another-position): `move`
-    * [Deleting an entry in list](#deleting-an-entry-in-list): `delete`
-    * [Deleting all entries in list](#deleting-all-entries-in-list): `deleteALL`
-    * [Showing past net calories](#showing-past-net-calories): `graph`
-    * [Exiting the program](#exiting-the-program): `bye`
-* [Frequently asked questions](#frequently-asked-questions)
-* [Command Summary](#command-summary)
+[ToC]
 
 <br>
 
-## Quick Start
+# Quick Start
 
 This section gives the steps you need to get started quickly.
 
@@ -73,7 +55,7 @@ Please do input 'help' for the commands and their respective input format.
 
 <br>
 
-## Features 
+# Features 
 
 This section gives you a detailed description of each feature available in **trakCAL**.
 
@@ -110,7 +92,7 @@ The expected format of input values:
 	                         and date(YYYY-MM-DD), DATE
 	list                   - Prints out the list of entries.
 	list DATE              - Prints out the list of entries for the date(YYYY-MM-DD), DATE
-	edit n/ NAME, g/ GENDER, w/ WEIGHT, h/HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS
+	edit n/ NAME, g/ GENDER, w/ WEIGHT, h/ HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS
 	                       - Edits your name, NAME, your gender(male/female), GENDER,
 	                         your weight in kg, WEIGHT, your height, HEIGHT in cm, your age, AGE,
 	                         activity factor(1-5) with 1 being the most active, ACTIVITY_FACTOR,
@@ -140,10 +122,14 @@ Words in CAPS are parameters to be filled in by you!
 <br>
 <br>
 
-## Creating a new user profile
+## Create
+
+<br>
+
+### Creating a new user profile
 
 If this is your first time using **tracKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
-**TracKCAL** will then use these details from your user profile to calculate the following: 
+**tracKCAL** will then use these details from your user profile to calculate the following: 
 
 * BMI
 * Recommended daily calorie
@@ -180,28 +166,28 @@ To gain weight, you should consume 2076.65 calories instead.
 
 #### Possible error messages and how to solve them:
 
-tracKCAL only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
+**tracKCAL** only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
 ```
 =====================================================================================================
 Please input female or male as gender only!
 =====================================================================================================
 ```
 
-tracKCAL only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
+**tracKCAL** only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
 ```
 =====================================================================================================
 Please enter a valid number format!
 =====================================================================================================
 ```
 
-tracKCAL only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
+**tracKCAL** only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
 ```
 =====================================================================================================
 Please enter a number from 1 to 5 only!
 =====================================================================================================
 ```
 
-tracKCAL only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
+**tracKCAL** only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
 ```
 =====================================================================================================
 Please input lose or maintain or gain as weight goal only!
@@ -211,7 +197,7 @@ Please input lose or maintain or gain as weight goal only!
 <br>
 <br>
 
-## Creating a shortcut for a set of entries 
+### Creating a shortcut for a set of entries 
 
 This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add in multiple common entries. 
 
@@ -236,18 +222,21 @@ You have created a shortcut containing:
 
 #### Possible error message and how to solve them: 
 
-tracKCAL only accepts integers for calories. If you were to enter `createSet bfast f/ice cream c/haha + e/jumping jacks c/100`, this error message will be shown.
+**tracKCAL** only accepts integers for calories. If you were to enter `createSet bfast f/ice cream c/haha + e/jumping jacks c/100`, this error message will be shown.
  ```
 =====================================================================================================
 Please enter calories as an integer
 =====================================================================================================
  ```
 
-<\br>
-<\br>
+<br>
+<br>
 
+## Add
 
-## Adding a food entry
+<br>
+
+### Adding a food entry
 
 Adds a food entry with its respective calories to the list.
 
@@ -258,18 +247,51 @@ Parameters:
 * `**CALORIE_COUNT**`: Amount of calories consumed.
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
-Examples of usage:
-* `add f/ ice cream c/ 78 d/ 2020-10-19`
+Examples of usage: 
+* `list` before adding *current date is 2020-10-28*
+```
+-----------------------------------------
+|  2020-10-28  |  Net Calorie: 30 kcal  |
+-----------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple_____________________________________________________30
+```
+
+* `add f/ mushroom soup c/ 77 d/ 2020-10-28`
 
 ```
-[F] | ice cream | 78
+=====================================================================================================
+Noted! The following has been added into list:
+[F] | mushroom soup | 77
+
 The current activity list has been saved.
+=====================================================================================================
+```
+
+* `list` after adding
+```
+------------------------------------------
+|  2020-10-28  |  Net Calorie: 107 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple_____________________________________________________30
+
+2          Food           mushroom soup_____________________________________________77
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
 ```
 
 <br>
 <br>
 
-## Adding an exercise entry
+### Adding an exercise entry
 
 Adds an exercise entry with its respective calories to the list.
 
@@ -281,17 +303,54 @@ Parameters:
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 Examples of usage: 
-* `add e/ jumping c/ 65 d/ 2020-10-19`
+* `list` before adding
+```
+------------------------------------------
+|  2020-10-28  |  Net Calorie: 107 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple_____________________________________________________30
+
+2          Food           mushroom soup_____________________________________________77
+```
+
+* `add e/ jumping c/ 65 d/ 2020-10-28`
 
 ```
+=====================================================================================================
+Noted! The following has been added into list:
 [E] | jumping | 65
+
 The current activity list has been saved.
+=====================================================================================================
+```
+
+* `list` after adding
+```
+-----------------------------------------
+|  2020-10-28  |  Net Calorie: 42 kcal  |
+-----------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple_____________________________________________________30
+
+2          Food           mushroom soup_____________________________________________77
+
+3        Exercise         jumping___________________________________________________65
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
 ```
 
 <br>
 <br>
 
-## Adding a set of entries
+### Adding a set of entries
 
 Adds a set of repeated entries at once.
 
@@ -327,7 +386,11 @@ This shortcut does not exists, please create a shortcut before adding it!
 <br>
 <br>
 
-## Listing entries for the specified day
+## List
+
+<br>
+
+### Listing entries for the specified day
 
 Displays the list of activities for the given day.
 
@@ -350,10 +413,21 @@ Examples of usage:
 1. [F] | burger | 90
 ```
 
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
 <br>
 <br>
 
-## Editing user profile
+## Edit
+
+<br>
+
+### Editing user profile
 
 Edits user profile of an existing user.
 
@@ -387,24 +461,54 @@ To gain weight, you should consume 2076.65 calories instead.
 ==============================================================
 ```
 
+#### Possible error messages and how to solve them:
+
+**tracKCAL** only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
+```
+=====================================================================================================
+Please input female or male as gender only!
+=====================================================================================================
+```
+
+**tracKCAL** only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
+```
+=====================================================================================================
+Please enter a valid number format!
+=====================================================================================================
+```
+
+**tracKCAL** only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
+```
+=====================================================================================================
+Please enter a number from 1 to 5 only!
+=====================================================================================================
+```
+
+**tracKCAL** only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
+```
+=====================================================================================================
+Please input lose or maintain or gain as weight goal only!
+=====================================================================================================
+```
+
+
 <br>
 <br>
 
-## Editing an entry in list
+### Editing an entry in list from food to food 
 
-Edits activity, food or exercise at the stated index in the list.  
+Edits a particular food activity in list.
 >Things you should take note of:
 >* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
 >* The list in which you want to edit to have to be pulled out first before being able to edit on it.
 >* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
 
-Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**` OR `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 Parameters:
 * `**LIST_INDEX**`: Index of activity to be edited in list.
-* `**FOOD_DESCRIPTION**`: Description of food consumed.
-* `**EXERCISE_DESCRIPTION**`: Description of exercise done.
-* `**CALORIE_COUNT**`: Amount of calories consumed.
+* `**FOOD_DESCRIPTION**`: New description of food consumed.
+* `**CALORIE_COUNT**`: New amount of calories consumed.
 
 Example of usage:
 * `list`
@@ -420,10 +524,129 @@ Example of usage:
 The current activity list has been saved.
 ```
 
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
+### Editing an entry in list from food to exercise
+
+Edits a particular food activity in list from food to exercise.
+>Things you should take note of:
+>* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
+>* The list in which you want to edit to have to be pulled out first before being able to edit on it.
+>* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
+
+Format: `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+
+Parameters:
+* `**LIST_INDEX**`: Index of activity to be edited in list.
+* `**EXERCISE_DESCRIPTION**`: New description of exercise done.
+* `**CALORIE_COUNT**`: New amount of calories lost.
+
+Example of usage:
+* `list`
+
+```
+1. [F] | pudding | 66
+```
+
+* `edita 1 e/ running c/100`
+
+```
+[E] | running | 100
+The current activity list has been saved.
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
+### Editing an entry in list from exercise to exercise 
+
+Edits a particular exercise activity in list. 
+>Things you should take note of:
+>* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
+>* The list in which you want to edit to have to be pulled out first before being able to edit on it.
+>* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
+
+Format: `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+
+Parameters:
+* `**LIST_INDEX**`: Index of activity to be edited in list.
+* `**EXERCISE_DESCRIPTION**`: New description of exercise done.
+* `**CALORIE_COUNT**`: New amount of calories lost.
+
+Example of usage:
+* `list`
+
+```
+1. [F] | pudding | 66
+```
+
+* `edita 1 e/ running c/100`
+
+```
+[E] | running | 100
+The current activity list has been saved.
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
+### Editing an entry in list from exercise to food 
+
+Edits a particular exercise activity in list from exercise to food.  
+>Things you should take note of:
+>* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
+>* The list in which you want to edit to have to be pulled out first before being able to edit on it.
+>* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
+
+Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+
+Parameters:
+* `**LIST_INDEX**`: Index of activity to be edited in list.
+* `**FOOD_DESCRIPTION**`: New description of food consumed.
+* `**CALORIE_COUNT**`: New amount of calories consumed.
+
+Example of usage:
+* `list`
+
+```
+1. [F] | pudding | 66
+```
+
+* `edita 1 e/ running c/100`
+
+```
+[E] | running | 100
+The current activity list has been saved.
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
 <br>
 <br>
 
-## Finding entries via keyword
+## Find
+
+<br>
+
+### Finding entries via keyword
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
 >Additionally, you can use the advanced find commands to find all matching keywords or just one matching keyword.
@@ -486,10 +709,21 @@ Example of usage:
 The current activity list has been saved.
 ```
 
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
 <br>
 <br>
 
-## Moving an activity to another position
+## Move
+
+<br>
+
+### Moving an activity to another position
 
 Moves an activity to another position in the last shown list.
 
@@ -522,10 +756,21 @@ Examples of usage:
 3. [F] | second breakfast | 100
 ```
 
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
 <br>
 <br>
 
-## Deleting an entry in list
+## Delete
+
+<br>
+
+### Deleting an entry in list
 
 Deletes an entry via index in the last shown list.
 
@@ -535,7 +780,7 @@ Parameters:
 * `**INDEX**`: Index of activity to be deleted in the last shown list.
 
 Example of usage:
-* `list` before deletion
+* `list` before deleting
 
 ```
 1. [F] | apple | 200
@@ -551,7 +796,7 @@ Activity removed!
 The current activity list has been saved.
 ```
 
-* `list` after deletion
+* `list` after deleting
 
 ```
 1. [F] | apple | 200
@@ -559,17 +804,24 @@ The current activity list has been saved.
 3. [F] | orange | 100
 ```
 
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
 <br>
 <br>
 
-## Deleting all entries in list
+### Deleting all entries in list
 
 Deletes all entry in list.
 
 Format : `delete /all`
 
 Example of usage:
-* `list` before deletion
+* `list` before deleting
 
 ```
 1. [F] | apple | 200
@@ -583,16 +835,27 @@ Example of usage:
 The current activity list has been saved.
 ```
 
-* `list` after deletion
+* `list` after deleting
 
 ```
 Nothing was added!
 ```
 
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
 <br>
 <br>
 
-## Showing past net calories
+## Graph
+
+<br>
+
+### Showing past net calories
 
 Shows a graph of target calorie and net calorie obtained upto last 7 days.
 
@@ -619,6 +882,13 @@ Example of usage:
 > `***` shows the target calories.
 > If less than 7 days are stored in storage file, all the days will be displayed
 
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
 <br>
 <br>
 
@@ -639,16 +909,16 @@ Example of usage:
 
 <br>
 
-## Frequently asked questions
+# Frequently asked questions
 This section answers questions you may have.
 
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
 
-**Q**: Q2
+**Q**: How do I know if the data I have input is saved?
 
-**A**: ANS2
+**A**: **trakCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
 **Q**: Q3
 
@@ -656,7 +926,7 @@ This section answers questions you may have.
 
 <br>
 
-## Command Summary
+# Command Summary
 
 This section gives you a cheat sheet of commands available.
 >Things you should take note of:
@@ -666,7 +936,6 @@ Action         | Format | Example
 -------------- | ---------- | --------
 Help | `help` | `help`
 Create User Profile | `create new user` | `create new user`
-Add Target Calorie | `target CALORIE` | `target 500`
 Add Food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice cream c/ 78 d/ 2020-10-19`
 Add Exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
 List | `list` OR `list DATE` | `list` OR `list 2020-10-24` 
