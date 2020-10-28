@@ -129,7 +129,6 @@ Words in CAPS are parameters to be filled in by you!
 
 ## 2.0 Create
 
-<br>
 
 ### 2.1 Creating a new user profile
 
@@ -169,35 +168,6 @@ Your recommend daily calories intake is 1576.65 calories.
 To gain weight, you should consume 2076.65 calories instead.
 ```
 
-#### Possible error messages and how to solve them:
-
-**tracKCAL** only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
-```
-=====================================================================================================
-Please input female or male as gender only!
-=====================================================================================================
-```
-
-**tracKCAL** only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
-```
-=====================================================================================================
-Please enter a valid number format!
-=====================================================================================================
-```
-
-**tracKCAL** only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
-```
-=====================================================================================================
-Please enter a number from 1 to 5 only!
-=====================================================================================================
-```
-
-**tracKCAL** only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
-```
-=====================================================================================================
-Please input lose or maintain or gain as weight goal only!
-=====================================================================================================
-```
 
 <br>
 <br>
@@ -225,21 +195,12 @@ You have created a shortcut containing:
 =====================================================================================================
 ```
 
-#### Possible error message and how to solve them: 
-
-**tracKCAL** only accepts integers for calories. If you were to enter `createSet bfast f/ice cream c/haha + e/jumping jacks c/100`, this error message will be shown.
- ```
-=====================================================================================================
-Please enter calories as an integer
-=====================================================================================================
- ```
 
 <br>
 <br>
 
 ## 3.0 Add
 
-<br>
 
 ### 3.1 Adding a food entry
 
@@ -379,23 +340,13 @@ The current activity list has been saved.
 =====================================================================================================
 ```
 
-#### Possible error message and how to solve them: 
-
-If you were to add a new shortcut without creating it first, this error message will be shown
- ```
-=====================================================================================================
-This shortcut does not exists, please create a shortcut before adding it!
-=====================================================================================================
- ```
 
 <br>
 <br>
 
-## List
+## 4.0 List
 
-<br>
-
-### 4.0 Listing entries for the specified day
+### 4.1 Listing entries for the specified day
 
 Displays the list of activities for the given day.
 
@@ -429,8 +380,6 @@ Examples of usage:
 <br>
 
 ## 5.0 Edit
-
-<br>
 
 ### 5.1 Editing user profile
 
@@ -687,6 +636,7 @@ No.        Type                        Description                        Calori
 
 ```
 
+
 ### 5.5 Editing an entry in list from exercise to food 
 
 Edits a particular exercise activity in list from exercise to food.  
@@ -754,9 +704,9 @@ No.        Type                        Description                        Calori
 
 ## 6.0 Find
 
-<br>
 
 ### 6.1 Finding entries via keyword - basic
+
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
 >Additionally, you can use the advanced find commands to find all matching keywords or just one matching keyword.
@@ -833,8 +783,6 @@ The current activity list has been saved.
 
 ## 7.0 Move
 
-<br>
-
 ### 7.1 Moving an activity to another position
 
 Moves an activity to another position in the last shown list.
@@ -880,7 +828,6 @@ Examples of usage:
 
 ## 8.0 Delete
 
-<br>
 
 ### 8.1 Deleting an entry in list
 
@@ -965,7 +912,6 @@ Nothing was added!
 
 ## 9.0 Graph
 
-<br>
 
 ### 9.1 Showing past net calories
 
@@ -1046,8 +992,8 @@ This section gives you a cheat sheet of commands available.
 
 Action         | Format | Example
 -------------- | ---------- | --------
-Help | `help` | `help`
-Create User Profile | `create new user` | `create new user`
+Help | `help` | 
+Create User Profile | `create new user` | 
 Add Food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice cream c/ 78 d/ 2020-10-19`
 Add Exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
 List | `list` OR `list DATE` | `list` OR `list 2020-10-24` 
@@ -1060,6 +1006,6 @@ Find Either | `find e/ DESCRIPTION1 e/ DESCRIPTION2 e/ DESCRIPTION3 ...` | `find
 Find All | `find a/ DESCRIPTION1 a/ DESCRIPTION2 a/ DESCRIPTION3 ...` | `find a/ running a/ jumping a/ cake ...`
 Move Activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
 Delete Entry | `delete INDEX` | `delete 2`
-Delete All for Today| `delete all/` | `delete all/`
-Graph | `graph` | `graph`
-Exit | `bye` | `bye`
+Delete All for Today| `delete all/` | 
+Graph | `graph` | 
+Exit | `bye` | 
