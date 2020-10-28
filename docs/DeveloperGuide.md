@@ -77,16 +77,18 @@ This feature is used to list the entries of a specified date where the extracted
 The following sequence diagram shows how the lastSeenList is set after a “list date" command where date is of YYYY-MM-DD 
 or after a “list” command where the date is the current date.
 
-<diagram>
+![List Sequence Diagram](diagrams/ListSequenceDiagram.png)
+*Figure 6. Sequence diagram of setting the lastSeenList after a listCommand*
 
 #### 3.3.2 Find
 
-The editing mechanism is used by the basic find features: FindDescriptionCommand, FindCalorieCommand, 
-as well as the advanced find features: FindAllCommand and FindEitherCommand to look for keywords in the list.
+The editing mechanism is used by the basic find features: `FindDescriptionCommand`, `FindCalorieCommand`, 
+as well as the advanced find features: `FindAllCommand` and `FindEitherCommand` to look for keywords in the list.
 
 The following sequence diagram shows how the lastSeenList is set after a find command.
 
 ![Find Sequence Diagram](diagrams/FindSequenceDiagram.png)
+*Figure 7. Sequence diagram of setting the lastSeenList after a find command*
 
 ### 3.4 Edit activity in list feature
 
