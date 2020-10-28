@@ -247,12 +247,7 @@ No.        Type                        Description                        Calori
 2          Food           mushroom soup_____________________________________________77
 ```
 
-#### Possible error messages and how to solve them:
 
-*explanation*
-```
-
-```
 
 <br>
 <br>
@@ -306,12 +301,7 @@ No.        Type                        Description                        Calori
 3        Exercise         jumping___________________________________________________65
 ```
 
-#### Possible error messages and how to solve them:
 
-*explanation*
-```
-
-```
 
 <br>
 <br>
@@ -357,23 +347,26 @@ Parameters:
 >NOTE: Typing list without any parameters displays the list of activities for the current date.
 
 Examples of usage: 
-* `list`
+* `list` OR
+* `list 2020-10-11`
 
 ```
-1. [E] | running | 100
-```
+------------------------------------------
+|  2020-10-11  |  Net Calorie: 270 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1        Exercise         morning run_______________________________________________100
 
-* `list 2020-10-24`
+2          Food           rice with veg_____________________________________________200
 
-```
-1. [F] | burger | 90
-```
+3          Food           dinner____________________________________________________150
 
-#### Possible error messages and how to solve them:
+4        Exercise         Gym_______________________________________________________200
 
-*explanation*
-```
+5          Food           Supper____________________________________________________200
 
+6          Food           Biscuit___________________________________________________20
 ```
 
 <br>
@@ -415,7 +408,6 @@ To gain weight, you should consume 2076.65 calories instead.
 ==============================================================
 ```
 
-#### Possible error messages and how to solve them:
 
 **tracKCAL** only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
 ```
@@ -504,12 +496,8 @@ No.        Type                        Description                        Calori
 3        Exercise         jumping___________________________________________________65
 ```
 
-#### Possible error messages and how to solve them:
-
-*explanation*
-```
-
-```
+<br>
+<br>
 
 ### 5.3 Editing an entry in list from food to exercise
 
@@ -566,12 +554,8 @@ No.        Type                        Description                        Calori
 3        Exercise         jumping___________________________________________________65
 ```
 
-#### Possible error messages and how to solve them:
-
-*explanation*
-```
-
-```
+<br>
+<br>
 
 ### 5.4 Editing an entry in list from exercise to exercise 
 
@@ -629,12 +613,8 @@ No.        Type                        Description                        Calori
 3        Exercise         strolling_________________________________________________10
 ```
 
-#### Possible error messages and how to solve them:
-
-*explanation*
-```
-
-```
+<br>
+<br>
 
 
 ### 5.5 Editing an entry in list from exercise to food 
@@ -692,13 +672,6 @@ No.        Type                        Description                        Calori
 3          Food           chicken rice______________________________________________150
 ```
 
-#### Possible error messages and how to solve them:
-
-*explanation*
-```
-
-```
-
 <br>
 <br>
 
@@ -717,11 +690,15 @@ Parameters:
 * `**DESCRIPTION**`: Keyword to look for from description list.
 
 Example of usage:
-* `find d/ running`
+* `find d/ rice with veg`
 
 ```
-1. 2020-10-19 [E] | running | 100
-The current activity list has been saved.
+No.        Date                Type                                Description                        Calories gain or lost
+---------------------------------------------------------------------------------------------------------------------------
+1        2020-10-11            Food              rice with veg________________________________________________200
+
+2        2020-10-09            Food              rice with veg________________________________________________200
+
 ```
 
 Format for find by calorie: `find c/ **CALORIE**`
@@ -733,8 +710,10 @@ Example of usage:
 * `find c/ 100` 
 
 ```
-1. 2020-10-19 [E] | running | 100
-The current activity list has been saved.
+No.        Date                Type                                Description                        Calories gain or lost
+---------------------------------------------------------------------------------------------------------------------------
+1        2020-10-11          Exercise              morning run__________________________________________________100
+
 ```
 
 ### 6.2 Finding entries via keywords - advanced
@@ -751,8 +730,9 @@ Example of usage:
  * `find a/running a/ 10km / 5pm`
  
 ```
-1. 2020-10-19 [E] | running at stadium for 10km at 5pm evening | 100
-The current activity list has been saved.
+No.        Date                Type                                Description                        Calories gain or lost
+---------------------------------------------------------------------------------------------------------------------------
+1        2020-10-11          Exercise              running at stadium for 10km at 5pm evening_________________100
 ```
 
 Format for find by just one matching description: `find e/ **DESCRIPTION1** e/ **DESCRIPTION2** e/ **DESCRIPTION3** ...`
@@ -767,16 +747,12 @@ Example of usage:
 * `find e/ sleeping / 5pm` 
 
 ```
-1. 2020-10-19 [E] | running at stadium for 10km at 5pm evening | 100
-The current activity list has been saved.
+No.        Date                Type                                Description                        Calories gain or lost
+---------------------------------------------------------------------------------------------------------------------------
+1        2020-10-11          Exercise              running at stadium for 10km at 5pm evening_________________100
 ```
 
 #### Possible error messages and how to solve them:
-
-*explanation*
-```
-
-```
 
 <br>
 <br>
@@ -816,13 +792,6 @@ Examples of usage:
 3. [F] | second breakfast | 100
 ```
 
-#### Possible error messages and how to solve them:
-
-*explanation*
-```
-
-```
-
 <br>
 <br>
 
@@ -842,10 +811,19 @@ Example of usage:
 * `list` before deleting
 
 ```
-1. [F] | apple | 200
-2. [F] | melon | 300
-3. [F] | banana | 150
-4. [F] | orange | 100
+------------------------------------------
+|  2020-10-11  |  Net Calorie: 650 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple___________________________________________________100
+
+2          Food           melon___________________________________________________200
+
+3          Food           banana__________________________________________________150
+
+4          Food           orange__________________________________________________200
+
 ```
 
 * `delete 2`
@@ -858,20 +836,21 @@ The current activity list has been saved.
 * `list` after deleting
 
 ```
-1. [F] | apple | 200
-2. [F] | banana | 150
-3. [F] | orange | 100
+------------------------------------------
+|  2020-10-11  |  Net Calorie: 450 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple___________________________________________________100
+
+2          Food           banana__________________________________________________150
+
+3          Food           orange__________________________________________________200
+
 ```
-
-#### Possible error messages and how to solve them:
-
-*explanation*
-```
-
-```
-
 <br>
 <br>
+
 
 ### 8.2 Deleting all entries in list
 
@@ -883,9 +862,16 @@ Example of usage:
 * `list` before deleting
 
 ```
-1. [F] | apple | 200
-2. [F] | banana | 150
-3. [F] | orange | 100
+------------------------------------------
+|  2020-10-11  |  Net Calorie: 450 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple___________________________________________________100
+
+2          Food           banana__________________________________________________150
+
+3          Food           orange__________________________________________________200
 ```
 
 * `delete /all`
@@ -899,14 +885,6 @@ The current activity list has been saved.
 ```
 Nothing was added!
 ```
-
-#### Possible error messages and how to solve them:
-
-*explanation*
-```
-
-```
-
 <br>
 <br>
 
@@ -940,12 +918,7 @@ Example of usage:
 > `***` shows the target calories.
 > If less than 7 days are stored in storage file, all the days will be displayed
 
-#### Possible error messages and how to solve them:
 
-*explanation*
-```
-
-```
 
 <br>
 <br>
