@@ -1,4 +1,5 @@
 # User Guide for traKCAL
+The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
 
 By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
@@ -7,9 +8,7 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 # Introduction
 
 **traKCAL** is a desktop application for managing calories' intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
-If you type fast, **traKCAL** can manage your activities faster than traditional GUI applications, and is perfect for you.
-
-The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
+If you are a fast typer, **traKCAL** can manage your activities faster than traditional GUI applications, and is perfect for you.
 
 **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
 
@@ -19,7 +18,13 @@ The purpose of this user guide is to guide the users on the commands available i
 
 The section displays the table of contents showing all the available features in **trakCAL**
 
-[ToC]
+[Quick Start](#quick-start)
+
+[Features](#features)
+ 
+[FAQ](#frequently-asked-questions)
+
+[Command Summary](#command-summary)
 
 <br>
 
@@ -124,9 +129,7 @@ Words in CAPS are parameters to be filled in by you!
 
 ## Create
 
-<br>
-
-### Creating a new user profile
+### 2.1 Creating a new user profile
 
 If this is your first time using **tracKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
 **tracKCAL** will then use these details from your user profile to calculate the following: 
@@ -197,7 +200,7 @@ Please input lose or maintain or gain as weight goal only!
 <br>
 <br>
 
-### Creating a shortcut for a set of entries 
+### 2.2 Creating a shortcut for a set of entries 
 
 This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add in multiple common entries. 
 
@@ -234,9 +237,7 @@ Please enter calories as an integer
 
 ## Add
 
-<br>
-
-### Adding a food entry
+### 3.1 Adding a food entry
 
 Adds a food entry with its respective calories to the list.
 
@@ -291,7 +292,7 @@ No.        Type                        Description                        Calori
 <br>
 <br>
 
-### Adding an exercise entry
+### 2.2 Adding an exercise entry
 
 Adds an exercise entry with its respective calories to the list.
 
@@ -350,7 +351,7 @@ No.        Type                        Description                        Calori
 <br>
 <br>
 
-### Adding a set of entries
+### 2.3 Adding a set of entries
 
 Adds a set of repeated entries at once.
 
@@ -388,9 +389,7 @@ This shortcut does not exists, please create a shortcut before adding it!
 
 ## List
 
-<br>
-
-### Listing entries for the specified day
+### 3.1 Listing entries for the specified day
 
 Displays the list of activities for the given day.
 
@@ -425,77 +424,7 @@ Examples of usage:
 
 ## Edit
 
-<br>
-
-### Editing user profile
-
-Edits user profile of an existing user.
-
-Format: `edit n/ **NAME** g/ **GENDER** w/ **WEIGHT** h/ **HEIGHT** a/ **AGE** af/ **ACTIVITY_FACTOR** goal/ **WEIGHT_GOALS**`
-
-Parameters: 
-* `**NAME**`: Name of user.
-* `**GENDER**`: Gender of user.
-* `**WEIGHT_KG**`: Weight of user in kg.
-* `**HEIGHT_CM**`: Height of user in cm.
-* `**AGE**`: Age of user.
-* `**ACTIVITY_FACTOR**`: How active user is, with 1 being most active and 5 being least active.
-* `**WEIGHT_GOALS**`: Whether user wants to lose/maintain/gain weight.
-
-Example of usage: 
-* `edit n/Sam g/female w/50 h/100 a/10 af/4 goal/gain`
-
-```
-==============================================================
-Noted, I have edited your user profile. Here are your new details: 
-Name: Sam
-Gender: female
-Weight: 50
-Height: 100
-Age: 10
-Activity: 4
-Weight Goal: gain
-Your BMI is 50
-Your recommend daily calories intake is 1576.65 calories.
-To gain weight, you should consume 2076.65 calories instead.
-==============================================================
-```
-
-#### Possible error messages and how to solve them:
-
-**tracKCAL** only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
-```
-=====================================================================================================
-Please input female or male as gender only!
-=====================================================================================================
-```
-
-**tracKCAL** only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
-```
-=====================================================================================================
-Please enter a valid number format!
-=====================================================================================================
-```
-
-**tracKCAL** only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
-```
-=====================================================================================================
-Please enter a number from 1 to 5 only!
-=====================================================================================================
-```
-
-**tracKCAL** only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
-```
-=====================================================================================================
-Please input lose or maintain or gain as weight goal only!
-=====================================================================================================
-```
-
-
-<br>
-<br>
-
-### Editing an entry in list from food to food 
+### 4.1 Editing an entry in list from food to food 
 
 Edits a particular food activity in list.
 >Things you should take note of:
@@ -557,7 +486,10 @@ No.        Type                        Description                        Calori
 
 ```
 
-### Editing an entry in list from food to exercise
+<br>
+<br>
+
+### 4.2 Editing an entry in list from food to exercise
 
 Edits a particular food activity in list from food to exercise.
 >Things you should take note of:
@@ -619,7 +551,10 @@ No.        Type                        Description                        Calori
 
 ```
 
-### Editing an entry in list from exercise to exercise 
+<br>
+<br>
+
+### 4.3 Editing an entry in list from exercise to exercise 
 
 Edits a particular exercise activity in list. 
 >Things you should take note of:
@@ -682,7 +617,10 @@ No.        Type                        Description                        Calori
 
 ```
 
-### Editing an entry in list from exercise to food 
+<br>
+<br>
+
+### 4.4 Editing an entry in list from exercise to food 
 
 Edits a particular exercise activity in list from exercise to food.  
 >Things you should take note of:
@@ -749,9 +687,7 @@ No.        Type                        Description                        Calori
 
 ## Find
 
-<br>
-
-### Finding entries via keyword
+### 5.1 Finding entries via keyword
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
 >Additionally, you can use the advanced find commands to find all matching keywords or just one matching keyword.
@@ -826,9 +762,7 @@ The current activity list has been saved.
 
 ## Move
 
-<br>
-
-### Moving an activity to another position
+### 6.1 Moving an activity to another position
 
 Moves an activity to another position in the last shown list.
 
@@ -873,9 +807,7 @@ Examples of usage:
 
 ## Delete
 
-<br>
-
-### Deleting an entry in list
+### 7.1 Deleting an entry in list
 
 Deletes an entry via index in the last shown list.
 
@@ -919,7 +851,7 @@ The current activity list has been saved.
 <br>
 <br>
 
-### Deleting all entries in list
+### 7.2 Deleting all entries in list
 
 Deletes all entry in list.
 
@@ -958,9 +890,7 @@ Nothing was added!
 
 ## Graph
 
-<br>
-
-### Showing past net calories
+### 8.1 Showing past net calories
 
 Shows a graph of target calorie and net calorie obtained upto last 7 days.
 
@@ -1023,7 +953,7 @@ This section answers questions you may have.
 
 **Q**: How do I know if the data I have input is saved?
 
-**A**: **trakCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
+**A**: **trakCAL** automatically saves your data. Unless an error message is printed out, the data entered is saved.
 
 **Q**: Q3
 
@@ -1035,16 +965,15 @@ This section answers questions you may have.
 
 This section gives you a cheat sheet of commands available.
 >Things you should take note of:
->* Input that look like THIS are parameters to be supplied by user.
+>* Input that look like **THIS** are parameters to be supplied by user.
 
 Action         | Format | Example
 -------------- | ---------- | --------
-Help | `help` | `help`
-Create User Profile | `create new user` | `create new user`
+Help | `help` | 
+Create User Profile | `create new user` | 
 Add Food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice cream c/ 78 d/ 2020-10-19`
 Add Exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
 List | `list` OR `list DATE` | `list` OR `list 2020-10-24` 
-Edit Profile | `edit n/ NAME, g/ GENDER, w/ WEIGHT, h/HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS` | `edit n/ Sam g/ female w/ 50 h/ 165 a/ 10 af/ 4 goal/ gain`
 Edit Activity to Food | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` | `edita 1 f/ ice kacang c/150`
 Edit Activity to Exercise | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT` | `edita 1 e/ running c/100`
 Find Description | `find d/ DESCRIPTION` | `find d/ apple`
@@ -1053,6 +982,6 @@ Find Either | `find e/ DESCRIPTION1 e/ DESCRIPTION2 e/ DESCRIPTION3 ...` | `find
 Find All | `find a/ DESCRIPTION1 a/ DESCRIPTION2 a/ DESCRIPTION3 ...` | `find a/ running a/ jumping a/ cake ...`
 Move Activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
 Delete Entry | `delete INDEX` | `delete 2`
-Delete All for Today| `delete all/` | `delete all/`
-Graph | `graph` | `graph`
-Exit | `bye` | `bye`
+Delete All for Today| `delete all/` | 
+Graph | `graph` | 
+Exit | `bye` | 
