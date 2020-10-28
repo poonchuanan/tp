@@ -6,8 +6,6 @@
 
 ## Setting up
 
-<br>
-
 ### Prerequisites
  * Java 11 (can be download from here)
  * Intellij IDE
@@ -93,12 +91,14 @@ The following operations could be applied to the lastSeenList which would change
 The details of those operations can be found further down.
 
 #### 3.3.1 List
+
 This feature is used to list the entries of a specified date where the extracted activityList would be used as the lastSeenList itself.
 
 The following sequence diagram shows how the lastSeenList is set after a “list date" command where date is of YYYY-MM-DD 
 or after a “list” command where the date is the current date.
 
 ![List Sequence Diagram](diagrams/ListSequenceDiagram.png)
+
 *Figure 6. Sequence diagram of setting the lastSeenList after a listCommand*
 
 #### 3.3.2 Find
@@ -109,11 +109,12 @@ as well as the advanced find features: `FindAllCommand` and `FindEitherCommand` 
 The following sequence diagram shows how the lastSeenList is set after a find command.
 
 ![Find Sequence Diagram](diagrams/FindSequenceDiagram.png)
+
 *Figure 7. Sequence diagram of setting the lastSeenList after a find command*
 
-### 3.5 Edit activity in list feature
+### 3.4 Edit activity in list feature
 
-#### 3.5.1 Current Implementation
+#### 3.4.1 Current Implementation
 
 The editing mechanism is used by EditFoodCommand and EditExerciseCommand to amend the current list of activities.
 
@@ -121,11 +122,11 @@ The following Sequence Diagram shows how edit command is carried out when the us
 
 ![Edit Activity](diagrams/EditActivityFeature.jpg)
 
-*Figure 9. Sequence diagram of edit food feature*
+*Figure 8. Sequence diagram of edit food feature*
 
 > Edit exercise diagram has a similar logic.
 
-#### 3.5.2 Design Considerations
+#### 3.4.2 Design Considerations
 
 Aspect: How to edit activity
 
@@ -137,9 +138,9 @@ Aspect: How to edit activity
 >* Pros: Clear distinction of the classes.
 >* Cons: Increase in number of lines. Separate methods with similar logic will be created.
 
-### 3.6 Chaining feature
+### 3.5 Chaining feature
 
-#### 3.6.1 Current Implementation
+#### 3.5.1 Current Implementation
 
 The chaining mechanism can be used by the various commands available The following are the types of command that can be chained:
 >list
@@ -150,9 +151,9 @@ The following sequence diagram shows how the chaining works after command is ent
 
 ![ChainCommandFeature](diagrams/ChainCommandFeature.jpg)
 
-*Figure 10. Sequence diagram of chaining feature*
+*Figure 9. Sequence diagram of chaining feature*
 
-#### 3.6.2 Design Considerations
+#### 3.5.2 Design Considerations
 
 Aspect: Which commands to chain
 
