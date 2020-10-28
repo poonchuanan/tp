@@ -67,7 +67,7 @@ This section gives you a detailed description of each feature available in **tra
 <br>
 <br>
 
-## Viewing help
+## 1.0 Viewing help
 
 Prints out the commands available, and their respective input format.
 
@@ -122,11 +122,11 @@ Words in CAPS are parameters to be filled in by you!
 <br>
 <br>
 
-## Create
+## 2.0 Create
 
 <br>
 
-### Creating a new user profile
+### 2.1 Creating a new user profile
 
 If this is your first time using **tracKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
 **tracKCAL** will then use these details from your user profile to calculate the following: 
@@ -197,7 +197,7 @@ Please input lose or maintain or gain as weight goal only!
 <br>
 <br>
 
-### Creating a shortcut for a set of entries 
+### 2.2 Creating a shortcut for a set of entries 
 
 This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add in multiple common entries. 
 
@@ -232,11 +232,11 @@ Please enter calories as an integer
 <br>
 <br>
 
-## Add
+## 3.0 Add
 
 <br>
 
-### Adding a food entry
+### 3.1 Adding a food entry
 
 Adds a food entry with its respective calories to the list.
 
@@ -291,7 +291,7 @@ No.        Type                        Description                        Calori
 <br>
 <br>
 
-### Adding an exercise entry
+### 3.2 Adding an exercise entry
 
 Adds an exercise entry with its respective calories to the list.
 
@@ -350,7 +350,7 @@ No.        Type                        Description                        Calori
 <br>
 <br>
 
-### Adding a set of entries
+### 3.3 Adding a set of entries
 
 Adds a set of repeated entries at once.
 
@@ -390,7 +390,7 @@ This shortcut does not exists, please create a shortcut before adding it!
 
 <br>
 
-### Listing entries for the specified day
+### 4.0 Listing entries for the specified day
 
 Displays the list of activities for the given day.
 
@@ -423,11 +423,11 @@ Examples of usage:
 <br>
 <br>
 
-## Edit
+## 5.0 Edit
 
 <br>
 
-### Editing user profile
+### 5.1 Editing user profile
 
 Edits user profile of an existing user.
 
@@ -495,7 +495,7 @@ Please input lose or maintain or gain as weight goal only!
 <br>
 <br>
 
-### Editing an entry in list from food to food 
+### 5.2 Editing an entry in list from food to food 
 
 Edits a particular food activity in list.
 >Things you should take note of:
@@ -557,7 +557,7 @@ No.        Type                        Description                        Calori
 
 ```
 
-### Editing an entry in list from food to exercise
+### 5.3 Editing an entry in list from food to exercise
 
 Edits a particular food activity in list from food to exercise.
 >Things you should take note of:
@@ -619,7 +619,7 @@ No.        Type                        Description                        Calori
 
 ```
 
-### Editing an entry in list from exercise to exercise 
+### 5.4 Editing an entry in list from exercise to exercise 
 
 Edits a particular exercise activity in list. 
 >Things you should take note of:
@@ -682,7 +682,7 @@ No.        Type                        Description                        Calori
 
 ```
 
-### Editing an entry in list from exercise to food 
+### 5.5 Editing an entry in list from exercise to food 
 
 Edits a particular exercise activity in list from exercise to food.  
 >Things you should take note of:
@@ -747,11 +747,11 @@ No.        Type                        Description                        Calori
 <br>
 <br>
 
-## Find
+## 6.0 Find
 
 <br>
 
-### Finding entries via keyword
+### 6.1 Finding entries via keyword
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
 >Additionally, you can use the advanced find commands to find all matching keywords or just one matching keyword.
@@ -824,11 +824,11 @@ The current activity list has been saved.
 <br>
 <br>
 
-## Move
+## 7.0 Move
 
 <br>
 
-### Moving an activity to another position
+### 7.1 Moving an activity to another position
 
 Moves an activity to another position in the last shown list.
 
@@ -871,11 +871,11 @@ Examples of usage:
 <br>
 <br>
 
-## Delete
+## 8.0 Delete
 
 <br>
 
-### Deleting an entry in list
+### 8.1 Deleting an entry in list
 
 Deletes an entry via index in the last shown list.
 
@@ -919,7 +919,7 @@ The current activity list has been saved.
 <br>
 <br>
 
-### Deleting all entries in list
+### 8.2 Deleting all entries in list
 
 Deletes all entry in list.
 
@@ -956,11 +956,11 @@ Nothing was added!
 <br>
 <br>
 
-## Graph
+## 9.0 Graph
 
 <br>
 
-### Showing past net calories
+### 9.1 Showing past net calories
 
 Shows a graph of target calorie and net calorie obtained upto last 7 days.
 
@@ -997,7 +997,7 @@ Example of usage:
 <br>
 <br>
 
-## Exiting the program
+## 10.0 Exiting the program
 
 Saves the current list to file and exits program.
 
