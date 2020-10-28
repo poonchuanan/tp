@@ -104,10 +104,14 @@ The expected format of input values:
 	edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT
 	                       - Edits activity at index LIST_INDEX of latest list printed out
 	                         to exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT
-	find d/ DESCRIPTION    - Searches for exercise/food description with DESCRIPTION included
-	find c/ CALORIE_COUNT  - Searches through activity list with calories of CALORIE_COUNT
-	find e/ EITHER         - 
-	find a/ ALL            - 
+	find d/ DESCRIPTION    - Searches for all activities description with the DESCRIPTION keyword
+    find c/ CALORIE_COUNT  - Searches for all activities with calories of CALORIE_COUNT
+    find a/ DESCRIPTION1 / DESCRIPTION2 .../ DESCRIPTIONn
+                           - Searches for all activities with ALL matching keywords from
+                            DESCRIPTION1 to DESCRIPTIONn
+    find e/ DESCRIPTION1 / DESCRIPTION2 .../ DESCRIPTIONn
+                           - Searches for all activities with AT LEAST one matching keyword from
+                             DESCRIPTION1 to DESCRIPTIONn
 	move from/ INDEX1 below/ INDEX2
 	                       - Moves the activity at index INDEX1 to the index below INDEX2
 	delete LIST_INDEX      - Deletes activity located at index LIST_INDEX of latest list printed out
