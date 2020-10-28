@@ -1,37 +1,48 @@
 package seedu.duke.command;
 
-import seedu.duke.Food;
+import seedu.duke.model.ActivityList;
+import seedu.duke.model.Food;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-import static seedu.duke.Ui.displayHelpMessage;
-import static seedu.duke.Ui.displaySaveMessage;
+import static seedu.duke.ui.Ui.displaySavedMessage;
+
 
 /**
- * Edit food.
+ * Edits food and its attributes at the indicated index.
  */
 public class EditFoodCommand extends Command {
     protected int index;
     protected Food food;
     protected LocalDate date;
+    protected String description;
+    protected int calories;
+
 
     /**
-     * Edit food and it's respective calories.
+     * Edits food and it's respective calories.
      *
      * @param description food description.
      * @param calories calories gained.
-     * @param isFromFile if data is from csv file.
-     * @param date date of activity.
      */
-    public EditFoodCommand(int index, String description, int calories, boolean isFromFile, LocalDate date) {
+    public EditFoodCommand(int index, String description, int calories) {
         this.index = index;
-        this.food = new Food(description, calories, isFromFile);
-        this.date = date;
+        this.description = description;
+        this.calories = calories;
+        this.canBeChained = true;
     }
 
     @Override
     public void execute() {
-        dayMap.addNewActivity(index, date.atStartOfDay(), food);
+        try {
+            ActivityList lastSeenList = dayMap.getLastSeenList();
+            LocalDate dateOfActivityToBeEdited = lastSeenList.getDateOfActivityAtIndex(index);
+            this.food = new Food(description, calories, dateOfActivityToBeEdited, false);
+            dayMap.insertActivity(index, food);
+            displaySavedMessage();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Index entered is not within the range!\n"
+                    + "Please pull out the list for the day before editing on it!");
+        }
     }
 }

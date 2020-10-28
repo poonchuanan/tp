@@ -7,6 +7,9 @@ import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.FindDescriptionCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.exception.KeywordNotFoundException;
+import seedu.duke.model.DayMap;
+import seedu.duke.model.Exercise;
+import seedu.duke.model.Food;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -20,14 +23,14 @@ class AdvancedListingTest {
 
 
     void createObjects(DayMap dummyMap) {
-        dummyMap.addActivity(date.atStartOfDay(), new Food("rice with eggs", 50, false));
-        dummyMap.addActivity(date.atStartOfDay(), new Exercise("run 2km", 100, false));
+        dummyMap.addActivity(date.atStartOfDay(), new Food("rice with eggs", 50, date, false));
+        dummyMap.addActivity(date.atStartOfDay(), new Exercise("run 2km", 100, date, false));
 
-        dummyMap.addActivity(date2.atStartOfDay(), new Exercise("run 10km", 51, false));
-        dummyMap.addActivity(date2.atStartOfDay(), new Food("rice with tofu", 101, false));
+        dummyMap.addActivity(date2.atStartOfDay(), new Exercise("run 10km", 51,  date2,false));
+        dummyMap.addActivity(date2.atStartOfDay(), new Food("rice with tofu", 101, date2, false));
 
-        dummyMap.addActivity(date3.atStartOfDay(), new Food("rice with shit", 51, false));
-        dummyMap.addActivity(date3.atStartOfDay(), new Food("rice with pork", 101, false));
+        dummyMap.addActivity(date3.atStartOfDay(), new Food("rice with shit", 51, date3, false));
+        dummyMap.addActivity(date3.atStartOfDay(), new Food("rice with pork", 101, date3, false));
     }
 
     @Test
@@ -38,13 +41,13 @@ class AdvancedListingTest {
         Command listCommand = new ListCommand(date);
         listCommand.setData(dummyMap);
         listCommand.execute();
-        assertEquals("2020-10-09: [F] | rice with eggs | 50, [E] | run 2km | 100",
+        assertEquals("2020-10-09, [F] | rice with eggs | 50, [E] | run 2km | 100",
                 dummyMap.toString(date.atStartOfDay()));
 
         Command deleteCommand = new DeleteCommand(0);
         deleteCommand.setData(dummyMap);
         deleteCommand.execute();
-        assertEquals("2020-10-09: [E] | run 2km | 100", dummyMap.toString(date.atStartOfDay()));
+        assertEquals("2020-10-09, [E] | run 2km | 100", dummyMap.toString(date.atStartOfDay()));
     }
 
     @Test
@@ -59,7 +62,7 @@ class AdvancedListingTest {
         Command deleteCommand = new DeleteCommand(0);
         deleteCommand.setData(dummyMap);
         deleteCommand.execute();
-        assertEquals("2020-10-09: [E] | run 2km | 100", dummyMap.toString(date.atStartOfDay()));
+        assertEquals("2020-10-09, [E] | run 2km | 100", dummyMap.toString(date.atStartOfDay()));
         deleteCommand.execute();
 
         Assertions.assertThrows(NullPointerException.class, () -> {
@@ -101,7 +104,7 @@ class AdvancedListingTest {
         deleteCommand.execute();
 
         Assertions.assertThrows(KeywordNotFoundException.class, () -> {
-            dummyMap.listActivitiesContaining("run");
+            dummyMap.listActivitiesContainingDescription("run");
         });
     }
 

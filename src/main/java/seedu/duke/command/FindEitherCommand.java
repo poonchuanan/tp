@@ -7,26 +7,25 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
- * Initialises Command to find activity description.
+ * Initialises Command to find all description tags.
  */
-public class FindDescriptionCommand extends Command {
+public class FindEitherCommand extends Command {
     protected LocalDate date;
-    protected String description;
+    protected String userInput;
 
     /**
-     * Find matching results based on description input.
-     * @param description description to search
+     * Find matching results based on input tags.
+     * @param userInput keywords to be matched
      */
-    public FindDescriptionCommand(String description) {
-        this.date = LocalDateTime.now().toLocalDate();;
-        this.description = description;
-
+    public FindEitherCommand(String userInput) {
+        this.date = LocalDateTime.now().toLocalDate();
+        this.userInput = userInput;
     }
 
     @Override
     public void execute() {
         try {
-            dayMap.listActivitiesContainingDescription(description);
+            dayMap.listActivitiesContainingEither(userInput);
             FindDrawer findDrawer = new FindDrawer(dayMap.getLastSeenList());
             findDrawer.printListDrawing();
         } catch (KeywordNotFoundException e) {

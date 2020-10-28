@@ -1,15 +1,18 @@
-package seedu.duke;
+package seedu.duke.model;
 
+import seedu.duke.Trakcal;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static seedu.duke.Ui.displayEmptyActivityCounterMessage;
+import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
 
 
 /**
  * List of activities for any day.
  */
-public class ActivityList extends Duke {
+public class ActivityList extends Trakcal {
     private ArrayList<Activity> activities;
     private int activityCounter;
     private int netCalorie;
@@ -34,37 +37,51 @@ public class ActivityList extends Duke {
     }
 
 
-    public void addActivity(Activity activity) {
+    /**
+     * Adds new activity to the list and updates the netCalorie accordingly to the activity type added.
+     *
+     * @param activity new activity that will be added to the current activity
+     * @throws IndexOutOfBoundsException if the calories is not within the limits
+     */
+    public void addActivity(Activity activity) throws IndexOutOfBoundsException {
         activities.add(activity);
         activityCounter++;
         if (activity instanceof Food) {
             netCalorie += activity.calories;
         } else if (activity instanceof Exercise) {
             netCalorie -= activity.calories;
+        } else {
+            throw new IndexOutOfBoundsException();
         }
+        //displaySavedMessage();
     }
 
     /**
      * This method replaces the current activity at index with a new activity.
      * To change the description of the current activity.
-     * @param index is the index of the current activity to be replaced
+     *
+     * @param index    is the index of the current activity to be replaced
      * @param activity is the new activity that will be replacing the current activity
      */
-    public void addNewActivity(int index, Activity activity) {
-        //Activity item = new Activity(userInput, calories);
-        //activities.add(index, activity);
-        activities.set(index, activity);
-        //activityCounter++;
-        if (activity instanceof Food) {
-            netCalorie += activity.calories;
-        } else if (activity instanceof Exercise) {
-            netCalorie -= activity.calories;
+    public void insertActivity(int index, Activity activity) throws IndexOutOfBoundsException {
+        if (isValidIndex(index)) {
+            activities.set(index, activity);
+
+            if (activity instanceof Food) {
+                netCalorie += activity.calories;
+            } else if (activity instanceof Exercise) {
+                netCalorie -= activity.calories;
+            }
+            //displaySavedMessage();
+        } else {
+            throw new IndexOutOfBoundsException();
         }
     }
 
     /**
      * This method moves a activity from a given index and to a place below a given index.
-     * @param indexToBeMovedFrom this is the index at which the activity will be moved from
+     *
+     * @param indexToBeMovedFrom     this is the index at which the activity will be moved from
      * @param indexToBeInsertedBelow this is the index at which the activity will be moved to below
      * @throws IndexOutOfBoundsException if the index is not within the limits
      */
@@ -74,7 +91,7 @@ public class ActivityList extends Duke {
             Activity activity = getActivity(indexToBeMovedFrom);
             activities.remove(indexToBeMovedFrom);
             activities.add(indexToBeInsertedBelow, activity);
-
+            //displaySavedMessage();
         } else {
             throw new IndexOutOfBoundsException();
         }
@@ -95,7 +112,7 @@ public class ActivityList extends Duke {
     /**
      * Removes an activity from the list via index.
      *
-     * @param index index of acitivty in list
+     * @param index index of activity in list
      */
     public void removeActivity(int index) throws IndexOutOfBoundsException {
         if (isValidIndex(index)) {
@@ -141,7 +158,7 @@ public class ActivityList extends Duke {
     }
 
     /**
-     * Clears the list of activites.
+     * Clears the list of activities.
      */
     public void clearList() {
         activities.clear();
@@ -152,6 +169,7 @@ public class ActivityList extends Duke {
     /**
      * Sets the activities as a string.
      * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60
+     *
      * @return activities as a string
      */
     @Override
@@ -159,5 +177,9 @@ public class ActivityList extends Duke {
         String activitiesString = Arrays.toString(activities.toArray());
         activitiesString = activitiesString.substring(1, activitiesString.length() - 1);
         return (activitiesString);
+    }
+
+    public LocalDate getDateOfActivityAtIndex(int index) {
+        return getActivity(index).getActivityDate();
     }
 }

@@ -1,34 +1,44 @@
 package seedu.duke.command;
 
-import seedu.duke.Exercise;
-import seedu.duke.Food;
+import seedu.duke.model.Exercise;
 
 import java.time.LocalDate;
 
+import static seedu.duke.ui.Ui.displaySavedMessage;
+
 /**
- * Edit exercise.
+ * Edits exercise and its attributes at the indicated index.
  */
 public class EditExerciseCommand extends Command {
     protected int index;
     protected Exercise exercise;
+    protected String description;
+    protected int calories;
     protected LocalDate date;
 
     /**
-     * Add exercise and it's respective calories.
+     * Edits exercise and it's respective calories.
      *
      * @param description exercise description.
      * @param calories calories lost.
-     * @param isFromFile if data is from csv file.
-     * @param date date of activity.
      */
-    public EditExerciseCommand(int index, String description, int calories, boolean isFromFile, LocalDate date) {
+    public EditExerciseCommand(int index, String description, int calories) {
         this.index = index;
-        this.exercise = new Exercise(description, calories, isFromFile);
-        this.date = date;
+        this.description = description;
+        this.calories = calories;
+        this.canBeChained = true;
     }
 
     @Override
     public void execute() {
-        dayMap.addNewActivity(index, date.atStartOfDay(), exercise);
+        try {
+            LocalDate dateOfActivityToBeEdited = dayMap.getDateFromLastSeenListAtIndex(index);
+            this.exercise = new Exercise(description, calories,dateOfActivityToBeEdited, false);
+            dayMap.insertActivity(index, exercise);
+            displaySavedMessage();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Index entered is not within the range!\n"
+                    + "Please pull out the list for the day before editing on it!");
+        }
     }
 }
