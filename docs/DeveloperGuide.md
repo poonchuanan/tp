@@ -28,10 +28,15 @@ The Architecture Diagram shown above explains the high-level design of trakCAL.
 trakCAL is made up of mainly 6 components.
 
 `trakCAL`:
+
 `Ui`: Displays any message that the user can see and interact with
+
 `Logic`: Interprets what the user input
+
 `Command`: Executes specific command according to interpretation by `Logic`
+
 `Storage`: Saves required data into the hard disk or retrieves data
+
 `Model`: Visualize data into graph
 
 ### Logic component
@@ -51,31 +56,49 @@ In the logic component,
 
 ## Implementation
 
-### Add activity feature
+### 3.2 Add activity feature
 
-The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `add f/ food c/ 170 d/ 2020-10-22`.
+#### 3.2.1 Current Implementation
+
+The adding mechanism is used by AddFoodCommand and AddExerciseCommand to add to the list of date stated in user input.
+
+The following Sequence Diagram shows how add command is carried out when the user issues add command, in this case, `add f/ food c/ 170 d/ 2020-10-22`:
 
 ![Add Activity](diagrams/AddFoodFeature.jpg)
 
 *Figure 5. Component interactions for add food command*
 
-The sections below describe more features available.
+> Add exercise diagram has a similar logic.
+
+#### 3.2.2 Design Considerations
+
+Aspect: How to add activity
+
+>Alternative 1(current choice): Using single letter words as tags for input commands. (e.g. add f/ XXX c/ XXX d/ XXX)
+>* Pros: Faster and shorter input keys for user.
+>* Cons: Have to ensure that user is clear on what tags to input.
+
+>Alternative 2: Using full words as tags for input commands. (e.g. add food/ XXX calorie/ XXX date/ XXX)
+>* Pros: Tags are obvious in what input is expected.
+>* Cons: More wordy input needed from user.
 
 ### Advance List feature
 
-### 3.4 Edit activity in list feature
+### 3.5 Edit activity in list feature
 
-#### 3.4.1 Current Implementation
+#### 3.5.1 Current Implementation
 
 The editing mechanism is used by EditFoodCommand and EditExerciseCommand to amend the current list of activities.
 
-The following sequence diagram shows how a particular activity is edited after an edit command is entered by user:
+The following Sequence Diagram shows how edit command is carried out when the user issues edit command, in this case, `edit 1 f/ egg c/ 10`:
 
 ![Edit Activity](diagrams/EditActivityFeature.jpg)
 
-*Figure 9. Sequence diagram of edit feature*
+*Figure 9. Sequence diagram of edit food feature*
 
-#### 3.4.2 Design Considerations
+> Edit exercise diagram has a similar logic.
+
+#### 3.5.2 Design Considerations
 
 Aspect: How to edit activity
 
@@ -87,9 +110,9 @@ Aspect: How to edit activity
 >* Pros: Clear distinction of the classes.
 >* Cons: Increase in number of lines. Separate methods with similar logic will be created.
 
-### 3.5 Chaining feature
+### 3.6 Chaining feature
 
-#### 3.5.1 Current Implementation
+#### 3.6.1 Current Implementation
 
 The chaining mechanism can be used by the various commands available The following are the types of command that can be chained:
 >list
@@ -102,7 +125,7 @@ The following sequence diagram shows how the chaining works after command is ent
 
 *Figure 10. Sequence diagram of chaining feature*
 
-#### 3.5.2 Design Considerations
+#### 3.6.2 Design Considerations
 
 Aspect: Which commands to chain
 
@@ -122,7 +145,6 @@ Aspect: Which commands to chain
 ### Product scope
 
 #### Target user profile
-
 
 {Describe the target user profile}
 * Tech savvy university students that have knowledge on the exercise and calories or know where to get the information before inputting it in the application.
@@ -167,26 +189,6 @@ Aspect: Which commands to chain
 |v2.0|weight conscious person|track the amount of calories gained or lost|maintain my weight|
 |v2.0|careless student|go back and edit entries entered earlier|correct the errors I have made|
 |v2.0|frequent user|have pre-set repetitive actions entered by me|save time when inputting data|
-
-<br>
-
-### Use Cases
-
-Use case: Delete activity
-
-MSS:
->1. User requests to list the activities of a specific date.
->2. Duke shows a list of activities for that day.
->3. User requests to delete a specific activity in the list.
->4. Duke deletes the activity.
->5. Use case ends.
-
-Extensions:
->2a. The list is empty.
->2a1. Use case ends.
->3a. The given index is invalid.
->3a1. Duke shows an error message.
-Use case resumes at step 2.
 
 <br>
 
