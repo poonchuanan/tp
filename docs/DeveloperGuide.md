@@ -23,6 +23,19 @@
 
 ### Architecture
 
+`spaceholder: i obly draw on paper for now`
+
+The Architecture Diagram shown above explains the high-level design of tracKCAL. 
+
+TracKCAL is made up of mainly 6 components.
+
+`traKCAL`: 
+`Ui`: displays any message that the user can see and interact with
+`Logic`: Interprets what the user inputs
+`Command`: Executes specific command according to interpretation by `Logic`
+`Storage`: Saves required data into the hard disk or retrieves data 
+`Model`: Visualize data into a graph
+
 ### Logic component
 
 ![Logic Component](diagrams/LogicComponent.png)
@@ -40,7 +53,7 @@ In the logic component,
 
 ## Implementation
 
-### Add activity feature
+### Add feature
 
 ### Advance List feature
 
