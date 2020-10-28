@@ -7,7 +7,14 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.file.FileSystemAlreadyExistsException;
 
+import seedu.duke.ui.Ui;
+
+//import static seedu.duke.ui.ExceptionMessages.*;
+import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayShortcutDoesNotExistMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieEntryMessage;
 import static seedu.duke.ui.ExceptionMessages.displayExistingFileMessage;
 
 public class UserSetStorage {
@@ -28,7 +35,7 @@ public class UserSetStorage {
                 file.createNewFile();
             }
         } catch (IOException e) {
-            displayExistingFileMessage();
+            displayIoExceptionMessage();
         }
         updateTextFile(filePath, toTrim);
     }
@@ -37,7 +44,8 @@ public class UserSetStorage {
         try {
             FileOutputStream fos = new FileOutputStream(path);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-            String[] activity = toTrim.split("&&");
+            String[] activity = toTrim.split("\\+");
+            int index = 1;
 
             for (String s : activity) {
                 if (s.startsWith(" ")) {
@@ -49,15 +57,35 @@ public class UserSetStorage {
                 }
 
                 bw.write(s);
+                String calories = s.substring(s.indexOf("c/") + 2);
+                Integer.parseInt(calories);
+
+                if (index == 1) {
+                    Ui.drawDivider();
+                    System.out.println("You have created a shortcut containing:");
+                }
+
+                if (s.startsWith("f/")) {
+                    System.out.println(index + ". " + "Food: " + s.substring(2,s.indexOf("c/") - 1)
+                            + ", Calories: " + calories);
+                } else if (s.startsWith("e/")) {
+                    System.out.println(index + ". " + "Exercise: " + s.substring(2,s.indexOf("c/") - 1)
+                            + ", Calories: " + calories);
+                }
+                index++;
+
                 bw.newLine();
             }
 
+            Ui.drawDivider();
             bw.close();
 
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("There is no such set! Please create a new one first.\n");
         } catch (IOException e) {
             displayExistingFileMessage();
+        } catch (NumberFormatException e) {
+            displayInvalidCalorieEntryMessage();
         }
     }
 }
