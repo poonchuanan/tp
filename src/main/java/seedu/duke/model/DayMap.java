@@ -280,7 +280,7 @@ public class DayMap {
             userInput = userInput.substring(secondIndex);
             tags.add(firstWord);
         }
-        userInput = userInput.substring(userInput.indexOf("/") + 1 ).trim();
+        userInput = userInput.substring(userInput.indexOf("/") + 1).trim();
         tags.add(userInput);
         return tags;
     }
