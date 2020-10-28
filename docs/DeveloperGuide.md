@@ -118,32 +118,16 @@ The details of those operations can be found further down.
 
 #### 3.3.1 List
 
-This feature is used to list the entries of a specified date where the extracted activityList would be used as the lastSeenList itself.
-
-The following sequence diagram shows how the lastSeenList is set after a “list date" command where date is of YYYY-MM-DD 
-or after a “list” command where the date is the current date.
-
-![List Sequence Diagram](diagrams/ListSequenceDiagram.png)
-
-*Figure 6. Sequence diagram of setting the lastSeenList after a listCommand*
-
-
-
-
-### 3.4 Listing feature for find and list commands
-The listing mechanism used by ListCommand and FindCommand to display the required list of activities is facilitated by the lastSeenList of class ActivityList. The following operations could be applied to the lastSeenList which would change the actual data in the database:
-* `delete`
-* `move`
-* `edit (note: edit only moedit only modifies entries in the database after list command)`
-The details of those operations can be found further down
-
-#### 3.4.1 List
 This feature is used to list the entries of a specified date where the extracted activityList would be used as the lastSeenList itself. <br>
 The following sequence diagram shows how the lastSeenList is set after a “list date" command where date is of YYYY-MM-DD or after a “list” command where the date is the current date.<br>
+
 ![Listing feature for find and list commands](diagrams/setLastSeenList.png)
+
 Figure 6. Sequence diagram of setting the lastSeenList after a `list` command
 
-#### 3.4.2 Find
+
+
+#### 3.3.2 Find
 
 The editing mechanism is used by the basic find features: `FindDescriptionCommand`, `FindCalorieCommand`, 
 as well as the advanced find features: `FindAllCommand` and `FindEitherCommand` to look for keywords in the list.
@@ -153,8 +137,8 @@ The following sequence diagram shows how the lastSeenList is set after a find co
 *Figure 7. Sequence diagram of setting the lastSeenList after a find command*
 
 
-### 3.5 Displaying the list after `find` or `list` commands
-#### 3.5.1 Current implementation
+### 3.4 Displaying the list after `find` or `list` commands
+#### 3.4.1 Current implementation
 The mechanism used to display the lastSeenList invoked by the list or find commands is facilitated by the listDrawer and findDrawer class respectively. They both work the same way but the list produced by findDrawer has an extra column which contains the dates of the respective entries.
 <br>
 The following sequence diagram shows how the listDrawer class is used to display the lastSeenList.<br>
@@ -162,9 +146,9 @@ The following sequence diagram shows how the listDrawer class is used to display
 
 *Figure 8. Sequence diagram of the usage of listDrawer to display the list*
 
-### 3.6 Edit activity in list feature
+### 3.5 Edit activity in list feature
 
-#### 3.6.1 Current Implementation
+#### 3.5.1 Current Implementation
 
 The editing mechanism is used by `EditFoodCommand` and `EditExerciseCommand` to amend the current list of activities.
 
@@ -176,7 +160,7 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 
 > `EditExerciseCommand` diagram has a similar logic.
 
-#### 3.4.2 Design Considerations
+#### 3.6.2 Design Considerations
 
 Aspect: How to edit activity
 
@@ -188,9 +172,9 @@ Aspect: How to edit activity
 >* Pros: Clear distinction of the classes.
 >* Cons: Increase in number of lines. Separate methods with similar logic will be created.
 
-### 3.5 Chaining feature
+### 3.6 Chaining feature
 
-#### 3.5.1 Current Implementation
+#### 3.6.1 Current Implementation
 
 The chaining mechanism can be used by the various commands available The following are the types of command that can be chained:
 - list
@@ -203,7 +187,7 @@ The following sequence diagram shows how the chaining works after command is ent
 
 *Figure 9. Sequence diagram of chaining feature*
 
-#### 3.5.2 Design Considerations
+#### 3.6.2 Design Considerations
 
 Aspect: Which features to chain
 
