@@ -7,8 +7,8 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 # Introduction
 
-**traKCAL** is a desktop application for managing calories' intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
-If you are a fast typer, **traKCAL** can manage your activities faster than traditional GUI applications, and is perfect for you.
+**traKCAL** is a desktop application for managing and visualizing your calorie intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
+If you are a fast typer, **traKCAL** is perfect for you.
 
 **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
 
@@ -46,6 +46,22 @@ The section displays the table of contents showing all the available features in
 [Quick Start](#quick-start)
 
 [Features](#features)
+1. [Viewing help](#viewing-help)
+2. [Create](#create)
+
+    2.1 [Creating a new user profile](#21-creating-a-new-user-profile)
+    
+    2.2 [Creating a shortcut for a set of entries](#22-creating-a-shortcut-for-a-set-of-entries)
+3. Add
+
+   3.1 [Adding a food entry](#31-adding-a-food-entry)
+4. List
+5. Edit
+6. Find
+7. Move
+8. Delete
+9. Graph
+10. Exit
  
 [FAQ](#frequently-asked-questions)
 
@@ -82,6 +98,7 @@ Please do input 'help' for the commands and their respective input format.
 7. Refer to the [Features](#features) below for details of each command
 
 <br>
+<br>
 
 # Features 
 
@@ -93,7 +110,7 @@ This section gives you a detailed description of each feature available in **tra
 >* Commands such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow format stated in help list or this user guide.
 
 <br>
-<br>
+
 
 ## Viewing help
 
@@ -149,7 +166,6 @@ Words in CAPS are parameters to be filled in by you!
 =====================================================================================================
 ```
 
-<br>
 <br>
 
 ## Create
@@ -222,7 +238,6 @@ Please input lose or maintain or gain as weight goal only!
 =====================================================================================================
 ```
 
-<br>
 <br>
 
 ### 2.2 Creating a shortcut for a set of entries 
