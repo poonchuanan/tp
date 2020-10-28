@@ -1,6 +1,6 @@
 # User Guide for traKCAL
 
-The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
+The purpose of this developer guide is as reference for future collaborators of **trakCAL**.
 
 By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
@@ -29,7 +29,7 @@ The section displays the table of contents showing all the available features in
 This section gives the steps you need to get started quickly.
 
 1. Ensure that you have Java 11 or above installed, if not, it can be found [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html)
-2. Down the latest version of `Duke` from [here](http://link.to/duke)
+2. Down the latest version of `trakCAL` from [here](http://link.to/duke)
 3. Create an empty folder in a convenient location eg. Desktop and copy jar file there
 4. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar tp.jar`
 5. Upon successful run, you will get the following greeting message
