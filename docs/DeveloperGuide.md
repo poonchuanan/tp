@@ -40,12 +40,15 @@ TracKCAL is made up of mainly 6 components.
 
 ![Logic Component](diagrams/LogicComponent.png)
 
-In the logic component, 
+The main bulk of data processing takes place in the logic component. In this component, 
+the data from the userinput is checked for its validity and parsed down futher to its respective command blocks.
+These blocks of command are derived from the abstract Command class. Each different command block deals with the 
+proposed functionality which can be associated with `Ui`,`storage` or `model` components. 
 
-* Trakcal uses the parser class to filter based on command words by user.
-* Description that comes after is further parsed down by the Parser.
-* Respective Command object is created and is executed by Trackcal.
-* Respective execution methods can be further calls methods from `UI`, `Storage` and `Model` components.
+1. Trakcal uses the parser class to filter based on command words by user.
+1. Description that comes after is further parsed down by the Parser.
+1. Respective Command object is created and is executed by Trackcal.
+1. Respective execution methods can be further calls methods from `UI`, `Storage` and `Model` components.
 
 ### Storage component
 
@@ -65,8 +68,24 @@ In the logic component,
 
 ### Graph feature
 
+The graph implementation shows the progress of the daily net 
+calories over the period of 7 days. The GraphProperty class extracts the available days from the 
+hashmap.
+<br> 
+<br>
+The days are sorted accordingly and the latest 7 days are chosen from the sorted list. 
+The properties of the graph such as axis range are also calculated. The GraphDrawing class makes use of these properties
+to draw the graph.
+<br>
+
 ![Graph_Sequence_Diagram](diagrams/GraphSequenceDiagram.png)
 
+As shown above, when the execute command of GraphCommand is called, the GraphProperty object 
+is created, the properties of the graph are then stored and calculated in setProperty function.
+<br>
+<br>
+Next, the graphDrawing object is created and uses the properties calculated earlier to print out the graph.
+> In the case where there are less than 7  days stored, all the days will be displayed.
 
 
 ## Appendix: Requirements
