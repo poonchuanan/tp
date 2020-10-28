@@ -31,9 +31,7 @@ public class MoveActivityCommandTest {
         dummyMap.addActivity(date2.atStartOfDay(), new Food("Orange2", 26, date2, false));
     }
 
-    /**
-     * Tests if the result will be the same even if there are different white spaces.
-     */
+
     @Test
     void whiteSpace_parsingTest() {
         DayMap dummyMap = new DayMap();
@@ -59,9 +57,7 @@ public class MoveActivityCommandTest {
                 dummyMap.toString(date.atStartOfDay()));
     }
 
-    /**
-     * Tests if a NumberFormatException will be thrown if the user enters wrong command format.
-     */
+
     @Test
     void numberFormatExceptionThrown_ifIndexEnteredIsNotANumber() {
         DayMap dummyMap = new DayMap();
@@ -79,9 +75,7 @@ public class MoveActivityCommandTest {
         });
     }
 
-    /**
-     * Tests if both the index is within the boundaries.
-     */
+
     @Test
     void indexOutOfBoundsExceptionThrown_ifIndexEnteredIsWrong() {
         DayMap dummyMap = new DayMap();
@@ -98,9 +92,7 @@ public class MoveActivityCommandTest {
         });
     }
 
-    /**
-     * Tests if a ListNotFound exception will be thrown if accessing a unavailable last seen list.
-     */
+
     @Test
     void listNotFoundException_IfTryToAccessEmptyLastSeenList() {
         DayMap dummyMap = new DayMap();

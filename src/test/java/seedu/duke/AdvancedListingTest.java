@@ -17,9 +17,6 @@ import java.time.Month;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-/**
- * This test is to test whether the delete functions can work on indexes produced from the list and find commands.
- */
 class AdvancedListingTest {
     LocalDate date = LocalDate.of(2020, Month.OCTOBER, 9);
     LocalDate date2 = LocalDate.of(2020, Month.NOVEMBER, 10);
@@ -37,9 +34,7 @@ class AdvancedListingTest {
         dummyMap.addActivity(date3.atStartOfDay(), new Food("rice with pork", 101, date3, false));
     }
 
-    /**
-     * This test the delete function on the list commands for different dates.
-     */
+
     @Test
     void listDate_andDeleteFromActivityListShown_successfully() {
         DayMap dummyMap = new DayMap();
@@ -57,9 +52,6 @@ class AdvancedListingTest {
         assertEquals("2020-10-09, [E] | run 2km | 100", dummyMap.toString(date.atStartOfDay()));
     }
 
-    /**
-     * This tests expects a null pointer exception once deletes all items from a list.
-     */
     @Test
     void deleteAllTasks_andExpect_NullPointerException_fromListCommand() {
         DayMap dummyMap = new DayMap();
@@ -80,9 +72,7 @@ class AdvancedListingTest {
         });
     }
 
-    /**
-     * This tests the delete function after a find command.
-     */
+
     @Test
     void findDescription_andDeleteFromActivityListShown_successfully() {
         DayMap dummyMap = new DayMap();
@@ -102,9 +92,7 @@ class AdvancedListingTest {
                 dummyMap.getLastSeenList().toString());
     }
 
-    /**
-     * This tests expects a keyword not found exception once all results containing the keyword has been deleted.
-     */
+
     @Test
     void deleteAllTasks_andExpect_KeywordNotFoundExceptions_fromFindCommand() {
         DayMap dummyMap = new DayMap();
