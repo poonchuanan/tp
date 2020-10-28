@@ -125,7 +125,6 @@ Words in CAPS are parameters to be filled in by you!
 
 ## 2.0 Create
 
-<br>
 
 ### 2.1 Creating a new user profile
 
@@ -235,7 +234,6 @@ Please enter calories as an integer
 
 ## 3.0 Add
 
-<br>
 
 ### 3.1 Adding a food entry
 
@@ -387,11 +385,9 @@ This shortcut does not exists, please create a shortcut before adding it!
 <br>
 <br>
 
-## List
+## 4.0 List
 
-<br>
-
-### 4.0 Listing entries for the specified day
+### 4.1 Listing entries for the specified day
 
 Displays the list of activities for the given day.
 
@@ -425,8 +421,6 @@ Examples of usage:
 <br>
 
 ## 5.0 Edit
-
-<br>
 
 ### 5.1 Editing user profile
 
@@ -683,6 +677,7 @@ No.        Type                        Description                        Calori
 
 ```
 
+
 ### 5.5 Editing an entry in list from exercise to food 
 
 Edits a particular exercise activity in list from exercise to food.  
@@ -749,8 +744,6 @@ No.        Type                        Description                        Calori
 <br>
 
 ## 6.0 Find
-
-<br>
 
 ### 6.1 Finding entries via keyword
 
@@ -827,8 +820,6 @@ The current activity list has been saved.
 
 ## 7.0 Move
 
-<br>
-
 ### 7.1 Moving an activity to another position
 
 Moves an activity to another position in the last shown list.
@@ -874,7 +865,6 @@ Examples of usage:
 
 ## 8.0 Delete
 
-<br>
 
 ### 8.1 Deleting an entry in list
 
@@ -959,7 +949,6 @@ Nothing was added!
 
 ## 9.0 Graph
 
-<br>
 
 ### 9.1 Showing past net calories
 
@@ -1040,8 +1029,8 @@ This section gives you a cheat sheet of commands available.
 
 Action         | Format | Example
 -------------- | ---------- | --------
-Help | `help` | `help`
-Create User Profile | `create new user` | `create new user`
+Help | `help` | 
+Create User Profile | `create new user` | 
 Add Food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice cream c/ 78 d/ 2020-10-19`
 Add Exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
 List | `list` OR `list DATE` | `list` OR `list 2020-10-24` 
@@ -1054,6 +1043,6 @@ Find Either | `find e/ DESCRIPTION1 e/ DESCRIPTION2 e/ DESCRIPTION3 ...` | `find
 Find All | `find a/ DESCRIPTION1 a/ DESCRIPTION2 a/ DESCRIPTION3 ...` | `find a/ running a/ jumping a/ cake ...`
 Move Activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
 Delete Entry | `delete INDEX` | `delete 2`
-Delete All for Today| `delete all/` | `delete all/`
-Graph | `graph` | `graph`
-Exit | `bye` | `bye`
+Delete All for Today| `delete all/` | 
+Graph | `graph` | 
+Exit | `bye` | 
