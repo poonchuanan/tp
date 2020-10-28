@@ -4,7 +4,7 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 <br>
 
-## Introduction
+# Introduction
 
 **traKCAL** is a desktop application for managing calories' intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
 If you type fast, **traKCAL** can manage your activities faster than traditional GUI applications, and is perfect for you.
@@ -15,33 +15,15 @@ The purpose of this user guide is to guide the users on the commands available i
 
 <br>
 
-## Table of Contents
+# Table of Contents
 
 The section displays the table of contents showing all the available features in **trakCAL**
 
-* [Quick Start](#quick-start)
-* [Features](#features)
-    * [Viewing help](#viewing-help): `help`
-    * [Creating a new user profile](#creating-a-new-user-profile): `create new user`
-    * [Creating a set of entries](#creating-a-shortcut-for-a-set-of-entries): `createSet`
-    * [Adding a food entry](#adding-a-food-entry): `add`
-    * [Adding an exercise entry](#adding-an-exercise-entry): `add`
-    * [Adding a set of entries](#adding-a-set-of-entries): `addSet`
-    * [Listing entries for the specified day](#listing-entries-for-the-specified-day): `list`
-    * [Editing user profile](#editing-user-profile): `edit`
-    * [Editing an entry in list](#editing-an-entry-in-list): `edita`
-    * [Finding entries via keyword](#finding-entries-via-keyword): `find`
-    * [Moving an entry to another position](#moving-an-activity-to-another-position): `move`
-    * [Deleting an entry in list](#deleting-an-entry-in-list): `delete`
-    * [Deleting all entries in list](#deleting-all-entries-in-list): `deleteALL`
-    * [Showing past net calories](#showing-past-net-calories): `graph`
-    * [Exiting the program](#exiting-the-program): `bye`
-* [Frequently asked questions](#frequently-asked-questions)
-* [Command Summary](#command-summary)
+[ToC]
 
 <br>
 
-## Quick Start
+# Quick Start
 
 This section gives the steps you need to get started quickly.
 
@@ -73,7 +55,7 @@ Please do input 'help' for the commands and their respective input format.
 
 <br>
 
-## Features 
+# Features 
 
 This section gives you a detailed description of each feature available in **trakCAL**.
 
@@ -140,7 +122,11 @@ Words in CAPS are parameters to be filled in by you!
 <br>
 <br>
 
-## Creating a new user profile
+## Create
+
+<br>
+
+### Creating a new user profile
 
 If this is your first time using **tracKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
 **tracKCAL** will then use these details from your user profile to calculate the following: 
@@ -211,7 +197,7 @@ Please input lose or maintain or gain as weight goal only!
 <br>
 <br>
 
-## Creating a shortcut for a set of entries 
+### Creating a shortcut for a set of entries 
 
 This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add in multiple common entries. 
 
@@ -246,8 +232,11 @@ Please enter calories as an integer
 <br>
 <br>
 
+## Add
 
-## Adding a food entry
+<br>
+
+### Adding a food entry
 
 Adds a food entry with its respective calories to the list.
 
@@ -276,7 +265,7 @@ The current activity list has been saved.
 <br>
 <br>
 
-## Adding an exercise entry
+### Adding an exercise entry
 
 Adds an exercise entry with its respective calories to the list.
 
@@ -305,7 +294,7 @@ The current activity list has been saved.
 <br>
 <br>
 
-## Adding a set of entries
+### Adding a set of entries
 
 Adds a set of repeated entries at once.
 
@@ -341,7 +330,11 @@ This shortcut does not exists, please create a shortcut before adding it!
 <br>
 <br>
 
-## Listing entries for the specified day
+##List
+
+<br>
+
+### Listing entries for the specified day
 
 Displays the list of activities for the given day.
 
@@ -374,7 +367,11 @@ Examples of usage:
 <br>
 <br>
 
-## Editing user profile
+## Edit
+
+<br>
+
+### Editing user profile
 
 Edits user profile of an existing user.
 
@@ -442,7 +439,7 @@ Please input lose or maintain or gain as weight goal only!
 <br>
 <br>
 
-## Editing an entry in list
+### Editing an entry in list
 
 Edits activity, food or exercise at the stated index in the list.  
 >Things you should take note of:
@@ -482,7 +479,11 @@ The current activity list has been saved.
 <br>
 <br>
 
-## Finding entries via keyword
+## Find
+
+<br>
+
+### Finding entries via keyword
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
 >Additionally, you can use the advanced find commands to find all matching keywords or just one matching keyword.
@@ -555,7 +556,11 @@ The current activity list has been saved.
 <br>
 <br>
 
-## Moving an activity to another position
+## Move
+
+<br>
+
+### Moving an activity to another position
 
 Moves an activity to another position in the last shown list.
 
@@ -598,7 +603,11 @@ Examples of usage:
 <br>
 <br>
 
-## Deleting an entry in list
+## Delete
+
+<br>
+
+### Deleting an entry in list
 
 Deletes an entry via index in the last shown list.
 
@@ -642,7 +651,7 @@ The current activity list has been saved.
 <br>
 <br>
 
-## Deleting all entries in list
+### Deleting all entries in list
 
 Deletes all entry in list.
 
@@ -679,7 +688,11 @@ Nothing was added!
 <br>
 <br>
 
-## Showing past net calories
+## Graph
+
+<br>
+
+### Showing past net calories
 
 Shows a graph of target calorie and net calorie obtained upto last 7 days.
 
@@ -733,7 +746,7 @@ Example of usage:
 
 <br>
 
-## Frequently asked questions
+# Frequently asked questions
 This section answers questions you may have.
 
 **Q**: How do I transfer my data to another computer? 
@@ -750,7 +763,7 @@ This section answers questions you may have.
 
 <br>
 
-## Command Summary
+# Command Summary
 
 This section gives you a cheat sheet of commands available.
 >Things you should take note of:
