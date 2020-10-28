@@ -247,12 +247,38 @@ Parameters:
 * `**CALORIE_COUNT**`: Amount of calories consumed.
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
-Examples of usage:
-* `add f/ ice cream c/ 78 d/ 2020-10-19`
+Examples of usage: 
+* `list` before adding *current date is 2020-10-28*
+```
+-----------------------------------------
+|  2020-10-28  |  Net Calorie: 30 kcal  |
+-----------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple_____________________________________________________30
+```
+
+* `add f/ mushroom soup c/ 77 d/ 2020-10-28`
 
 ```
-[F] | ice cream | 78
+=====================================================================================================
+Noted! The following has been added into list:
+[F] | mushroom soup | 77
+
 The current activity list has been saved.
+=====================================================================================================
+```
+
+* `list` after adding
+```
+------------------------------------------
+|  2020-10-28  |  Net Calorie: 107 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple_____________________________________________________30
+
+2          Food           mushroom soup_____________________________________________77
 ```
 
 #### Possible error messages and how to solve them:
@@ -277,11 +303,41 @@ Parameters:
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 Examples of usage: 
-* `add e/ jumping c/ 65 d/ 2020-10-19`
+* `list` before adding
+```
+------------------------------------------
+|  2020-10-28  |  Net Calorie: 107 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple_____________________________________________________30
+
+2          Food           mushroom soup_____________________________________________77
+```
+
+* `add e/ jumping c/ 65 d/ 2020-10-28`
 
 ```
+=====================================================================================================
+Noted! The following has been added into list:
 [E] | jumping | 65
+
 The current activity list has been saved.
+=====================================================================================================
+```
+
+* `list` after adding
+```
+-----------------------------------------
+|  2020-10-28  |  Net Calorie: 42 kcal  |
+-----------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple_____________________________________________________30
+
+2          Food           mushroom soup_____________________________________________77
+
+3        Exercise         jumping___________________________________________________65
 ```
 
 #### Possible error messages and how to solve them:
@@ -330,7 +386,7 @@ This shortcut does not exists, please create a shortcut before adding it!
 <br>
 <br>
 
-##List
+## List
 
 <br>
 
@@ -439,21 +495,128 @@ Please input lose or maintain or gain as weight goal only!
 <br>
 <br>
 
-### Editing an entry in list
+### Editing an entry in list from food to food 
 
-Edits activity, food or exercise at the stated index in the list.  
+Edits a particular food activity in list.
 >Things you should take note of:
 >* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
 >* The list in which you want to edit to have to be pulled out first before being able to edit on it.
 >* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
 
-Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**` OR `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 Parameters:
 * `**LIST_INDEX**`: Index of activity to be edited in list.
-* `**FOOD_DESCRIPTION**`: Description of food consumed.
-* `**EXERCISE_DESCRIPTION**`: Description of exercise done.
-* `**CALORIE_COUNT**`: Amount of calories consumed.
+* `**FOOD_DESCRIPTION**`: New description of food consumed.
+* `**CALORIE_COUNT**`: New amount of calories consumed.
+
+Example of usage:
+* `list`
+
+```
+1. [F] | pudding | 66
+```
+
+* `edita 1 e/ running c/100`
+
+```
+[E] | running | 100
+The current activity list has been saved.
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
+### Editing an entry in list from food to exercise
+
+Edits a particular food activity in list from food to exercise.
+>Things you should take note of:
+>* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
+>* The list in which you want to edit to have to be pulled out first before being able to edit on it.
+>* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
+
+Format: `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+
+Parameters:
+* `**LIST_INDEX**`: Index of activity to be edited in list.
+* `**EXERCISE_DESCRIPTION**`: New description of exercise done.
+* `**CALORIE_COUNT**`: New amount of calories lost.
+
+Example of usage:
+* `list`
+
+```
+1. [F] | pudding | 66
+```
+
+* `edita 1 e/ running c/100`
+
+```
+[E] | running | 100
+The current activity list has been saved.
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
+### Editing an entry in list from exercise to exercise 
+
+Edits a particular exercise activity in list. 
+>Things you should take note of:
+>* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
+>* The list in which you want to edit to have to be pulled out first before being able to edit on it.
+>* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
+
+Format: `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+
+Parameters:
+* `**LIST_INDEX**`: Index of activity to be edited in list.
+* `**EXERCISE_DESCRIPTION**`: New description of exercise done.
+* `**CALORIE_COUNT**`: New amount of calories lost.
+
+Example of usage:
+* `list`
+
+```
+1. [F] | pudding | 66
+```
+
+* `edita 1 e/ running c/100`
+
+```
+[E] | running | 100
+The current activity list has been saved.
+```
+
+#### Possible error messages and how to solve them:
+
+*explanation*
+```
+
+```
+
+### Editing an entry in list from exercise to food 
+
+Edits a particular exercise activity in list from exercise to food.  
+>Things you should take note of:
+>* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
+>* The list in which you want to edit to have to be pulled out first before being able to edit on it.
+>* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
+
+Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+
+Parameters:
+* `**LIST_INDEX**`: Index of activity to be edited in list.
+* `**FOOD_DESCRIPTION**`: New description of food consumed.
+* `**CALORIE_COUNT**`: New amount of calories consumed.
 
 Example of usage:
 * `list`
@@ -617,7 +780,7 @@ Parameters:
 * `**INDEX**`: Index of activity to be deleted in the last shown list.
 
 Example of usage:
-* `list` before deletion
+* `list` before deleting
 
 ```
 1. [F] | apple | 200
@@ -633,7 +796,7 @@ Activity removed!
 The current activity list has been saved.
 ```
 
-* `list` after deletion
+* `list` after deleting
 
 ```
 1. [F] | apple | 200
@@ -658,7 +821,7 @@ Deletes all entry in list.
 Format : `delete /all`
 
 Example of usage:
-* `list` before deletion
+* `list` before deleting
 
 ```
 1. [F] | apple | 200
@@ -672,7 +835,7 @@ Example of usage:
 The current activity list has been saved.
 ```
 
-* `list` after deletion
+* `list` after deleting
 
 ```
 Nothing was added!
