@@ -16,25 +16,23 @@
 * Download the latest tracKCAL jar file (here)
 * Copy jar file into an empty folder in a convenient location (eg. Desktop)
 * Open terminal and navigate directory to the folder containing jar file 
-* Enter the following command line to run program: ```java -jar tracKCAL.jar```   
-* Look through the user guide for a full detailed explanation on the functionality of tracKCAL
+* Enter the following command line to run program: ```java -jar trakCAL.jar```   
+* Look through the user guide for a full detailed explanation on the functionality of trakCAL
     
 ## Design 
 
 ### Architecture
 
-`spaceholder: i obly draw on paper for now`
+The Architecture Diagram shown above explains the high-level design of trakCAL.
 
-The Architecture Diagram shown above explains the high-level design of tracKCAL. 
+trakCAL is made up of mainly 6 components.
 
-TracKCAL is made up of mainly 6 components.
-
-`traKCAL`: 
-`Ui`: displays any message that the user can see and interact with
-`Logic`: Interprets what the user inputs
+`trakCAL`:
+`Ui`: Displays any message that the user can see and interact with
+`Logic`: Interprets what the user input
 `Command`: Executes specific command according to interpretation by `Logic`
-`Storage`: Saves required data into the hard disk or retrieves data 
-`Model`: Visualize data into a graph
+`Storage`: Saves required data into the hard disk or retrieves data
+`Model`: Visualize data into graph
 
 ### Logic component
 
@@ -42,9 +40,9 @@ TracKCAL is made up of mainly 6 components.
 
 In the logic component, 
 
-* Trakcal uses the parser class to filter based on command words by user.
+* trakCAL uses the parser class to filter based on command words by user.
 * Description that comes after is further parsed down by the Parser.
-* Respective Command object is created and is executed by Trackcal.
+* Respective Command object is created and is executed by trakCAL.
 * Respective execution methods can be further associated with `UI`, `Storage` and `Model` components.
 
 ### Storage component
@@ -53,7 +51,7 @@ In the logic component,
 
 ## Implementation
 
-### Add feature
+### Add activity feature
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `add f/ food c/ 170 d/ 2020-10-22`.
 
@@ -71,7 +69,7 @@ The sections below describe more features available.
 
 The editing mechanism is used by EditFoodCommand and EditExerciseCommand to amend the current list of activities.
 
-The following sequence diagram shows how a particular activity is edited after a edit command is entered:
+The following sequence diagram shows how a particular activity is edited after an edit command is entered by user:
 
 ![Edit Activity](diagrams/EditActivityFeature.jpg)
 
