@@ -3,6 +3,9 @@ package seedu.duke.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * This class is used to create a responsive interface for the listing feature after a list command.
+ */
 public class FindDrawer extends ListDrawer {
 
 
@@ -14,10 +17,17 @@ public class FindDrawer extends ListDrawer {
     private static final int START_INDEX_FOR_ACTIVITY_DATE = 9;
 
 
+    /**
+     * Constructor for the findDrawer class.
+     * @param lastSeenList list to be drawn
+     */
     public FindDrawer(ActivityList lastSeenList) {
         super(lastSeenList);
     }
 
+    /**
+     * Prints the list of activities.
+     */
     @Override
     public void printList() {
         System.out.println(listHeaderString()
@@ -27,6 +37,11 @@ public class FindDrawer extends ListDrawer {
                 + allActivityString());
     }
 
+    /**
+     * Generates the string for a single activity.
+     * @param index index of the activity
+     * @return string of single activity
+     */
     @Override
     protected String singleActivityString(int index) {
         ArrayList<String> descriptions = new ArrayList<>();
@@ -110,6 +125,10 @@ public class FindDrawer extends ListDrawer {
 
     }
 
+    /**
+     * Generates the header for the list.
+     * @return string of header
+     */
     @Override
     protected String listHeaderString() {
         String header = NUMBERS

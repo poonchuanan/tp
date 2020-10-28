@@ -319,6 +319,12 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Prepares the arguments needed for moving an activity from one index to another.
+     * @param userInput description of the move command
+     * @return the moveCommand
+     * @throws IndexOutOfBoundsException if the index is not valid
+     */
     private Command prepareMoveIndexCommand(String userInput) throws IndexOutOfBoundsException {
         //Removing additional spaces in the user's input
         String after = userInput.trim().replaceAll(" +", " ");
@@ -441,6 +447,12 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Prepares the arguments needed for the graph command.
+     * @param userInput description of the graph command
+     * @return graphCommand
+     * @throws Exception if no records are found
+     */
     private Command prepareGraphCommand(String[] userInput) throws Exception {
         if (userInput.length != 1) {
             throw new Exception("Graph has has no description");

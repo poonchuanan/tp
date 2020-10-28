@@ -7,6 +7,9 @@ import seedu.duke.model.GraphProperty;
 
 import java.util.HashMap;
 
+/**
+ * Displays the graph of illustrating the net calorie gain/loss throughout the period.
+ */
 public class GraphCommand extends Command {
     public static final int MAXIMUM_DAYS = 7;
 
