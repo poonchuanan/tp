@@ -3,6 +3,9 @@ package seedu.duke.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Displays the graph of the net calorie gain/loss throughout the period.
+ */
 public class GraphDrawing {
 
 
