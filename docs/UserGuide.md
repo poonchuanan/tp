@@ -1,15 +1,16 @@
 # User Guide for traKCAL
 
+The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
+
 By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 <br>
 
 # Introduction
 
-**traKCAL** is a desktop application for managing calories' intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
-If you type fast, **traKCAL** can manage your activities faster than traditional GUI applications, and is perfect for you.
+**traKCAL** is a desktop application for managing and visualizing your calorie intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
 
-The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
+If you are a fast typer, **traKCAL** is perfect for you!
 
 **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
 
@@ -67,7 +68,7 @@ This section gives you a detailed description of each feature available in **tra
 <br>
 <br>
 
-## Viewing help
+## 1.0 Viewing help
 
 Prints out the commands available, and their respective input format.
 
@@ -103,10 +104,14 @@ The expected format of input values:
 	edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT
 	                       - Edits activity at index LIST_INDEX of latest list printed out
 	                         to exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT
-	find d/ DESCRIPTION    - Searches for exercise/food description with DESCRIPTION included
-	find c/ CALORIE_COUNT  - Searches through activity list with calories of CALORIE_COUNT
-	find e/ EITHER         - 
-	find a/ ALL            - 
+	find d/ DESCRIPTION    - Searches for all activities description with the DESCRIPTION keyword
+    find c/ CALORIE_COUNT  - Searches for all activities with calories of CALORIE_COUNT
+    find a/ DESCRIPTION1 / DESCRIPTION2 .../ DESCRIPTIONn
+                           - Searches for all activities with ALL matching keywords from
+                            DESCRIPTION1 to DESCRIPTIONn
+    find e/ DESCRIPTION1 / DESCRIPTION2 .../ DESCRIPTIONn
+                           - Searches for all activities with AT LEAST one matching keyword from
+                             DESCRIPTION1 to DESCRIPTIONn
 	move from/ INDEX1 below/ INDEX2
 	                       - Moves the activity at index INDEX1 to the index below INDEX2
 	delete LIST_INDEX      - Deletes activity located at index LIST_INDEX of latest list printed out
@@ -122,11 +127,10 @@ Words in CAPS are parameters to be filled in by you!
 <br>
 <br>
 
-## Create
+## 2.0 Create
 
-<br>
 
-### Creating a new user profile
+### 2.1 Creating a new user profile
 
 If this is your first time using **tracKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
 **tracKCAL** will then use these details from your user profile to calculate the following: 
@@ -164,40 +168,11 @@ Your recommend daily calories intake is 1576.65 calories.
 To gain weight, you should consume 2076.65 calories instead.
 ```
 
-#### Possible error messages and how to solve them:
-
-**tracKCAL** only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
-```
-=====================================================================================================
-Please input female or male as gender only!
-=====================================================================================================
-```
-
-**tracKCAL** only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
-```
-=====================================================================================================
-Please enter a valid number format!
-=====================================================================================================
-```
-
-**tracKCAL** only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
-```
-=====================================================================================================
-Please enter a number from 1 to 5 only!
-=====================================================================================================
-```
-
-**tracKCAL** only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
-```
-=====================================================================================================
-Please input lose or maintain or gain as weight goal only!
-=====================================================================================================
-```
 
 <br>
 <br>
 
-### Creating a shortcut for a set of entries 
+### 2.2 Creating a shortcut for a set of entries 
 
 This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add in multiple common entries. 
 
@@ -220,23 +195,14 @@ You have created a shortcut containing:
 =====================================================================================================
 ```
 
-#### Possible error message and how to solve them: 
-
-**tracKCAL** only accepts integers for calories. If you were to enter `createSet bfast f/ice cream c/haha + e/jumping jacks c/100`, this error message will be shown.
- ```
-=====================================================================================================
-Please enter calories as an integer
-=====================================================================================================
- ```
 
 <br>
 <br>
 
-## Add
+## 3.0 Add
 
-<br>
 
-### Adding a food entry
+### 3.1 Adding a food entry
 
 Adds a food entry with its respective calories to the list.
 
@@ -291,7 +257,7 @@ No.        Type                        Description                        Calori
 <br>
 <br>
 
-### Adding an exercise entry
+### 3.2 Adding an exercise entry
 
 Adds an exercise entry with its respective calories to the list.
 
@@ -350,7 +316,7 @@ No.        Type                        Description                        Calori
 <br>
 <br>
 
-### Adding a set of entries
+### 3.3 Adding a set of entries
 
 Adds a set of repeated entries at once.
 
@@ -374,23 +340,13 @@ The current activity list has been saved.
 =====================================================================================================
 ```
 
-#### Possible error message and how to solve them: 
-
-If you were to add a new shortcut without creating it first, this error message will be shown
- ```
-=====================================================================================================
-This shortcut does not exists, please create a shortcut before adding it!
-=====================================================================================================
- ```
 
 <br>
 <br>
 
-## List
+## 4.0 List
 
-<br>
-
-### Listing entries for the specified day
+### 4.1 Listing entries for the specified day
 
 Displays the list of activities for the given day.
 
@@ -423,11 +379,9 @@ Examples of usage:
 <br>
 <br>
 
-## Edit
+## 5.0 Edit
 
-<br>
-
-### Editing user profile
+### 5.1 Editing user profile
 
 Edits user profile of an existing user.
 
@@ -495,7 +449,7 @@ Please input lose or maintain or gain as weight goal only!
 <br>
 <br>
 
-### Editing an entry in list from food to food 
+### 5.2 Editing an entry in list from food to food 
 
 Edits a particular food activity in list.
 >Things you should take note of:
@@ -557,7 +511,7 @@ No.        Type                        Description                        Calori
 
 ```
 
-### Editing an entry in list from food to exercise
+### 5.3 Editing an entry in list from food to exercise
 
 Edits a particular food activity in list from food to exercise.
 >Things you should take note of:
@@ -619,7 +573,7 @@ No.        Type                        Description                        Calori
 
 ```
 
-### Editing an entry in list from exercise to exercise 
+### 5.4 Editing an entry in list from exercise to exercise 
 
 Edits a particular exercise activity in list. 
 >Things you should take note of:
@@ -682,7 +636,8 @@ No.        Type                        Description                        Calori
 
 ```
 
-### Editing an entry in list from exercise to food 
+
+### 5.5 Editing an entry in list from exercise to food 
 
 Edits a particular exercise activity in list from exercise to food.  
 >Things you should take note of:
@@ -747,70 +702,72 @@ No.        Type                        Description                        Calori
 <br>
 <br>
 
-## Find
+## 6.0 Find
 
-<br>
 
-### Finding entries via keyword
+### 6.1 Finding entries via keyword - basic
+
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
 >Additionally, you can use the advanced find commands to find all matching keywords or just one matching keyword.
 
-Format for find by description: `find d/**DESCRIPTION**`
+Format for find by description: `find d/ **DESCRIPTION**`
 
 Parameters:
 * `**DESCRIPTION**`: Keyword to look for from description list.
 
 Example of usage:
-* `find d/running`
+* `find d/ running`
 
 ```
 1. 2020-10-19 [E] | running | 100
 The current activity list has been saved.
 ```
 
-Format for find by calorie: `find c/**CALORIE**`
+Format for find by calorie: `find c/ **CALORIE**`
 
 Parameters:
 * `**CALORIE**`: Keyword to look for from calorie list.
 
 Example of usage:
-* `find c/100` 
+* `find c/ 100` 
 
 ```
 1. 2020-10-19 [E] | running | 100
 The current activity list has been saved.
 ```
 
-Format for find by just one matching description: `find e/**DESCRIPTION1** e/**DESCRIPTION2** e/**DESCRIPTION3** ...`
-> As long as just one of the description keywords matches in the entry, the activity will be listed. There is no limit to the number of descriptions allowed.
+### 6.2 Finding entries via keywords - advanced
 
-Parameters:
-* `**DESCRIPTION**`: Keyword to look for from calorie list.
-* `**DESCRIPTION1**`: Keyword to look for from calorie list.
-* so on...
-
-Example of usage:
-* `find e/sleeping e/5pm` 
-
-```
-1. 2020-10-19 [E] | running at stadium for 10km at 5pm evening| 100
-The current activity list has been saved.
-```
-
-Format for find by all descriptions: `find a/**DESCRIPTION1** a/**DESCRIPTION2** a/**DESCRIPTION3** ...`
+Format for find by all descriptions: `find a/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 > This command will search of entries matching ALL description keywords typed. There is no limit to the number of descriptions allowed.
 
 Parameters:
-* `**DESCRIPTION**`: Keyword to look for from calorie list.
 * `**DESCRIPTION1**`: Keyword to look for from calorie list.
+* `**DESCRIPTION2**`: Keyword to look for from calorie list.
 * so on...
 
 Example of usage:
- * `find a/running a/10km a/5pm`
+ * `find a/running a/ 10km / 5pm`
  
 ```
-1. 2020-10-19 [E] | running at stadium for 10km at 5pm evening| 100
+1. 2020-10-19 [E] | running at stadium for 10km at 5pm evening | 100
+The current activity list has been saved.
+```
+
+Format for find by just one matching description: `find e/ **DESCRIPTION1** e/ **DESCRIPTION2** e/ **DESCRIPTION3** ...`
+> As long as just one of the description keywords matches in the entry, the activity will be listed. There is no limit to the number of descriptions allowed.
+
+Parameters:
+* `**DESCRIPTION1**`: Keyword to look for from calorie list.
+* `**DESCRIPTION2**`: Keyword to look for from calorie list.
+* so on...
+
+Example of usage:
+* `find e/ sleeping / 5pm` 
+
+```
+1. 2020-10-19 [E] | running at stadium for 10km at 5pm evening | 100
 The current activity list has been saved.
 ```
 
@@ -824,11 +781,9 @@ The current activity list has been saved.
 <br>
 <br>
 
-## Move
+## 7.0 Move
 
-<br>
-
-### Moving an activity to another position
+### 7.1 Moving an activity to another position
 
 Moves an activity to another position in the last shown list.
 
@@ -871,11 +826,10 @@ Examples of usage:
 <br>
 <br>
 
-## Delete
+## 8.0 Delete
 
-<br>
 
-### Deleting an entry in list
+### 8.1 Deleting an entry in list
 
 Deletes an entry via index in the last shown list.
 
@@ -919,7 +873,7 @@ The current activity list has been saved.
 <br>
 <br>
 
-### Deleting all entries in list
+### 8.2 Deleting all entries in list
 
 Deletes all entry in list.
 
@@ -956,11 +910,10 @@ Nothing was added!
 <br>
 <br>
 
-## Graph
+## 9.0 Graph
 
-<br>
 
-### Showing past net calories
+### 9.1 Showing past net calories
 
 Shows a graph of target calorie and net calorie obtained upto last 7 days.
 
@@ -997,7 +950,7 @@ Example of usage:
 <br>
 <br>
 
-## Exiting the program
+## 10.0 Exiting the program
 
 Saves the current list to file and exits program.
 
@@ -1039,8 +992,8 @@ This section gives you a cheat sheet of commands available.
 
 Action         | Format | Example
 -------------- | ---------- | --------
-Help | `help` | `help`
-Create User Profile | `create new user` | `create new user`
+Help | `help` | 
+Create User Profile | `create new user` | 
 Add Food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice cream c/ 78 d/ 2020-10-19`
 Add Exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
 List | `list` OR `list DATE` | `list` OR `list 2020-10-24` 
@@ -1053,6 +1006,6 @@ Find Either | `find e/ DESCRIPTION1 e/ DESCRIPTION2 e/ DESCRIPTION3 ...` | `find
 Find All | `find a/ DESCRIPTION1 a/ DESCRIPTION2 a/ DESCRIPTION3 ...` | `find a/ running a/ jumping a/ cake ...`
 Move Activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
 Delete Entry | `delete INDEX` | `delete 2`
-Delete All for Today| `delete all/` | `delete all/`
-Graph | `graph` | `graph`
-Exit | `bye` | `bye`
+Delete All for Today| `delete all/` | 
+Graph | `graph` | 
+Exit | `bye` | 
