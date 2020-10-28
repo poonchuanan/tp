@@ -20,12 +20,11 @@ import seedu.duke.command.GraphCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
+
 import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.ui.ExceptionMessages;
 import seedu.duke.userprofile.SaveAndAskForUserProfile;
 import seedu.duke.userprofile.InitialiseAndCalculateUserProfile;
-
-//import java.io.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -38,6 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
 
 import static seedu.duke.Trakcal.calList;
 import static seedu.duke.Trakcal.executeCmd;
@@ -122,7 +122,7 @@ public class Parser {
             case "bye":
                 return new ByeCommand();
             case "graph":
-                return new GraphCommand();
+                return prepareGraphCommand(arguments);
             default:
                 return new InvalidCommand();
             }
@@ -130,6 +130,8 @@ public class Parser {
             displayStringIndexOutOfBoundsExceptionMessage();
         } catch (IOException e) {
             displayIoExceptionMessage();
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
         }
         return null;
     }
@@ -437,4 +439,16 @@ public class Parser {
         }
         return null;
     }
+
+    private Command prepareGraphCommand(String[] userInput) throws Exception {
+        if (userInput.length != 1) {
+            throw new Exception("Graph has has no description");
+        }
+        if (Trakcal.calList.getHashMap().size() == 0) {
+            throw new Exception("No records found!");
+        }
+        return new GraphCommand();
+    }
+
+
 }
