@@ -164,35 +164,6 @@ Your recommend daily calories intake is 1576.65 calories.
 To gain weight, you should consume 2076.65 calories instead.
 ```
 
-#### Possible error messages and how to solve them:
-
-**tracKCAL** only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
-```
-=====================================================================================================
-Please input female or male as gender only!
-=====================================================================================================
-```
-
-**tracKCAL** only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
-```
-=====================================================================================================
-Please enter a valid number format!
-=====================================================================================================
-```
-
-**tracKCAL** only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
-```
-=====================================================================================================
-Please enter a number from 1 to 5 only!
-=====================================================================================================
-```
-
-**tracKCAL** only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
-```
-=====================================================================================================
-Please input lose or maintain or gain as weight goal only!
-=====================================================================================================
-```
 
 <br>
 <br>
@@ -220,14 +191,6 @@ You have created a shortcut containing:
 =====================================================================================================
 ```
 
-#### Possible error message and how to solve them: 
-
-**tracKCAL** only accepts integers for calories. If you were to enter `createSet bfast f/ice cream c/haha + e/jumping jacks c/100`, this error message will be shown.
- ```
-=====================================================================================================
-Please enter calories as an integer
-=====================================================================================================
- ```
 
 <br>
 <br>
@@ -373,14 +336,6 @@ The current activity list has been saved.
 =====================================================================================================
 ```
 
-#### Possible error message and how to solve them: 
-
-If you were to add a new shortcut without creating it first, this error message will be shown
- ```
-=====================================================================================================
-This shortcut does not exists, please create a shortcut before adding it!
-=====================================================================================================
- ```
 
 <br>
 <br>
