@@ -6,6 +6,10 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 <br>
 
+## Table of Contents
+
+<br>
+
 * Table of Contents
 {:toc}
 
