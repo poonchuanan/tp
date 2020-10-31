@@ -91,7 +91,7 @@ public class ActivityList extends Trakcal {
     public void moveActivity(int indexToBeMovedFrom, int indexToBeInsertedBelow) throws IndexOutOfBoundsException {
 
         if (isValidIndex(indexToBeMovedFrom) && isValidIndex(indexToBeInsertedBelow)) {
-            if(indexToBeMovedFrom > indexToBeInsertedBelow) {
+            if (indexToBeMovedFrom > indexToBeInsertedBelow) {
                 Activity activity = getActivity(indexToBeMovedFrom);
                 activities.remove(indexToBeMovedFrom);
                 activities.add(indexToBeInsertedBelow, activity);
