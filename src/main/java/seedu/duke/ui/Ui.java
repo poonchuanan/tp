@@ -126,7 +126,7 @@ public class Ui {
      */
     public static void displayByeMessage() {
         print("| Thank you for using traKCAL. See you again!"
-                + "                                                       |");
+                + "                                      |");
     }
 
 
