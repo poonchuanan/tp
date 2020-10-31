@@ -8,19 +8,17 @@ import java.util.ArrayList;
  */
 public class GraphDrawing {
 
-
     public GraphProperty graphProperty;
-
-    private final int targetRow;
-    private final int maxCalories;
-    private final int minCalories;
-    private final int targetCalories;
 
     private static final String BLANK_WIDTH = "   ";
     private static final String TARGET_WIDTH = "***";
     private static final String BAR_WIDTH = "| |";
     private static final String targetBarWidth = "|*|";
     private static final String TOP_BAR_WIDTH = "|-|";
+
+    private String targetCaloriesString;
+    private String maxCaloriesString;
+    private String minCaloriesString;
 
     /**
      * Constructor.
@@ -29,10 +27,13 @@ public class GraphDrawing {
      */
     public GraphDrawing(GraphProperty graphProperty) {
         this.graphProperty = graphProperty;
-        this.targetRow = graphProperty.targetRow;
-        this.maxCalories = graphProperty.maxCalories;
-        this.minCalories = graphProperty.minCalories;
-        this.targetCalories = graphProperty.targetCalories;
+        setCalorieString();
+    }
+
+    private void setCalorieString() {
+        this.targetCaloriesString = Integer.toString(graphProperty.targetCalories);
+        this.maxCaloriesString = Integer.toString(graphProperty.maxCalories);
+        this.minCaloriesString = Integer.toString(graphProperty.minCalories);
     }
 
     /**
@@ -78,26 +79,25 @@ public class GraphDrawing {
     }
 
     /**
-     * Generates the y axis.
-     * @param space space width set by number of characters in maximum calories.
+     * Generate vertical axis label
+     *
      * @param columnNumber column number
-     * @return y_axis string for that row
+     * @param maxColumn maximum column
+     * @param maxSize maximum size of labels in vertical axis
+     * @return vertical axis label
      */
-    private String generateVerticalAxis(String space, int columnNumber, int row) {
-        String targetCaloriesString = Integer.toString(targetCalories);
-        String maxCaloriesString = Integer.toString(maxCalories);
-        String minCaloriesString = Integer.toString(minCalories);
+    private String generateVerticalAxisLabel(int columnNumber, int maxColumn, int maxSize) {
         String label = "";
-        if (columnNumber == row - 1) {
-            label = maxCaloriesString;
-        } else if (columnNumber == targetRow) {
-            label = targetCaloriesString
-                    + repeatCharacter(" ", calculateSizeDifference(maxCaloriesString, targetCaloriesString));
+        if (columnNumber == maxColumn - 1) {
+            label = this.maxCaloriesString + repeatCharacter(" ", maxSize - this.maxCaloriesString.length());
+        } else if (columnNumber == graphProperty.targetRow) {
+            label = this.targetCaloriesString
+                    + repeatCharacter(" ", maxSize - this.targetCaloriesString.length());
         } else if (columnNumber == 0) {
-            label = minCaloriesString
-                    + repeatCharacter(" ", calculateSizeDifference(maxCaloriesString, minCaloriesString));
+            label = this.minCaloriesString
+                    + repeatCharacter(" ", maxSize - this.minCaloriesString.length());
         } else {
-            label = space;
+            label = repeatCharacter(" ", maxSize);
         }
         return label;
     }
@@ -109,11 +109,11 @@ public class GraphDrawing {
      * @param secondString second string
      * @return string length differemnce
      */
-    public int calculateSizeDifference(String firstString, String secondString) {
+    public int calculateMaxSize(String firstString, String secondString) {
         if (firstString.length() > secondString.length()) {
-            return firstString.length() - secondString.length();
+            return firstString.length();
         } else {
-            return firstString.length() - secondString.length();
+            return secondString.length();
         }
     }
 
@@ -125,7 +125,7 @@ public class GraphDrawing {
      */
     public String addWidth(int number) {
         String width = "";
-        if (number == targetRow) {
+        if (number == graphProperty.targetRow) {
             width += TARGET_WIDTH;
         } else {
             width += BLANK_WIDTH;
@@ -135,48 +135,62 @@ public class GraphDrawing {
 
     /**
      * Draws the graph.
+     *
+     * @return drawing
      */
     public String drawGraph() {
         int[][] table = graphProperty.table;
-        assert table != null;
         ArrayList<LocalDate> keys = graphProperty.keys;
+        assert table != null;
         assert keys != null;
-        int maxCalorieSize = Integer.toString(maxCalories).length();
-        String space = repeatCharacter(" ", maxCalorieSize);
-        int column = graphProperty.column;
-        int row = GraphProperty.ROW;
+        int maxSize = calculateMaxSize(maxCaloriesString, minCaloriesString);
         String drawing = "";
 
-        for (int i = row - 1; i >= 0; i--) {
-            drawing += generateVerticalAxis(space, i, row) + "|";
-            for (int j = 0; j < column; j++) {
-                switch (table[i][j]) {
-                case 0:
-                    drawing += BLANK_WIDTH;
-                    break;
-                case 1:
-                    drawing += BAR_WIDTH;
-                    break;
-                case 2:
-                    drawing += TARGET_WIDTH;
-                    break;
-                case 3:
-                    drawing += targetBarWidth;
-                    break;
-                case 4:
-                    drawing += TOP_BAR_WIDTH;
-                    break;
-                default:
-                    //does nothing
-                    break;
-                }
-                drawing += addWidth(i);
+
+        for (int i = GraphProperty.COLUMN - 1; i >= 0; i--) {
+            drawing += generateVerticalAxisLabel(i, GraphProperty.COLUMN, maxSize) + "|";
+            for (int j = 0; j < graphProperty.row; j++) {
+                drawing += generateHorizontalLine(table, i, j);
             }
             drawing += "\n";
         }
 
-        drawing += generate_x_axis(maxCalorieSize, column);
-        drawing += generateDateLabels(maxCalorieSize, keys);
+        drawing += generate_x_axis(maxSize, graphProperty.row);
+        drawing += generateDateLabels(maxSize, keys);
+        return drawing;
+    }
+
+    /**
+     * Generates horizontal line.
+     *
+     * @param table table for graph
+     * @param column current column number
+     * @param row current rpw number
+     * @return horizontl line
+     */
+    private String generateHorizontalLine(int[][] table, int column, int row) {
+        String drawing = "";
+        switch (table[column][row]) {
+        case 0:
+            drawing += BLANK_WIDTH;
+            break;
+        case 1:
+            drawing += BAR_WIDTH;
+            break;
+        case 2:
+            drawing += TARGET_WIDTH;
+            break;
+        case 3:
+            drawing += targetBarWidth;
+            break;
+        case 4:
+            drawing += TOP_BAR_WIDTH;
+            break;
+        default:
+            //does nothing
+            break;
+        }
+        drawing += addWidth(column);
         return drawing;
     }
 
