@@ -191,63 +191,77 @@ public class ExceptionMessages {
      * Prints message when there is a presence of a duplicated naming for file.
      */
     public static void displayExistingFileMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("Sorry! There is an existing set with this name, please use another name!");
         drawDivider();
+        System.out.println();
     }
 
     /**
      * Prints out error message when invalid gender input.
      */
     public static void displayInvalidGenderMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("Please input female or male as gender only!");
         drawDivider();
+        System.out.println();
     }
 
     /**
      * Prints out error message when invalid weight goal input.
      */
     public static void displayInvalidWeightGoalMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("Please input lose or maintain or gain as weight goal only!");
         drawDivider();
+        System.out.println();
     }
 
     /**
      * Prints out error message when invalid weight input.
      */
     public static void displayInvalidWeightMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("Please enter a valid weight format!");
         drawDivider();
+        System.out.println();
     }
 
     /**
      * Prints out error message when invalid height input.
      */
     public static void displayInvalidHeightMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("Please enter a valid height format!");
         drawDivider();
+        System.out.println();
     }
 
     /**
      * Prints out error message when invalid age input.
      */
     public static void displayInvalidAgeMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("Please enter a valid age!");
         drawDivider();
+        System.out.println();
     }
 
     /**
      * Prints out error message when invalid activity level input.
      */
     public static void displayInvalidActivityLevelMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("Please integer for activity level only!");
         drawDivider();
+        System.out.println();
     }
 
     /**
@@ -264,54 +278,66 @@ public class ExceptionMessages {
      * Prints out error message when a shortcut has not been created in addSet command.
      */
     public static void displayShortcutDoesNotExistMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("This shortcut does not exists, please create a shortcut before adding it!");
         drawDivider();
+        System.out.println();
     }
 
     /**
      * Prints out error message when calorie has not been input as integer.
      */
     public static void displayInvalidCalorieEntryMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("Please enter calories as an integer");
         drawDivider();
+        System.out.println();
     }
 
     /**
      * Prints out error message when weight range is not between 20 to 650kg.
      */
     public static void displayInvalidWeightRangeMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("Please enter a weight range from 20kg to 650kg");
         drawDivider();
+        System.out.println();
     }
 
     /**
      * Prints out error message when age is not between 0 to 120 years old.
      */
     public static void displayInvalidAgeRangeMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("Please enter an age range from 1 to 120 years old");
         drawDivider();
+        System.out.println();
     }
 
     /**
      * Prints out error message when height is not between 10 to 300cm.
      */
     public static void displayInvalidHeightRangeMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("Please enter a height range from 10cm to 300cm");
         drawDivider();
+        System.out.println();
     }
 
     /**
      * Prints out error message when activity level from 1 to 5.
      */
     public static void displayInvalidActivityLevelRangeMessage() {
+        System.out.println();
         drawDivider();
         System.out.println("Please enter an activity level from 1 to 5 only");
         drawDivider();
+        System.out.println();
     }
 
     /**
