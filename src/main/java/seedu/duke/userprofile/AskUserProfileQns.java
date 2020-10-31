@@ -21,7 +21,7 @@ import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightRangeMessage;
 /**
  * Initialises user profile after asking for user input.
  */
-public class SaveAndAskForUserProfile {
+public class AskUserProfileQns {
     private static String[] data = new String[7];
 
     /**
@@ -43,8 +43,8 @@ public class SaveAndAskForUserProfile {
         return Trakcal.in.nextLine();
     }
 
-    public static InitialiseAndCalculateUserProfile createNewProfile() {
-        InitialiseAndCalculateUserProfile profile = null;
+    public static InitialiseUserProfile createNewProfile() {
+        InitialiseUserProfile profile = null;
         gatherData();
         try {
             profile = enterNewUserInfo();
@@ -260,11 +260,11 @@ public class SaveAndAskForUserProfile {
         throw new IllegalArgumentException();
     }
 
-    public static InitialiseAndCalculateUserProfile enterNewUserInfo() throws IOException {
-        InitialiseAndCalculateUserProfile profile =
-                new InitialiseAndCalculateUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
+    public static InitialiseUserProfile enterNewUserInfo() throws IOException {
+        InitialiseUserProfile profile =
+                new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
         System.out.println(profile.calculateNewUserDetails());
-        SaveAndAskForUserProfile.save(profile);
+        AskUserProfileQns.save(profile);
         return profile;
     }
 
@@ -273,8 +273,8 @@ public class SaveAndAskForUserProfile {
      *
      * @param profile to be saved in text file
      */
-    public static void saveExistingUserInfo(InitialiseAndCalculateUserProfile profile) throws IOException {
-        SaveAndAskForUserProfile.save(profile);
+    public static void saveExistingUserInfo(InitialiseUserProfile profile) throws IOException {
+        AskUserProfileQns.save(profile);
     }
 
     /**
@@ -282,7 +282,7 @@ public class SaveAndAskForUserProfile {
      *
      * @param profile question to be printed
      */
-    public static void save(InitialiseAndCalculateUserProfile profile) throws IOException {
+    public static void save(InitialiseUserProfile profile) throws IOException {
         Userinfotextfilestorage storage = new Userinfotextfilestorage();
         storage.save(profile.toString());
     }
@@ -292,17 +292,17 @@ public class SaveAndAskForUserProfile {
      *
      * @return Storage type
      */
-    public static InitialiseAndCalculateUserProfile loadProfile() {
+    public static InitialiseUserProfile loadProfile() {
         String[] data = new String[7];
         ArrayList<String> previous = Userinfotextfilestorage.update();
         for (int i = 0; i < 7; i++) {
             data[i] = previous.get(i);
         }
-        InitialiseAndCalculateUserProfile profile =
-                new InitialiseAndCalculateUserProfile(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
+        InitialiseUserProfile profile =
+                new InitialiseUserProfile(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
         profile.calculateNewUserDetails();
         try {
-            SaveAndAskForUserProfile.saveExistingUserInfo(profile);
+            AskUserProfileQns.saveExistingUserInfo(profile);
         } catch (IOException e) {
             displayIoExceptionMessage();
         }
