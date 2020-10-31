@@ -82,9 +82,7 @@ public class AskUserProfileQns {
 
         for (String argument : arguments) {
             if (argument.startsWith("n/")) {
-                data[0] = argument.substring(2);
-                displayEditNameMessage();
-                System.out.println(data[0]);
+                editName(argument.substring(2));
             } else if (argument.startsWith("g/")) {
                 editGender(argument.substring(2));
             } else if (argument.startsWith("w/")) {
@@ -105,12 +103,18 @@ public class AskUserProfileQns {
         AskUserProfileQns.save(profile);
     }
 
+    private static void editName(String name) {
+        data[0] = name;
+        displayEditNameMessage();
+        System.out.println(data[0] + ".");
+    }
+
     private static void editGender(String gender) {
         try {
             checkGender(gender);
             data[1] = gender;
             displayEditGenderMessage();
-            System.out.println(data[1]);
+            System.out.println(data[1] + ".");
 
         } catch (IllegalArgumentException e) {
             displayInvalidGenderMessage();
@@ -123,7 +127,7 @@ public class AskUserProfileQns {
             checkWeightIsWithinRange(weight);
             data[2] = weight;
             displayEditWeightMessage();
-            System.out.println(data[2]);
+            System.out.println(data[2] + ".");
 
         } catch (NumberFormatException e) {
             displayInvalidWeightMessage();
@@ -138,7 +142,7 @@ public class AskUserProfileQns {
             checkHeightIsWithinRange(height);
             data[3] = height;
             displayEditHeightMessage();
-            System.out.println(data[3]);
+            System.out.println(data[3] + ".");
 
         } catch (NumberFormatException e) {
             displayInvalidHeightMessage();
@@ -153,7 +157,7 @@ public class AskUserProfileQns {
             checkAgeIsWithinRange(age);
             data[4] = age;
             displayEditAgeMessage();
-            System.out.println(data[4]);
+            System.out.println(data[4] + ".");
 
         } catch (NumberFormatException e) {
             displayInvalidAgeMessage();
@@ -168,7 +172,7 @@ public class AskUserProfileQns {
             checkAcLeIsWithinRange(al);
             data[5] = al;
             displayEditActivityLevelMessage();
-            System.out.println(data[5]);
+            System.out.println(data[5] + ".");
 
         } catch (NumberFormatException e) {
             displayInvalidActivityLevelMessage();
@@ -182,7 +186,7 @@ public class AskUserProfileQns {
             checkWeightGoal(goal);
             data[6] = goal;
             displayEditGoalMessage();
-            System.out.println(data[6]);
+            System.out.println(data[6] + ".");
 
         } catch (IllegalArgumentException e) {
             displayInvalidWeightGoalMessage();
