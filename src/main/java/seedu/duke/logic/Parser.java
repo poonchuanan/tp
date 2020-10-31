@@ -52,6 +52,7 @@ import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatEx
 import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyEditActivityErrorMessage;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyInput;
 import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
@@ -239,9 +240,7 @@ public class Parser {
                 checkCalories(calories);
 
                 String foodDescription = userInput.substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
-                if (foodDescription.equals(" ") || foodDescription.equals("")) {
-                    throw new Exception();
-                }
+                checkDescription(foodDescription);
 
                 displayEditMessage();
 
@@ -253,9 +252,7 @@ public class Parser {
                 checkCalories(calories);
 
                 String exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
-                if (exerciseDescription.equals(" ") || exerciseDescription.equals("")) {
-                    throw new Exception();
-                }
+                checkDescription(exerciseDescription);
 
                 displayEditMessage();
 
@@ -265,9 +262,9 @@ public class Parser {
                 displayEmptyEditActivityErrorMessage();
             }
         } catch (CalorieCountException e) {
-                displayCalorieCountOutOfBound();
-        } catch (EmptyDescriptionException e) {
             displayCalorieCountOutOfBound();
+        } catch (EmptyDescriptionException e) {
+            displayEmptyInput();
         } catch (NullPointerException e) {
             displayEditActivityExceptionMessage();
         } catch (NumberFormatException e) {         // catch index not string
@@ -296,9 +293,6 @@ public class Parser {
                 checkCalories(calories);
 
                 String foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
-//                if (foodDescription.equals(" ") || foodDescription.equals("")) {
-//                    throw new Exception();
-//                }
                 checkDescription(foodDescription);
 
                 LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
@@ -316,9 +310,6 @@ public class Parser {
                 checkCalories(calories);
 
                 String exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
-//                if (exerciseDescription.equals(" ") || exerciseDescription.equals("")) {
-//                    throw new Exception();
-//                }
                 checkDescription(exerciseDescription);
 
                 LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
@@ -339,7 +330,7 @@ public class Parser {
         } catch (CalorieCountException e) {
             displayCalorieCountOutOfBound();
         } catch (EmptyDescriptionException e) {
-            displayCalorieCountOutOfBound();
+            displayEmptyInput();
         } catch (Exception e) {
             displayAddActivityExceptionMessage();
         }
