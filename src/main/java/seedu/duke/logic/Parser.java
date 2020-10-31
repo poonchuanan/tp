@@ -487,7 +487,6 @@ public class Parser {
     }
 
     private Command prepareUserProfileListCommand() {
-        Ui.displayUserProfileList();
         return new ListUserProfileCommand();
     }
 

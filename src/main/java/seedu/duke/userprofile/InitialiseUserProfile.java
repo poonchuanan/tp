@@ -13,7 +13,8 @@ public class InitialiseUserProfile {
     protected String weightGoal;
     protected double calories;
 
-    public InitialiseUserProfile() {}
+    public InitialiseUserProfile() {
+    }
 
     public InitialiseUserProfile(String name, String gender, String weight, String height,
                                  String age, String activityLevel, String weightGoal) {
