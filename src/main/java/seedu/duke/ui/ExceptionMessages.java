@@ -277,4 +277,10 @@ public class ExceptionMessages {
         System.out.println("Please enter calories as an integer");
         drawDivider();
     }
+
+    public static void displayNegativeWeightMessage() {
+        drawDivider();
+        System.out.println("Please a positive integer as weight");
+        drawDivider();
+    }
 }

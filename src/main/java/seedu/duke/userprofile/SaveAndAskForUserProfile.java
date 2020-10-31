@@ -14,6 +14,7 @@ import seedu.duke.ui.Ui;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightGoalMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayNegativeWeightMessage;
 
 /**
  * Initialises user profile after asking for user input.
@@ -43,6 +44,16 @@ public class SaveAndAskForUserProfile {
 
     public static InitialiseAndCalculateUserProfile createNewProfile() {
         InitialiseAndCalculateUserProfile profile = null;
+        gatherData();
+        try {
+            profile = enterNewUserInfo();
+        } catch (IOException e) {
+            displayIoExceptionMessage();
+        }
+        return profile;
+    }
+
+    public static void gatherData() {
         name();
         gender();
         weight();
@@ -50,12 +61,6 @@ public class SaveAndAskForUserProfile {
         age();
         activityLevel();
         weightGoal();
-        try {
-            profile = enterNewUserInfo();
-        } catch (IOException e) {
-            displayIoExceptionMessage();
-        }
-        return profile;
     }
 
     /**
@@ -103,8 +108,16 @@ public class SaveAndAskForUserProfile {
         String weight = input();
         try {
             Double.parseDouble(weight);
+
+            if (Double.parseDouble(weight) < 0) {
+                throw new IllegalArgumentException();
+            }
+
         } catch (NumberFormatException e) {
             displayInvalidWeightMessage();
+            weight();
+        } catch (IllegalArgumentException e) {
+            displayNegativeWeightMessage();
             weight();
         }
         data[2] = weight;
@@ -180,11 +193,15 @@ public class SaveAndAskForUserProfile {
         String weightGoal = input();
 
         try {
-            if (Arrays.toString(WeightGoalEnum.values()).contains(weightGoal)) {
-                data[6] = weightGoal;
-            } else {
-                throw new IllegalArgumentException();
+            for (WeightGoalEnum validWeightGoal : WeightGoalEnum.values()) {
+                if (validWeightGoal.name().equals(weightGoal)) {
+                    System.out.println(validWeightGoal.name());
+                    data[6] = weightGoal;
+                    return;
+                }
             }
+            throw new IllegalArgumentException();
+
         } catch (IllegalArgumentException e) {
             displayInvalidWeightGoalMessage();
             weightGoal();
