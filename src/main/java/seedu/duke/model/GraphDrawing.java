@@ -79,7 +79,7 @@ public class GraphDrawing {
     }
 
     /**
-     * Generate vertical axis label
+     * Generate vertical axis label.
      *
      * @param columnNumber column number
      * @param maxColumn maximum column
