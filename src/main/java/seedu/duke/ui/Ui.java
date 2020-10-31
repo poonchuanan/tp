@@ -1,5 +1,7 @@
 package seedu.duke.ui;
 
+import seedu.duke.userprofile.InitialiseUserProfile;
+
 /**
  * Deals with interactions with the user.
  */

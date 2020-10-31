@@ -13,6 +13,8 @@ public class InitialiseUserProfile {
     protected String weightGoal;
     protected double calories;
 
+    public InitialiseUserProfile() {}
+
     public InitialiseUserProfile(String name, String gender, String weight, String height,
                                  String age, String activityLevel, String weightGoal) {
         this.name = name;
@@ -121,6 +123,17 @@ public class InitialiseUserProfile {
 
         this.calories = calories;
         return details;
+    }
+
+    public void printList() {
+        System.out.println("Here is your user profile:");
+        System.out.println("Name : " + getName());
+        System.out.println("Gender : " + getGender());
+        System.out.println("Weight : " + getWeight());
+        System.out.println("Height : " + getHeight());
+        System.out.println("Age : " + getAge());
+        System.out.println("Activity Level : " + getActivityLevel());
+        System.out.println("Weight Goal : " + getWeightGoal());
     }
 
     @Override

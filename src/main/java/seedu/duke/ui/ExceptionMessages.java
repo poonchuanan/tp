@@ -357,6 +357,4 @@ public class ExceptionMessages {
         System.out.println("Empty description!");
         drawDivider();
     }
-
-
 }

@@ -26,6 +26,7 @@ import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.exception.CalorieCountException;
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.ui.ExceptionMessages;
+import seedu.duke.ui.Ui;
 import seedu.duke.userprofile.AskUserProfileQns;
 
 import java.io.BufferedReader;
@@ -486,7 +487,7 @@ public class Parser {
     }
 
     private Command prepareUserProfileListCommand() {
-        System.out.println("Here is your user profile:");
+        Ui.displayUserProfileList();
         return new ListUserProfileCommand();
     }
 
