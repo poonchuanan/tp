@@ -270,7 +270,7 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints a message in a specified format
+     * Prints a message in a specified format.
      * @param message is the message to be printed out
      */
     public static void print(String message) {
