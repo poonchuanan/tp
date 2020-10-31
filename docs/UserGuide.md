@@ -43,6 +43,10 @@ This section gives the steps you need to get started quickly.
 =====================================================================================================
 Please do input 'help' for the commands and their respective input format.
 ```
+   * Tip: 
+     Increase your windows length if the greeting message appears congested like this:
+     ![Congested opening message](diagrams/openingMessageError.png)
+
 6. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window
 
    Some example commands you can try:
