@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelRangeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeRangeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidHeightMessage;
@@ -183,17 +184,19 @@ public class SaveAndAskForUserProfile {
         Ui.displayAskUserActivityLevelMessage();
         String activityLevel = input();
         try {
-            int checkRange = Integer.parseInt(activityLevel);
-
-            if (checkRange < 0 || checkRange > 5) {
+            if (Integer.parseInt(activityLevel) < 0 || Integer.parseInt(activityLevel) > 5) {
                 throw new IllegalArgumentException();
             }
 
-        } catch (IllegalArgumentException e) {
+            data[5] = activityLevel;
+
+        } catch (NumberFormatException e) {
             displayInvalidActivityLevelMessage();
             activityLevel();
+        } catch (IllegalArgumentException e) {
+            displayInvalidActivityLevelRangeMessage();
+            activityLevel();
         }
-        data[5] = activityLevel;
     }
 
     /**

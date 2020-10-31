@@ -246,7 +246,7 @@ public class ExceptionMessages {
      */
     public static void displayInvalidActivityLevelMessage() {
         drawDivider();
-        System.out.println("Please enter a number from 1 to 5 only!");
+        System.out.println("Please integer for activity level only!");
         drawDivider();
     }
 
@@ -302,6 +302,15 @@ public class ExceptionMessages {
     public static void displayInvalidHeightRangeMessage() {
         drawDivider();
         System.out.println("Please enter a height range from 0cm to 300cm");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when activity level from 1 to 5.
+     */
+    public static void displayInvalidActivityLevelRangeMessage() {
+        drawDivider();
+        System.out.println("Please enter an activity level from 1 to 5 only");
         drawDivider();
     }
 }
