@@ -78,7 +78,7 @@ public class ExceptionMessages {
                 + " - where food is X, calories lost is Y and date(YYYY-MM-DD) is Z");
         System.out.println("The input format for adding exercise activity is 'add e/ X c/ Y d/ Z\n"
                 + " - where exercise done is X, calories lost is Y and date(YYYY-MM-DD) is Z");
-        System.out.println("Please do input 'help' for more information.");
+        System.out.println("If this is still too confusing for you, please do input 'help' for more information.");
         drawDivider();
     }
 
@@ -313,4 +313,24 @@ public class ExceptionMessages {
         System.out.println("Please enter an activity level from 1 to 5 only");
         drawDivider();
     }
+
+    /**
+     * Prints out error message when calorie count too big or small.
+     */
+    public static void displayCalorieCountOutOfBound() {
+        drawDivider();
+        System.out.println("Calorie count should be > 0 and <= 3000!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when activity level from 1 to 5.
+     */
+    public static void displayEmptyInput() {
+        drawDivider();
+        System.out.println("Empty description!");
+        drawDivider();
+    }
+
+
 }

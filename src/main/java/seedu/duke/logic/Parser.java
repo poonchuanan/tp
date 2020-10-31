@@ -22,6 +22,8 @@ import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
 
 import seedu.duke.command.MoveActivityCommand;
+import seedu.duke.exception.CalorieCountException;
+import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.ui.ExceptionMessages;
 import seedu.duke.userprofile.SaveAndAskForUserProfile;
 import seedu.duke.userprofile.InitialiseAndCalculateUserProfile;
@@ -44,11 +46,13 @@ import static seedu.duke.Trakcal.executeCmd;
 import static seedu.duke.Trakcal.storage;
 import static seedu.duke.ui.ExceptionMessages.displayAddActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayAddCommandErrorMessage;
+import static seedu.duke.ui.ExceptionMessages.displayCalorieCountOutOfBound;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyEditActivityErrorMessage;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyInput;
 import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
@@ -183,11 +187,9 @@ public class Parser {
      */
     public Command prepareChaining(String userInput) {
         while (userInput.contains(CHAIN_SEPARATOR)) {
-            if (userInput.equals(CHAIN_SEPARATOR)) {
-                break;
+            if (!(userInput.endsWith(CHAIN_SEPARATOR))) {
+                userInput = userInput + SPACE + CHAIN_SEPARATOR;
             }
-
-            userInput = userInput + SPACE + CHAIN_SEPARATOR;
             int chainIndex = userInput.indexOf(CHAIN_SEPARATOR);
 
             String firstString = userInput.substring(0, chainIndex).trim();
@@ -198,7 +200,7 @@ public class Parser {
             if (cmd.getCanBeChained()) {
                 executeCmd(cmd);
             } else {
-                System.out.println("This command entered cannot be chained together!");
+                System.out.println("'" + firstString + "' cannot be chained!");
                 break;
             }
             storage.updateFile(calList);
@@ -208,6 +210,17 @@ public class Parser {
         return null;
     }
 
+    public void checkCalories(int calories) throws CalorieCountException {
+        if (calories <= 0 || calories > 3000) {
+            throw new CalorieCountException();
+        }
+    }
+
+    public void checkDescription(String description) throws EmptyDescriptionException {
+        if (description.equals(" ") || description.equals("")) {
+            throw new EmptyDescriptionException();
+        }
+    }
 
     /**
      * Prepares the edit command by checking the userInput.
@@ -221,15 +234,13 @@ public class Parser {
         userInput = arguments[1];
 
         try {
-
             if (userInput.startsWith(FOOD_TAG)) {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + ALPHABET_WITH_SLASH).trim());
-                if (calories < 0) {
-                    throw new Exception();
-                }
+                checkCalories(calories);
 
                 String foodDescription = userInput.substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+                checkDescription(foodDescription);
 
                 displayEditMessage();
 
@@ -238,11 +249,10 @@ public class Parser {
             } else if (userInput.startsWith(EXERCISE_TAG)) {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + ALPHABET_WITH_SLASH).trim());
-                if (calories < 0) {
-                    throw new Exception();
-                }
+                checkCalories(calories);
 
                 String exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+                checkDescription(exerciseDescription);
 
                 displayEditMessage();
 
@@ -251,9 +261,13 @@ public class Parser {
             } else {
                 displayEmptyEditActivityErrorMessage();
             }
+        } catch (CalorieCountException e) {
+            displayCalorieCountOutOfBound();
+        } catch (EmptyDescriptionException e) {
+            displayEmptyInput();
         } catch (NullPointerException e) {
             displayEditActivityExceptionMessage();
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {         // catch index not string
             displayEditActivityExceptionMessage();
         } catch (Exception e) {
             displayEditActivityExceptionMessage();
@@ -276,12 +290,12 @@ public class Parser {
 
                 int calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH,
                         dateIndex).trim());
-                if (calories < 0) {
-                    throw new Exception();
-                }
+                checkCalories(calories);
+
+                String foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+                checkDescription(foodDescription);
 
                 LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
-                String foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
 
                 displayAddMessage();
 
@@ -293,12 +307,12 @@ public class Parser {
 
                 int calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH,
                         dateIndex).trim());
-                if (calories < 0) {
-                    throw new Exception();
-                }
+                checkCalories(calories);
+
+                String exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+                checkDescription(exerciseDescription);
 
                 LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
-                String exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
 
                 displayAddMessage();
 
@@ -313,6 +327,10 @@ public class Parser {
             displayAddActivityExceptionMessage();
         } catch (DateTimeParseException e) {
             displayIncorrectDateTimeFormatEnteredMessage();
+        } catch (CalorieCountException e) {
+            displayCalorieCountOutOfBound();
+        } catch (EmptyDescriptionException e) {
+            displayEmptyInput();
         } catch (Exception e) {
             displayAddActivityExceptionMessage();
         }

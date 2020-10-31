@@ -18,8 +18,6 @@ If you are a fast typer, **traKCAL** is perfect for you!
 
 ## Table of Contents
 
-<br>
-
 * Table of Contents
 {:toc}
 
@@ -50,7 +48,7 @@ Please do input 'help' for the commands and their respective input format.
 6. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window<br/>
    Some example commands you can try:
     * `list`: Lists all activities for today
-    * `add f/ rice with eggs c/ 200`: Adds a food entry named `rice with eggs` to **trakCAL**.
+    * `add f/ rice with eggs c/ 200 d/ 2020-10-31`: Adds a food entry named `rice with eggs`, of calories `200` and on date of `2020-10-31` to **trakCAL**.
     * `delete 3`: Deletes the 3rd contact shown in the current list.
     * `bye`: Exits the application.
 7. Refer to the [Features](#features) below for details of each command
@@ -80,49 +78,71 @@ Example of usage:
 
 ```
 =====================================================================================================
-Commands available: create new user, list, help, add, delete, find, bye
+This section displays the commands available and their respective input format.
+> Words in CAPS are parameters to be filled in by you!
 
-The expected format of input values:
-	help                   - Prints out commands available and their input format
-	create new user        - Creates a new user profile
-	createSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT&& e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT && ...
-	                       - Creates shortcut for adding food and/or exercise
-	add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE
-	                       - Adds food consumed, FOOD_DESCRIPTION calories gained, CALORIE_COUNT
-	                         and date(YYYY-MM-DD), DATE
-	add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE
-	                       - Adds exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT
-	                         and date(YYYY-MM-DD), DATE
-	addSet SHORTCUT_NAME   - Adds SHORTCUT_NAME into current date list
-	list                   - Prints out the list of entries.
-	list DATE              - Prints out the list of entries for the date(YYYY-MM-DD), DATE
-	edit n/ NAME, g/ GENDER, w/ WEIGHT, h/ HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS
-	                       - Edits your name, NAME, your gender(male/female), GENDER,
-	                         your weight in kg, WEIGHT, your height, HEIGHT in cm, your age, AGE,
-	                         activity factor(1-5) with 1 being the most active, ACTIVITY_FACTOR,
-	                         your weight goals(lose/maintain/gain), WEIGHT_GOALS
-	edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT
-	                       - Edits activity at index LIST_INDEX of latest list printed out
-	                         to food consumed, FOOD_DESCRIPTION, calories gained, CALORIE_COUNT
-	edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT
-	                       - Edits activity at index LIST_INDEX of latest list printed out
-	                         to exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT
-	find d/ DESCRIPTION    - Searches for all activities description with the DESCRIPTION keyword
-	find c/ CALORIE_COUNT  - Searches for all activities with calories of CALORIE_COUNT
-	find a/ DESCRIPTION1 / DESCRIPTION2 .../ DESCRIPTION
-	                        - Searches for all activities with ALL matching keywords from 
-	                          DESCRIPTION1 to DESCRIPTION
-	find e/ DESCRIPTION1 / DESCRIPTION2 .../ DESCRIPTION
-	                        - Searches for all activities with AT LEAST one matching keyword from DESCRIPTION1 to DESCRIPTION
-	move from/ INDEX1 below/ INDEX2
-	                       - Moves the activity at index INDEX1 to the index below INDEX2
-	delete LIST_INDEX      - Deletes activity located at index LIST_INDEX of latest list printed out
-	delete all/            - Deletes all activities in current date list
-	graph                  - Generates a graph of target calorie and net calorie obtained up to
-	                         last 7 days
-	bye                    - Terminates the program
+Viewing help:
+help                   - Prints out commands available and their input format
 
-Words in CAPS are parameters to be filled in by you!
+Creating:
+create new user        - Creates a new user profile
+
+Shortcut:
+createSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT +
+e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT + ...
+                       - Creates shortcut for adding food(s) and/or exercise(s) depending on the
+                         format entered
+addSet SHORTCUT_NAME   - Adds SHORTCUT_NAME into current date list
+
+Adding:
+add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE
+                       - Adds food consumed, FOOD_DESCRIPTION calories gained, CALORIE_COUNT
+                         and date(YYYY-MM-DD), DATE
+add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE
+                       - Adds exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT
+                         and date(YYYY-MM-DD), DATE
+
+Listing:
+list                   - Prints out the list of entries.
+list DATE              - Prints out the list of entries for the date(YYYY-MM-DD), DATE
+
+Editing:
+edit n/ NAME, g/ GENDER, w/ WEIGHT, h/ HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS
+                       - Edits your name, NAME, your gender(male/female), GENDER,
+                         your weight in kg, WEIGHT, your height, HEIGHT in cm, your age, AGE,
+                         activity factor(1-5) with 1 being the most active, ACTIVITY_FACTOR,
+                         your weight goals(lose/maintain/gain), WEIGHT_GOALS
+edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT
+                       - Edits activity at index LIST_INDEX of latest list printed out
+                         to food consumed, FOOD_DESCRIPTION, calories gained, CALORIE_COUNT
+edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT
+                       - Edits activity at index LIST_INDEX of latest list printed out
+                         to exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT
+
+Finding:
+find d/ DESCRIPTION    - Searches for all activities description with the DESCRIPTION keyword
+find c/ CALORIE_COUNT  - Searches for all activities with calories of CALORIE_COUNT
+find a/ DESCRIPTION1 / DESCRIPTION2 .../ DESCRIPTION
+                        - Searches for all activities with ALL matching keywords from
+                          DESCRIPTION1 to DESCRIPTION
+find e/ DESCRIPTION1 / DESCRIPTION2 .../ DESCRIPTION
+                        - Searches for all activities with AT LEAST one matching keyword from
+                          DESCRIPTION1 to DESCRIPTION
+
+Moving:
+move from/ INDEX1 below/ INDEX2
+                       - Moves the activity at index INDEX1 to the index below INDEX2
+
+Deleting:
+delete LIST_INDEX      - Deletes activity located at index LIST_INDEX of latest list printed out
+delete all/            - Deletes all activities in current date list
+
+Graphing:
+graph                  - Generates a graph of target calorie and net calorie obtained up to
+                         last 7 days
+
+Exiting:
+bye                    - Terminates the application
 
 =====================================================================================================
 ```
@@ -883,7 +903,7 @@ No.        Type                        Description                        Calori
 
 Deletes all entry in list.
 
-Format : `delete /all`
+Format : `delete all/`
 
 Example of usage:
 * `list` before deleting
@@ -976,6 +996,10 @@ This section answers questions you may have.
 **Q**: How do I know if the data I have input is saved?
 
 **A**: **trakCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
+
+**Q**: How do I raise issues and doubts I may have?
+
+**A**: 
 
 <br>
 
