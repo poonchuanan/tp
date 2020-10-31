@@ -246,7 +246,7 @@ public class ExceptionMessages {
      */
     public static void displayInvalidActivityLevelMessage() {
         drawDivider();
-        System.out.println("Please enter a number from 1 to 5 only!");
+        System.out.println("Please integer for activity level only!");
         drawDivider();
     }
 
@@ -275,6 +275,42 @@ public class ExceptionMessages {
     public static void displayInvalidCalorieEntryMessage() {
         drawDivider();
         System.out.println("Please enter calories as an integer");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when weight range is not between 20 to 650kg.
+     */
+    public static void displayInvalidWeightRangeMessage() {
+        drawDivider();
+        System.out.println("Please enter a weight range from 20kg to 650kg");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when age is not between 0 to 120 years old.
+     */
+    public static void displayInvalidAgeRangeMessage() {
+        drawDivider();
+        System.out.println("Please enter a age range from 1 to 120 years old");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when height is not between 10 to 300cm.
+     */
+    public static void displayInvalidHeightRangeMessage() {
+        drawDivider();
+        System.out.println("Please enter a height range from 10cm to 300cm");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when activity level from 1 to 5.
+     */
+    public static void displayInvalidActivityLevelRangeMessage() {
+        drawDivider();
+        System.out.println("Please enter an activity level from 1 to 5 only");
         drawDivider();
     }
 }
