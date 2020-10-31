@@ -60,7 +60,7 @@ public class InitialiseUserProfile {
         return calories;
     }
 
-    private static DecimalFormat df2 = new DecimalFormat(".##");
+    private static DecimalFormat df2 = new DecimalFormat("#.00");
 
 
     public String calculateNewUserDetails() {
