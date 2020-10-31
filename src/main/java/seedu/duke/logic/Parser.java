@@ -488,7 +488,7 @@ public class Parser {
      */
     private Command prepareGraphCommand(String[] userInput) throws Exception {
         if (userInput.length != 1) {
-            throw new Exception("Graph has has no description");
+            throw new Exception("Graph has no description");
         }
         if (Trakcal.calList.getHashMap().size() == 0) {
             throw new Exception("No records found!");

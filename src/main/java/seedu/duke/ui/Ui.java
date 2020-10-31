@@ -222,7 +222,13 @@ public class Ui {
     public static void displayAddMessage() {
         drawDivider();
         System.out.println("Noted! The following has been added into list:");
+        drawDivider();
     }
 
+    public static void displayMessage(String message) {
+        drawDivider();
+        System.out.println(message);
+        drawDivider();
+    }
 
 }
