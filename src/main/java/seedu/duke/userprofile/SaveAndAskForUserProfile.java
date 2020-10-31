@@ -160,7 +160,11 @@ public class SaveAndAskForUserProfile {
         String age = input();
         try {
 
-            Integer.parseInt(age);
+            if (Integer.parseInt(age) < 0 || Integer.parseInt(age) > 120) {
+                throw new IllegalArgumentException();
+            }
+
+            data[4] = age;
 
         } catch (NumberFormatException e) {
             displayInvalidAgeMessage();
@@ -169,7 +173,6 @@ public class SaveAndAskForUserProfile {
             displayInvalidAgeRangeMessage();
             age();
         }
-        data[4] = age;
     }
 
     /**
