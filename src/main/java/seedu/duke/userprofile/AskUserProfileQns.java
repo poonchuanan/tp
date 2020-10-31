@@ -94,9 +94,7 @@ public class AskUserProfileQns {
                 displayEditWeightMessage();
                 System.out.println(data[2]);
             } else if (argument.startsWith("h/")) {
-                data[3] = argument.substring(2);
-                displayEditHeightMessage();
-                System.out.println(data[3]);
+                editHeight(argument.substring(2));
             } else if (argument.startsWith("age/")) {
                 data[4] = argument.substring(4);
                 displayEditAgeMessage();
@@ -112,14 +110,23 @@ public class AskUserProfileQns {
             }
         }
 
-        System.out.println(Arrays.toString(data));
-
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
         AskUserProfileQns.save(profile);
+    }
 
-
-
+    private static void editHeight(String height) {
+        try {
+            checkInputIsDouble(height);
+            checkHeightIsWithinRange(height);
+            data[3] = height;
+            displayEditHeightMessage();
+            System.out.println(data[3]);
+        } catch (NumberFormatException e) {
+            displayInvalidHeightMessage();
+        } catch (IllegalArgumentException e) {
+            displayInvalidHeightRangeMessage();
+        }
     }
 
     /**
