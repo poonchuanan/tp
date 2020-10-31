@@ -206,10 +206,8 @@ public class SaveAndAskForUserProfile {
         Ui.displayAskUserActivityLevelMessage();
         String activityLevel = input();
         try {
-            if (Integer.parseInt(activityLevel) < 0 || Integer.parseInt(activityLevel) > 5) {
-                throw new IllegalArgumentException();
-            }
-
+            checkInputIsInt(activityLevel);
+            checkAcLeIsWithinRange(activityLevel);
             data[5] = activityLevel;
 
         } catch (NumberFormatException e) {
@@ -218,6 +216,12 @@ public class SaveAndAskForUserProfile {
         } catch (IllegalArgumentException e) {
             displayInvalidActivityLevelRangeMessage();
             activityLevel();
+        }
+    }
+
+    private static void checkAcLeIsWithinRange(String al) throws IllegalArgumentException {
+        if (Integer.parseInt(al) < 1 || Integer.parseInt(al) > 5) {
+            throw new IllegalArgumentException();
         }
     }
 
