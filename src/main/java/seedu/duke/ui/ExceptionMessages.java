@@ -284,21 +284,15 @@ public class ExceptionMessages {
         drawDivider();
     }
 
-    public static void displayNegativeWeightMessage() {
-        drawDivider();
-        System.out.println("Please enter a positive weight");
-        drawDivider();
-    }
-
-    public static void displayNegativeAgeMessage() {
+    public static void displayInvalidAgeRangeMessage() {
         drawDivider();
         System.out.println("Please a positive integer as age");
         drawDivider();
     }
 
-    public static void displayNegativeHeightMessage() {
+    public static void displayInvalidHeightRangeMessage() {
         drawDivider();
-        System.out.println("Please a positive integer as height");
+        System.out.println("Please enter a height range from 0cm to 300cm");
         drawDivider();
     }
 }

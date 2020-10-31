@@ -8,7 +8,9 @@ import java.util.InvalidPropertiesFormatException;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeRangeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidHeightMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidHeightRangeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightMessage;
 import seedu.duke.ui.Ui;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightGoalMessage;
@@ -104,7 +106,7 @@ public class SaveAndAskForUserProfile {
 
     /**
      * ask user for weight and save in an array entry.
-     *
+     * must be between 0 to 650kg and type double
      */
     public static void weight() {
         Ui.displayAskUserWeightMessage();
@@ -128,18 +130,25 @@ public class SaveAndAskForUserProfile {
 
     /**
      * ask user for height and save in an array entry.
-     *
+     * must be between 0 to 300cm and type double
      */
     public static void height() {
         Ui.displayAskUserHeightMessage();
         String height = input();
         try {
-            Double.parseDouble(height);
+
+            if (Double.parseDouble(height) > 300 || Double.parseDouble(height) < 0) {
+                throw new IllegalArgumentException();
+            }
+            data[3] = height;
+
         } catch (NumberFormatException e) {
             displayInvalidHeightMessage();
             height();
+        } catch (IllegalArgumentException e) {
+            displayInvalidHeightRangeMessage();
+            height();
         }
-        data[3] = height;
     }
 
     /**
@@ -150,9 +159,14 @@ public class SaveAndAskForUserProfile {
         Ui.displayAskUserAgeMessage();
         String age = input();
         try {
+
             Integer.parseInt(age);
+
         } catch (NumberFormatException e) {
             displayInvalidAgeMessage();
+            age();
+        } catch (IllegalArgumentException e) {
+            displayInvalidAgeRangeMessage();
             age();
         }
         data[4] = age;
