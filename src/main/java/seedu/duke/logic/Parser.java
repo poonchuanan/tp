@@ -183,22 +183,24 @@ public class Parser {
      */
     public Command prepareChaining(String userInput) {
         while (userInput.contains(CHAIN_SEPARATOR)) {
-            if (userInput.equals(CHAIN_SEPARATOR)) {
-                break;
+            boolean check = false;
+
+            if (userInput.trim().equals(CHAIN_SEPARATOR)) {
+                check = true;
             }
 
             userInput = userInput + SPACE + CHAIN_SEPARATOR;
             int chainIndex = userInput.indexOf(CHAIN_SEPARATOR);
 
             String firstString = userInput.substring(0, chainIndex).trim();
-
+            
             Parser parser = new Parser(firstString);
             Command cmd = parser.parseCommand();
 
             if (cmd.getCanBeChained()) {
                 executeCmd(cmd);
             } else {
-                System.out.println("This command entered cannot be chained together!");
+                System.out.println((check) ? " " : "This command entered cannot be chained together!");
                 break;
             }
             storage.updateFile(calList);
