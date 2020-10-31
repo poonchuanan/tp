@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import seedu.duke.ui.Ui;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityFactorMessage;
 
-public class InitialiseAndCalculateUserProfile {
+public class InitialiseUserProfile {
     protected String name;
     protected String gender;
     protected String weight;
@@ -14,11 +14,11 @@ public class InitialiseAndCalculateUserProfile {
     protected String weightGoal;
     protected double calories;
 
-    public InitialiseAndCalculateUserProfile() {
+    public InitialiseUserProfile() {
     }
 
-    public InitialiseAndCalculateUserProfile(String name, String gender, String weight, String height,
-                                             String age, String activityLevel, String weightGoal) {
+    public InitialiseUserProfile(String name, String gender, String weight, String height,
+                                 String age, String activityLevel, String weightGoal) {
         this.name = name;
         this.gender = gender;
         this.weight = weight;
@@ -127,8 +127,8 @@ public class InitialiseAndCalculateUserProfile {
         return details;
     }
 
-    public static InitialiseAndCalculateUserProfile editUserInfo(String userInput) {
-        InitialiseAndCalculateUserProfile profile = new InitialiseAndCalculateUserProfile(
+    public static InitialiseUserProfile editUserInfo(String userInput) {
+        InitialiseUserProfile profile = new InitialiseUserProfile(
                 (userInput.substring(userInput.indexOf("n/") + 2, userInput.indexOf("g/") - 1)),
                 (userInput.substring(userInput.indexOf("g/") + 2, userInput.indexOf("w/") - 1)),
                 (userInput.substring(userInput.indexOf("w/") + 2, userInput.indexOf("h/") - 1)),

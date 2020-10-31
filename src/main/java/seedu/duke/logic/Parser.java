@@ -25,8 +25,8 @@ import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.exception.CalorieCountException;
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.ui.ExceptionMessages;
-import seedu.duke.userprofile.SaveAndAskForUserProfile;
-import seedu.duke.userprofile.InitialiseAndCalculateUserProfile;
+import seedu.duke.userprofile.AskUserProfileQns;
+import seedu.duke.userprofile.InitialiseUserProfile;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,7 +39,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.time.format.DateTimeParseException;
-import java.util.HashMap;
 
 import static seedu.duke.Trakcal.calList;
 import static seedu.duke.Trakcal.executeCmd;
@@ -110,8 +109,8 @@ public class Parser {
             case "find":
                 return prepareFindCommand(userInput);
             case "edit":
-                Trakcal.profile = InitialiseAndCalculateUserProfile.editUserInfo(arguments[1]);
-                SaveAndAskForUserProfile.save(Trakcal.profile);
+                Trakcal.profile = InitialiseUserProfile.editUserInfo(arguments[1]);
+                AskUserProfileQns.save(Trakcal.profile);
                 break;
             case "edita":
                 return prepareEditActivityCommand(arguments[1]);

@@ -2,7 +2,7 @@
 
 The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
 
-By: CS2113-T09-4    Since: September 2020   Licence: MIT
+By: CS2113-T09-4     Since: September 2020    Licence: MIT
 
 <br>
 
@@ -61,7 +61,7 @@ This section gives you a detailed description of each feature available in **tra
 >Some things to take note of:
 >* Inputs that look like `**this**` are compulsory parameters to be supplied by user.
 >* Inputs that look like `<THIS>` are optional parameters and do not need to be supplied by user if not needed.  
->* Input format should STRICTLY adhere to the one in the help list or in this user guide.
+>* Input format should adhere to the one in the help list or in this user guide.
 >* Commands such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
 
 <br>
