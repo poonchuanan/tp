@@ -110,9 +110,6 @@ public class Parser {
             case "find":
                 return prepareFindCommand(userInput);
             case "edit":
-//                Trakcal.profile = InitialiseUserProfile.editUserInfo(arguments[1]);
-//                AskUserProfileQns.save(Trakcal.profile);
-//                break;
                 return prepareEditUserProfile(arguments[1]);
             case "edita":
                 return prepareEditActivityCommand(arguments[1]);
@@ -180,7 +177,7 @@ public class Parser {
         return new AddSetCommand();
     }
 
-    private Command prepareEditUserProfile (String userInput) {
+    private Command prepareEditUserProfile(String userInput) throws IOException {
         AskUserProfileQns.edit(userInput);
         return new EditUserProfileCommand();
     }

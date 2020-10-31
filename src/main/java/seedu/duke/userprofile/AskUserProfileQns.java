@@ -6,6 +6,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static seedu.duke.ui.Ui.displayEditWeightMessage;
+import static seedu.duke.ui.Ui.displayEditHeightMessage;
+import static seedu.duke.ui.Ui.displayEditAgeMessage;
+import static seedu.duke.ui.Ui.displayEditActivityLevelMessage;
+import static seedu.duke.ui.Ui.displayEditGoalMessage;
+import static seedu.duke.ui.Ui.displayEditGenderMessage;
+import static seedu.duke.ui.Ui.displayEditNameMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelRangeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeMessage;
@@ -65,14 +72,7 @@ public class AskUserProfileQns {
         weightGoal();
     }
 
-
-
-
-    public static void edit(String info)  {
-
-        //read all data[7] from text file
-        //check for info set
-        //update the data[i] accordingly
+    public static void edit(String info) throws IOException {
         ArrayList<String> previous = Userinfotextfilestorage.update();
         for (int i = 0; i < 7; i++) {
             data[i] = previous.get(i);
@@ -80,11 +80,45 @@ public class AskUserProfileQns {
 
         String[] arguments = info.split(",");
 
-        for (int i = 0; i < arguments.length; i++) {
-            if (arguments[i].startsWith("n")) {
-
+        for (String argument : arguments) {
+            if (argument.startsWith("n/")) {
+                data[0] = argument.substring(2);
+                displayEditNameMessage();
+                System.out.println(data[0]);
+            } else if (argument.startsWith("g/")) {
+                data[1] = argument.substring(2);
+                displayEditGenderMessage();
+                System.out.println(data[1]);
+            } else if (argument.startsWith("w/")) {
+                data[2] = argument.substring(2);
+                displayEditWeightMessage();
+                System.out.println(data[2]);
+            } else if (argument.startsWith("h/")) {
+                data[3] = argument.substring(2);
+                displayEditHeightMessage();
+                System.out.println(data[3]);
+            } else if (argument.startsWith("age/")) {
+                data[4] = argument.substring(4);
+                displayEditAgeMessage();
+                System.out.println(data[4]);
+            } else if (argument.startsWith("al/")) {
+                data[5] = argument.substring(3);
+                displayEditActivityLevelMessage();
+                System.out.println(data[5]);
+            } else if (argument.startsWith("goal/")) {
+                data[6] = argument.substring(5);
+                displayEditGoalMessage();
+                System.out.println(data[6]);
             }
         }
+
+        System.out.println(Arrays.toString(data));
+
+        InitialiseUserProfile profile =
+                new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
+        AskUserProfileQns.save(profile);
+
+
 
     }
 
