@@ -88,8 +88,8 @@ Creating:
 create new user        - Creates a new user profile
 
 Shortcut:
-createSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT &&
-e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT && ...
+createSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT +
+e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT + ...
                        - Creates shortcut for adding food(s) and/or exercise(s) depending on the
                          format entered
 addSet SHORTCUT_NAME   - Adds SHORTCUT_NAME into current date list
