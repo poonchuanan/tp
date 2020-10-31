@@ -4,7 +4,6 @@ import seedu.duke.Trakcal;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelRangeMessage;
@@ -77,7 +76,7 @@ public class SaveAndAskForUserProfile {
      * user gender restricted to what is stated in enum.
      *
      */
-    public enum GenderEnum {
+    private enum GenderEnum {
         male, female;
     }
 
@@ -85,19 +84,13 @@ public class SaveAndAskForUserProfile {
      * ask user for gender and save in an array entry.
      *
      */
-    public static void gender() {
+    private static void gender() {
         Ui.displayAskUserGenderMessage();
         String gender = input();
 
         try {
-            for (GenderEnum validGender : GenderEnum.values()) {
-                if (validGender.name().equals(gender)) {
-                    data[1] = gender;
-                    return;
-                }
-            }
-
-            throw new IllegalArgumentException();
+            checkGender(gender);
+            data[1] = gender;
 
         } catch (IllegalArgumentException e) {
             displayInvalidGenderMessage();
@@ -109,15 +102,13 @@ public class SaveAndAskForUserProfile {
      * ask user for weight and save in an array entry.
      * must be between 20 to 650kg and type double.
      */
-    public static void weight() {
+    private static void weight() {
         Ui.displayAskUserWeightMessage();
         String weight = input();
 
         try {
-            if (Double.parseDouble(weight) < 20 || Double.parseDouble(weight) > 650) {
-                throw new IllegalArgumentException();
-            }
-
+            checkInputIsDouble(weight);
+            checkWeightIsWithinRange(weight);
             data[2] = weight;
 
         } catch (NumberFormatException e) {
@@ -133,14 +124,12 @@ public class SaveAndAskForUserProfile {
      * ask user for height and save in an array entry.
      * must be between 10 to 300cm and type double.
      */
-    public static void height() {
+    private static void height() {
         Ui.displayAskUserHeightMessage();
         String height = input();
         try {
-
-            if (Double.parseDouble(height) > 300 || Double.parseDouble(height) < 10) {
-                throw new IllegalArgumentException();
-            }
+            checkInputIsDouble(height);
+            checkHeightIsWithinRange(height);
             data[3] = height;
 
         } catch (NumberFormatException e) {
@@ -156,15 +145,12 @@ public class SaveAndAskForUserProfile {
      * ask user for age and save in an array entry.
      * must be between 1 to 120 years old.
      */
-    public static void age() {
+    private static void age() {
         Ui.displayAskUserAgeMessage();
         String age = input();
         try {
-
-            if (Integer.parseInt(age) < 1 || Integer.parseInt(age) > 120) {
-                throw new IllegalArgumentException();
-            }
-
+            checkInputIsInt(age);
+            checkAgeIsWithinRange(age);
             data[4] = age;
 
         } catch (NumberFormatException e) {
@@ -180,14 +166,12 @@ public class SaveAndAskForUserProfile {
      * ask user for activity level and save in an array entry.
      *
      */
-    public static void activityLevel() {
+    private static void activityLevel() {
         Ui.displayAskUserActivityLevelMessage();
         String activityLevel = input();
         try {
-            if (Integer.parseInt(activityLevel) < 0 || Integer.parseInt(activityLevel) > 5) {
-                throw new IllegalArgumentException();
-            }
-
+            checkInputIsInt(activityLevel);
+            checkAcLeIsWithinRange(activityLevel);
             data[5] = activityLevel;
 
         } catch (NumberFormatException e) {
@@ -203,7 +187,7 @@ public class SaveAndAskForUserProfile {
      * user weight goal restricted to what is stated in enum.
      *
      */
-    public enum WeightGoalEnum {
+    private enum WeightGoalEnum {
         lose, maintain, gain;
     }
 
@@ -211,23 +195,69 @@ public class SaveAndAskForUserProfile {
      * ask user for weight goal and save in an array entry.
      *
      */
-    public static void weightGoal() {
+    private static void weightGoal() {
         Ui.displayAskUserWeightGoalMessage();
         String weightGoal = input();
 
         try {
-            for (WeightGoalEnum validWeightGoal : WeightGoalEnum.values()) {
-                if (validWeightGoal.name().equals(weightGoal)) {
-                    data[6] = weightGoal;
-                    return;
-                }
-            }
-            throw new IllegalArgumentException();
+            checkWeightGoal(weightGoal);
+            data[6] = weightGoal;
 
         } catch (IllegalArgumentException e) {
             displayInvalidWeightGoalMessage();
             weightGoal();
         }
+    }
+
+    private static void checkGender(String gender) throws IllegalArgumentException {
+        for (GenderEnum validGender : GenderEnum.values()) {
+            if (validGender.name().equals(gender)) {
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException();
+    }
+
+    private static void checkInputIsDouble(String userInput) throws NumberFormatException {
+        Double.parseDouble(userInput);
+    }
+
+    private static void checkWeightIsWithinRange(String weight) throws IllegalArgumentException {
+        if (Double.parseDouble(weight) < 20 || Double.parseDouble(weight) > 650) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkHeightIsWithinRange(String height) throws IllegalArgumentException {
+        if (Double.parseDouble(height) < 10 || Double.parseDouble(height) > 300) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkAgeIsWithinRange(String age) throws IllegalArgumentException {
+        if (Integer.parseInt(age) < 1 || Integer.parseInt(age) > 120) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkInputIsInt(String userInput) throws NumberFormatException {
+        Integer.parseInt(userInput);
+    }
+
+    private static void checkAcLeIsWithinRange(String al) throws IllegalArgumentException {
+        if (Integer.parseInt(al) < 1 || Integer.parseInt(al) > 5) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkWeightGoal(String wg) throws IllegalArgumentException {
+        for (WeightGoalEnum validWg : WeightGoalEnum.values()) {
+            if (validWg.name().equals(wg)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException();
     }
 
     public static InitialiseAndCalculateUserProfile enterNewUserInfo() throws IOException {

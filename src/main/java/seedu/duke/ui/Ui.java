@@ -177,7 +177,7 @@ public class Ui {
      * Prints out message asking for weight goal.
      */
     public static void displayAskUserWeightGoalMessage() {
-        System.out.println("Do you want to lose/maintain/gain weight?");
+        System.out.println("Do you wish to lose/maintain/gain weight?");
     }
 
     /**
