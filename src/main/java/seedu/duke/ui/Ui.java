@@ -109,15 +109,15 @@ public class Ui {
      * Prints out acknowledgement of saving current activity list in file.
      */
     public static void displaySavedMessage() {
-        System.out.println("The current activity list has been saved.");
+        print("The current activity list has been saved.");
     }
 
     /**
      * Prints out error in saving current activity list in file.
      */
     public static void displayNotSavedMessage() {
-        print("The current activity list has not been saved."
-                + "An error has occurred!"
+        print("The current activity list has not been saved.\n"
+                + "An error has occurred!\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -183,7 +183,7 @@ public class Ui {
      * Prints out message when editing activity successful.
      */
     public static void displayEditMessage() {
-        print("Noted! The following has been edited:");
+        System.out.println("Noted! The following has been edited:");
     }
 
     /**
