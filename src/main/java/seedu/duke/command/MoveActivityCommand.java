@@ -4,10 +4,10 @@ package seedu.duke.command;
 import seedu.duke.exception.ListNotFoundException;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static seedu.duke.ui.ExceptionMessages.displayListNotFoundExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.print;
 
 /**
  * This command moves an activity from one index to another.
@@ -26,6 +26,7 @@ public class MoveActivityCommand extends Command {
     public void execute() {
         try {
             dayMap.move(indexToBeMovedFrom, indexToBeInsertedBelow);
+            print("Activity has been successfully moved!");
         } catch (IndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
             commandLogger.log(Level.WARNING, "Accessing an index that is out of bounds");
