@@ -27,6 +27,7 @@ public class  FindCalorieCommand extends Command {
     public void execute() {
         try {
             dayMap.listActivitiesContainingCalorie(calorie);
+            dayMap.drawListAfterFindCommand();
         } catch (KeywordNotFoundException e) {
             System.out.println("No results were found!");
         }

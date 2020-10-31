@@ -54,6 +54,7 @@ import static seedu.duke.ui.ExceptionMessages.displayEmptyAddActivityErrorMessag
 import static seedu.duke.ui.ExceptionMessages.displayEmptyEditActivityErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyInput;
 import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
@@ -128,7 +129,8 @@ public class Parser {
             case "graph":
                 return prepareGraphCommand(arguments);
             default:
-                return new InvalidCommand();
+                return new InvalidCommand(displayAddCommandErrorMessage());
+
             }
         } catch (StringIndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
@@ -354,8 +356,18 @@ public class Parser {
         String firstIndexKey = "from/";
         String secondIndexKey = "below/";
 
+
         int firstIndex = after.indexOf(firstIndexKey) + firstIndexKey.length(); //index after first keyword
         int secondIndex = after.indexOf(secondIndexKey) + secondIndexKey.length(); //index after second keyword
+
+        if (!after.contains(firstIndexKey) && !after.contains(secondIndexKey)) {
+            return new InvalidCommand("'from/' and 'below/' keyword is missing!");
+        } else if (!after.contains(firstIndexKey)) {
+            return new InvalidCommand("'from/' keyword is missing!");
+        } else if (!after.contains(secondIndexKey)) {
+            return new InvalidCommand("'below/' keyword is missing!");
+        }
+
 
         String firstIndexString = after.substring(firstIndex).trim().split(" ")[0];
         String secondIndexString = after.substring(secondIndex).trim().split(" ")[0];
@@ -489,5 +501,6 @@ public class Parser {
     private Command prepareUserProfileListCommand() {
         return new ListUserProfileCommand();
     }
+
 
 }

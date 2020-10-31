@@ -1,63 +1,42 @@
 package seedu.duke.ui;
 
-import seedu.duke.userprofile.InitialiseUserProfile;
+import static seedu.duke.ui.ExceptionMessages.print;
 
 /**
  * Deals with interactions with the user.
  */
 public class Ui {
+
+    public static String PROMPTUSEROFHELPMESSAGE = "Please do input 'help' for the commands "
+            + "and their respective input format.";
+    public static String DIVIDER = "=========================================="
+            + "==========================================";
+    private static String LOGO =
+            "| Hello from                                                                       |\n"
+            + "|  _                  _  __   ___     _     _                                      |\n"
+            + "| | |_   _ _   __ _  | |/ /  / __|   /_\\   | |                                     |\n"
+            + "| |  _| | '_| / _` | | ' <  | (__   / _ \\  | |__                                   |\n"
+            + "|  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|                                  |\n"
+            + "|                                                                                  |\n"
+            + "| Hello! I'm traKCAL.                                                              |\n"
+            + "| " + PROMPTUSEROFHELPMESSAGE + "       |";
+
     /**
      * Prints out welcome message to user when program is run.
      */
     public static void displayWelcomeMessage() {
-        displayDuke();
-        helloMessage();
-        promptUserOfHelpMessage();
+        print(LOGO);
     }
 
-    /**
-     * Prints out traKCAL logo.
-     */
-    public static void displayDuke() {
-        drawDivider();
-        String logo = "|  _                  _  __   ___     _     _"
-                + "                                                       |\n"
-                + "| | |_   _ _   __ _  | |/ /  / __|   /_\\   | |"
-                + "                                                      |\n"
-                + "| |  _| | '_| / _` | | ' <  | (__   / _ \\  | |__"
-                + "                                                    |\n"
-                + "|  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|"
-                + "                                                   |\n"
-                + "|                                                  "
-                + "                                                 |";
-        System.out.println("| Hello from"
-                + "                                                                                        |\n"
-                + logo);
-    }
-
-    /**
-     * Prints out a line divider.
-     */
     public static void drawDivider() {
-        String divider = "===================================================================================="
-                 + "=================";
-        System.out.println(divider);
+        System.out.println(DIVIDER);
     }
 
-    /**
-     * Prints out hello message.
-     */
-    public static void helloMessage() {
-        System.out.println("| Hello! I'm traKCAL."
-                + "                                                                               |");
-        drawDivider();
-    }
 
     /**
      * Prints out help list showing the commands available.
      */
     public static void displayHelpMessage() {
-        drawDivider();
         String helpList = "This section displays the commands available and their respective input format.\n"
                 + "> Words in CAPS are parameters to be filled in by you!\n"
                 + "\n"
@@ -123,43 +102,33 @@ public class Ui {
                 + "\n"
                 + "Exiting:\n"
                 + "bye                    - Terminates the application\n";
-        System.out.println(helpList);
-        drawDivider();
+        print(helpList);
     }
 
     /**
      * Prints out acknowledgement of saving current activity list in file.
      */
     public static void displaySavedMessage() {
-        System.out.println("The current activity list has been saved.");
+        print("The current activity list has been saved.");
     }
 
     /**
      * Prints out error in saving current activity list in file.
      */
     public static void displayNotSavedMessage() {
-        System.out.println("The current activity list has not been saved.");
-        System.out.println("An error has occurred!");
-        promptUserOfHelpMessage();
-        System.out.println();
+        print("The current activity list has not been saved.\n"
+                + "An error has occurred!\n"
+                + PROMPTUSEROFHELPMESSAGE);
     }
 
     /**
      * Prints out bye message and let the user know that the current list has been saved to file.
      */
     public static void displayByeMessage() {
-        drawDivider();
-        System.out.println("| Thank you for using traKCAL. See you again!"
-                + "                                                       |");
-        drawDivider();
+        print("| Thank you for using traKCAL. See you again!"
+                + "                                      |");
     }
 
-    /**
-     * Prints out message to recommend user to print out help list.
-     */
-    public static void promptUserOfHelpMessage() {
-        System.out.println("Please do input 'help' for the commands and their respective input format.");
-    }
 
     /**
      * Prints out message when list command given but activity list is empty.
@@ -214,7 +183,6 @@ public class Ui {
      * Prints out message when editing activity successful.
      */
     public static void displayEditMessage() {
-        drawDivider();
         System.out.println("Noted! The following has been edited:");
     }
 
@@ -222,8 +190,7 @@ public class Ui {
      * Prints out message when adding activity successful.
      */
     public static void displayAddMessage() {
-        drawDivider();
-        System.out.println("Noted! The following has been added into list:");
+        print("Noted! The following has been added into list:");
     }
 
     public static void displayEditNameMessage() {
