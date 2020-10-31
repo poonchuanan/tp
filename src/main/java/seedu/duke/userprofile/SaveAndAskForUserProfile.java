@@ -113,15 +113,13 @@ public class SaveAndAskForUserProfile {
      * ask user for weight and save in an array entry.
      * must be between 20 to 650kg and type double.
      */
-    public static void weight() {
+    private static void weight() {
         Ui.displayAskUserWeightMessage();
         String weight = input();
 
         try {
-            if (Double.parseDouble(weight) < 20 || Double.parseDouble(weight) > 650) {
-                throw new IllegalArgumentException();
-            }
-
+            checkWeightIsDouble(weight);
+            checkWeightIsWithinRange(weight);
             data[2] = weight;
 
         } catch (NumberFormatException e) {
@@ -130,6 +128,16 @@ public class SaveAndAskForUserProfile {
         } catch (IllegalArgumentException e) {
             displayInvalidWeightRangeMessage();
             weight();
+        }
+    }
+
+    private static void checkWeightIsDouble (String weight) throws NumberFormatException {
+        Double.parseDouble(weight);
+    }
+
+    private static void checkWeightIsWithinRange (String weight) throws IllegalArgumentException {
+        if (Double.parseDouble(weight) < 20 || Double.parseDouble(weight) > 650) {
+            throw new IllegalArgumentException();
         }
     }
 
