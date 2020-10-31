@@ -230,6 +230,9 @@ public class Parser {
                 }
 
                 String foodDescription = userInput.substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+                if (foodDescription.equals(" ") || foodDescription.equals("")) {
+                    throw new Exception();
+                }
 
                 displayEditMessage();
 
@@ -243,6 +246,9 @@ public class Parser {
                 }
 
                 String exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+                if (exerciseDescription.equals(" ") || exerciseDescription.equals("")) {
+                    throw new Exception();
+                }
 
                 displayEditMessage();
 
@@ -282,6 +288,9 @@ public class Parser {
 
                 LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
                 String foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+                if (foodDescription.equals(" ") || foodDescription.equals("")) {
+                    throw new Exception();
+                }
 
                 displayAddMessage();
 
@@ -299,6 +308,9 @@ public class Parser {
 
                 LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
                 String exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+                if (exerciseDescription.equals(" ") || exerciseDescription.equals("")) {
+                    throw new Exception();
+                }
 
                 displayAddMessage();
 

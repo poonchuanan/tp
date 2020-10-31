@@ -78,7 +78,7 @@ public class ExceptionMessages {
                 + " - where food is X, calories lost is Y and date(YYYY-MM-DD) is Z");
         System.out.println("The input format for adding exercise activity is 'add e/ X c/ Y d/ Z\n"
                 + " - where exercise done is X, calories lost is Y and date(YYYY-MM-DD) is Z");
-        System.out.println("Please do input 'help' for more information.");
+        System.out.println("If this is still too confusing for you, please do input 'help' for more information.");
         drawDivider();
     }
 
