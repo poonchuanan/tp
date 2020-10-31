@@ -54,12 +54,20 @@ public class DayMap {
     }
 
     /**
-     * Displays the list using the drawer classes.
+     * Displays the list using the listDrawer class.
      * @param date is the date of the list to be drawn.
      */
     public void drawListAfterListCommand(LocalDate date) {
         ListDrawer listDrawer = new ListDrawer(date, lastSeenList);
         listDrawer.printList();
+    }
+
+    /**
+     * Displays the list using the findDrawer class.
+     */
+    public void drawListAfterFindCommand() {
+        FindDrawer findDrawer = new FindDrawer(lastSeenList);
+        findDrawer.printList();
     }
 
     /**
@@ -192,7 +200,6 @@ public class DayMap {
                     int calorieStartIndex = currentLine.lastIndexOf(' ');
                     String calorieToCheck = currentLine.substring(calorieStartIndex).trim();
                     if (calorieToCheck.equals(calorie)) {
-                        System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
                         lastSeenList.addActivity(activities.getActivity(i));
                         activityFindCounter++;
                     }

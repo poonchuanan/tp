@@ -32,7 +32,6 @@ public class ListCommand extends Command {
     public void execute() {
         try {
             dayMap.setLastSeenList(dayMap.getActivityList(date.atStartOfDay()));
-
             dayMap.drawListAfterListCommand(date);
 
         } catch (NullPointerException e) {
