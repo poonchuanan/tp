@@ -12,6 +12,7 @@ import seedu.duke.command.CreateNewUserCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.EditExerciseCommand;
 import seedu.duke.command.EditFoodCommand;
+import seedu.duke.command.EditUserProfileCommand;
 import seedu.duke.command.FindAllCommand;
 import seedu.duke.command.FindCalorieCommand;
 import seedu.duke.command.FindDescriptionCommand;
@@ -109,9 +110,10 @@ public class Parser {
             case "find":
                 return prepareFindCommand(userInput);
             case "edit":
-                Trakcal.profile = InitialiseUserProfile.editUserInfo(arguments[1]);
-                AskUserProfileQns.save(Trakcal.profile);
-                break;
+//                Trakcal.profile = InitialiseUserProfile.editUserInfo(arguments[1]);
+//                AskUserProfileQns.save(Trakcal.profile);
+//                break;
+                return prepareEditUserProfile(arguments[1]);
             case "edita":
                 return prepareEditActivityCommand(arguments[1]);
             case "delete":
@@ -176,6 +178,11 @@ public class Parser {
             ExceptionMessages.displayIoExceptionMessage();
         }
         return new AddSetCommand();
+    }
+
+    private Command prepareEditUserProfile (String userInput) {
+        AskUserProfileQns.edit(userInput);
+        return new EditUserProfileCommand();
     }
 
     /**
@@ -479,6 +486,5 @@ public class Parser {
         }
         return new GraphCommand();
     }
-
 
 }

@@ -4,6 +4,7 @@ import seedu.duke.Trakcal;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelRangeMessage;
@@ -64,6 +65,29 @@ public class AskUserProfileQns {
         weightGoal();
     }
 
+
+
+
+    public static void edit(String info)  {
+
+        //read all data[7] from text file
+        //check for info set
+        //update the data[i] accordingly
+        ArrayList<String> previous = Userinfotextfilestorage.update();
+        for (int i = 0; i < 7; i++) {
+            data[i] = previous.get(i);
+        }
+
+        String[] arguments = info.split(",");
+
+        for (int i = 0; i < arguments.length; i++) {
+            if (arguments[i].startsWith("n")) {
+
+            }
+        }
+
+    }
+
     /**
      * ask user for name and save in an array entry.
      *
@@ -71,6 +95,7 @@ public class AskUserProfileQns {
     public static void name()  {
         data[0] = input("What is your name?\n");
     }
+
 
     /**
      * user gender restricted to what is stated in enum.
@@ -84,7 +109,7 @@ public class AskUserProfileQns {
      * ask user for gender and save in an array entry.
      *
      */
-    private static void gender() {
+    public static void gender() {
         Ui.displayAskUserGenderMessage();
         String gender = input();
 
@@ -102,7 +127,7 @@ public class AskUserProfileQns {
      * ask user for weight and save in an array entry.
      * must be between 20 to 650kg and type double.
      */
-    private static void weight() {
+    public static void weight() {
         Ui.displayAskUserWeightMessage();
         String weight = input();
 
@@ -124,7 +149,7 @@ public class AskUserProfileQns {
      * ask user for height and save in an array entry.
      * must be between 10 to 300cm and type double.
      */
-    private static void height() {
+    public static void height() {
         Ui.displayAskUserHeightMessage();
         String height = input();
         try {
@@ -145,7 +170,7 @@ public class AskUserProfileQns {
      * ask user for age and save in an array entry.
      * must be between 1 to 120 years old.
      */
-    private static void age() {
+    public static void age() {
         Ui.displayAskUserAgeMessage();
         String age = input();
         try {
@@ -166,7 +191,7 @@ public class AskUserProfileQns {
      * ask user for activity level and save in an array entry.
      *
      */
-    private static void activityLevel() {
+    public static void activityLevel() {
         Ui.displayAskUserActivityLevelMessage();
         String activityLevel = input();
         try {
@@ -195,7 +220,7 @@ public class AskUserProfileQns {
      * ask user for weight goal and save in an array entry.
      *
      */
-    private static void weightGoal() {
+    public static void weightGoal() {
         Ui.displayAskUserWeightGoalMessage();
         String weightGoal = input();
 
@@ -258,6 +283,14 @@ public class AskUserProfileQns {
             }
         }
         throw new IllegalArgumentException();
+    }
+
+    public static void editUserInfo() throws IOException {
+        InitialiseUserProfile profile =
+                new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
+
+        System.out.println(Arrays.toString(data));
+
     }
 
     public static InitialiseUserProfile enterNewUserInfo() throws IOException {
