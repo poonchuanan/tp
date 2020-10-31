@@ -292,7 +292,7 @@ public class ExceptionMessages {
      */
     public static void displayInvalidAgeRangeMessage() {
         drawDivider();
-        System.out.println("Please enter a age range from 1 to 120 years old");
+        System.out.println("Please enter an age range from 1 to 120 years old");
         drawDivider();
     }
 

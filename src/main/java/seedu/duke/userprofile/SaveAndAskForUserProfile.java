@@ -175,11 +175,8 @@ public class SaveAndAskForUserProfile {
         Ui.displayAskUserAgeMessage();
         String age = input();
         try {
-
-            if (Integer.parseInt(age) < 1 || Integer.parseInt(age) > 120) {
-                throw new IllegalArgumentException();
-            }
-
+            checkInputIsInt(age);
+            checkAgeIsWithinRange(age);
             data[4] = age;
 
         } catch (NumberFormatException e) {
@@ -189,6 +186,16 @@ public class SaveAndAskForUserProfile {
             displayInvalidAgeRangeMessage();
             age();
         }
+    }
+
+    private static void checkAgeIsWithinRange(String age) throws IllegalArgumentException {
+        if (Integer.parseInt(age) < 1 || Integer.parseInt(age) > 120) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkInputIsInt(String userInput) throws NumberFormatException {
+        Integer.parseInt(userInput);
     }
 
     /**
