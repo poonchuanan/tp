@@ -48,7 +48,7 @@ Please do input 'help' for the commands and their respective input format.
 6. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window<br/>
    Some example commands you can try:
     * `list`: Lists all activities for today
-    * `add f/ rice with eggs c/ 200`: Adds a food entry named `rice with eggs` to **trakCAL**.
+    * `add f/ rice with eggs c/ 200 d/ 2020-10-31`: Adds a food entry named `rice with eggs`, of calories `200` and on date of `2020-10-31` to **trakCAL**.
     * `delete 3`: Deletes the 3rd contact shown in the current list.
     * `bye`: Exits the application.
 7. Refer to the [Features](#features) below for details of each command
@@ -86,10 +86,13 @@ help                   - Prints out commands available and their input format
 
 Creating:
 create new user        - Creates a new user profile
+
+Shortcut:
 createSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT &&
 e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT && ...
                        - Creates shortcut for adding food(s) and/or exercise(s) depending on the
                          format entered
+addSet SHORTCUT_NAME   - Adds SHORTCUT_NAME into current date list
 
 Adding:
 add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE
@@ -98,7 +101,6 @@ add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE
 add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE
                        - Adds exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT
                          and date(YYYY-MM-DD), DATE
-addSet SHORTCUT_NAME   - Adds SHORTCUT_NAME into current date list
 
 Listing:
 list                   - Prints out the list of entries.
@@ -901,7 +903,7 @@ No.        Type                        Description                        Calori
 
 Deletes all entry in list.
 
-Format : `delete /all`
+Format : `delete all/`
 
 Example of usage:
 * `list` before deleting

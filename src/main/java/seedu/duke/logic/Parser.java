@@ -286,11 +286,12 @@ public class Parser {
                     throw new Exception();
                 }
 
-                LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
                 String foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
                 if (foodDescription.equals(" ") || foodDescription.equals("")) {
                     throw new Exception();
                 }
+
+                LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
 
                 displayAddMessage();
 
@@ -306,11 +307,12 @@ public class Parser {
                     throw new Exception();
                 }
 
-                LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
                 String exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
                 if (exerciseDescription.equals(" ") || exerciseDescription.equals("")) {
                     throw new Exception();
                 }
+
+                LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
 
                 displayAddMessage();
 
