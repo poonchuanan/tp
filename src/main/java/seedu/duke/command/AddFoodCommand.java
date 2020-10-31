@@ -1,39 +1,43 @@
 package seedu.duke.command;
 
-import seedu.duke.Food;
+import seedu.duke.model.Food;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import static seedu.duke.ui.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.drawDivider;
+
 /**
- * Add food.
+ * Add activity food.
  */
 public class AddFoodCommand extends Command {
     protected Food food;
     protected LocalDate date;
 
     /**
-     * Add food and it's respective calories.
+     * Adds food and it's respective calories.
      *
-     * @param description food description.
-     * @param calories calories gained.
+     * @param description food description
+     * @param calories calories gained
+     * @param isFromFile if data is from csv file
      */
     public AddFoodCommand(String description, int calories, boolean isFromFile) {
-        this.food = new Food(description, calories, isFromFile);
+        this.food = new Food(description, calories, LocalDate.now(),isFromFile);
         this.date = LocalDateTime.now().toLocalDate();
         this.canBeChained = true;
     }
 
     /**
-     * Add food and it's respective calories.
+     * Adds food, it's respective calories and date.
      *
-     * @param description food description.
-     * @param calories calories gained.
-     * @param isFromFile if data is from csv file.
-     * @param date date of activity.
+     * @param description food description
+     * @param calories calories gained
+     * @param isFromFile if data is from csv file
+     * @param date date of activity
      */
     public AddFoodCommand(String description, int calories, boolean isFromFile, LocalDate date) {
-        this.food = new Food(description, calories, isFromFile);
+        this.food = new Food(description, calories, date, isFromFile);
         this.date = date;
         this.canBeChained = true;
     }
@@ -41,7 +45,8 @@ public class AddFoodCommand extends Command {
     @Override
     public void execute() {
         dayMap.addActivity(date.atStartOfDay(), food);
+        System.out.println();
+        displaySavedMessage();
+        drawDivider();
     }
-
-
 }

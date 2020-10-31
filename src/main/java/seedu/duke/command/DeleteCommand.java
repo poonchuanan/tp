@@ -1,13 +1,11 @@
 package seedu.duke.command;
 
-import seedu.duke.Activity;
-import seedu.duke.ActivityList;
+import seedu.duke.model.Activity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+
+import static seedu.duke.ui.Ui.displaySavedMessage;
 
 /**
  * Initialises Command to delete activities.
@@ -18,8 +16,9 @@ public class DeleteCommand extends Command {
 
 
     /**
-     * Delete Command Constructor.
-     * @param index index of the activities.
+     * Deletes Command Constructor.
+     *
+     * @param index index of the activities
      */
     public DeleteCommand(int index) {
         this.date = LocalDateTime.now().toLocalDate();
@@ -29,7 +28,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Delete Command Constructor.
+     * Deletes Command Constructor.
      */
     public DeleteCommand() {
         this.date = LocalDateTime.now().toLocalDate();
@@ -46,14 +45,16 @@ public class DeleteCommand extends Command {
 
         if (index == -1) {
             dayMap.getLastSeenList().clearList();
+            dayMap.getHashMap().remove(this.date);
             return;
         } else {
             try {
+
                 dayMap.deleteActivity(index);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Invalid index!");
             }
         }
-
+        displaySavedMessage();
     }
 }

@@ -1,13 +1,14 @@
 package seedu.duke.command;
 
+import seedu.duke.model.ListDrawer;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-
-import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
 
 /**
- * List command.
+ * Prints the list of activities for the given day.
+ * If no date attribute was given by the user, prints the list of activities for today.
+ * Prints error message if there is no activities for the given day.
  */
 public class ListCommand extends Command {
 
@@ -25,18 +26,17 @@ public class ListCommand extends Command {
 
     }
 
-    /**
-     * Prints the list of activities for the given day.
-     * If no date attribute was given by the user, prints the list of activities for today.
-     * Prints error message if there is no activities for the given day.
-     */
+
     @Override
     public void execute() {
         try {
             dayMap.setLastSeenList(dayMap.getActivityList(date.atStartOfDay()));
-            dayMap.getLastSeenList().printList();
+
+            dayMap.drawListAfterListCommand(date);
+
         } catch (NullPointerException e) {
             System.out.println("There is no data for " + date.toString());
         }
+
     }
 }

@@ -1,29 +1,30 @@
 package seedu.duke.userprofile;
 
 import java.text.DecimalFormat;
-import seedu.duke.Ui;
-import static seedu.duke.ExceptionMessages.displayInvalidActivityFactorMessage;
+import seedu.duke.ui.Ui;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityFactorMessage;
 
-public class Userinfo {
-    protected static String name;
-    protected static String gender;
-    protected static String weight;
-    protected static String height;
-    protected static String age;
-    protected static String activityfactor;
-    protected static String weightGoal;
+public class InitialiseUserProfile {
+    protected String name;
+    protected String gender;
+    protected String weight;
+    protected String height;
+    protected String age;
+    protected String activityLevel;
+    protected String weightGoal;
+    protected double calories;
 
-    public Userinfo() {
+    public InitialiseUserProfile() {
     }
 
-    public Userinfo(String name, String gender, String weight, String height,
-                    String age, String activityfactor, String weightGoal) {
+    public InitialiseUserProfile(String name, String gender, String weight, String height,
+                                 String age, String activityLevel, String weightGoal) {
         this.name = name;
         this.gender = gender;
         this.weight = weight;
         this.height = height;
         this.age = age;
-        this.activityfactor = activityfactor;
+        this.activityLevel = activityLevel;
         this.weightGoal = weightGoal;
     }
 
@@ -48,18 +49,22 @@ public class Userinfo {
     }
 
     public String getactivityfactor() {
-        return activityfactor;
+        return activityLevel;
     }
 
     public String getWeightGoal() {
         return weightGoal;
     }
 
-    private static DecimalFormat df2 = new DecimalFormat("##.##");
+    public double getCalories() {
+        return calories;
+    }
+
+    private static DecimalFormat df2 = new DecimalFormat(".##");
 
 
-    public void printNewUserCalculatedDetails() {
-        double activityMultiple;
+    public String calculateNewUserDetails() {
+        double activityMultiple = 0;
 
         switch (Integer.parseInt(this.getactivityfactor())) {
         case 1:
@@ -79,16 +84,19 @@ public class Userinfo {
             break;
         default:
             displayInvalidActivityFactorMessage();
-            return;
+            break;
         }
 
+        String details = "";
         double bmi;
+        double calories = 0;
         bmi = (Double.parseDouble(this.getWeight())
                 / (Double.parseDouble(this.getHeight()) * Double.parseDouble(this.getHeight())))
                 * 10000;
-        System.out.println("Your BMI is " + df2.format(bmi));
+        assert bmi > 0 : "bmi should be more than 0";
 
-        double calories;
+        details += "\nYour BMI is " + df2.format(bmi) + "\n";
+
         if (this.getGender().equals("female")) {
             calories = ((10 * Double.parseDouble(this.getWeight()))
                     + (6.25 * Double.parseDouble(this.getHeight()))
@@ -100,21 +108,28 @@ public class Userinfo {
                     - (5 * Double.parseDouble(this.getAge())) + 5)
                     * activityMultiple;
         }
-        System.out.println("Your recommend daily calories intake is " + calories + " calories.");
+
+        assert calories > 0 : "calories should be greater than 0";
+
+        details += "Your recommend daily calories intake is " + calories + " calories." + "\n";
 
         if (this.getWeightGoal().equals("lose")) {
-            System.out.println("To " + this.getWeightGoal() + " weight, you should consume "
-                    + (calories - 500) + " calories instead.\n");
+            calories -= 500;
+            details += "To " + this.getWeightGoal() + " weight, you should consume "
+                    + calories + " calories instead.\n";
         } else if (this.getWeightGoal().equals("gain")) {
-            System.out.println("To " + this.getWeightGoal() + " weight, you should consume "
-                    + (calories + 500) + " calories instead.");
-        } else {
-            System.out.println("\n");
+            calories += 500;
+            details += "To " + this.getWeightGoal() + " weight, you should consume "
+                    + calories + " calories instead.\n";
         }
+
+        this.calories = calories;
+        return details;
     }
 
-    public void editUserInfo(String userInput) {
-        new Userinfo((userInput.substring(userInput.indexOf("n/") + 2, userInput.indexOf("g/") - 1)),
+    public static InitialiseUserProfile editUserInfo(String userInput) {
+        InitialiseUserProfile profile = new InitialiseUserProfile(
+                (userInput.substring(userInput.indexOf("n/") + 2, userInput.indexOf("g/") - 1)),
                 (userInput.substring(userInput.indexOf("g/") + 2, userInput.indexOf("w/") - 1)),
                 (userInput.substring(userInput.indexOf("w/") + 2, userInput.indexOf("h/") - 1)),
                 (userInput.substring(userInput.indexOf("h/") + 2, userInput.indexOf("a/") - 1)),
@@ -124,15 +139,15 @@ public class Userinfo {
 
         Ui.drawDivider();
         System.out.println("Noted, I have edited your user profile. Here are your new details: ");
-        System.out.println("Name: " + this.getName());
-        System.out.println("Gender: " + this.getGender());
-        System.out.println("Weight: " + this.getWeight());
-        System.out.println("Height: " + this.getHeight());
-        System.out.println("Age: " + this.getAge());
-        System.out.println("Activity: " + this.getactivityfactor());
-        System.out.println("Weight Goal: " + this.getWeightGoal());
-        printNewUserCalculatedDetails();
-
+        System.out.println("Name: " + profile.getName());
+        System.out.println("Gender: " + profile.getGender());
+        System.out.println("Weight: " + profile.getWeight());
+        System.out.println("Height: " + profile.getHeight());
+        System.out.println("Age: " + profile.getAge());
+        System.out.println("Activity: " + profile.getactivityfactor());
+        System.out.println("Weight Goal: " + profile.getWeightGoal());
+        System.out.println(profile.calculateNewUserDetails());
+        return profile;
     }
 
     @Override

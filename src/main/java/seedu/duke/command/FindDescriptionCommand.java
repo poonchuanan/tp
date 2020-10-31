@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.model.FindDrawer;
 import seedu.duke.exception.KeywordNotFoundException;
 
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ public class FindDescriptionCommand extends Command {
 
     /**
      * Find matching results based on description input.
+     *
      * @param description description to search
      */
     public FindDescriptionCommand(String description) {
@@ -25,12 +27,11 @@ public class FindDescriptionCommand extends Command {
     @Override
     public void execute() {
         try {
-            dayMap.listActivitiesContaining(description);
+            dayMap.listActivitiesContainingDescription(description);
+            FindDrawer findDrawer = new FindDrawer(dayMap.getLastSeenList());
+            findDrawer.printList();
         } catch (KeywordNotFoundException e) {
-            System.out.println("Invalid keyword!");
+            System.out.println("No results were found!");
         }
-
     }
-
-
 }

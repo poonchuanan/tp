@@ -1,9 +1,12 @@
 package seedu.duke.command;
 
-import seedu.duke.Exercise;
+import seedu.duke.model.Exercise;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import static seedu.duke.ui.Ui.displaySavedMessage;
+import static seedu.duke.ui.Ui.drawDivider;
 
 /**
  * Add exercise.
@@ -16,24 +19,25 @@ public class AddExerciseCommand extends Command {
      * Adds exercise and it's respective calories.
      *
      * @param description exercise description
-     * @param calories calories burnt
+     * @param calories calories lost
+     * @param isFromFile if data is from csv file
      */
     public AddExerciseCommand(String description, int calories, boolean isFromFile) {
-        this.exercise = new Exercise(description, calories, isFromFile);
+        this.exercise = new Exercise(description, calories, LocalDate.now(), isFromFile);
         this.date = LocalDateTime.now().toLocalDate();
         this.canBeChained = true;
     }
 
     /**
-     * Add exercise and it's respective calories.
+     * Adds exercise, it's respective calories and date.
      *
-     * @param description exercise description.
-     * @param calories calories lost.
-     * @param isFromFile if data is from csv file.
-     * @param date date of activity.
+     * @param description exercise description
+     * @param calories calories lost
+     * @param isFromFile if data is from csv file
+     * @param date date of activity
      */
     public AddExerciseCommand(String description, int calories, boolean isFromFile, LocalDate date) {
-        this.exercise = new Exercise(description, calories, isFromFile);
+        this.exercise = new Exercise(description, calories, date, isFromFile);
         this.date = date;
         this.canBeChained = true;
     }
@@ -41,7 +45,8 @@ public class AddExerciseCommand extends Command {
     @Override
     public void execute() {
         dayMap.addActivity(date.atStartOfDay(), exercise);
+        System.out.println();
+        displaySavedMessage();
+        drawDivider();
     }
-
-
 }

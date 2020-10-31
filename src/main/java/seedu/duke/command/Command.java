@@ -1,8 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.ActivityList;
-import seedu.duke.DayMap;
-import seedu.duke.exception.KeywordNotFoundException;
+import seedu.duke.model.DayMap;
 
 /**
  * Execute command.
@@ -19,7 +17,7 @@ public class Command {
     }
 
     /**
-     * Set data.
+     * Sets data.
      *
      * @param dayMap date
      */
@@ -27,6 +25,11 @@ public class Command {
         this.dayMap = dayMap;
     }
 
+    /**
+     * Checks if command can be chained.
+     *
+     * @return true or false
+     */
     public boolean getCanBeChained() {
         return canBeChained;
     }

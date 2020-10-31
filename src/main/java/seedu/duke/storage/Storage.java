@@ -1,4 +1,9 @@
-package seedu.duke;
+package seedu.duke.storage;
+
+import seedu.duke.model.ActivityList;
+import seedu.duke.model.DayMap;
+import seedu.duke.model.Exercise;
+import seedu.duke.model.Food;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,20 +20,29 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static seedu.duke.Ui.displayNotSavedMessage;
-import static seedu.duke.Ui.displaySaveMessage;
+import static seedu.duke.ui.Ui.displayNotSavedMessage;
 
+/**
+ * Storage class to decode and encode the .csv file.
+ */
 public class Storage {
     String filePath;
     File dataFile;
-    //ICsvMapWriter writer;
 
 
+    /**
+     * Constructor for the storage class.
+     * @param filePath path of file to be stored into
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         dataFile = new File(filePath);
     }
 
+    /**
+     * Creates the file hierarchy if not present.
+     * @throws IOException if there is an issue
+     */
     private void createFileHierarchy() throws IOException {
         if (dataFile.getParentFile().exists()) {
             if (dataFile.exists()) {
@@ -42,6 +56,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Appends to the file.
+     * @param textToAdd string to append the file with
+     */
     private void appendToFile(String textToAdd) {
         try {
             FileWriter fw = new FileWriter(filePath, true);
@@ -51,12 +69,17 @@ public class Storage {
             pw.flush();
             pw.close();
             //System.out.println("record saved");
+            //displaySavedMessage();
         } catch (Exception e) {
             //System.out.println("record not saved");
             displayNotSavedMessage();
         }
     }
 
+    /**
+     * Overwrites the file.
+     * @param textToAdd string to override the file with
+     */
     private void writeToFile(String textToAdd) {
         FileWriter fw = null;
         try {
@@ -69,6 +92,10 @@ public class Storage {
 
     }
 
+    /**
+     * Updates the file.
+     * @param dayMap dayMap to update the file with
+     */
     public void updateFile(DayMap dayMap) {
         HashMap<LocalDate, ActivityList> dayHashMap;
         dayHashMap = dayMap.getHashMap();
@@ -79,12 +106,11 @@ public class Storage {
             String activities = pair.getValue().toString();
             appendToFile(pair.getKey().toString() + ", " + activities);
         }
-        displaySaveMessage();
+        //displaySaveMessage();
     }
 
     /**
      * Loads saved CSV data into the list when the program starts.
-     *
      * @param calList used to store the current activities
      */
     public void loadData(DayMap calList) {
@@ -145,11 +171,11 @@ public class Storage {
         int calories = Integer.parseInt(calorieString);
         switch (typeOfActivity) {
         case 'F':
-            Food food = new Food(description, calories, true);
+            Food food = new Food(description, calories,date.toLocalDate(), true);
             calList.addActivity(date, food);
             break;
         case 'E':
-            Exercise exercise = new Exercise(description, calories, true);
+            Exercise exercise = new Exercise(description, calories, date.toLocalDate(), true);
             calList.addActivity(date, exercise);
             break;
         default:

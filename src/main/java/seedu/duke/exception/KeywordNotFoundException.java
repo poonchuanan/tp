@@ -1,4 +1,7 @@
 package seedu.duke.exception;
 
-public class KeywordNotFoundException extends Exception{
+/**
+ * Exception when a keyword is not found during a find command.
+ */
+public class KeywordNotFoundException extends Exception {
 }
