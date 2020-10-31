@@ -4,7 +4,6 @@ import seedu.duke.Trakcal;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelRangeMessage;
@@ -118,7 +117,7 @@ public class SaveAndAskForUserProfile {
         String weight = input();
 
         try {
-            checkWeightIsDouble(weight);
+            checkInputIsDouble(weight);
             checkWeightIsWithinRange(weight);
             data[2] = weight;
 
@@ -131,8 +130,8 @@ public class SaveAndAskForUserProfile {
         }
     }
 
-    private static void checkWeightIsDouble(String weight) throws NumberFormatException {
-        Double.parseDouble(weight);
+    private static void checkInputIsDouble(String userInput) throws NumberFormatException {
+        Double.parseDouble(userInput);
     }
 
     private static void checkWeightIsWithinRange(String weight) throws IllegalArgumentException {
@@ -149,10 +148,8 @@ public class SaveAndAskForUserProfile {
         Ui.displayAskUserHeightMessage();
         String height = input();
         try {
-
-            if (Double.parseDouble(height) > 300 || Double.parseDouble(height) < 10) {
-                throw new IllegalArgumentException();
-            }
+            checkInputIsDouble(height);
+            checkHeightIsWithinRange(height);
             data[3] = height;
 
         } catch (NumberFormatException e) {
@@ -161,6 +158,12 @@ public class SaveAndAskForUserProfile {
         } catch (IllegalArgumentException e) {
             displayInvalidHeightRangeMessage();
             height();
+        }
+    }
+
+    private static void checkHeightIsWithinRange(String height) throws IllegalArgumentException {
+        if (Double.parseDouble(height) < 10 || Double.parseDouble(height) > 300) {
+            throw new IllegalArgumentException();
         }
     }
 
