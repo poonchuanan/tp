@@ -242,18 +242,22 @@ public class SaveAndAskForUserProfile {
         String weightGoal = input();
 
         try {
-            for (WeightGoalEnum validWeightGoal : WeightGoalEnum.values()) {
-                if (validWeightGoal.name().equals(weightGoal)) {
-                    data[6] = weightGoal;
-                    return;
-                }
-            }
-            throw new IllegalArgumentException();
+            checkWeightGoal(weightGoal);
+            data[6] = weightGoal;
 
         } catch (IllegalArgumentException e) {
             displayInvalidWeightGoalMessage();
             weightGoal();
         }
+    }
+
+    private static void checkWeightGoal(String wg) throws IllegalArgumentException {
+        for (WeightGoalEnum validWg : WeightGoalEnum.values()) {
+            if (validWg.name().equals(wg)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException();
     }
 
     public static InitialiseAndCalculateUserProfile enterNewUserInfo() throws IOException {
