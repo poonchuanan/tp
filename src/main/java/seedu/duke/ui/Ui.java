@@ -221,4 +221,8 @@ public class Ui {
         System.out.print("Your weight goal has been updated to ");
     }
 
+    public static void displayReturningUserMessage() {
+        System.out.println("Welcome back! What would you like to do today?\n");
+    }
+
 }
