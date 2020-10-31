@@ -269,7 +269,10 @@ public class ExceptionMessages {
         print("Empty description!");
     }
 
-
+    /**
+     * Prints a message in a specified format
+     * @param message is the message to be printed out
+     */
     public static void print(String message) {
         System.out.println(DIVIDER);
         System.out.println(message);

@@ -1,6 +1,7 @@
 package seedu.duke.ui;
 
 import static seedu.duke.ui.ExceptionMessages.print;
+import seedu.duke.userprofile.InitialiseUserProfile;
 
 /**
  * Deals with interactions with the user.
@@ -191,6 +192,34 @@ public class Ui {
      */
     public static void displayAddMessage() {
         print("Noted! The following has been added into list:");
+    }
+
+    public static void displayEditNameMessage() {
+        System.out.print("Your name has been updated to ");
+    }
+
+    public static void displayEditGenderMessage() {
+        System.out.print("Your gender has been updated to ");
+    }
+
+    public static void displayEditWeightMessage() {
+        System.out.print("Your weight has been updated to ");
+    }
+
+    public static void displayEditHeightMessage() {
+        System.out.print("Your height has been updated to ");
+    }
+
+    public static void displayEditAgeMessage() {
+        System.out.print("Your age has been updated to ");
+    }
+
+    public static void displayEditActivityLevelMessage() {
+        System.out.print("Your activity level has been updated to ");
+    }
+
+    public static void displayEditGoalMessage() {
+        System.out.print("Your weight goal has been updated to ");
     }
 
 }
