@@ -48,6 +48,7 @@ import static seedu.duke.ui.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayCalorieCountOutOfBound;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandStringOutOfBoundExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyEditActivityErrorMessage;
@@ -424,14 +425,29 @@ public class Parser {
                 return new DeleteCommand();
             } else {
                 int index = Integer.parseInt(userInput) - 1;
+                checkIndex(index);
                 return new DeleteCommand(index);
             }
         } catch (NumberFormatException e) {
             displayDeleteCommandNumberFormatExceptionMessage();
         } catch (NullPointerException e) {
             displayDeleteCommandNullPointerExceptionMessage();
+        } catch (IndexOutOfBoundsException e) {
+            displayDeleteCommandStringOutOfBoundExceptionMessage();
         }
         return null;
+    }
+
+    /** Checks for index of the delete command.
+     *
+     * @param index index of the delete command
+     * @return true if index is valid
+     * @throws IndexOutOfBoundsException
+     */
+    private void checkIndex(int index) throws IndexOutOfBoundsException {
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     /**

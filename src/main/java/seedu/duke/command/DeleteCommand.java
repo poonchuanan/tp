@@ -46,15 +46,15 @@ public class DeleteCommand extends Command {
         if (index == -1) {
             dayMap.getLastSeenList().clearList();
             dayMap.getHashMap().remove(this.date);
-            return;
+            displaySavedMessage();
         } else {
             try {
 
                 dayMap.deleteActivity(index);
+                displaySavedMessage();
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Invalid index!");
             }
         }
-        displaySavedMessage();
     }
 }

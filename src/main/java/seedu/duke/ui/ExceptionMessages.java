@@ -358,5 +358,14 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    /**
+     * Prints out error message for invalid number for delete command
+     */
+    public static void displayDeleteCommandStringOutOfBoundExceptionMessage() {
+        drawDivider();
+        System.out.println("Invalid index!");
+        drawDivider();
+    }
+
 
 }
