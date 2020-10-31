@@ -43,6 +43,10 @@ This section gives the steps you need to get started quickly.
 =====================================================================================================
 Please do input 'help' for the commands and their respective input format.
 ```
+   * Tip: 
+     Increase your windows length if the greeting message appears congested like this:
+     ![Congested opening message](diagrams/openingMessageError.png)
+
 6. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window
 
    Some example commands you can try:
@@ -465,7 +469,7 @@ No.        Type                        Description                        Calori
 
 Edits user profile of an existing user.
 
-Format: `edit n/ **NAME** g/ **GENDER** w/ **WEIGHT** h/ **HEIGHT** a/ **AGE** af/ **ACTIVITY_FACTOR** goal/ **WEIGHT_GOALS**`
+Format: `edit <n/**NAME**>,<g/**GENDER**>,<w/**WEIGHT**>,<h/**HEIGHT**>,<age/**AGE**><al/**ACTIVITY_FACTOR**>,<goal/**WEIGHT_GOALS**>`
 
 Parameters: 
 * `**NAME**`: Name of user.
@@ -477,52 +481,19 @@ Parameters:
 * `**WEIGHT_GOALS**`: Whether user wants to lose/maintain/gain weight.
 
 Example of usage: 
-* `edit n/Sam g/female w/50 h/100 a/10 af/4 goal/gain`
+* `edit n/Tom,w/90`
 
 ```
 ==============================================================
-Noted, I have edited your user profile. Here are your new details: 
-Name: Sam
-Gender: female
-Weight: 50
-Height: 100
-Age: 10
-Activity: 4
-Weight Goal: gain
-Your BMI is 50
-Your recommend daily calories intake is 1576.65 calories.
-To gain weight, you should consume 2076.65 calories instead.
+Your name has been updated to Tom.
+Your weight has been updated to 90.
 ==============================================================
 ```
 
+<br>
 
-**trakCAL** only accepts female and male as gender. If you were to enter `Donkey` as gender, this error message will be shown.
-```
-=====================================================================================================
-Please input female or male as gender only!
-=====================================================================================================
-```
-
-**trakCAL** only accepts integers with/without decimal points as weight, height and age. If you were to enter `haha` as weight, height or age, this error message will be shown.
-```
-=====================================================================================================
-Please enter a valid number format!
-=====================================================================================================
-```
-
-**trakCAL** only accepts integers from 1 to 5 for activity level. If you were to enter `6` or `haha` as activity level, this error message will be shown.
-```
-=====================================================================================================
-Please enter a number from 1 to 5 only!
-=====================================================================================================
-```
-
-**trakCAL** only accepts lose, maintain and gain for weight goals. If you were to enter `haha` as weight goal, this error message will be shown.
-```
-=====================================================================================================
-Please input lose or maintain or gain as weight goal only!
-=====================================================================================================
-```
+Tip:
+* The parameters should conform to the same style used in `create new user`. Explanations to possible error messages can be found [here](#21-creating-a-new-user-profile).
 
 
 <br>

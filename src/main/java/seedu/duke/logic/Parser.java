@@ -1,7 +1,6 @@
 package seedu.duke.logic;
 
 import seedu.duke.Trakcal;
-//import seedu.duke.command.*;
 import seedu.duke.command.AddExerciseCommand;
 import seedu.duke.command.AddFoodCommand;
 import seedu.duke.command.AddSetCommand;
@@ -12,6 +11,7 @@ import seedu.duke.command.CreateNewUserCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.EditExerciseCommand;
 import seedu.duke.command.EditFoodCommand;
+import seedu.duke.command.EditUserProfileCommand;
 import seedu.duke.command.FindAllCommand;
 import seedu.duke.command.FindCalorieCommand;
 import seedu.duke.command.FindDescriptionCommand;
@@ -21,12 +21,13 @@ import seedu.duke.command.HelpCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
 
+import seedu.duke.command.ListUserProfileCommand;
 import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.exception.CalorieCountException;
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.ui.ExceptionMessages;
+import seedu.duke.ui.Ui;
 import seedu.duke.userprofile.AskUserProfileQns;
-import seedu.duke.userprofile.InitialiseUserProfile;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -109,15 +110,15 @@ public class Parser {
             case "find":
                 return prepareFindCommand(userInput);
             case "edit":
-                Trakcal.profile = InitialiseUserProfile.editUserInfo(arguments[1]);
-                AskUserProfileQns.save(Trakcal.profile);
-                break;
+                return prepareEditUserProfile(arguments[1]);
             case "edita":
                 return prepareEditActivityCommand(arguments[1]);
             case "delete":
                 return prepareDeleteCommand(arguments[1]);
             case "list":
                 return prepareListCommand(userInput);
+            case "listup":
+                return prepareUserProfileListCommand();
             case "help":
                 return new HelpCommand();
             case "move":
@@ -176,6 +177,11 @@ public class Parser {
             ExceptionMessages.displayIoExceptionMessage();
         }
         return new AddSetCommand();
+    }
+
+    private Command prepareEditUserProfile(String userInput) throws IOException {
+        AskUserProfileQns.edit(userInput);
+        return new EditUserProfileCommand();
     }
 
     /**
@@ -480,5 +486,8 @@ public class Parser {
         return new GraphCommand();
     }
 
+    private Command prepareUserProfileListCommand() {
+        return new ListUserProfileCommand();
+    }
 
 }
