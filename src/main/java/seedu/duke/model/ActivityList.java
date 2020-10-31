@@ -91,10 +91,15 @@ public class ActivityList extends Trakcal {
     public void moveActivity(int indexToBeMovedFrom, int indexToBeInsertedBelow) throws IndexOutOfBoundsException {
 
         if (isValidIndex(indexToBeMovedFrom) && isValidIndex(indexToBeInsertedBelow)) {
-            Activity activity = getActivity(indexToBeMovedFrom);
-            activities.remove(indexToBeMovedFrom);
-            activities.add(indexToBeInsertedBelow, activity);
-            //displaySavedMessage();
+            if(indexToBeMovedFrom > indexToBeInsertedBelow) {
+                Activity activity = getActivity(indexToBeMovedFrom);
+                activities.remove(indexToBeMovedFrom);
+                activities.add(indexToBeInsertedBelow, activity);
+            } else {
+                Activity activity = getActivity(indexToBeMovedFrom);
+                activities.remove(indexToBeMovedFrom);
+                activities.add(indexToBeInsertedBelow - 1, activity);
+            }
         } else {
             throw new IndexOutOfBoundsException();
         }

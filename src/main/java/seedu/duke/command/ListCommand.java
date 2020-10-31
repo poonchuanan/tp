@@ -4,6 +4,7 @@ import seedu.duke.model.ListDrawer;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
 
 /**
  * Prints the list of activities for the given day.
@@ -36,6 +37,7 @@ public class ListCommand extends Command {
 
         } catch (NullPointerException e) {
             System.out.println("There is no data for " + date.toString());
+            commandLogger.log(Level.WARNING,"Accessing a list without any data");
         }
 
     }

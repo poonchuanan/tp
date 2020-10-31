@@ -3,6 +3,9 @@ package seedu.duke.command;
 
 import seedu.duke.exception.ListNotFoundException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import static seedu.duke.ui.ExceptionMessages.displayListNotFoundExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 
@@ -25,8 +28,10 @@ public class MoveActivityCommand extends Command {
             dayMap.move(indexToBeMovedFrom, indexToBeInsertedBelow);
         } catch (IndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
+            commandLogger.log(Level.WARNING, "Accessing an index that is out of bounds");
         } catch (ListNotFoundException e) {
             displayListNotFoundExceptionMessage();
+            commandLogger.log(Level.WARNING, "Accessing a list that does not exist");
         }
 
     }
