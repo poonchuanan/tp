@@ -60,9 +60,9 @@ public class ExceptionMessages {
      */
     public static String displayAddCommandErrorMessage() {
         return ("Invalid input given!"
-                + "The input format for adding food activity is 'add f/ X c/ Y d/ Z\n"
+                + "The input format for adding food activity is 'add f/ X c/ Y d/ Z"
                 + " - where food is X, calories lost is Y and date(YYYY-MM-DD) is Z\n"
-                + "The input format for adding exercise activity is 'add e/ X c/ Y d/ Z\n"
+                + "The input format for adding exercise activity is 'add e/ X c/ Y d/ Z"
                 + " - where exercise done is X, calories lost is Y and date(YYYY-MM-DD) is Z\n"
                 + "If this is still too confusing for you, please do input 'help' for more information.");
     }
@@ -72,9 +72,9 @@ public class ExceptionMessages {
      */
     public static void displayFindErrorMessage() {
         print("I do not understand what you mean!\n"
-                + "The input format for finding food or exercise activity via keyword is 'find d/ X'\n"
+                + "The input format for finding food or exercise activity via keyword is 'find d/ X'"
                 + " - where keyword is X\n"
-                + "The input format for finding calorie count via keyword is 'find c/ X'\n"
+                + "The input format for finding calorie count via keyword is 'find c/ X'"
                 + " - where calories count is X\n"
                 + "Please do input 'help' for more information.");
     }

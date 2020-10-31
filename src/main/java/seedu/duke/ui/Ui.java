@@ -1,7 +1,6 @@
 package seedu.duke.ui;
 
 import static seedu.duke.ui.ExceptionMessages.print;
-import seedu.duke.userprofile.InitialiseUserProfile;
 
 /**
  * Deals with interactions with the user.
@@ -12,7 +11,7 @@ public class Ui {
             + "and their respective input format.";
     public static String DIVIDER = "=========================================="
             + "==========================================";
-    private static String logo =
+    private static String LOGO =
             "| Hello from                                                                       |\n"
             + "|  _                  _  __   ___     _     _                                      |\n"
             + "| | |_   _ _   __ _  | |/ /  / __|   /_\\   | |                                     |\n"
@@ -26,7 +25,7 @@ public class Ui {
      * Prints out welcome message to user when program is run.
      */
     public static void displayWelcomeMessage() {
-        print(logo);
+        print(LOGO);
     }
 
     public static void drawDivider() {
