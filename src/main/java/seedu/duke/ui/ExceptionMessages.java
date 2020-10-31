@@ -313,4 +313,24 @@ public class ExceptionMessages {
         System.out.println("Please enter an activity level from 1 to 5 only");
         drawDivider();
     }
+
+    /**
+     * Prints out error message when calorie count too big or small.
+     */
+    public static void displayCalorieCountOutOfBound() {
+        drawDivider();
+        System.out.println("Calorie count should be > 0 and <= 3000!");
+        drawDivider();
+    }
+
+    /**
+     * Prints out error message when activity level from 1 to 5.
+     */
+    public static void displayEmptyInput() {
+        drawDivider();
+        System.out.println("Empty description!");
+        drawDivider();
+    }
+
+
 }
