@@ -279,11 +279,11 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints out error message when weight range is not between 0 to 650kg.
+     * Prints out error message when weight range is not between 20 to 650kg.
      */
     public static void displayInvalidWeightRangeMessage() {
         drawDivider();
-        System.out.println("Please enter a weight range from 0kg to 650kg");
+        System.out.println("Please enter a weight range from 20kg to 650kg");
         drawDivider();
     }
 
@@ -292,16 +292,16 @@ public class ExceptionMessages {
      */
     public static void displayInvalidAgeRangeMessage() {
         drawDivider();
-        System.out.println("Please enter a age range from 0 to 120 years old");
+        System.out.println("Please enter a age range from 1 to 120 years old");
         drawDivider();
     }
 
     /**
-     * Prints out error message when height is not between 0 to 300cm.
+     * Prints out error message when height is not between 10 to 300cm.
      */
     public static void displayInvalidHeightRangeMessage() {
         drawDivider();
-        System.out.println("Please enter a height range from 0cm to 300cm");
+        System.out.println("Please enter a height range from 10cm to 300cm");
         drawDivider();
     }
 

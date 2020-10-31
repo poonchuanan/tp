@@ -107,14 +107,14 @@ public class SaveAndAskForUserProfile {
 
     /**
      * ask user for weight and save in an array entry.
-     * must be between 0 to 650kg and type double
+     * must be between 20 to 650kg and type double.
      */
     public static void weight() {
         Ui.displayAskUserWeightMessage();
         String weight = input();
 
         try {
-            if (Double.parseDouble(weight) < 0 || Double.parseDouble(weight) > 650) {
+            if (Double.parseDouble(weight) < 20 || Double.parseDouble(weight) > 650) {
                 throw new IllegalArgumentException();
             }
 
@@ -131,14 +131,14 @@ public class SaveAndAskForUserProfile {
 
     /**
      * ask user for height and save in an array entry.
-     * must be between 0 to 300cm and type double
+     * must be between 10 to 300cm and type double.
      */
     public static void height() {
         Ui.displayAskUserHeightMessage();
         String height = input();
         try {
 
-            if (Double.parseDouble(height) > 300 || Double.parseDouble(height) < 0) {
+            if (Double.parseDouble(height) > 300 || Double.parseDouble(height) < 10) {
                 throw new IllegalArgumentException();
             }
             data[3] = height;
@@ -154,14 +154,14 @@ public class SaveAndAskForUserProfile {
 
     /**
      * ask user for age and save in an array entry.
-     *
+     * must be between 1 to 120 years old.
      */
     public static void age() {
         Ui.displayAskUserAgeMessage();
         String age = input();
         try {
 
-            if (Integer.parseInt(age) < 0 || Integer.parseInt(age) > 120) {
+            if (Integer.parseInt(age) < 1 || Integer.parseInt(age) > 120) {
                 throw new IllegalArgumentException();
             }
 
