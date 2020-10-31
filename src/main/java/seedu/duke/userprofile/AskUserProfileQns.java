@@ -86,33 +86,50 @@ public class AskUserProfileQns {
                 displayEditNameMessage();
                 System.out.println(data[0]);
             } else if (argument.startsWith("g/")) {
-                data[1] = argument.substring(2);
-                displayEditGenderMessage();
-                System.out.println(data[1]);
+                editGender(argument.substring(2));
             } else if (argument.startsWith("w/")) {
-                data[2] = argument.substring(2);
-                displayEditWeightMessage();
-                System.out.println(data[2]);
+                editWeight(argument.substring(2));
             } else if (argument.startsWith("h/")) {
                 editHeight(argument.substring(2));
             } else if (argument.startsWith("age/")) {
-                data[4] = argument.substring(4);
-                displayEditAgeMessage();
-                System.out.println(data[4]);
+                editAge(argument.substring(4));
             } else if (argument.startsWith("al/")) {
-                data[5] = argument.substring(3);
-                displayEditActivityLevelMessage();
-                System.out.println(data[5]);
+                editAl(argument.substring(3));
             } else if (argument.startsWith("goal/")) {
-                data[6] = argument.substring(5);
-                displayEditGoalMessage();
-                System.out.println(data[6]);
+                editGoal(argument.substring(5));
             }
         }
 
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
         AskUserProfileQns.save(profile);
+    }
+
+    private static void editGender(String gender) {
+        try {
+            checkGender(gender);
+            data[1] = gender;
+            displayEditGenderMessage();
+            System.out.println(data[1]);
+
+        } catch (IllegalArgumentException e) {
+            displayInvalidGenderMessage();
+        }
+    }
+
+    private static void editWeight(String weight) {
+        try {
+            checkInputIsDouble(weight);
+            checkWeightIsWithinRange(weight);
+            data[2] = weight;
+            displayEditWeightMessage();
+            System.out.println(data[2]);
+
+        } catch (NumberFormatException e) {
+            displayInvalidWeightMessage();
+        } catch (IllegalArgumentException e) {
+            displayInvalidWeightRangeMessage();
+        }
     }
 
     private static void editHeight(String height) {
@@ -122,12 +139,56 @@ public class AskUserProfileQns {
             data[3] = height;
             displayEditHeightMessage();
             System.out.println(data[3]);
+
         } catch (NumberFormatException e) {
             displayInvalidHeightMessage();
         } catch (IllegalArgumentException e) {
             displayInvalidHeightRangeMessage();
         }
     }
+
+    private static void editAge(String age) {
+        try {
+            checkInputIsInt(age);
+            checkAgeIsWithinRange(age);
+            data[4] = age;
+            displayEditAgeMessage();
+            System.out.println(data[4]);
+
+        } catch (NumberFormatException e) {
+            displayInvalidAgeMessage();
+        } catch (IllegalArgumentException e) {
+            displayInvalidAgeRangeMessage();
+        }
+    }
+
+    private static void editAl(String al) {
+        try {
+            checkInputIsInt(al);
+            checkAcLeIsWithinRange(al);
+            data[5] = al;
+            displayEditActivityLevelMessage();
+            System.out.println(data[5]);
+
+        } catch (NumberFormatException e) {
+            displayInvalidActivityLevelMessage();
+        } catch (IllegalArgumentException e) {
+            displayInvalidActivityLevelRangeMessage();
+        }
+    }
+
+    private static void editGoal(String goal) {
+        try {
+            checkWeightGoal(goal);
+            data[6] = goal;
+            displayEditGoalMessage();
+            System.out.println(data[6]);
+
+        } catch (IllegalArgumentException e) {
+            displayInvalidWeightGoalMessage();
+        }
+    }
+
 
     /**
      * ask user for name and save in an array entry.
