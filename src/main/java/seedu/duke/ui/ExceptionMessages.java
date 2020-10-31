@@ -359,7 +359,7 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints out error message for invalid number for delete command
+     * Prints out error message for invalid number for delete command.
      */
     public static void displayDeleteCommandStringOutOfBoundExceptionMessage() {
         drawDivider();

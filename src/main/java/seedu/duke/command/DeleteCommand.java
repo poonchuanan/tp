@@ -51,7 +51,7 @@ public class DeleteCommand extends Command {
             dayMap.getHashMap().remove(this.date);
             displayMessage("All activities have been deleted");
             displaySavedMessage();
-        } else if (index >= 0){
+        } else if (index >= 0) {
             try {
                 dayMap.deleteActivity(index);
                 displaySavedMessage();
@@ -61,7 +61,11 @@ public class DeleteCommand extends Command {
         }
     }
 
-
+    /**
+     * Gets input from the user to confirm the delete command.
+     *
+     * @return true if the user says yes
+     */
     public boolean isDeleteConfirmed() {
         System.out.println("Are you sure you want to delete all activities in today's list? [yes/no]");
         String userInput = Trakcal.in.nextLine().trim().toLowerCase();
