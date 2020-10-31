@@ -1,7 +1,6 @@
 package seedu.duke.userprofile;
 
 import java.text.DecimalFormat;
-import seedu.duke.ui.Ui;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityFactorMessage;
 
 public class InitialiseUserProfile {
@@ -13,9 +12,6 @@ public class InitialiseUserProfile {
     protected String activityLevel;
     protected String weightGoal;
     protected double calories;
-
-    public InitialiseUserProfile() {
-    }
 
     public InitialiseUserProfile(String name, String gender, String weight, String height,
                                  String age, String activityLevel, String weightGoal) {
@@ -48,7 +44,7 @@ public class InitialiseUserProfile {
         return age;
     }
 
-    public String getactivityfactor() {
+    public String getActivityLevel() {
         return activityLevel;
     }
 
@@ -66,7 +62,7 @@ public class InitialiseUserProfile {
     public String calculateNewUserDetails() {
         double activityMultiple = 0;
 
-        switch (Integer.parseInt(this.getactivityfactor())) {
+        switch (Integer.parseInt(this.getActivityLevel())) {
         case 1:
             activityMultiple = 1.2;
             break;
@@ -127,33 +123,10 @@ public class InitialiseUserProfile {
         return details;
     }
 
-    public static InitialiseUserProfile editUserInfo(String userInput) {
-        InitialiseUserProfile profile = new InitialiseUserProfile(
-                (userInput.substring(userInput.indexOf("n/") + 2, userInput.indexOf("g/") - 1)),
-                (userInput.substring(userInput.indexOf("g/") + 2, userInput.indexOf("w/") - 1)),
-                (userInput.substring(userInput.indexOf("w/") + 2, userInput.indexOf("h/") - 1)),
-                (userInput.substring(userInput.indexOf("h/") + 2, userInput.indexOf("a/") - 1)),
-                (userInput.substring(userInput.indexOf("a/") + 2, userInput.indexOf("af/") - 1)),
-                (userInput.substring(userInput.indexOf("af/") + 3, userInput.indexOf("goal/") - 1)),
-                userInput.substring(userInput.indexOf("goal/") + 5));
-
-        Ui.drawDivider();
-        System.out.println("Noted, I have edited your user profile. Here are your new details: ");
-        System.out.println("Name: " + profile.getName());
-        System.out.println("Gender: " + profile.getGender());
-        System.out.println("Weight: " + profile.getWeight());
-        System.out.println("Height: " + profile.getHeight());
-        System.out.println("Age: " + profile.getAge());
-        System.out.println("Activity: " + profile.getactivityfactor());
-        System.out.println("Weight Goal: " + profile.getWeightGoal());
-        System.out.println(profile.calculateNewUserDetails());
-        return profile;
-    }
-
     @Override
     public String toString() {
         return getName() + "," + getGender() + "," + getWeight() + ","
-                + getHeight() + "," + getAge() + "," + getactivityfactor() + "," + getWeightGoal();
+                + getHeight() + "," + getAge() + "," + getActivityLevel() + "," + getWeightGoal();
     }
 }
 
