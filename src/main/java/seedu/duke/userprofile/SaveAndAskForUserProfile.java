@@ -4,22 +4,25 @@ import seedu.duke.Trakcal;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.InvalidPropertiesFormatException;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelRangeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeRangeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidHeightMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidHeightRangeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightMessage;
 import seedu.duke.ui.Ui;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightGoalMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightRangeMessage;
 
 /**
  * Initialises user profile after asking for user input.
  */
 public class SaveAndAskForUserProfile {
-    private static InitialiseAndCalculateUserProfile userInfo = new InitialiseAndCalculateUserProfile();
     private static String[] data = new String[7];
 
     /**
@@ -43,6 +46,16 @@ public class SaveAndAskForUserProfile {
 
     public static InitialiseAndCalculateUserProfile createNewProfile() {
         InitialiseAndCalculateUserProfile profile = null;
+        gatherData();
+        try {
+            profile = enterNewUserInfo();
+        } catch (IOException e) {
+            displayIoExceptionMessage();
+        }
+        return profile;
+    }
+
+    public static void gatherData() {
         name();
         gender();
         weight();
@@ -50,12 +63,6 @@ public class SaveAndAskForUserProfile {
         age();
         activityLevel();
         weightGoal();
-        try {
-            profile = enterNewUserInfo();
-        } catch (IOException e) {
-            displayIoExceptionMessage();
-        }
-        return profile;
     }
 
     /**
@@ -83,11 +90,15 @@ public class SaveAndAskForUserProfile {
         String gender = input();
 
         try {
-            if (Arrays.toString(GenderEnum.values()).contains(gender)) {
-                data[1] = gender;
-            } else {
-                throw new IllegalArgumentException();
+            for (GenderEnum validGender : GenderEnum.values()) {
+                if (validGender.name().equals(gender)) {
+                    data[1] = gender;
+                    return;
+                }
             }
+
+            throw new IllegalArgumentException();
+
         } catch (IllegalArgumentException e) {
             displayInvalidGenderMessage();
             gender();
@@ -96,50 +107,73 @@ public class SaveAndAskForUserProfile {
 
     /**
      * ask user for weight and save in an array entry.
-     *
+     * must be between 20 to 650kg and type double.
      */
     public static void weight() {
         Ui.displayAskUserWeightMessage();
         String weight = input();
+
         try {
-            Double.parseDouble(weight);
+            if (Double.parseDouble(weight) < 20 || Double.parseDouble(weight) > 650) {
+                throw new IllegalArgumentException();
+            }
+
+            data[2] = weight;
+
         } catch (NumberFormatException e) {
             displayInvalidWeightMessage();
             weight();
+        } catch (IllegalArgumentException e) {
+            displayInvalidWeightRangeMessage();
+            weight();
         }
-        data[2] = weight;
     }
 
     /**
      * ask user for height and save in an array entry.
-     *
+     * must be between 10 to 300cm and type double.
      */
     public static void height() {
         Ui.displayAskUserHeightMessage();
         String height = input();
         try {
-            Double.parseDouble(height);
+
+            if (Double.parseDouble(height) > 300 || Double.parseDouble(height) < 10) {
+                throw new IllegalArgumentException();
+            }
+            data[3] = height;
+
         } catch (NumberFormatException e) {
             displayInvalidHeightMessage();
             height();
+        } catch (IllegalArgumentException e) {
+            displayInvalidHeightRangeMessage();
+            height();
         }
-        data[3] = height;
     }
 
     /**
      * ask user for age and save in an array entry.
-     *
+     * must be between 1 to 120 years old.
      */
     public static void age() {
         Ui.displayAskUserAgeMessage();
         String age = input();
         try {
-            Integer.parseInt(age);
+
+            if (Integer.parseInt(age) < 1 || Integer.parseInt(age) > 120) {
+                throw new IllegalArgumentException();
+            }
+
+            data[4] = age;
+
         } catch (NumberFormatException e) {
             displayInvalidAgeMessage();
             age();
+        } catch (IllegalArgumentException e) {
+            displayInvalidAgeRangeMessage();
+            age();
         }
-        data[4] = age;
     }
 
     /**
@@ -150,17 +184,19 @@ public class SaveAndAskForUserProfile {
         Ui.displayAskUserActivityLevelMessage();
         String activityLevel = input();
         try {
-            int checkRange = Integer.parseInt(activityLevel);
-
-            if (checkRange < 0 || checkRange > 5) {
+            if (Integer.parseInt(activityLevel) < 0 || Integer.parseInt(activityLevel) > 5) {
                 throw new IllegalArgumentException();
             }
 
-        } catch (IllegalArgumentException e) {
+            data[5] = activityLevel;
+
+        } catch (NumberFormatException e) {
             displayInvalidActivityLevelMessage();
             activityLevel();
+        } catch (IllegalArgumentException e) {
+            displayInvalidActivityLevelRangeMessage();
+            activityLevel();
         }
-        data[5] = activityLevel;
     }
 
     /**
@@ -180,11 +216,14 @@ public class SaveAndAskForUserProfile {
         String weightGoal = input();
 
         try {
-            if (Arrays.toString(WeightGoalEnum.values()).contains(weightGoal)) {
-                data[6] = weightGoal;
-            } else {
-                throw new IllegalArgumentException();
+            for (WeightGoalEnum validWeightGoal : WeightGoalEnum.values()) {
+                if (validWeightGoal.name().equals(weightGoal)) {
+                    data[6] = weightGoal;
+                    return;
+                }
             }
+            throw new IllegalArgumentException();
+
         } catch (IllegalArgumentException e) {
             displayInvalidWeightGoalMessage();
             weightGoal();
