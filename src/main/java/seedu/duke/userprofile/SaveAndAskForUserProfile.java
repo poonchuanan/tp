@@ -88,11 +88,15 @@ public class SaveAndAskForUserProfile {
         String gender = input();
 
         try {
-            if (Arrays.toString(GenderEnum.values()).contains(gender)) {
-                data[1] = gender;
-            } else {
-                throw new IllegalArgumentException();
+            for (GenderEnum validGender : GenderEnum.values()) {
+                if (validGender.name().equals(gender)) {
+                    data[1] = gender;
+                    return;
+                }
             }
+
+            throw new IllegalArgumentException();
+
         } catch (IllegalArgumentException e) {
             displayInvalidGenderMessage();
             gender();
@@ -194,8 +198,8 @@ public class SaveAndAskForUserProfile {
 
         try {
             for (WeightGoalEnum validWeightGoal : WeightGoalEnum.values()) {
+                System.out.println(validWeightGoal.name());
                 if (validWeightGoal.name().equals(weightGoal)) {
-                    System.out.println(validWeightGoal.name());
                     data[6] = weightGoal;
                     return;
                 }

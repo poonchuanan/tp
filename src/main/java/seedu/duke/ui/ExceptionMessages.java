@@ -283,4 +283,16 @@ public class ExceptionMessages {
         System.out.println("Please a positive integer as weight");
         drawDivider();
     }
+
+    public static void displayNegativeAgeMessage() {
+        drawDivider();
+        System.out.println("Please a positive integer as age");
+        drawDivider();
+    }
+
+    public static void displayNegativeHeightMessage() {
+        drawDivider();
+        System.out.println("Please a positive integer as height");
+        drawDivider();
+    }
 }
