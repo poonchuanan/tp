@@ -99,7 +99,7 @@ public class SaveAndAskForUserProfile {
         }
     }
 
-    private static void checkGender(String gender) throws IllegalArgumentException{
+    private static void checkGender(String gender) throws IllegalArgumentException {
         for (GenderEnum validGender : GenderEnum.values()) {
             if (validGender.name().equals(gender)) {
                 return;
@@ -131,11 +131,11 @@ public class SaveAndAskForUserProfile {
         }
     }
 
-    private static void checkWeightIsDouble (String weight) throws NumberFormatException {
+    private static void checkWeightIsDouble(String weight) throws NumberFormatException {
         Double.parseDouble(weight);
     }
 
-    private static void checkWeightIsWithinRange (String weight) throws IllegalArgumentException {
+    private static void checkWeightIsWithinRange(String weight) throws IllegalArgumentException {
         if (Double.parseDouble(weight) < 20 || Double.parseDouble(weight) > 650) {
             throw new IllegalArgumentException();
         }
