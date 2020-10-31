@@ -278,9 +278,15 @@ public class ExceptionMessages {
         drawDivider();
     }
 
+    public static void displayInvalidWeightRangeMessage() {
+        drawDivider();
+        System.out.println("Please enter a weight range from 0kg to 650kg");
+        drawDivider();
+    }
+
     public static void displayNegativeWeightMessage() {
         drawDivider();
-        System.out.println("Please a positive integer as weight");
+        System.out.println("Please enter a positive weight");
         drawDivider();
     }
 

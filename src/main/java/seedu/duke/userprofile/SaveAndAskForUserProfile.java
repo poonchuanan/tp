@@ -4,7 +4,7 @@ import seedu.duke.Trakcal;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.InvalidPropertiesFormatException;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityLevelMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeMessage;
@@ -14,13 +14,12 @@ import seedu.duke.ui.Ui;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightGoalMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
-import static seedu.duke.ui.ExceptionMessages.displayNegativeWeightMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightRangeMessage;
 
 /**
  * Initialises user profile after asking for user input.
  */
 public class SaveAndAskForUserProfile {
-    private static InitialiseAndCalculateUserProfile userInfo = new InitialiseAndCalculateUserProfile();
     private static String[] data = new String[7];
 
     /**
@@ -110,21 +109,21 @@ public class SaveAndAskForUserProfile {
     public static void weight() {
         Ui.displayAskUserWeightMessage();
         String weight = input();
-        try {
-            Double.parseDouble(weight);
 
-            if (Double.parseDouble(weight) < 0) {
+        try {
+            if (Double.parseDouble(weight) < 0 || Double.parseDouble(weight) > 650) {
                 throw new IllegalArgumentException();
             }
+
+            data[2] = weight;
 
         } catch (NumberFormatException e) {
             displayInvalidWeightMessage();
             weight();
         } catch (IllegalArgumentException e) {
-            displayNegativeWeightMessage();
+            displayInvalidWeightRangeMessage();
             weight();
         }
-        data[2] = weight;
     }
 
     /**
@@ -198,7 +197,6 @@ public class SaveAndAskForUserProfile {
 
         try {
             for (WeightGoalEnum validWeightGoal : WeightGoalEnum.values()) {
-                System.out.println(validWeightGoal.name());
                 if (validWeightGoal.name().equals(weightGoal)) {
                     data[6] = weightGoal;
                     return;
