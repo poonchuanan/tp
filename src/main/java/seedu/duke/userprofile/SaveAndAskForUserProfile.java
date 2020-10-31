@@ -77,7 +77,7 @@ public class SaveAndAskForUserProfile {
      * user gender restricted to what is stated in enum.
      *
      */
-    public enum GenderEnum {
+    private enum GenderEnum {
         male, female;
     }
 
@@ -85,24 +85,28 @@ public class SaveAndAskForUserProfile {
      * ask user for gender and save in an array entry.
      *
      */
-    public static void gender() {
+    private static void gender() {
         Ui.displayAskUserGenderMessage();
         String gender = input();
 
         try {
-            for (GenderEnum validGender : GenderEnum.values()) {
-                if (validGender.name().equals(gender)) {
-                    data[1] = gender;
-                    return;
-                }
-            }
-
-            throw new IllegalArgumentException();
+            checkGender(gender);
+            data[1] = gender;
 
         } catch (IllegalArgumentException e) {
             displayInvalidGenderMessage();
             gender();
         }
+    }
+
+    private static void checkGender(String gender) throws IllegalArgumentException{
+        for (GenderEnum validGender : GenderEnum.values()) {
+            if (validGender.name().equals(gender)) {
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException();
     }
 
     /**
