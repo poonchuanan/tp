@@ -47,6 +47,5 @@ public class AddFoodCommand extends Command {
         dayMap.addActivity(date.atStartOfDay(), food);
         System.out.println();
         displaySavedMessage();
-        drawDivider();
     }
 }

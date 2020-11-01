@@ -259,18 +259,23 @@ public class ExceptionMessages {
      * Prints out error message when calorie count too big or small.
      */
     public static void displayCalorieCountOutOfBound() {
-        print("Calorie count should be > 0 and <= 3000!");
+        String CalorieOutOfBoundMessage = "Calorie count should be > 0 and <= 3000!\n"
+                + "Please input a valid calorie count that is within the range!";
+        print(CalorieOutOfBoundMessage);
     }
 
     /**
-     * Prints out error message when activity level from 1 to 5.
+     * Prints out error message when description is emtpty.
      */
-    public static void displayEmptyInput() {
-        print("Empty description!");
+    public static void displayEmptyDescriptionMessage() {
+        String message = "Sorry the current description is empty!\n"
+                + "Please input a valid description that is not empty!";
+        print(message);
     }
 
     /**
      * Prints a message in a specified format.
+     *
      * @param message is the message to be printed out
      */
     public static void print(String message) {

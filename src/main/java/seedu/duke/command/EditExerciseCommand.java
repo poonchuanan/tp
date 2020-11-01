@@ -39,7 +39,6 @@ public class EditExerciseCommand extends Command {
             dayMap.insertActivity(index, exercise);
             System.out.println();
             displaySavedMessage();
-            drawDivider();
         } catch (IndexOutOfBoundsException e) {
             displayEditIndexOutOfBoundsExceptionMessage();
         }

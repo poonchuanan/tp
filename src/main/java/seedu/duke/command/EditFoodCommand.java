@@ -44,7 +44,6 @@ public class EditFoodCommand extends Command {
 
             System.out.println();
             displaySavedMessage();
-            drawDivider();
         } catch (IndexOutOfBoundsException e) {
             displayEditIndexOutOfBoundsExceptionMessage();
         }

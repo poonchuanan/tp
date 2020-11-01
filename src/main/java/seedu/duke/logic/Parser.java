@@ -52,7 +52,7 @@ import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatEx
 import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyEditActivityErrorMessage;
-import static seedu.duke.ui.ExceptionMessages.displayEmptyInput;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyDescriptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
@@ -271,7 +271,7 @@ public class Parser {
         } catch (CalorieCountException e) {
             displayCalorieCountOutOfBound();
         } catch (EmptyDescriptionException e) {
-            displayEmptyInput();
+            displayEmptyDescriptionMessage();
         } catch (NullPointerException e) {
             displayEditActivityExceptionMessage();
         } catch (NumberFormatException e) {         // catch index not string
@@ -328,8 +328,6 @@ public class Parser {
             } else {
                 displayEmptyAddActivityErrorMessage();
             }
-        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
-            displayAddCommandErrorMessage();
         } catch (NumberFormatException e) {
             displayAddActivityExceptionMessage();
         } catch (DateTimeParseException e) {
@@ -337,7 +335,9 @@ public class Parser {
         } catch (CalorieCountException e) {
             displayCalorieCountOutOfBound();
         } catch (EmptyDescriptionException e) {
-            displayEmptyInput();
+            displayEmptyDescriptionMessage();
+        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+            displayAddCommandErrorMessage();
         } catch (Exception e) {
             displayAddActivityExceptionMessage();
         }
