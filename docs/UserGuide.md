@@ -1006,7 +1006,7 @@ No.        Type                        Description                        Calori
 3          Food           orange__________________________________________________200
 ```
 
-* `delete /all`
+* `delete all/`
 
 ```
 The current activity list has been saved.
