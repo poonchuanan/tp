@@ -60,7 +60,7 @@ This section gives the steps you need to get started quickly.
 
 # Features 
 
-This section gives you a detailed description of each feature available in **trakCAL**.
+This section gives you a detailed description of each feature available in **traKCAL**.
 
 >Some things to take note of:
 >* Inputs that look like `**this**` are compulsory parameters to be supplied by user.
@@ -156,11 +156,10 @@ bye                    - Terminates the application
 
 ## 2.0 Create
 
-
 ### 2.1 Creating a new user profile
 
-If this is your first time using **trakCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
-**trakCAL** will then use these details from your user profile to calculate the following: 
+If this is your first time using **traKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
+**traKCAL** will then use these details from your user profile to calculate the following: 
 
 * BMI
 * Recommended daily calorie
