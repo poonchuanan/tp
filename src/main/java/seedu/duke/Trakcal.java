@@ -69,7 +69,6 @@ public class Trakcal {
                     executeCmd(cmd);
                     storage.updateFile(calList);
                 }
-                System.out.println();
             } catch (NullPointerException e) {
                 displayParserNullPointerExceptionMessage();
             } catch (IndexOutOfBoundsException e) {

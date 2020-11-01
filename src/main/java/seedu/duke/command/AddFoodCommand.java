@@ -45,7 +45,6 @@ public class AddFoodCommand extends Command {
     @Override
     public void execute() {
         dayMap.addActivity(date.atStartOfDay(), food);
-        System.out.println();
         displaySavedMessage();
     }
 }
