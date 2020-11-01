@@ -78,16 +78,16 @@ public class InitialiseUserProfile {
         calories = calculateCalories(this.gender, this.weight, this.height, this.age) * activityMultiple;
         assert calories > 0 : "calories should be greater than 0";
 
-        details += "Your recommend daily calories intake is " + calories + " calories." + "\n";
+        details += "Your recommend daily calories intake is " + df2.format(calories) + " calories." + "\n";
 
         if (this.getWeightGoal().equals("lose")) {
             calories -= 500;
             details += "To " + this.getWeightGoal() + " weight, you should consume "
-                    + calories + " calories instead.\n";
+                    + df2.format(calories) + " calories instead.\n";
         } else if (this.getWeightGoal().equals("gain")) {
             calories += 500;
             details += "To " + this.getWeightGoal() + " weight, you should consume "
-                    + calories + " calories instead.\n";
+                    + df2.format(calories) + " calories instead.\n";
         }
         return details;
     }
