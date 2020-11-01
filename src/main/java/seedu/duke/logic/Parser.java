@@ -489,7 +489,7 @@ public class Parser {
 
     /**
      * Prepares the arguments needed for the graph command.
-     * 
+     *
      * @param userInput description of the graph command
      * @return graphCommand
      * @throws Exception if no records are found
