@@ -278,6 +278,13 @@ public class ExceptionMessages {
     }
 
     /**
+     * Prints out error message for invalid number for delete command.
+     */
+    public static void displayDeleteCommandStringOutOfBoundExceptionMessage() {
+        print("Invalid Index!");
+    }
+
+    /**
      * Prints a message in a specified format.
      *
      * @param message is the message to be printed out
@@ -287,5 +294,9 @@ public class ExceptionMessages {
         System.out.println(message);
         System.out.println(DIVIDER);
 
+    }
+
+    public static void displayEmptyStringMessage() {
+        System.out.println("Please do not enter an empty input");
     }
 }

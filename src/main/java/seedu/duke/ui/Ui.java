@@ -206,6 +206,13 @@ public class Ui {
         System.out.println("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.");
     }
 
+    public static void displayMessage(String message) {
+        drawDivider();
+        System.out.println(message);
+        drawDivider();
+        print("Noted! The following has been added into list:");
+    }
+
     /**
      * Prints out edited name.
      */
@@ -261,4 +268,9 @@ public class Ui {
     public static void displayReturningUserMessage() {
         System.out.println("Welcome! What would you like to do today?\n");
     }
+
+    public static void displayAskUserNameMessage() {
+        System.out.println("What is your name?");
+    }
+
 }
