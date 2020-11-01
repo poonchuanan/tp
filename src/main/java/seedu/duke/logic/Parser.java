@@ -233,11 +233,17 @@ public class Parser {
         try {
             if (userInput.startsWith(FOOD_TAG)) {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
+
+                String foodDescription;
+                if (calorieIndex == -1) {
+                    throw new Exception();
+                } else {
+                    foodDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
+                }
+                checkDescription(foodDescription);
+
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
                 checkCalories(calories);
-
-                String foodDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
-                checkDescription(foodDescription);
 
                 displayEditMessage();
 
@@ -245,11 +251,17 @@ public class Parser {
                 return new EditFoodCommand(index, foodDescription, calories);
             } else if (userInput.startsWith(EXERCISE_TAG)) {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
+
+                String exerciseDescription;
+                if (calorieIndex == -1) {
+                    throw new Exception();
+                } else {
+                    exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
+                }
+                checkDescription(exerciseDescription);
+
                 int calories = Integer.parseInt(userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
                 checkCalories(calories);
-
-                String exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
-                checkDescription(exerciseDescription);
 
                 displayEditMessage();
 
@@ -299,8 +311,6 @@ public class Parser {
         try {
             String[] arguments = userInput.split(SPACE, 2);
             if (arguments[1].startsWith(FOOD_TAG)) {
-                LocalDate date;
-
                 int calorieIndex = arguments[1].indexOf(CALORIE_TAG);
                 int dateIndex = arguments[1].indexOf(DATE_TAG);
 
@@ -310,7 +320,7 @@ public class Parser {
                 } else {
                     foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
                 }
-                boolean descriptionCheck = false;
+                boolean descriptionCheck;
                 descriptionCheck = checkDescription(foodDescription);
 
                 int calories;
@@ -321,9 +331,10 @@ public class Parser {
                     calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH,
                             dateIndex).trim());
                 }
-                boolean calorieCheck = false;
+                boolean calorieCheck;
                 calorieCheck = checkCalories(calories);
 
+                LocalDate date;
                 if (calorieCheck && descriptionCheck && dateIndex == -1) {
                     date = LocalDate.now();
                 } else {
@@ -335,22 +346,6 @@ public class Parser {
                 assert calories > 0 : "calories should be greater than 0";
                 return new AddFoodCommand(foodDescription, calories, FALSE, date);
             } else if (arguments[1].startsWith(EXERCISE_TAG)) {
-                /*int calorieIndex = arguments[1].indexOf(CALORIE_TAG);
-                int dateIndex = arguments[1].indexOf(DATE_TAG);
-
-                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH,
-                        dateIndex).trim());
-                checkCalories(calories);
-
-                String exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH_LENGTH,
-                        calorieIndex - 1).trim();
-                checkDescription(exerciseDescription);
-
-                LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
-
-                displayAddMessage();*/
-                LocalDate date;
-
                 int calorieIndex = arguments[1].indexOf(CALORIE_TAG);
                 int dateIndex = arguments[1].indexOf(DATE_TAG);
 
@@ -360,7 +355,7 @@ public class Parser {
                 } else {
                     exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
                 }
-                boolean descriptionCheck = false;
+                boolean descriptionCheck;
                 descriptionCheck = checkDescription(exerciseDescription);
 
                 int calories;
@@ -371,9 +366,10 @@ public class Parser {
                     calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH,
                             dateIndex).trim());
                 }
-                boolean calorieCheck = false;
+                boolean calorieCheck;
                 calorieCheck = checkCalories(calories);
 
+                LocalDate date;
                 if (calorieCheck && descriptionCheck && dateIndex == -1) {
                     date = LocalDate.now();
                 } else {
