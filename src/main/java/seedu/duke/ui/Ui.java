@@ -225,4 +225,8 @@ public class Ui {
         System.out.println("Welcome back! What would you like to do today?\n");
     }
 
+    public static void displayAskUserNameMessage() {
+        System.out.println("What is your name?");
+    }
+
 }
