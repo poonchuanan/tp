@@ -15,6 +15,7 @@ public class GraphDrawing {
     private static final String BAR_WIDTH = "| |";
     private static final String targetBarWidth = "|*|";
     private static final String TOP_BAR_WIDTH = "|-|";
+    private static final String SPACE = " ";
 
     private String targetCaloriesString;
     private String maxCaloriesString;
@@ -62,7 +63,7 @@ public class GraphDrawing {
         for (int i = 0; i < column - 1; i++) {
             horizontalLine += repeatCharacter("-", 5) + "+";
         }
-        horizontalLine = repeatCharacter(" ", maxCalorieSize) + horizontalLine + "--\n";
+        horizontalLine = repeatCharacter(SPACE, maxCalorieSize) + horizontalLine + "--\n";
         return horizontalLine;
     }
 
@@ -75,7 +76,7 @@ public class GraphDrawing {
     public String generateDateLabels(int maxCalorieSize,  ArrayList<LocalDate> keys) {
         assert keys != null;
         assert maxCalorieSize >= 1;
-        return repeatCharacter(" ", maxCalorieSize - 1) + " " + graphProperty.parseDate(keys);
+        return repeatCharacter(SPACE, maxCalorieSize - 1) + SPACE + graphProperty.parseDate(keys);
     }
 
     /**
@@ -89,15 +90,15 @@ public class GraphDrawing {
     private String generateVerticalAxisLabel(int columnNumber, int maxColumn, int maxSize) {
         String label = "";
         if (columnNumber == maxColumn - 1) {
-            label = this.maxCaloriesString + repeatCharacter(" ", maxSize - this.maxCaloriesString.length());
+            label = this.maxCaloriesString + repeatCharacter(SPACE, maxSize - this.maxCaloriesString.length());
         } else if (columnNumber == graphProperty.targetRow) {
             label = this.targetCaloriesString
-                    + repeatCharacter(" ", maxSize - this.targetCaloriesString.length());
+                    + repeatCharacter(SPACE, maxSize - this.targetCaloriesString.length());
         } else if (columnNumber == 0) {
             label = this.minCaloriesString
-                    + repeatCharacter(" ", maxSize - this.minCaloriesString.length());
+                    + repeatCharacter(SPACE, maxSize - this.minCaloriesString.length());
         } else {
-            label = repeatCharacter(" ", maxSize);
+            label = repeatCharacter(SPACE, maxSize);
         }
         return label;
     }
