@@ -72,8 +72,9 @@ public class ExceptionMessages {
      * Prints out error message when input of user is not understood.
      */
     public static String displayInvalidInputErrorMessage() {
-        return("Sorry I do not understand the input given!\n"
-                +"Perhaps pulling out help list via input 'help' may help.");
+        String invalidMessage = "Sorry I do not understand the input given!\n"
+                + "Perhaps pulling out help list via input 'help' may help.";
+        return invalidMessage;
     }
 
     /**
