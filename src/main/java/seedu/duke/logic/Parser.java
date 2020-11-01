@@ -49,6 +49,7 @@ import static seedu.duke.ui.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayCalorieCountOutOfBound;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandStringOutOfBoundExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyEditActivityErrorMessage;
@@ -442,14 +443,29 @@ public class Parser {
                 return new DeleteCommand();
             } else {
                 int index = Integer.parseInt(userInput) - 1;
+                checkIndex(index);
                 return new DeleteCommand(index);
             }
         } catch (NumberFormatException e) {
             displayDeleteCommandNumberFormatExceptionMessage();
         } catch (NullPointerException e) {
             displayDeleteCommandNullPointerExceptionMessage();
+        } catch (IndexOutOfBoundsException e) {
+            displayDeleteCommandStringOutOfBoundExceptionMessage();
         }
         return null;
+    }
+
+    /** Checks for index of the delete command.
+     *
+     * @param index index of the delete command
+     * @return true if index is valid
+     * @throws IndexOutOfBoundsException if index is below 0
+     */
+    private void checkIndex(int index) throws IndexOutOfBoundsException {
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     /**
@@ -490,7 +506,7 @@ public class Parser {
      */
     private Command prepareGraphCommand(String[] userInput) throws Exception {
         if (userInput.length != 1) {
-            throw new Exception("Graph has has no description");
+            throw new Exception("Graph has no description");
         }
         if (Trakcal.calList.getHashMap().size() == 0) {
             throw new Exception("No records found!");

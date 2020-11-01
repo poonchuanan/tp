@@ -1,10 +1,13 @@
 package seedu.duke.command;
 
+import seedu.duke.Trakcal;
 import seedu.duke.model.Activity;
+import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import static seedu.duke.ui.Ui.displayMessage;
 import static seedu.duke.ui.Ui.displaySavedMessage;
 
 /**
@@ -43,18 +46,38 @@ public class DeleteCommand extends Command {
     @Override
     public void execute() {
 
-        if (index == -1) {
+        if ((index == -1) && (isDeleteConfirmed())) {
             dayMap.getLastSeenList().clearList();
             dayMap.getHashMap().remove(this.date);
-            return;
-        } else {
+            displayMessage("All activities have been deleted");
+            displaySavedMessage();
+        } else if (index >= 0) {
             try {
-
                 dayMap.deleteActivity(index);
+                displaySavedMessage();
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Invalid index!");
+                displayMessage("Invalid Index");
             }
         }
-        displaySavedMessage();
+    }
+
+    /**
+     * Gets input from the user to confirm the delete command.
+     *
+     * @return true if the user says yes
+     */
+    public boolean isDeleteConfirmed() {
+        System.out.println("Are you sure you want to delete all activities in today's list? [yes/no]");
+        String userInput = Trakcal.in.nextLine().trim().toLowerCase();
+        if (userInput.equals("yes")) {
+            return true;
+        } else if (userInput.equals("no")) {
+            System.out.println("Delete command aborted.");
+            return false;
+        } else {
+            System.out.println("Invalid input....aborting delete command.");
+            return false;
+        }
+
     }
 }
