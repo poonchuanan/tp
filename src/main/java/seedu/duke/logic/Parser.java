@@ -81,6 +81,8 @@ public class Parser {
     protected static final String CALORIE_TAG = "c/";
     protected static final String DATE_TAG = "d/";
 
+    protected static final int INDEX_NOT_FOUND = -1;
+
     protected static final boolean FALSE = false;
 
 
@@ -235,7 +237,7 @@ public class Parser {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
 
                 String foodDescription;
-                if (calorieIndex == -1) {
+                if (calorieIndex == INDEX_NOT_FOUND) {
                     throw new Exception();
                 } else {
                     foodDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
@@ -253,7 +255,7 @@ public class Parser {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
 
                 String exerciseDescription;
-                if (calorieIndex == -1) {
+                if (calorieIndex == INDEX_NOT_FOUND) {
                     throw new Exception();
                 } else {
                     exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
@@ -315,7 +317,7 @@ public class Parser {
                 int dateIndex = arguments[1].indexOf(DATE_TAG);
 
                 String foodDescription;
-                if (calorieIndex == -1) {
+                if (calorieIndex == INDEX_NOT_FOUND) {
                     throw new Exception();
                 } else {
                     foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
@@ -324,7 +326,7 @@ public class Parser {
                 descriptionCheck = checkDescription(foodDescription);
 
                 int calories;
-                if (dateIndex == -1) {
+                if (dateIndex == INDEX_NOT_FOUND) {
                     calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH)
                             .trim());
                 } else {
@@ -335,7 +337,7 @@ public class Parser {
                 calorieCheck = checkCalories(calories);
 
                 LocalDate date;
-                if (calorieCheck && descriptionCheck && dateIndex == -1) {
+                if (calorieCheck && descriptionCheck && dateIndex == INDEX_NOT_FOUND) {
                     date = LocalDate.now();
                 } else {
                     date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
@@ -350,7 +352,7 @@ public class Parser {
                 int dateIndex = arguments[1].indexOf(DATE_TAG);
 
                 String exerciseDescription;
-                if (calorieIndex == -1) {
+                if (calorieIndex == INDEX_NOT_FOUND) {
                     throw new Exception();
                 } else {
                     exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
@@ -359,7 +361,7 @@ public class Parser {
                 descriptionCheck = checkDescription(exerciseDescription);
 
                 int calories;
-                if (dateIndex == -1) {
+                if (dateIndex == INDEX_NOT_FOUND) {
                     calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH)
                             .trim());
                 } else {
@@ -370,7 +372,7 @@ public class Parser {
                 calorieCheck = checkCalories(calories);
 
                 LocalDate date;
-                if (calorieCheck && descriptionCheck && dateIndex == -1) {
+                if (calorieCheck && descriptionCheck && dateIndex == INDEX_NOT_FOUND) {
                     date = LocalDate.now();
                 } else {
                     date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
