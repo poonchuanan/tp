@@ -863,7 +863,7 @@ Parameters:
 * so on...
 
 Example of usage:
- * `find a/running a/ 10km / 5pm`
+ * `find a/running / 10km / 5pm`
  
 ```
 No.        Date                Type                                Description                        Calories gain or lost
@@ -871,7 +871,7 @@ No.        Date                Type                                Description  
 1        2020-10-11          Exercise              running at stadium for 10km at 5pm evening_________________100
 ```
 
-Format for find by just one matching description: `find e/ **DESCRIPTION1** e/ **DESCRIPTION2** e/ **DESCRIPTION3** ...`
+Format for find by just one matching description: `find e/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 > As long as just one of the description keywords matches in the entry, the activity will be listed. There is no limit to the number of descriptions allowed.
 
 Parameters:
@@ -1186,8 +1186,8 @@ Edit Activity to Food | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` 
 Edit Activity to Exercise | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT` | `edita 1 e/ running c/100`
 Find Description | `find d/ DESCRIPTION` | `find d/ apple`
 Find Calorie | `find c/ CALORIE` | `find c/ 55`
-Find Either | `find e/ DESCRIPTION1 e/ DESCRIPTION2 e/ DESCRIPTION3 ...` | `find e/ apple e/ orange e/ grape ...`
-Find All | `find a/ DESCRIPTION1 a/ DESCRIPTION2 a/ DESCRIPTION3 ...` | `find a/ running a/ jumping a/ cake ...`
+Find Either | `find e/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3 ...` | `find e/ apple / orange / grape ...`
+Find All | `find a/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3 ...` | `find a/ running / jumping / cake ...`
 Move Activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
 Delete Entry | `delete INDEX` | `delete 2`
 Delete All for Today| `delete all/` | 
