@@ -1,7 +1,6 @@
 package seedu.duke.logic;
 
 import seedu.duke.Trakcal;
-//import seedu.duke.command.*;
 import seedu.duke.command.AddExerciseCommand;
 import seedu.duke.command.AddFoodCommand;
 import seedu.duke.command.AddSetCommand;
@@ -12,6 +11,7 @@ import seedu.duke.command.CreateNewUserCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.EditExerciseCommand;
 import seedu.duke.command.EditFoodCommand;
+import seedu.duke.command.EditUserProfileCommand;
 import seedu.duke.command.FindAllCommand;
 import seedu.duke.command.FindCalorieCommand;
 import seedu.duke.command.FindDescriptionCommand;
@@ -21,12 +21,13 @@ import seedu.duke.command.HelpCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
 
+import seedu.duke.command.ListUserProfileCommand;
 import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.exception.CalorieCountException;
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.ui.ExceptionMessages;
+import seedu.duke.ui.Ui;
 import seedu.duke.userprofile.AskUserProfileQns;
-import seedu.duke.userprofile.InitialiseUserProfile;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -54,6 +55,7 @@ import static seedu.duke.ui.ExceptionMessages.displayEmptyAddActivityErrorMessag
 import static seedu.duke.ui.ExceptionMessages.displayEmptyEditActivityErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyInput;
 import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
@@ -110,15 +112,15 @@ public class Parser {
             case "find":
                 return prepareFindCommand(userInput);
             case "edit":
-                Trakcal.profile = InitialiseUserProfile.editUserInfo(arguments[1]);
-                AskUserProfileQns.save(Trakcal.profile);
-                break;
+                return prepareEditUserProfile(arguments[1]);
             case "edita":
                 return prepareEditActivityCommand(arguments[1]);
             case "delete":
                 return prepareDeleteCommand(arguments[1]);
             case "list":
                 return prepareListCommand(userInput);
+            case "listup":
+                return prepareUserProfileListCommand();
             case "help":
                 return new HelpCommand();
             case "move":
@@ -128,7 +130,8 @@ public class Parser {
             case "graph":
                 return prepareGraphCommand(arguments);
             default:
-                return new InvalidCommand();
+                return new InvalidCommand(displayAddCommandErrorMessage());
+
             }
         } catch (StringIndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
@@ -177,6 +180,11 @@ public class Parser {
             ExceptionMessages.displayIoExceptionMessage();
         }
         return new AddSetCommand();
+    }
+
+    private Command prepareEditUserProfile(String userInput) throws IOException {
+        AskUserProfileQns.edit(userInput);
+        return new EditUserProfileCommand();
     }
 
     /**
@@ -349,8 +357,18 @@ public class Parser {
         String firstIndexKey = "from/";
         String secondIndexKey = "below/";
 
+
         int firstIndex = after.indexOf(firstIndexKey) + firstIndexKey.length(); //index after first keyword
         int secondIndex = after.indexOf(secondIndexKey) + secondIndexKey.length(); //index after second keyword
+
+        if (!after.contains(firstIndexKey) && !after.contains(secondIndexKey)) {
+            return new InvalidCommand("'from/' and 'below/' keyword is missing!");
+        } else if (!after.contains(firstIndexKey)) {
+            return new InvalidCommand("'from/' keyword is missing!");
+        } else if (!after.contains(secondIndexKey)) {
+            return new InvalidCommand("'below/' keyword is missing!");
+        }
+
 
         String firstIndexString = after.substring(firstIndex).trim().split(" ")[0];
         String secondIndexString = after.substring(secondIndex).trim().split(" ")[0];
@@ -494,6 +512,10 @@ public class Parser {
             throw new Exception("No records found!");
         }
         return new GraphCommand();
+    }
+
+    private Command prepareUserProfileListCommand() {
+        return new ListUserProfileCommand();
     }
 
 
