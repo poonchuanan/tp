@@ -48,6 +48,7 @@ public class AskUserProfileQns {
         gatherData();
         try {
             profile = enterNewUserInfo();
+            profile.printList();
         } catch (IOException e) {
             displayIoExceptionMessage();
         }
