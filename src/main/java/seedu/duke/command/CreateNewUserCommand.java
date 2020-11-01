@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.userprofile.AskUserProfileQns;
+import seedu.duke.userprofile.UserProfile;
 
 /**
  * Creates new user profile.
@@ -11,6 +11,6 @@ public class CreateNewUserCommand extends Command {
 
     @Override
     public void execute() {
-        AskUserProfileQns.createNewProfile();
+        UserProfile.createNewProfile();
     }
 }

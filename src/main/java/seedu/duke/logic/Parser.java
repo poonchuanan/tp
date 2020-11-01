@@ -26,8 +26,7 @@ import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.exception.CalorieCountException;
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.ui.ExceptionMessages;
-import seedu.duke.ui.Ui;
-import seedu.duke.userprofile.AskUserProfileQns;
+import seedu.duke.userprofile.UserProfile;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -124,7 +123,7 @@ public class Parser {
             case "list":
                 return prepareListCommand(userInput);
             case "listup":
-                return prepareUserProfileListCommand();
+                return prepareListUserProfileCommand();
             case "help":
                 return new HelpCommand();
             case "move":
@@ -186,7 +185,7 @@ public class Parser {
     }
 
     private Command prepareEditUserProfile(String userInput) throws IOException {
-        AskUserProfileQns.edit(userInput);
+        UserProfile.edit(userInput);
         return new EditUserProfileCommand();
     }
 
@@ -300,6 +299,31 @@ public class Parser {
         } else {
             return true;
         }
+    }
+
+    private Command prepareListUserProfileCommand() throws IOException {
+        String initialPath = new File("").getAbsolutePath();
+        String filePath = initialPath + "/tp.txt";
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String line = reader.readLine();
+
+        System.out.println("Here is your user profile:");
+        System.out.println("Name : " + line);
+        line = reader.readLine();
+        System.out.println("Gender : " + line);
+        line = reader.readLine();
+        System.out.println("Weight : " + line);
+        line = reader.readLine();
+        System.out.println("Height : " + line);
+        line = reader.readLine();
+        System.out.println("Age : " + line);
+        line = reader.readLine();
+        System.out.println("Activity Level : " + line);
+        line = reader.readLine();
+        System.out.println("Weight Goal : " + line + "\n");
+        reader.close();
+
+        return new ListUserProfileCommand();
     }
 
 
@@ -574,10 +598,6 @@ public class Parser {
             throw new Exception("No records found!");
         }
         return new GraphCommand();
-    }
-
-    private Command prepareUserProfileListCommand() {
-        return new ListUserProfileCommand();
     }
 
 
