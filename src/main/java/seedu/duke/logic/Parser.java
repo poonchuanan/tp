@@ -219,18 +219,6 @@ public class Parser {
         return null;
     }
 
-    public void checkCalories(int calories) throws CalorieCountException {
-        if (calories <= 0 || calories > 3000) {
-            throw new CalorieCountException();
-        }
-    }
-
-    public void checkDescription(String description) throws EmptyDescriptionException {
-        if (description.equals(" ") || description.equals("")) {
-            throw new EmptyDescriptionException();
-        }
-    }
-
     /**
      * Prepares the edit command by checking the userInput.
      *
@@ -284,6 +272,18 @@ public class Parser {
         return null;
     }
 
+    public void checkCalories(int calories) throws CalorieCountException {
+        if (calories <= 0 || calories > 3000) {
+            throw new CalorieCountException();
+        }
+    }
+
+    public void checkDescription(String description) throws EmptyDescriptionException {
+        if (description.equals(" ") || description.equals("")) {
+            throw new EmptyDescriptionException();
+        }
+    }
+
     /**
      * Prepares the add command by checking the userInput.
      *
@@ -294,17 +294,31 @@ public class Parser {
         try {
             String[] arguments = userInput.split(SPACE, 2);
             if (arguments[1].startsWith(FOOD_TAG)) {
+                boolean calorieCheck = false;
+                boolean descriptionCheck = false;
+                LocalDate date;
+
                 int calorieIndex = arguments[1].indexOf(CALORIE_TAG);
                 int dateIndex = arguments[1].indexOf(DATE_TAG);
 
                 int calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH,
                         dateIndex).trim());
+                if (calories >= 0 && calories < 3000) {
+                    calorieCheck = true;
+                }
                 checkCalories(calories);
 
                 String foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
+                if (!foodDescription.equals("")) {
+                    descriptionCheck = true;
+                }
                 checkDescription(foodDescription);
 
-                LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
+                if (calorieCheck && descriptionCheck && (dateIndex == -1)) {
+                    date = LocalDate.now();
+                } else {
+                    date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
+                }
 
                 displayAddMessage();
 

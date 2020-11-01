@@ -37,7 +37,6 @@ public class EditExerciseCommand extends Command {
             LocalDate dateOfActivityToBeEdited = dayMap.getDateFromLastSeenListAtIndex(index);
             this.exercise = new Exercise(description, calories,dateOfActivityToBeEdited, false);
             dayMap.insertActivity(index, exercise);
-            System.out.println();
             displaySavedMessage();
         } catch (IndexOutOfBoundsException e) {
             displayEditIndexOutOfBoundsExceptionMessage();
