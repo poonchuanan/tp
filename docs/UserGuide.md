@@ -32,16 +32,16 @@ This section gives the steps you need to get started quickly.
 5. Upon successful run, you will get the following greeting message
 
 ```
-=====================================================================================================
-| Hello from                                                                                        |
-|  _                  _  __   ___     _     _                                                       |
-| | |_   _ _   __ _  | |/ /  / __|   /_\   | |                                                      |
-| |  _| | '_| / _` | | ' <  | (__   / _ \  | |__                                                    |
-|  \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|                                                   |
-|                                                                                                   |
-| Hello! I'm traKCAL.                                                                               |
-=====================================================================================================
-Please do input 'help' for the commands and their respective input format.
+====================================================================================
+| Hello from                                                                       |
+|  _                  _  __   ___     _     _                                      |
+| | |_   _ _   __ _  | |/ /  / __|   /_\   | |                                     |
+| |  _| | '_| / _` | | ' <  | (__   / _ \  | |__                                   |
+|  \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|                                  |
+|                                                                                  |
+| Hello! I'm traKCAL.                                                              |
+| Please do input 'help' for the commands and their respective input format.       |
+====================================================================================
 ```
    * Tip: 
      Increase your windows length if the greeting message appears congested like this:
@@ -460,6 +460,24 @@ No.        Type                        Description                        Calori
 6          Food           Biscuit___________________________________________________20
 ```
 
+### 4.2 Exceptions
+#### Accessing a list with no entries
+If you are trying to access a list that does not have any entries <br>
+For example if there are no entries for 2020-10-31, the following error message will be shown: <br>
+```
+There is no data for 2020-10-31
+```
+#### Using an invalid date format for list **DATE**
+If the **DATE** format is not of YYYY-MM-DD, the following error message will be shown: <br>
+```
+====================================================================================
+Wrong format of date entered!
+The accepted format is YYYY-MM-DD!
+Also, ensure that the date input actually exists!Please do input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+
 <br>
 <br>
 
@@ -874,6 +892,36 @@ No.        Type                        Description                        Calori
 
 
 ```
+### 7.2 Exceptions
+#### Missing keywords
+* If the appropriate keywords 'from/' and 'below/' are missing, the following error message will be shown
+```
+====================================================================================
+'from/' and 'below/' keyword is missing!
+====================================================================================
+```
+
+* If only appropriate keywords 'from/' is missing the following error message will be shown
+```
+====================================================================================
+'from/' keyword is missing!
+====================================================================================
+```
+
+* If only appropriate keywords 'below/' is missing the following error message will be shown
+```
+====================================================================================
+'below/' keyword is missing!
+====================================================================================
+```
+#### Invalid index used
+* If the index entered for the respective keywords are not of valid range, the following error message will be shown
+```
+====================================================================================
+The index entered is not within the range!Please do input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
 
 <br>
 <br>

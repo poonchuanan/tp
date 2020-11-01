@@ -59,7 +59,7 @@ public class ExceptionMessages {
      * Prints error message when error occurs in add command.
      */
     public static String displayAddCommandErrorMessage() {
-        return ("Invalid input given!"
+        return ("Invalid input given!\n"
                 + "The input format for adding food activity is 'add f/ X c/ Y d/ Z"
                 + " - where food is X, calories lost is Y and date(YYYY-MM-DD) is Z\n"
                 + "The input format for adding exercise activity is 'add e/ X c/ Y d/ Z"
