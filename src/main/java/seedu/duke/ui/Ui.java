@@ -6,12 +6,22 @@ import static seedu.duke.ui.ExceptionMessages.print;
  * Deals with interactions with the user.
  */
 public class Ui {
-
-    public static String PROMPTUSEROFHELPMESSAGE = "Please do input 'help' for the commands "
+    /**
+     * Prompts user to seek help if needed.
+     */
+    public static final String PROMPTUSEROFHELPMESSAGE = "Please do input 'help' for the commands "
             + "and their respective input format.";
-    public static String DIVIDER = "=========================================="
+
+    /**
+     * Divider.
+     */
+    public static final String DIVIDER = "=========================================="
             + "==========================================";
-    private static String LOGO =
+
+    /**
+     * logo of application and the welcoming message.
+     */
+    private static final String LOGO =
             "| Hello from                                                                       |\n"
             + "|  _                  _  __   ___     _     _                                      |\n"
             + "| | |_   _ _   __ _  | |/ /  / __|   /_\\   | |                                     |\n"
@@ -28,10 +38,12 @@ public class Ui {
         print(LOGO);
     }
 
+    /**
+     * Prints out the divider.
+     */
     public static void drawDivider() {
         System.out.println(DIVIDER);
     }
-
 
     /**
      * Prints out help list showing the commands available.
@@ -47,6 +59,7 @@ public class Ui {
                 + "create new user        - Creates a new user profile\n"
                 + "\n"
                 + "Shortcut:\n"
+                + "--createSet is not extensive[TO BE EDITED]--\n"
                 + "createSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT +\n"
                 + "e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT + ...\n"
                 + "                       - Creates shortcut for adding food(s) and/or exercise(s) depending on the\n"
@@ -103,6 +116,20 @@ public class Ui {
                 + "Exiting:\n"
                 + "bye                    - Terminates the application\n";
         print(helpList);
+    }
+
+    /**
+     * Prints out message when editing activity successful.
+     */
+    public static void displayEditMessage() {
+        print("Noted! The following has been edited:");
+    }
+
+    /**
+     * Prints out message when adding activity successful.
+     */
+    public static void displayAddMessage() {
+        print("Noted! The following has been added into list:");
     }
 
     /**
@@ -179,22 +206,6 @@ public class Ui {
         System.out.println("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.");
     }
 
-    /**
-     * Prints out message when editing activity successful.
-     */
-    public static void displayEditMessage() {
-        System.out.println("Noted! The following has been edited:");
-    }
-
-    /**
-     * Prints out message when adding activity successful.
-     */
-    public static void displayAddMessage() {
-        drawDivider();
-        System.out.println("Noted! The following has been added into list:");
-        drawDivider();
-    }
-
     public static void displayMessage(String message) {
         drawDivider();
         System.out.println(message);
@@ -202,36 +213,60 @@ public class Ui {
         print("Noted! The following has been added into list:");
     }
 
+    /**
+     * Prints out edited name.
+     */
     public static void displayEditNameMessage() {
         System.out.print("Your name has been updated to ");
     }
 
+    /**
+     * Prints out edited gender.
+     */
     public static void displayEditGenderMessage() {
         System.out.print("Your gender has been updated to ");
     }
 
+    /**
+     * Prints out edited weight.
+     */
     public static void displayEditWeightMessage() {
         System.out.print("Your weight has been updated to ");
     }
 
+    /**
+     * Prints out the edited height.
+     */
     public static void displayEditHeightMessage() {
         System.out.print("Your height has been updated to ");
     }
 
+    /**
+     * Prints out the edited age.
+     */
     public static void displayEditAgeMessage() {
         System.out.print("Your age has been updated to ");
     }
 
+    /**
+     * Prints out edited activity level.
+     */
     public static void displayEditActivityLevelMessage() {
         System.out.print("Your activity level has been updated to ");
     }
 
+    /**
+     * Printed updated goal.
+     */
     public static void displayEditGoalMessage() {
         System.out.print("Your weight goal has been updated to ");
     }
 
+    /**
+     * Prints out welcoming message to the user.
+     */
     public static void displayReturningUserMessage() {
-        System.out.println("Welcome back! What would you like to do today?\n");
+        System.out.println("Welcome! What would you like to do today?\n");
     }
 
     public static void displayAskUserNameMessage() {
