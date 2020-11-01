@@ -126,17 +126,6 @@ public class InitialiseUserProfile {
         }
     }
 
-    public void printList() {
-        System.out.println("Here is your user profile:");
-        System.out.println("Name : " + getName());
-        System.out.println("Gender : " + getGender());
-        System.out.println("Weight : " + getWeight());
-        System.out.println("Height : " + getHeight());
-        System.out.println("Age : " + getAge());
-        System.out.println("Activity Level : " + getActivityLevel());
-        System.out.println("Weight Goal : " + getWeightGoal());
-    }
-
     @Override
     public String toString() {
         return getName() + "," + getGender() + "," + getWeight() + ","
