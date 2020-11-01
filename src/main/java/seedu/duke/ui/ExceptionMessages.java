@@ -286,4 +286,8 @@ public class ExceptionMessages {
         System.out.println(DIVIDER);
 
     }
+
+    public static void displayEmptyStringMessage() {
+        System.out.println("Please do not enter an empty input");
+    }
 }

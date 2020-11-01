@@ -4,8 +4,8 @@ import seedu.duke.Trakcal;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
+import seedu.duke.exception.EmptyDescriptionException;
 import static seedu.duke.ui.Ui.displayEditWeightMessage;
 import static seedu.duke.ui.Ui.displayEditHeightMessage;
 import static seedu.duke.ui.Ui.displayEditAgeMessage;
@@ -20,6 +20,8 @@ import static seedu.duke.ui.ExceptionMessages.displayInvalidAgeRangeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidHeightMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidHeightRangeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightMessage;
+
+import seedu.duke.ui.ExceptionMessages;
 import seedu.duke.ui.Ui;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightGoalMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
@@ -31,16 +33,6 @@ import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightRangeMessage;
  */
 public class AskUserProfileQns {
     private static String[] data = new String[7];
-
-    /**
-     * Reading user input after printing question.
-     *
-     * @param text question to be printed
-     */
-    public static String input(String text) {
-        System.out.print(text);
-        return Trakcal.in.nextLine();
-    }
 
     /**
      * Reading user input.
@@ -104,13 +96,19 @@ public class AskUserProfileQns {
     }
 
     private static void editName(String name) {
-        data[0] = name;
-        displayEditNameMessage();
-        System.out.println(data[0] + ".");
+        try {
+            checkEmptyInput(name);
+            data[0] = name;
+            displayEditNameMessage();
+            System.out.println(data[0] + ".");
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
+        }
     }
 
     private static void editGender(String gender) {
         try {
+            checkEmptyInput(gender);
             checkGender(gender);
             data[1] = gender;
             displayEditGenderMessage();
@@ -118,56 +116,68 @@ public class AskUserProfileQns {
 
         } catch (IllegalArgumentException e) {
             displayInvalidGenderMessage();
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
         }
     }
 
     private static void editWeight(String weight) {
         try {
+            checkEmptyInput(weight);
             checkInputIsDouble(weight);
             checkWeightIsWithinRange(weight);
             data[2] = weight;
             displayEditWeightMessage();
-            System.out.println(data[2] + ".");
+            System.out.println(data[2] + "kg.");
 
         } catch (NumberFormatException e) {
             displayInvalidWeightMessage();
         } catch (IllegalArgumentException e) {
             displayInvalidWeightRangeMessage();
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
         }
     }
 
     private static void editHeight(String height) {
         try {
+            checkEmptyInput(height);
             checkInputIsDouble(height);
             checkHeightIsWithinRange(height);
             data[3] = height;
             displayEditHeightMessage();
-            System.out.println(data[3] + ".");
+            System.out.println(data[3] + "cm.");
 
         } catch (NumberFormatException e) {
             displayInvalidHeightMessage();
         } catch (IllegalArgumentException e) {
             displayInvalidHeightRangeMessage();
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
         }
     }
 
     private static void editAge(String age) {
         try {
+            checkEmptyInput(age);
             checkInputIsInt(age);
             checkAgeIsWithinRange(age);
             data[4] = age;
             displayEditAgeMessage();
-            System.out.println(data[4] + ".");
+            System.out.println(data[4] + "years old.");
 
         } catch (NumberFormatException e) {
             displayInvalidAgeMessage();
         } catch (IllegalArgumentException e) {
             displayInvalidAgeRangeMessage();
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
         }
     }
 
     private static void editAl(String al) {
         try {
+            checkEmptyInput(al);
             checkInputIsInt(al);
             checkAcLeIsWithinRange(al);
             data[5] = al;
@@ -178,11 +188,14 @@ public class AskUserProfileQns {
             displayInvalidActivityLevelMessage();
         } catch (IllegalArgumentException e) {
             displayInvalidActivityLevelRangeMessage();
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
         }
     }
 
     private static void editGoal(String goal) {
         try {
+            checkEmptyInput(goal);
             checkWeightGoal(goal);
             data[6] = goal;
             displayEditGoalMessage();
@@ -190,6 +203,8 @@ public class AskUserProfileQns {
 
         } catch (IllegalArgumentException e) {
             displayInvalidWeightGoalMessage();
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
         }
     }
 
@@ -199,7 +214,15 @@ public class AskUserProfileQns {
      *
      */
     public static void name()  {
-        data[0] = input("What is your name?\n");
+        Ui.displayAskUserNameMessage();
+        String name = input();
+        try {
+            checkEmptyInput(name);
+            data[0] = name;
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
+            name();
+        }
     }
 
 
@@ -208,7 +231,7 @@ public class AskUserProfileQns {
      *
      */
     private enum GenderEnum {
-        male, female;
+        male, female
     }
 
     /**
@@ -220,11 +243,15 @@ public class AskUserProfileQns {
         String gender = input();
 
         try {
+            checkEmptyInput(gender);
             checkGender(gender);
             data[1] = gender;
 
         } catch (IllegalArgumentException e) {
             displayInvalidGenderMessage();
+            gender();
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
             gender();
         }
     }
@@ -238,6 +265,7 @@ public class AskUserProfileQns {
         String weight = input();
 
         try {
+            checkEmptyInput(weight);
             checkInputIsDouble(weight);
             checkWeightIsWithinRange(weight);
             data[2] = weight;
@@ -247,6 +275,9 @@ public class AskUserProfileQns {
             weight();
         } catch (IllegalArgumentException e) {
             displayInvalidWeightRangeMessage();
+            weight();
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
             weight();
         }
     }
@@ -259,6 +290,7 @@ public class AskUserProfileQns {
         Ui.displayAskUserHeightMessage();
         String height = input();
         try {
+            checkEmptyInput(height);
             checkInputIsDouble(height);
             checkHeightIsWithinRange(height);
             data[3] = height;
@@ -268,6 +300,9 @@ public class AskUserProfileQns {
             height();
         } catch (IllegalArgumentException e) {
             displayInvalidHeightRangeMessage();
+            height();
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
             height();
         }
     }
@@ -280,6 +315,7 @@ public class AskUserProfileQns {
         Ui.displayAskUserAgeMessage();
         String age = input();
         try {
+            checkEmptyInput(age);
             checkInputIsInt(age);
             checkAgeIsWithinRange(age);
             data[4] = age;
@@ -289,6 +325,9 @@ public class AskUserProfileQns {
             age();
         } catch (IllegalArgumentException e) {
             displayInvalidAgeRangeMessage();
+            age();
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
             age();
         }
     }
@@ -301,6 +340,7 @@ public class AskUserProfileQns {
         Ui.displayAskUserActivityLevelMessage();
         String activityLevel = input();
         try {
+            checkEmptyInput(activityLevel);
             checkInputIsInt(activityLevel);
             checkAcLeIsWithinRange(activityLevel);
             data[5] = activityLevel;
@@ -311,6 +351,9 @@ public class AskUserProfileQns {
         } catch (IllegalArgumentException e) {
             displayInvalidActivityLevelRangeMessage();
             activityLevel();
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
+            activityLevel();
         }
     }
 
@@ -319,7 +362,7 @@ public class AskUserProfileQns {
      *
      */
     private enum WeightGoalEnum {
-        lose, maintain, gain;
+        lose, maintain, gain
     }
 
     /**
@@ -331,11 +374,15 @@ public class AskUserProfileQns {
         String weightGoal = input();
 
         try {
+            checkEmptyInput(weightGoal);
             checkWeightGoal(weightGoal);
             data[6] = weightGoal;
 
         } catch (IllegalArgumentException e) {
             displayInvalidWeightGoalMessage();
+            weightGoal();
+        } catch (EmptyDescriptionException e) {
+            ExceptionMessages.displayEmptyStringMessage();
             weightGoal();
         }
     }
@@ -391,12 +438,10 @@ public class AskUserProfileQns {
         throw new IllegalArgumentException();
     }
 
-    public static void editUserInfo() throws IOException {
-        InitialiseUserProfile profile =
-                new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
-
-        System.out.println(Arrays.toString(data));
-
+    public static void checkEmptyInput(String userInput) throws EmptyDescriptionException {
+        if (userInput.equals(" ") || userInput.equals("")) {
+            throw new EmptyDescriptionException();
+        }
     }
 
     public static InitialiseUserProfile enterNewUserInfo() throws IOException {
