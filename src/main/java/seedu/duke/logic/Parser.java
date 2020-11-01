@@ -70,7 +70,7 @@ public class Parser {
     protected String userInput;
     protected LocalDateTime date;
 
-    protected static final int ALPHABET_WITH_SLASH = 2;
+    protected static final int ALPHABET_WITH_SLASH_LENGTH = 2;
     public static final String SPACE = " ";
     public static final String CHAIN_SEPARATOR = "&&";
     protected static final int CHAIN_SEPARATOR_LENGTH = 2;
@@ -131,8 +131,7 @@ public class Parser {
             case "graph":
                 return prepareGraphCommand(arguments);
             default:
-                return new InvalidCommand(displayAddCommandErrorMessage());
-
+                return new InvalidCommand(displayInvalidInputErrorMessage());
             }
         } catch (StringIndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
@@ -245,10 +244,10 @@ public class Parser {
         try {
             if (userInput.startsWith(FOOD_TAG)) {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + ALPHABET_WITH_SLASH).trim());
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
                 checkCalories(calories);
 
-                String foodDescription = userInput.substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+                String foodDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
                 checkDescription(foodDescription);
 
                 displayEditMessage();
@@ -257,10 +256,10 @@ public class Parser {
                 return new EditFoodCommand(index, foodDescription, calories);
             } else if (userInput.startsWith(EXERCISE_TAG)) {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + ALPHABET_WITH_SLASH).trim());
+                int calories = Integer.parseInt(userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
                 checkCalories(calories);
 
-                String exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+                String exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
                 checkDescription(exerciseDescription);
 
                 displayEditMessage();
@@ -297,14 +296,14 @@ public class Parser {
                 int calorieIndex = arguments[1].indexOf(CALORIE_TAG);
                 int dateIndex = arguments[1].indexOf(DATE_TAG);
 
-                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH,
+                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH,
                         dateIndex).trim());
                 checkCalories(calories);
 
-                String foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+                String foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
                 checkDescription(foodDescription);
 
-                LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
+                LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
 
                 displayAddMessage();
 
@@ -314,14 +313,15 @@ public class Parser {
                 int calorieIndex = arguments[1].indexOf(CALORIE_TAG);
                 int dateIndex = arguments[1].indexOf(DATE_TAG);
 
-                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH,
+                int calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH,
                         dateIndex).trim());
                 checkCalories(calories);
 
-                String exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH, calorieIndex - 1).trim();
+                String exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH_LENGTH,
+                        calorieIndex - 1).trim();
                 checkDescription(exerciseDescription);
 
-                LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH).trim());
+                LocalDate date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
 
                 displayAddMessage();
 
@@ -374,8 +374,8 @@ public class Parser {
         }
 
 
-        String firstIndexString = after.substring(firstIndex).trim().split(" ")[0];
-        String secondIndexString = after.substring(secondIndex).trim().split(" ")[0];
+        String firstIndexString = after.substring(firstIndex).trim().split(SPACE)[0];
+        String secondIndexString = after.substring(secondIndex).trim().split(SPACE)[0];
         int indexToBeChanged = 0;
         int indexToBeInsertedBelow = 0;
         try {
@@ -424,7 +424,7 @@ public class Parser {
         if (userInput.toLowerCase().equals("list")) {
             return new ListCommand();
         } else {
-            String dateString = userInput.split(" ")[1];
+            String dateString = userInput.split(SPACE)[1];
             try {
                 LocalDate date = processDate(dateString);
                 return new ListCommand(date);
@@ -467,7 +467,7 @@ public class Parser {
      */
     private Command prepareFindCommand(String userInput) {
         try {
-            String[] arguments = userInput.split(" ", 2);
+            String[] arguments = userInput.split(SPACE, 2);
             if (arguments[1].startsWith("d/")) {
                 String description = arguments[1].substring(2).trim();
                 return new FindDescriptionCommand(description);

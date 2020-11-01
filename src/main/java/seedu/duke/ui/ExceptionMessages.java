@@ -43,7 +43,8 @@ public class ExceptionMessages {
      * Prints error message when attempting to access an empty list.
      */
     public static void displayListNotFoundExceptionMessage() {
-        print("The list to work on is empty!" + "\nTry entering a list command first."
+        print("The list to work on is empty!\n"
+                + "Try entering a list command first."
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -65,6 +66,14 @@ public class ExceptionMessages {
                 + "The input format for adding exercise activity is 'add e/ X c/ Y d/ Z"
                 + " - where exercise done is X, calories lost is Y and date(YYYY-MM-DD) is Z\n"
                 + "If this is still too confusing for you, please do input 'help' for more information.");
+    }
+
+    /**
+     * Prints out error message when input of user is not understood.
+     */
+    public static String displayInvalidInputErrorMessage() {
+        return("Sorry I do not understand the input given!\n"
+                + "Perhaps pulling out help list via input 'help' may help.");
     }
 
     /**
@@ -124,13 +133,7 @@ public class ExceptionMessages {
         print("Sorry! There is missing input!");
     }
 
-    /**
-     * Prints out error message when input of user is not understood.
-     */
-    public static void displayInvalidInputErrorMessage() {
-        print("Sorry I do not understand the input given!"
-                + "Perhaps pulling out help list via input 'help' may help.");
-    }
+
 
     /**
      * Prints out error message when invalid activity factor input.
