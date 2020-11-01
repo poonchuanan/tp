@@ -73,7 +73,7 @@ public class ExceptionMessages {
      */
     public static String displayInvalidInputErrorMessage() {
         return("Sorry I do not understand the input given!\n"
-                + "Perhaps pulling out help list via input 'help' may help.");
+                +"Perhaps pulling out help list via input 'help' may help.");
     }
 
     /**
