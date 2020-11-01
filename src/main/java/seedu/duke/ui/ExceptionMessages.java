@@ -145,8 +145,8 @@ public class ExceptionMessages {
      * Prints out error message when DateTimeException occurs.
      */
     public static void displayDateTimeExceptionMessage() {
-        print("Sorry, I do not understand!"
-                + "The input format of date is YYYY-MM-DD.");
+        print("Sorry, I do not understand!\n"
+                + "The input format of date is YYYY-MM-DD!");
     }
 
     /**
@@ -256,7 +256,7 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints out error message when calorie count too big or small.
+     * Prints out error message when calorie count is out of the accepted bound of this application.
      */
     public static void displayCalorieCountOutOfBound() {
         String CalorieOutOfBoundMessage = "Calorie count should be > 0 and <= 3000!\n"
@@ -265,7 +265,7 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints out error message when description is emtpty.
+     * Prints out error message when description input by user is empty.
      */
     public static void displayEmptyDescriptionMessage() {
         String message = "Sorry the current description is empty!\n"

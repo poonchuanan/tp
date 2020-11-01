@@ -34,6 +34,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.text.SimpleDateFormat;
@@ -47,6 +48,7 @@ import static seedu.duke.Trakcal.storage;
 import static seedu.duke.ui.ExceptionMessages.displayAddActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayCalorieCountOutOfBound;
+import static seedu.duke.ui.ExceptionMessages.displayDateTimeExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessage;
@@ -334,6 +336,8 @@ public class Parser {
             displayIncorrectDateTimeFormatEnteredMessage();
         } catch (CalorieCountException e) {
             displayCalorieCountOutOfBound();
+        } catch (DateTimeException e) {
+            displayDateTimeExceptionMessage();
         } catch (EmptyDescriptionException e) {
             displayEmptyDescriptionMessage();
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
@@ -346,6 +350,7 @@ public class Parser {
 
     /**
      * Prepares the arguments needed for moving an activity from one index to another.
+     *
      * @param userInput description of the move command
      * @return the moveCommand
      * @throws IndexOutOfBoundsException if the index is not valid
@@ -484,6 +489,7 @@ public class Parser {
 
     /**
      * Prepares the arguments needed for the graph command.
+     * 
      * @param userInput description of the graph command
      * @return graphCommand
      * @throws Exception if no records are found
