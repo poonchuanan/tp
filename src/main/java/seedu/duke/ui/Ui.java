@@ -1,5 +1,7 @@
 package seedu.duke.ui;
 
+import seedu.duke.userprofile.InitialiseUserProfile;
+
 import static seedu.duke.ui.ExceptionMessages.print;
 
 /**
@@ -272,6 +274,10 @@ public class Ui {
 
     public static void displayAskUserNameMessage() {
         System.out.println("What is your name?");
+    }
+
+    public static void test() {
+
     }
 
 }

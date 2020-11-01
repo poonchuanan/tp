@@ -61,12 +61,12 @@ public class Trakcal {
             String userInput = in.nextLine();
             Parser parser = new Parser(userInput);
             try {
-                Command cmd;
+                Command command;
                 if (userInput.contains(CHAIN_SEPARATOR)) {
                     parser.prepareChaining(userInput);
                 } else {
-                    cmd = parser.parseCommand();
-                    executeCmd(cmd);
+                    command = parser.parseCommand();
+                    executeCmd(command);
                     storage.updateFile(calList);
                 }
             } catch (NullPointerException e) {
