@@ -12,7 +12,7 @@ public class InitialiseUserProfile {
     protected String weightGoal;
     protected double calories;
 
-     public InitialiseUserProfile(String name, String gender, String weight, String height,
+    public InitialiseUserProfile(String name, String gender, String weight, String height,
                                  String age, String activityLevel, String weightGoal) {
         this.name = name;
         this.gender = gender;
@@ -57,20 +57,20 @@ public class InitialiseUserProfile {
 
     private static DecimalFormat df2 = new DecimalFormat("#.00");
 
-     public void calculateEditedUserDetails() {
-         double activityMultiple = calculateActivityMultiple(this.activityLevel);
-         double bmi = calculateBMI(this.weight, this.height);
-         assert bmi > 0 : "bmi should be more than 0";
+    public void calculateEditedUserDetails() {
+        double activityMultiple = calculateActivityMultiple(this.activityLevel);
+        double bmi = calculateBmi(this.weight, this.height);
+        assert bmi > 0 : "bmi should be more than 0";
 
-         calories = calculateCalories(this.gender, this.weight, this.height, this.age) * activityMultiple;
-         assert calories > 0 : "calories should be greater than 0";
-     }
+        calories = calculateCalories(this.gender, this.weight, this.height, this.age) * activityMultiple;
+        assert calories > 0 : "calories should be greater than 0";
+    }
 
     public String calculateNewUserDetails() {
         double activityMultiple = calculateActivityMultiple(this.activityLevel);
 
         String details = "";
-        double bmi = calculateBMI(this.weight, this.height);
+        double bmi = calculateBmi(this.weight, this.height);
         assert bmi > 0 : "bmi should be more than 0";
 
         details += "\nYour BMI is " + df2.format(bmi) + "\n";
@@ -104,11 +104,12 @@ public class InitialiseUserProfile {
             return 1.725;
         case 5:
             return 1.9;
+        default:
         }
         return 1;
     }
 
-    public double calculateBMI(String weight, String height) {
+    public double calculateBmi(String weight, String height) {
         return (Double.parseDouble(weight)
                 / (Double.parseDouble(height) * Double.parseDouble(height)))
                 * 10000;
