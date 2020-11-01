@@ -16,6 +16,7 @@ public class GraphDrawing {
     private static final String targetBarWidth = "|*|";
     private static final String TOP_BAR_WIDTH = "|-|";
     private static final String SPACE = " ";
+    private static final String VERTICAL_LINE = "|";
 
     private String targetCaloriesString;
     private String maxCaloriesString;
@@ -149,7 +150,7 @@ public class GraphDrawing {
 
 
         for (int i = GraphProperty.COLUMN - 1; i >= 0; i--) {
-            drawing += generateVerticalAxisLabel(i, GraphProperty.COLUMN, maxSize) + "|";
+            drawing += generateVerticalAxisLabel(i, GraphProperty.COLUMN, maxSize) + VERTICAL_LINE;
             for (int j = 0; j < graphProperty.row; j++) {
                 drawing += generateHorizontalLine(table, i, j);
             }
