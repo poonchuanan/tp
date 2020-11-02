@@ -190,6 +190,7 @@ public class ActivityList extends Trakcal {
 
     /**
      * Returns the date of activity.
+     *
      * @param index index of activity
      * @return date
      */

@@ -1,7 +1,7 @@
 package seedu.duke.exception;
 
 /**
- * Exception when calorie count too big.
+ * Exception when calorie count exceeds accepted range.
  */
 public class CalorieCountException extends Exception {
 }

@@ -2,6 +2,9 @@ package seedu.duke.userprofile;
 
 import java.text.DecimalFormat;
 
+/**
+ * Initialises user profile.
+ */
 public class InitialiseUserProfile {
     protected String name;
     protected String gender;

@@ -4,6 +4,9 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/**
+ * Checks if the user is a new user.
+ */
 public class CheckNewUser {
     private static final String PATH = new File("").getAbsolutePath();
     public static final String FILE_PATH = PATH + "/tp.txt";

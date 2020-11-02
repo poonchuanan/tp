@@ -134,6 +134,15 @@ public class ExceptionMessages {
     public static void displayEmptyAddActivityErrorMessage() {
         print("Sorry! There is missing input!");
     }
+    
+    /**
+     * Prints out error message when invalid activity factor input.
+     */
+    public static void displayInvalidActivityFactorMessage() {
+        print("Sorry this is an invalid activity factor!"
+                + "Please enter an integer from 1 to 5, with 1 being the least "
+                + "active and 5 being the most active");
+    }
 
     /**
      * Prints out error message when DateTimeException occurs.
@@ -320,6 +329,9 @@ public class ExceptionMessages {
 
     }
 
+    /**
+     * Prints message when string entered is empty.
+     */
     public static void displayEmptyStringMessage() {
         System.out.println("Please do not enter an empty input");
     }
