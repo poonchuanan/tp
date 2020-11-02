@@ -63,17 +63,17 @@ This section gives the steps you need to get started quickly.
 This section gives you a detailed description of each feature available in **traKCAL**.
 
 >Some things to take note of:
->* Inputs that look like `**this**` are compulsory parameters to be supplied by user.
+>* Inputs that look like `**THIS**` are compulsory parameters to be supplied by user.
 >* Inputs that look like `<THIS>` are optional parameters and do not need to be supplied by user if not needed.  
 >* Input format should adhere to the one in the help list or in this user guide.
->* Commands such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
+>* All features such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
 
 <br>
 <br>
 
 ## 1.0 Viewing help
 
-Do you need help with the function and their respective input format? Well this section solves it for you!
+Do you need help? Do you need a reminder of what the function and their respective input format is? Well this section solves it for you!
 
 Format: `help`
 
@@ -337,12 +337,14 @@ The current activity list has been saved.
 
 Adds a food entry with its respective calories to the list.
 
-Format: `add f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**`
+Format: `add f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** <d/ **DATE**>`
 
 Parameters:
 * `**FOOD_DESCRIPTION**`: Description of food consumed.
 * `**CALORIE_COUNT**`: Amount of calories consumed.
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
+> NOTE: 
+>*`d/ **DATE**` is optional, if you enter add command without it, it will add to the current date list. 
 
 Examples of usage: 
 * `list` before adding *current date is 2020-10-28*
@@ -380,7 +382,9 @@ No.        Type                        Description                        Calori
 ```
 
 ### 4.1.2 Possible errors when adding food
+
 ```
+
 ```
 
 <br>
@@ -390,12 +394,14 @@ No.        Type                        Description                        Calori
 
 Adds an exercise entry with its respective calories to the list.
 
-Format: `add e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** d/ **DATE**`
+Format: `add e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** <d/ **DATE**>`
 
 Parameters:
 * `**EXERCISE_DESCRIPTION**`: Description of exercise done.
 * `**CALORIE_COUNT**`: Amount of calories lost.
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
+> NOTE: 
+>*`d/ **DATE**` is optional, if you enter add command without it, it will add to the current date list. 
 
 Examples of usage: 
 * `list` before adding
@@ -440,6 +446,7 @@ No.        Type                        Description                        Calori
 ### 4.2.2 Possible errors when adding exercise
 
 ```
+
 ```
 
 <br>
@@ -451,11 +458,12 @@ No.        Type                        Description                        Calori
 
 Displays the list of activities for the given day.
 
-Format: `list` or `list **DATE**`
+Format: `list <**DATE**>`
 
 Parameters:
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
->NOTE: Typing list without any parameters displays the list of activities for the current date.
+>NOTE: 
+>*`**DATE**` is optional, if you enter list command without it, it will print out the list of activities for the current date.
 
 Examples of usage: 
 * `list` OR
@@ -496,7 +504,6 @@ The accepted format is YYYY-MM-DD!
 Also, ensure that the date input actually exists!Please do input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
-
 
 <br>
 <br>
@@ -543,6 +550,7 @@ Tip:
 ### 6.2.1 Editing an entry in list from food to food 
 
 Edits a particular food activity in list.
+
 >Things you should take note of:
 >* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
 >* The list in which you want to edit to have to be pulled out first before being able to edit on it.
@@ -666,6 +674,7 @@ No.        Type                        Description                        Calori
 ### 6.3.2 Possible errors when editing from food to exercise
 
 ```
+
 ```
 
 <br>
@@ -732,6 +741,7 @@ No.        Type                        Description                        Calori
 ### 6.4.2 Possible errors when editing from exercise to exercise
 
 ```
+
 ```
 
 <br>
@@ -798,6 +808,7 @@ No.        Type                        Description                        Calori
 ### 6.5.2 Possible errors when editing from exercise to food
 
 ```
+
 ```
 
 <br>
@@ -805,7 +816,7 @@ No.        Type                        Description                        Calori
 
 ## 7.0 Find
 
-### 7.1.1 Finding entries via keyword - basic
+### 7.1.1 Finding entries via keyword
 
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
@@ -852,7 +863,7 @@ No.        Date                Type                                Description  
 <br>
 <br>
 
-### 7.2.1 Finding entries via keywords - advanced
+### 7.2.1 Finding entries via keywords - advance
 
 Format for find by all descriptions: `find a/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 > This command will search of entries matching ALL description keywords typed. There is no limit to the number of descriptions allowed.
@@ -909,11 +920,10 @@ Parameters:
 * `**INDEX2**`: Index of the activity to be inserted below.
 
 Examples of usage:
-* After a `list 2020-10-11` command, <\br>
+* After a `list 2020-10-11` command,
  `move from/ 3 below/ 1` moves the 3rd entry in the list for below the 1st entry as shown below.
 
-Examples of usage: 
-* `move from/ 5 below/ 2`
+Example of usage: 
 
 *`list 2020-10-11` before moving
 
@@ -930,6 +940,8 @@ No.        Type                        Description                        Calori
 3          Food           tea break_______________________________________________150
 
 ```
+
+* `move from/ 5 below/ 2`
 
 *`list 2020-10-11` after `move from/ 3 below/ 1`
 
@@ -1120,12 +1132,45 @@ Example of usage:
 ### 10.1.2 Possible errors when graphing
 
 ```
+
 ```
 
 <br>
 <br>
 
-## 11.0 Exiting the program
+## 11.0 Chaining
+
+### 11.1.1 Chaining of features
+
+Do you wish to save time individually typing in the features? Or do you want to type out all the commands you want at one go?
+Chaining is the right feature for your needs! 
+
+> Do note
+>* Chaining is only available to 3 features
+>* [list](#50-list), [add](#40-add) and [edita](#621-editing-an-entry-in-list-from-food-to-food)
+>* The respective things to adhere to for each feature still applies.
+>* For example, [edita](#621-editing-an-entry-in-list-from-food-to-food), you MUST call out the list you want to edit on before editing on it.
+
+Format: *not extensive, there is a lot of combinations available*
+        *commands just need to be separated by a `&&`*
+
+Examples of usage: 
+* `add f/ ice cream c/ 90 && add e/ running c/ 50 && list`
+
+```
+
+```
+
+### 11.1.2 Possible errors when chaining
+
+```
+
+```
+
+<br>
+<br>
+
+## 12.0 Exiting the program
 
 Saves the current list to file and exits program.
 
