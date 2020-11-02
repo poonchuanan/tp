@@ -7,7 +7,7 @@ import seedu.duke.logic.Parser;
 import seedu.duke.model.DayMap;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
-import seedu.duke.userprofile.AskUserProfileQns;
+import seedu.duke.userprofile.UserProfile;
 import seedu.duke.userprofile.InitialiseUserProfile;
 import seedu.duke.userprofile.CheckNewUser;
 
@@ -45,10 +45,10 @@ public class Trakcal {
             System.out.println("here");
         }
         if (CheckNewUser.isNewUser()) {
-            profile = AskUserProfileQns.createNewProfile();
+            profile = UserProfile.createNewProfile();
         } else {
             Ui.displayReturningUserMessage();
-            profile = AskUserProfileQns.loadProfile();
+            profile = UserProfile.loadProfile();
         }
         Trakcal.run();
     }

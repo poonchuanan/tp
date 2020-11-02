@@ -1,7 +1,6 @@
 package seedu.duke.userprofile;
 
 import java.text.DecimalFormat;
-import static seedu.duke.ui.ExceptionMessages.displayInvalidActivityFactorMessage;
 
 public class InitialiseUserProfile {
     protected String name;
@@ -12,9 +11,6 @@ public class InitialiseUserProfile {
     protected String activityLevel;
     protected String weightGoal;
     protected double calories;
-
-    public InitialiseUserProfile() {
-    }
 
     public InitialiseUserProfile(String name, String gender, String weight, String height,
                                  String age, String activityLevel, String weightGoal) {
@@ -61,80 +57,73 @@ public class InitialiseUserProfile {
 
     private static DecimalFormat df2 = new DecimalFormat("#.00");
 
+    public void calculateEditedUserDetails() {
+        double activityMultiple = calculateActivityMultiple(this.activityLevel);
+        double bmi = calculateBmi(this.weight, this.height);
+        assert bmi > 0 : "bmi should be more than 0";
+
+        calories = calculateCalories(this.gender, this.weight, this.height, this.age) * activityMultiple;
+        assert calories > 0 : "calories should be greater than 0";
+    }
 
     public String calculateNewUserDetails() {
-        double activityMultiple = 0;
-
-        switch (Integer.parseInt(this.getActivityLevel())) {
-        case 1:
-            activityMultiple = 1.2;
-            break;
-        case 2:
-            activityMultiple = 1.375;
-            break;
-        case 3:
-            activityMultiple = 1.55;
-            break;
-        case 4:
-            activityMultiple = 1.725;
-            break;
-        case 5:
-            activityMultiple = 1.9;
-            break;
-        default:
-            displayInvalidActivityFactorMessage();
-            break;
-        }
+        double activityMultiple = calculateActivityMultiple(this.activityLevel);
 
         String details = "";
-        double bmi;
-        double calories = 0;
-        bmi = (Double.parseDouble(this.getWeight())
-                / (Double.parseDouble(this.getHeight()) * Double.parseDouble(this.getHeight())))
-                * 10000;
+        double bmi = calculateBmi(this.weight, this.height);
         assert bmi > 0 : "bmi should be more than 0";
 
         details += "\nYour BMI is " + df2.format(bmi) + "\n";
 
-        if (this.getGender().equals("female")) {
-            calories = ((10 * Double.parseDouble(this.getWeight()))
-                    + (6.25 * Double.parseDouble(this.getHeight()))
-                    - (5 * Double.parseDouble(this.getAge())) - 161)
-                    * activityMultiple;
-        } else {
-            calories = ((10 * Double.parseDouble(this.getWeight()))
-                    + (6.25 * Double.parseDouble(this.getHeight()))
-                    - (5 * Double.parseDouble(this.getAge())) + 5)
-                    * activityMultiple;
-        }
-
+        calories = calculateCalories(this.gender, this.weight, this.height, this.age) * activityMultiple;
         assert calories > 0 : "calories should be greater than 0";
 
-        details += "Your recommend daily calories intake is " + calories + " calories." + "\n";
+        details += "Your recommend daily calories intake is " + df2.format(calories) + " calories." + "\n";
 
         if (this.getWeightGoal().equals("lose")) {
             calories -= 500;
             details += "To " + this.getWeightGoal() + " weight, you should consume "
-                    + calories + " calories instead.\n";
+                    + df2.format(calories) + " calories instead.\n";
         } else if (this.getWeightGoal().equals("gain")) {
             calories += 500;
             details += "To " + this.getWeightGoal() + " weight, you should consume "
-                    + calories + " calories instead.\n";
+                    + df2.format(calories) + " calories instead.\n";
         }
-
-        this.calories = calories;
         return details;
     }
 
-    public void printList() {
-        System.out.println("Here is your user profile:");
-        System.out.println("Name : " + getName());
-        System.out.println("Gender : " + getGender());
-        System.out.println("Weight : " + getWeight());
-        System.out.println("Height : " + getHeight());
-        System.out.println("Age : " + getAge());
-        System.out.println("Activity Level : " + getActivityLevel());
-        System.out.println("Weight Goal : " + getWeightGoal());
+    public double calculateActivityMultiple(String activityLevel) {
+        switch (Integer.parseInt(activityLevel)) {
+        case 1:
+            return 1.2;
+        case 2:
+            return 1.375;
+        case 3:
+            return 1.55;
+        case 4:
+            return 1.725;
+        case 5:
+            return 1.9;
+        default:
+        }
+        return 1;
+    }
+
+    public double calculateBmi(String weight, String height) {
+        return (Double.parseDouble(weight)
+                / (Double.parseDouble(height) * Double.parseDouble(height)))
+                * 10000;
+    }
+
+    public double calculateCalories(String gender, String weight, String height, String age) {
+        double v = (10 * Double.parseDouble(weight))
+                + (6.25 * Double.parseDouble(height));
+
+        if (gender.equals("female")) {
+            return ((v) - (5 * Double.parseDouble(age)) - 161);
+        } else {
+            return (v - (5 * Double.parseDouble(age)) + 5);
+        }
     }
 
     @Override
