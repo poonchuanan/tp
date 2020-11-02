@@ -294,7 +294,7 @@ public class ExceptionMessages {
     }
 
     /**
-     *
+     * Prints out error message when date input exceeds range accepted.
      */
     public static void displayDateLimitExceptionMessage() {
         String dateLimitExceptionMessage = "You have exceeded the accepted date range!\n"
@@ -303,7 +303,7 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints out error message when description input by user is empty.
+     * Prints out error message when invalid calorie count entered
      */
     public static void displayInvalidCalorieExceptionMessage() {
         String invalidCalorieExceptionMessage = "Invalid calorie input!\n"

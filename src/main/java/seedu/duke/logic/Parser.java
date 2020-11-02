@@ -278,9 +278,9 @@ public class Parser {
                 isDescriptionInputValid = isDescriptionValid(foodDescription)
                         && isDescriptionLengthValid(foodDescription);
 
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
-                boolean isCalorieValid;
-                isCalorieValid = isCaloriesValid(calories);
+                String calorieInput = userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
+                int calories = parseCalorie(calorieInput);
+                boolean isCalorieValid = isCaloriesValid(calories);
 
                 boolean isInputValid = isCalorieValid && isDescriptionInputValid;
                 if (isInputValid) {
@@ -304,9 +304,9 @@ public class Parser {
                 isDescriptionInputValid = isDescriptionValid(exerciseDescription)
                         && isDescriptionLengthValid(exerciseDescription);
 
-                int calories = Integer.parseInt(userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
-                boolean isCalorieValid;
-                isCalorieValid = isCaloriesValid(calories);
+                String calorieInput = userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
+                int calories = parseCalorie(calorieInput);
+                boolean isCalorieValid = isCaloriesValid(calories);
 
                 boolean isInputValid = isCalorieValid && isDescriptionInputValid;
                 if (isInputValid) {
@@ -326,6 +326,8 @@ public class Parser {
             displayEmptyDescriptionMessage();
         } catch (CalorieTagNotFoundException e) {
             displayCalorieTagNotFoundExceptionMessage();
+        } catch (InvalidCalorieException e) {
+            displayInvalidCalorieExceptionMessage();
         } catch (NullPointerException e) {
             displayEditActivityExceptionMessage();
         } catch (NumberFormatException e) {
@@ -336,14 +338,28 @@ public class Parser {
         return null;
     }
 
-    public boolean isCaloriesValid(int calories) throws CalorieCountException {
-        if (calories <= 0 || calories > 3000) {
+    /**
+     * Checks if the calorie input is within accepted range.
+     *
+     * @param calories calories input by user
+     * @return true is calorie is within range
+     * @throws CalorieCountException if calorie not within range
+     */
+    public boolean isCaloriesValid(int calorie) throws CalorieCountException {
+        if (calorie <= 0 || calorie > 3000) {
             throw new CalorieCountException();
         } else {
             return true;
         }
     }
 
+    /**
+     * Checks if the description is filled.
+     *
+     * @param description description input by user
+     * @return true if no error in description input
+     * @throws EmptyDescriptionException if description input has error
+     */
     public boolean isDescriptionValid(String description) throws EmptyDescriptionException {
         if (description.equals(" ") || description.equals("")) {
             throw new EmptyDescriptionException();
@@ -352,6 +368,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if the description character counts is within accepted range.
+     *
+     * @param description description input by user
+     * @return true if description length is within range
+     * @throws DescriptionLengthExceedException if description exceeds range
+     */
     public boolean isDescriptionLengthValid(String description) throws DescriptionLengthExceedException {
         if (description.length() >= 40) {
             throw new DescriptionLengthExceedException();
@@ -390,7 +413,7 @@ public class Parser {
      * @return true if date is valid
      * @throws DateLimitException if date exceeds limit
      */
-    public LocalDate isDateValid(String dateInput, int dateIndex) throws DateLimitException {
+    public LocalDate checkDateValidity(String dateInput, int dateIndex) throws DateLimitException {
         LocalDate date = processDate(dateInput.substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
         LocalDate current = LocalDate.now();
         LocalDate past = processDate("2020-11-01");
@@ -403,6 +426,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if calorie input by user is empty
+     *
+     * @param calorieInput calorie input by user
+     * @return calorie count if it is not empty
+     * @throws InvalidCalorieException if the calorie count is empty
+     */
     public int parseCalorie(String calorieInput) throws InvalidCalorieException {
         if (!calorieInput.equals("")) {
             return Integer.parseInt(calorieInput);
@@ -448,7 +478,7 @@ public class Parser {
                 if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
                     date = currentDate();
                 } else {
-                    date = isDateValid(arguments[1], dateIndex);
+                    date = checkDateValidity(arguments[1], dateIndex);
                 }
 
                 if (isDescriptionInputValid && isCalorieValid) {
@@ -487,7 +517,7 @@ public class Parser {
                 if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
                     date = currentDate();
                 } else {
-                    date = isDateValid(arguments[1], dateIndex);
+                    date = checkDateValidity(arguments[1], dateIndex);
                 }
 
                 if (isDescriptionInputValid && isCalorieValid) {
