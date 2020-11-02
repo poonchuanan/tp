@@ -277,9 +277,10 @@ public class Parser {
      */
     private Command prepareEditActivityCommand(String userInput) {
         try {
-        String[] arguments = userInput.split(SPACE, 2);
-        int index = Integer.parseInt(arguments[0]) - 1;
-        userInput = arguments[1];
+            String[] arguments = userInput.split(SPACE, 2);
+            int index = Integer.parseInt(arguments[0]) - 1;
+            userInput = arguments[1];
+
             if (userInput.startsWith(FOOD_TAG)) {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
                 String foodDescription;
