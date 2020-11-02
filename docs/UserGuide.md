@@ -341,7 +341,7 @@ The current activity list has been saved.
 
 ### 4.1.1 Adding a food entry
 
-Adds a food entry with its respective calories to the list.
+Want to add a food entry? This features solves it by adding a food entry with its respective calories to the list.
 
 Format: `add f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** <d/ **DATE**>`
 
@@ -398,7 +398,7 @@ No.        Type                        Description                        Calori
 
 ### 4.2.1 Adding an exercise entry
 
-Adds an exercise entry with its respective calories to the list.
+Want to add an exercise entry? This features solves it by adding an exercise entry with its respective calories to the list.
 
 Format: `add e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** <d/ **DATE**>`
 
@@ -632,7 +632,7 @@ No.        Type                        Description                        Calori
 3        Exercise         jumping___________________________________________________65
 ```
 
-### 6.2.2 Possible errors when editing from food to food
+### 6.2.2 Possible errors when editing
 
 ```
 
@@ -690,7 +690,7 @@ No.        Date                Type                                Description  
 <br>
 <br>
 
-### 7.2.1 Finding entries via keywords - advance
+### 7.2.1 Finding entries via keywords - advanced
 
 Format for find by all descriptions: `find a/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 > This command will search of entries matching ALL description keywords typed. There is no limit to the number of descriptions allowed.
@@ -967,7 +967,7 @@ Example of usage:
 
 ## 11.0 Chaining
 
-### 11.1.1 Chaining of features
+### 11.1.1 Chaining of features - advanced
 
 Do you wish to save time individually typing in the features? Or do you want to type out all the commands you want at one go?
 Chaining is the right feature for your needs! 
@@ -979,7 +979,7 @@ Chaining is the right feature for your needs!
 >* For example, [edita](#621-editing-an-entry-in-list), you MUST call out the list you want to edit on before editing on it.
 
 Format: *not extensive, there is a lot of combinations available*
-        *commands just need to be separated by a `&&`*
+        *commands just need to be separated by `&&`*
         
 Examples of the possible format:
 >`add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**>`
@@ -995,7 +995,7 @@ Examples of usage:
 
 ```
 
-### 11.1.2 Possible errors when chaining
+### 11.1.2 Possible errors when chaining - advanced
 
 ```
 
