@@ -3,11 +3,9 @@ package seedu.duke.userprofile;
 import seedu.duke.Trakcal;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
-import java.io.InvalidClassException;
 import java.util.ArrayList;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidEditedUserProfileMessage;
-import seedu.duke.exception.InvalidEditedUserProfileException;
 import seedu.duke.exception.EmptyDescriptionException;
 import static seedu.duke.ui.Ui.displayEditWeightMessage;
 import static seedu.duke.ui.Ui.displayEditHeightMessage;
@@ -448,8 +446,8 @@ public class UserProfile {
     }
 
     public static void checkEmptyInput2(String[] data) throws EmptyDescriptionException {
-        for (int i = 0; i < data.length; i++) {
-            if (data[i].isEmpty()) {
+        for (String datum : data) {
+            if (datum.isEmpty()) {
                 throw new EmptyDescriptionException();
             }
         }
