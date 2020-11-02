@@ -15,7 +15,6 @@ import seedu.duke.userprofile.CheckNewUser;
 
 import java.util.Scanner;
 
-import static seedu.duke.logic.CommandParser.CHAIN_SEPARATOR;
 import static seedu.duke.logic.CommandParser.SPACE;
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
 import static seedu.duke.ui.Ui.displayWelcomeMessage;
@@ -63,7 +62,7 @@ public class Trakcal {
             CommandParser parser = new CommandParser(userInput);
             try {
                 Command command;
-                if (userInput.contains(CHAIN_SEPARATOR)) {
+                if (userInput.contains(ChainingParser.CHAIN_SEPARATOR)) {
                     new ChainingParser(userInput).parseArgument();
                 } else {
                     command = parser.parseArgument();

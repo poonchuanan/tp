@@ -7,6 +7,8 @@ import static seedu.duke.Trakcal.executeCmd;
 import static seedu.duke.Trakcal.storage;
 
 public class ChainingParser extends Parser {
+    public static final String CHAIN_SEPARATOR = "&&";
+    protected static final int CHAIN_SEPARATOR_LENGTH = 2;
 
     public ChainingParser(String userInput) {
         super(userInput);
@@ -18,13 +20,13 @@ public class ChainingParser extends Parser {
      * @return null
      */
     public Command parseArgument() {
-        while (super.userInput.contains(CommandParser.CHAIN_SEPARATOR)) {
-            if (!(super.userInput.endsWith(CommandParser.CHAIN_SEPARATOR))) {
-                super.userInput = super.userInput + CommandParser.SPACE + CommandParser.CHAIN_SEPARATOR;
+        while (userInput.contains(CHAIN_SEPARATOR)) {
+            if (!(userInput.endsWith(CHAIN_SEPARATOR))) {
+                userInput = userInput + CommandParser.SPACE + CHAIN_SEPARATOR;
             }
-            int chainIndex = super.userInput.indexOf(CommandParser.CHAIN_SEPARATOR);
+            int chainIndex = userInput.indexOf(CHAIN_SEPARATOR);
 
-            String firstString = super.userInput.substring(0, chainIndex).trim();
+            String firstString = userInput.substring(0, chainIndex).trim();
 
             CommandParser parser = new CommandParser(firstString);
             Command cmd = parser.parseArgument();
@@ -37,7 +39,7 @@ public class ChainingParser extends Parser {
             }
             storage.updateFile(calList);
 
-            super.userInput = super.userInput.substring(chainIndex + CommandParser.CHAIN_SEPARATOR_LENGTH).trim();
+            userInput = super.userInput.substring(chainIndex + CHAIN_SEPARATOR_LENGTH).trim();
         }
         return null;
     }
