@@ -135,17 +135,6 @@ public class ExceptionMessages {
         print("Sorry! There is missing input!");
     }
 
-
-
-    /**
-     * Prints out error message when invalid activity factor input.
-     */
-    public static void displayInvalidActivityFactorMessage() {
-        print("Sorry this is an invalid activity factor!"
-                + "Please enter an integer from 1 to 5, with 1 being the least "
-                + "active and 5 being the most active");
-    }
-
     /**
      * Prints out error message when DateTimeException occurs.
      */
@@ -303,8 +292,9 @@ public class ExceptionMessages {
 
     public static void displayInvalidEditedUserProfileMessage() {
         drawDivider();
-        System.out.println("You have edited the user profile text file to the wrong format."
-                + " Please create a new user profile to fix the error.");
+        System.out.println("You have edited the user profile text file to the wrong format.");
+        System.out.println( "Please create a new user profile before proceeding.");
         drawDivider();
+        System.out.println("");
     }
 }

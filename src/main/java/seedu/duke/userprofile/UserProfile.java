@@ -3,8 +3,11 @@ package seedu.duke.userprofile;
 import seedu.duke.Trakcal;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.util.ArrayList;
 
+import static seedu.duke.ui.ExceptionMessages.displayInvalidEditedUserProfileMessage;
+import seedu.duke.exception.InvalidEditedUserProfileException;
 import seedu.duke.exception.EmptyDescriptionException;
 import static seedu.duke.ui.Ui.displayEditWeightMessage;
 import static seedu.duke.ui.Ui.displayEditHeightMessage;
@@ -471,6 +474,23 @@ public class UserProfile {
         storage.save(profile.toString());
     }
 
+
+    private static void checkEditedTextFileWeightGoal(String wg) throws InvalidEditedUserProfileException {
+        for (WeightGoalEnum validWg : WeightGoalEnum.values()) {
+            if (validWg.name().equals(wg)) {
+                return;
+            }
+        }
+        throw new InvalidEditedUserProfileException();
+    }
+
+
+
+
+    private static void checkUserProfileTxtFormat(String[] data) throws InvalidEditedUserProfileException {
+        checkEditedTextFileWeightGoal(data[6]);
+    }
+
     /**
      * Reading user input from existing text file and save a profile type.
      *
@@ -482,6 +502,13 @@ public class UserProfile {
         for (int i = 0; i < 7; i++) {
             data[i] = previous.get(i);
         }
+
+        try {
+            checkUserProfileTxtFormat(data);
+        } catch (InvalidEditedUserProfileException e) {
+            displayInvalidEditedUserProfileMessage();
+        }
+
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
         profile.calculateNewUserDetails();
