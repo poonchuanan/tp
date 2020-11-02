@@ -293,7 +293,7 @@ public class ExceptionMessages {
     public static void displayInvalidEditedUserProfileMessage() {
         drawDivider();
         System.out.println("You have edited the user profile text file to the wrong format.");
-        System.out.println( "Please create a new user profile before proceeding.");
+        System.out.println("Please create a new user profile before proceeding.");
         drawDivider();
         System.out.println("");
     }

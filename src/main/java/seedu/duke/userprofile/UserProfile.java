@@ -447,6 +447,14 @@ public class UserProfile {
         }
     }
 
+    public static void checkEmptyInput2(String[] data) throws EmptyDescriptionException {
+        for (int i = 0; i < data.length; i++) {
+            if (data[i].isEmpty()) {
+                throw new EmptyDescriptionException();
+            }
+        }
+    }
+
     public static InitialiseUserProfile enterNewUserInfo() throws IOException {
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
@@ -474,23 +482,6 @@ public class UserProfile {
         storage.save(profile.toString());
     }
 
-
-    private static void checkEditedTextFileWeightGoal(String wg) throws InvalidEditedUserProfileException {
-        for (WeightGoalEnum validWg : WeightGoalEnum.values()) {
-            if (validWg.name().equals(wg)) {
-                return;
-            }
-        }
-        throw new InvalidEditedUserProfileException();
-    }
-
-
-
-
-    private static void checkUserProfileTxtFormat(String[] data) throws InvalidEditedUserProfileException {
-        checkEditedTextFileWeightGoal(data[6]);
-    }
-
     /**
      * Reading user input from existing text file and save a profile type.
      *
@@ -504,8 +495,18 @@ public class UserProfile {
         }
 
         try {
-            checkUserProfileTxtFormat(data);
-        } catch (InvalidEditedUserProfileException e) {
+            checkGender(data[1]);
+            checkAcLeIsWithinRange(data[5]);
+            checkAgeIsWithinRange(data[4]);
+            checkWeightGoal(data[6]);
+            checkWeightIsWithinRange(data[2]);
+            checkHeightIsWithinRange(data[3]);
+            checkInputIsInt(data[4]);
+            checkInputIsDouble(data[2]);
+            checkInputIsInt(data[5]);
+            checkInputIsDouble(data[3]);
+            checkEmptyInput2(data);
+        } catch (IllegalArgumentException | EmptyDescriptionException e) {
             displayInvalidEditedUserProfileMessage();
         }
 
