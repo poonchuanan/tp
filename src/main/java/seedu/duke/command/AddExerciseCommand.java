@@ -45,8 +45,6 @@ public class AddExerciseCommand extends Command {
     @Override
     public void execute() {
         dayMap.addActivity(date.atStartOfDay(), exercise);
-        System.out.println();
         displaySavedMessage();
-        drawDivider();
     }
 }

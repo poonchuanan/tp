@@ -32,6 +32,7 @@ public class Storage {
 
     /**
      * Constructor for the storage class.
+     *
      * @param filePath path of file to be stored into
      */
     public Storage(String filePath) {
@@ -41,6 +42,7 @@ public class Storage {
 
     /**
      * Creates the file hierarchy if not present.
+     *
      * @throws IOException if there is an issue
      */
     private void createFileHierarchy() throws IOException {
@@ -58,6 +60,7 @@ public class Storage {
 
     /**
      * Appends to the file.
+     *
      * @param textToAdd string to append the file with
      */
     private void appendToFile(String textToAdd) {
@@ -78,6 +81,7 @@ public class Storage {
 
     /**
      * Overwrites the file.
+     *
      * @param textToAdd string to override the file with
      */
     private void writeToFile(String textToAdd) {
@@ -94,6 +98,7 @@ public class Storage {
 
     /**
      * Updates the file.
+     *
      * @param dayMap dayMap to update the file with
      */
     public void updateFile(DayMap dayMap) {
@@ -111,6 +116,7 @@ public class Storage {
 
     /**
      * Loads saved CSV data into the list when the program starts.
+     *
      * @param calList used to store the current activities
      */
     public void loadData(DayMap calList) {

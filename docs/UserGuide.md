@@ -60,7 +60,7 @@ This section gives the steps you need to get started quickly.
 
 # Features 
 
-This section gives you a detailed description of each feature available in **trakCAL**.
+This section gives you a detailed description of each feature available in **traKCAL**.
 
 >Some things to take note of:
 >* Inputs that look like `**this**` are compulsory parameters to be supplied by user.
@@ -73,7 +73,7 @@ This section gives you a detailed description of each feature available in **tra
 
 ## 1.0 Viewing help
 
-Prints out the commands available, and their respective input format.
+Do you need help with the function and their respective input format? Well this section solves it for you!
 
 Format: `help`
 
@@ -156,11 +156,10 @@ bye                    - Terminates the application
 
 ## 2.0 Create
 
+### 2.1.1 Creating a new user profile
 
-### 2.1 Creating a new user profile
-
-If this is your first time using **trakCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
-**trakCAL** will then use these details from your user profile to calculate the following: 
+If this is your first time using **traKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
+**traKCAL** will then use these details from your user profile to calculate the following: 
 
 * BMI
 * Recommended daily calorie
@@ -195,7 +194,7 @@ Your recommend daily calories intake is 1576.65 calories.
 To gain weight, you should consume 2076.65 calories instead.
 ```
 
-<br>
+### 2.1.2 Possible errors when creating new profile
 
 Tips: 
 * There is no restriction on the type of name you can supply.  `X Æ A-Xii` and `Tammy` will both be accepted.
@@ -265,7 +264,9 @@ Tips:
 <br>
 <br>
 
-### 2.2 Creating a shortcut for a set of entries 
+## 3.0 Shortcut
+
+### 3.1.1 Creating a shortcut for a set of entries 
 
 This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add in multiple common entries. 
 
@@ -288,14 +289,51 @@ You have created a shortcut containing:
 =====================================================================================================
 ```
 
+### 3.1.2 Possible errors when creating shortcut
+
+```
+
+```
 
 <br>
 <br>
 
-## 3.0 Add
+### 3.2.1 Adding a set of entries
 
+Adds a set of repeated entries at once.
 
-### 3.1 Adding a food entry
+Format: `addSet **SHORTCUT_NAME**`
+
+Parameters:
+* `**SHORTCUT_NAME**`: Name of shortcut.
+
+Example of usage: 
+* `addSet bfast`
+
+```
+=====================================================================================================
+Noted! The following has been added into list:
+[F] | ice cream | 78
+The current activity list has been saved.
+=====================================================================================================
+=====================================================================================================
+[E] | jumping jacks | 100
+The current activity list has been saved.
+=====================================================================================================
+```
+
+### 3.2.2 Possible errors when adding set
+
+```
+
+```
+
+<br>
+<br>
+
+## 4.0 Add
+
+### 4.1.1 Adding a food entry
 
 Adds a food entry with its respective calories to the list.
 
@@ -341,10 +379,14 @@ No.        Type                        Description                        Calori
 2          Food           mushroom soup_____________________________________________77
 ```
 
+### 4.1.2 Possible errors when adding food
+```
+```
+
 <br>
 <br>
 
-### 3.2 Adding an exercise entry
+### 4.2.1 Adding an exercise entry
 
 Adds an exercise entry with its respective calories to the list.
 
@@ -395,39 +437,17 @@ No.        Type                        Description                        Calori
 3        Exercise         jumping___________________________________________________65
 ```
 
-<br>
-<br>
-
-### 3.3 Adding a set of entries
-
-Adds a set of repeated entries at once.
-
-Format: `addSet **SHORTCUT_NAME**`
-
-Parameters:
-* `**SHORTCUT_NAME**`: Name of shortcut.
-
-Example of usage: 
-* `addSet bfast`
+### 4.2.2 Possible errors when adding exercise
 
 ```
-=====================================================================================================
-Noted! The following has been added into list:
-[F] | ice cream | 78
-The current activity list has been saved.
-=====================================================================================================
-=====================================================================================================
-[E] | jumping jacks | 100
-The current activity list has been saved.
-=====================================================================================================
 ```
 
 <br>
 <br>
 
-## 4.0 List
+## 5.0 List
 
-### 4.1 Listing entries for the specified day
+### 5.1.1 Listing entries for the specified day
 
 Displays the list of activities for the given day.
 
@@ -460,7 +480,7 @@ No.        Type                        Description                        Calori
 6          Food           Biscuit___________________________________________________20
 ```
 
-### 4.2 Exceptions
+### 5.1.2 Possible errors when listing
 #### Accessing a list with no entries
 If you are trying to access a list that does not have any entries <br>
 For example if there are no entries for 2020-10-31, the following error message will be shown: <br>
@@ -481,9 +501,9 @@ Also, ensure that the date input actually exists!Please do input 'help' for the 
 <br>
 <br>
 
-## 5.0 Edit
+## 6.0 Edit
 
-### 5.1 Editing user profile
+### 6.1.1 Editing user profile
 
 Edits user profile of an existing user.
 
@@ -508,16 +528,19 @@ Your weight has been updated to 90.
 ==============================================================
 ```
 
-<br>
-
 Tip:
 * The parameters should conform to the same style used in `create new user`. Explanations to possible error messages can be found [here](#21-creating-a-new-user-profile).
 
+### 6.1.2 Possible errors when editing user profile
+
+```
+
+```
 
 <br>
 <br>
 
-### 5.2 Editing an entry in list from food to food 
+### 6.2.1 Editing an entry in list from food to food 
 
 Edits a particular food activity in list.
 >Things you should take note of:
@@ -574,10 +597,16 @@ No.        Type                        Description                        Calori
 3        Exercise         jumping___________________________________________________65
 ```
 
+### 6.2.2 Possible errors when editing from food to food
+
+```
+
+```
+
 <br>
 <br>
 
-### 5.3 Editing an entry in list from food to exercise
+### 6.3.1 Editing an entry in list from food to exercise
 
 Edits a particular food activity in list from food to exercise.
 >Things you should take note of:
@@ -634,10 +663,15 @@ No.        Type                        Description                        Calori
 3        Exercise         jumping___________________________________________________65
 ```
 
+### 6.3.2 Possible errors when editing from food to exercise
+
+```
+```
+
 <br>
 <br>
 
-### 5.4 Editing an entry in list from exercise to exercise 
+### 6.4.1 Editing an entry in list from exercise to exercise 
 
 Edits a particular exercise activity in list. 
 >Things you should take note of:
@@ -695,11 +729,16 @@ No.        Type                        Description                        Calori
 3        Exercise         strolling_________________________________________________10
 ```
 
+### 6.4.2 Possible errors when editing from exercise to exercise
+
+```
+```
+
 <br>
 <br>
 
 
-### 5.5 Editing an entry in list from exercise to food 
+### 6.5.1 Editing an entry in list from exercise to food 
 
 Edits a particular exercise activity in list from exercise to food.  
 >Things you should take note of:
@@ -756,13 +795,17 @@ No.        Type                        Description                        Calori
 3          Food           chicken rice______________________________________________150
 ```
 
+### 6.5.2 Possible errors when editing from exercise to food
+
+```
+```
+
 <br>
 <br>
 
-## 6.0 Find
+## 7.0 Find
 
-
-### 6.1 Finding entries via keyword - basic
+### 7.1.1 Finding entries via keyword - basic
 
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
@@ -800,7 +843,16 @@ No.        Date                Type                                Description  
 
 ```
 
-### 6.2 Finding entries via keywords - advanced
+### 7.1.2 Possible errors when finding entries via keyword
+
+```
+
+```
+
+<br>
+<br>
+
+### 7.2.1 Finding entries via keywords - advanced
 
 Format for find by all descriptions: `find a/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 > This command will search of entries matching ALL description keywords typed. There is no limit to the number of descriptions allowed.
@@ -811,7 +863,7 @@ Parameters:
 * so on...
 
 Example of usage:
- * `find a/running a/ 10km / 5pm`
+ * `find a/running / 10km / 5pm`
  
 ```
 No.        Date                Type                                Description                        Calories gain or lost
@@ -819,7 +871,7 @@ No.        Date                Type                                Description  
 1        2020-10-11          Exercise              running at stadium for 10km at 5pm evening_________________100
 ```
 
-Format for find by just one matching description: `find e/ **DESCRIPTION1** e/ **DESCRIPTION2** e/ **DESCRIPTION3** ...`
+Format for find by just one matching description: `find e/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 > As long as just one of the description keywords matches in the entry, the activity will be listed. There is no limit to the number of descriptions allowed.
 
 Parameters:
@@ -836,14 +888,17 @@ No.        Date                Type                                Description  
 1        2020-10-11          Exercise              running at stadium for 10km at 5pm evening_________________100
 ```
 
-#### Possible error messages and how to solve them:
+### 7.2.2 Possible error messages when finding entries - advanced
+```
+
+```
 
 <br>
 <br>
 
-## 7.0 Move
+## 8.0 Move
 
-### 7.1 Moving an activity to another position
+### 8.1.1 Moving an activity to another position
 
 Moves an activity to another position in the last shown list.
 
@@ -892,7 +947,8 @@ No.        Type                        Description                        Calori
 
 
 ```
-### 7.2 Exceptions
+
+### 8.1.2 Possible errors when moving
 #### Missing keywords
 * If the appropriate keywords 'from/' and 'below/' are missing, the following error message will be shown
 ```
@@ -922,14 +978,12 @@ The index entered is not within the range!Please do input 'help' for the command
 ====================================================================================
 ```
 
-
 <br>
 <br>
 
-## 8.0 Delete
+## 9.0 Delete
 
-
-### 8.1 Deleting an entry in list
+### 9.1.1 Deleting an entry in list
 
 Deletes an entry via index in the last shown list.
 
@@ -980,11 +1034,17 @@ No.        Type                        Description                        Calori
 
 ```
 
+### 9.1.2 Possible errors when deleting an entry in list
+
+```
+
+```
+
 <br>
 <br>
 
 
-### 8.2 Deleting all entries in list
+### 9.2.1 Deleting all entries in list
 
 Deletes all entry in list.
 
@@ -1006,7 +1066,7 @@ No.        Type                        Description                        Calori
 3          Food           orange__________________________________________________200
 ```
 
-* `delete /all`
+* `delete all/`
 
 ```
 The current activity list has been saved.
@@ -1018,12 +1078,18 @@ The current activity list has been saved.
 Nothing was added!
 ```
 
+### 9.2.2 Possible errors when deleting all entries from  list
+
+```
+
+```
+
 <br>
 <br>
 
-## 9.0 Graph
+## 10.0 Graph
 
-### 9.1 Showing past net calories
+### 10.1.1 Showing past net calories
 
 Shows a graph of target calorie and net calorie obtained upto last 7 days.
 
@@ -1051,10 +1117,15 @@ Example of usage:
 > `***` shows the target calories.
 > If less than 7 days are stored in storage file, all the days will be displayed
 
+### 10.1.2 Possible errors when graphing
+
+```
+```
+
 <br>
 <br>
 
-## 10.0 Exiting the program
+## 11.0 Exiting the program
 
 Saves the current list to file and exits program.
 
@@ -1070,21 +1141,27 @@ Example of usage:
 ```
 
 <br>
+<br>
 
 # Frequently asked questions
 This section answers questions you may have.
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **trakCAL** folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
 
 **Q**: How do I know if the data I have input is saved?
 
-**A**: **trakCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
+**A**: **traKCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
 **Q**: Is traKCAL optimized for all OS?
 
 **A**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
+
+**Q**: How do I raise an issue if I have doubts or have issues to raise?
+
+**A**: We can be reached either via email(e0425705@u.nus.edu) or by raising a github issue[here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
+
 
 <br>
 
@@ -1109,8 +1186,8 @@ Edit Activity to Food | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` 
 Edit Activity to Exercise | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT` | `edita 1 e/ running c/100`
 Find Description | `find d/ DESCRIPTION` | `find d/ apple`
 Find Calorie | `find c/ CALORIE` | `find c/ 55`
-Find Either | `find e/ DESCRIPTION1 e/ DESCRIPTION2 e/ DESCRIPTION3 ...` | `find e/ apple e/ orange e/ grape ...`
-Find All | `find a/ DESCRIPTION1 a/ DESCRIPTION2 a/ DESCRIPTION3 ...` | `find a/ running a/ jumping a/ cake ...`
+Find Either | `find e/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3 ...` | `find e/ apple / orange / grape ...`
+Find All | `find a/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3 ...` | `find a/ running / jumping / cake ...`
 Move Activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
 Delete Entry | `delete INDEX` | `delete 2`
 Delete All for Today| `delete all/` | 

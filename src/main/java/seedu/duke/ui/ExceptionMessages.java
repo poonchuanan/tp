@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import static seedu.duke.ui.Ui.DIVIDER;
 import static seedu.duke.ui.Ui.PROMPTUSEROFHELPMESSAGE;
+import static seedu.duke.ui.Ui.drawDivider;
 
 /**
  * Deals with error/exception messages.
@@ -43,7 +44,8 @@ public class ExceptionMessages {
      * Prints error message when attempting to access an empty list.
      */
     public static void displayListNotFoundExceptionMessage() {
-        print("The list to work on is empty!" + "\nTry entering a list command first."
+        print("The list to work on is empty!\n"
+                + "Try entering a list command first."
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -65,6 +67,15 @@ public class ExceptionMessages {
                 + "The input format for adding exercise activity is 'add e/ X c/ Y d/ Z"
                 + " - where exercise done is X, calories lost is Y and date(YYYY-MM-DD) is Z\n"
                 + "If this is still too confusing for you, please do input 'help' for more information.");
+    }
+
+    /**
+     * Prints out error message when input of user is not understood.
+     */
+    public static String displayInvalidInputErrorMessage() {
+        String invalidMessage = "Sorry I do not understand the input given!\n"
+                + "Perhaps pulling out help list via input 'help' may help.";
+        return invalidMessage;
     }
 
     /**
@@ -123,15 +134,7 @@ public class ExceptionMessages {
     public static void displayEmptyAddActivityErrorMessage() {
         print("Sorry! There is missing input!");
     }
-
-    /**
-     * Prints out error message when input of user is not understood.
-     */
-    public static void displayInvalidInputErrorMessage() {
-        print("Sorry I do not understand the input given!"
-                + "Perhaps pulling out help list via input 'help' may help.");
-    }
-
+    
     /**
      * Prints out error message when invalid activity factor input.
      */
@@ -145,8 +148,8 @@ public class ExceptionMessages {
      * Prints out error message when DateTimeException occurs.
      */
     public static void displayDateTimeExceptionMessage() {
-        print("Sorry, I do not understand!"
-                + "The input format of date is YYYY-MM-DD.");
+        print("Sorry, I do not understand!\n"
+                + "The input format of date is YYYY-MM-DD!");
     }
 
     /**
@@ -256,21 +259,67 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints out error message when calorie count too big or small.
+     * Prints out error message when calorie count is out of the accepted bound of this application.
      */
-    public static void displayCalorieCountOutOfBound() {
-        print("Calorie count should be > 0 and <= 3000!");
+    public static void displayCalorieCountOutOfBoundMessage() {
+        String calorieOutOfBoundMessage = "Calorie count should be > 0 and <= 3000!\n"
+                + "Please input a valid calorie count that is within the range!";
+        print(calorieOutOfBoundMessage);
     }
 
     /**
-     * Prints out error message when activity level from 1 to 5.
+     * Prints out error message when calorie tag not found.
      */
-    public static void displayEmptyInput() {
-        print("Empty description!");
+    public static void displayCalorieTagNotFoundExceptionMessage() {
+        String calorieTagNotFoundExceptionMessage = "Calorie count tag[c/] is missing in your input!";
+        print(calorieTagNotFoundExceptionMessage);
+    }
+
+    /**
+     * Prints out error message when description length exceed limit.
+     */
+    public static void displayDescriptionLengthExceedExceptionMessage() {
+        String descriptionLengthExceedExceptionMessage = "Maximum description length is 40 characters only!";
+        print(descriptionLengthExceedExceptionMessage);
+    }
+
+    /**
+     * Prints out error message when description input by user is empty.
+     */
+    public static void displayEmptyDescriptionMessage() {
+        String emptyDescriptionMessage = "Current description is empty!\n"
+                + "Please input a valid description that is not empty!";
+        print(emptyDescriptionMessage);
+    }
+
+    /**
+     * Prints out error message when date input exceeds range accepted.
+     */
+    public static void displayDateLimitExceptionMessage() {
+        String dateLimitExceptionMessage = "You have exceeded the accepted date range!\n"
+                + "Date input has to be from 2020-11-01 to current date!";
+        print(dateLimitExceptionMessage);
+    }
+
+    /**
+     * Prints out error message when invalid calorie count entered.
+     */
+    public static void displayInvalidCalorieExceptionMessage() {
+        String invalidCalorieExceptionMessage = "Invalid calorie input!\n"
+                + "Calorie count must be an integer!";
+        print(invalidCalorieExceptionMessage);
+    }
+
+    /**
+     * Prints out error message for invalid number for delete command.
+     */
+    public static void displayDeleteCommandStringOutOfBoundExceptionMessage() {
+        print("Invalid Index!");
     }
 
     /**
      * Prints a message in a specified format.
+     *
      * @param message is the message to be printed out
      */
     public static void print(String message) {
@@ -278,5 +327,20 @@ public class ExceptionMessages {
         System.out.println(message);
         System.out.println(DIVIDER);
 
+    }
+
+    /**
+     * Prints message when string entered is empty.
+     */
+    public static void displayEmptyStringMessage() {
+        System.out.println("Please do not enter an empty input");
+    }
+
+    public static void displayInvalidEditedUserProfileMessage() {
+        drawDivider();
+        System.out.println("You have edited the user profile text file to the wrong format.");
+        System.out.println("Please create a new user profile. If not certain features like graph cannot be used");
+        drawDivider();
+        System.out.println("");
     }
 }
