@@ -24,6 +24,8 @@ import seedu.duke.command.ListCommand;
 import seedu.duke.command.ListUserProfileCommand;
 import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.exception.CalorieCountException;
+import seedu.duke.exception.CalorieTagNotFoundException;
+import seedu.duke.exception.DescriptionLengthExceedException;
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.ui.ExceptionMessages;
 import seedu.duke.userprofile.UserProfile;
@@ -46,11 +48,13 @@ import static seedu.duke.Trakcal.executeCmd;
 import static seedu.duke.Trakcal.storage;
 import static seedu.duke.ui.ExceptionMessages.displayAddActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayAddCommandErrorMessage;
-import static seedu.duke.ui.ExceptionMessages.displayCalorieCountOutOfBound;
+import static seedu.duke.ui.ExceptionMessages.displayCalorieCountOutOfBoundMessage;
+import static seedu.duke.ui.ExceptionMessages.displayCalorieTagNotFoundExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDateTimeExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandStringOutOfBoundExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayDescriptionLengthExceedExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyEditActivityErrorMessage;
@@ -220,6 +224,31 @@ public class Parser {
         return null;
     }
 
+    private Command prepareListUserProfileCommand() throws IOException {
+        String initialPath = new File("").getAbsolutePath();
+        String filePath = initialPath + "/tp.txt";
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String line = reader.readLine();
+
+        System.out.println("Here is your user profile:");
+        System.out.println("Name : " + line);
+        line = reader.readLine();
+        System.out.println("Gender : " + line);
+        line = reader.readLine();
+        System.out.println("Weight : " + line);
+        line = reader.readLine();
+        System.out.println("Height : " + line);
+        line = reader.readLine();
+        System.out.println("Age : " + line);
+        line = reader.readLine();
+        System.out.println("Activity Level : " + line);
+        line = reader.readLine();
+        System.out.println("Weight Goal : " + line + "\n");
+        reader.close();
+
+        return new ListUserProfileCommand();
+    }
+
     /**
      * Prepares the edit command by checking the userInput.
      *
@@ -237,7 +266,7 @@ public class Parser {
 
                 String foodDescription;
                 if (calorieIndex == INDEX_NOT_FOUND) {
-                    throw new Exception();
+                    throw new CalorieTagNotFoundException();
                 } else {
                     foodDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
                 }
@@ -255,7 +284,7 @@ public class Parser {
 
                 String exerciseDescription;
                 if (calorieIndex == INDEX_NOT_FOUND) {
-                    throw new Exception();
+                    throw new CalorieTagNotFoundException();
                 } else {
                     exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
                 }
@@ -272,9 +301,11 @@ public class Parser {
                 displayEmptyEditActivityErrorMessage();
             }
         } catch (CalorieCountException e) {
-            displayCalorieCountOutOfBound();
+            displayCalorieCountOutOfBoundMessage();
         } catch (EmptyDescriptionException e) {
             displayEmptyDescriptionMessage();
+        } catch (CalorieTagNotFoundException e) {
+            displayCalorieTagNotFoundExceptionMessage();
         } catch (NullPointerException e) {
             displayEditActivityExceptionMessage();
         } catch (NumberFormatException e) {         // catch index not string
@@ -301,29 +332,23 @@ public class Parser {
         }
     }
 
-    private Command prepareListUserProfileCommand() throws IOException {
-        String initialPath = new File("").getAbsolutePath();
-        String filePath = initialPath + "/tp.txt";
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        String line = reader.readLine();
+    public boolean checkDescriptionLength(String description) throws DescriptionLengthExceedException {
+        if (description.length() >= 40) {
+            throw new DescriptionLengthExceedException();
+        } else {
+            return true;
+        }
+    }
 
-        System.out.println("Here is your user profile:");
-        System.out.println("Name : " + line);
-        line = reader.readLine();
-        System.out.println("Gender : " + line);
-        line = reader.readLine();
-        System.out.println("Weight : " + line);
-        line = reader.readLine();
-        System.out.println("Height : " + line);
-        line = reader.readLine();
-        System.out.println("Age : " + line);
-        line = reader.readLine();
-        System.out.println("Activity Level : " + line);
-        line = reader.readLine();
-        System.out.println("Weight Goal : " + line + "\n");
-        reader.close();
+    /**
+     * Returns current date.
+     *
+     * @return current date
+     */
+    private LocalDate currentDate() {
+        LocalDate date = LocalDate.now();
 
-        return new ListUserProfileCommand();
+        return date;
     }
 
 
@@ -338,17 +363,17 @@ public class Parser {
             String[] arguments = userInput.split(SPACE, 2);
             if (arguments[1].startsWith(FOOD_TAG)) {
                 int calorieIndex = arguments[1].indexOf(CALORIE_TAG);
-                int dateIndex = arguments[1].indexOf(DATE_TAG);
 
                 String foodDescription;
                 if (calorieIndex == INDEX_NOT_FOUND) {
-                    throw new Exception();
+                    throw new CalorieTagNotFoundException();
                 } else {
                     foodDescription = arguments[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
                 }
                 boolean descriptionCheck;
-                descriptionCheck = checkDescription(foodDescription);
+                descriptionCheck = checkDescription(foodDescription) && checkDescriptionLength(foodDescription);
 
+                int dateIndex = arguments[1].indexOf(DATE_TAG);
                 int calories;
                 if (dateIndex == INDEX_NOT_FOUND) {
                     calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH)
@@ -362,7 +387,7 @@ public class Parser {
 
                 LocalDate date;
                 if (calorieCheck && descriptionCheck && dateIndex == INDEX_NOT_FOUND) {
-                    date = LocalDate.now();
+                    date = currentDate();
                 } else {
                     date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
                 }
@@ -373,17 +398,19 @@ public class Parser {
                 return new AddFoodCommand(foodDescription, calories, FALSE, date);
             } else if (arguments[1].startsWith(EXERCISE_TAG)) {
                 int calorieIndex = arguments[1].indexOf(CALORIE_TAG);
-                int dateIndex = arguments[1].indexOf(DATE_TAG);
+
 
                 String exerciseDescription;
                 if (calorieIndex == INDEX_NOT_FOUND) {
-                    throw new Exception();
+                    throw new CalorieTagNotFoundException();
                 } else {
                     exerciseDescription = arguments[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
                 }
                 boolean descriptionCheck;
                 descriptionCheck = checkDescription(exerciseDescription);
+                descriptionCheck = checkDescriptionLength(exerciseDescription);
 
+                int dateIndex = arguments[1].indexOf(DATE_TAG);
                 int calories;
                 if (dateIndex == INDEX_NOT_FOUND) {
                     calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH)
@@ -397,7 +424,7 @@ public class Parser {
 
                 LocalDate date;
                 if (calorieCheck && descriptionCheck && dateIndex == INDEX_NOT_FOUND) {
-                    date = LocalDate.now();
+                    date = currentDate();
                 } else {
                     date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
                 }
@@ -407,14 +434,18 @@ public class Parser {
                 assert calories > 0 : "calories should be greater than 0";
                 return new AddExerciseCommand(exerciseDescription, calories, FALSE, date);
             } else {
-                displayEmptyAddActivityErrorMessage();
+                displayAddActivityExceptionMessage();
             }
         } catch (NumberFormatException e) {
             displayAddActivityExceptionMessage();
         } catch (DateTimeParseException e) {
             displayIncorrectDateTimeFormatEnteredMessage();
         } catch (CalorieCountException e) {
-            displayCalorieCountOutOfBound();
+            displayCalorieCountOutOfBoundMessage();
+        } catch (CalorieTagNotFoundException e) {
+            displayCalorieTagNotFoundExceptionMessage();
+        } catch (DescriptionLengthExceedException e) {
+            displayDescriptionLengthExceedExceptionMessage();
         } catch (DateTimeException e) {
             displayDateTimeExceptionMessage();
         } catch (EmptyDescriptionException e) {
@@ -481,16 +512,7 @@ public class Parser {
         return LocalDate.parse(dateInput);
     }
 
-    /**
-     * Returns current date.
-     *
-     * @return current date
-     */
-    private LocalDate currentDate() {
-        LocalDate date = LocalDate.now();
 
-        return date;
-    }
 
     /**
      * Prepares the list command by checking the userInput.

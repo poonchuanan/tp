@@ -262,10 +262,20 @@ public class ExceptionMessages {
     /**
      * Prints out error message when calorie count is out of the accepted bound of this application.
      */
-    public static void displayCalorieCountOutOfBound() {
+    public static void displayCalorieCountOutOfBoundMessage() {
         String calorieOutOfBoundMessage = "Calorie count should be > 0 and <= 3000!\n"
                 + "Please input a valid calorie count that is within the range!";
         print(calorieOutOfBoundMessage);
+    }
+
+    public static void displayCalorieTagNotFoundExceptionMessage() {
+        String calorieTagNotFoundExceptionMessage = "c/ is missing!";
+        print(calorieTagNotFoundExceptionMessage);
+    }
+
+    public static void displayDescriptionLengthExceedExceptionMessage() {
+        String descriptionLengthExceedExceptionMessage = "Maximum description length is 40 characters only!";
+        print(descriptionLengthExceedExceptionMessage);
     }
 
     /**
