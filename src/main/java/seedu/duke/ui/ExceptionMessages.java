@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import static seedu.duke.ui.Ui.DIVIDER;
 import static seedu.duke.ui.Ui.PROMPTUSEROFHELPMESSAGE;
+import static seedu.duke.ui.Ui.drawDivider;
 
 /**
  * Deals with error/exception messages.
@@ -298,5 +299,12 @@ public class ExceptionMessages {
 
     public static void displayEmptyStringMessage() {
         System.out.println("Please do not enter an empty input");
+    }
+
+    public static void displayInvalidEditedUserProfileMessage() {
+        drawDivider();
+        System.out.println("You have edited the user profile text file to the wrong format."
+                + " Please create a new user profile to fix the error.");
+        drawDivider();
     }
 }
