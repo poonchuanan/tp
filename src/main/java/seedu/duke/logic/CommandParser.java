@@ -79,15 +79,4 @@ public class CommandParser extends Parser{
         return null;
     }
 
-    /**
-     * Returns current date.
-     *
-     * @return current date
-     */
-    private LocalDate currentDate() {
-        LocalDate date = LocalDate.now();
-
-        return date;
-    }
-
 }
