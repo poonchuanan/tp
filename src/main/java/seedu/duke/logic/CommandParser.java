@@ -15,7 +15,7 @@ import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExcep
 /**
  * Initialises parser class.
  */
-public class CommandParser extends Parser{
+public class CommandParser extends Parser {
     public static final String SPACE = " ";
 
 

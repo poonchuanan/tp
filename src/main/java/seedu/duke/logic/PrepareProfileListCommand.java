@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class PrepareProfileListCommand extends PrepareCommand {
-    public PrepareProfileListCommand(String[] description){
+    public PrepareProfileListCommand(String[] description) {
         super(description);
     }
 

@@ -15,5 +15,4 @@ public abstract class Parser {
         return this.userInput.replaceAll(" +", CommandParser.SPACE);
     }
 
-
 }
