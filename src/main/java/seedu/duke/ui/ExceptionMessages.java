@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import static seedu.duke.ui.Ui.DIVIDER;
 import static seedu.duke.ui.Ui.PROMPTUSEROFHELPMESSAGE;
+import static seedu.duke.ui.Ui.drawDivider;
 
 /**
  * Deals with error/exception messages.
@@ -133,7 +134,7 @@ public class ExceptionMessages {
     public static void displayEmptyAddActivityErrorMessage() {
         print("Sorry! There is missing input!");
     }
-
+    
     /**
      * Prints out error message when invalid activity factor input.
      */
@@ -333,5 +334,13 @@ public class ExceptionMessages {
      */
     public static void displayEmptyStringMessage() {
         System.out.println("Please do not enter an empty input");
+    }
+
+    public static void displayInvalidEditedUserProfileMessage() {
+        drawDivider();
+        System.out.println("You have edited the user profile text file to the wrong format.");
+        System.out.println("Please create a new user profile. If not certain features like graph cannot be used");
+        drawDivider();
+        System.out.println("");
     }
 }
