@@ -5,6 +5,7 @@ import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static seedu.duke.ui.ExceptionMessages.displayInvalidEditedUserProfileMessage;
 import seedu.duke.exception.EmptyDescriptionException;
 import static seedu.duke.ui.Ui.displayEditWeightMessage;
 import static seedu.duke.ui.Ui.displayEditHeightMessage;
@@ -444,6 +445,14 @@ public class UserProfile {
         }
     }
 
+    public static void checkEmptyInput2(String[] data) throws EmptyDescriptionException {
+        for (String datum : data) {
+            if (datum.isEmpty()) {
+                throw new EmptyDescriptionException();
+            }
+        }
+    }
+
     public static InitialiseUserProfile enterNewUserInfo() throws IOException {
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
@@ -482,6 +491,24 @@ public class UserProfile {
         for (int i = 0; i < 7; i++) {
             data[i] = previous.get(i);
         }
+
+        try {
+            checkEmptyInput2(data);
+            checkGender(data[1]);
+            checkWeightGoal(data[6]);
+            checkInputIsInt(data[4]);
+            checkInputIsDouble(data[2]);
+            checkInputIsInt(data[5]);
+            checkInputIsDouble(data[3]);
+            checkAcLeIsWithinRange(data[5]);
+            checkAgeIsWithinRange(data[4]);
+            checkWeightIsWithinRange(data[2]);
+            checkHeightIsWithinRange(data[3]);
+        } catch (IllegalArgumentException | EmptyDescriptionException e) {
+            displayInvalidEditedUserProfileMessage();
+            return null;
+        }
+
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
         profile.calculateNewUserDetails();
