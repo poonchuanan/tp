@@ -5,6 +5,7 @@ import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static seedu.duke.ui.ExceptionMessages.displayInvalidEditedUserProfileMessage;
 import seedu.duke.exception.EmptyDescriptionException;
 import static seedu.duke.ui.Ui.displayEditWeightMessage;
 import static seedu.duke.ui.Ui.displayEditHeightMessage;
@@ -31,7 +32,7 @@ import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightRangeMessage;
 /**
  * Initialises user profile after asking for user input.
  */
-public class AskUserProfileQns {
+public class UserProfile {
     private static String[] data = new String[7];
 
     /**
@@ -48,7 +49,6 @@ public class AskUserProfileQns {
         gatherData();
         try {
             profile = enterNewUserInfo();
-            profile.printList();
         } catch (IOException e) {
             displayIoExceptionMessage();
         }
@@ -90,10 +90,10 @@ public class AskUserProfileQns {
                 editGoal(argument.substring(5));
             }
         }
-
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
-        AskUserProfileQns.save(profile);
+        UserProfile.save(profile);
+        profile.calculateEditedUserDetails();
     }
 
     private static void editName(String name) {
@@ -101,7 +101,7 @@ public class AskUserProfileQns {
             checkEmptyInput(name);
             data[0] = name;
             displayEditNameMessage();
-            System.out.println(data[0] + ".");
+            System.out.println(data[0] + ".\n");
         } catch (EmptyDescriptionException e) {
             ExceptionMessages.displayEmptyStringMessage();
         }
@@ -113,7 +113,7 @@ public class AskUserProfileQns {
             checkGender(gender);
             data[1] = gender;
             displayEditGenderMessage();
-            System.out.println(data[1] + ".");
+            System.out.println(data[1] + ".\n");
 
         } catch (IllegalArgumentException e) {
             displayInvalidGenderMessage();
@@ -129,7 +129,7 @@ public class AskUserProfileQns {
             checkWeightIsWithinRange(weight);
             data[2] = weight;
             displayEditWeightMessage();
-            System.out.println(data[2] + "kg.");
+            System.out.println(data[2] + "kg.\n");
 
         } catch (NumberFormatException e) {
             displayInvalidWeightMessage();
@@ -147,7 +147,7 @@ public class AskUserProfileQns {
             checkHeightIsWithinRange(height);
             data[3] = height;
             displayEditHeightMessage();
-            System.out.println(data[3] + "cm.");
+            System.out.println(data[3] + "cm.\n");
 
         } catch (NumberFormatException e) {
             displayInvalidHeightMessage();
@@ -165,7 +165,7 @@ public class AskUserProfileQns {
             checkAgeIsWithinRange(age);
             data[4] = age;
             displayEditAgeMessage();
-            System.out.println(data[4] + "years old.");
+            System.out.println(data[4] + "years old.\n");
 
         } catch (NumberFormatException e) {
             displayInvalidAgeMessage();
@@ -183,7 +183,7 @@ public class AskUserProfileQns {
             checkAcLeIsWithinRange(al);
             data[5] = al;
             displayEditActivityLevelMessage();
-            System.out.println(data[5] + ".");
+            System.out.println(data[5] + ".\n");
 
         } catch (NumberFormatException e) {
             displayInvalidActivityLevelMessage();
@@ -200,7 +200,7 @@ public class AskUserProfileQns {
             checkWeightGoal(goal);
             data[6] = goal;
             displayEditGoalMessage();
-            System.out.println(data[6] + ".");
+            System.out.println(data[6] + ".\n");
 
         } catch (IllegalArgumentException e) {
             displayInvalidWeightGoalMessage();
@@ -445,11 +445,19 @@ public class AskUserProfileQns {
         }
     }
 
+    public static void checkEmptyInput2(String[] data) throws EmptyDescriptionException {
+        for (String datum : data) {
+            if (datum.isEmpty()) {
+                throw new EmptyDescriptionException();
+            }
+        }
+    }
+
     public static InitialiseUserProfile enterNewUserInfo() throws IOException {
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
         System.out.println(profile.calculateNewUserDetails());
-        AskUserProfileQns.save(profile);
+        UserProfile.save(profile);
         return profile;
     }
 
@@ -459,7 +467,7 @@ public class AskUserProfileQns {
      * @param profile to be saved in text file
      */
     public static void saveExistingUserInfo(InitialiseUserProfile profile) throws IOException {
-        AskUserProfileQns.save(profile);
+        UserProfile.save(profile);
     }
 
     /**
@@ -483,11 +491,29 @@ public class AskUserProfileQns {
         for (int i = 0; i < 7; i++) {
             data[i] = previous.get(i);
         }
+
+        try {
+            checkEmptyInput2(data);
+            checkGender(data[1]);
+            checkWeightGoal(data[6]);
+            checkInputIsInt(data[4]);
+            checkInputIsDouble(data[2]);
+            checkInputIsInt(data[5]);
+            checkInputIsDouble(data[3]);
+            checkAcLeIsWithinRange(data[5]);
+            checkAgeIsWithinRange(data[4]);
+            checkWeightIsWithinRange(data[2]);
+            checkHeightIsWithinRange(data[3]);
+        } catch (IllegalArgumentException | EmptyDescriptionException e) {
+            displayInvalidEditedUserProfileMessage();
+            return null;
+        }
+
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
         profile.calculateNewUserDetails();
         try {
-            AskUserProfileQns.saveExistingUserInfo(profile);
+            UserProfile.saveExistingUserInfo(profile);
         } catch (IOException e) {
             displayIoExceptionMessage();
         }

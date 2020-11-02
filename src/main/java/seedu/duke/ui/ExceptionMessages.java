@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import static seedu.duke.ui.Ui.DIVIDER;
 import static seedu.duke.ui.Ui.PROMPTUSEROFHELPMESSAGE;
+import static seedu.duke.ui.Ui.drawDivider;
 
 /**
  * Deals with error/exception messages.
@@ -133,9 +134,7 @@ public class ExceptionMessages {
     public static void displayEmptyAddActivityErrorMessage() {
         print("Sorry! There is missing input!");
     }
-
-
-
+    
     /**
      * Prints out error message when invalid activity factor input.
      */
@@ -262,19 +261,53 @@ public class ExceptionMessages {
     /**
      * Prints out error message when calorie count is out of the accepted bound of this application.
      */
-    public static void displayCalorieCountOutOfBound() {
+    public static void displayCalorieCountOutOfBoundMessage() {
         String calorieOutOfBoundMessage = "Calorie count should be > 0 and <= 3000!\n"
                 + "Please input a valid calorie count that is within the range!";
         print(calorieOutOfBoundMessage);
     }
 
     /**
+     * Prints out error message when calorie tag not found.
+     */
+    public static void displayCalorieTagNotFoundExceptionMessage() {
+        String calorieTagNotFoundExceptionMessage = "Calorie count tag[c/] is missing in your input!";
+        print(calorieTagNotFoundExceptionMessage);
+    }
+
+    /**
+     * Prints out error message when description length exceed limit.
+     */
+    public static void displayDescriptionLengthExceedExceptionMessage() {
+        String descriptionLengthExceedExceptionMessage = "Maximum description length is 40 characters only!";
+        print(descriptionLengthExceedExceptionMessage);
+    }
+
+    /**
      * Prints out error message when description input by user is empty.
      */
     public static void displayEmptyDescriptionMessage() {
-        String emptyDescriptionMessage = "Sorry the current description is empty!\n"
+        String emptyDescriptionMessage = "Current description is empty!\n"
                 + "Please input a valid description that is not empty!";
         print(emptyDescriptionMessage);
+    }
+
+    /**
+     * Prints out error message when date input exceeds range accepted.
+     */
+    public static void displayDateLimitExceptionMessage() {
+        String dateLimitExceptionMessage = "You have exceeded the accepted date range!\n"
+                + "Date input has to be from 2020-11-01 to current date!";
+        print(dateLimitExceptionMessage);
+    }
+
+    /**
+     * Prints out error message when invalid calorie count entered.
+     */
+    public static void displayInvalidCalorieExceptionMessage() {
+        String invalidCalorieExceptionMessage = "Invalid calorie input!\n"
+                + "Calorie count must be an integer!";
+        print(invalidCalorieExceptionMessage);
     }
 
     /**
@@ -296,7 +329,18 @@ public class ExceptionMessages {
 
     }
 
+    /**
+     * Prints message when string entered is empty.
+     */
     public static void displayEmptyStringMessage() {
         System.out.println("Please do not enter an empty input");
+    }
+
+    public static void displayInvalidEditedUserProfileMessage() {
+        drawDivider();
+        System.out.println("You have edited the user profile text file to the wrong format.");
+        System.out.println("Please create a new user profile. If not certain features like graph cannot be used");
+        drawDivider();
+        System.out.println("");
     }
 }

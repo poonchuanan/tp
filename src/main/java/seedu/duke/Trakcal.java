@@ -8,7 +8,7 @@ import seedu.duke.logic.CommandParser;
 import seedu.duke.model.DayMap;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
-import seedu.duke.userprofile.AskUserProfileQns;
+import seedu.duke.userprofile.UserProfile;
 import seedu.duke.userprofile.InitialiseUserProfile;
 import seedu.duke.userprofile.CheckNewUser;
 
@@ -34,6 +34,7 @@ public class Trakcal {
 
     /**
      * Main function.
+     *
      * @param args args
      */
     public static void main(String[] args) {
@@ -45,10 +46,10 @@ public class Trakcal {
             System.out.println("here");
         }
         if (CheckNewUser.isNewUser()) {
-            profile = AskUserProfileQns.createNewProfile();
+            profile = UserProfile.createNewProfile();
         } else {
             Ui.displayReturningUserMessage();
-            profile = AskUserProfileQns.loadProfile();
+            profile = UserProfile.loadProfile();
         }
         Trakcal.run();
     }
@@ -79,6 +80,7 @@ public class Trakcal {
 
     /**
      * Sets the data for each command and executes the command.
+     *
      * @param command command to execute
      * @throws NullPointerException if invalid command
      */
@@ -89,6 +91,7 @@ public class Trakcal {
 
     /**
      * Gets the file path of the jar file.
+     *
      * @return string of the file path
      */
     private static String getJarFilePath() {

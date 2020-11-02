@@ -7,13 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
-import java.nio.file.FileSystemAlreadyExistsException;
 
 import seedu.duke.ui.Ui;
-
-//import static seedu.duke.ui.ExceptionMessages.*;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
-import static seedu.duke.ui.ExceptionMessages.displayShortcutDoesNotExistMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieEntryMessage;
 import static seedu.duke.ui.ExceptionMessages.displayExistingFileMessage;
 

@@ -2,7 +2,6 @@ package seedu.duke.logic;
 
 import seedu.duke.command.Command;
 
-
 public abstract class Parser {
     public String userInput;
 
@@ -10,14 +9,11 @@ public abstract class Parser {
         this.userInput = description;
     }
 
-
-    protected Parser() {
-    }
-
     public abstract Command parseArgument();
 
     public String checkExtraSpaces() {
         return this.userInput.replaceAll(" +", CommandParser.SPACE);
     }
+
 
 }
