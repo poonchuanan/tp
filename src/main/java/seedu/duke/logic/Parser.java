@@ -95,7 +95,7 @@ public class Parser {
     public static final int MAXIMUM_DESCRIPTION_LENGTH = 40;
     public static final int MAXIMUM_CALORIE_COUNT = 3000;
     public static final int MINIMUM_CALORIE_COUNT = 0;
-
+    public static final String APPLICATION_LAUNCH_DATE = "2020-11-01";
 
     /**
      * Store details in the class.
@@ -420,7 +420,7 @@ public class Parser {
     public LocalDate checkDateValidity(String dateInput, int dateIndex) throws DateLimitException {
         LocalDate date = processDate(dateInput.substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
         LocalDate current = LocalDate.now();
-        LocalDate past = processDate("2020-11-01");
+        LocalDate past = processDate(APPLICATION_LAUNCH_DATE);
         if (date.isAfter(current)) {
             throw new DateLimitException();
         } else if (date.isBefore(past)) {
