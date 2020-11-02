@@ -478,9 +478,7 @@ public class Parser {
      * @throws DateTimeParseException if the string is in the incorrect format
      */
     private LocalDate processDate(String dateInput) throws DateTimeParseException {
-        LocalDate dateTime = LocalDate.parse(dateInput);
-
-        return dateTime;
+        return LocalDate.parse(dateInput);
     }
 
     /**
@@ -544,7 +542,6 @@ public class Parser {
     /** Checks for index of the delete command.
      *
      * @param index index of the delete command
-     * @return true if index is valid
      * @throws IndexOutOfBoundsException if index is below 0
      */
     private void checkIndex(int index) throws IndexOutOfBoundsException {
