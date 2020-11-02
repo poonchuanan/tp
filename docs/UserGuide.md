@@ -271,6 +271,7 @@ Tips:
 This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add in multiple common entries. 
 
 Format: *not extensive, there is a lot of combinations available*
+
 Examples of the format accepted:
 >`createSet **SHORTCUT_NAME** f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** + f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT**`
 >`createSet **SHORTCUT_NAME** e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT**`
@@ -555,7 +556,7 @@ Your weight has been updated to 90.
 ```
 
 Tip:
-* The parameters should conform to the same style used in `create new user`. Explanations to possible error messages can be found [here](#21-creating-a-new-user-profile).
+* The parameters should conform to the same style used in `create new user`. Explanations to possible error messages can be found [here](#211-creating-a-new-user-profile).
 
 ### 6.1.2 Possible errors when editing user profile
 
@@ -584,8 +585,9 @@ Uses:
 4. Editing an entry in list from exercise to food. `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 Parameters:
-* `**LIST_INDEX**`: Index of activity to be edited in list.
+* `**LIST_INDEX**`: Index of activity to be edited in the latest pull out list.
 * `**FOOD_DESCRIPTION**`: New description of food consumed.
+* `**EXERCISE_DESCRIPTION**`: New description of exercise done.
 * `**CALORIE_COUNT**`: New amount of calories consumed.
 
 Example of usage:
@@ -972,9 +974,9 @@ Chaining is the right feature for your needs!
 
 > Do note
 >* Chaining is only available to 3 features
->* [list](#50-list), [add](#40-add) and [edita](#621-editing-an-entry-in-list-from-food-to-food)
+>* [list](#50-list), [add](#40-add) and [edita](#621-editing-an-entry-in-list)
 >* The respective things to adhere to for each feature still applies.
->* For example, [edita](#621-editing-an-entry-in-list-from-food-to-food), you MUST call out the list you want to edit on before editing on it.
+>* For example, [edita](#621-editing-an-entry-in-list), you MUST call out the list you want to edit on before editing on it.
 
 Format: *not extensive, there is a lot of combinations available*
         *commands just need to be separated by a `&&`*
@@ -1004,7 +1006,7 @@ Examples of usage:
 
 ## 12.0 Exiting the program
 
-Saves the current list to file and exits program.
+Finish using the application? Do you want to exit application?
 
 Format: `bye`
 
