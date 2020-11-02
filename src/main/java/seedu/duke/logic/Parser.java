@@ -341,7 +341,7 @@ public class Parser {
     /**
      * Checks if the calorie input is within accepted range.
      *
-     * @param calories calories input by user
+     * @param calorie calories input by user
      * @return true is calorie is within range
      * @throws CalorieCountException if calorie not within range
      */
