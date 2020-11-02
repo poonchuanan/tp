@@ -34,6 +34,7 @@ public class Trakcal {
 
     /**
      * Main function.
+     *
      * @param args args
      */
     public static void main(String[] args) {
@@ -79,6 +80,7 @@ public class Trakcal {
 
     /**
      * Sets the data for each command and executes the command.
+     *
      * @param command command to execute
      * @throws NullPointerException if invalid command
      */
@@ -89,6 +91,7 @@ public class Trakcal {
 
     /**
      * Gets the file path of the jar file.
+     *
      * @return string of the file path
      */
     private static String getJarFilePath() {

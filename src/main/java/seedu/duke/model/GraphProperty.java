@@ -7,6 +7,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Properties of graph.
+ */
 public class GraphProperty {
     public static final int COLUMN = 11;
     private static String DATE_FORMAT = "dd/MM";

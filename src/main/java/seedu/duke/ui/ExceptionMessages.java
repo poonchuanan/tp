@@ -134,8 +134,6 @@ public class ExceptionMessages {
         print("Sorry! There is missing input!");
     }
 
-
-
     /**
      * Prints out error message when invalid activity factor input.
      */
@@ -330,6 +328,9 @@ public class ExceptionMessages {
 
     }
 
+    /**
+     * Prints message when string entered is empty.
+     */
     public static void displayEmptyStringMessage() {
         System.out.println("Please do not enter an empty input");
     }

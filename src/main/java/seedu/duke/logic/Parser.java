@@ -196,6 +196,13 @@ public class Parser {
         return new AddSetCommand();
     }
 
+    /**
+     * Prepares to edit user profile.
+     *
+     * @param userInput user input
+     * @return EditUserProfileCommand
+     * @throws IOException when there is an error
+     */
     private Command prepareEditUserProfile(String userInput) throws IOException {
         UserProfile.edit(userInput);
         return new EditUserProfileCommand();
@@ -232,6 +239,12 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Prepares user profile into a list and prints it out.
+     *
+     * @return ListUserProfileCommand
+     * @throws IOException when there is an error reading from file
+     */
     private Command prepareListUserProfileCommand() throws IOException {
         String initialPath = new File("").getAbsolutePath();
         String filePath = initialPath + "/tp.txt";
@@ -326,13 +339,15 @@ public class Parser {
             }
         } catch (CalorieCountException e) {
             displayCalorieCountOutOfBoundMessage();
-        } catch (EmptyDescriptionException e) {
-            displayEmptyDescriptionMessage();
         } catch (CalorieTagNotFoundException e) {
             displayCalorieTagNotFoundExceptionMessage();
+        } catch (DescriptionLengthExceedException e) {
+            displayDescriptionLengthExceedExceptionMessage();
         } catch (InvalidCalorieException e) {
             displayInvalidCalorieExceptionMessage();
-        } catch (NullPointerException e) {
+        } catch (EmptyDescriptionException e) {
+            displayEmptyDescriptionMessage();
+        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             displayEditActivityExceptionMessage();
         } catch (NumberFormatException e) {
             displayEditActivityExceptionMessage();
@@ -562,8 +577,6 @@ public class Parser {
         return null;
     }
 
-
-
     /**
      * Prepares the arguments needed for moving an activity from one index to another.
      *
@@ -604,10 +617,6 @@ public class Parser {
         return null;
 
     }
-
-
-
-
 
     /**
      * Prepares the list command by checking the userInput.
@@ -713,6 +722,4 @@ public class Parser {
         }
         return new GraphCommand();
     }
-
-
 }
