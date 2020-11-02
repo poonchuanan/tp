@@ -16,7 +16,6 @@ public class Command {
      * This method is to be override by the specific commands.
      */
     public void execute() {
-        return;
     }
 
     /**
