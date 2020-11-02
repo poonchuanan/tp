@@ -92,6 +92,10 @@ public class Parser {
 
     protected static final boolean FALSE = false;
 
+    public static final int MAXIMUM_DESCRIPTION_LENGTH = 40;
+    public static final int MAXIMUM_CALORIE_COUNT = 3000;
+    public static final int MINIMUM_CALORIE_COUNT = 0;
+
 
     /**
      * Store details in the class.
@@ -346,7 +350,7 @@ public class Parser {
      * @throws CalorieCountException if calorie not within range
      */
     public boolean isCaloriesValid(int calorie) throws CalorieCountException {
-        if (calorie <= 0 || calorie > 3000) {
+        if (calorie <= MINIMUM_CALORIE_COUNT || calorie > MAXIMUM_CALORIE_COUNT) {
             throw new CalorieCountException();
         } else {
             return true;
@@ -376,7 +380,7 @@ public class Parser {
      * @throws DescriptionLengthExceedException if description exceeds range
      */
     public boolean isDescriptionLengthValid(String description) throws DescriptionLengthExceedException {
-        if (description.length() >= 40) {
+        if (description.length() >= MAXIMUM_DESCRIPTION_LENGTH) {
             throw new DescriptionLengthExceedException();
         } else {
             return true;
@@ -427,7 +431,7 @@ public class Parser {
     }
 
     /**
-     * Checks if calorie input by user is empty
+     * Checks if calorie input by user is empty.
      *
      * @param calorieInput calorie input by user
      * @return calorie count if it is not empty

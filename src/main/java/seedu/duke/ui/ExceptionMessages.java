@@ -303,7 +303,7 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints out error message when invalid calorie count entered
+     * Prints out error message when invalid calorie count entered.
      */
     public static void displayInvalidCalorieExceptionMessage() {
         String invalidCalorieExceptionMessage = "Invalid calorie input!\n"
