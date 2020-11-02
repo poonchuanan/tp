@@ -268,11 +268,17 @@ public class ExceptionMessages {
         print(calorieOutOfBoundMessage);
     }
 
+    /**
+     * Prints out error message when calorie tag not found.
+     */
     public static void displayCalorieTagNotFoundExceptionMessage() {
         String calorieTagNotFoundExceptionMessage = "c/ is missing!";
         print(calorieTagNotFoundExceptionMessage);
     }
 
+    /**
+     * Prints out error message when description length exceed limit.
+     */
     public static void displayDescriptionLengthExceedExceptionMessage() {
         String descriptionLengthExceedExceptionMessage = "Maximum description length is 40 characters only!";
         print(descriptionLengthExceedExceptionMessage);

@@ -324,7 +324,7 @@ public class Parser {
             displayCalorieTagNotFoundExceptionMessage();
         } catch (NullPointerException e) {
             displayEditActivityExceptionMessage();
-        } catch (NumberFormatException e) {         // catch index not string
+        } catch (NumberFormatException e) {
             displayEditActivityExceptionMessage();
         } catch (Exception e) {
             displayEditActivityExceptionMessage();
@@ -395,13 +395,19 @@ public class Parser {
                 if (dateIndex == INDEX_NOT_FOUND) {
                     calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH)
                             .trim());
-                } else {
+                    // can conbine else if and else together in a method!
+                } else if (dateIndex >= 0) {
                     calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH,
                             dateIndex).trim());
+                } else {
+                    // catch error when string in calories
+                    throw new Exception();
                 }
                 boolean isCalorieValid;
                 isCalorieValid = isCaloriesValid(calories);
 
+                boolean isDateValid;
+                // check if date input valid
                 LocalDate date;
                 if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
                     date = currentDate();
@@ -435,11 +441,12 @@ public class Parser {
                     calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH,
                             dateIndex).trim());
                 }
-                boolean calorieCheck;
-                calorieCheck = isCaloriesValid(calories);
+                boolean isCalorieValid;
+                isCalorieValid = isCaloriesValid(calories);
 
+                boolean isValidDate;
                 LocalDate date;
-                if (calorieCheck && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
+                if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
                     date = currentDate();
                 } else {
                     date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
