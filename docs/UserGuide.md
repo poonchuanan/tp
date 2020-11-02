@@ -270,7 +270,12 @@ Tips:
 
 This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add in multiple common entries. 
 
-Format: `createSet **SHORTCUT_NAME** f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** + f/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** + ...`
+Format: *not extensive, there is a lot of combinations available*
+Examples of the format accepted:
+>`createSet **SHORTCUT_NAME** f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** + f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT**`
+>`createSet **SHORTCUT_NAME** e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT**`
+>`createSet **SHORTCUT_NAME** e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** + e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** + f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT**`
+>`...`
 
 Parameters:
 * `**FOOD_DESCRIPTION**`: Description of food consumed.
@@ -466,7 +471,21 @@ Parameters:
 >*`**DATE**` is optional, if you enter list command without it, it will print out the list of activities for the current date.
 
 Examples of usage: 
-* `list` OR
+* `list`
+
+```
+------------------------------------------
+|  2020-11-03  |  Net Calorie: 375 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           rice______________________________________________________150
+
+2        Exercise         running___________________________________________________75
+
+3          Food           ice cream_________________________________________________90
+```
+
 * `list 2020-10-11`
 
 ```
@@ -547,16 +566,22 @@ Tip:
 <br>
 <br>
 
-### 6.2.1 Editing an entry in list from food to food 
+### 6.2.1 Editing an entry in list
 
-Edits a particular food activity in list.
+A typo when entering input? Do you want to edit attributes of a particular activity in the list? 
 
 >Things you should take note of:
 >* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
 >* The list in which you want to edit to have to be pulled out first before being able to edit on it.
 >* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
 
-Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**` OR `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+
+Uses:
+1. Editing an entry in list from food to food. `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+2. Editing an entry in list from food to exercise. `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+3. Editing an entry in list from exercise to exercise. `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+4. Editing an entry in list from exercise to food. `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 Parameters:
 * `**LIST_INDEX**`: Index of activity to be edited in list.
@@ -606,206 +631,6 @@ No.        Type                        Description                        Calori
 ```
 
 ### 6.2.2 Possible errors when editing from food to food
-
-```
-
-```
-
-<br>
-<br>
-
-### 6.3.1 Editing an entry in list from food to exercise
-
-Edits a particular food activity in list from food to exercise.
->Things you should take note of:
->* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
->* The list in which you want to edit to have to be pulled out first before being able to edit on it.
->* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
-
-Format: `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
-
-Parameters:
-* `**LIST_INDEX**`: Index of activity to be edited in list.
-* `**EXERCISE_DESCRIPTION**`: New description of exercise done.
-* `**CALORIE_COUNT**`: New amount of calories lost.
-
-Example of usage:
-* `list` before editing
-
-```
------------------------------------------
-|  2020-10-28  |  Net Calorie: 42 kcal  |
------------------------------------------
-No.        Type                        Description                        Calories gain or lost
------------------------------------------------------------------------------------------------
-1          Food           apple_____________________________________________________30
-
-2          Food           mushroom soup_____________________________________________77
-
-3        Exercise         jumping___________________________________________________65
-```
-
-* `edita 2 e/ running c/ 99`
-
-```
-=====================================================================================================
-Noted! The following has been edited:
-[E] | running | 99
-
-The current activity list has been saved.
-=====================================================================================================
-```
-
-* `list` after editing
-
-```
-------------------------------------------
-|  2020-10-28  |  Net Calorie: -52 kcal  |
-------------------------------------------
-No.        Type                        Description                        Calories gain or lost
------------------------------------------------------------------------------------------------
-1          Food           orange____________________________________________________35
-
-2        Exercise         running___________________________________________________99
-
-3        Exercise         jumping___________________________________________________65
-```
-
-### 6.3.2 Possible errors when editing from food to exercise
-
-```
-
-```
-
-<br>
-<br>
-
-### 6.4.1 Editing an entry in list from exercise to exercise 
-
-Edits a particular exercise activity in list. 
->Things you should take note of:
->* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
->* The list in which you want to edit to have to be pulled out first before being able to edit on it.
->* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
-
-Format: `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
-
-Parameters:
-* `**LIST_INDEX**`: Index of activity to be edited in list.
-* `**EXERCISE_DESCRIPTION**`: New description of exercise done.
-* `**CALORIE_COUNT**`: New amount of calories lost.
-
-Example of usage:
-* `list` before editing
-
-```
-list
-------------------------------------------
-|  2020-10-28  |  Net Calorie: -52 kcal  |
-------------------------------------------
-No.        Type                        Description                        Calories gain or lost
------------------------------------------------------------------------------------------------
-1          Food           orange____________________________________________________35
-
-2        Exercise         running___________________________________________________99
-
-3        Exercise         jumping___________________________________________________65
-```
-
-* `edita 3 e/ strolling c/ 10`
-
-```
-=====================================================================================================
-Noted! The following has been edited:
-[E] | strolling | 10
-
-The current activity list has been saved.
-=====================================================================================================
-```
-
-* `list` after editing
-
-```
-------------------------------------------
-|  2020-10-28  |  Net Calorie: -62 kcal  |
-------------------------------------------
-No.        Type                        Description                        Calories gain or lost
------------------------------------------------------------------------------------------------
-1          Food           orange____________________________________________________35
-
-2        Exercise         running___________________________________________________99
-
-3        Exercise         strolling_________________________________________________10
-```
-
-### 6.4.2 Possible errors when editing from exercise to exercise
-
-```
-
-```
-
-<br>
-<br>
-
-
-### 6.5.1 Editing an entry in list from exercise to food 
-
-Edits a particular exercise activity in list from exercise to food.  
->Things you should take note of:
->* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
->* The list in which you want to edit to have to be pulled out first before being able to edit on it.
->* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
-
-Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
-
-Parameters:
-* `**LIST_INDEX**`: Index of activity to be edited in list.
-* `**FOOD_DESCRIPTION**`: New description of food consumed.
-* `**CALORIE_COUNT**`: New amount of calories consumed.
-
-Example of usage:
-* `list` before editing
-
-```
-------------------------------------------
-|  2020-10-28  |  Net Calorie: -62 kcal  |
-------------------------------------------
-No.        Type                        Description                        Calories gain or lost
------------------------------------------------------------------------------------------------
-1          Food           orange____________________________________________________35
-
-2        Exercise         running___________________________________________________99
-
-3        Exercise         strolling_________________________________________________10
-```
-
-* `edita 3 f/ chicken rice c/ 150`
-
-```
-=====================================================================================================
-Noted! The following has been edited:
-[F] | chicken rice | 150
-
-The current activity list has been saved.
-=====================================================================================================
-```
-
-* `list` after editing
-
-```
------------------------------------------
-|  2020-10-28  |  Net Calorie: 86 kcal  |
------------------------------------------
-No.        Type                        Description                        Calories gain or lost
------------------------------------------------------------------------------------------------
-1          Food           orange____________________________________________________35
-
-2        Exercise         running___________________________________________________99
-
-3          Food           chicken rice______________________________________________150
-```
-
-### 6.5.2 Possible errors when editing from exercise to food
 
 ```
 
@@ -1153,6 +978,13 @@ Chaining is the right feature for your needs!
 
 Format: *not extensive, there is a lot of combinations available*
         *commands just need to be separated by a `&&`*
+        
+Examples of the possible format:
+>`add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**>`
+>`add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
+>`edita INDEX e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
+>`list <**DATE**> && list <**DATE**> && list <**DATE**>`
+>`...`
 
 Examples of usage: 
 * `add f/ ice cream c/ 90 && add e/ running c/ 50 && list`
@@ -1205,7 +1037,7 @@ This section answers questions you may have.
 
 **Q**: How do I raise an issue if I have doubts or have issues to raise?
 
-**A**: We can be reached either via email(e0425705@u.nus.edu) or by raising a github issue[here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
+**A**: We can be reached either via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
 
 
 <br>
