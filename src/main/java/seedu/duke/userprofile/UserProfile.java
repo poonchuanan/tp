@@ -495,19 +495,20 @@ public class UserProfile {
         }
 
         try {
+            checkEmptyInput2(data);
             checkGender(data[1]);
-            checkAcLeIsWithinRange(data[5]);
-            checkAgeIsWithinRange(data[4]);
             checkWeightGoal(data[6]);
-            checkWeightIsWithinRange(data[2]);
-            checkHeightIsWithinRange(data[3]);
             checkInputIsInt(data[4]);
             checkInputIsDouble(data[2]);
             checkInputIsInt(data[5]);
             checkInputIsDouble(data[3]);
-            checkEmptyInput2(data);
+            checkAcLeIsWithinRange(data[5]);
+            checkAgeIsWithinRange(data[4]);
+            checkWeightIsWithinRange(data[2]);
+            checkHeightIsWithinRange(data[3]);
         } catch (IllegalArgumentException | EmptyDescriptionException e) {
             displayInvalidEditedUserProfileMessage();
+            return null;
         }
 
         InitialiseUserProfile profile =
