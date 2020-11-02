@@ -25,8 +25,10 @@ import seedu.duke.command.ListUserProfileCommand;
 import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.exception.CalorieCountException;
 import seedu.duke.exception.CalorieTagNotFoundException;
+import seedu.duke.exception.DateLimitException;
 import seedu.duke.exception.DescriptionLengthExceedException;
 import seedu.duke.exception.EmptyDescriptionException;
+import seedu.duke.exception.InvalidCalorieException;
 import seedu.duke.ui.ExceptionMessages;
 import seedu.duke.userprofile.UserProfile;
 
@@ -50,6 +52,7 @@ import static seedu.duke.ui.ExceptionMessages.displayAddActivityExceptionMessage
 import static seedu.duke.ui.ExceptionMessages.displayAddCommandErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayCalorieCountOutOfBoundMessage;
 import static seedu.duke.ui.ExceptionMessages.displayCalorieTagNotFoundExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayDateLimitExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDateTimeExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
@@ -60,6 +63,7 @@ import static seedu.duke.ui.ExceptionMessages.displayEmptyAddActivityErrorMessag
 import static seedu.duke.ui.ExceptionMessages.displayEmptyEditActivityErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyDescriptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
@@ -357,6 +361,17 @@ public class Parser {
     }
 
     /**
+     * Process date input by user.
+     *
+     * @param dateInput date input by user
+     * @return date
+     * @throws DateTimeParseException if the string is in the incorrect format
+     */
+    private LocalDate processDate(String dateInput) throws DateTimeParseException {
+        return LocalDate.parse(dateInput);
+    }
+
+    /**
      * Returns current date.
      *
      * @return current date
@@ -367,6 +382,34 @@ public class Parser {
         return date;
     }
 
+    /**
+     * Checks if the date is valid.
+     *
+     * @param dateInput is date input by user
+     * @param dateIndex index date is at
+     * @return true if date is valid
+     * @throws DateLimitException if date exceeds limit
+     */
+    public LocalDate isDateValid(String dateInput, int dateIndex) throws DateLimitException {
+        LocalDate date = processDate(dateInput.substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
+        LocalDate current = LocalDate.now();
+        LocalDate past = processDate("2020-11-01");
+        if (date.isAfter(current)) {
+            throw new DateLimitException();
+        } else if (date.isBefore(past)) {
+            throw new DateLimitException();
+        } else {
+            return date;
+        }
+    }
+
+    public int parseCalorie(String calorieInput) throws InvalidCalorieException {
+        if (!calorieInput.equals("")) {
+            return Integer.parseInt(calorieInput);
+        } else {
+            throw new InvalidCalorieException();
+        }
+    }
 
     /**
      * Prepares the add command by checking the userInput.
@@ -391,31 +434,28 @@ public class Parser {
                         && isDescriptionLengthValid(foodDescription);
 
                 int dateIndex = arguments[1].indexOf(DATE_TAG);
-                int calories;
+                String calorieInput;
                 if (dateIndex == INDEX_NOT_FOUND) {
-                    calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH)
-                            .trim());
-                    // can conbine else if and else together in a method!
-                } else if (dateIndex >= 0) {
-                    calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH,
-                            dateIndex).trim());
+                    calorieInput = arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
                 } else {
-                    // catch error when string in calories
-                    throw new Exception();
+                    calorieInput = arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
                 }
-                boolean isCalorieValid;
-                isCalorieValid = isCaloriesValid(calories);
 
-                boolean isDateValid;
-                // check if date input valid
+                int calories = parseCalorie(calorieInput);
+                boolean isCalorieValid = isCaloriesValid(calories);
+
                 LocalDate date;
                 if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
                     date = currentDate();
                 } else {
-                    date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
+                    date = isDateValid(arguments[1], dateIndex);
                 }
 
-                displayAddMessage();
+                if (isDescriptionInputValid && isCalorieValid) {
+                    displayAddMessage();
+                } else {
+                    throw new Exception();
+                }
 
                 assert calories > 0 : "calories should be greater than 0";
                 return new AddFoodCommand(foodDescription, calories, FALSE, date);
@@ -433,34 +473,35 @@ public class Parser {
                         && isDescriptionLengthValid(exerciseDescription);
 
                 int dateIndex = arguments[1].indexOf(DATE_TAG);
-                int calories;
+                String calorieInput;
                 if (dateIndex == INDEX_NOT_FOUND) {
-                    calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH)
-                            .trim());
+                    calorieInput = arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
                 } else {
-                    calories = Integer.parseInt(arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH,
-                            dateIndex).trim());
+                    calorieInput = arguments[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
                 }
-                boolean isCalorieValid;
-                isCalorieValid = isCaloriesValid(calories);
 
-                boolean isValidDate;
+                int calories = parseCalorie(calorieInput);
+                boolean isCalorieValid = isCaloriesValid(calories);
+
                 LocalDate date;
                 if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
                     date = currentDate();
                 } else {
-                    date = processDate(arguments[1].substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
+                    date = isDateValid(arguments[1], dateIndex);
                 }
 
-                displayAddMessage();
+                if (isDescriptionInputValid && isCalorieValid) {
+                    displayAddMessage();
+                } else {
+                    throw new Exception();
+                }
 
                 assert calories > 0 : "calories should be greater than 0";
                 return new AddExerciseCommand(exerciseDescription, calories, FALSE, date);
             } else {
                 displayAddActivityExceptionMessage();
             }
-        } catch (NumberFormatException e) {
-            displayAddActivityExceptionMessage();
+
         } catch (DateTimeParseException e) {
             displayIncorrectDateTimeFormatEnteredMessage();
         } catch (CalorieCountException e) {
@@ -469,10 +510,16 @@ public class Parser {
             displayCalorieTagNotFoundExceptionMessage();
         } catch (DescriptionLengthExceedException e) {
             displayDescriptionLengthExceedExceptionMessage();
+        } catch (InvalidCalorieException e) {
+            displayInvalidCalorieExceptionMessage();
+        } catch (DateLimitException e) {
+            displayDateLimitExceptionMessage();
         } catch (DateTimeException e) {
             displayDateTimeExceptionMessage();
         } catch (EmptyDescriptionException e) {
             displayEmptyDescriptionMessage();
+        } catch (NumberFormatException e) {
+            displayAddActivityExceptionMessage();
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             displayAddCommandErrorMessage();
         } catch (Exception e) {
@@ -524,16 +571,7 @@ public class Parser {
 
     }
 
-    /**
-     * Process date input by user.
-     *
-     * @param dateInput date input by user
-     * @return date
-     * @throws DateTimeParseException if the string is in the incorrect format
-     */
-    private LocalDate processDate(String dateInput) throws DateTimeParseException {
-        return LocalDate.parse(dateInput);
-    }
+
 
 
 

@@ -272,7 +272,7 @@ public class ExceptionMessages {
      * Prints out error message when calorie tag not found.
      */
     public static void displayCalorieTagNotFoundExceptionMessage() {
-        String calorieTagNotFoundExceptionMessage = "c/ is missing!";
+        String calorieTagNotFoundExceptionMessage = "Calorie count tag[c/] is missing in your input!";
         print(calorieTagNotFoundExceptionMessage);
     }
 
@@ -288,9 +288,27 @@ public class ExceptionMessages {
      * Prints out error message when description input by user is empty.
      */
     public static void displayEmptyDescriptionMessage() {
-        String emptyDescriptionMessage = "Sorry the current description is empty!\n"
+        String emptyDescriptionMessage = "Current description is empty!\n"
                 + "Please input a valid description that is not empty!";
         print(emptyDescriptionMessage);
+    }
+
+    /**
+     *
+     */
+    public static void displayDateLimitExceptionMessage() {
+        String dateLimitExceptionMessage = "You have exceeded the accepted date range!\n"
+                + "Date input has to be from 2020-11-01 to current date!";
+        print(dateLimitExceptionMessage);
+    }
+
+    /**
+     * Prints out error message when description input by user is empty.
+     */
+    public static void displayInvalidCalorieExceptionMessage() {
+        String invalidCalorieExceptionMessage = "Invalid calorie input!\n"
+                + "Calorie count must be an integer!";
+        print(invalidCalorieExceptionMessage);
     }
 
     /**
