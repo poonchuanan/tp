@@ -227,7 +227,7 @@ Aspect: How to edit activity
 The chaining mechanism can be used by the various commands available The following are the types of command that can be chained:
 - list
 - add
-- edit
+- edita
 
 The following sequence diagram shows how the chaining works after command is entered:
 

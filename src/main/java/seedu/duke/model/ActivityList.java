@@ -68,6 +68,13 @@ public class ActivityList extends Trakcal {
      */
     public void insertActivity(int index, Activity activity) throws IndexOutOfBoundsException {
         if (isValidIndex(index)) {
+            Activity activityToReplace = activities.get(index);
+            if (activityToReplace instanceof Food) {
+                netCalorie -= activityToReplace.calories;
+            } else if (activityToReplace instanceof Exercise) {
+                netCalorie += activityToReplace.calories;
+            }
+
             activities.set(index, activity);
 
             if (activity instanceof Food) {
