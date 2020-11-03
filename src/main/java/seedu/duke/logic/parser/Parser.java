@@ -12,7 +12,7 @@ public abstract class Parser {
     public abstract Command parseArgument();
 
     public String checkExtraSpaces() {
-        return this.userInput.replaceAll(" +", CommandParser.SPACE);
+        return this.userInput.replaceAll(" +", CommandParser.SPACE).trim();
     }
 
 }

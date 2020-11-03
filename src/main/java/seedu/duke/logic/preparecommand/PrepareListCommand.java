@@ -37,16 +37,5 @@ public class PrepareListCommand extends PrepareCommand {
         }
     }
 
-    /**
-     * Process date input by user.
-     *
-     * @param dateInput date input by user
-     * @return date
-     * @throws DateTimeParseException if the string is in the incorrect format
-     */
-    private LocalDate processDate(String dateInput) throws DateTimeParseException {
-        LocalDate dateTime = LocalDate.parse(dateInput);
 
-        return dateTime;
-    }
 }

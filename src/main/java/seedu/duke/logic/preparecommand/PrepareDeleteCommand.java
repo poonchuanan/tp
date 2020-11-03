@@ -36,15 +36,4 @@ public class PrepareDeleteCommand extends PrepareCommand {
         return null;
     }
 
-    /** Checks for index of the delete command.
-     *
-     * @param index index of the delete command
-     * @return true if index is valid
-     * @throws IndexOutOfBoundsException if index is below 0
-     */
-    private void checkIndex(int index) throws IndexOutOfBoundsException {
-        if (index < 0) {
-            throw new IndexOutOfBoundsException();
-        }
-    }
 }

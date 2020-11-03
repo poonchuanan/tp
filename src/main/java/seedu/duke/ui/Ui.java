@@ -276,8 +276,4 @@ public class Ui {
         System.out.println("What is your name?");
     }
 
-    public static void test() {
-
-    }
-
 }

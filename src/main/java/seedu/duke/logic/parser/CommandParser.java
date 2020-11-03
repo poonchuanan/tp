@@ -48,6 +48,7 @@ public class CommandParser extends Parser {
      */
     @Override
     public Command parseArgument() {
+        this.userInput = checkExtraSpaces();
         String[] arguments = userInput.split(SPACE, 2);
         try {
             switch (arguments[0].toLowerCase()) {
