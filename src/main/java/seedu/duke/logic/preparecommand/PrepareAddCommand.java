@@ -1,4 +1,4 @@
-package seedu.duke.logic;
+package seedu.duke.logic.preparecommand;
 
 import seedu.duke.command.AddExerciseCommand;
 import seedu.duke.command.AddFoodCommand;

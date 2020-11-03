@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.command.Command;
 import seedu.duke.command.ListCommand;
 import seedu.duke.exception.ListNotFoundException;
-import seedu.duke.logic.CommandParser;
+import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.model.DayMap;
 import seedu.duke.model.Food;
 

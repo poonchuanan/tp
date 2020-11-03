@@ -1,12 +1,25 @@
-package seedu.duke.logic;
+package seedu.duke.logic.parser;
 
 
 import seedu.duke.command.Command;
 import seedu.duke.command.CreateNewRepeatedSet;
 import seedu.duke.command.CreateNewUserCommand;
 import seedu.duke.command.InvalidCommand;
+import seedu.duke.logic.preparecommand.PrepareAddCommand;
+import seedu.duke.logic.preparecommand.PrepareAddSetCommand;
+import seedu.duke.logic.preparecommand.PrepareByeCommand;
+import seedu.duke.logic.preparecommand.PrepareDeleteCommand;
+import seedu.duke.logic.preparecommand.PrepareEditCommand;
+import seedu.duke.logic.preparecommand.PrepareEditUserProfile;
+import seedu.duke.logic.preparecommand.PrepareFindCommand;
+import seedu.duke.logic.preparecommand.PrepareGraphCommand;
+import seedu.duke.logic.preparecommand.PrepareHelpCommand;
+import seedu.duke.logic.preparecommand.PrepareListCommand;
+import seedu.duke.logic.preparecommand.PrepareMoveIndexCommand;
+import seedu.duke.logic.preparecommand.PrepareProfileListCommand;
+
 import java.io.IOException;
-import java.time.LocalDate;
+
 import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;

@@ -3,8 +3,8 @@ package seedu.duke;
 import java.io.File;
 
 import seedu.duke.command.Command;
-import seedu.duke.logic.ChainingParser;
-import seedu.duke.logic.CommandParser;
+import seedu.duke.logic.parser.ChainingParser;
+import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.model.DayMap;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -15,7 +15,7 @@ import seedu.duke.userprofile.CheckNewUser;
 
 import java.util.Scanner;
 
-import static seedu.duke.logic.CommandParser.SPACE;
+import static seedu.duke.logic.parser.CommandParser.SPACE;
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
 import static seedu.duke.ui.Ui.displayWelcomeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayParserNullPointerExceptionMessage;

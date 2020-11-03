@@ -1,7 +1,8 @@
-package seedu.duke.logic;
+package seedu.duke.logic.preparecommand;
 
 import seedu.duke.command.AddSetCommand;
 import seedu.duke.command.Command;
+import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.ui.ExceptionMessages;
 
 import java.io.BufferedReader;

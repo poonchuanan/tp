@@ -3,6 +3,7 @@ package seedu.duke.logic;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.Command;
 import seedu.duke.command.DeleteCommand;
+import seedu.duke.logic.parser.CommandParser;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
