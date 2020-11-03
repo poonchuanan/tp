@@ -42,11 +42,11 @@ public class PrepareEditCommand extends PrepareCommand {
      */
     @Override
     public Command prepareCommand() {
-        String[] arguments = description[1].split(SPACE, 2);
-        int index = Integer.parseInt(arguments[0]) - 1;
-        String userInput = arguments[1];
-
         try {
+            String[] arguments = description[1].split(SPACE, 2);
+            int index = Integer.parseInt(arguments[0]) - 1;
+            String userInput = arguments[1];
+
             if (userInput.startsWith(FOOD_TAG)) {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
                 String foodDescription;
@@ -57,12 +57,12 @@ public class PrepareEditCommand extends PrepareCommand {
                 }
 
                 boolean isDescriptionInputValid;
-                isDescriptionInputValid = isDescriptionValid(foodDescription)
-                        && isDescriptionLengthValid(foodDescription);
+                isDescriptionInputValid = isDescriptionNotEmpty(foodDescription)
+                        && isDescriptionLengthWithinRange(foodDescription);
 
                 String calorieInput = userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
                 int calories = parseCalorie(calorieInput);
-                boolean isCalorieValid = isCaloriesValid(calories);
+                boolean isCalorieValid = isCaloriesWithinRange(calories);
 
                 boolean isInputValid = isCalorieValid && isDescriptionInputValid;
                 if (isInputValid) {
@@ -83,12 +83,12 @@ public class PrepareEditCommand extends PrepareCommand {
                 }
 
                 boolean isDescriptionInputValid;
-                isDescriptionInputValid = isDescriptionValid(exerciseDescription)
-                        && isDescriptionLengthValid(exerciseDescription);
+                isDescriptionInputValid = isDescriptionNotEmpty(exerciseDescription)
+                        && isDescriptionLengthWithinRange(exerciseDescription);
 
                 String calorieInput = userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
                 int calories = parseCalorie(calorieInput);
-                boolean isCalorieValid = isCaloriesValid(calories);
+                boolean isCalorieValid = isCaloriesWithinRange(calories);
 
                 boolean isInputValid = isCalorieValid && isDescriptionInputValid;
                 if (isInputValid) {
@@ -122,58 +122,6 @@ public class PrepareEditCommand extends PrepareCommand {
         return null;
     }
 
-
-    public boolean checkDescription(String description) throws EmptyDescriptionException {
-        if (description.equals(" ") || description.equals("")) {
-            throw new EmptyDescriptionException();
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * Process date input by user.
-     *
-     * @param dateInput date input by user
-     * @return date
-     * @throws DateTimeParseException if the string is in the incorrect format
-     */
-    private LocalDate processDate(String dateInput) throws DateTimeParseException {
-        LocalDate dateTime = LocalDate.parse(dateInput);
-
-        return dateTime;
-    }
-
-    /**
-     * Checks if the calorie input is within accepted range.
-     *
-     * @param calorie calories input by user
-     * @return true is calorie is within range
-     * @throws CalorieCountException if calorie not within range
-     */
-    public boolean isCaloriesValid(int calorie) throws CalorieCountException {
-        if (calorie <= MINIMUM_CALORIE_COUNT || calorie > MAXIMUM_CALORIE_COUNT) {
-            throw new CalorieCountException();
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * Checks if the description character counts is within accepted range.
-     *
-     * @param description description input by user
-     * @return true if description length is within range
-     * @throws DescriptionLengthExceedException if description exceeds range
-     */
-    public boolean isDescriptionLengthValid(String description) throws DescriptionLengthExceedException {
-        if (description.length() >= MAXIMUM_DESCRIPTION_LENGTH) {
-            throw new DescriptionLengthExceedException();
-        } else {
-            return true;
-        }
-    }
-
     /**
      * Checks if calorie input by user is empty.
      *
@@ -196,9 +144,32 @@ public class PrepareEditCommand extends PrepareCommand {
      * @return true if no error in description input
      * @throws EmptyDescriptionException if description input has error
      */
-    public boolean isDescriptionValid(String description) throws EmptyDescriptionException {
+    public boolean isDescriptionNotEmpty(String description) throws EmptyDescriptionException {
         if (description.equals(" ") || description.equals("")) {
             throw new EmptyDescriptionException();
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Checks if the description character counts is within accepted range.
+     *
+     * @param description description input by user
+     * @return true if description length is within range
+     * @throws DescriptionLengthExceedException if description exceeds range
+     */
+    public boolean isDescriptionLengthWithinRange(String description) throws DescriptionLengthExceedException {
+        if (description.length() >= MAXIMUM_DESCRIPTION_LENGTH) {
+            throw new DescriptionLengthExceedException();
+        } else {
+            return true;
+        }
+    }
+
+    public boolean isCaloriesWithinRange(int calorie) throws CalorieCountException {
+        if (calorie <= MINIMUM_CALORIE_COUNT || calorie > MAXIMUM_CALORIE_COUNT) {
+            throw new CalorieCountException();
         } else {
             return true;
         }

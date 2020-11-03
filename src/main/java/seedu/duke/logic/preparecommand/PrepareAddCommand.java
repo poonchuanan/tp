@@ -58,20 +58,19 @@ public class PrepareAddCommand extends PrepareCommand {
                 }
 
                 boolean isDescriptionInputValid;
-                isDescriptionInputValid = isDescriptionValid(foodDescription)
-                        && isDescriptionLengthValid(foodDescription);
+                isDescriptionInputValid = isDescriptionNotEmpty(foodDescription)
+                        && isDescriptionLengthWithinRange(foodDescription);
 
                 int dateIndex = description[1].indexOf(DATE_TAG);
                 String calorieInput;
                 if (dateIndex == INDEX_NOT_FOUND) {
                     calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
                 } else {
-                    calorieInput = description[1].substring(calorieIndex
-                            + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
+                    calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
                 }
 
                 int calories = parseCalorie(calorieInput);
-                boolean isCalorieValid = isCaloriesValid(calories);
+                boolean isCalorieValid = isCaloriesWithinRange(calories);
 
                 LocalDate date;
                 if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
@@ -98,20 +97,19 @@ public class PrepareAddCommand extends PrepareCommand {
                 }
 
                 boolean isDescriptionInputValid;
-                isDescriptionInputValid = isDescriptionValid(exerciseDescription)
-                        && isDescriptionLengthValid(exerciseDescription);
+                isDescriptionInputValid = isDescriptionNotEmpty(exerciseDescription)
+                        && isDescriptionLengthWithinRange(exerciseDescription);
 
                 int dateIndex = description[1].indexOf(DATE_TAG);
                 String calorieInput;
                 if (dateIndex == INDEX_NOT_FOUND) {
                     calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
                 } else {
-                    calorieInput = description[1].substring(calorieIndex
-                            + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
+                    calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
                 }
 
                 int calories = parseCalorie(calorieInput);
-                boolean isCalorieValid = isCaloriesValid(calories);
+                boolean isCalorieValid = isCaloriesWithinRange(calories);
 
                 LocalDate date;
                 if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
@@ -158,22 +156,6 @@ public class PrepareAddCommand extends PrepareCommand {
         return null;
     }
 
-    public boolean checkCalories(int calories) throws CalorieCountException {
-        if (calories <= 0 || calories > 3000) {
-            throw new CalorieCountException();
-        } else {
-            return true;
-        }
-    }
-
-    public boolean checkDescription(String description) throws EmptyDescriptionException {
-        if (description.equals(" ") || description.equals("")) {
-            throw new EmptyDescriptionException();
-        } else {
-            return true;
-        }
-    }
-
     /**
      * Process date input by user.
      *
@@ -183,36 +165,6 @@ public class PrepareAddCommand extends PrepareCommand {
      */
     private LocalDate processDate(String dateInput) throws DateTimeParseException {
         return LocalDate.parse(dateInput);
-    }
-
-    /**
-     * Checks if the description is filled.
-     *
-     * @param description description input by user
-     * @return true if no error in description input
-     * @throws EmptyDescriptionException if description input has error
-     */
-    public boolean isDescriptionValid(String description) throws EmptyDescriptionException {
-        if (description.equals(" ") || description.equals("")) {
-            throw new EmptyDescriptionException();
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * Checks if the description character counts is within accepted range.
-     *
-     * @param description description input by user
-     * @return true if description length is within range
-     * @throws DescriptionLengthExceedException if description exceeds range
-     */
-    public boolean isDescriptionLengthValid(String description) throws DescriptionLengthExceedException {
-        if (description.length() >= MAXIMUM_DESCRIPTION_LENGTH) {
-            throw new DescriptionLengthExceedException();
-        } else {
-            return true;
-        }
     }
 
     /**
@@ -263,15 +215,45 @@ public class PrepareAddCommand extends PrepareCommand {
     }
 
     /**
+     * Checks if the description is filled.
+     *
+     * @param description description input by user
+     * @return true if no error in description input
+     * @throws EmptyDescriptionException if description input has error
+     */
+    public boolean isDescriptionNotEmpty(String description) throws EmptyDescriptionException {
+        if (description.equals(" ") || description.equals("")) {
+            throw new EmptyDescriptionException();
+        } else {
+            return true;
+        }
+    }
+
+    /**
      * Checks if the calorie input is within accepted range.
      *
      * @param calorie calories input by user
      * @return true is calorie is within range
      * @throws CalorieCountException if calorie not within range
      */
-    public boolean isCaloriesValid(int calorie) throws CalorieCountException {
+    public boolean isCaloriesWithinRange(int calorie) throws CalorieCountException {
         if (calorie <= MINIMUM_CALORIE_COUNT || calorie > MAXIMUM_CALORIE_COUNT) {
             throw new CalorieCountException();
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Checks if the description character counts is within accepted range.
+     *
+     * @param description description input by user
+     * @return true if description length is within range
+     * @throws DescriptionLengthExceedException if description exceeds range
+     */
+    public boolean isDescriptionLengthWithinRange(String description) throws DescriptionLengthExceedException {
+        if (description.length() >= MAXIMUM_DESCRIPTION_LENGTH) {
+            throw new DescriptionLengthExceedException();
         } else {
             return true;
         }
