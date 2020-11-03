@@ -59,7 +59,6 @@ import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatEx
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandStringOutOfBoundExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDescriptionLengthExceedExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessage;
-import static seedu.duke.ui.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyEditActivityErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyDescriptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
@@ -277,11 +276,11 @@ public class Parser {
      * @return EditFoodCommand or EditExerciseCommand
      */
     private Command prepareEditActivityCommand(String userInput) {
-        String[] arguments = userInput.split(SPACE, 2);
-        int index = Integer.parseInt(arguments[0]) - 1;
-        userInput = arguments[1];
-
         try {
+            String[] arguments = userInput.split(SPACE, 2);
+            int index = Integer.parseInt(arguments[0]) - 1;
+            userInput = arguments[1];
+
             if (userInput.startsWith(FOOD_TAG)) {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
                 String foodDescription;
@@ -292,12 +291,12 @@ public class Parser {
                 }
 
                 boolean isDescriptionInputValid;
-                isDescriptionInputValid = isDescriptionValid(foodDescription)
-                        && isDescriptionLengthValid(foodDescription);
+                isDescriptionInputValid = isDescriptionNotEmpty(foodDescription)
+                        && isDescriptionLengthWithinRange(foodDescription);
 
                 String calorieInput = userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
                 int calories = parseCalorie(calorieInput);
-                boolean isCalorieValid = isCaloriesValid(calories);
+                boolean isCalorieValid = isCaloriesWithinRange(calories);
 
                 boolean isInputValid = isCalorieValid && isDescriptionInputValid;
                 if (isInputValid) {
@@ -318,12 +317,12 @@ public class Parser {
                 }
 
                 boolean isDescriptionInputValid;
-                isDescriptionInputValid = isDescriptionValid(exerciseDescription)
-                        && isDescriptionLengthValid(exerciseDescription);
+                isDescriptionInputValid = isDescriptionNotEmpty(exerciseDescription)
+                        && isDescriptionLengthWithinRange(exerciseDescription);
 
                 String calorieInput = userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
                 int calories = parseCalorie(calorieInput);
-                boolean isCalorieValid = isCaloriesValid(calories);
+                boolean isCalorieValid = isCaloriesWithinRange(calories);
 
                 boolean isInputValid = isCalorieValid && isDescriptionInputValid;
                 if (isInputValid) {
@@ -364,7 +363,7 @@ public class Parser {
      * @return true is calorie is within range
      * @throws CalorieCountException if calorie not within range
      */
-    public boolean isCaloriesValid(int calorie) throws CalorieCountException {
+    public boolean isCaloriesWithinRange(int calorie) throws CalorieCountException {
         if (calorie <= MINIMUM_CALORIE_COUNT || calorie > MAXIMUM_CALORIE_COUNT) {
             throw new CalorieCountException();
         } else {
@@ -379,7 +378,7 @@ public class Parser {
      * @return true if no error in description input
      * @throws EmptyDescriptionException if description input has error
      */
-    public boolean isDescriptionValid(String description) throws EmptyDescriptionException {
+    public boolean isDescriptionNotEmpty(String description) throws EmptyDescriptionException {
         if (description.equals(" ") || description.equals("")) {
             throw new EmptyDescriptionException();
         } else {
@@ -394,7 +393,7 @@ public class Parser {
      * @return true if description length is within range
      * @throws DescriptionLengthExceedException if description exceeds range
      */
-    public boolean isDescriptionLengthValid(String description) throws DescriptionLengthExceedException {
+    public boolean isDescriptionLengthWithinRange(String description) throws DescriptionLengthExceedException {
         if (description.length() >= MAXIMUM_DESCRIPTION_LENGTH) {
             throw new DescriptionLengthExceedException();
         } else {
@@ -434,11 +433,11 @@ public class Parser {
      */
     public LocalDate checkDateValidity(String dateInput, int dateIndex) throws DateLimitException {
         LocalDate date = processDate(dateInput.substring(dateIndex + ALPHABET_WITH_SLASH_LENGTH).trim());
-        LocalDate current = LocalDate.now();
-        LocalDate past = processDate(APPLICATION_LAUNCH_DATE);
-        if (date.isAfter(current)) {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate earliestAllowedDate = processDate(APPLICATION_LAUNCH_DATE);
+        if (date.isAfter(currentDate)) {
             throw new DateLimitException();
-        } else if (date.isBefore(past)) {
+        } else if (date.isBefore(earliestAllowedDate)) {
             throw new DateLimitException();
         } else {
             return date;
@@ -479,8 +478,8 @@ public class Parser {
                 }
 
                 boolean isDescriptionInputValid;
-                isDescriptionInputValid = isDescriptionValid(foodDescription)
-                        && isDescriptionLengthValid(foodDescription);
+                isDescriptionInputValid = isDescriptionNotEmpty(foodDescription)
+                        && isDescriptionLengthWithinRange(foodDescription);
 
                 int dateIndex = arguments[1].indexOf(DATE_TAG);
                 String calorieInput;
@@ -491,7 +490,7 @@ public class Parser {
                 }
 
                 int calories = parseCalorie(calorieInput);
-                boolean isCalorieValid = isCaloriesValid(calories);
+                boolean isCalorieValid = isCaloriesWithinRange(calories);
 
                 LocalDate date;
                 if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
@@ -518,8 +517,8 @@ public class Parser {
                 }
 
                 boolean isDescriptionInputValid;
-                isDescriptionInputValid = isDescriptionValid(exerciseDescription)
-                        && isDescriptionLengthValid(exerciseDescription);
+                isDescriptionInputValid = isDescriptionNotEmpty(exerciseDescription)
+                        && isDescriptionLengthWithinRange(exerciseDescription);
 
                 int dateIndex = arguments[1].indexOf(DATE_TAG);
                 String calorieInput;
@@ -530,7 +529,7 @@ public class Parser {
                 }
 
                 int calories = parseCalorie(calorieInput);
-                boolean isCalorieValid = isCaloriesValid(calories);
+                boolean isCalorieValid = isCaloriesWithinRange(calories);
 
                 LocalDate date;
                 if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
