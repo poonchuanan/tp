@@ -15,7 +15,6 @@ import static seedu.duke.ui.ExceptionMessages.displayDescriptionLengthExceedExce
 import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyDescriptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieExceptionMessage;
-import static seedu.duke.ui.Ui.displayEditMessage;
 
 public class PrepareEditCommand extends PrepareCommand {
     protected static final String CALORIE_TAG = "c/";
@@ -101,10 +100,7 @@ public class PrepareEditCommand extends PrepareCommand {
      */
     protected void checkIfInputValuesForEditValid(boolean isDescriptionInputValid, boolean isCalorieValid)
             throws Exception {
-        boolean isInputValid = isCalorieValid && isDescriptionInputValid;
-        if (isInputValid) {
-            displayEditMessage();
-        } else {
+        if (!(isCalorieValid && isDescriptionInputValid)) {
             throw new Exception();
         }
     }

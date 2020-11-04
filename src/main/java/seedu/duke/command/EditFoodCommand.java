@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.logging.Level;
 
 import static seedu.duke.ui.ExceptionMessages.displayEditIndexOutOfBoundsExceptionMessage;
+import static seedu.duke.ui.Ui.displayEditMessage;
 import static seedu.duke.ui.Ui.displaySavedMessage;
 import static seedu.duke.ui.Ui.drawDivider;
 
@@ -40,6 +41,7 @@ public class EditFoodCommand extends Command {
         try {
             ActivityList lastSeenList = dayMap.getLastSeenList();
             LocalDate dateOfActivityToBeEdited = lastSeenList.getDateOfActivityAtIndex(index);
+            displayEditMessage();
             this.food = new Food(description, calories, dateOfActivityToBeEdited, false);
             dayMap.insertActivity(index, food);
             displaySavedMessage();

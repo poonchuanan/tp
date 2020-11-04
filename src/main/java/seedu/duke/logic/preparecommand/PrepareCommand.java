@@ -6,10 +6,13 @@ import seedu.duke.exception.DateLimitException;
 import seedu.duke.exception.DescriptionLengthExceedException;
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.exception.InvalidCalorieException;
+import seedu.duke.model.Activity;
+import seedu.duke.model.ActivityList;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 public abstract class PrepareCommand {
     public String[] description;
@@ -40,7 +43,8 @@ public abstract class PrepareCommand {
      * @throws IndexOutOfBoundsException if index is below 0
      */
     protected void checkIndex(int index) throws IndexOutOfBoundsException {
-        if (index < 0) {
+        ActivityList activities = new ActivityList();
+        if (index < 0 ) {
             throw new IndexOutOfBoundsException();
         }
     }
