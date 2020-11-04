@@ -13,7 +13,6 @@ import seedu.duke.exception.InvalidCalorieException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.logging.Level;
 
 import static seedu.duke.ui.ExceptionMessages.displayAddActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayAddCommandErrorMessage;
@@ -51,88 +50,41 @@ public class PrepareAddCommand extends PrepareCommand {
         try {
             if (description[1].startsWith(FOOD_TAG)) {
                 int calorieIndex = description[1].indexOf(CALORIE_TAG);
-                String foodDescription;
-                if (calorieIndex == INDEX_NOT_FOUND) {
-                    throw new CalorieTagNotFoundException();
-                } else {
-                    foodDescription = description[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex).trim();
-                }
-
-                boolean isDescriptionInputValid;
-                isDescriptionInputValid = isDescriptionNotEmpty(foodDescription)
+                String foodDescription = getAddActivityDescription(calorieIndex);
+                boolean isDescriptionInputValid = isDescriptionNotEmpty(foodDescription)
                         && isDescriptionLengthWithinRange(foodDescription);
 
                 int dateIndex = description[1].indexOf(DATE_TAG);
-                String calorieInput;
-                if (dateIndex == INDEX_NOT_FOUND) {
-                    calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
-                } else {
-                    calorieInput = description[1].substring(calorieIndex
-                            + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
-                }
-
+                String calorieInput = getAddActivityCalorieCount(calorieIndex, dateIndex);
                 int calories = parseCalorie(calorieInput);
                 boolean isCalorieValid = isCaloriesWithinRange(calories);
 
-                LocalDate date;
-                if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
-                    date = currentDate();
-                } else {
-                    date = checkDateValidity(description[1], dateIndex);
-                }
+                LocalDate date = getAddActivityDate(isDescriptionInputValid, dateIndex, isCalorieValid);
 
-                if (isDescriptionInputValid && isCalorieValid) {
-                    displayAddMessage();
-                } else {
-                    throw new Exception();
-                }
+                checkIfInputValuesForAddValid(isDescriptionInputValid, isCalorieValid);
 
                 assert calories > 0 : "calories should be greater than 0";
                 return new AddFoodCommand(foodDescription, calories, FALSE, date);
             } else if (description[1].startsWith(EXERCISE_TAG)) {
                 int calorieIndex = description[1].indexOf(CALORIE_TAG);
-                String exerciseDescription;
-                if (calorieIndex == INDEX_NOT_FOUND) {
-                    throw new CalorieTagNotFoundException();
-                } else {
-                    exerciseDescription = description[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex).trim();
-                }
-
-                boolean isDescriptionInputValid;
-                isDescriptionInputValid = isDescriptionNotEmpty(exerciseDescription)
+                String exerciseDescription = getAddActivityDescription(calorieIndex);
+                boolean isDescriptionInputValid = isDescriptionNotEmpty(exerciseDescription)
                         && isDescriptionLengthWithinRange(exerciseDescription);
 
                 int dateIndex = description[1].indexOf(DATE_TAG);
-                String calorieInput;
-                if (dateIndex == INDEX_NOT_FOUND) {
-                    calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
-                } else {
-                    calorieInput = description[1].substring(calorieIndex
-                            + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
-                }
-
+                String calorieInput = getAddActivityCalorieCount(calorieIndex, dateIndex);
                 int calories = parseCalorie(calorieInput);
                 boolean isCalorieValid = isCaloriesWithinRange(calories);
 
-                LocalDate date;
-                if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
-                    date = currentDate();
-                } else {
-                    date = checkDateValidity(description[1], dateIndex);
-                }
+                LocalDate date = getAddActivityDate(isDescriptionInputValid, dateIndex, isCalorieValid);
 
-                if (isDescriptionInputValid && isCalorieValid) {
-                    displayAddMessage();
-                } else {
-                    throw new Exception();
-                }
+                checkIfInputValuesForAddValid(isDescriptionInputValid, isCalorieValid);
 
                 assert calories > 0 : "calories should be greater than 0";
                 return new AddExerciseCommand(exerciseDescription, calories, FALSE, date);
             } else {
                 displayAddActivityExceptionMessage();
             }
-
         } catch (DateTimeParseException e) {
             displayIncorrectDateTimeFormatEnteredMessage();
         } catch (CalorieCountException e) {
@@ -157,6 +109,46 @@ public class PrepareAddCommand extends PrepareCommand {
             displayAddActivityExceptionMessage();
         }
         return null;
+    }
+
+    private LocalDate getAddActivityDate(boolean isDescriptionInputValid, int dateIndex, boolean isCalorieValid)
+            throws DateLimitException {
+        LocalDate date;
+        if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
+            date = currentDate();
+        } else {
+            date = checkDateValidity(description[1], dateIndex);
+        }
+        return date;
+    }
+
+    private String getAddActivityCalorieCount(int calorieIndex, int dateIndex) {
+        String calorieInput;
+        if (dateIndex == INDEX_NOT_FOUND) {
+            calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
+        } else {
+            calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
+        }
+        return calorieInput;
+    }
+
+    private void checkIfInputValuesForAddValid(boolean isDescriptionInputValid, boolean isCalorieValid)
+            throws Exception {
+        if (isDescriptionInputValid && isCalorieValid) {
+            displayAddMessage();
+        } else {
+            throw new Exception();
+        }
+    }
+
+    private String getAddActivityDescription(int calorieIndex) throws CalorieTagNotFoundException {
+        String foodDescription;
+        if (calorieIndex == INDEX_NOT_FOUND) {
+            throw new CalorieTagNotFoundException();
+        } else {
+            foodDescription = description[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex).trim();
+        }
+        return foodDescription;
     }
 
 }

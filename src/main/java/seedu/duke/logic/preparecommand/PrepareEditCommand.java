@@ -9,15 +9,11 @@ import seedu.duke.exception.DescriptionLengthExceedException;
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.exception.InvalidCalorieException;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-
 import static seedu.duke.ui.ExceptionMessages.displayCalorieCountOutOfBoundMessage;
 import static seedu.duke.ui.ExceptionMessages.displayCalorieTagNotFoundExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDescriptionLengthExceedExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyDescriptionMessage;
-import static seedu.duke.ui.ExceptionMessages.displayEmptyEditActivityErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieExceptionMessage;
 import static seedu.duke.ui.Ui.displayEditMessage;
 
@@ -47,58 +43,34 @@ public class PrepareEditCommand extends PrepareCommand {
 
             if (userInput.startsWith(FOOD_TAG)) {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
-                String foodDescription;
-                if (calorieIndex == INDEX_NOT_FOUND) {
-                    throw new CalorieTagNotFoundException();
-                } else {
-                    foodDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex).trim();
-                }
-
-                boolean isDescriptionInputValid;
-                isDescriptionInputValid = isDescriptionNotEmpty(foodDescription)
+                String foodDescription = getEditActivityDescription(userInput, calorieIndex);
+                boolean isDescriptionInputValid = isDescriptionNotEmpty(foodDescription)
                         && isDescriptionLengthWithinRange(foodDescription);
 
                 String calorieInput = userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
                 int calories = parseCalorie(calorieInput);
                 boolean isCalorieValid = isCaloriesWithinRange(calories);
 
-                boolean isInputValid = isCalorieValid && isDescriptionInputValid;
-                if (isInputValid) {
-                    displayEditMessage();
-                } else {
-                    throw new Exception();
-                }
+                checkIfInputValuesForEditValid(isDescriptionInputValid, isCalorieValid);
 
-                assert calories > 0 : "calories should be greater than 0";
+                assert calories > 0 : "calories should be > 0";
                 return new EditFoodCommand(index, foodDescription, calories);
             } else if (userInput.startsWith(EXERCISE_TAG)) {
                 int calorieIndex = userInput.indexOf(CALORIE_TAG);
-                String exerciseDescription;
-                if (calorieIndex == INDEX_NOT_FOUND) {
-                    throw new CalorieTagNotFoundException();
-                } else {
-                    exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex).trim();
-                }
-
-                boolean isDescriptionInputValid;
-                isDescriptionInputValid = isDescriptionNotEmpty(exerciseDescription)
+                String exerciseDescription = getEditActivityDescription(userInput, calorieIndex);
+                boolean isDescriptionInputValid = isDescriptionNotEmpty(exerciseDescription)
                         && isDescriptionLengthWithinRange(exerciseDescription);
 
                 String calorieInput = userInput.substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
                 int calories = parseCalorie(calorieInput);
                 boolean isCalorieValid = isCaloriesWithinRange(calories);
 
-                boolean isInputValid = isCalorieValid && isDescriptionInputValid;
-                if (isInputValid) {
-                    displayEditMessage();
-                } else {
-                    throw new Exception();
-                }
+                checkIfInputValuesForEditValid(isDescriptionInputValid, isCalorieValid);
 
-                assert calories > 0 : "calories should be greater than 0";
+                assert calories > 0 : "calories should be > 0";
                 return new EditExerciseCommand(index, exerciseDescription, calories);
             } else {
-                displayEmptyEditActivityErrorMessage();
+                displayEditActivityExceptionMessage();
             }
         } catch (CalorieCountException e) {
             displayCalorieCountOutOfBoundMessage();
@@ -118,6 +90,41 @@ public class PrepareEditCommand extends PrepareCommand {
             displayEditActivityExceptionMessage();
         }
         return null;
+    }
+
+    /**
+     * Checks if the input parameters of the user is valid.
+     *
+     * @param isDescriptionInputValid boolean variable annotating if the description is valid
+     * @param isCalorieValid boolean variable annotating if the calorie count is valid
+     * @throws Exception if either one of the boolean variable is false
+     */
+    protected void checkIfInputValuesForEditValid(boolean isDescriptionInputValid, boolean isCalorieValid)
+            throws Exception {
+        boolean isInputValid = isCalorieValid && isDescriptionInputValid;
+        if (isInputValid) {
+            displayEditMessage();
+        } else {
+            throw new Exception();
+        }
+    }
+
+    /**
+     * Returns new activity description.
+     *
+     * @param userInput user input
+     * @param calorieIndex index of calorie tag in user input
+     * @return new activity description
+     * @throws CalorieTagNotFoundException if the calorie tag is not found in user input
+     */
+    protected String getEditActivityDescription(String userInput, int calorieIndex) throws CalorieTagNotFoundException {
+        String foodDescription;
+        if (calorieIndex == INDEX_NOT_FOUND) {
+            throw new CalorieTagNotFoundException();
+        } else {
+            foodDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex).trim();
+        }
+        return foodDescription;
     }
 
 }
