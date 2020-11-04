@@ -111,7 +111,16 @@ public class PrepareAddCommand extends PrepareCommand {
         return null;
     }
 
-    private LocalDate getAddActivityDate(boolean isDescriptionInputValid, int dateIndex, boolean isCalorieValid)
+    /**
+     * Returns activity date.
+     *
+     * @param isDescriptionInputValid boolean variable annotating if the description is valid
+     * @param dateIndex index of date tag in user input
+     * @param isCalorieValid boolean variable annotating if the calorie count is valid
+     * @return activity date
+     * @throws DateLimitException if date entered is not valid
+     */
+    protected LocalDate getAddActivityDate(boolean isDescriptionInputValid, int dateIndex, boolean isCalorieValid)
             throws DateLimitException {
         LocalDate date;
         if (isCalorieValid && isDescriptionInputValid && dateIndex == INDEX_NOT_FOUND) {
@@ -122,7 +131,14 @@ public class PrepareAddCommand extends PrepareCommand {
         return date;
     }
 
-    private String getAddActivityCalorieCount(int calorieIndex, int dateIndex) {
+    /**
+     * Return calorie count input by user.
+     *
+     * @param calorieIndex index of calorie tag in user input
+     * @param dateIndex index of date tag in user input
+     * @return calorie count input by user
+     */
+    protected String getAddActivityCalorieCount(int calorieIndex, int dateIndex) {
         String calorieInput;
         if (dateIndex == INDEX_NOT_FOUND) {
             calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
@@ -132,7 +148,14 @@ public class PrepareAddCommand extends PrepareCommand {
         return calorieInput;
     }
 
-    private void checkIfInputValuesForAddValid(boolean isDescriptionInputValid, boolean isCalorieValid)
+    /**
+     * Checks if the input parameters of the user is valid.
+     *
+     * @param isDescriptionInputValid boolean variable annotating if the description is valid
+     * @param isCalorieValid boolean variable annotating if the calorie count is valid
+     * @throws Exception if either one of the boolean variable is false
+     */
+    protected void checkIfInputValuesForAddValid(boolean isDescriptionInputValid, boolean isCalorieValid)
             throws Exception {
         if (isDescriptionInputValid && isCalorieValid) {
             displayAddMessage();
@@ -141,7 +164,14 @@ public class PrepareAddCommand extends PrepareCommand {
         }
     }
 
-    private String getAddActivityDescription(int calorieIndex) throws CalorieTagNotFoundException {
+    /**
+     * Returns activity description.
+     *
+     * @param calorieIndex index of calorie tag in user input
+     * @return activity description
+     * @throws CalorieTagNotFoundException if the calorie tag is not found in user input
+     */
+    protected String getAddActivityDescription(int calorieIndex) throws CalorieTagNotFoundException {
         String foodDescription;
         if (calorieIndex == INDEX_NOT_FOUND) {
             throw new CalorieTagNotFoundException();
