@@ -66,7 +66,8 @@ public class PrepareAddCommand extends PrepareCommand {
                 if (dateIndex == INDEX_NOT_FOUND) {
                     calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
                 } else {
-                    calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
+                    calorieInput = description[1].substring(calorieIndex
+                            + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
                 }
 
                 int calories = parseCalorie(calorieInput);
@@ -105,7 +106,8 @@ public class PrepareAddCommand extends PrepareCommand {
                 if (dateIndex == INDEX_NOT_FOUND) {
                     calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH).trim();
                 } else {
-                    calorieInput = description[1].substring(calorieIndex + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
+                    calorieInput = description[1].substring(calorieIndex
+                            + ALPHABET_WITH_SLASH_LENGTH, dateIndex).trim();
                 }
 
                 int calories = parseCalorie(calorieInput);
