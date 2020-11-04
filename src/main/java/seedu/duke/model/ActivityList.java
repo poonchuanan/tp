@@ -163,7 +163,7 @@ public class ActivityList extends Trakcal {
     /**
      * Checks if the index is valid.
      *
-     * @param index index of acitvity in list
+     * @param index index of activity in list
      * @return true if index is within range, else false
      */
     public boolean isValidIndex(int index) {
@@ -185,7 +185,7 @@ public class ActivityList extends Trakcal {
 
     /**
      * Sets the activities as a string.
-     * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60
+     * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | push-up | 10, [E] | jogging | 60
      *
      * @return activities as a string
      */
