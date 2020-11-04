@@ -106,8 +106,8 @@ public class ExceptionMessages {
     public static void displayAddActivityExceptionMessage() {
         print("Sorry I do not understand what you mean!\n"
                 + "One of the following has been violated:\n"
-                + "\t1. Description or calories input cannot be empty\n"
-                + "\t2. Calories count input must be an integer > 0!\n"
+                + "\t1. Description and calorie count input cannot be empty\n"
+                + "\t2. Calorie count input must be an integer > 0!\n"
                 + "\t3. Wrong input format\n"
                 + "\t\tInput format is:\n"
                 + "\t\tadd f/ FOOD_DESCRIPTION c/ CALORIES d/ YYYY-MM-DD\n"
@@ -120,28 +120,12 @@ public class ExceptionMessages {
     public static void displayEditActivityExceptionMessage() {
         print("Sorry I do not understand what you mean!\n"
                 + "One of the following has been violated:\n"
-                + "\t1. Description or calories input cannot be empty\n"
-                + "\t2. Calories count input must be an integer > 0!\n"
+                + "\t1. Description and calorie count input cannot be empty\n"
+                + "\t2. Calorie count input must be an integer > 0!\n"
                 + "\t3. Wrong input format\n"
                 + "\t\tInput format is:\n"
                 + "\t\tedita INDEX f/ FOOD_DESCRIPTION c/ CALORIES\n"
                 + "\t\tedita INDEX e/ EXERCISE_DESCRIPTION c/ CALORIES");
-    }
-
-    /**
-     * Prints out error message when attributes input by user is empty.
-     */
-    public static void displayEmptyAddActivityErrorMessage() {
-        print("Sorry! There is missing input!");
-    }
-    
-    /**
-     * Prints out error message when invalid activity factor input.
-     */
-    public static void displayInvalidActivityFactorMessage() {
-        print("Sorry this is an invalid activity factor!"
-                + "Please enter an integer from 1 to 5, with 1 being the least "
-                + "active and 5 being the most active");
     }
 
     /**
@@ -205,7 +189,9 @@ public class ExceptionMessages {
      * Prints out error message when invalid activity level input.
      */
     public static void displayInvalidActivityLevelMessage() {
-        print("Please integer for activity level only!");
+        print("Sorry this is an invalid activity factor!"
+                + "Please enter an integer from 1 to 5, with 1 being the least "
+                + "active and 5 being the most active");
     }
 
     /**
