@@ -3,7 +3,8 @@ package seedu.duke;
 import java.io.File;
 
 import seedu.duke.command.Command;
-import seedu.duke.logic.Parser;
+import seedu.duke.logic.parser.ChainingParser;
+import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.model.DayMap;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -14,8 +15,7 @@ import seedu.duke.userprofile.CheckNewUser;
 
 import java.util.Scanner;
 
-import static seedu.duke.logic.Parser.CHAIN_SEPARATOR;
-import static seedu.duke.logic.Parser.SPACE;
+import static seedu.duke.logic.parser.CommandParser.SPACE;
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
 import static seedu.duke.ui.Ui.displayWelcomeMessage;
 import static seedu.duke.ui.ExceptionMessages.displayParserNullPointerExceptionMessage;
@@ -60,13 +60,13 @@ public class Trakcal {
     public static void run()  {
         while (in.hasNextLine()) {
             String userInput = in.nextLine();
-            Parser parser = new Parser(userInput);
+            CommandParser parser = new CommandParser(userInput);
             try {
                 Command command;
-                if (userInput.contains(CHAIN_SEPARATOR)) {
-                    parser.prepareChaining(userInput);
+                if (userInput.contains(ChainingParser.CHAIN_SEPARATOR)) {
+                    new ChainingParser(userInput).parseArgument();
                 } else {
-                    command = parser.parseCommand();
+                    command = parser.parseArgument();
                     executeCmd(command);
                     storage.updateFile(calList);
                 }
