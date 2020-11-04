@@ -24,11 +24,9 @@ import static seedu.duke.ui.Ui.displayEditMessage;
 public class PrepareEditCommand extends PrepareCommand {
     protected static final String CALORIE_TAG = "c/";
     protected static final String FOOD_TAG = "f/";
-    protected static final String DATE_TAG = "d/";
     protected static final int ALPHABET_WITH_SLASH_LENGTH = 2;
     protected static final int INDEX_NOT_FOUND = -1;
     protected static final String EXERCISE_TAG = "e/";
-    protected static final boolean FALSE = false;
     protected static final String SPACE = " ";
 
     public PrepareEditCommand(String[] description) {
@@ -53,7 +51,7 @@ public class PrepareEditCommand extends PrepareCommand {
                 if (calorieIndex == INDEX_NOT_FOUND) {
                     throw new CalorieTagNotFoundException();
                 } else {
-                    foodDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
+                    foodDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex).trim();
                 }
 
                 boolean isDescriptionInputValid;
@@ -79,7 +77,7 @@ public class PrepareEditCommand extends PrepareCommand {
                 if (calorieIndex == INDEX_NOT_FOUND) {
                     throw new CalorieTagNotFoundException();
                 } else {
-                    exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
+                    exerciseDescription = userInput.substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex).trim();
                 }
 
                 boolean isDescriptionInputValid;

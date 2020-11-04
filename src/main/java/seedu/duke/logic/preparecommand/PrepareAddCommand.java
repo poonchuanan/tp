@@ -13,6 +13,7 @@ import seedu.duke.exception.InvalidCalorieException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.logging.Level;
 
 import static seedu.duke.ui.ExceptionMessages.displayAddActivityExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayAddCommandErrorMessage;
@@ -54,7 +55,7 @@ public class PrepareAddCommand extends PrepareCommand {
                 if (calorieIndex == INDEX_NOT_FOUND) {
                     throw new CalorieTagNotFoundException();
                 } else {
-                    foodDescription = description[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
+                    foodDescription = description[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex).trim();
                 }
 
                 boolean isDescriptionInputValid;
@@ -94,7 +95,7 @@ public class PrepareAddCommand extends PrepareCommand {
                 if (calorieIndex == INDEX_NOT_FOUND) {
                     throw new CalorieTagNotFoundException();
                 } else {
-                    exerciseDescription = description[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex - 1).trim();
+                    exerciseDescription = description[1].substring(ALPHABET_WITH_SLASH_LENGTH, calorieIndex).trim();
                 }
 
                 boolean isDescriptionInputValid;
