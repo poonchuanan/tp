@@ -12,7 +12,7 @@ public class ExceptionMessages {
      * Prints error message when StringIndexOutOfBoundsException occurs.
      */
     public static void displayStringIndexOutOfBoundsExceptionMessage() {
-        print("The index entered is not within the range!"
+        print("The index entered is not within the range!\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -20,7 +20,7 @@ public class ExceptionMessages {
      * Prints error message when IOException occurs.
      */
     public static void displayIoExceptionMessage() {
-        print("IO Exception has occurred!"
+        print("IO Exception has occurred!\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -28,7 +28,7 @@ public class ExceptionMessages {
      * Prints error message when NumberFormatException occurs in delete command.
      */
     public static void displayDeleteCommandNumberFormatExceptionMessage() {
-        print("Index is not a number!"
+        print("Index is not a number!\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -36,7 +36,7 @@ public class ExceptionMessages {
      * Prints error message when NullPointerException occurs in delete command.
      */
     public static void displayDeleteCommandNullPointerExceptionMessage() {
-        print("There is not index to remove"
+        print("There is not index to remove!\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -45,7 +45,7 @@ public class ExceptionMessages {
      */
     public static void displayListNotFoundExceptionMessage() {
         print("The list to work on is empty!\n"
-                + "Try entering a list command first."
+                + "Try entering a list command first.\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -53,20 +53,27 @@ public class ExceptionMessages {
      * Prints error message when NullPointerException occurs in Parser.
      */
     public static void displayParserNullPointerExceptionMessage() {
-        print("Invalid command!"
+        print("Invalid command!\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
     /**
      * Prints error message when error occurs in add command.
      */
-    public static String displayAddCommandErrorMessage() {
-        return ("Invalid input given!\n"
-                + "The input format for adding food activity is 'add f/ X c/ Y d/ Z"
-                + " - where food is X, calories lost is Y and date(YYYY-MM-DD) is Z\n"
-                + "The input format for adding exercise activity is 'add e/ X c/ Y d/ Z"
-                + " - where exercise done is X, calories lost is Y and date(YYYY-MM-DD) is Z\n"
-                + "If this is still too confusing for you, please do input 'help' for more information.");
+    public static void displayAddCommandErrorMessage() {
+        print("Invalid input given!\n"
+                + "The input format for adding food activity is:\n"
+                + "\tadd f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
+                + "\t- where food description is FOOD_DESCRIPTION, calories consumed is CALORIE_COUNT\n"
+                + "\tand date(YYYY-MM-DD) is DATE\n"
+                + "\n"
+                + "The input format for adding exercise activity is:\n"
+                + "\tadd e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
+                + "\t- where exercise description is EXERCISE_DESCRIPTION, calories lost is CALORIE_COUNT\n"
+                + "\tand date(YYYY-MM-DD) is DATE\n"
+                + "Do note that DATE is optional!\n"
+                + "If you do not input it, the activity would be added to today's list!\n"
+                + "If this is still too confusing for you, please input 'help' for more information.");
     }
 
     /**
@@ -74,7 +81,7 @@ public class ExceptionMessages {
      */
     public static String displayInvalidInputErrorMessage() {
         String invalidMessage = "Sorry I do not understand the input given!\n"
-                + "Perhaps pulling out help list via input 'help' may help.";
+                + PROMPTUSEROFHELPMESSAGE;
         return invalidMessage;
     }
 
@@ -83,11 +90,11 @@ public class ExceptionMessages {
      */
     public static void displayFindErrorMessage() {
         print("I do not understand what you mean!\n"
-                + "The input format for finding food or exercise activity via keyword is 'find d/ X'"
+                + "The input format for finding food or exercise activity\n\tvia keyword is 'find d/ X'"
                 + " - where keyword is X\n"
-                + "The input format for finding calorie count via keyword is 'find c/ X'"
+                + "The input format for finding calorie count\n\tvia keyword is 'find c/ X'"
                 + " - where calories count is X\n"
-                + "Please do input 'help' for more information.");
+                + PROMPTUSEROFHELPMESSAGE);
     }
 
     /**
@@ -96,7 +103,7 @@ public class ExceptionMessages {
     public static void displayIncorrectDateTimeFormatEnteredMessage() {
         print("Wrong format of date entered!\n"
                 + "The accepted format is YYYY-MM-DD!\n"
-                + "Also, ensure that the date input actually exists!"
+                + "Also, ensure that the date input actually exists!\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -111,7 +118,8 @@ public class ExceptionMessages {
                 + "\t3. Wrong input format\n"
                 + "\t\tInput format is:\n"
                 + "\t\tadd f/ FOOD_DESCRIPTION c/ CALORIES d/ YYYY-MM-DD\n"
-                + "\t\tadd e/ EXERCISE_DESCRIPTION c/ CALORIES d/ YYYY-MM-DD");
+                + "\t\tadd e/ EXERCISE_DESCRIPTION c/ CALORIES d/ YYYY-MM-DD\n"
+                + PROMPTUSEROFHELPMESSAGE);
     }
 
     /**
@@ -125,7 +133,8 @@ public class ExceptionMessages {
                 + "\t3. Wrong input format\n"
                 + "\t\tInput format is:\n"
                 + "\t\tedita INDEX f/ FOOD_DESCRIPTION c/ CALORIES\n"
-                + "\t\tedita INDEX e/ EXERCISE_DESCRIPTION c/ CALORIES");
+                + "\t\tedita INDEX e/ EXERCISE_DESCRIPTION c/ CALORIES\n"
+                + PROMPTUSEROFHELPMESSAGE);
     }
 
     /**
@@ -189,7 +198,7 @@ public class ExceptionMessages {
      * Prints out error message when invalid activity level input.
      */
     public static void displayInvalidActivityLevelMessage() {
-        print("Sorry this is an invalid activity factor!"
+        print("Sorry this is an invalid activity factor!\n"
                 + "Please enter an integer from 1 to 5, with 1 being the least "
                 + "active and 5 being the most active");
     }
@@ -312,7 +321,6 @@ public class ExceptionMessages {
         System.out.println(DIVIDER);
         System.out.println(message);
         System.out.println(DIVIDER);
-
     }
 
     /**
