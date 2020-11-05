@@ -34,10 +34,10 @@ public abstract class PrepareCommand {
 
     public abstract Command prepareCommand() throws Exception;
 
-    /** Checks for index of the delete command.
+    /**
+     * Checks for index of the delete command.
      *
      * @param index index of the delete command
-     * @return true if index is valid
      * @throws IndexOutOfBoundsException if index is below 0
      */
     protected void checkIndex(int index) throws IndexOutOfBoundsException {
@@ -156,5 +156,4 @@ public abstract class PrepareCommand {
         }
         return true;
     }
-
 }
