@@ -87,9 +87,9 @@ public class ExceptionMessages {
      */
     public static void displayFindErrorMessage() {
         print("I do not understand what you mean!\n"
-                + "The input format for finding food or exercise activity via keyword is 'find d/ X'"
+                + "The input format for finding food or exercise activity\n\tvia keyword is 'find d/ X'"
                 + " - where keyword is X\n"
-                + "The input format for finding calorie count via keyword is 'find c/ X'"
+                + "The input format for finding calorie count\n\tvia keyword is 'find c/ X'"
                 + " - where calories count is X\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
