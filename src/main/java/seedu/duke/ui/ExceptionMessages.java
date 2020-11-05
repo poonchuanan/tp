@@ -62,14 +62,17 @@ public class ExceptionMessages {
      */
     public static void displayAddCommandErrorMessage() {
         print("Invalid input given!\n"
-                + "The input format for adding food activity is 'add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
-                + "\t- where food description is FOOD_DESCRIPTION, calories consumed is CALORIE_COUNT "
-                + "and date(YYYY-MM-DD) is DATE\n"
-                + "The input format for adding exercise activity is 'add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT "
-                + "d/ DATE\n"
-                + "\t- where exercise description is EXERCISE_DESCRIPTION, calories lost is CALORIE_COUNT "
-                + "and date(YYYY-MM-DD) is DATE\n"
-                + "Do note that DATE is optional! If you do not input it, the activity would be added to today's list\n"
+                + "The input format for adding food activity is:\n"
+                + "\tadd f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
+                + "\t- where food description is FOOD_DESCRIPTION, calories consumed is CALORIE_COUNT\n"
+                + "\tand date(YYYY-MM-DD) is DATE\n"
+                + "\n"
+                + "The input format for adding exercise activity is:\n"
+                + "\tadd e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
+                + "\t- where exercise description is EXERCISE_DESCRIPTION, calories lost is CALORIE_COUNT\n"
+                + "\tand date(YYYY-MM-DD) is DATE\n"
+                + "Do note that DATE is optional!\n"
+                + "If you do not input it, the activity would be added to today's list!\n"
                 + "If this is still too confusing for you, please input 'help' for more information.");
     }
 
