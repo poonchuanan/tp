@@ -31,7 +31,7 @@ public class Ui {
             + "|  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|                                  |\n"
             + "|                                                                                  |\n"
             + "| Hello! I'm traKCAL.                                                              |\n"
-            + "| " + PROMPTUSEROFHELPMESSAGE + "       |";
+            + "| " + PROMPTUSEROFHELPMESSAGE + "          |";
 
     /**
      * Prints out welcome message to user when program is run.
