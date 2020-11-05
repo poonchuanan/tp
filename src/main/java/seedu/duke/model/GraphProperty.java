@@ -1,22 +1,24 @@
 package seedu.duke.model;
 
 import seedu.duke.command.GraphCommand;
-import seedu.duke.model.DayMap;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Properties of graph.
+ */
 public class GraphProperty {
-    public static final int ROW = 11;
+    public static final int COLUMN = 11;
     private static String DATE_FORMAT = "dd/MM";
     private static int TARGET_TYPE = 2;
     private static int LIMIT_TYPE = 4;
     private static int DIVISOR = 10;
     private static int EMPTY = 0;
     public int targetRow;
-    public int column;
+    public int row;
     public final DayMap dayMap;
     ArrayList<LocalDate> keys;
     public int targetCalories;
@@ -55,7 +57,7 @@ public class GraphProperty {
      * Set other properties by calculation.
      */
     public void setProperties() {
-        this.column = checkSize();
+        this.row = checkSize();
         this.keys = sortKeys();
         ArrayList<Integer> calories = getCalories();
         this.table = initiateTable(calories);
@@ -84,7 +86,7 @@ public class GraphProperty {
         //sort the keys by date
         keys.sort(LocalDate::compareTo);
         ArrayList<LocalDate> newKeys = new ArrayList<>();
-        for (int i = keys.size() - column; i < keys.size(); i++) {
+        for (int i = keys.size() - row; i < keys.size(); i++) {
             newKeys.add(keys.get(i));
         }
         return newKeys;
@@ -175,20 +177,33 @@ public class GraphProperty {
     public void fillTable(int[][] table, ArrayList<Integer> calories) {
         assert table != null;
         assert calories != null;
+
         this.targetRow = calculateRowNumber(targetCalories);
-        int rowNumber;
-        for (int i = ROW - 1; i >= 0; i--) {
-            for (int j = 0; j < column; j++) {
-                rowNumber = calculateRowNumber(calories.get(j));
-                if (rowNumber == i) {
-                    table[i][j] = LIMIT_TYPE;
-                } else if (targetRow == i) {
-                    table[i][j] = TARGET_TYPE;
-                }
-                if (rowNumber > i) {
-                    table[i][j]++;
-                }
+        int limitNumber;
+        for (int i = 0; i <= COLUMN - 1; i++) {
+            for (int j = 0; j < row; j++) {
+                limitNumber = calculateRowNumber(calories.get(j));
+                setTable(table, limitNumber, i, j);
             }
+        }
+    }
+
+    /**
+     * sets graph in table format.
+     *
+     * @param table table
+     * @param limitNumber top limit for the calories
+     * @param column current column number
+     * @param row cuttent row number
+     */
+    private void setTable(int[][] table, int limitNumber, int column, int row) {
+        if (limitNumber == column) {
+            table[column][row] = LIMIT_TYPE;
+        } else if (targetRow == column) {
+            table[column][row] = TARGET_TYPE;
+        }
+        if (limitNumber > column) {
+            table[column][row]++;
         }
     }
 
@@ -214,7 +229,7 @@ public class GraphProperty {
      */
     public int[][] initiateTable(ArrayList<Integer> calories) {
         assert calories != null;
-        int [][]table = new int[ROW][column];
+        int [][]table = new int[COLUMN][row];
         setEmptyTable(table);
         fillTable(table, calories);
         return table;

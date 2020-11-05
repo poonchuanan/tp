@@ -29,6 +29,7 @@ public class DayMap {
 
     /**
      * Sets the last seen list.
+     *
      * @param activityList is the list to be passed into the lastSeenList
      */
     public void setLastSeenList(ActivityList activityList) {
@@ -38,6 +39,7 @@ public class DayMap {
 
     /**
      * Gets the date from the specified index of the lastSeenList.
+     *
      * @param index index of the lastSeenList
      * @return localDate
      */
@@ -47,6 +49,7 @@ public class DayMap {
 
     /**
      * Returns the last seen list.
+     *
      * @return the lastSeenList
      */
     public ActivityList getLastSeenList() {
@@ -54,7 +57,8 @@ public class DayMap {
     }
 
     /**
-     * Displays the list using the drawer classes.
+     * Displays the list using the listDrawer class.
+     *
      * @param date is the date of the list to be drawn.
      */
     public void drawListAfterListCommand(LocalDate date) {
@@ -63,8 +67,17 @@ public class DayMap {
     }
 
     /**
+     * Displays the list using the findDrawer class.
+     */
+    public void drawListAfterFindCommand() {
+        FindDrawer findDrawer = new FindDrawer(lastSeenList);
+        findDrawer.printList();
+    }
+
+    /**
      * Adds activity into activityList under the corresponding dateTime.
      * Creates a new activityList if there are none under the specified date.
+     *
      * @param dateTime Specified date to extract activitylist from the dayMap.
      * @param activity Description of the activity, the userinput
      */
@@ -82,6 +95,7 @@ public class DayMap {
 
     /**
      * This function removes an activity and replaces it with a new one, to work with edit command.
+     *
      * @param index the index of the activity to be deleted
      * @param activity the activity to replace the old one.
      */
@@ -93,6 +107,7 @@ public class DayMap {
 
     /**
      * Returns the activityList of the specified date.
+     *
      * @param dateTime is the date specified to extract the list from
      * @return activityList
      */
@@ -102,6 +117,7 @@ public class DayMap {
 
     /**
      * Returns the size of the specified activity list.
+     *
      * @param dateTime the date of which the activitylist should be extracted from
      * @return the size of the list
      */
@@ -116,6 +132,7 @@ public class DayMap {
 
     /**
      * Returns the net calorie.
+     *
      * @param date is the date of which to extract the activitylist from
      * @return the net calorie
      */
@@ -130,6 +147,7 @@ public class DayMap {
 
     /**
      * Prints the activities for the given date.
+     *
      * @param date specified date to print the list
      */
     public void printActivityList(LocalDate date) {
@@ -142,6 +160,7 @@ public class DayMap {
 
     /**
      * Finds the activities containing a keyword.
+     *
      * @param description is the keyword where the activity should contain
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
@@ -174,6 +193,7 @@ public class DayMap {
 
     /**
      * Finds the activities containing a keyword.
+     *
      * @param calorie is the calorie to be matched
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
@@ -192,7 +212,6 @@ public class DayMap {
                     int calorieStartIndex = currentLine.lastIndexOf(' ');
                     String calorieToCheck = currentLine.substring(calorieStartIndex).trim();
                     if (calorieToCheck.equals(calorie)) {
-                        System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
                         lastSeenList.addActivity(activities.getActivity(i));
                         activityFindCounter++;
                     }
@@ -206,6 +225,7 @@ public class DayMap {
 
     /**
      * Finds the activities containing all keywords.
+     *
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
@@ -237,6 +257,7 @@ public class DayMap {
 
     /**
      * Finds the activities containing at least one of the keywords inputted.
+     *
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
@@ -268,6 +289,7 @@ public class DayMap {
 
     /**
      * Checks if all keywords inputted by user is present in entry.
+     *
      * @param currentLine current entry to be checked
      * @return true if all words are present, false otherwise
      */
@@ -284,6 +306,7 @@ public class DayMap {
 
     /**
      * Checks if one of the keywords inputted by user is present in entry.
+     *
      * @param currentLine current entry to be checked
      * @return  hasOneWord true if just one word is present, false otherwise
      */
@@ -300,6 +323,7 @@ public class DayMap {
 
     /**
      * Parses all keywords inputted by user into an arraylist.
+     *
      * @param userInput String user typed into CLI
      */
     private ArrayList<String> getAllTags(String userInput) {
@@ -318,6 +342,7 @@ public class DayMap {
 
     /**
      * Deletes the activity with a given index.
+     *
      * @param index is the index of the activity to be deleted
      * @throws IndexOutOfBoundsException if the index provided is out of range
      */

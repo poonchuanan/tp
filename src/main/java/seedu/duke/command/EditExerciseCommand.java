@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.model.Exercise;
 
 import java.time.LocalDate;
+import java.util.logging.Level;
 
 import static seedu.duke.ui.ExceptionMessages.displayEditIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ui.Ui.displaySavedMessage;
@@ -37,11 +38,10 @@ public class EditExerciseCommand extends Command {
             LocalDate dateOfActivityToBeEdited = dayMap.getDateFromLastSeenListAtIndex(index);
             this.exercise = new Exercise(description, calories,dateOfActivityToBeEdited, false);
             dayMap.insertActivity(index, exercise);
-            System.out.println();
             displaySavedMessage();
-            drawDivider();
         } catch (IndexOutOfBoundsException e) {
             displayEditIndexOutOfBoundsExceptionMessage();
+            commandLogger.log(Level.WARNING,"Accessing an index that is out of bound!");
         }
     }
 }

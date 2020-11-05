@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Arrays;
 
 
 class GraphPropertyTest {
@@ -29,7 +28,7 @@ class GraphPropertyTest {
         dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
         GraphProperty graphProperty = new GraphProperty(dummyMap, 1500);
         graphProperty.setProperties();
-        assertEquals(2, graphProperty.column);
+        assertEquals(2, graphProperty.row);
         assertEquals(2000, graphProperty.maxCalories);
         assertEquals(1000, graphProperty.minCalories);
     }
@@ -41,7 +40,7 @@ class GraphPropertyTest {
         dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
         GraphProperty graphProperty = new GraphProperty(dummyMap, 500);
         graphProperty.setProperties();
-        assertEquals(2, graphProperty.column);
+        assertEquals(2, graphProperty.row);
         assertEquals(2000, graphProperty.maxCalories);
         assertEquals(500, graphProperty.minCalories);
     }
@@ -53,7 +52,7 @@ class GraphPropertyTest {
         dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
         GraphProperty graphProperty = new GraphProperty(dummyMap, 3000);
         graphProperty.setProperties();
-        assertEquals(2, graphProperty.column);
+        assertEquals(2, graphProperty.row);
         assertEquals(3000, graphProperty.maxCalories);
         assertEquals(1000, graphProperty.minCalories);
     }
@@ -74,7 +73,7 @@ class GraphPropertyTest {
         dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
         GraphProperty graphProperty = new GraphProperty(dummyMap, 1000);
         graphProperty.setProperties();
-        assertEquals(2, graphProperty.column);
+        assertEquals(2, graphProperty.row);
         assertEquals(2000, graphProperty.maxCalories);
         assertEquals(-1000, graphProperty.minCalories);
     }
@@ -86,7 +85,7 @@ class GraphPropertyTest {
         dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 1000, date2, false));
         GraphProperty graphProperty = new GraphProperty(dummyMap, 1000);
         graphProperty.setProperties();
-        assertEquals(2, graphProperty.column);
+        assertEquals(2, graphProperty.row);
         assertEquals(1005, graphProperty.maxCalories);
         assertEquals(995, graphProperty.minCalories);
     }

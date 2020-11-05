@@ -1,61 +1,56 @@
 package seedu.duke.ui;
 
+import seedu.duke.userprofile.InitialiseUserProfile;
+
+import static seedu.duke.ui.ExceptionMessages.print;
+
 /**
  * Deals with interactions with the user.
  */
 public class Ui {
     /**
+     * Prompts user to seek help if needed.
+     */
+    public static final String PROMPTUSEROFHELPMESSAGE = "Please do input 'help' for the commands "
+            + "and their respective input format.";
+
+    /**
+     * Divider.
+     */
+    public static final String DIVIDER = "=========================================="
+            + "==========================================";
+
+    /**
+     * logo of application and the welcoming message.
+     */
+    private static final String LOGO =
+            "| Hello from                                                                       |\n"
+            + "|  _                  _  __   ___     _     _                                      |\n"
+            + "| | |_   _ _   __ _  | |/ /  / __|   /_\\   | |                                     |\n"
+            + "| |  _| | '_| / _` | | ' <  | (__   / _ \\  | |__                                   |\n"
+            + "|  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|                                  |\n"
+            + "|                                                                                  |\n"
+            + "| Hello! I'm traKCAL.                                                              |\n"
+            + "| " + PROMPTUSEROFHELPMESSAGE + "       |";
+
+    /**
      * Prints out welcome message to user when program is run.
      */
     public static void displayWelcomeMessage() {
-        displayDuke();
-        helloMessage();
-        promptUserOfHelpMessage();
+        print(LOGO);
     }
 
     /**
-     * Prints out traKCAL logo.
-     */
-    public static void displayDuke() {
-        drawDivider();
-        String logo = "|  _                  _  __   ___     _     _"
-                + "                                                       |\n"
-                + "| | |_   _ _   __ _  | |/ /  / __|   /_\\   | |"
-                + "                                                      |\n"
-                + "| |  _| | '_| / _` | | ' <  | (__   / _ \\  | |__"
-                + "                                                    |\n"
-                + "|  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|"
-                + "                                                   |\n"
-                + "|                                                  "
-                + "                                                 |";
-        System.out.println("| Hello from"
-                + "                                                                                        |\n"
-                + logo);
-    }
-
-    /**
-     * Prints out a line divider.
+     * Prints out the divider.
      */
     public static void drawDivider() {
-        String divider = "===================================================================================="
-                 + "=================";
-        System.out.println(divider);
-    }
-
-    /**
-     * Prints out hello message.
-     */
-    public static void helloMessage() {
-        System.out.println("| Hello! I'm traKCAL."
-                + "                                                                               |");
-        drawDivider();
+        System.out.println(DIVIDER);
     }
 
     /**
      * Prints out help list showing the commands available.
      */
     public static void displayHelpMessage() {
-        drawDivider();
         String helpList = "This section displays the commands available and their respective input format.\n"
                 + "> Words in CAPS are parameters to be filled in by you!\n"
                 + "\n"
@@ -66,6 +61,7 @@ public class Ui {
                 + "create new user        - Creates a new user profile\n"
                 + "\n"
                 + "Shortcut:\n"
+                + "--createSet is not extensive[TO BE EDITED]--\n"
                 + "createSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT +\n"
                 + "e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT + ...\n"
                 + "                       - Creates shortcut for adding food(s) and/or exercise(s) depending on the\n"
@@ -121,43 +117,48 @@ public class Ui {
                 + "\n"
                 + "Exiting:\n"
                 + "bye                    - Terminates the application\n";
-        System.out.println(helpList);
-        drawDivider();
+        print(helpList);
+    }
+
+    /**
+     * Prints out message when editing activity successful.
+     */
+    public static void displayEditMessage() {
+        print("Noted! The following has been edited:");
+    }
+
+    /**
+     * Prints out message when adding activity successful.
+     */
+    public static void displayAddMessage() {
+        print("Noted! The following has been added into list:");
     }
 
     /**
      * Prints out acknowledgement of saving current activity list in file.
      */
     public static void displaySavedMessage() {
-        System.out.println("The current activity list has been saved.");
+        print("The current activity list has been saved.");
+        System.out.println();
     }
 
     /**
      * Prints out error in saving current activity list in file.
      */
     public static void displayNotSavedMessage() {
-        System.out.println("The current activity list has not been saved.");
-        System.out.println("An error has occurred!");
-        promptUserOfHelpMessage();
-        System.out.println();
+        print("The current activity list has not been saved.\n"
+                + "An error has occurred!\n"
+                + PROMPTUSEROFHELPMESSAGE);
     }
 
     /**
      * Prints out bye message and let the user know that the current list has been saved to file.
      */
     public static void displayByeMessage() {
-        drawDivider();
-        System.out.println("| Thank you for using traKCAL. See you again!"
-                + "                                                       |");
-        drawDivider();
+        print("| Thank you for using traKCAL. See you again!"
+                + "                                      |");
     }
 
-    /**
-     * Prints out message to recommend user to print out help list.
-     */
-    public static void promptUserOfHelpMessage() {
-        System.out.println("Please do input 'help' for the commands and their respective input format.");
-    }
 
     /**
      * Prints out message when list command given but activity list is empty.
@@ -208,20 +209,71 @@ public class Ui {
         System.out.println("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.");
     }
 
-    /**
-     * Prints out message when editing activity successful.
-     */
-    public static void displayEditMessage() {
+    public static void displayMessage(String message) {
         drawDivider();
-        System.out.println("Noted! The following has been edited:");
+        System.out.println(message);
+        drawDivider();
+        print("Noted! The following has been added into list:");
     }
 
     /**
-     * Prints out message when adding activity successful.
+     * Prints out edited name.
      */
-    public static void displayAddMessage() {
-        drawDivider();
-        System.out.println("Noted! The following has been added into list:");
+    public static void displayEditNameMessage() {
+        System.out.print("Your name has been updated to ");
+    }
+
+    /**
+     * Prints out edited gender.
+     */
+    public static void displayEditGenderMessage() {
+        System.out.print("Your gender has been updated to ");
+    }
+
+    /**
+     * Prints out edited weight.
+     */
+    public static void displayEditWeightMessage() {
+        System.out.print("Your weight has been updated to ");
+    }
+
+    /**
+     * Prints out the edited height.
+     */
+    public static void displayEditHeightMessage() {
+        System.out.print("Your height has been updated to ");
+    }
+
+    /**
+     * Prints out the edited age.
+     */
+    public static void displayEditAgeMessage() {
+        System.out.print("Your age has been updated to ");
+    }
+
+    /**
+     * Prints out edited activity level.
+     */
+    public static void displayEditActivityLevelMessage() {
+        System.out.print("Your activity level has been updated to ");
+    }
+
+    /**
+     * Printed updated goal.
+     */
+    public static void displayEditGoalMessage() {
+        System.out.print("Your weight goal has been updated to ");
+    }
+
+    /**
+     * Prints out welcoming message to the user.
+     */
+    public static void displayReturningUserMessage() {
+        System.out.println("Welcome! What would you like to do today?\n");
+    }
+
+    public static void displayAskUserNameMessage() {
+        System.out.println("What is your name?");
     }
 
 }

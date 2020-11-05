@@ -25,8 +25,8 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 * Download the latest **traKCAL** jar file ([here](https://github.com/AY2021S1-CS2113T-T09-4/tp/releases))
 * Copy jar file into an empty folder in a convenient location (eg. Desktop)
 * Open terminal and navigate directory to the folder containing jar file 
-* Enter the following command line to run program: ```java -jar trakCAL.jar```   
-* Look through the user guide for a full detailed explanation on the functionality of **trakCAL**
+* Enter the following command line to run program: ```java -jar traKCAL.jar```   
+* Look through the user guide for a full detailed explanation on the functionality of **traKCAL**
     
 <br>
 <br>    
@@ -39,9 +39,9 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 *Figure 1. Diagram for Model component*
 
-The Architecture Diagram shown above explains the high-level design of **trakCAL**.
+The Architecture Diagram shown above explains the high-level design of **traKCAL**.
 
-**trakCAL** is made up of mainly 6 components.
+**traKCAL** is made up of mainly 6 components.
 
 `trakCAL`: tracKCAL starts here
 
@@ -68,9 +68,9 @@ the data from the userinput is checked for its validity and parsed down futher t
 These blocks of command are derived from the abstract Command class. Each different command block deals with the 
 proposed functionality which can be associated with `Ui`,`storage` or `model` components. 
 
-* **trakCAL** uses the parser class to filter based on command words by user.
+* **traKCAL** uses the parser class to filter based on command words by user.
 * Description that comes after is further parsed down by the Parser.
-* Respective Command object is created and is executed by **trakCAL**.
+* Respective Command object is created and is executed by **traKCAL**.
 * Respective execution methods can be further associated with `UI`, `Storage` and `Model` components.
 
 <br>
@@ -227,7 +227,7 @@ Aspect: How to edit activity
 The chaining mechanism can be used by the various commands available The following are the types of command that can be chained:
 - list
 - add
-- edit
+- edita
 
 The following sequence diagram shows how the chaining works after command is entered:
 

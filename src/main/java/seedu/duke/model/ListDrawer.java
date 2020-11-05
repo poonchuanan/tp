@@ -10,7 +10,6 @@ import java.util.Collections;
 /**
  * This class is used to create a responsive interface for the listing feature after a list command.
  */
-
 public class ListDrawer {
     private String date;
     protected ActivityList activityList;
@@ -45,6 +44,7 @@ public class ListDrawer {
 
     /**
      * Constructor for the listDrawer class.
+     *
      * @param lastSeenList list to be drawn.
      */
     public ListDrawer(ActivityList lastSeenList) {
@@ -66,6 +66,7 @@ public class ListDrawer {
 
     /**
      * Multiplies the length of a string by a given length.
+     *
      * @param stringToIncrease string to multiply in length
      * @param length length to increase by
      * @return a string of the increased length
@@ -77,6 +78,7 @@ public class ListDrawer {
 
     /**
      * Generates the header for the list.
+     *
      * @return string of header
      */
     protected String listHeaderString() {
@@ -89,6 +91,7 @@ public class ListDrawer {
 
     /**
      * Generates the header as a box with the net calorie and date information.
+     *
      * @return string for the header box
      */
     protected String headerBox() {
@@ -104,6 +107,7 @@ public class ListDrawer {
 
     /**
      * Generates the string for a single activity.
+     *
      * @param index index of the activity
      * @return string of single activity
      */
@@ -185,6 +189,7 @@ public class ListDrawer {
 
     /**
      * Generates the content for the list.
+     *
      * @return string of the content
      */
     protected String allActivityString() {

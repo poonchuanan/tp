@@ -19,6 +19,7 @@ public class FindDrawer extends ListDrawer {
 
     /**
      * Constructor for the findDrawer class.
+     *
      * @param lastSeenList list to be drawn
      */
     public FindDrawer(ActivityList lastSeenList) {
@@ -39,6 +40,7 @@ public class FindDrawer extends ListDrawer {
 
     /**
      * Generates the string for a single activity.
+     *
      * @param index index of the activity
      * @return string of single activity
      */
@@ -127,6 +129,7 @@ public class FindDrawer extends ListDrawer {
 
     /**
      * Generates the header for the list.
+     *
      * @return string of header
      */
     @Override
