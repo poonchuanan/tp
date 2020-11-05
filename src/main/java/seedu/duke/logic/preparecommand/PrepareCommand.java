@@ -151,7 +151,7 @@ public abstract class PrepareCommand {
     }
 
     protected boolean isNumberOfArgumentsValid(int limit) throws InvalidNumberOfArguments {
-        if (description.length != limit ) {
+        if (description.length != limit) {
             throw new InvalidNumberOfArguments();
         }
         return true;
