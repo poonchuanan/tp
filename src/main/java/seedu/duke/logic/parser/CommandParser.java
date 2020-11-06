@@ -17,6 +17,7 @@ import seedu.duke.logic.preparecommand.PrepareHelpCommand;
 import seedu.duke.logic.preparecommand.PrepareListCommand;
 import seedu.duke.logic.preparecommand.PrepareMoveIndexCommand;
 import seedu.duke.logic.preparecommand.PrepareProfileListCommand;
+import seedu.duke.logic.preparecommand.PrepareUserCommand;
 
 import java.io.IOException;
 
@@ -52,8 +53,8 @@ public class CommandParser extends Parser {
         String[] arguments = userInput.split(SPACE, 2);
         try {
             switch (arguments[0].toLowerCase()) {
-            case "create":
-                return new CreateNewUserCommand();
+            case "user":
+                return new PrepareUserCommand(arguments).prepareCommand();
             case "createset":
                 return new CreateNewRepeatedSet(arguments[1]);
             case "add":

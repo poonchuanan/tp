@@ -11,7 +11,7 @@ public class Ui {
     /**
      * Prompts user to seek help if needed.
      */
-    public static final String PROMPTUSEROFHELPMESSAGE = "Please do input 'help' for the commands "
+    public static final String PROMPTUSEROFHELPMESSAGE = "Please input 'help' for the commands "
             + "and their respective input format.";
 
     /**
@@ -31,7 +31,7 @@ public class Ui {
             + "|  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|                                  |\n"
             + "|                                                                                  |\n"
             + "| Hello! I'm traKCAL.                                                              |\n"
-            + "| " + PROMPTUSEROFHELPMESSAGE + "       |";
+            + "| " + PROMPTUSEROFHELPMESSAGE + "          |";
 
     /**
      * Prints out welcome message to user when program is run.
@@ -70,7 +70,7 @@ public class Ui {
                 + "\n"
                 + "Adding:\n"
                 + "add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
-                + "                       - Adds food consumed, FOOD_DESCRIPTION calories gained, CALORIE_COUNT\n"
+                + "                       - Adds food consumed, FOOD_DESCRIPTION, calories gained, CALORIE_COUNT\n"
                 + "                         and date(YYYY-MM-DD), DATE\n"
                 + "add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
                 + "                       - Adds exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT\n"
