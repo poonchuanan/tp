@@ -1,6 +1,5 @@
 package seedu.duke.storage;
 
-//import java.io.;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;

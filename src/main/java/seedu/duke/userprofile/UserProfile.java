@@ -1,8 +1,7 @@
 package seedu.duke.userprofile;
 
 import seedu.duke.Trakcal;
-import seedu.duke.exception.InvalidEditedUserProfileException;
-import seedu.duke.storage.Userinfotextfilestorage;
+import seedu.duke.storage.UserInfoStorage;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -67,7 +66,7 @@ public class UserProfile {
     }
 
     public static void edit(String info) throws IOException {
-        ArrayList<String> previous = Userinfotextfilestorage.update();
+        ArrayList<String> previous = UserInfoStorage.update();
         for (int i = 0; i < 7; i++) {
             data[i] = previous.get(i);
         }
@@ -404,13 +403,13 @@ public class UserProfile {
     }
 
     private static void checkWeightIsWithinRange(String weight) throws IllegalArgumentException {
-        if (Double.parseDouble(weight) < 20 || Double.parseDouble(weight) > 650) {
+        if (Double.parseDouble(weight) < 30 || Double.parseDouble(weight) > 650) {
             throw new IllegalArgumentException();
         }
     }
 
     private static void checkHeightIsWithinRange(String height) throws IllegalArgumentException {
-        if (Double.parseDouble(height) < 10 || Double.parseDouble(height) > 300) {
+        if (Double.parseDouble(height) < 90 || Double.parseDouble(height) > 300) {
             throw new IllegalArgumentException();
         }
     }
@@ -477,7 +476,7 @@ public class UserProfile {
      * @param profile question to be printed
      */
     public static void save(InitialiseUserProfile profile) throws IOException {
-        Userinfotextfilestorage storage = new Userinfotextfilestorage();
+        UserInfoStorage storage = new UserInfoStorage();
         storage.save(profile.toString());
     }
 
@@ -488,7 +487,7 @@ public class UserProfile {
      */
     public static InitialiseUserProfile loadProfile() {
         String[] data = new String[7];
-        ArrayList<String> previous = Userinfotextfilestorage.update();
+        ArrayList<String> previous = UserInfoStorage.update();
 
 
         for (int i = 0; i < 7; i++) {
