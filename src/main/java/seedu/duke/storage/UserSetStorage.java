@@ -11,11 +11,13 @@ import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCreateSetCommandMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIncompleteSetMessage;
 import static seedu.duke.ui.ExceptionMessages.displayCalorieMustBeIntegerMessage;
+import static seedu.duke.ui.ExceptionMessages.displayMissingFileNameMessage;
 
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.exception.FileAlreadyExistException;
 import seedu.duke.exception.InvalidCalorieException;
 import seedu.duke.exception.InvalidCreateSetCommandException;
+import seedu.duke.exception.NoFileNameException;
 import seedu.duke.ui.Ui;
 
 import static seedu.duke.ui.ExceptionMessages.displayExistingShortcutMessage;
@@ -25,8 +27,13 @@ public class UserSetStorage {
     private static final String PATH = new File("").getAbsolutePath();
 
     public static void prepareNewSet(String userInput) {
-        String fileName = userInput.substring(0, userInput.indexOf("/") - 2);
-        createNewTextFile("/" + fileName + ".txt", userInput.substring(userInput.indexOf("/") - 1));
+        try {
+            String fileName = userInput.substring(0, userInput.indexOf("/") - 1);
+            checkFileNamePresent(fileName);
+            createNewTextFile("/" + fileName + ".txt", userInput.substring(userInput.indexOf("/") - 1));
+        } catch (NoFileNameException e) {
+            displayMissingFileNameMessage();
+        }
     }
 
     public static void createNewTextFile(String fileName, String toTrim) {
@@ -148,5 +155,11 @@ public class UserSetStorage {
 
     private static void checkCalorieType(String input) throws NumberFormatException {
         Integer.parseInt(input);
+    }
+
+    private static void checkFileNamePresent(String input) throws NoFileNameException {
+        if (input.isEmpty() || input.isBlank()) {
+            throw new NoFileNameException();
+        }
     }
 }

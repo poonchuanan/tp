@@ -369,5 +369,14 @@ public class ExceptionMessages {
         System.out.println("Your shortcut has not been created correctly as there was an error in your input.");
         System.out.println("This shortcut will now be deleted. Please try again.");
         drawDivider();
+        System.out.println("");
+    }
+
+    public static void displayMissingFileNameMessage() {
+        drawDivider();
+        System.out.println("You did not specify a shorcut name in your createSet command.");
+        System.out.println("As such, no shortcut was created. Please try again!");
+        drawDivider();
+        System.out.println("");
     }
 }
