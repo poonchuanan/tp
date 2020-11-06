@@ -4,6 +4,7 @@ import seedu.duke.Trakcal;
 import seedu.duke.storage.UserInfoStorage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidEditedUserProfileMessage;
 import seedu.duke.exception.EmptyDescriptionException;
@@ -41,7 +42,13 @@ public class UserProfile {
      * @return user input
      */
     public static String input() {
-        return Trakcal.in.nextLine();
+        try {
+            return Trakcal.in.nextLine();
+        } catch (NoSuchElementException e) {
+            System.out.println("Force quit. See you again!");
+        }
+//        return Trakcal.in.nextLine();
+        return null;
     }
 
     public static InitialiseUserProfile createNewProfile() {
