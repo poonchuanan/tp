@@ -6,8 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.file.FileAlreadyExistsException;
 
 import seedu.duke.exception.EmptyDescriptionException;
+import seedu.duke.exception.FileAlreadyExistException;
 import seedu.duke.ui.Ui;
 
 import static seedu.duke.ui.ExceptionMessages.displayExistingShortcutMessage;
@@ -28,17 +30,25 @@ public class UserSetStorage {
         File file = new File(filePath);
 
         try {
-            boolean isFileCreated = file.createNewFile();
-            if (!isFileCreated) {
-                file.createNewFile();
-            }
+            checkExistingFile(filePath);
+            file.createNewFile();
 
         } catch (FileNotFoundException e) {
             displayExistingShortcutMessage();
         } catch (IOException e) {
             displayIoExceptionMessage();
+        } catch (FileAlreadyExistException e) {
+            displayExistingShortcutMessage();
+            return;
         }
         updateTextFile(filePath, toTrim);
+    }
+
+    private static void checkExistingFile(String fileName) throws FileAlreadyExistException {
+        File file = new File(fileName);
+        if (file.exists()) {
+            throw new FileAlreadyExistException();
+        }
     }
 
     public static void updateTextFile(String path, String toTrim) {
