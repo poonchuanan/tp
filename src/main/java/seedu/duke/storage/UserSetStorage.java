@@ -32,9 +32,7 @@ public class UserSetStorage {
             if (!isFileCreated) {
                 file.createNewFile();
             }
-//            else {
-//                throw new FileNotFoundException();
-//            }
+
         } catch (FileNotFoundException e) {
             displayExistingShortcutMessage();
         } catch (IOException e) {
@@ -60,7 +58,7 @@ public class UserSetStorage {
                 }
 
                 try {
-                    checkEmptyDescription(s.substring(2,s.indexOf("c/")-2));
+                    checkEmptyDescription(s.substring(2,s.indexOf("c/") - 2));
 
                 } catch (EmptyDescriptionException e) {
                     System.out.println("here");
