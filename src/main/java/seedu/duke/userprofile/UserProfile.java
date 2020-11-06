@@ -501,6 +501,7 @@ public class UserProfile {
             } catch (IndexOutOfBoundsException e) {
                 displayInvalidEditedUserProfileMessage();
                 createNewProfile();
+                return null;
             }
         }
 
@@ -519,6 +520,7 @@ public class UserProfile {
         } catch (IllegalArgumentException | EmptyDescriptionException | NullPointerException e) {
             displayInvalidEditedUserProfileMessage();
             createNewProfile();
+            return null;
         }
 
         InitialiseUserProfile profile =
