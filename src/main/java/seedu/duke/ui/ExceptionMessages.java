@@ -337,4 +337,8 @@ public class ExceptionMessages {
         drawDivider();
         System.out.println("");
     }
+
+    public static void displayExcessNumberOfArguments() {
+        print("This command has no description!");
+    }
 }
