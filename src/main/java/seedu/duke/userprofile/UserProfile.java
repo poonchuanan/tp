@@ -1,6 +1,7 @@
 package seedu.duke.userprofile;
 
 import seedu.duke.Trakcal;
+import seedu.duke.exception.InvalidEditedUserProfileException;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -447,7 +448,7 @@ public class UserProfile {
 
     public static void checkEmptyInput2(String[] data) throws EmptyDescriptionException {
         for (String datum : data) {
-            if (datum.isEmpty()) {
+            if (datum.isEmpty() || datum.isBlank()) {
                 throw new EmptyDescriptionException();
             }
         }
@@ -488,8 +489,19 @@ public class UserProfile {
     public static InitialiseUserProfile loadProfile() {
         String[] data = new String[7];
         ArrayList<String> previous = Userinfotextfilestorage.update();
+
+
         for (int i = 0; i < 7; i++) {
-            data[i] = previous.get(i);
+            try {
+                if (!previous.get(i).isEmpty()) {
+                    data[i] = previous.get(i);
+                } else {
+                    throw new NullPointerException();
+                }
+            } catch (IndexOutOfBoundsException e) {
+                displayInvalidEditedUserProfileMessage();
+                createNewProfile();
+            }
         }
 
         try {
@@ -504,9 +516,9 @@ public class UserProfile {
             checkAgeIsWithinRange(data[4]);
             checkWeightIsWithinRange(data[2]);
             checkHeightIsWithinRange(data[3]);
-        } catch (IllegalArgumentException | EmptyDescriptionException e) {
+        } catch (IllegalArgumentException | EmptyDescriptionException | NullPointerException e) {
             displayInvalidEditedUserProfileMessage();
-            return null;
+            createNewProfile();
         }
 
         InitialiseUserProfile profile =

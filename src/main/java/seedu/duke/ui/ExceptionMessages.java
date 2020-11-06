@@ -332,8 +332,10 @@ public class ExceptionMessages {
 
     public static void displayInvalidEditedUserProfileMessage() {
         drawDivider();
-        System.out.println("You have edited the user profile text file to the wrong format.");
-        System.out.println("Please create a new user profile. If not certain features like graph cannot be used");
+        System.out.println("Corrupted user profile!");
+        System.out.println("Please do not edit the text file unnecessarily.");
+        System.out.println("You are being directed to create a new user profile.");
+        System.out.println("This is to ensure that all features can be used properly.");
         drawDivider();
         System.out.println("");
     }
