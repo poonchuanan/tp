@@ -345,4 +345,29 @@ public class ExceptionMessages {
         System.out.println("There is a shortcut with this name already. Please choose another name");
         drawDivider();
     }
+
+    public static void displayInvalidCreateSetCommandMessage() {
+        drawDivider();
+        System.out.println("You are missing a activity tag or calorie tag or both");
+        drawDivider();
+    }
+
+    public static void displayInvalidCalorieMessage() {
+        drawDivider();
+        System.out.println("Please enter a valid calorie.");
+        drawDivider();
+    }
+
+    public static void displayCalorieMustBeIntegerMessage() {
+        drawDivider();
+        System.out.println("Please enter calorie as integer.");
+        drawDivider();
+    }
+
+    public static void displayIncompleteSetMessage() {
+        drawDivider();
+        System.out.println("Your shortcut has not been created correctly as there was an error in your input.");
+        System.out.println("This shortcut will now be deleted. Please try again.");
+        drawDivider();
+    }
 }
