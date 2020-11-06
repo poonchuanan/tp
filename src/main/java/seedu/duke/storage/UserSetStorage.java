@@ -7,7 +7,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
+import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.ui.Ui;
+
+import static seedu.duke.ui.ExceptionMessages.displayExistingShortcutMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieEntryMessage;
 import static seedu.duke.ui.ExceptionMessages.displayExistingFileMessage;
@@ -29,6 +32,11 @@ public class UserSetStorage {
             if (!isFileCreated) {
                 file.createNewFile();
             }
+//            else {
+//                throw new FileNotFoundException();
+//            }
+        } catch (FileNotFoundException e) {
+            displayExistingShortcutMessage();
         } catch (IOException e) {
             displayIoExceptionMessage();
         }
@@ -43,15 +51,23 @@ public class UserSetStorage {
             int index = 1;
 
             for (String s : activity) {
-                if (s.startsWith(" ")) {
+                while (s.startsWith(" ")) {
                     s = s.substring(1);
                 }
 
-                if (s.endsWith(" ")) {
+                while (s.endsWith(" ")) {
                     s = s.substring(0, s.length() - 1);
                 }
 
+                try {
+                    checkEmptyDescription(s.substring(2,s.indexOf("c/")-2));
+
+                } catch (EmptyDescriptionException e) {
+                    System.out.println("here");
+                }
+
                 bw.write(s);
+                System.out.println(s);
                 String calories = s.substring(s.indexOf("c/") + 2);
                 Integer.parseInt(calories);
 
@@ -81,6 +97,13 @@ public class UserSetStorage {
             displayExistingFileMessage();
         } catch (NumberFormatException e) {
             displayInvalidCalorieEntryMessage();
+            System.out.println("");
+        }
+    }
+
+    private static void checkEmptyDescription(String description) throws EmptyDescriptionException {
+        if (description.isBlank() || description.isEmpty()) {
+            throw new EmptyDescriptionException();
         }
     }
 }

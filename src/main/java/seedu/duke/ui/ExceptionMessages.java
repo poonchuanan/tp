@@ -339,4 +339,10 @@ public class ExceptionMessages {
         drawDivider();
         System.out.println("");
     }
+
+    public static void displayExistingShortcutMessage() {
+        drawDivider();
+        System.out.println("There is a shortcut with this name already. Please choose another name");
+        drawDivider();
+    }
 }
