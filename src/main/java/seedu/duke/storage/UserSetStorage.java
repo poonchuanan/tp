@@ -133,7 +133,7 @@ public class UserSetStorage {
         }
     }
 
-    private static void checkActivityAndCalorieTag (String input) throws InvalidCreateSetCommandException {
+    private static void checkActivityAndCalorieTag(String input) throws InvalidCreateSetCommandException {
         if (!input.contains("c/") || !(input.contains("f/") || input.contains("e/"))) {
             throw new InvalidCreateSetCommandException();
         }
