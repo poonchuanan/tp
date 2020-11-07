@@ -12,13 +12,19 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Prepare commands.
+ * Contains methods that are shared between commands.
+ */
 public abstract class PrepareCommand {
     public String[] description;
     public LocalDateTime date;
     public static final int MAXIMUM_DESCRIPTION_LENGTH = 40;
     public static final int MAXIMUM_CALORIE_COUNT = 3000;
     public static final int MINIMUM_CALORIE_COUNT = 0;
-    public static final String APPLICATION_LAUNCH_DATE = "2020-11-01";
+    public static final int MINIMUM_INDEX = 0;
+    public static final String APPLICATION_LAUNCH_DATE = "2020-10-14";
+    public static final String SPACE = " ";
     protected static final int ALPHABET_WITH_SLASH_LENGTH = 2;
 
     public PrepareCommand(String[] description) {
@@ -26,11 +32,12 @@ public abstract class PrepareCommand {
         setDate();
     }
 
-
+    /**
+     * Gets current date.
+     */
     private void setDate() {
         this.date = LocalDateTime.now();
     }
-
 
     public abstract Command prepareCommand() throws Exception;
 
@@ -41,7 +48,7 @@ public abstract class PrepareCommand {
      * @throws IndexOutOfBoundsException if index is below 0
      */
     protected void checkIndex(int index) throws IndexOutOfBoundsException {
-        if (index < 0) {
+        if (index < MINIMUM_INDEX) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -113,7 +120,7 @@ public abstract class PrepareCommand {
      * @throws EmptyDescriptionException if description input has error
      */
     protected boolean isDescriptionNotEmpty(String description) throws EmptyDescriptionException {
-        if (description.equals(" ") || description.equals("")) {
+        if (description.equals(SPACE) || description.equals("")) {
             throw new EmptyDescriptionException();
         } else {
             return true;
@@ -143,12 +150,13 @@ public abstract class PrepareCommand {
      * @throws DescriptionLengthExceedException if description exceeds range
      */
     protected boolean isDescriptionLengthWithinRange(String description) throws DescriptionLengthExceedException {
-        if (description.length() >= MAXIMUM_DESCRIPTION_LENGTH) {
+        if (description.length() > MAXIMUM_DESCRIPTION_LENGTH) {
             throw new DescriptionLengthExceedException();
         } else {
             return true;
         }
     }
+
 
     protected boolean isNumberOfArgumentsValid(int limit) throws InvalidNumberOfArguments {
         if (description.length != limit) {

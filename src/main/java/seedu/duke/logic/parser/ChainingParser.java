@@ -6,6 +6,9 @@ import static seedu.duke.Trakcal.calList;
 import static seedu.duke.Trakcal.executeCmd;
 import static seedu.duke.Trakcal.storage;
 
+/**
+ * Process chained input by user.
+ */
 public class ChainingParser extends Parser {
     public static final String CHAIN_SEPARATOR = "&&";
     protected static final int CHAIN_SEPARATOR_LENGTH = 2;

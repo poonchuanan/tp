@@ -21,6 +21,12 @@ public class Ui {
             + "==========================================";
 
     /**
+     * Help list divider.
+     */
+    public static final String HELPLIST_DIVIDER = "============================================================"
+            + "========================================";
+
+    /**
      * logo of application and the welcoming message.
      */
     private static final String LOGO =
@@ -51,27 +57,44 @@ public class Ui {
      * Prints out help list showing the commands available.
      */
     public static void displayHelpMessage() {
+        System.out.println(HELPLIST_DIVIDER);
         String helpList = "This section displays the commands available and their respective input format.\n"
                 + "> Words in CAPS are parameters to be filled in by you!\n"
+                + "> Variables in <here> are optional!"
                 + "\n"
                 + "Viewing help:\n"
                 + "help                   - Prints out commands available and their input format\n"
                 + "\n"
-                + "Creating:\n"
-                + "create new user        - Creates a new user profile\n"
+                + "User Profiling\n"
+                + "user l/                - Prints out current user profile\n"
+                + "user c/                - Creates new user profile\n"
+                + "user e/ <n/ NAME>, <g/ GENDER>, <w/ WEIGHT>, <h/ HEIGHT>, <age/ AGE>, <al/ ACTIVITY_FACTOR>,\n"
+                + "                         <goal/ GOAL>\n"
+                + "                       - Edits user profile to name, NAME, gender(male/female), GENDER,\n"
+                + "                         height(in cm), HEIGHT, age, AGE, activity factor(1-5), ACTIVITY_FACTOR,\n"
+                + "                         goal(lose/maintain/gain), GOAL\n"
                 + "\n"
-                + "Shortcut:\n"
-                + "--createSet is not extensive[TO BE EDITED]--\n"
+                + "Creating shortcut:\n"
+                + "*[This command is extensive, there are a lot of variations. The following is one such example]*\n"
                 + "createSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT +\n"
-                + "e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT + ...\n"
-                + "                       - Creates shortcut for adding food(s) and/or exercise(s) depending on the\n"
-                + "                         format entered\n"
-                + "addSet SHORTCUT_NAME   - Adds SHORTCUT_NAME into current date list\n"
+                + "e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT + f/ FOOD_DESCRIPTION c/ CALORIE_COUNT\n"
+                + "*[Another possible example is:]*\n"
+                + "createSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT + f/ FOOD_DESCRIPTION c/"
+                + " CALORIE_COUNT\n"
+                + "                       - Creates shortcut, SHORTCUT_NAME for adding food(s) and/or exercise(s)\n"
+                + "                         depending on the format entered\n"
+                + "addSet SHORTCUT_NAME   - Adds SHORTCUT_NAME that was created in createSet into today's list\n"
                 + "\n"
                 + "Adding:\n"
+                + "add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT\n"
+                + "                       - Adds food consumed, FOOD_DESCRIPTION and calories gained, CALORIE_COUNT\n"
+                + "                         to today's date\n"
                 + "add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
                 + "                       - Adds food consumed, FOOD_DESCRIPTION, calories gained, CALORIE_COUNT\n"
                 + "                         and date(YYYY-MM-DD), DATE\n"
+                + "add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT\n"
+                + "                       - Adds exercise done, EXERCISE_DESCRIPTION and calories lost, CALORIE_COUNT\n"
+                + "                         to today's date\n"
                 + "add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
                 + "                       - Adds exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT\n"
                 + "                         and date(YYYY-MM-DD), DATE\n"
@@ -81,11 +104,6 @@ public class Ui {
                 + "list DATE              - Prints out the list of entries for the date(YYYY-MM-DD), DATE\n"
                 + "\n"
                 + "Editing:\n"
-                + "edit n/ NAME, g/ GENDER, w/ WEIGHT, h/ HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS\n"
-                + "                       - Edits your name, NAME, your gender(male/female), GENDER,\n"
-                + "                         your weight in kg, WEIGHT, your height, HEIGHT in cm, your age, AGE,\n"
-                + "                         activity factor(1-5) with 1 being the most active, ACTIVITY_FACTOR,\n"
-                + "                         your weight goals(lose/maintain/gain), WEIGHT_GOALS\n"
                 + "edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT\n"
                 + "                       - Edits activity at index LIST_INDEX of latest list printed out\n"
                 + "                         to food consumed, FOOD_DESCRIPTION, calories gained, CALORIE_COUNT\n"
@@ -96,10 +114,10 @@ public class Ui {
                 + "Finding:\n"
                 + "find d/ DESCRIPTION    - Searches for all activities description with the DESCRIPTION keyword\n"
                 + "find c/ CALORIE_COUNT  - Searches for all activities with calories of CALORIE_COUNT\n"
-                + "find a/ DESCRIPTION1 / DESCRIPTION2 .../ DESCRIPTION\n"
+                + "find a/ DESCRIPTION1 / DESCRIPTION2 ... / DESCRIPTION\n"
                 + "                        - Searches for all activities with ALL matching keywords from\n"
                 + "                          DESCRIPTION1 to DESCRIPTION\n"
-                + "find e/ DESCRIPTION1 / DESCRIPTION2 .../ DESCRIPTION\n"
+                + "find e/ DESCRIPTION1 / DESCRIPTION2 ... / DESCRIPTION\n"
                 + "                        - Searches for all activities with AT LEAST one matching keyword from\n"
                 + "                          DESCRIPTION1 to DESCRIPTION\n"
                 + "\n"
@@ -115,9 +133,19 @@ public class Ui {
                 + "graph                  - Generates a graph of target calorie and net calorie obtained up to\n"
                 + "                         last 7 days\n"
                 + "\n"
+                + "Chaining:\n"
+                + "*[This command is extensive, there are a lot of variations,\n"
+                + "                          but is only available to add, list and edita.]*\n"
+                + "*[One possible example is:]*\n"
+                + "add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && list && edita LIST_INDEX f/ FOOD_DESCRIPTION\n"
+                + "                         c/ CALORIE_COUNT\n"
+                + "*[Another possible example is:]*\n"
+                + "add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT\n"
+                + "\n"
                 + "Exiting:\n"
                 + "bye                    - Terminates the application\n";
-        print(helpList);
+        System.out.print(helpList);
+        System.out.println(HELPLIST_DIVIDER);
     }
 
     /**
@@ -211,9 +239,7 @@ public class Ui {
     }
 
     public static void displayMessage(String message) {
-        drawDivider();
         print(message);
-        drawDivider();
         print("Noted! The following has been added into list:");
     }
 

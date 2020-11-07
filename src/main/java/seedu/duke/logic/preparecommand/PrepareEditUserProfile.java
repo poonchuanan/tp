@@ -6,6 +6,9 @@ import seedu.duke.userprofile.UserProfile;
 
 import java.io.IOException;
 
+/**
+ * Prepares editing of user profile.
+ */
 public class PrepareEditUserProfile extends PrepareCommand {
 
     public PrepareEditUserProfile(String[] description) {
