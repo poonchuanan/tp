@@ -9,6 +9,7 @@ import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.ui.ExceptionMessages;
 import seedu.duke.ui.Ui;
 
+import static seedu.duke.Trakcal.in;
 import static seedu.duke.ui.ExceptionMessages.displayMissingAddSetInfoMessage;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCreateSetCommandMessage;
@@ -92,33 +93,57 @@ public class PrepareAddSetCommand extends PrepareCommand {
         return new AddSetCommand();
     }
 
+    /**
+     * Checks that the needed tags are in user input.
+     *
+     */
     private void checkTags(String input) throws IllegalArgumentException {
         if (!input.contains("c/") || !(input.contains("f/") || input.contains("e/"))) {
             throw new IllegalArgumentException();
         }
     }
 
+    /**
+     * Checks that user has input something following tags.
+     *
+     */
     private void checkEmptyDescription(String input) throws EmptyDescriptionException {
         if (input.isBlank() || input.isEmpty()) {
             throw new EmptyDescriptionException();
         }
     }
 
+    /**
+     * Checks that user input for "c/" can be converted to an integer.
+     *
+     */
     private void checkInteger(String input) throws NumberFormatException {
         Integer.parseInt(input);
     }
 
+    /**
+     * Checks that user input a calorie between 0 and 3000.
+     *
+     */
     private void checkCalorieRange(String input) throws CalorieCountException {
-        if (Integer.parseInt(input) < 0) {
+        if (Integer.parseInt(input) < 0 || Integer.parseInt(input) > 3000) {
             throw new CalorieCountException();
         }
     }
 
+    /**
+     * Deletes any invalid/corrupted text file.
+     *
+     */
     public static void deleteInvalidSetFile(String filePath) {
         File file = new File(filePath);
         file.delete();
     }
 
+    /**
+     * Checks text file is not empty.
+     *
+     */
     public static void checkEmptyFile(String filePath) throws EmptyTextFileException {
         File file = new File(filePath);
         if (file.length() == 0) {

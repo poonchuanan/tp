@@ -225,6 +225,7 @@ public class UserProfile {
         Ui.displayAskUserNameMessage();
         String name = input();
         try {
+            assert name != null;
             checkEmptyInput(name);
             data[0] = name;
         } catch (EmptyDescriptionException e) {
@@ -251,6 +252,7 @@ public class UserProfile {
         String gender = input();
 
         try {
+            assert gender != null;
             checkEmptyInput(gender);
             checkGender(gender);
             data[1] = gender;
@@ -273,6 +275,7 @@ public class UserProfile {
         String weight = input();
 
         try {
+            assert weight != null;
             checkEmptyInput(weight);
             checkInputIsDouble(weight);
             checkWeightIsWithinRange(weight);
@@ -298,6 +301,7 @@ public class UserProfile {
         Ui.displayAskUserHeightMessage();
         String height = input();
         try {
+            assert height != null;
             checkEmptyInput(height);
             checkInputIsDouble(height);
             checkHeightIsWithinRange(height);
@@ -323,6 +327,7 @@ public class UserProfile {
         Ui.displayAskUserAgeMessage();
         String age = input();
         try {
+            assert age != null;
             checkEmptyInput(age);
             checkInputIsInt(age);
             checkAgeIsWithinRange(age);
@@ -348,6 +353,7 @@ public class UserProfile {
         Ui.displayAskUserActivityLevelMessage();
         String activityLevel = input();
         try {
+            assert activityLevel != null;
             checkEmptyInput(activityLevel);
             checkInputIsInt(activityLevel);
             checkAcLeIsWithinRange(activityLevel);
@@ -382,6 +388,7 @@ public class UserProfile {
         String weightGoal = input();
 
         try {
+            assert weightGoal != null;
             checkEmptyInput(weightGoal);
             checkWeightGoal(weightGoal);
             data[6] = weightGoal;
