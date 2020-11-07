@@ -27,9 +27,9 @@ This section gives the steps you need to get started quickly.
 
 1. Ensure that you have Java 11 or above installed, if not, it can be found [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html)
 2. Down the latest version of `trakCAL` from [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/releases)
-3. Create an empty folder in a convenient location eg. Desktop and copy jar file there
-4. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar traKCAL.jar`
-5. Upon successful run, you will get the following greeting message
+3. Create an empty folder in a convenient location eg. Desktop and copy jar file over to it.
+4. Open command window/terminal in that window and run the command `java -jar {filename}.jar` e.g., `java -jar traKCAL.jar`.
+5. Upon successful run, you will get the following greeting message.
 
 ```
 ====================================================================================
@@ -175,8 +175,6 @@ bye                    - Terminates the application
 
 ### 2.1.1 View current user profile
 
-### 2.1.2 Possible errors when creating new profile
-
 <br>
 <br>
 
@@ -309,7 +307,7 @@ Your weight has been updated to 90.
 ```
 
 Tip:
-* The parameters should conform to the same style used in `create new user`. Explanations to possible error messages can be found [here](#211-creating-a-new-user-profile).
+* The parameters should conform to the same style used in `create new user`. Explanations to possible error messages can be found [here](#221-creating-a-new-user-profile).
 
 ### 2.3.2 Possible errors when editing user profile
 
@@ -409,38 +407,81 @@ Parameters:
 >*`d/ **DATE**` is optional, if you enter add command without it, it will add to the current date list. 
 
 Examples of usage: 
-* `list` before adding *current date is 2020-10-28*
+
+1st example:
+* `list` before adding
 ```
 -----------------------------------------
-|  2020-10-28  |  Net Calorie: 30 kcal  |
+|  2020-11-07  |  Net Calorie: 30 kcal  |
 -----------------------------------------
 No.        Type                        Description                        Calories gain or lost
 -----------------------------------------------------------------------------------------------
 1          Food           apple_____________________________________________________30
 ```
 
-* `add f/ mushroom soup c/ 77 d/ 2020-10-28`
+* `add f/ mushroom soup c/ 77`
 
 ```
-=====================================================================================================
+====================================================================================
 Noted! The following has been added into list:
+====================================================================================
 [F] | mushroom soup | 77
-
+====================================================================================
 The current activity list has been saved.
-=====================================================================================================
+====================================================================================
 ```
 
 * `list` after adding
 
 ```
 ------------------------------------------
-|  2020-10-28  |  Net Calorie: 107 kcal  |
+|  2020-11-07  |  Net Calorie: 107 kcal  |
 ------------------------------------------
 No.        Type                        Description                        Calories gain or lost
 -----------------------------------------------------------------------------------------------
 1          Food           apple_____________________________________________________30
 
 2          Food           mushroom soup_____________________________________________77
+```
+
+2nd example:
+* `list` before adding
+```
+------------------------------------------
+|  2020-11-07  |  Net Calorie: 107 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple_____________________________________________________30
+
+2          Food           mushroom soup_____________________________________________77
+```
+
+* `add f/ banana cake c/ 70 d/ 2020-11-07`
+
+```
+====================================================================================
+Noted! The following has been added into list:
+====================================================================================
+[F] | banana cake | 70
+====================================================================================
+The current activity list has been saved.
+====================================================================================
+```
+
+* `list` after adding
+
+```
+------------------------------------------
+|  2020-11-07  |  Net Calorie: 177 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple_____________________________________________________30
+
+2          Food           mushroom soup_____________________________________________77
+
+3          Food           banana cake_______________________________________________70
 ```
 
 ### 4.1.2 Possible errors when adding food
@@ -466,35 +507,87 @@ Parameters:
 >*`d/ **DATE**` is optional, if you enter add command without it, it will add to the current date list. 
 
 Examples of usage: 
+
+1st example:
 * `list` before adding
 
 ```
 ------------------------------------------
-|  2020-10-28  |  Net Calorie: 107 kcal  |
+|  2020-11-07  |  Net Calorie: 177 kcal  |
 ------------------------------------------
 No.        Type                        Description                        Calories gain or lost
 -----------------------------------------------------------------------------------------------
 1          Food           apple_____________________________________________________30
 
 2          Food           mushroom soup_____________________________________________77
+
+3          Food           banana cake_______________________________________________70
 ```
 
-* `add e/ jumping c/ 65 d/ 2020-10-28`
+* `add e/ jumping c/ 65`
 
 ```
-=====================================================================================================
+====================================================================================
 Noted! The following has been added into list:
+====================================================================================
 [E] | jumping | 65
-
+====================================================================================
 The current activity list has been saved.
-=====================================================================================================
+====================================================================================
+```
+
+* `list` after adding
+
+```
+------------------------------------------
+|  2020-11-07  |  Net Calorie: 112 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple_____________________________________________________30
+
+2          Food           mushroom soup_____________________________________________77
+
+3          Food           banana cake_______________________________________________70
+
+4        Exercise         jumping___________________________________________________65
+```
+
+2nd example:
+* `list` before adding
+
+```
+------------------------------------------
+|  2020-11-07  |  Net Calorie: 112 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           apple_____________________________________________________30
+
+2          Food           mushroom soup_____________________________________________77
+
+3          Food           banana cake_______________________________________________70
+
+4        Exercise         jumping___________________________________________________65
+```
+
+* `add e/ jumping c/ 65`
+
+```
+====================================================================================
+Noted! The following has been added into list:
+====================================================================================
+[E] | brisk walking | 20
+====================================================================================
+The current activity list has been saved.
+====================================================================================
 ```
 
 * `list` after adding
 
 ```
 -----------------------------------------
-|  2020-10-28  |  Net Calorie: 42 kcal  |
+|  2020-11-07  |  Net Calorie: 92 kcal  |
 -----------------------------------------
 No.        Type                        Description                        Calories gain or lost
 -----------------------------------------------------------------------------------------------
@@ -502,7 +595,11 @@ No.        Type                        Description                        Calori
 
 2          Food           mushroom soup_____________________________________________77
 
-3        Exercise         jumping___________________________________________________65
+3          Food           banana cake_______________________________________________70
+
+4        Exercise         jumping___________________________________________________65
+
+5        Exercise         brisk walking_____________________________________________20
 ```
 
 ### 4.2.2 Possible errors when adding exercise
@@ -610,11 +707,13 @@ Parameters:
 * `**CALORIE_COUNT**`: New amount of calories consumed.
 
 Example of usage:
+
+1st example:
 * `list` before editing
 
 ```
 -----------------------------------------
-|  2020-10-28  |  Net Calorie: 42 kcal  |
+|  2020-11-07  |  Net Calorie: 92 kcal  |
 -----------------------------------------
 No.        Type                        Description                        Calories gain or lost
 -----------------------------------------------------------------------------------------------
@@ -622,25 +721,30 @@ No.        Type                        Description                        Calori
 
 2          Food           mushroom soup_____________________________________________77
 
-3        Exercise         jumping___________________________________________________65
+3          Food           banana cake_______________________________________________70
+
+4        Exercise         jumping___________________________________________________65
+
+5        Exercise         brisk walking_____________________________________________20
 ```
 
 * `edita 1 f/ orange c/ 35`
 
 ```
-=====================================================================================================
+====================================================================================
 Noted! The following has been edited:
+====================================================================================
 [F] | orange | 35
-
+====================================================================================
 The current activity list has been saved.
-=====================================================================================================
+====================================================================================
 ```
 
 * `list` after editing
 
 ```
 -----------------------------------------
-|  2020-10-28  |  Net Calorie: 77 kcal  |
+|  2020-11-07  |  Net Calorie: 97 kcal  |
 -----------------------------------------
 No.        Type                        Description                        Calories gain or lost
 -----------------------------------------------------------------------------------------------
@@ -648,7 +752,62 @@ No.        Type                        Description                        Calori
 
 2          Food           mushroom soup_____________________________________________77
 
-3        Exercise         jumping___________________________________________________65
+3          Food           banana cake_______________________________________________70
+
+4        Exercise         jumping___________________________________________________65
+
+5        Exercise         brisk walking_____________________________________________20
+```
+
+2nd example:
+* `list` before editing
+
+```
+-----------------------------------------
+|  2020-11-07  |  Net Calorie: 97 kcal  |
+-----------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           orange____________________________________________________35
+
+2          Food           mushroom soup_____________________________________________77
+
+3          Food           banana cake_______________________________________________70
+
+4        Exercise         jumping___________________________________________________65
+
+5        Exercise         brisk walking_____________________________________________20
+```
+
+* `edita 3 e/ 50 sit ups c/ 75`
+
+```
+====================================================================================
+Noted! The following has been edited:
+====================================================================================
+[E] | 50 sit ups | 75
+====================================================================================
+The current activity list has been saved.
+====================================================================================
+```
+
+* `list` after editing
+
+```
+------------------------------------------
+|  2020-11-07  |  Net Calorie: -48 kcal  |
+------------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           orange____________________________________________________35
+
+2          Food           mushroom soup_____________________________________________77
+
+3        Exercise         50 sit ups________________________________________________75
+
+4        Exercise         jumping___________________________________________________65
+
+5        Exercise         brisk walking_____________________________________________20
 ```
 
 ### 6.1.2 Possible errors when editing
@@ -993,9 +1152,9 @@ Chaining is the right feature for your needs!
 
 > Do note
 >* Chaining is only available to 3 features
->* [list](#50-list), [add](#40-add) and [edita](#621-editing-an-entry-in-list)
+>* [list](#50-list), [add](#40-add) and [edita](#611-editing-an-entry-in-list)
 >* The respective things to adhere to for each feature still applies.
->* For example, [edita](#621-editing-an-entry-in-list), you MUST call out the list you want to edit on before editing on it.
+>* For example, [edita](#611-editing-an-entry-in-list), you MUST call out the list you want to edit on before editing on it.
 
 Format: *not extensive, there is a lot of combinations available*
         *commands just need to be separated by `&&`*
@@ -1007,10 +1166,87 @@ Examples of the possible format:
 >`list <**DATE**> && list <**DATE**> && list <**DATE**>`
 
 Examples of usage: 
+
+1st example:
 * `add f/ ice cream c/ 90 && add e/ running c/ 50 && list`
 
 ```
+====================================================================================
+Noted! The following has been added into list:
+====================================================================================
+[F] | ice cream | 90
+====================================================================================
+The current activity list has been saved.
+====================================================================================
 
+====================================================================================
+Noted! The following has been added into list:
+====================================================================================
+[E] | running | 50
+====================================================================================
+The current activity list has been saved.
+====================================================================================
+
+-----------------------------------------
+|  2020-11-07  |  Net Calorie: -8 kcal  |
+-----------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           orange____________________________________________________35
+
+2          Food           mushroom soup_____________________________________________77
+
+3        Exercise         50 sit ups________________________________________________75
+
+4        Exercise         jumping___________________________________________________65
+
+5        Exercise         brisk walking_____________________________________________20
+
+6          Food           ice cream_________________________________________________90
+
+7        Exercise         running___________________________________________________50
+```
+
+2nd example:
+* `add f/ ice cream c/ 90 d/ 2020-11-07 && list && edita 7 e/ walking c/ 15`
+
+```
+====================================================================================
+Noted! The following has been added into list:
+====================================================================================
+[F] | ice cream | 90
+====================================================================================
+The current activity list has been saved.
+====================================================================================
+
+-----------------------------------------
+|  2020-11-07  |  Net Calorie: 82 kcal  |
+-----------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           orange____________________________________________________35
+
+2          Food           mushroom soup_____________________________________________77
+
+3        Exercise         50 sit ups________________________________________________75
+
+4        Exercise         jumping___________________________________________________65
+
+5        Exercise         brisk walking_____________________________________________20
+
+6          Food           ice cream_________________________________________________90
+
+7        Exercise         running___________________________________________________50
+
+8          Food           ice cream_________________________________________________90
+
+====================================================================================
+Noted! The following has been edited:
+====================================================================================
+[E] | walking | 15
+====================================================================================
+The current activity list has been saved.
+====================================================================================
 ```
 
 ### 11.1.2 Possible errors when chaining - advanced
@@ -1043,19 +1279,19 @@ Example of usage:
 # Frequently asked questions
 This section answers questions you may have.
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: How do you transfer your data to another computer? 
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
 
-**Q**: How do I know if the data I have input is saved?
+**Q**: How do you know if the data you have input is saved?
 
 **A**: **traKCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
-**Q**: Is traKCAL optimized for all OS?
+**Q**: Is traKCAL optimized for all operating systems?
 
 **A**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
 
-**Q**: How do I raise an issue if I have doubts or have issues to raise?
+**Q**: How do you contact us if you have doubts or have issues to raise?
 
 **A**: We can be reached either via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
 

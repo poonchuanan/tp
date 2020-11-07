@@ -18,9 +18,9 @@ import static seedu.duke.ui.Ui.drawDivider;
 public class EditFoodCommand extends Command {
     protected int index;
     protected Food food;
-    protected LocalDate date;
     protected String description;
     protected int calories;
+    protected LocalDate date;
 
 
     /**
@@ -39,8 +39,7 @@ public class EditFoodCommand extends Command {
     @Override
     public void execute() {
         try {
-            ActivityList lastSeenList = dayMap.getLastSeenList();
-            LocalDate dateOfActivityToBeEdited = lastSeenList.getDateOfActivityAtIndex(index);
+            LocalDate dateOfActivityToBeEdited = dayMap.getDateFromLastSeenListAtIndex(index);
             displayEditMessage();
             this.food = new Food(description, calories, dateOfActivityToBeEdited, false);
             dayMap.insertActivity(index, food);

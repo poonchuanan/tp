@@ -239,9 +239,7 @@ public class Ui {
     }
 
     public static void displayMessage(String message) {
-        drawDivider();
         print(message);
-        drawDivider();
         print("Noted! The following has been added into list:");
     }
 
