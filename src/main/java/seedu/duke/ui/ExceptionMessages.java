@@ -90,10 +90,10 @@ public class ExceptionMessages {
      */
     public static void displayFindErrorMessage() {
         print("I do not understand what you mean!\n"
-                + "The input format for finding food or exercise activity\n\tvia keyword is 'find d/ X'"
-                + " - where keyword is X\n"
-                + "The input format for finding calorie count\n\tvia keyword is 'find c/ X'"
-                + " - where calories count is X\n"
+                + "The input format for finding food or exercise activity\n\tvia keyword is 'find d/ DESCRIPTION'"
+                + " - where keyword is DESCRIPTION\n"
+                + "The input format for finding calorie count\n\tvia keyword is 'find c/ CALORIE_COUNT'"
+                + " - where calories count is CALORIE_COUNT\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -142,7 +142,7 @@ public class ExceptionMessages {
      */
     public static void displayDateTimeExceptionMessage() {
         print("Sorry, I do not understand!\n"
-                + "The input format of date is YYYY-MM-DD!");
+                + "The input format of date is YYYY-MM-DD!\n");
     }
 
     /**
@@ -163,9 +163,7 @@ public class ExceptionMessages {
      * Prints out error message when invalid gender input.
      */
     public static void displayInvalidGenderMessage() {
-        drawDivider();
         print("Please input female or male as gender only!");
-        drawDivider();
         System.out.println();
     }
 
@@ -173,9 +171,7 @@ public class ExceptionMessages {
      * Prints out error message when invalid weight goal input.
      */
     public static void displayInvalidWeightGoalMessage() {
-        drawDivider();
         print("Please input lose or maintain or gain as weight goal only!");
-        drawDivider();
         System.out.println();
     }
 
@@ -183,9 +179,7 @@ public class ExceptionMessages {
      * Prints out error message when invalid weight input.
      */
     public static void displayInvalidWeightMessage() {
-        drawDivider();
         print("Please enter a valid weight format!");
-        drawDivider();
         System.out.println();
     }
 
@@ -193,9 +187,7 @@ public class ExceptionMessages {
      * Prints out error message when invalid height input.
      */
     public static void displayInvalidHeightMessage() {
-        drawDivider();
         print("Please enter a valid height format!");
-        drawDivider();
         System.out.println();
     }
 
@@ -203,9 +195,7 @@ public class ExceptionMessages {
      * Prints out error message when invalid age input.
      */
     public static void displayInvalidAgeMessage() {
-        drawDivider();
         print("Please enter a valid age!");
-        drawDivider();
         System.out.println();
     }
 
@@ -213,11 +203,9 @@ public class ExceptionMessages {
      * Prints out error message when invalid activity level input.
      */
     public static void displayInvalidActivityLevelMessage() {
-        drawDivider();
         print("Sorry this is an invalid activity factor!\n"
-                + "Please enter an integer from 1 to 5, with 1 being the least "
+                + "Please enter an integer from 1 to 5, with 1 being the least\n"
                 + "active and 5 being the most active");
-        drawDivider();
         System.out.println();
     }
 
@@ -233,7 +221,8 @@ public class ExceptionMessages {
      * Prints out error message when a shortcut has not been created in addSet command.
      */
     public static void displayShortcutDoesNotExistMessage() {
-        print("This shortcut does not exists, please create a shortcut before adding it!");
+        print("This shortcut does not exists!\n"
+                + "Please create a shortcut before adding it!");
     }
 
     /**

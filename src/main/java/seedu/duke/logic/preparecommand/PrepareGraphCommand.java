@@ -4,6 +4,9 @@ import seedu.duke.Trakcal;
 import seedu.duke.command.Command;
 import seedu.duke.command.GraphCommand;
 
+/**
+ * Prepares graph command.
+ */
 public class PrepareGraphCommand extends PrepareCommand {
 
     public PrepareGraphCommand(String[] description) {

@@ -21,6 +21,12 @@ public class Ui {
             + "==========================================";
 
     /**
+     * Help list divider.
+     */
+    public static final String HELPLIST_DIVIDER = "============================================================"
+            + "========================================";
+
+    /**
      * logo of application and the welcoming message.
      */
     private static final String LOGO =
@@ -51,27 +57,40 @@ public class Ui {
      * Prints out help list showing the commands available.
      */
     public static void displayHelpMessage() {
+        System.out.println(HELPLIST_DIVIDER);
         String helpList = "This section displays the commands available and their respective input format.\n"
                 + "> Words in CAPS are parameters to be filled in by you!\n"
+                + "> Variables in <here> are optional!"
                 + "\n"
                 + "Viewing help:\n"
                 + "help                   - Prints out commands available and their input format\n"
                 + "\n"
-                + "Creating:\n"
-                + "create new user        - Creates a new user profile\n"
+                + "User Profiling\n"
+                + "user l/                - Prints out current user profile\n"
+                + "user c/                - Creates new user profile\n"
+                + "user e/ <n/ NAME> <g/ GENDER> <w/ WEIGHT> <h/ HEIGHT> <age/ AGE> <al/ ACTIVITY_LEVEL> <goal/ GOAL>\n"
+                + "                       - Edits user profile to name, NAME, gender(male/female), GENDER,\n"
+                + "                         height(in cm), HEIGHT, age, AGE, activity level(1-5), ACTIVITY_LEVEL,\n"
+                + "                         goal(lose/maintain/gain), GOAL\n"
                 + "\n"
-                + "Shortcut:\n"
-                + "--createSet is not extensive[TO BE EDITED]--\n"
+                + "Creating shortcut:\n"
+                + "[this command is extensive, there are a lot of variations. The following is one such example]\n"
                 + "createSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT +\n"
-                + "e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT + ...\n"
-                + "                       - Creates shortcut for adding food(s) and/or exercise(s) depending on the\n"
-                + "                         format entered\n"
-                + "addSet SHORTCUT_NAME   - Adds SHORTCUT_NAME into current date list\n"
+                + "e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT\n"
+                + "                       - Creates shortcut for adding food(s) and/or exercise(s)\n"
+                + "                         depending on the format entered\n"
+                + "addSet SHORTCUT_NAME   - Adds SHORTCUT_NAME that was created through createSet into today's list\n"
                 + "\n"
                 + "Adding:\n"
+                + "add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT\n"
+                + "                       - Adds food consumed, FOOD_DESCRIPTION and calories gained, CALORIE_COUNT\n"
+                + "                         to today's date\n"
                 + "add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
                 + "                       - Adds food consumed, FOOD_DESCRIPTION, calories gained, CALORIE_COUNT\n"
                 + "                         and date(YYYY-MM-DD), DATE\n"
+                + "add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT\n"
+                + "                       - Adds exercise done, EXERCISE_DESCRIPTION and calories lost, CALORIE_COUNT\n"
+                + "                         to today's date\n"
                 + "add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE\n"
                 + "                       - Adds exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT\n"
                 + "                         and date(YYYY-MM-DD), DATE\n"
@@ -115,9 +134,13 @@ public class Ui {
                 + "graph                  - Generates a graph of target calorie and net calorie obtained up to\n"
                 + "                         last 7 days\n"
                 + "\n"
+                + "Chaining:\n"
+                + "\n"
                 + "Exiting:\n"
                 + "bye                    - Terminates the application\n";
-        print(helpList);
+        System.out.print(helpList);
+        System.out.println(HELPLIST_DIVIDER);
+        System.out.println();
     }
 
     /**

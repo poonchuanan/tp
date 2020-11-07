@@ -27,6 +27,9 @@ import static seedu.duke.Trakcal.calList;
 import static seedu.duke.Trakcal.executeCmd;
 import static seedu.duke.Trakcal.storage;
 
+/**
+ * Prepares add set command.
+ */
 public class PrepareAddSetCommand extends PrepareCommand {
 
     public PrepareAddSetCommand(String[] description) {

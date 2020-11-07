@@ -8,6 +8,9 @@ import java.time.format.DateTimeParseException;
 
 import static seedu.duke.ui.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
 
+/**
+ * Prepares list command.
+ */
 public class PrepareListCommand extends PrepareCommand {
 
 

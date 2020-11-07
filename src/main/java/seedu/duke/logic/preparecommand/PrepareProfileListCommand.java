@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Prepares user profile.
+ */
 public class PrepareProfileListCommand extends PrepareCommand {
     public PrepareProfileListCommand(String[] description) {
         super(description);
