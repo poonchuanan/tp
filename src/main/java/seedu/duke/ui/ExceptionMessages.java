@@ -345,4 +345,8 @@ public class ExceptionMessages {
     public static void displayShortageOfArguments() {
         print("This command has missing description!");
     }
+
+    public static void displayEmptyListError() {
+        print("List is empty!");
+    }
 }
