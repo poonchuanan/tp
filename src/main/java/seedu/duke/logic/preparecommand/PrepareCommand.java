@@ -150,7 +150,7 @@ public abstract class PrepareCommand {
      * @throws DescriptionLengthExceedException if description exceeds range
      */
     protected boolean isDescriptionLengthWithinRange(String description) throws DescriptionLengthExceedException {
-        if (description.length() >= MAXIMUM_DESCRIPTION_LENGTH) {
+        if (description.length() > MAXIMUM_DESCRIPTION_LENGTH) {
             throw new DescriptionLengthExceedException();
         } else {
             return true;

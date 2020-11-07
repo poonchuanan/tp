@@ -299,7 +299,7 @@ public class ExceptionMessages {
      */
     public static void displayDateLimitExceptionMessage() {
         String dateLimitExceptionMessage = "You have exceeded the accepted date range!\n"
-                + "Date input has to be from 2020-11-01 to current date!";
+                + "Date input has to be from 2020-10-14 to current date!";
         print(dateLimitExceptionMessage);
     }
 

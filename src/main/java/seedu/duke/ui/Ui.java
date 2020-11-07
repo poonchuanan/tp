@@ -146,7 +146,6 @@ public class Ui {
                 + "bye                    - Terminates the application\n";
         System.out.print(helpList);
         System.out.println(HELPLIST_DIVIDER);
-        System.out.println();
     }
 
     /**

@@ -414,9 +414,85 @@ The current activity list has been saved.
 ```
 
 ### 3.2.2 Possible errors when adding set
+#### Missing tags
+If you have missing tags, such as missing calorie tag, an error would occur
+> the following would be printed out if you input `add f/ jelly c/ 70 d/ 2020-10-13`
 
 ```
+====================================================================================
+Calorie count tag[c/] is missing in your input!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
 
+<br>
+
+#### Activity date is before application launch date or after today's date
+If your entry is before 2020-10-14 or after today's date, an error would occur
+> the following would be printed out if you input `add f/ jelly d/ 2020-11-07`
+>
+```
+====================================================================================
+You have exceeded the accepted date range!
+Date input has to be from 2020-10-14 to current date!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+<br>
+
+#### Calorie count exceeds acceptable range
+If your calorie count is <= 0 or > 3000, an error would occur
+> the following would be printed out if you input `add f/ jelly c/ -30`
+
+```
+====================================================================================
+Calorie count should be > 0 and <= 3000!
+Please input a valid calorie count that is within the range!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+<br>
+
+#### Description length exceeds acceptable range
+If the description you input has more than 40 characters, an error would occur
+> the following would be printed out if you input `add e/ jumping up and down in a merry round in Singapore c/ 80`
+
+```
+====================================================================================
+Maximum description length is 40 characters only!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+<br>
+
+#### Empty inputs are not accepted
+If any of the paramters input by you is empty, an error would occur
+> the following would be printed out if you input `add e/ c/ `
+
+```
+====================================================================================
+Current description is empty!
+Please input a valid description that is not empty!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
 ```
 
 <br>
