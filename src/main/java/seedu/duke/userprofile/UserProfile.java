@@ -501,13 +501,13 @@ public class UserProfile {
      */
     public static InitialiseUserProfile loadProfile() {
         String[] data = new String[7];
-        ArrayList<String> previous = UserInfoStorage.update();
+        ArrayList<String> previousInput = UserInfoStorage.update();
 
 
         for (int i = 0; i < 7; i++) {
             try {
-                if (!previous.get(i).isEmpty()) {
-                    data[i] = previous.get(i);
+                if (!previousInput.get(i).isEmpty()) {
+                    data[i] = previousInput.get(i);
                 } else {
                     throw new NullPointerException();
                 }
