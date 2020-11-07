@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 
-public class Userinfotextfilestorage {
+public class UserInfoStorage {
     private static final String PATH = new File("").getAbsolutePath();
     public static final String FILE_PATH = PATH + "/tp.txt";
 
@@ -43,11 +43,11 @@ public class Userinfotextfilestorage {
     }
 
     private static void createDataFile() throws IOException {
-        File file = new File(Userinfotextfilestorage.PATH);
+        File file = new File(UserInfoStorage.PATH);
         boolean isDirCreated = file.mkdir();
 
         if (isDirCreated) {
-            file = new File(Userinfotextfilestorage.PATH + "/tp.txt");
+            file = new File(UserInfoStorage.PATH + "/tp.txt");
             file.createNewFile();
         }
     }

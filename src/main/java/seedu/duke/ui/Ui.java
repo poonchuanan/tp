@@ -171,47 +171,48 @@ public class Ui {
      * Prints out message asking for gender.
      */
     public static void displayAskUserGenderMessage() {
-        System.out.println("What is your gender (male/female)?");
+        print("What is your gender (male/female)?");
     }
 
     /**
      * Prints out message asking for weight goal.
      */
     public static void displayAskUserWeightGoalMessage() {
-        System.out.println("Do you wish to lose/maintain/gain weight?");
+        print("Do you wish to lose/maintain/gain weight?");
     }
 
     /**
      * Prints out message asking for weight.
      */
     public static void displayAskUserWeightMessage() {
-        System.out.println("What is your weight in kg?");
+        print("What is your weight in kg?");
     }
 
     /**
      * Prints out message asking for height.
      */
     public static void displayAskUserHeightMessage() {
-        System.out.println("What is your height in cm?");
+
+        print("What is your height in cm?");
     }
 
     /**
      * Prints out message asking for age.
      */
     public static void displayAskUserAgeMessage() {
-        System.out.println("What is your age?");
+        print("What is your age?");
     }
 
     /**
      * Prints out message asking for activity level.
      */
     public static void displayAskUserActivityLevelMessage() {
-        System.out.println("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.");
+        print("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.");
     }
 
     public static void displayMessage(String message) {
         drawDivider();
-        System.out.println(message);
+        print(message);
         drawDivider();
         print("Noted! The following has been added into list:");
     }
@@ -220,60 +221,70 @@ public class Ui {
      * Prints out edited name.
      */
     public static void displayEditNameMessage() {
-        System.out.print("Your name has been updated to ");
+        print("Your name has been updated to ");
     }
 
     /**
      * Prints out edited gender.
      */
     public static void displayEditGenderMessage() {
-        System.out.print("Your gender has been updated to ");
+        print("Your gender has been updated to ");
     }
 
     /**
      * Prints out edited weight.
      */
     public static void displayEditWeightMessage() {
-        System.out.print("Your weight has been updated to ");
+        print("Your weight has been updated to ");
     }
 
     /**
      * Prints out the edited height.
      */
     public static void displayEditHeightMessage() {
-        System.out.print("Your height has been updated to ");
+        print("Your height has been updated to ");
     }
 
     /**
      * Prints out the edited age.
      */
     public static void displayEditAgeMessage() {
-        System.out.print("Your age has been updated to ");
+        print("Your age has been updated to ");
     }
 
     /**
      * Prints out edited activity level.
      */
     public static void displayEditActivityLevelMessage() {
-        System.out.print("Your activity level has been updated to ");
+        print("Your activity level has been updated to ");
     }
 
     /**
      * Printed updated goal.
      */
     public static void displayEditGoalMessage() {
-        System.out.print("Your weight goal has been updated to ");
+        print("Your weight goal has been updated to ");
     }
 
     /**
      * Prints out welcoming message to the user.
      */
     public static void displayReturningUserMessage() {
-        System.out.println("Welcome! What would you like to do today?\n");
+        print("Welcome! What would you like to do today?");
     }
 
+    /**
+     * Prints out message asking for name.
+     */
     public static void displayAskUserNameMessage() {
-        System.out.println("What is your name?");
+        print("What is your name?");
+    }
+
+    /**
+     * Prints out confirmation message for addSet.
+     */
+    public static void displayAddSetConfirmationMessage() {
+        print("We are attempting to add activities listed in this shortcut.");
     }
 
 }

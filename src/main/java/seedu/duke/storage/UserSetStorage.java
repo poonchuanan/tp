@@ -1,59 +1,96 @@
 package seedu.duke.storage;
 
-//import java.io.;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
+import static seedu.duke.ui.ExceptionMessages.displayMissingAddSetInfoMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieMessage;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidCreateSetCommandMessage;
+import static seedu.duke.ui.ExceptionMessages.displayIncompleteSetMessage;
+import static seedu.duke.ui.ExceptionMessages.displayCalorieMustBeIntegerMessage;
+import static seedu.duke.ui.ExceptionMessages.displayMissingFileNameMessage;
+
+import seedu.duke.exception.EmptyDescriptionException;
+import seedu.duke.exception.FileAlreadyExistException;
+import seedu.duke.exception.InvalidCalorieException;
+import seedu.duke.exception.InvalidCreateSetCommandException;
+import seedu.duke.exception.NoFileNameException;
 import seedu.duke.ui.Ui;
+
+import static seedu.duke.ui.ExceptionMessages.displayExistingShortcutMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
-import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieEntryMessage;
-import static seedu.duke.ui.ExceptionMessages.displayExistingFileMessage;
 
 public class UserSetStorage {
     private static final String PATH = new File("").getAbsolutePath();
+    private static final Integer MAX_CALORIES = 3000;
+    private static final Integer MIN_CALORIES = 0;
+    private static final String WHITE_SPACE = " ";
+    private static final String FOOD_TAG = "/f";
+    private static final String CALORIE_TAG = "c/";
+    private static final String EXERCISE_TAG = "e/";
 
     public static void prepareNewSet(String userInput) {
-        String fileName = userInput.substring(0, userInput.indexOf("/") - 2);
-        createNewTextFile("/" + fileName + ".txt", userInput.substring(userInput.indexOf("/") - 1));
+        try {
+            checkFileNamePresent(userInput);
+            String fileName = userInput.substring(0, userInput.indexOf("/") - 2);
+
+            createNewTextFile("/" + fileName + ".txt", userInput.substring(userInput.indexOf("/") - 1));
+        } catch (NoFileNameException e) {
+            displayMissingFileNameMessage();
+        }
     }
 
     public static void createNewTextFile(String fileName, String toTrim) {
         String filePath = PATH + fileName;
-        File file = new File(filePath);
 
         try {
-            boolean isFileCreated = file.createNewFile();
-            if (!isFileCreated) {
-                file.createNewFile();
-            }
+            checkExistingFile(filePath);
+            File file = new File(filePath);
+            file.createNewFile();
+
         } catch (IOException e) {
             displayIoExceptionMessage();
+        } catch (FileAlreadyExistException e) {
+            displayExistingShortcutMessage();
+            return;
         }
         updateTextFile(filePath, toTrim);
+    }
+
+    public static void deleteInvalidSetFile(String filePath) {
+        File file = new File(filePath);
+        file.delete();
     }
 
     public static void updateTextFile(String path, String toTrim) {
         try {
             FileOutputStream fos = new FileOutputStream(path);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+
             String[] activity = toTrim.split("\\+");
             int index = 1;
 
             for (String s : activity) {
-                if (s.startsWith(" ")) {
+                checkActivityAndCalorieTag(s);
+                while (s.startsWith(WHITE_SPACE)) {
                     s = s.substring(1);
                 }
 
-                if (s.endsWith(" ")) {
+                while (s.endsWith(WHITE_SPACE)) {
                     s = s.substring(0, s.length() - 1);
                 }
 
                 bw.write(s);
-                String calories = s.substring(s.indexOf("c/") + 2);
+                String calories = s.substring(s.indexOf(CALORIE_TAG) + 2);
+                String description = s.substring(2,s.indexOf(CALORIE_TAG) - 1);
+
+                checkEmptyDescription(description);
+                checkEmptyDescription(calories);
+                checkCalorieType(calories);
+                checkValidCalorieRange(calories);
                 Integer.parseInt(calories);
 
                 if (index == 1) {
@@ -61,27 +98,77 @@ public class UserSetStorage {
                     System.out.println("You have created a shortcut containing:");
                 }
 
-                if (s.startsWith("f/")) {
-                    System.out.println(index + ". " + "Food: " + s.substring(2,s.indexOf("c/") - 1)
+                if (s.startsWith(FOOD_TAG)) {
+                    System.out.println(index + ". " + "Food: " + s.substring(2,s.indexOf(CALORIE_TAG) - 1)
                             + ", Calories: " + calories);
-                } else if (s.startsWith("e/")) {
-                    System.out.println(index + ". " + "Exercise: " + s.substring(2,s.indexOf("c/") - 1)
+                } else if (s.startsWith(EXERCISE_TAG)) {
+                    System.out.println(index + ". " + "Exercise: " + s.substring(2,s.indexOf(CALORIE_TAG) - 1)
                             + ", Calories: " + calories);
                 }
-                index++;
 
+                index++;
                 bw.newLine();
             }
 
             Ui.drawDivider();
+            System.out.println();
             bw.close();
 
-        } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println("There is no such set! Please create a new one first.\n");
         } catch (IOException e) {
-            displayExistingFileMessage();
+            displayIncompleteSetMessage();
+            deleteInvalidSetFile(path);
+        } catch (InvalidCreateSetCommandException e) {
+            displayInvalidCreateSetCommandMessage();
+            displayIncompleteSetMessage();
+            deleteInvalidSetFile(path);
+        } catch (InvalidCalorieException e) {
+            displayInvalidCalorieMessage();
+            displayIncompleteSetMessage();
+            deleteInvalidSetFile(path);
+        } catch (EmptyDescriptionException e) {
+            displayMissingAddSetInfoMessage();
+            displayIncompleteSetMessage();
+            deleteInvalidSetFile(path);
         } catch (NumberFormatException e) {
-            displayInvalidCalorieEntryMessage();
+            displayCalorieMustBeIntegerMessage();
+            displayIncompleteSetMessage();
+            deleteInvalidSetFile(path);
+        }
+    }
+
+    private static void checkEmptyDescription(String description) throws EmptyDescriptionException {
+        if (description.isBlank() || description.isEmpty()) {
+            throw new EmptyDescriptionException();
+        }
+    }
+
+    private static void checkExistingFile(String fileName) throws FileAlreadyExistException {
+        File file = new File(fileName);
+        if (file.exists()) {
+            throw new FileAlreadyExistException();
+        }
+    }
+
+    private static void checkActivityAndCalorieTag(String input) throws InvalidCreateSetCommandException {
+        if (!input.contains(CALORIE_TAG) || !(input.contains(FOOD_TAG) || input.contains(EXERCISE_TAG))) {
+            throw new InvalidCreateSetCommandException();
+        }
+    }
+
+    private static void checkValidCalorieRange(String input) throws InvalidCalorieException {
+        int calories = Integer.parseInt(input);
+        if (calories < MIN_CALORIES || calories > MAX_CALORIES) {
+            throw new InvalidCalorieException();
+        }
+    }
+
+    private static void checkCalorieType(String input) throws NumberFormatException {
+        Integer.parseInt(input);
+    }
+
+    private static void checkFileNamePresent(String input) throws NoFileNameException {
+        if (input.indexOf(FOOD_TAG) == 1 || input.indexOf(EXERCISE_TAG) == 1) {
+            throw new NoFileNameException();
         }
     }
 }
