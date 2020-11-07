@@ -4,6 +4,8 @@ import seedu.duke.command.Command;
 import seedu.duke.command.CreateNewUserCommand;
 import seedu.duke.exception.InvalidNumberOfArguments;
 
+import static seedu.duke.ui.ExceptionMessages.displayShortageOfArguments;
+
 public class PrepareUserCommand extends PrepareCommand {
     private static final int ARGUMENT_LIMIT = 2;
 
@@ -16,16 +18,16 @@ public class PrepareUserCommand extends PrepareCommand {
         try {
             isNumberOfArgumentsValid(ARGUMENT_LIMIT);
         } catch (InvalidNumberOfArguments e) {
-            System.out.println("Arguments are not valid!");
+            displayShortageOfArguments();
         }
         String[] input = description[1].split(" ", 2);
         PrepareCommand command;
 
         switch (input[0].trim()) {
         case "l/":
-            return new PrepareProfileListCommand(input).prepareCommand();
+            return new PrepareUserListCommand(input).prepareCommand();
         case "c/":
-            return new CreateNewUserCommand();
+            return new PrepareCreateNewUserCommand(input).prepareCommand();
         case "e/":
             return new PrepareEditUserProfile(input).prepareCommand();
         default:

@@ -3,7 +3,6 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.CreateNewRepeatedSet;
-import seedu.duke.command.CreateNewUserCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.logic.preparecommand.PrepareAddCommand;
 import seedu.duke.logic.preparecommand.PrepareAddSetCommand;
@@ -16,7 +15,7 @@ import seedu.duke.logic.preparecommand.PrepareGraphCommand;
 import seedu.duke.logic.preparecommand.PrepareHelpCommand;
 import seedu.duke.logic.preparecommand.PrepareListCommand;
 import seedu.duke.logic.preparecommand.PrepareMoveIndexCommand;
-import seedu.duke.logic.preparecommand.PrepareProfileListCommand;
+import seedu.duke.logic.preparecommand.PrepareUserListCommand;
 import seedu.duke.logic.preparecommand.PrepareUserCommand;
 
 import java.io.IOException;
@@ -72,7 +71,7 @@ public class CommandParser extends Parser {
             case "list":
                 return new PrepareListCommand(arguments).prepareCommand();
             case "listup":
-                return new PrepareProfileListCommand(arguments).prepareCommand();
+                return new PrepareUserListCommand(arguments).prepareCommand();
             case "help":
                 return new PrepareHelpCommand(arguments).prepareCommand();
             case "move":

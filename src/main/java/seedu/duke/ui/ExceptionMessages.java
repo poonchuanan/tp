@@ -349,4 +349,8 @@ public class ExceptionMessages {
     public static void displayEmptyListError() {
         print("List is empty!");
     }
+
+    public static void displayFileError() {
+        print("Unable to read/write file");
+    }
 }
