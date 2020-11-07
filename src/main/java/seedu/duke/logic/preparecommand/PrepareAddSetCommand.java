@@ -7,6 +7,8 @@ import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.exception.EmptyTextFileException;
 import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.ui.ExceptionMessages;
+import seedu.duke.ui.Ui;
+
 import static seedu.duke.ui.ExceptionMessages.displayMissingAddSetInfoMessage;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCreateSetCommandMessage;
@@ -59,6 +61,7 @@ public class PrepareAddSetCommand extends PrepareCommand {
                     checkEmptyDescription(calories);
                     checkInteger(calories);
                     checkCalorieRange(calories);
+                    Ui.displayAddSetConfirmationMessage();
                     CommandParser parser = new CommandParser("add " + line + " d/ " + strDate);
                     Command cmd = parser.parseArgument();
                     executeCmd(cmd);

@@ -272,8 +272,18 @@ public class Ui {
         System.out.println("Welcome! What would you like to do today?\n");
     }
 
+    /**
+     * Prints out message asking for name.
+     */
     public static void displayAskUserNameMessage() {
         System.out.println("What is your name?");
+    }
+
+    /**
+     * Prints out confirmation message for addSet.
+     */
+    public static void displayAddSetConfirmationMessage() {
+        System.out.println("We are attempting to add activities listed in this shortcut.");
     }
 
 }
