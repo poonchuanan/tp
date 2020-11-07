@@ -62,16 +62,12 @@ public class CommandParser extends Parser {
                 return new PrepareAddSetCommand(arguments).prepareCommand();
             case "find":
                 return new PrepareFindCommand(arguments).prepareCommand();
-            case "edit":
-                return new PrepareEditUserProfile(arguments).prepareCommand();
             case "edita":
                 return new PrepareEditCommand(arguments).prepareCommand();
             case "delete":
                 return new PrepareDeleteCommand(arguments).prepareCommand();
             case "list":
                 return new PrepareListCommand(arguments).prepareCommand();
-            case "listup":
-                return new PrepareUserListCommand(arguments).prepareCommand();
             case "help":
                 return new PrepareHelpCommand(arguments).prepareCommand();
             case "move":
