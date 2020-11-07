@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
-import static seedu.duke.ui.ExceptionMessages.displayEmptyDescriptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayMissingAddSetInfoMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCreateSetCommandMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIncompleteSetMessage;
@@ -28,8 +28,9 @@ public class UserSetStorage {
 
     public static void prepareNewSet(String userInput) {
         try {
-            String fileName = userInput.substring(0, userInput.indexOf("/") - 1);
-            checkFileNamePresent(fileName);
+            checkFileNamePresent(userInput);
+            String fileName = userInput.substring(0, userInput.indexOf("/") - 2);
+
             createNewTextFile("/" + fileName + ".txt", userInput.substring(userInput.indexOf("/") - 1));
         } catch (NoFileNameException e) {
             displayMissingFileNameMessage();
@@ -81,6 +82,7 @@ public class UserSetStorage {
                 String description = s.substring(2,s.indexOf("c/") - 1);
 
                 checkEmptyDescription(description);
+                checkEmptyDescription(calories);
                 checkCalorieType(calories);
                 checkValidCalorieRange(calories);
                 Integer.parseInt(calories);
@@ -88,7 +90,6 @@ public class UserSetStorage {
                 if (index == 1) {
                     Ui.drawDivider();
                     System.out.println("You have created a shortcut containing:");
-                    index++;
                 }
 
                 if (s.startsWith("f/")) {
@@ -99,10 +100,12 @@ public class UserSetStorage {
                             + ", Calories: " + calories);
                 }
 
+                index++;
                 bw.newLine();
             }
 
             Ui.drawDivider();
+            System.out.println();
             bw.close();
 
         } catch (IOException e) {
@@ -117,7 +120,7 @@ public class UserSetStorage {
             displayIncompleteSetMessage();
             deleteInvalidSetFile(path);
         } catch (EmptyDescriptionException e) {
-            displayEmptyDescriptionMessage();
+            displayMissingAddSetInfoMessage();
             displayIncompleteSetMessage();
             deleteInvalidSetFile(path);
         } catch (NumberFormatException e) {
@@ -158,7 +161,7 @@ public class UserSetStorage {
     }
 
     private static void checkFileNamePresent(String input) throws NoFileNameException {
-        if (input.isEmpty() || input.isBlank()) {
+        if (input.indexOf("f/") == 0 || input.indexOf("e/") == 0) {
             throw new NoFileNameException();
         }
     }

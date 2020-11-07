@@ -229,7 +229,7 @@ public class ExceptionMessages {
      * Prints out error message when weight range is not between 20 to 650kg.
      */
     public static void displayInvalidWeightRangeMessage() {
-        print("Please enter a weight range from 20kg to 650kg");
+        print("Please enter a weight range from 30kg to 650kg");
     }
 
     /**
@@ -243,7 +243,7 @@ public class ExceptionMessages {
      * Prints out error message when height is not between 10 to 300cm.
      */
     public static void displayInvalidHeightRangeMessage() {
-        print("Please enter a height range from 10cm to 300cm");
+        print("Please enter a height range from 90cm to 300cm");
     }
 
     /**
@@ -337,7 +337,7 @@ public class ExceptionMessages {
         System.out.println("You are being directed to create a new user profile.");
         System.out.println("This is to ensure that all features can be used properly.");
         drawDivider();
-        System.out.println("");
+        System.out.println();
     }
 
     public static void displayExistingShortcutMessage() {
@@ -354,7 +354,7 @@ public class ExceptionMessages {
 
     public static void displayInvalidCalorieMessage() {
         drawDivider();
-        System.out.println("Please enter a valid calorie.");
+        System.out.println("Please enter a valid calorie range.");
         drawDivider();
     }
 
@@ -366,17 +366,33 @@ public class ExceptionMessages {
 
     public static void displayIncompleteSetMessage() {
         drawDivider();
-        System.out.println("Your shortcut has not been created correctly as there was an error in your input.");
-        System.out.println("This shortcut will now be deleted. Please try again.");
+        System.out.println("This short cut was not been successfully created as there was an error in your input.");
+        System.out.println("Please try again!");
         drawDivider();
-        System.out.println("");
+        System.out.println();
     }
 
     public static void displayMissingFileNameMessage() {
         drawDivider();
-        System.out.println("You did not specify a shorcut name in your createSet command.");
+        System.out.println("You did not specify a short cut name in your createSet command.");
         System.out.println("As such, no shortcut was created. Please try again!");
         drawDivider();
-        System.out.println("");
+        System.out.println();
+    }
+
+    public static void displayCorruptedSetMessage() {
+        drawDivider();
+        System.out.println("Your shortcut text file is corrupted!");
+        System.out.println("As such, it will now be deleted. Please avoid editing the text file to the "
+                + "wrong format in the future.");
+        System.out.println("Items in the shortcut may have been added partially only.");
+        drawDivider();
+        System.out.println();
+    }
+
+    public static void displayMissingAddSetInfoMessage() {
+        drawDivider();
+        System.out.println("This shortcut has an empty description or calorie tag or both.");
+        drawDivider();
     }
 }
