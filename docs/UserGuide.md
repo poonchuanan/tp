@@ -100,7 +100,7 @@ addSet SHORTCUT_NAME   - Adds SHORTCUT_NAME into current date list
 
 Adding:
 add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE
-                       - Adds food consumed, FOOD_DESCRIPTION calories gained, CALORIE_COUNT
+                       - Adds food consumed, FOOD_DESCRIPTION, calories gained, CALORIE_COUNT
                          and date(YYYY-MM-DD), DATE
 add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE
                        - Adds exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT

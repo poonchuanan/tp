@@ -29,10 +29,10 @@ public class ChainingParser extends Parser {
             String firstString = userInput.substring(0, chainIndex).trim();
 
             CommandParser parser = new CommandParser(firstString);
-            Command cmd = parser.parseArgument();
+            Command command = parser.parseArgument();
 
-            if (cmd.getCanBeChained()) {
-                executeCmd(cmd);
+            if (command.getCanBeChained()) {
+                executeCmd(command);
             } else {
                 System.out.println("'" + firstString + "' cannot be chained!");
                 break;

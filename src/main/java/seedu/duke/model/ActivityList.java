@@ -56,7 +56,6 @@ public class ActivityList extends Trakcal {
         } else {
             throw new IndexOutOfBoundsException();
         }
-        //displaySavedMessage();
     }
 
     /**
@@ -68,6 +67,8 @@ public class ActivityList extends Trakcal {
      */
     public void insertActivity(int index, Activity activity) throws IndexOutOfBoundsException {
         if (isValidIndex(index)) {
+
+            // removes calories of previous in list index
             Activity activityToReplace = activities.get(index);
             if (activityToReplace instanceof Food) {
                 netCalorie -= activityToReplace.calories;
@@ -77,12 +78,12 @@ public class ActivityList extends Trakcal {
 
             activities.set(index, activity);
 
+            // updates calories of edited list index
             if (activity instanceof Food) {
                 netCalorie += activity.calories;
             } else if (activity instanceof Exercise) {
                 netCalorie -= activity.calories;
             }
-            //displaySavedMessage();
         } else {
             throw new IndexOutOfBoundsException();
         }
@@ -162,7 +163,7 @@ public class ActivityList extends Trakcal {
     /**
      * Checks if the index is valid.
      *
-     * @param index index of acitvity in list
+     * @param index index of activity in list
      * @return true if index is within range, else false
      */
     public boolean isValidIndex(int index) {
@@ -184,7 +185,7 @@ public class ActivityList extends Trakcal {
 
     /**
      * Sets the activities as a string.
-     * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60
+     * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | push-up | 10, [E] | jogging | 60
      *
      * @return activities as a string
      */

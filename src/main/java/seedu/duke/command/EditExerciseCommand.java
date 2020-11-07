@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.model.Exercise;
 
 import java.time.LocalDate;
+import java.util.logging.Level;
 
 import static seedu.duke.ui.ExceptionMessages.displayEditIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ui.Ui.displaySavedMessage;
@@ -40,6 +41,7 @@ public class EditExerciseCommand extends Command {
             displaySavedMessage();
         } catch (IndexOutOfBoundsException e) {
             displayEditIndexOutOfBoundsExceptionMessage();
+            commandLogger.log(Level.WARNING,"Accessing an index that is out of bound!");
         }
     }
 }

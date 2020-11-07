@@ -40,11 +40,7 @@ public class Trakcal {
     public static void main(String[] args) {
         displayWelcomeMessage();
         System.out.println();
-        try {
-            storage.loadData(calList);
-        } catch (StringIndexOutOfBoundsException e) {
-            System.out.println("here");
-        }
+        storage.loadData(calList);
         if (CheckNewUser.isNewUser()) {
             profile = UserProfile.createNewProfile();
         } else {
