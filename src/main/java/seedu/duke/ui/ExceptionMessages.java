@@ -341,4 +341,8 @@ public class ExceptionMessages {
     public static void displayExcessNumberOfArguments() {
         print("This command has no description!");
     }
+
+    public static void displayShortageOfArguments() {
+        print("This command has missing description!");
+    }
 }
