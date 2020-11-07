@@ -81,27 +81,41 @@ Example of usage:
 * `help`
 
 ```
-=====================================================================================================
+====================================================================================================
 This section displays the commands available and their respective input format.
 > Words in CAPS are parameters to be filled in by you!
-
+> Variables in <here> are optional!
 Viewing help:
 help                   - Prints out commands available and their input format
 
-Creating:
-create new user        - Creates a new user profile
+User Profiling
+user l/                - Prints out current user profile
+user c/                - Creates new user profile
+user e/ <n/ NAME> <g/ GENDER> <w/ WEIGHT> <h/ HEIGHT> <age/ AGE> <al/ ACTIVITY_LEVEL> <goal/ GOAL>
+                       - Edits user profile to name, NAME, gender(male/female), GENDER,
+                         height(in cm), HEIGHT, age, AGE, activity level(1-5), ACTIVITY_LEVEL,
+                         goal(lose/maintain/gain), GOAL
 
-Shortcut:
+Creating shortcut:
+*[This command is extensive, there are a lot of variations. The following is one such example]*
 createSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT +
-e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT + ...
-                       - Creates shortcut for adding food(s) and/or exercise(s) depending on the
-                         format entered
-addSet SHORTCUT_NAME   - Adds SHORTCUT_NAME into current date list
+e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT + f/ FOOD_DESCRIPTION c/ CALORIE_COUNT
+*[Another possible example is:]*
+createSet SHORTCUT_NAME f/ FOOD_DESCRIPTION c/ CALORIE_COUNT + f/ FOOD_DESCRIPTION c/ CALORIE_COUNT
+                       - Creates shortcut, SHORTCUT_NAME for adding food(s) and/or exercise(s)
+                         depending on the format entered
+addSet SHORTCUT_NAME   - Adds SHORTCUT_NAME that was created in createSet into today's list
 
 Adding:
+add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT
+                       - Adds food consumed, FOOD_DESCRIPTION and calories gained, CALORIE_COUNT
+                         to today's date
 add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE
                        - Adds food consumed, FOOD_DESCRIPTION, calories gained, CALORIE_COUNT
                          and date(YYYY-MM-DD), DATE
+add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT
+                       - Adds exercise done, EXERCISE_DESCRIPTION and calories lost, CALORIE_COUNT
+                         to today's date
 add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE
                        - Adds exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT
                          and date(YYYY-MM-DD), DATE
@@ -111,11 +125,6 @@ list                   - Prints out the list of entries.
 list DATE              - Prints out the list of entries for the date(YYYY-MM-DD), DATE
 
 Editing:
-edit n/ NAME, g/ GENDER, w/ WEIGHT, h/ HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS
-                       - Edits your name, NAME, your gender(male/female), GENDER,
-                         your weight in kg, WEIGHT, your height, HEIGHT in cm, your age, AGE,
-                         activity factor(1-5) with 1 being the most active, ACTIVITY_FACTOR,
-                         your weight goals(lose/maintain/gain), WEIGHT_GOALS
 edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT
                        - Edits activity at index LIST_INDEX of latest list printed out
                          to food consumed, FOOD_DESCRIPTION, calories gained, CALORIE_COUNT
@@ -126,10 +135,10 @@ edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT
 Finding:
 find d/ DESCRIPTION    - Searches for all activities description with the DESCRIPTION keyword
 find c/ CALORIE_COUNT  - Searches for all activities with calories of CALORIE_COUNT
-find a/ DESCRIPTION1 / DESCRIPTION2 .../ DESCRIPTION
+find a/ DESCRIPTION1 / DESCRIPTION2 ... / DESCRIPTION
                         - Searches for all activities with ALL matching keywords from
                           DESCRIPTION1 to DESCRIPTION
-find e/ DESCRIPTION1 / DESCRIPTION2 .../ DESCRIPTION
+find e/ DESCRIPTION1 / DESCRIPTION2 ... / DESCRIPTION
                         - Searches for all activities with AT LEAST one matching keyword from
                           DESCRIPTION1 to DESCRIPTION
 
@@ -145,18 +154,33 @@ Graphing:
 graph                  - Generates a graph of target calorie and net calorie obtained up to
                          last 7 days
 
+Chaining:
+*[This command is extensive, there are a lot of variations,
+                          but is only available to add, list and edita.]*
+*[One possible example is:]*
+add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && list && edita LIST_INDEX f/ FOOD_DESCRIPTION
+                         c/ CALORIE_COUNT
+*[Another possible example is:]*
+add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT
+
 Exiting:
 bye                    - Terminates the application
-
-=====================================================================================================
+====================================================================================================
 ```
 
 <br>
 <br>
 
-## 2.0 Create
+## 2.0 User Profiling
 
-### 2.1.1 Creating a new user profile
+### 2.1.1 View current user profile
+
+### 2.1.2 Possible errors when creating new profile
+
+<br>
+<br>
+
+### 2.2.1 Creating a new user profile
 
 If this is your first time using **traKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
 **traKCAL** will then use these details from your user profile to calculate the following: 
@@ -194,7 +218,7 @@ Your recommend daily calories intake is 1576.65 calories.
 To gain weight, you should consume 2076.65 calories instead.
 ```
 
-### 2.1.2 Possible errors when creating new profile
+### 2.2.2 Possible errors when creating new profile
 
 Tips: 
 * There is no restriction on the type of name you can supply.  `X Æ A-Xii` and `Tammy` will both be accepted.
@@ -259,7 +283,39 @@ Tips:
     Please input lsoe/maintain/gain as weight goal only!
     =====================================================================================================
     ```
- 
+### 2.3.1 Editing user profile
+
+Edits user profile of an existing user.
+
+Format: `edit <n/**NAME**>,<g/**GENDER**>,<w/**WEIGHT**>,<h/**HEIGHT**>,<age/**AGE**><al/**ACTIVITY_FACTOR**>,<goal/**WEIGHT_GOALS**>`
+
+Parameters: 
+* `**NAME**`: Name of user.
+* `**GENDER**`: Gender of user.
+* `**WEIGHT_KG**`: Weight of user in kg.
+* `**HEIGHT_CM**`: Height of user in cm.
+* `**AGE**`: Age of user.
+* `**ACTIVITY_FACTOR**`: How active user is, with 1 being most active and 5 being least active.
+* `**WEIGHT_GOALS**`: Whether user wants to lose/maintain/gain weight.
+
+Example of usage: 
+* `edit n/Tom,w/90`
+
+```
+==============================================================
+Your name has been updated to Tom.
+Your weight has been updated to 90.
+==============================================================
+```
+
+Tip:
+* The parameters should conform to the same style used in `create new user`. Explanations to possible error messages can be found [here](#211-creating-a-new-user-profile).
+
+### 2.3.2 Possible errors when editing user profile
+
+```
+
+```
 
 <br>
 <br>
@@ -530,44 +586,7 @@ Also, ensure that the date input actually exists!Please do input 'help' for the 
 
 ## 6.0 Edit
 
-### 6.1.1 Editing user profile
-
-Edits user profile of an existing user.
-
-Format: `edit <n/**NAME**>,<g/**GENDER**>,<w/**WEIGHT**>,<h/**HEIGHT**>,<age/**AGE**><al/**ACTIVITY_FACTOR**>,<goal/**WEIGHT_GOALS**>`
-
-Parameters: 
-* `**NAME**`: Name of user.
-* `**GENDER**`: Gender of user.
-* `**WEIGHT_KG**`: Weight of user in kg.
-* `**HEIGHT_CM**`: Height of user in cm.
-* `**AGE**`: Age of user.
-* `**ACTIVITY_FACTOR**`: How active user is, with 1 being most active and 5 being least active.
-* `**WEIGHT_GOALS**`: Whether user wants to lose/maintain/gain weight.
-
-Example of usage: 
-* `edit n/Tom,w/90`
-
-```
-==============================================================
-Your name has been updated to Tom.
-Your weight has been updated to 90.
-==============================================================
-```
-
-Tip:
-* The parameters should conform to the same style used in `create new user`. Explanations to possible error messages can be found [here](#211-creating-a-new-user-profile).
-
-### 6.1.2 Possible errors when editing user profile
-
-```
-
-```
-
-<br>
-<br>
-
-### 6.2.1 Editing an entry in list
+### 6.1.1 Editing an entry in list
 
 A typo when entering input? Do you want to edit attributes of a particular activity in the list? 
 
@@ -632,7 +651,7 @@ No.        Type                        Description                        Calori
 3        Exercise         jumping___________________________________________________65
 ```
 
-### 6.2.2 Possible errors when editing
+### 6.1.2 Possible errors when editing
 
 ```
 
@@ -986,7 +1005,6 @@ Examples of the possible format:
 >`add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
 >`edita INDEX e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
 >`list <**DATE**> && list <**DATE**> && list <**DATE**>`
->`...`
 
 Examples of usage: 
 * `add f/ ice cream c/ 90 && add e/ running c/ 50 && list`
