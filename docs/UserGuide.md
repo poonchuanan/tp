@@ -622,6 +622,7 @@ No.        Type                        Description                        Calori
 ```
 
 ### 4.3 Possible errors when adding
+
 #### Missing tags
 If you have missing tags, such as missing calorie tag, an error would occur
 > the following would be printed out if you input `add f/ jelly c/ 70 d/ 2020-10-13`
@@ -708,7 +709,7 @@ Please input 'help' for the commands and their respective input format.
 
 ## 5.0 List
 
-### 5.1.1 Listing entries for the specified day
+### 5.2 Listing entries for the specified day
 
 Displays the list of activities for the given day.
 
@@ -756,7 +757,8 @@ No.        Type                        Description                        Calori
 6          Food           Biscuit___________________________________________________20
 ```
 
-### 5.1.2 Possible errors when listing
+### 5.2 Possible errors when listing
+
 #### Accessing a list with no entries
 If you are trying to access a list that does not have any entries <br>
 For example if there are no entries for 2020-10-31, the following error message will be shown: <br>
@@ -769,7 +771,8 @@ If the **DATE** format is not of YYYY-MM-DD, the following error message will be
 ====================================================================================
 Wrong format of date entered!
 The accepted format is YYYY-MM-DD!
-Also, ensure that the date input actually exists!Please do input 'help' for the commands and their respective input format.
+Also, ensure that the date input actually exists!
+Please do input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
@@ -778,7 +781,7 @@ Also, ensure that the date input actually exists!Please do input 'help' for the 
 
 ## 6.0 Edit
 
-### 6.1.1 Editing an entry in list
+### 6.1 Editing an entry in list
 
 A typo when entering input? Do you want to edit attributes of a particular activity in the list? 
 
@@ -905,10 +908,67 @@ No.        Type                        Description                        Calori
 5        Exercise         brisk walking_____________________________________________20
 ```
 
-### 6.1.2 Possible errors when editing
+### 6.2 Possible errors when editing
+
+#### Not calling list before editing
+If you try to edit activity before calling out the list you want to edit on, an error would occur
+> the following would be printed out if you input `edita 1 f/ snack c/ 7`
 
 ```
+====================================================================================
+Index entered is not within the range!
+Please pull out the list for the day before editing on it!
+====================================================================================
+```
 
+<br>
+
+#### Calorie count exceeds acceptable range
+If your calorie count is <= 0 or > 3000, an error would occur
+> the following would be printed out if you input `edita 1 f/ jelly c/ -30`
+
+```
+====================================================================================
+Calorie count should be > 0 and <= 3000!
+Please input a valid calorie count that is within the range!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+<br>
+
+#### Description length exceeds acceptable range
+If the description you input has more than 40 characters, an error would occur
+> the following would be printed out if you input `edita 2 e/ jumping up and down in a merry round in Singapore c/ 80`
+
+```
+====================================================================================
+Maximum description length is 40 characters only!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+<br>
+
+#### Empty inputs will not be accepted
+If any of the parameters input by you is empty, an error would occur
+> the following would be printed out if you input `edita 3 e/ c/ `
+
+```
+====================================================================================
+Current description is empty!
+Please input a valid description that is not empty!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
 ```
 
 <br>
@@ -1240,16 +1300,16 @@ Example of usage:
 
 ## 11.0 Chaining
 
-### 11.1.1 Chaining of features - advanced
+### 11.1 Chaining of features - advanced
 
 Do you wish to save time individually typing in the features? Or do you want to type out all the commands you want at one go?
 Chaining is the right feature for your needs! 
 
 > Do note
 >* Chaining is only available to 3 features
->* [list](#50-list), [add](#40-add) and [edita](#611-editing-an-entry-in-list)
+>* [list](#50-list), [add](#40-add) and [edita](#61-editing-an-entry-in-list)
 >* The respective things to adhere to for each feature still applies.
->* For example, [edita](#611-editing-an-entry-in-list), you MUST call out the list you want to edit on before editing on it.
+>* For example, [edita](#61-editing-an-entry-in-list), you MUST call out the list you want to edit on before editing on it.
 
 Format: *not extensive, there is a lot of combinations available*
         *commands just need to be separated by `&&`*
@@ -1344,11 +1404,12 @@ The current activity list has been saved.
 ====================================================================================
 ```
 
-### 11.1.2 Possible errors when chaining - advanced
+### 11.2 Possible errors when chaining
 
-```
-
-```
+*The possible errors follows the errors for adding, listing and editing*
+Possible errors for adding: [errors for add](#43-possible-errors-when-adding)
+Possible errors for listing: [errors for list](#52-possible-errors-when-listing)
+Possible errors for editing: [errors for edit](#62-possible-errors-when-editing)
 
 <br>
 <br>
