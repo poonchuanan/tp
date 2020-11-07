@@ -67,7 +67,7 @@ public class Trakcal {
                     storage.updateFile(calList);
                 }
             } catch (NullPointerException e) {
-                displayParserNullPointerExceptionMessage();
+                //Exception is already taken care of
             } catch (IndexOutOfBoundsException e) {
                 displayNotSavedMessage();
             }
