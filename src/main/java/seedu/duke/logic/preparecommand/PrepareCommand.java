@@ -6,7 +6,6 @@ import seedu.duke.exception.CalorieCountException;
 import seedu.duke.exception.DateLimitException;
 import seedu.duke.exception.DescriptionLengthExceedException;
 import seedu.duke.exception.EmptyDescriptionException;
-import seedu.duke.exception.EmptyListException;
 import seedu.duke.exception.InvalidCalorieException;
 import seedu.duke.exception.InvalidNumberOfArguments;
 
@@ -159,10 +158,4 @@ public abstract class PrepareCommand {
         return true;
     }
 
-    protected boolean isListNotEmpty() throws EmptyListException {
-        if (Trakcal.calList.getActivityList(date).getNumberOfActivities() == 0) {
-            throw new EmptyListException();
-        }
-        return true;
-    }
 }
