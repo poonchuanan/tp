@@ -25,6 +25,12 @@ import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 
 public class UserSetStorage {
     private static final String PATH = new File("").getAbsolutePath();
+    private static final Integer MAX_CALORIES = 3000;
+    private static final Integer MIN_CALORIES = 0;
+    private static final String WHITE_SPACE = " ";
+    private static final String FOOD_TAG = "/f";
+    private static final String CALORIE_TAG = "c/";
+    private static final String EXERCISE_TAG = "e/";
 
     public static void prepareNewSet(String userInput) {
         try {
@@ -69,17 +75,17 @@ public class UserSetStorage {
 
             for (String s : activity) {
                 checkActivityAndCalorieTag(s);
-                while (s.startsWith(" ")) {
+                while (s.startsWith(WHITE_SPACE)) {
                     s = s.substring(1);
                 }
 
-                while (s.endsWith(" ")) {
+                while (s.endsWith(WHITE_SPACE)) {
                     s = s.substring(0, s.length() - 1);
                 }
 
                 bw.write(s);
-                String calories = s.substring(s.indexOf("c/") + 2);
-                String description = s.substring(2,s.indexOf("c/") - 1);
+                String calories = s.substring(s.indexOf(CALORIE_TAG) + 2);
+                String description = s.substring(2,s.indexOf(CALORIE_TAG) - 1);
 
                 checkEmptyDescription(description);
                 checkEmptyDescription(calories);
@@ -92,11 +98,11 @@ public class UserSetStorage {
                     System.out.println("You have created a shortcut containing:");
                 }
 
-                if (s.startsWith("f/")) {
-                    System.out.println(index + ". " + "Food: " + s.substring(2,s.indexOf("c/") - 1)
+                if (s.startsWith(FOOD_TAG)) {
+                    System.out.println(index + ". " + "Food: " + s.substring(2,s.indexOf(CALORIE_TAG) - 1)
                             + ", Calories: " + calories);
-                } else if (s.startsWith("e/")) {
-                    System.out.println(index + ". " + "Exercise: " + s.substring(2,s.indexOf("c/") - 1)
+                } else if (s.startsWith(EXERCISE_TAG)) {
+                    System.out.println(index + ". " + "Exercise: " + s.substring(2,s.indexOf(CALORIE_TAG) - 1)
                             + ", Calories: " + calories);
                 }
 
@@ -144,14 +150,14 @@ public class UserSetStorage {
     }
 
     private static void checkActivityAndCalorieTag(String input) throws InvalidCreateSetCommandException {
-        if (!input.contains("c/") || !(input.contains("f/") || input.contains("e/"))) {
+        if (!input.contains(CALORIE_TAG) || !(input.contains(FOOD_TAG) || input.contains(EXERCISE_TAG))) {
             throw new InvalidCreateSetCommandException();
         }
     }
 
     private static void checkValidCalorieRange(String input) throws InvalidCalorieException {
         int calories = Integer.parseInt(input);
-        if (calories < 0 || calories > 3000) {
+        if (calories < MIN_CALORIES || calories > MAX_CALORIES) {
             throw new InvalidCalorieException();
         }
     }
@@ -161,7 +167,7 @@ public class UserSetStorage {
     }
 
     private static void checkFileNamePresent(String input) throws NoFileNameException {
-        if (input.indexOf("f/") == 0 || input.indexOf("e/") == 0) {
+        if (input.indexOf(FOOD_TAG) == 1 || input.indexOf(EXERCISE_TAG) == 1) {
             throw new NoFileNameException();
         }
     }
