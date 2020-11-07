@@ -51,9 +51,10 @@ This section gives the steps you need to get started quickly.
 
    Some example commands you can try:
     * `list`: Lists all activities for today
-    * `add f/ rice with eggs c/ 200 d/ 2020-10-31`: Adds a food entry named `rice with eggs`, of calories `200` and on date of `2020-10-31` to **trakCAL**.
+    * `add f/ apple c/ 30`: Adds a food entry named `apple` and of calories `30` to today's list **trakCAL**.
     * `delete 3`: Deletes the 3rd contact shown in the current list.
     * `bye`: Exits the application.
+    
 7. Refer to the [Features](#features) below for details of each command
 
 <br>
@@ -91,9 +92,10 @@ help                   - Prints out commands available and their input format
 User Profiling
 user l/                - Prints out current user profile
 user c/                - Creates new user profile
-user e/ <n/ NAME> <g/ GENDER> <w/ WEIGHT> <h/ HEIGHT> <age/ AGE> <al/ ACTIVITY_LEVEL> <goal/ GOAL>
+user e/ <n/ NAME>, <g/ GENDER>, <w/ WEIGHT>, <h/ HEIGHT>, <age/ AGE>, <al/ ACTIVITY_FACTOR>,
+                         <goal/ GOAL>
                        - Edits user profile to name, NAME, gender(male/female), GENDER,
-                         height(in cm), HEIGHT, age, AGE, activity level(1-5), ACTIVITY_LEVEL,
+                         height(in cm), HEIGHT, age, AGE, activity factor(1-5), ACTIVITY_FACTOR,
                          goal(lose/maintain/gain), GOAL
 
 Creating shortcut:
@@ -175,6 +177,24 @@ bye                    - Terminates the application
 
 ### 2.1.1 View current user profile
 
+Do you want to see you own profile? 
+
+Format: `user l/`
+
+Example of usage:
+* `user l/`
+
+```
+Here is your user profile:
+Name : Sam
+Gender : female
+Weight : 50
+Height : 100 
+Age : 10
+Activity Level : 4
+Weight Goal : gain
+```
+
 <br>
 <br>
 
@@ -187,11 +207,17 @@ If this is your first time using **traKCAL**, you will be automatically prompted
 * Recommended daily calorie
 * Calorie goal to reach weight goal
 
->However, if you want to create a new profile for an existing user, you will need to use this command
+> Want to create a completely new profile? You have to use this command!
+> words in output window that look like the following are inputs by user
+```
+**this**
+```
+> where this is the input by user
 
-Format: `create new user`
+Format: `user c/`
 
 Example of usage:
+* `user c/`
 
 ```
 Hey there! We do not have a record of your profile. Please create one now! :)
@@ -285,7 +311,7 @@ Tips:
 
 Edits user profile of an existing user.
 
-Format: `edit <n/**NAME**>,<g/**GENDER**>,<w/**WEIGHT**>,<h/**HEIGHT**>,<age/**AGE**><al/**ACTIVITY_FACTOR**>,<goal/**WEIGHT_GOALS**>`
+Format: `user e/ <n/ **NAME**>,<g/ **GENDER**>,<w/ **WEIGHT**>,<h/ **HEIGHT**>,<age/ **AGE**><al/ **ACTIVITY_FACTOR**>,<goal/ **WEIGHT_GOALS**>`
 
 Parameters: 
 * `**NAME**`: Name of user.
@@ -297,13 +323,18 @@ Parameters:
 * `**WEIGHT_GOALS**`: Whether user wants to lose/maintain/gain weight.
 
 Example of usage: 
-* `edit n/Tom,w/90`
+* `user e/ n/ Tom,w/ 90`
 
 ```
-==============================================================
-Your name has been updated to Tom.
-Your weight has been updated to 90.
-==============================================================
+====================================================================================
+Your name has been updated to 
+====================================================================================
+ Tom.
+
+====================================================================================
+Your weight has been updated to 
+====================================================================================
+ 90kg.
 ```
 
 Tip:
