@@ -420,7 +420,7 @@ The current activity list has been saved.
 
 ### 4.1 Adding a food entry
 
-Want to add a food entry? This features solves it by adding a food entry with its respective calories to the list.
+Want to add a food entry? This feature solves it by adding a food entry with its respective calories to the list.
 
 Format: `add f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** <d/ **DATE**>`
 
@@ -514,7 +514,7 @@ No.        Type                        Description                        Calori
 
 ### 4.2 Adding an exercise entry
 
-Want to add an exercise entry? This features solves it by adding an exercise entry with its respective calories to the list.
+Want to add an exercise entry? This feature solves it by adding an exercise entry with its respective calories to the list.
 
 Format: `add e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** <d/ **DATE**>`
 
@@ -689,8 +689,8 @@ Please input 'help' for the commands and their respective input format.
 
 <br>
 
-#### Empty inputs are not accepted
-If any of the paramters input by you is empty, an error would occur
+#### Empty inputs will not be accepted
+If any of the parameters input by you is empty, an error would occur
 > the following would be printed out if you input `add e/ c/ `
 
 ```
@@ -709,7 +709,7 @@ Please input 'help' for the commands and their respective input format.
 
 ## 5.0 List
 
-### 5.2 Listing entries for the specified day
+### 5.1 Listing entries for the specified day
 
 Displays the list of activities for the given day.
 
@@ -783,7 +783,7 @@ Please do input 'help' for the commands and their respective input format.
 
 ### 6.1 Editing an entry in list
 
-A typo when entering input? Do you want to edit attributes of a particular activity in the list? 
+A typo when entering input? Do you want to edit attributes of a particular activity in the list? This feature solves it!
 
 >Things you should take note of:
 >* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
