@@ -1,10 +1,12 @@
 package seedu.duke.logic.preparecommand;
 
+import seedu.duke.Trakcal;
 import seedu.duke.command.Command;
 import seedu.duke.exception.CalorieCountException;
 import seedu.duke.exception.DateLimitException;
 import seedu.duke.exception.DescriptionLengthExceedException;
 import seedu.duke.exception.EmptyDescriptionException;
+import seedu.duke.exception.EmptyListException;
 import seedu.duke.exception.InvalidCalorieException;
 import seedu.duke.exception.InvalidNumberOfArguments;
 
@@ -41,7 +43,7 @@ public abstract class PrepareCommand {
      * @throws IndexOutOfBoundsException if index is below 0
      */
     protected void checkIndex(int index) throws IndexOutOfBoundsException {
-        if (index < 0) {
+        if (index > Trakcal.calList.getActivityList(date).getNumberOfActivities() || index < 0) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -153,6 +155,13 @@ public abstract class PrepareCommand {
     protected boolean isNumberOfArgumentsValid(int limit) throws InvalidNumberOfArguments {
         if (description.length != limit) {
             throw new InvalidNumberOfArguments();
+        }
+        return true;
+    }
+
+    protected boolean isListNotEmpty() throws EmptyListException {
+        if (Trakcal.calList.getActivityList(date).getNumberOfActivities() == 0) {
+            throw new EmptyListException();
         }
         return true;
     }

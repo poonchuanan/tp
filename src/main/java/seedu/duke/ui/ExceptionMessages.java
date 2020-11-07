@@ -36,7 +36,7 @@ public class ExceptionMessages {
      * Prints error message when NullPointerException occurs in delete command.
      */
     public static void displayDeleteCommandNullPointerExceptionMessage() {
-        print("There is not index to remove!\n"
+        print("There is no index to remove!\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 

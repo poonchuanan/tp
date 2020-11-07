@@ -18,7 +18,6 @@ import java.util.Scanner;
 import static seedu.duke.logic.parser.CommandParser.SPACE;
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
 import static seedu.duke.ui.Ui.displayWelcomeMessage;
-import static seedu.duke.ui.ExceptionMessages.displayParserNullPointerExceptionMessage;
 
 /**
  * Entry point of the traKCAL application.

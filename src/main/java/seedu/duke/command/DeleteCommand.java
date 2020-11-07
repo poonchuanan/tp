@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
+import static seedu.duke.ui.ExceptionMessages.print;
 import static seedu.duke.ui.Ui.displayMessage;
 import static seedu.duke.ui.Ui.displaySavedMessage;
 
@@ -73,12 +74,12 @@ public class DeleteCommand extends Command {
             if (userInput.equals("yes")) {
                 return true;
             } else if (userInput.equals("no")) {
-                System.out.println("Delete command aborted.");
+                print("Delete command aborted.");
             } else {
-                System.out.println("Invalid input....aborting delete command.");
+                print("Invalid input....aborting delete command.");
             }
         } catch (NoSuchElementException e) {
-            System.out.println("Invalid input....aborting delete command.");
+            print("Invalid input....aborting delete command.");
         }
         return false;
 
