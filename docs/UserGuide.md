@@ -413,94 +413,12 @@ The current activity list has been saved.
 =====================================================================================================
 ```
 
-### 3.2.2 Possible errors when adding set
-#### Missing tags
-If you have missing tags, such as missing calorie tag, an error would occur
-> the following would be printed out if you input `add f/ jelly c/ 70 d/ 2020-10-13`
-
-```
-====================================================================================
-Calorie count tag[c/] is missing in your input!
-====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-<br>
-
-#### Activity date is before application launch date or after today's date
-If your entry is before 2020-10-14 or after today's date, an error would occur
-> the following would be printed out if you input `add f/ jelly d/ 2020-11-07`
->
-```
-====================================================================================
-You have exceeded the accepted date range!
-Date input has to be from 2020-10-14 to current date!
-====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-<br>
-
-#### Calorie count exceeds acceptable range
-If your calorie count is <= 0 or > 3000, an error would occur
-> the following would be printed out if you input `add f/ jelly c/ -30`
-
-```
-====================================================================================
-Calorie count should be > 0 and <= 3000!
-Please input a valid calorie count that is within the range!
-====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-<br>
-
-#### Description length exceeds acceptable range
-If the description you input has more than 40 characters, an error would occur
-> the following would be printed out if you input `add e/ jumping up and down in a merry round in Singapore c/ 80`
-
-```
-====================================================================================
-Maximum description length is 40 characters only!
-====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-<br>
-
-#### Empty inputs are not accepted
-If any of the paramters input by you is empty, an error would occur
-> the following would be printed out if you input `add e/ c/ `
-
-```
-====================================================================================
-Current description is empty!
-Please input a valid description that is not empty!
-====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
 <br>
 <br>
 
 ## 4.0 Add
 
-### 4.1.1 Adding a food entry
+### 4.1 Adding a food entry
 
 Want to add a food entry? This features solves it by adding a food entry with its respective calories to the list.
 
@@ -591,16 +509,10 @@ No.        Type                        Description                        Calori
 3          Food           banana cake_______________________________________________70
 ```
 
-### 4.1.2 Possible errors when adding food
-
-```
-
-```
-
 <br>
 <br>
 
-### 4.2.1 Adding an exercise entry
+### 4.2 Adding an exercise entry
 
 Want to add an exercise entry? This features solves it by adding an exercise entry with its respective calories to the list.
 
@@ -709,10 +621,86 @@ No.        Type                        Description                        Calori
 5        Exercise         brisk walking_____________________________________________20
 ```
 
-### 4.2.2 Possible errors when adding exercise
+### 4.3 Possible errors when adding
+#### Missing tags
+If you have missing tags, such as missing calorie tag, an error would occur
+> the following would be printed out if you input `add f/ jelly c/ 70 d/ 2020-10-13`
 
 ```
+====================================================================================
+Calorie count tag[c/] is missing in your input!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
 
+<br>
+
+#### Activity date is before application launch date or after today's date
+If your entry is before 2020-10-14 or after today's date, an error would occur
+> the following would be printed out if you input `add f/ jelly d/ 2020-11-07`
+>
+```
+====================================================================================
+You have exceeded the accepted date range!
+Date input has to be from 2020-10-14 to current date!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+<br>
+
+#### Calorie count exceeds acceptable range
+If your calorie count is <= 0 or > 3000, an error would occur
+> the following would be printed out if you input `add f/ jelly c/ -30`
+
+```
+====================================================================================
+Calorie count should be > 0 and <= 3000!
+Please input a valid calorie count that is within the range!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+<br>
+
+#### Description length exceeds acceptable range
+If the description you input has more than 40 characters, an error would occur
+> the following would be printed out if you input `add e/ jumping up and down in a merry round in Singapore c/ 80`
+
+```
+====================================================================================
+Maximum description length is 40 characters only!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+<br>
+
+#### Empty inputs are not accepted
+If any of the paramters input by you is empty, an error would occur
+> the following would be printed out if you input `add e/ c/ `
+
+```
+====================================================================================
+Current description is empty!
+Please input a valid description that is not empty!
+====================================================================================
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
 ```
 
 <br>
