@@ -35,8 +35,8 @@ public class PrepareDeleteCommand extends PrepareCommand {
             displayDeleteCommandNullPointerExceptionMessage();
         } catch (IndexOutOfBoundsException e) {
             displayDeleteCommandStringOutOfBoundExceptionMessage();
-        } catch (InvalidNumberOfArguments invalidNumberOfArguments) {
-           displayShortageOfArguments();
+        } catch (InvalidNumberOfArguments e) {
+            displayShortageOfArguments();
         }
         return null;
     }
