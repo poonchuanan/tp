@@ -35,6 +35,14 @@ import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightRangeMessage;
  */
 public class UserProfile {
     private static String[] data = new String[7];
+    private static final Integer MAX_WEIGHT = 650;
+    private static final Integer MIN_WEIGHT = 30;
+    private static final Integer MAX_HEIGHT = 300;
+    private static final Integer MIN_HEIGHT = 90;
+    private static final Integer MIN_AGE = 1;
+    private static final Integer MAX_AGE = 120;
+    private static final Integer MIN_AL = 1;
+    private static final Integer MAX_AL = 5;
 
     /**
      * Reading user input.
@@ -417,19 +425,19 @@ public class UserProfile {
     }
 
     private static void checkWeightIsWithinRange(String weight) throws IllegalArgumentException {
-        if (Double.parseDouble(weight) < 30 || Double.parseDouble(weight) > 650) {
+        if (Double.parseDouble(weight) < MIN_WEIGHT || Double.parseDouble(weight) > MAX_WEIGHT) {
             throw new IllegalArgumentException();
         }
     }
 
     private static void checkHeightIsWithinRange(String height) throws IllegalArgumentException {
-        if (Double.parseDouble(height) < 90 || Double.parseDouble(height) > 300) {
+        if (Double.parseDouble(height) < MIN_HEIGHT || Double.parseDouble(height) > MAX_HEIGHT) {
             throw new IllegalArgumentException();
         }
     }
 
     private static void checkAgeIsWithinRange(String age) throws IllegalArgumentException {
-        if (Integer.parseInt(age) < 1 || Integer.parseInt(age) > 120) {
+        if (Integer.parseInt(age) < MIN_AGE || Integer.parseInt(age) > MAX_AGE) {
             throw new IllegalArgumentException();
         }
     }
@@ -439,7 +447,7 @@ public class UserProfile {
     }
 
     private static void checkAcLeIsWithinRange(String al) throws IllegalArgumentException {
-        if (Integer.parseInt(al) < 1 || Integer.parseInt(al) > 5) {
+        if (Integer.parseInt(al) < MIN_AL || Integer.parseInt(al) > MAX_AL) {
             throw new IllegalArgumentException();
         }
     }
