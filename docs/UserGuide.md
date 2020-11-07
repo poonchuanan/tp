@@ -209,9 +209,11 @@ If this is your first time using **traKCAL**, you will be automatically prompted
 
 > Want to create a completely new profile? You have to use this command!
 > words in output window that look like the following are inputs by user
+
 ```
 **this**
 ```
+
 > where this is the input by user
 
 Format: `user c/`
@@ -435,6 +437,7 @@ Examples of usage:
 
 1st example:
 * `list` before adding
+
 ```
 -----------------------------------------
 |  2020-11-07  |  Net Calorie: 30 kcal  |
@@ -471,6 +474,7 @@ No.        Type                        Description                        Calori
 
 2nd example:
 * `list` before adding
+
 ```
 ------------------------------------------
 |  2020-11-07  |  Net Calorie: 107 kcal  |
@@ -642,7 +646,7 @@ Please input 'help' for the commands and their respective input format.
 #### Activity date is before application launch date or after today's date
 If your entry is before 2020-10-14 or after today's date, an error would occur
 > the following would be printed out if you input `add f/ jelly d/ 2020-11-07`
->
+
 ```
 ====================================================================================
 You have exceeded the accepted date range!
@@ -761,12 +765,19 @@ No.        Type                        Description                        Calori
 
 #### Accessing a list with no entries
 If you are trying to access a list that does not have any entries <br>
-For example if there are no entries for 2020-10-31, the following error message will be shown: <br>
+For example if there are no entries for 2020-10-31, the following error message will be shown: 
+
+<br>
+
 ```
 There is no data for 2020-10-31
 ```
+
 #### Using an invalid date format for list **DATE**
-If the **DATE** format is not of YYYY-MM-DD, the following error message will be shown: <br>
+If the **DATE** format is not of YYYY-MM-DD, the following error message will be shown: 
+
+<br>
+
 ```
 ====================================================================================
 Wrong format of date entered!
@@ -1060,6 +1071,7 @@ No.        Date                Type                                Description  
 ```
 
 ### 7.2.2 Possible error messages when finding entries - advanced
+
 ```
 
 ```
@@ -1123,6 +1135,7 @@ No.        Type                        Description                        Calori
 ### 8.1.2 Possible errors when moving
 #### Missing keywords
 * If the appropriate keywords 'from/' and 'below/' are missing, the following error message will be shown
+
 ```
 ====================================================================================
 'from/' and 'below/' keyword is missing!
@@ -1130,6 +1143,7 @@ No.        Type                        Description                        Calori
 ```
 
 * If only appropriate keywords 'from/' is missing the following error message will be shown
+
 ```
 ====================================================================================
 'from/' keyword is missing!
@@ -1137,6 +1151,7 @@ No.        Type                        Description                        Calori
 ```
 
 * If only appropriate keywords 'below/' is missing the following error message will be shown
+
 ```
 ====================================================================================
 'below/' keyword is missing!
@@ -1144,6 +1159,7 @@ No.        Type                        Description                        Calori
 ```
 #### Invalid index used
 * If the index entered for the respective keywords are not of valid range, the following error message will be shown
+
 ```
 ====================================================================================
 The index entered is not within the range!Please do input 'help' for the commands and their respective input format.
