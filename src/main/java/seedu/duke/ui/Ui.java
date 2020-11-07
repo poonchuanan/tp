@@ -270,7 +270,7 @@ public class Ui {
      * Prints out welcoming message to the user.
      */
     public static void displayReturningUserMessage() {
-        print("Welcome! What would you like to do today?\n");
+        print("Welcome! What would you like to do today?");
     }
 
     /**
