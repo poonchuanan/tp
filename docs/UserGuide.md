@@ -1140,9 +1140,9 @@ No.        Date                Type                                Description  
 
 ```
 
-### 7.1.2 Possible errors when finding entries via keyword - basic
+### 7.1.1 Possible errors when finding entries via keyword - basic
 
-#### Wrong find command tag
+#### Wrong find command tag/format
 If the command tag is not *d* or *c*, an error would occur
 > the following would be printed out if you input `find p/ KEYWORD`
 
@@ -1160,7 +1160,7 @@ The input format for finding (either)
 Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
-#### Empty description input
+#### Empty keyword input
 If the **KEYWORD** to search for is empty, an error would occur
 > the following would be printed out if you input `find d/`
 
@@ -1209,7 +1209,7 @@ No.        Date                Type                                Description  
 
 ### 7.2.1 Possible error messages when finding entries - advanced
 
-#### Wrong find command tag
+#### Wrong find command tag/format
 If the command tag is not *a* or *e*, an error would occur
 > the following would be printed out if you input `find p/ KEYWORD`
 
@@ -1227,7 +1227,7 @@ The input format for finding (either)
 Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
-#### Empty description input
+#### Empty keyword input
 If the **KEYWORD** to search for is empty, an error would occur
 > the following would be printed out if you input `find d/`
 

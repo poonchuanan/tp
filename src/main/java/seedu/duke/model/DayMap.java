@@ -257,7 +257,7 @@ public class DayMap {
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
         Matcher matcher = pattern.matcher(userInput.replaceAll("\\s",""));
-        if (userInput.trim().equals("")) {
+        if (userInput.substring(2).trim().equals("")) {
             throw new EmptyDescriptionException();
         } else if (matcher.find()) {
             throw new FindSlashException();
@@ -297,7 +297,7 @@ public class DayMap {
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
         Matcher matcher = pattern.matcher(userInput.replaceAll("\\s",""));
-        if (userInput.trim().equals("")) {
+        if (userInput.substring(2).trim().equals("")) {
             throw new EmptyDescriptionException();
         } else if (matcher.find()) {
             throw new FindSlashException();
