@@ -80,7 +80,8 @@ public class PrepareAddSetCommand extends PrepareCommand {
             ExceptionMessages.displayShortcutDoesNotExistMessage();
         } catch (IOException e) {
             ExceptionMessages.displayIoExceptionMessage();
-        } catch (IllegalArgumentException | EmptyDescriptionException | CalorieCountException | EmptyTextFileException e) {
+        } catch (IllegalArgumentException | EmptyDescriptionException
+                | CalorieCountException | EmptyTextFileException e) {
             displayCorruptedSetMessage();
             deleteInvalidSetFile(filePath);
         }
