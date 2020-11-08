@@ -2,20 +2,18 @@ package seedu.duke.logic.parser;
 
 
 import seedu.duke.command.Command;
-import seedu.duke.command.CreateNewRepeatedSet;
+import seedu.duke.command.CreateNewSet;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.logic.preparecommand.PrepareAddCommand;
 import seedu.duke.logic.preparecommand.PrepareAddSetCommand;
 import seedu.duke.logic.preparecommand.PrepareByeCommand;
 import seedu.duke.logic.preparecommand.PrepareDeleteCommand;
 import seedu.duke.logic.preparecommand.PrepareEditCommand;
-import seedu.duke.logic.preparecommand.PrepareEditUserProfile;
 import seedu.duke.logic.preparecommand.PrepareFindCommand;
 import seedu.duke.logic.preparecommand.PrepareGraphCommand;
 import seedu.duke.logic.preparecommand.PrepareHelpCommand;
 import seedu.duke.logic.preparecommand.PrepareListCommand;
 import seedu.duke.logic.preparecommand.PrepareMoveIndexCommand;
-import seedu.duke.logic.preparecommand.PrepareUserListCommand;
 import seedu.duke.logic.preparecommand.PrepareUserCommand;
 
 import java.io.IOException;
@@ -55,7 +53,7 @@ public class CommandParser extends Parser {
             case "user":
                 return new PrepareUserCommand(arguments).prepareCommand();
             case "createset":
-                return new CreateNewRepeatedSet(arguments[1]);
+                return new CreateNewSet(arguments[1]);
             case "add":
                 return new PrepareAddCommand(arguments).prepareCommand();
             case "addset":
