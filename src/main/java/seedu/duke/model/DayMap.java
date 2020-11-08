@@ -89,8 +89,6 @@ public class DayMap {
             alist = this.getActivityList(dateTime);
         }
         alist.addActivity(activity);
-        //System.out.println("Total calorie count for "
-        // + dateTime.toLocalDate().toString() + " = " + alist.getNetCalorie());
     }
 
 
