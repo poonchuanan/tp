@@ -1,7 +1,7 @@
 package seedu.duke.ui;
 
 import static seedu.duke.ui.Ui.DIVIDER;
-import static seedu.duke.ui.Ui.PROMPTUSEROFHELPMESSAGE;
+import static seedu.duke.ui.Ui.PROMPT_USER_OF_HELP_MESSAGE;
 import static seedu.duke.ui.Ui.drawDivider;
 
 /**
@@ -13,16 +13,15 @@ public class ExceptionMessages {
      */
     public static void displayStringIndexOutOfBoundsExceptionMessage() {
         print("The index entered is not within the range!\n"
-                + PROMPTUSEROFHELPMESSAGE);
+                + PROMPT_USER_OF_HELP_MESSAGE);
     }
-
 
     /**
      * Prints error message when IOException occurs.
      */
     public static void displayIoExceptionMessage() {
         print("IO Exception has occurred!\n"
-                + PROMPTUSEROFHELPMESSAGE);
+                + PROMPT_USER_OF_HELP_MESSAGE);
     }
 
     /**
@@ -30,7 +29,7 @@ public class ExceptionMessages {
      */
     public static void displayIndexNotNumberExceptionMessage() {
         print("Index is not a number!\n"
-                + PROMPTUSEROFHELPMESSAGE);
+                + PROMPT_USER_OF_HELP_MESSAGE);
     }
 
     /**
@@ -38,7 +37,7 @@ public class ExceptionMessages {
      */
     public static void displayDeleteCommandNullPointerExceptionMessage() {
         print("There is no index to remove!\n"
-                + PROMPTUSEROFHELPMESSAGE);
+                + PROMPT_USER_OF_HELP_MESSAGE);
     }
 
     /**
@@ -47,17 +46,10 @@ public class ExceptionMessages {
     public static void displayListNotFoundExceptionMessage() {
         print("The list to work on is empty!\n"
                 + "Try entering a list command first.\n"
-                + PROMPTUSEROFHELPMESSAGE);
+                + PROMPT_USER_OF_HELP_MESSAGE);
     }
 
-    /**
-     * Prints error message when NullPointerException occurs in Parser.
-     */
-    public static void displayParserNullPointerExceptionMessage() {
-        print("Invalid command!\n"
-                + PROMPTUSEROFHELPMESSAGE);
-    }
-
+    //@@author e0425705
     /**
      * Prints error message when error occurs in add command.
      */
@@ -82,7 +74,8 @@ public class ExceptionMessages {
      */
     public static String displayInvalidInputErrorMessage() {
         String invalidMessage = "Sorry I do not understand the input given!\n"
-                + PROMPTUSEROFHELPMESSAGE;
+                + PROMPT_USER_OF_HELP_MESSAGE;
+
         return invalidMessage;
     }
 
@@ -99,9 +92,10 @@ public class ExceptionMessages {
                 + "\t- where KEYWORDS are all the words that matches the search result\n"
                 + "The input format for finding (either) is 'find e/ KEYWORD1 / KEYWORD2...'\n"
                 + "\t- where just one KEYWORD has to match the search result\n"
-                + PROMPTUSEROFHELPMESSAGE);
+                + PROMPT_USER_OF_HELP_MESSAGE);
     }
 
+    //@@author e0425705
     /**
      * Prints out error message when date and time format entered is wrong.
      */
@@ -109,9 +103,10 @@ public class ExceptionMessages {
         print("Wrong format of date entered!\n"
                 + "The accepted format is YYYY-MM-DD!\n"
                 + "Also, ensure that the date input actually exists!\n"
-                + PROMPTUSEROFHELPMESSAGE);
+                + PROMPT_USER_OF_HELP_MESSAGE);
     }
 
+    //@@author e0425705
     /**
      * Prints out error message when invalid input for add activity given.
      */
@@ -124,9 +119,10 @@ public class ExceptionMessages {
                 + "\t\tInput format is:\n"
                 + "\t\tadd f/ FOOD_DESCRIPTION c/ CALORIES d/ YYYY-MM-DD\n"
                 + "\t\tadd e/ EXERCISE_DESCRIPTION c/ CALORIES d/ YYYY-MM-DD\n"
-                + PROMPTUSEROFHELPMESSAGE);
+                + PROMPT_USER_OF_HELP_MESSAGE);
     }
 
+    //@@author e0425705
     /**
      * Prints out error message when invalid input for add activity given.
      */
@@ -139,9 +135,10 @@ public class ExceptionMessages {
                 + "\t\tInput format is:\n"
                 + "\t\tedita INDEX f/ FOOD_DESCRIPTION c/ CALORIES\n"
                 + "\t\tedita INDEX e/ EXERCISE_DESCRIPTION c/ CALORIES\n"
-                + PROMPTUSEROFHELPMESSAGE);
+                + PROMPT_USER_OF_HELP_MESSAGE);
     }
 
+    //@@author e0425705
     /**
      * Prints out error message when DateTimeException occurs.
      */
@@ -193,6 +190,7 @@ public class ExceptionMessages {
                 + "Please enter an integer from 1 to 5, with 1 being the least active and 5 being the most active");
     }
 
+    //@@author e0425705
     /**
      * Prints out error message when IndexOutOfBoundsException occurs in edit command.
      */
@@ -207,13 +205,6 @@ public class ExceptionMessages {
     public static void displayShortcutDoesNotExistMessage() {
         print("This shortcut does not exists!\n"
                 + "Please create a shortcut before adding it!");
-    }
-
-    /**
-     * Prints out error message when calorie has not been input as integer.
-     */
-    public static void displayInvalidCalorieEntryMessage() {
-        print("Please enter calories as an integer");
     }
 
     /**
@@ -246,6 +237,7 @@ public class ExceptionMessages {
         print("Please enter an activity level from 1 to 5 only");
     }
 
+    //@@author e0425705
     /**
      * Prints out error message when calorie count is out of the accepted bound of this application.
      */
@@ -255,6 +247,7 @@ public class ExceptionMessages {
         print(calorieOutOfBoundMessage);
     }
 
+    //@@author e0425705
     /**
      * Prints out error message when calorie tag not found.
      */
@@ -263,6 +256,7 @@ public class ExceptionMessages {
         print(calorieTagNotFoundExceptionMessage);
     }
 
+    //@@author e0425705
     /**
      * Prints out error message when description length exceed limit.
      */
@@ -271,6 +265,7 @@ public class ExceptionMessages {
         print(descriptionLengthExceedExceptionMessage);
     }
 
+    //@@author e0425705
     /**
      * Prints out error message when description input by user is empty.
      */
@@ -280,6 +275,7 @@ public class ExceptionMessages {
         print(emptyDescriptionMessage);
     }
 
+    //@@author e0425705
     /**
      * Prints out error message when date input exceeds range accepted.
      */
@@ -289,6 +285,7 @@ public class ExceptionMessages {
         print(dateLimitExceptionMessage);
     }
 
+    //@@author e0425705
     /**
      * Prints out error message when invalid calorie count entered.
      */
@@ -318,12 +315,14 @@ public class ExceptionMessages {
 
     /**
      * Prints message when string entered is empty.
-     *
      */
     public static void displayEmptyStringMessage() {
         print("Please do not enter an empty input");
     }
 
+    /**
+     * Prints message when txt file read from is corrupted.
+     */
     public static void displayInvalidEditedUserProfileMessage() {
         drawDivider();
         System.out.println("Corrupted user profile!");
@@ -336,7 +335,6 @@ public class ExceptionMessages {
 
     /**
      * Prints message when shortcut of similar name already exists.
-     *
      */
     public static void displayExistingShortcutMessage() {
         drawDivider();

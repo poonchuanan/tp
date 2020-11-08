@@ -2,6 +2,7 @@ package seedu.duke.model;
 
 import java.time.LocalDate;
 
+//@@author e0425705
 /**
  * Sub-class of Activity.
  */

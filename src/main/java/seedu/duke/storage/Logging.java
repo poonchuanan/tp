@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 
-//@@ chewyang
+//@@author chewyang
 /**
  * Logger class to store logs into a file.
  */

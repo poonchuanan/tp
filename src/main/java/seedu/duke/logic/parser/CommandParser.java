@@ -1,6 +1,5 @@
 package seedu.duke.logic.parser;
 
-
 import seedu.duke.command.Command;
 import seedu.duke.command.CreateNewSet;
 import seedu.duke.command.InvalidCommand;
@@ -21,7 +20,6 @@ import java.io.IOException;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
-
 
 /**
  * Initialises parser class.

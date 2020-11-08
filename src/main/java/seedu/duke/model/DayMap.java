@@ -106,7 +106,6 @@ public class DayMap {
      */
     public void insertActivity(int index, Activity activity) {
         lastSeenList.insertActivity(index, activity);
-
     }
 
 
@@ -446,6 +445,7 @@ public class DayMap {
         }
     }
 
+    //@@author e0425705
     /**
      * Sets the activities at a given date as a string.
      * For e.g, 2020-10-11: [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60.
@@ -465,5 +465,4 @@ public class DayMap {
         System.out.println(date.toString());
         getActivityList(date.atStartOfDay()).printList();
     }
-    //@@author chewyang
 }

@@ -30,6 +30,7 @@ This guide will provide information on the design and implementation of **traKCA
 4. Click `Open as Project` and accept all default settings. 
 5. After opening the project, go to `src` -> `main` -> `java` -> `seedu.duke` -> `Trakcal` and right click on the Trakcal class. Select the `Run 'Trakcal.main()'` option.
 6. Upon successful run, the following opening message will be shown: 
+
 ```
 ====================================================================================
 | Hello from                                                                       |
@@ -80,19 +81,23 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 
 `Logic`: Interprets what the user input
 
+`Model`: Structure of the data
+
 `Command`: Executes specific command according to interpretation by `Logic`
 
 `Storage`: Saves required data into the hard disk or retrieves data
 
-`Model`: Structure of the data
+`Exception`: Contains additional exceptions used in code.
 
-`Exception`: 
-
-`UserProfile`:
+`UserProfile`: Processes user details
 
 <br>
 
-### 3.2 Logic component
+### 3.2 Ui component
+
+<br>
+
+### 3.3 Logic component
 
 ![Logic Component](diagrams/LogicComponent.png)
 
@@ -111,7 +116,7 @@ and validity of those description are checked..
 
 <br>
 
-### 3.3 Model component
+### 3.4 Model component
 
 ![Model_Component](diagrams/model.png)
 
@@ -123,6 +128,22 @@ In the Model component,
 * Stores a DayMap object that holds the data for each date.
 * Stores an ActivityList that holds the list of Activities, Food or Exercise for each day 
 * Does not depend on any of the other components.
+
+<br>
+
+### 3.5 Command component
+
+<br>
+
+### 3.6 Storage component
+
+<br>
+
+### 3.7 Exception component
+
+<br>
+
+### 3.8 UserProfile component
 
 <br>
 <br>
@@ -137,7 +158,6 @@ The sequence diagram below shows how the components will react to a new user or 
 
 *Figure 4. Components interactions for tracKCAL checks for new or existing user*
 
-<br>
 <br>
 
 ### 3.2 Add activity feature
@@ -154,7 +174,7 @@ The following Sequence Diagram shows how `AddFoodCommand` is carried out when th
 
 > `AddExerciseCommand` diagram has a similar logic.
 
-![Add Exercise](diagrams/AddExerciseFeature.png)
+![Add_Exercise](diagrams/AddExerciseFeature.png)
 
 *Figure 6. Component interactions for add exercise command*
 
@@ -181,7 +201,7 @@ The following operations could be applied to the lastSeenList which would change
 
 - delete
 - move
-- edit (note: edit only modifies entries in the database after list command)
+- edita
 
 The details of those operations can be found further down.
 
@@ -241,13 +261,13 @@ The editing mechanism is used by `EditFoodCommand` and `EditExerciseCommand` to 
 
 The following Sequence Diagram shows how `EditFoodCommand` is carried out when the user issues edit command, in this case, `edit 1 f/ egg c/ 10`:
 
-![Edit Food](diagrams/EditFood.png)
+![Edit_Food](diagrams/EditFood.png)
 
 *Figure 9. Sequence diagram of edit food feature*
 
 > `EditExerciseCommand` diagram has a similar logic.
 
-![Edit Exercise](diagrams/EditExercise.png)
+![Edit_Exercise](diagrams/EditExercise.png)
 
 *Figure 10. Sequence diagram of edit exercise feature*
 
@@ -280,7 +300,7 @@ The chaining mechanism can be used by the various commands available The followi
 
 The following sequence diagram shows how the chaining works after command is entered:
 
-![Chain Command Feature](diagrams/ChainCommand.png)
+![Chain_Command](diagrams/ChainCommand.png)
 
 *Figure 10. Sequence diagram of chaining feature*
 
@@ -418,6 +438,57 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
->These instructions only provide a starting point for testers to work on; testers are expected to do more exploratory testing.
+Starting up application
+1. Ensure that you have Java 11 or above installed, if not, it can be found [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html)
+2. Down the latest version of `trakCAL` from [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/releases)
+3. Create an empty folder in a convenient location eg. Desktop and copy jar file over to it.
+4. Open command window/terminal in that window and navigate into the file directory,
+5. Run the command `java -jar {filename}.jar` e.g., `java -jar traKCAL.jar`.
+6. Upon successful run, you will get the following greeting message.
 
-*To be implemented soon*
+```
+====================================================================================
+| Hello from                                                                       |
+|  _                  _  __   ___     _     _                                      |
+| | |_   _ _   __ _  | |/ /  / __|   /_\   | |                                     |
+| |  _| | '_| / _` | | ' <  | (__   / _ \  | |__                                   |
+|  \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|                                  |
+|                                                                                  |
+| Hello! I'm traKCAL.                                                              |
+| Please do input 'help' for the commands and their respective input format.       |
+====================================================================================
+```
+
+7. Enter `help` to view help list containing the features, and their respective input format.
+8. For a detailed list on the available features, please refer to [user guide](UserGuide.md)
+
+Exiting the application
+1. To terminate **traKCAL**, enter `bye`. A successful terminating of application would look like this:
+
+```
+=====================================================================================================
+| Thank you for using traKCAL. See you again!                                                       |
+=====================================================================================================
+```
+ 
+#### Adding an entry into list
+    1. Adding a food entry with date
+        Test case: `add f/ cheesy chicken c/ 180 d/ 2020-11-09`
+        Expected: An entry with food description `cheesy chicken` and calories of `100` would be added into `2020-11-09`'s list.
+    2. Adding a food entry without date
+        Test case: `add f/ milk tea with pearls c/ 125`
+        Expected: An entry with food description `milk tea with pearls` and calories of `150` would be added into today's list.
+    3. Adding an exercise entry with date
+        Test case: `add e/ walking c/ 10 d/ 2020-11-05`
+        Expected: An entry with exercise description `walking` and calories of `10` would be added into `2020-11-05`'s list.
+    4. Adding an exercise entry without date
+        Test case: `add e/ 50 sit-ups c/ 75`
+        Expected: An entry with food description `50 sit-ups` and calories of `75` would be added into today's list.
+    5. Incorrect inputs to try:
+        `add f/ jelly 90 `: has missing calorie tag [c/]
+        `add f/ jelly c/ 90 d/ 2020-10-13`: date is before application launch date, 2020-10-14
+        `add f/ jelly c/ -30`: calories is less than or equals to 0
+        `add e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
+        `add e/ c/ `: empty input parameters
+        Expected: Message with error will be shown
+       
