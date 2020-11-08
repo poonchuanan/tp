@@ -173,7 +173,7 @@ bye                    - Terminates the application
 <br>
 <br>
 
-## 2.0 User Profiling
+## 2.0 User Profile - Jenny
 
 ### 2.1 Creating a new user profile
 
@@ -377,7 +377,7 @@ Weight Goal : gain
 <br>
 <br>
 
-## 3.0 Shortcut
+## 3.0 Shortcut - Jenny Lin
 
 ### 3.1 Creating a shortcut for a set of entries 
 
