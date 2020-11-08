@@ -76,7 +76,7 @@ This section gives you a detailed description of each feature available in **tra
 
 ## 1.0 Viewing help - Puah Siew Wen
 
-Do you need help? Do you need a reminder of what the function and their respective input format is? Well this section solves it for you!
+Do you need help? Do you need a reminder of what the features available, and their respective input format? Well this section solves it for you!
 
 Format: `help`
 
@@ -551,7 +551,7 @@ Items in the shortcut may have been added partially only.
 
 ### 4.1 Adding a food entry
 
-Want to add a food entry? This feature solves it by adding a food entry with its respective calories to the list.
+Want to add a food entry? This feature solves it by adding a food entry with its respective calories to the list!
 
 Format: `add f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** <d/ **DATE**>`
 
@@ -559,6 +559,7 @@ Parameters:
 * `**FOOD_DESCRIPTION**`: Description of food consumed.
 * `**CALORIE_COUNT**`: Amount of calories consumed.
 * `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
+
 > NOTE: 
 >*`d/ **DATE**` is optional, if you enter add command without it, it will add to the current date list. 
 
@@ -602,20 +603,18 @@ No.        Type                        Description                        Calori
 ```
 
 2nd example:
-* `list` before adding
+* `list 2020-11-05` before adding
 
 ```
-------------------------------------------
-|  2020-11-07  |  Net Calorie: 107 kcal  |
-------------------------------------------
+-----------------------------------------
+|  2020-11-05  |  Net Calorie: 77 kcal  |
+-----------------------------------------
 No.        Type                        Description                        Calories gain or lost
 -----------------------------------------------------------------------------------------------
-1          Food           apple_____________________________________________________30
-
-2          Food           mushroom soup_____________________________________________77
+1          Food           jelly_____________________________________________________77
 ```
 
-* `add f/ banana cake c/ 70 d/ 2020-11-07`
+* `add f/ banana cake c/ 70 d/ 2020-11-05`
 
 ```
 ====================================================================================
@@ -627,19 +626,17 @@ The current activity list has been saved.
 ====================================================================================
 ```
 
-* `list` after adding
+* `list 2020-11-05` after adding
 
 ```
 ------------------------------------------
-|  2020-11-07  |  Net Calorie: 177 kcal  |
+|  2020-11-05  |  Net Calorie: 147 kcal  |
 ------------------------------------------
 No.        Type                        Description                        Calories gain or lost
 -----------------------------------------------------------------------------------------------
-1          Food           apple_____________________________________________________30
+1          Food           jelly_____________________________________________________77
 
-2          Food           mushroom soup_____________________________________________77
-
-3          Food           banana cake_______________________________________________70
+2          Food           banana cake_______________________________________________70
 ```
 
 <br>
@@ -706,21 +703,17 @@ No.        Type                        Description                        Calori
 ```
 
 2nd example:
-* `list` before adding
+* `list 2020-11-05` before adding
 
 ```
 ------------------------------------------
-|  2020-11-07  |  Net Calorie: 112 kcal  |
+|  2020-11-05  |  Net Calorie: 147 kcal  |
 ------------------------------------------
 No.        Type                        Description                        Calories gain or lost
 -----------------------------------------------------------------------------------------------
-1          Food           apple_____________________________________________________30
+1          Food           jelly_____________________________________________________77
 
-2          Food           mushroom soup_____________________________________________77
-
-3          Food           banana cake_______________________________________________70
-
-4        Exercise         jumping___________________________________________________65
+2          Food           banana cake_______________________________________________70
 ```
 
 * `add e/ jumping c/ 65`
@@ -729,60 +722,47 @@ No.        Type                        Description                        Calori
 ====================================================================================
 Noted! The following has been added into list:
 ====================================================================================
-[E] | brisk walking | 20
+[E] | jumping | 65
 ====================================================================================
 The current activity list has been saved.
 ====================================================================================
 ```
 
-* `list` after adding
+* `list 2020-11-05` after adding
 
 ```
 -----------------------------------------
-|  2020-11-07  |  Net Calorie: 92 kcal  |
+|  2020-11-05  |  Net Calorie: 82 kcal  |
 -----------------------------------------
 No.        Type                        Description                        Calories gain or lost
 -----------------------------------------------------------------------------------------------
-1          Food           apple_____________________________________________________30
+1          Food           jelly_____________________________________________________77
 
-2          Food           mushroom soup_____________________________________________77
+2          Food           banana cake_______________________________________________70
 
-3          Food           banana cake_______________________________________________70
-
-4        Exercise         jumping___________________________________________________65
-
-5        Exercise         brisk walking_____________________________________________20
+3        Exercise         jumping___________________________________________________65
 ```
 
 ### 4.3 Possible errors when adding an activity entry
 
 #### Missing tags
 If you have missing tags, such as missing calorie tag, an error would occur
-> the following would be printed out if you input `add f/ jelly c/ 70 d/ 2020-10-13`
+> the following would be printed out if you input `add f/ jelly 90 `
 
 ```
 ====================================================================================
 Calorie count tag[c/] is missing in your input!
 ====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
 ```
-
 
 #### Activity date is before application launch date or after today's date
 If your entry is before 2020-10-14 or after today's date, an error would occur
-> the following would be printed out if you input `add f/ jelly d/ 2020-11-07`
+> the following would be printed out if you input `add f/ jelly c/ 90 d/ 2020-10-13`
 
 ```
 ====================================================================================
 You have exceeded the accepted date range!
 Date input has to be from 2020-10-14 to current date!
-====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
@@ -795,10 +775,6 @@ If your calorie count is <= 0 or > 3000, an error would occur
 Calorie count should be > 0 and <= 3000!
 Please input a valid calorie count that is within the range!
 ====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
 ```
 
 
@@ -810,12 +786,7 @@ If the description you input has more than 40 characters, an error would occur
 ====================================================================================
 Maximum description length is 40 characters only!
 ====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
 ```
-
 
 #### Empty inputs will not be accepted
 If any of the parameters input by you is empty, an error would occur
@@ -825,10 +796,6 @@ If any of the parameters input by you is empty, an error would occur
 ====================================================================================
 Current description is empty!
 Please input a valid description that is not empty!
-====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
@@ -918,16 +885,16 @@ A typo when entering input? Do you want to edit attributes of a particular activ
 
 >Things you should take note of:
 >* In addition, this feature allows the changing of a food activity to exercise activity in the list. Vice versa.
->* The list in which you want to edit to have to be pulled out first before being able to edit on it.
->* This commands edits the latest list pulled out. Thus, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
+>* The list in which you want to edit to have to be pulled out first before being able to edit on it, else editing would be today's list!
+>* This command edits the latest list pulled out. For example, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
 
 Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**` OR `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 Uses:
-1. Editing an entry in list from food to food. `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
-2. Editing an entry in list from food to exercise. `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
-3. Editing an entry in list from exercise to exercise. `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
-4. Editing an entry in list from exercise to food. `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+1. Editing an entry in list from food to food: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+2. Editing an entry in list from food to exercise: `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+3. Editing an entry in list from exercise to exercise: `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+4. Editing an entry in list from exercise to food: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 Parameters:
 * `**LIST_INDEX**`: Index of activity to be edited in the latest pull out list.
@@ -989,11 +956,11 @@ No.        Type                        Description                        Calori
 ```
 
 2nd example:
-* `list` before editing
+* `list 2020-11-05` before editing
 
 ```
 -----------------------------------------
-|  2020-11-07  |  Net Calorie: 97 kcal  |
+|  2020-11-05  |  Net Calorie: 97 kcal  |
 -----------------------------------------
 No.        Type                        Description                        Calories gain or lost
 -----------------------------------------------------------------------------------------------
@@ -1020,11 +987,11 @@ The current activity list has been saved.
 ====================================================================================
 ```
 
-* `list` after editing
+* `list 2020-11-05` after editing
 
 ```
 ------------------------------------------
-|  2020-11-07  |  Net Calorie: -48 kcal  |
+|  2020-11-05  |  Net Calorie: -48 kcal  |
 ------------------------------------------
 No.        Type                        Description                        Calories gain or lost
 -----------------------------------------------------------------------------------------------
@@ -1041,18 +1008,6 @@ No.        Type                        Description                        Calori
 
 ### 6.1.1 Possible errors when editing
 
-#### Not calling list before editing
-If you try to edit activity before calling out the list you want to edit on, an error would occur
-> the following would be printed out if you input `edita 1 f/ snack c/ 7`
-
-```
-====================================================================================
-Index entered is not within the range!
-Please pull out the list for the day before editing on it!
-====================================================================================
-```
-
-
 #### Calorie count exceeds acceptable range
 If your calorie count is <= 0 or > 3000, an error would occur
 > the following would be printed out if you input `edita 1 f/ jelly c/ -30`
@@ -1062,12 +1017,7 @@ If your calorie count is <= 0 or > 3000, an error would occur
 Calorie count should be > 0 and <= 3000!
 Please input a valid calorie count that is within the range!
 ====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
 ```
-
 
 #### Description length exceeds acceptable range
 If the description you input has more than 40 characters, an error would occur
@@ -1077,12 +1027,7 @@ If the description you input has more than 40 characters, an error would occur
 ====================================================================================
 Maximum description length is 40 characters only!
 ====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
 ```
-
 
 #### Empty inputs will not be accepted
 If any of the parameters input by you is empty, an error would occur
@@ -1092,10 +1037,6 @@ If any of the parameters input by you is empty, an error would occur
 ====================================================================================
 Current description is empty!
 Please input a valid description that is not empty!
-====================================================================================
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
