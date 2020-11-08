@@ -1,5 +1,6 @@
 package seedu.duke.logic.preparecommand;
 
+import seedu.duke.Trakcal;
 import seedu.duke.command.Command;
 import seedu.duke.exception.CalorieCountException;
 import seedu.duke.exception.DateLimitException;
@@ -7,6 +8,7 @@ import seedu.duke.exception.DescriptionLengthExceedException;
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.exception.InvalidCalorieException;
 import seedu.duke.exception.InvalidNumberOfArguments;
+import seedu.duke.exception.ListNotFoundException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -40,7 +42,8 @@ public abstract class PrepareCommand {
         this.date = LocalDateTime.now();
     }
 
-    public abstract Command prepareCommand() throws Exception;
+
+    public abstract Command prepareCommand() throws Exception, ListNotFoundException;
 
     /**
      * Checks for index of the delete command.
@@ -164,11 +167,18 @@ public abstract class PrepareCommand {
         }
     }
 
-
+    /**
+     * Checks if the number of argument is within limit.
+     *
+     * @param limit limit of description length
+     * @return true if descrption length is within limit
+     * @throws InvalidNumberOfArguments if description exceeds limit
+     */
     protected boolean isNumberOfArgumentsValid(int limit) throws InvalidNumberOfArguments {
         if (description.length != limit) {
             throw new InvalidNumberOfArguments();
         }
         return true;
     }
+
 }

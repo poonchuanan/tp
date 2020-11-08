@@ -46,7 +46,7 @@ public class Storage {
      *
      * @throws IOException if there is an issue
      */
-    private void createFileHierarchy() throws IOException {
+    protected void createFileHierarchy() throws IOException {
         if (dataFile.getParentFile().exists()) {
             if (dataFile.exists()) {
                 return;
@@ -116,6 +116,7 @@ public class Storage {
     }
     //@@author chewyang
 
+    //@@author poonchuanan
     /**
      * Loads saved CSV data into the list when the program starts.
      *
@@ -135,7 +136,6 @@ public class Storage {
             for (int i = 0; i < lines.size(); i++) {
                 processData(calList, lines.get(i));
             }
-
         } catch (IOException e) {
             System.out.println("Unable to load data");
         }

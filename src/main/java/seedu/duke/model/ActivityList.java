@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
+import static seedu.duke.ui.Ui.displayMessage;
 
 //@@author chewyang
 /**
@@ -143,7 +144,7 @@ public class ActivityList extends Trakcal {
             }
             activities.remove(index);
             activityCounter--;
-            System.out.print("Activity removed!\n");
+            displayMessage("Activity removed!");
         } else {
             System.out.println("Please make sure index is within range");
             throw new IndexOutOfBoundsException();

@@ -7,18 +7,19 @@ import seedu.duke.logic.parser.ChainingParser;
 import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.model.DayMap;
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.Logging;
 import seedu.duke.ui.Ui;
 import seedu.duke.userprofile.UserProfile;
 import seedu.duke.userprofile.InitialiseUserProfile;
 import seedu.duke.userprofile.CheckNewUser;
 
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import static seedu.duke.logic.parser.CommandParser.SPACE;
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
 import static seedu.duke.ui.Ui.displayWelcomeMessage;
-import static seedu.duke.ui.ExceptionMessages.displayParserNullPointerExceptionMessage;
 
 /**
  * Entry point of the traKCAL application.
@@ -31,6 +32,12 @@ public class Trakcal {
 
     public static Scanner in = new Scanner(System.in);
     public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
+    //public static Storage loggingStorage = new Storage(getJarFilePath() + "/tpdata/tpLogging.txt");
+    public static Logging logging = new Logging(getJarFilePath() + "/tpdata/tpLogging.log");
+
+
+
+
 
     /**
      * Main function.
@@ -40,7 +47,9 @@ public class Trakcal {
     public static void main(String[] args) {
         displayWelcomeMessage();
         System.out.println();
+        logging.setLogger();
         storage.loadData(calList);
+        calList.setLastSeenList(calList.getActivityList(LocalDate.now().atStartOfDay()));
         if (CheckNewUser.isNewUser()) {
             profile = UserProfile.createNewProfile();
         } else {
@@ -65,9 +74,10 @@ public class Trakcal {
                     command = parser.parseArgument();
                     executeCmd(command);
                     storage.updateFile(calList);
+                    logging.writeToLog("try first message");
                 }
             } catch (NullPointerException e) {
-                displayParserNullPointerExceptionMessage();
+                //Exception is already taken care of
             } catch (IndexOutOfBoundsException e) {
                 displayNotSavedMessage();
             }
@@ -94,4 +104,5 @@ public class Trakcal {
         return new File(Trakcal.class.getProtectionDomain().getCodeSource().getLocation().getPath())
                 .getParent().replace("%20", SPACE);
     }
+
 }
