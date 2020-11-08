@@ -19,7 +19,6 @@ public class PrepareUserCommand extends PrepareCommand {
             System.out.println("Arguments are not valid!");
         }
         String[] input = description[1].split(" ", 2);
-        PrepareCommand command;
 
         switch (input[0].trim()) {
         case "l/":

@@ -16,6 +16,7 @@ import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessag
 import static seedu.duke.ui.ExceptionMessages.displayEmptyDescriptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieExceptionMessage;
 
+//@@author e0425705
 /**
  * Prepares user input for edit command.
  */
