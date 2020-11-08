@@ -53,7 +53,7 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 
 `Storage`: Saves required data into the hard disk or retrieves data
 
-`Model`: Visualize data into graph
+`Model`: Structure of the data
 
 <br>
 
@@ -81,7 +81,6 @@ proposed functionality which can be associated with `Ui`,`storage` or `model` co
 
 *Figure 3. Diagram for Model component*
 
-**API**: Model.java 
 
 In the Model component, 
 
@@ -150,7 +149,12 @@ The details of those operations can be found further down.
 
 #### 3.3.1 List
 
-This feature is used to list the entries of a specified date where the extracted activityList would be used as the lastSeenList itself. 
+This listing feature uses the lastSeenList which is of ActivtyList class.  <br>
+The lastSeenList is the list that the user would see after a `list` or `find` command. <br>
+For example, 
+* A `list 2020-11-11` command would use the activityList for 2020-11-11 as the lastSeenList.<br>
+* A `find e/ food` command would go throught the dayMap and add activities containing the keyword/s into the lastSeenList.
+Using the lastSeenList allows users to make changes e.g `edit`, `delete`, `move` commands using the numbered index of a single `list` or `find` command.
 
 The following sequence diagram shows how the lastSeenList is set after a “list date" command where date is of YYYY-MM-DD or after a “list” command where the date is the current date.
 
