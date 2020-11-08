@@ -4,7 +4,6 @@ import seedu.duke.model.Exercise;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
 
 import static seedu.duke.ui.Ui.displaySavedMessage;
 

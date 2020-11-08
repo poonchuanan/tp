@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.print;
 
 /**

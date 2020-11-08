@@ -5,11 +5,9 @@ import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.MoveActivityCommand;
 
 import static seedu.duke.ui.ExceptionMessages.displayIndexNotNumberExceptionMessage;
-import static seedu.duke.ui.Ui.PROMPTUSEROFHELPMESSAGE;
+import static seedu.duke.ui.Ui.PROMPT_USER_OF_HELP_MESSAGE;
+
 //@@author chewyang
-
-
-
 /**
  * Prepares move command.
  */
@@ -19,11 +17,11 @@ public class PrepareMoveIndexCommand extends PrepareCommand {
     public static final String FROM_KEYWORD = "from/";
     public static final String BELOW_KEYWORD = "below/";
     public static final String BOTH_KEY_MISSING_ERROR_MESSAGE = "'from/' and 'below/' keyword is missing!\n "
-            + PROMPTUSEROFHELPMESSAGE;
+            + PROMPT_USER_OF_HELP_MESSAGE;
     public static final String FROM_KEY_MISSING_ERROR_MESSAGE = "'from/' keyword is missing!\n"
-            + PROMPTUSEROFHELPMESSAGE;
+            + PROMPT_USER_OF_HELP_MESSAGE;
     public static final String BELOW_KEY_MISSING_ERROR_MESSAGE = "'below/' keyword is missing!\n"
-            + PROMPTUSEROFHELPMESSAGE;
+            + PROMPT_USER_OF_HELP_MESSAGE;
 
 
     public PrepareMoveIndexCommand(String[] description) {

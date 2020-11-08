@@ -54,7 +54,7 @@ This section gives the steps you need to get started quickly.
 6. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window
 
    Some example commands you can try:
-    * `list`: Lists all activities for today
+    * `list`: Lists all entries for today
     * `add f/ apple c/ 30`: Adds a food entry named `apple` and of calories `30` to today's list **trakCAL**.
     * `delete 3`: Deletes the 3rd contact shown in the current list.
     * `bye`: Exits the application.
@@ -132,29 +132,29 @@ list DATE              - Prints out the list of entries for the date(YYYY-MM-DD)
 
 Editing:
 edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT
-                       - Edits activity at index LIST_INDEX of latest list printed out
+                       - Edits entry at index LIST_INDEX of latest list printed out
                          to food consumed, FOOD_DESCRIPTION, calories gained, CALORIE_COUNT
 edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT
-                       - Edits activity at index LIST_INDEX of latest list printed out
+                       - Edits entry at index LIST_INDEX of latest list printed out
                          to exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT
 
 Finding:
-find d/ DESCRIPTION    - Searches for all activities description with the DESCRIPTION keyword
-find c/ CALORIE_COUNT  - Searches for all activities with calories of CALORIE_COUNT
+find d/ DESCRIPTION    - Searches for all entries description with the DESCRIPTION keyword
+find c/ CALORIE_COUNT  - Searches for all entries with calories of CALORIE_COUNT
 find a/ DESCRIPTION1 / DESCRIPTION2 ... / DESCRIPTION
-                        - Searches for all activities with ALL matching keywords from
+                        - Searches for all entries with ALL matching keywords from
                           DESCRIPTION1 to DESCRIPTION
 find e/ DESCRIPTION1 / DESCRIPTION2 ... / DESCRIPTION
-                        - Searches for all activities with AT LEAST one matching keyword from
+                        - Searches for all entries with AT LEAST one matching keyword from
                           DESCRIPTION1 to DESCRIPTION
 
 Moving:
 move from/ INDEX1 below/ INDEX2
-                       - Moves the activity at index INDEX1 to the index below INDEX2
+                       - Moves the entry at index INDEX1 to the index below INDEX2
 
 Deleting:
-delete LIST_INDEX      - Deletes activity located at index LIST_INDEX of latest list printed out
-delete all/            - Deletes all activities in current date list
+delete LIST_INDEX      - Deletes entry located at index LIST_INDEX of latest list printed out
+delete all/            - Deletes all entries in current date list
 
 Graphing:
 graph                  - Generates a graph of target calorie and net calorie obtained up to
@@ -788,7 +788,7 @@ No.        Type                        Description                        Calori
 
 <br>
 
-### 4.3 Possible errors when adding an activity entry
+### 4.3 Possible errors when adding an entry into activity list
 An error will occur if any of the conditions below are met. <br> 
 The respective error message will also be shown to you.
 > Any text in this format is an example of a command that will produce the respective error.
@@ -866,7 +866,7 @@ Parameters:
 * `<**DATE**>`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 >REMINDER: 
->*The `**DATE**` parameter is optional, if you enter list command without it, it will print out the list of activities for today's date.
+>*The `**DATE**` parameter is optional, if you enter list command without it, it will print out the list of entries for today's date.
 
 Examples of usage: 
 
@@ -952,7 +952,7 @@ Please do input 'help' for the commands and their respective input format.
 
 ### 6.1 Editing an entry in list
 
-A typo when entering input? Do you want to edit attributes of a particular activity in the list? This feature solves it!
+A typo when entering input? Do you want to edit attributes of a particular entry in the list? This feature solves it!
 
 Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**` OR `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
 
@@ -963,7 +963,7 @@ Examples of formats accepted:
 4. Editing an entry in list from exercise to food: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 Parameters:
-* `**LIST_INDEX**`: Index of activity to be edited in the latest pull out list.
+* `**LIST_INDEX**`: Index of entry to be edited in the latest pull out list.
 * `**FOOD_DESCRIPTION**`: New description of food consumed.
 * `**EXERCISE_DESCRIPTION**`: New description of exercise done.
 * `**CALORIE_COUNT**`: New amount of calories gained/lost.
@@ -1134,7 +1134,7 @@ Please input a valid description that is not empty!
 
 ### 7.1.1 Finding entries via description
 
-Finds activity/activities based on keywords entered and list them out. Allows user to search by activity description.
+Finds entry/entries based on keywords entered and list them out. Allows user to search by activity description.
 
 Format: `find d/ **DESCRIPTION**`
 
@@ -1157,7 +1157,7 @@ No.        Date                Type                                Description  
 
 ### 7.1.2 Finding entries via calories
 
-Finds activity/activities based on keywords entered and list them out. Allows user to search by calories.
+Finds entry/entries based on keywords entered and list them out. Allows user to search by calories.
 
 Format: `find c/ **CALORIES**`
 
@@ -1247,7 +1247,7 @@ No.        Date                Type                                Description  
 **INTRODUCTION HELLO PLS PUT**
 
 Format for find by just one matching description: `find e/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
-> As long as just one of your description keyword matches in the entry, the activity will be listed. 
+> As long as just one of your description keyword matches in the entry, the entry will be listed. 
 >There is no limit to the number of descriptions allowed.
 
 Parameters:
@@ -1313,15 +1313,15 @@ There are consecutive slashes in your input!
 
 ## 8.0 Move - Owen Chew Yang
 
-### 8.1 Moving an activity to another position
+### 8.1 Moving an entry to another position
 
-You can move an activity to another position in the last shown list using this `move` command.
+You can move an entry to another position in the last shown list using this `move` command.
 
 Format: `move from/ **INDEX_1** below/ **INDEX_2**`
 
 Parameters:
-* `**INDEX_1**`: Index of the activity to be moved from.
-* `**INDEX_2**`: Index of the activity to be inserted below.
+* `**INDEX_1**`: Index of the entry to be moved from.
+* `**INDEX_2**`: Index of the entry to be inserted below.
 
 Examples of usage:
 * After a `list 2020-10-11` command,
@@ -1439,7 +1439,7 @@ You can delete an entry in the list using the `delete` command.
 Format: `delete **INDEX**`
 
 Parameters:
-* `**INDEX**`: Index of activity to be deleted in the last shown list.
+* `**INDEX**`: Index of entry to be deleted in the last shown list.
 
 Example of usage:
 * `list` before deleting
@@ -1774,7 +1774,7 @@ No.        Type                        Description                        Calori
 ### 11.1.1 Possible errors when chaining
 
 *The possible errors follows the errors for adding, listing, editing and graphing*
-Possible errors for adding: [errors for add](#43-possible-errors-when-adding-an-activity-entry)
+Possible errors for adding: [errors for add](#43-possible-errors-when-adding-an-entry-into-activity-list)
 Possible errors for listing: [errors for list](#511-possible-errors-when-listing)
 Possible errors for editing: [errors for edit](#611-possible-errors-when-editing)
 Possible errors for graphing: [errors for edit](#1011-possible-errors-when-graphing)
