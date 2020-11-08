@@ -5,6 +5,8 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+
+//@@ chewyang
 /**
  * Logger class to store logs into a file.
  */

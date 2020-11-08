@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static seedu.duke.Trakcal.logging;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyListError;
 
 //@@author chewyang
 
@@ -15,6 +16,7 @@ import static seedu.duke.Trakcal.logging;
 public class ListCommand extends Command {
 
     protected LocalDate date;
+
 
     public ListCommand(LocalDate date) {
         this.date = date;
@@ -36,7 +38,7 @@ public class ListCommand extends Command {
             dayMap.drawListAfterListCommand(date);
 
         } catch (NullPointerException e) {
-            System.out.println("There is no data for " + date.toString());
+            displayEmptyListError();
             logging.writeToLogInfo("no data found");
         }
 
