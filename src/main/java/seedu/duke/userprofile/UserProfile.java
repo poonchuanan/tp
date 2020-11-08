@@ -473,7 +473,6 @@ public class UserProfile {
      * Check genders validity.
      *
      * @param gender user input
-     * @throws IllegalArgumentException
      */
     private static void checkGender(String gender) throws IllegalArgumentException {
         for (GenderEnum validGender : GenderEnum.values()) {
@@ -489,7 +488,6 @@ public class UserProfile {
      * Check if input is of type double.
      *
      * @param userInput user input
-     * @throws NumberFormatException
      */
     private static void checkInputIsDouble(String userInput) throws NumberFormatException {
         Double.parseDouble(userInput);
@@ -499,7 +497,6 @@ public class UserProfile {
      * Check weight is within range.
      *
      * @param weight user input
-     * @throws IllegalArgumentException
      */
     private static void checkWeightIsWithinRange(String weight) throws IllegalArgumentException {
         if (Double.parseDouble(weight) < MIN_WEIGHT || Double.parseDouble(weight) > MAX_WEIGHT) {
@@ -511,7 +508,6 @@ public class UserProfile {
      * Check height is within range.
      *
      * @param height user input
-     * @throws IllegalArgumentException
      */
     private static void checkHeightIsWithinRange(String height) throws IllegalArgumentException {
         if (Double.parseDouble(height) < MIN_HEIGHT || Double.parseDouble(height) > MAX_HEIGHT) {
@@ -523,7 +519,6 @@ public class UserProfile {
      * Check age is within range.
      *
      * @param age user input
-     * @throws IllegalArgumentException
      */
     private static void checkAgeIsWithinRange(String age) throws IllegalArgumentException {
         if (Integer.parseInt(age) < MIN_AGE || Integer.parseInt(age) > MAX_AGE) {
@@ -535,7 +530,6 @@ public class UserProfile {
      * Check input is of type integer.
      *
      * @param userInput user input
-     * @throws IllegalArgumentException
      */
     private static void checkInputIsInt(String userInput) throws NumberFormatException {
         Integer.parseInt(userInput);
@@ -545,7 +539,6 @@ public class UserProfile {
      * Check input is within range.
      *
      * @param al user input
-     * @throws IllegalArgumentException
      */
     private static void checkAcLeIsWithinRange(String al) throws IllegalArgumentException {
         if (Integer.parseInt(al) < MIN_AL || Integer.parseInt(al) > MAX_AL) {
@@ -557,7 +550,6 @@ public class UserProfile {
      * Check weight goal fits enum.
      *
      * @param wg user input
-     * @throws IllegalArgumentException
      */
     private static void checkWeightGoal(String wg) throws IllegalArgumentException {
         for (WeightGoalEnum validWg : WeightGoalEnum.values()) {
@@ -572,7 +564,6 @@ public class UserProfile {
      * Check for empty input for string.
      *
      * @param userInput user input
-     * @throws EmptyDescriptionException
      */
     public static void checkEmptyInput(String userInput) throws EmptyDescriptionException {
         if (userInput.equals(" ") || userInput.equals("") || userInput.isEmpty() || userInput.isBlank()) {
@@ -584,7 +575,6 @@ public class UserProfile {
      * Check for empty input for array.
      *
      * @param data user input
-     * @throws IllegalArgumentException
      */
     public static void checkEmptyInput2(String[] data) throws EmptyDescriptionException {
         for (String datum : data) {
@@ -597,7 +587,6 @@ public class UserProfile {
     /**
      * Saves new user info.
      *
-     * @throws IOException
      */
     public static InitialiseUserProfile enterNewUserInfo() throws IOException {
         InitialiseUserProfile profile =
