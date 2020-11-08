@@ -680,11 +680,7 @@ public class UserProfile {
                 } else {
                     throw new NullPointerException();
                 }
-            } catch (IndexOutOfBoundsException e) {
-                displayInvalidEditedUserProfileMessage();
-                createNewProfile();
-                return null;
-            } catch (NullPointerException e) {
+            } catch (IndexOutOfBoundsException | NullPointerException e) {
                 displayInvalidEditedUserProfileMessage();
                 createNewProfile();
                 return null;
