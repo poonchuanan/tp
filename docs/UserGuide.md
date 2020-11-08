@@ -72,7 +72,7 @@ This section gives you a detailed description of each feature available in **tra
 <br>
 <br>
 
-## 1.0 Viewing help
+## 1.0 Viewing help - Puah Siew Wen
 
 Do you need help? Do you need a reminder of what the function and their respective input format is? Well this section solves it for you!
 
@@ -529,7 +529,7 @@ Items in the shortcut may have been added partially only.
 <br>
 <br>
 
-## 4.0 Add
+## 4.0 Add - Puah Siew Wen
 
 ### 4.1 Adding a food entry
 
@@ -624,12 +624,7 @@ No.        Type                        Description                        Calori
 3          Food           banana cake_______________________________________________70
 ```
 
-### 4.1.1 Possible errors when adding a food entry
-
-```
-
-```
-
+<br>
 <br>
 
 ### 4.2 Adding an exercise entry
@@ -741,7 +736,7 @@ No.        Type                        Description                        Calori
 5        Exercise         brisk walking_____________________________________________20
 ```
 
-### 4.2.1 Possible errors when adding an exercise entry
+### 4.3 Possible errors when adding an activity entry
 
 #### Missing tags
 If you have missing tags, such as missing calorie tag, an error would occur
@@ -897,7 +892,7 @@ Please do input 'help' for the commands and their respective input format.
 <br>
 <br>
 
-## 6.0 Edit
+## 6.0 Edit - Puah Siew Wen
 
 ### 6.1 Editing an entry in list
 
@@ -1416,7 +1411,7 @@ Example of usage:
 <br>
 <br>
 
-## 11.0 Chaining
+## 11.0 Chaining - Puah Siew Wen
 
 ### 11.1 Chaining of features
 
@@ -1425,7 +1420,7 @@ Chaining is the right feature for your needs!
 
 > Do note
 >* Chaining is only available to 3 features
->* [list](#50-list), [add](#40-add) and [edita](#61-editing-an-entry-in-list)
+>* [list](#50-list), [add](#40-add---puah-siew-wen) and [edita](#61-editing-an-entry-in-list)
 >* The respective things to adhere to for each feature still applies.
 >* For example, [edita](#61-editing-an-entry-in-list), you MUST call out the list you want to edit on before editing on it.
 
@@ -1525,9 +1520,9 @@ The current activity list has been saved.
 ### 11.1.1 Possible errors when chaining
 
 *The possible errors follows the errors for adding, listing and editing*
-Possible errors for adding: [errors for add](#43-possible-errors-when-adding)
-Possible errors for listing: [errors for list](#52-possible-errors-when-listing)
-Possible errors for editing: [errors for edit](#62-possible-errors-when-editing)
+Possible errors for adding: [errors for add](#43-possible-errors-when-adding-an-activity-entry)
+Possible errors for listing: [errors for list](#511-possible-errors-when-listing)
+Possible errors for editing: [errors for edit](#611-possible-errors-when-editing)
 
 <br>
 <br>
