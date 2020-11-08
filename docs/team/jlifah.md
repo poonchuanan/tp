@@ -12,20 +12,22 @@ This section shows a brief overview of my contribution to traKCAL. It includes c
 
 > Special thanks to Karthig for improving the readability of initial command line and Owen for refactoring the code to different packages.
 
-
 #### Enhancements implemented
 
 I implemented the `user profile` and `short cut` enhancements. For `user profile`, **traKCAL** automatically asks for a new user profile if there is no current one and deletes it if there is an unreadable one. 
 
 Here are some of their commands: 
-* `user c/` to create a new user profile.
+* `user c/` to create a new user profile. At the same time, it also 
+   * calculates bmi
+   * calculates recommended calories
+   * calculates calories based on weight goal
 * `user e/` to edit 1 or more sections of the user profile. 
 * `user l/` lists out the current user profile.
 * `createSet` creates shortcut with 1 or more activities.
 * `addSet` adds all the entries within the shortcut to the current day's list.
 
 
-**Justifications** `user profile` feature calculates bmi, recommended calories and actual calories needed for user to get a clear idea of their calorie journey. It also links to other features like graphs in traKCAL. `short cut` feature reduces user fatigue by offering a quick way to add in entries repeated often into the activity list.  
+**Justifications** `user profile` feature gives the user a clear idea of their calorie journey. It also links to other features like graphs in traKCAL. `short cut` feature reduces user fatigue by offering a quick way to add in entries repeated often into the activity list.  
 
 #### Contributions to User Guide 
 
