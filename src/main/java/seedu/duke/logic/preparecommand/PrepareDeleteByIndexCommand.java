@@ -5,13 +5,26 @@ import seedu.duke.command.DeleteByIndexCommand;
 
 import static seedu.duke.ui.ExceptionMessages.displayIndexNotNumberExceptionMessage;
 
+/**
+ * Prepares delete by index command.
+ */
 public class PrepareDeleteByIndexCommand extends PrepareCommand {
 
 
+    /**
+     * Initializes PrepareDeleteByIndexCommand.
+     *
+     * @param description list of description parsed from parser.
+     */
     public PrepareDeleteByIndexCommand(String[] description) {
         super(description);
     }
 
+    /**
+     * Checks validity of delete by index command.
+     *
+     * @return delete by index command.
+     */
     @Override
     public Command prepareCommand() {
         try {

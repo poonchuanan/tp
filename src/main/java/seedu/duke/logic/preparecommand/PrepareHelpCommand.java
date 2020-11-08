@@ -11,14 +11,21 @@ import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
  * Prepares help command.
  */
 public class PrepareHelpCommand extends PrepareCommand {
+    protected final int ARGUMENT_LIMIT = 1;
+
     public PrepareHelpCommand(String[] description) {
         super(description);
     }
 
+    /**
+     * Checks for validity of help command.
+     *
+     * @return help command
+     */
     @Override
     public Command prepareCommand() {
         try {
-            isNumberOfArgumentsValid(1);
+            isNumberOfArgumentsValid(ARGUMENT_LIMIT);
             return new HelpCommand();
         } catch (InvalidNumberOfArguments e) {
             displayExcessNumberOfArguments();

@@ -27,6 +27,10 @@ import static seedu.duke.Trakcal.storage;
  * Prepares add set command.
  */
 public class PrepareAddSetCommand extends PrepareCommand {
+    protected final String DATE_FORMAT = "yyyy-MM-dd";
+    protected static final String CALORIE_TAG = "c/";
+    protected static final String FOOD_TAG = "f/";
+    protected static final String EXERCISE_TAG = "e/";
 
     public PrepareAddSetCommand(String[] description) {
         super(description);
@@ -35,12 +39,12 @@ public class PrepareAddSetCommand extends PrepareCommand {
     /**
      * Prepares file to be read from and added into the current list.
      *
-     * @return Command
+     * @return AddSet Command
      */
     @Override
     public Command prepareCommand() {
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
         String strDate = formatter.format(date);
         String initialPath = new File("").getAbsolutePath();
         String filePath = initialPath + "/" + description[1] + ".txt";
@@ -55,8 +59,8 @@ public class PrepareAddSetCommand extends PrepareCommand {
 
                 while (line != null) {
                     checkTags(line);
-                    String description = line.substring(2, line.indexOf("c/") - 1);
-                    String calories = line.substring(line.indexOf("c/") + 2);
+                    String description = line.substring(2, line.indexOf(CALORIE_TAG) - 1);
+                    String calories = line.substring(line.indexOf(CALORIE_TAG) + 2);
                     checkEmptyDescription(description);
                     checkEmptyDescription(calories);
                     checkInteger(calories);
@@ -91,7 +95,7 @@ public class PrepareAddSetCommand extends PrepareCommand {
      *
      */
     private void checkTags(String input) throws IllegalArgumentException {
-        if (!input.contains("c/") || !(input.contains("f/") || input.contains("e/"))) {
+        if (!input.contains(CALORIE_TAG) || !(input.contains(FOOD_TAG) || input.contains(EXERCISE_TAG))) {
             throw new IllegalArgumentException();
         }
     }
@@ -119,7 +123,7 @@ public class PrepareAddSetCommand extends PrepareCommand {
      *
      */
     private void checkCalorieRange(String input) throws CalorieCountException {
-        if (Integer.parseInt(input) < 0 || Integer.parseInt(input) > 3000) {
+        if (Integer.parseInt(input) < MINIMUM_CALORIE_COUNT || Integer.parseInt(input) > MAXIMUM_CALORIE_COUNT) {
             throw new CalorieCountException();
         }
     }
