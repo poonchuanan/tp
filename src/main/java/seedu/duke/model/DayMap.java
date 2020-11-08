@@ -165,7 +165,8 @@ public class DayMap {
      * @param description is the keyword where the activity should contain
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
-    public void listActivitiesContainingDescription(String description) throws KeywordNotFoundException, EmptyDescriptionException {
+    public void listActivitiesContainingDescription(String description)
+            throws KeywordNotFoundException, EmptyDescriptionException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
@@ -201,7 +202,8 @@ public class DayMap {
      * @param calorie is the calorie to be matched
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
-    public void listActivitiesContainingCalorie(String calorie) throws KeywordNotFoundException, EmptyDescriptionException {
+    public void listActivitiesContainingCalorie(String calorie)
+            throws KeywordNotFoundException, EmptyDescriptionException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
@@ -236,7 +238,8 @@ public class DayMap {
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
-    public void listActivitiesContainingAll(String userInput) throws KeywordNotFoundException, EmptyDescriptionException {
+    public void listActivitiesContainingAll(String userInput)
+            throws KeywordNotFoundException, EmptyDescriptionException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
@@ -271,7 +274,8 @@ public class DayMap {
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
      */
-    public void listActivitiesContainingEither(String userInput) throws KeywordNotFoundException, EmptyDescriptionException {
+    public void listActivitiesContainingEither(String userInput)
+            throws KeywordNotFoundException, EmptyDescriptionException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
