@@ -19,12 +19,13 @@ import java.time.format.DateTimeParseException;
 public abstract class PrepareCommand {
     public String[] description;
     public LocalDateTime date;
-    public static final int MAXIMUM_DESCRIPTION_LENGTH = 40;
-    public static final int MAXIMUM_CALORIE_COUNT = 3000;
-    public static final int MINIMUM_CALORIE_COUNT = 0;
-    public static final int MINIMUM_INDEX = 0;
-    public static final String APPLICATION_LAUNCH_DATE = "2020-10-14";
-    public static final String SPACE = " ";
+    protected static final int MAXIMUM_DESCRIPTION_LENGTH = 40;
+    protected static final int MAXIMUM_CALORIE_COUNT = 3000;
+    protected static final int MINIMUM_CALORIE_COUNT = 0;
+    protected static final int MINIMUM_INDEX = 0;
+    protected static final String APPLICATION_LAUNCH_DATE = "2020-10-14";
+    protected static final String SPACE = " ";
+    protected static final String NOTHING = "";
     protected static final int ALPHABET_WITH_SLASH_LENGTH = 2;
 
     public PrepareCommand(String[] description) {
@@ -105,7 +106,7 @@ public abstract class PrepareCommand {
      * @throws InvalidCalorieException if the calorie count is empty
      */
     protected int parseCalorie(String calorieInput) throws InvalidCalorieException {
-        if (!calorieInput.equals("")) {
+        if (!calorieInput.equals(NOTHING)) {
             return Integer.parseInt(calorieInput);
         } else {
             throw new InvalidCalorieException();
@@ -120,7 +121,7 @@ public abstract class PrepareCommand {
      * @throws EmptyDescriptionException if description input has error
      */
     protected boolean isDescriptionNotEmpty(String description) throws EmptyDescriptionException {
-        if (description.equals(SPACE) || description.equals("")) {
+        if (description.equals(SPACE) || description.equals(NOTHING)) {
             throw new EmptyDescriptionException();
         } else {
             return true;
