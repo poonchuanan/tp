@@ -90,10 +90,10 @@ public class ExceptionMessages {
      */
     public static void displayFindErrorMessage() {
         print("I do not understand what you mean!\n"
-                + "The input format for finding food or exercise activity\n\tvia keyword is 'find d/ X'"
-                + " - where keyword is X\n"
-                + "The input format for finding calorie count\n\tvia keyword is 'find c/ X'"
-                + " - where calories count is X\n"
+                + "The input format for finding food or exercise activity\n\tvia keyword is 'find d/ DESCRIPTION'"
+                + " - where keyword is DESCRIPTION\n"
+                + "The input format for finding calorie count\n\tvia keyword is 'find c/ CALORIE_COUNT'"
+                + " - where calories count is CALORIE_COUNT\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -142,7 +142,7 @@ public class ExceptionMessages {
      */
     public static void displayDateTimeExceptionMessage() {
         print("Sorry, I do not understand!\n"
-                + "The input format of date is YYYY-MM-DD!");
+                + "The input format of date is YYYY-MM-DD!\n");
     }
 
     /**
@@ -164,6 +164,7 @@ public class ExceptionMessages {
      */
     public static void displayInvalidGenderMessage() {
         print("Please input female or male as gender only!");
+        System.out.println();
     }
 
     /**
@@ -171,6 +172,7 @@ public class ExceptionMessages {
      */
     public static void displayInvalidWeightGoalMessage() {
         print("Please input lose or maintain or gain as weight goal only!");
+        System.out.println();
     }
 
     /**
@@ -178,6 +180,7 @@ public class ExceptionMessages {
      */
     public static void displayInvalidWeightMessage() {
         print("Please enter a valid weight format!");
+        System.out.println();
     }
 
     /**
@@ -185,6 +188,7 @@ public class ExceptionMessages {
      */
     public static void displayInvalidHeightMessage() {
         print("Please enter a valid height format!");
+        System.out.println();
     }
 
     /**
@@ -192,6 +196,7 @@ public class ExceptionMessages {
      */
     public static void displayInvalidAgeMessage() {
         print("Please enter a valid age!");
+        System.out.println();
     }
 
     /**
@@ -199,8 +204,9 @@ public class ExceptionMessages {
      */
     public static void displayInvalidActivityLevelMessage() {
         print("Sorry this is an invalid activity factor!\n"
-                + "Please enter an integer from 1 to 5, with 1 being the least "
+                + "Please enter an integer from 1 to 5, with 1 being the least\n"
                 + "active and 5 being the most active");
+        System.out.println();
     }
 
     /**
@@ -215,7 +221,8 @@ public class ExceptionMessages {
      * Prints out error message when a shortcut has not been created in addSet command.
      */
     public static void displayShortcutDoesNotExistMessage() {
-        print("This shortcut does not exists, please create a shortcut before adding it!");
+        print("This shortcut does not exists!\n"
+                + "Please create a shortcut before adding it!");
     }
 
     /**
@@ -229,7 +236,7 @@ public class ExceptionMessages {
      * Prints out error message when weight range is not between 20 to 650kg.
      */
     public static void displayInvalidWeightRangeMessage() {
-        print("Please enter a weight range from 20kg to 650kg");
+        print("Please enter a weight range from 30kg to 650kg");
     }
 
     /**
@@ -243,7 +250,7 @@ public class ExceptionMessages {
      * Prints out error message when height is not between 10 to 300cm.
      */
     public static void displayInvalidHeightRangeMessage() {
-        print("Please enter a height range from 10cm to 300cm");
+        print("Please enter a height range from 90cm to 300cm");
     }
 
     /**
@@ -292,7 +299,7 @@ public class ExceptionMessages {
      */
     public static void displayDateLimitExceptionMessage() {
         String dateLimitExceptionMessage = "You have exceeded the accepted date range!\n"
-                + "Date input has to be from 2020-11-01 to current date!";
+                + "Date input has to be from 2020-10-14 to current date!";
         print(dateLimitExceptionMessage);
     }
 
@@ -332,9 +339,67 @@ public class ExceptionMessages {
 
     public static void displayInvalidEditedUserProfileMessage() {
         drawDivider();
-        System.out.println("You have edited the user profile text file to the wrong format.");
-        System.out.println("Please create a new user profile. If not certain features like graph cannot be used");
+        System.out.println("Corrupted user profile!");
+        System.out.println("Please do not edit the text file unnecessarily.");
+        System.out.println("You are being directed to create a new user profile.");
+        System.out.println("This is to ensure that all features can be used properly.");
         drawDivider();
-        System.out.println("");
+        System.out.println();
+    }
+
+    public static void displayExistingShortcutMessage() {
+        drawDivider();
+        System.out.println("There is a shortcut with this name already. Please choose another name");
+        drawDivider();
+    }
+
+    public static void displayInvalidCreateSetCommandMessage() {
+        drawDivider();
+        System.out.println("You are missing a activity tag or calorie tag or both");
+        drawDivider();
+    }
+
+    public static void displayInvalidCalorieMessage() {
+        drawDivider();
+        System.out.println("Please enter a valid calorie range.");
+        drawDivider();
+    }
+
+    public static void displayCalorieMustBeIntegerMessage() {
+        drawDivider();
+        System.out.println("Please enter calorie as integer.");
+        drawDivider();
+    }
+
+    public static void displayIncompleteSetMessage() {
+        drawDivider();
+        System.out.println("This short cut was not been successfully created as there was an error in your input.");
+        System.out.println("Please try again!");
+        drawDivider();
+        System.out.println();
+    }
+
+    public static void displayMissingFileNameMessage() {
+        drawDivider();
+        System.out.println("You did not specify a short cut name in your createSet command.");
+        System.out.println("As such, no shortcut was created. Please try again!");
+        drawDivider();
+        System.out.println();
+    }
+
+    public static void displayCorruptedSetMessage() {
+        drawDivider();
+        System.out.println("Your shortcut text file is corrupted!");
+        System.out.println("As such, it will now be deleted. Please avoid editing the text file to the "
+                + "wrong format in the future.");
+        System.out.println("Items in the shortcut may have been added partially only.");
+        drawDivider();
+        System.out.println();
+    }
+
+    public static void displayMissingAddSetInfoMessage() {
+        drawDivider();
+        System.out.println("This shortcut has an empty description or calorie tag or both.");
+        drawDivider();
     }
 }

@@ -7,6 +7,9 @@ import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExc
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandStringOutOfBoundExceptionMessage;
 
+/**
+ * Prepares user input for delete command.
+ */
 public class PrepareDeleteCommand extends PrepareCommand {
     public PrepareDeleteCommand(String[] description) {
         super(description);

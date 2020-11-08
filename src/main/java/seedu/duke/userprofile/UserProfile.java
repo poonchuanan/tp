@@ -1,9 +1,10 @@
 package seedu.duke.userprofile;
 
 import seedu.duke.Trakcal;
-import seedu.duke.storage.Userinfotextfilestorage;
+import seedu.duke.storage.UserInfoStorage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidEditedUserProfileMessage;
 import seedu.duke.exception.EmptyDescriptionException;
@@ -34,6 +35,14 @@ import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightRangeMessage;
  */
 public class UserProfile {
     private static String[] data = new String[7];
+    private static final Integer MAX_WEIGHT = 650;
+    private static final Integer MIN_WEIGHT = 30;
+    private static final Integer MAX_HEIGHT = 300;
+    private static final Integer MIN_HEIGHT = 90;
+    private static final Integer MIN_AGE = 1;
+    private static final Integer MAX_AGE = 120;
+    private static final Integer MIN_AL = 1;
+    private static final Integer MAX_AL = 5;
 
     /**
      * Reading user input.
@@ -41,7 +50,13 @@ public class UserProfile {
      * @return user input
      */
     public static String input() {
-        return Trakcal.in.nextLine();
+        try {
+            return Trakcal.in.nextLine();
+        } catch (NoSuchElementException e) {
+            System.out.println("Force quit. See you again!");
+        }
+        //return Trakcal.in.nextLine();
+        return null;
     }
 
     public static InitialiseUserProfile createNewProfile() {
@@ -66,7 +81,7 @@ public class UserProfile {
     }
 
     public static void edit(String info) throws IOException {
-        ArrayList<String> previous = Userinfotextfilestorage.update();
+        ArrayList<String> previous = UserInfoStorage.update();
         for (int i = 0; i < 7; i++) {
             data[i] = previous.get(i);
         }
@@ -218,6 +233,7 @@ public class UserProfile {
         Ui.displayAskUserNameMessage();
         String name = input();
         try {
+            assert name != null;
             checkEmptyInput(name);
             data[0] = name;
         } catch (EmptyDescriptionException e) {
@@ -244,6 +260,7 @@ public class UserProfile {
         String gender = input();
 
         try {
+            assert gender != null;
             checkEmptyInput(gender);
             checkGender(gender);
             data[1] = gender;
@@ -266,6 +283,7 @@ public class UserProfile {
         String weight = input();
 
         try {
+            assert weight != null;
             checkEmptyInput(weight);
             checkInputIsDouble(weight);
             checkWeightIsWithinRange(weight);
@@ -291,6 +309,7 @@ public class UserProfile {
         Ui.displayAskUserHeightMessage();
         String height = input();
         try {
+            assert height != null;
             checkEmptyInput(height);
             checkInputIsDouble(height);
             checkHeightIsWithinRange(height);
@@ -316,6 +335,7 @@ public class UserProfile {
         Ui.displayAskUserAgeMessage();
         String age = input();
         try {
+            assert age != null;
             checkEmptyInput(age);
             checkInputIsInt(age);
             checkAgeIsWithinRange(age);
@@ -341,6 +361,7 @@ public class UserProfile {
         Ui.displayAskUserActivityLevelMessage();
         String activityLevel = input();
         try {
+            assert activityLevel != null;
             checkEmptyInput(activityLevel);
             checkInputIsInt(activityLevel);
             checkAcLeIsWithinRange(activityLevel);
@@ -375,6 +396,7 @@ public class UserProfile {
         String weightGoal = input();
 
         try {
+            assert weightGoal != null;
             checkEmptyInput(weightGoal);
             checkWeightGoal(weightGoal);
             data[6] = weightGoal;
@@ -403,19 +425,19 @@ public class UserProfile {
     }
 
     private static void checkWeightIsWithinRange(String weight) throws IllegalArgumentException {
-        if (Double.parseDouble(weight) < 20 || Double.parseDouble(weight) > 650) {
+        if (Double.parseDouble(weight) < MIN_WEIGHT || Double.parseDouble(weight) > MAX_WEIGHT) {
             throw new IllegalArgumentException();
         }
     }
 
     private static void checkHeightIsWithinRange(String height) throws IllegalArgumentException {
-        if (Double.parseDouble(height) < 10 || Double.parseDouble(height) > 300) {
+        if (Double.parseDouble(height) < MIN_HEIGHT || Double.parseDouble(height) > MAX_HEIGHT) {
             throw new IllegalArgumentException();
         }
     }
 
     private static void checkAgeIsWithinRange(String age) throws IllegalArgumentException {
-        if (Integer.parseInt(age) < 1 || Integer.parseInt(age) > 120) {
+        if (Integer.parseInt(age) < MIN_AGE || Integer.parseInt(age) > MAX_AGE) {
             throw new IllegalArgumentException();
         }
     }
@@ -425,7 +447,7 @@ public class UserProfile {
     }
 
     private static void checkAcLeIsWithinRange(String al) throws IllegalArgumentException {
-        if (Integer.parseInt(al) < 1 || Integer.parseInt(al) > 5) {
+        if (Integer.parseInt(al) < MIN_AL || Integer.parseInt(al) > MAX_AL) {
             throw new IllegalArgumentException();
         }
     }
@@ -447,7 +469,7 @@ public class UserProfile {
 
     public static void checkEmptyInput2(String[] data) throws EmptyDescriptionException {
         for (String datum : data) {
-            if (datum.isEmpty()) {
+            if (datum.isEmpty() || datum.isBlank()) {
                 throw new EmptyDescriptionException();
             }
         }
@@ -476,7 +498,7 @@ public class UserProfile {
      * @param profile question to be printed
      */
     public static void save(InitialiseUserProfile profile) throws IOException {
-        Userinfotextfilestorage storage = new Userinfotextfilestorage();
+        UserInfoStorage storage = new UserInfoStorage();
         storage.save(profile.toString());
     }
 
@@ -487,9 +509,21 @@ public class UserProfile {
      */
     public static InitialiseUserProfile loadProfile() {
         String[] data = new String[7];
-        ArrayList<String> previous = Userinfotextfilestorage.update();
+        ArrayList<String> previousInput = UserInfoStorage.update();
+
+
         for (int i = 0; i < 7; i++) {
-            data[i] = previous.get(i);
+            try {
+                if (!previousInput.get(i).isEmpty()) {
+                    data[i] = previousInput.get(i);
+                } else {
+                    throw new NullPointerException();
+                }
+            } catch (IndexOutOfBoundsException e) {
+                displayInvalidEditedUserProfileMessage();
+                createNewProfile();
+                return null;
+            }
         }
 
         try {
@@ -504,8 +538,9 @@ public class UserProfile {
             checkAgeIsWithinRange(data[4]);
             checkWeightIsWithinRange(data[2]);
             checkHeightIsWithinRange(data[3]);
-        } catch (IllegalArgumentException | EmptyDescriptionException e) {
+        } catch (IllegalArgumentException | EmptyDescriptionException | NullPointerException e) {
             displayInvalidEditedUserProfileMessage();
+            createNewProfile();
             return null;
         }
 

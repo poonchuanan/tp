@@ -8,6 +8,9 @@ import seedu.duke.command.FindEitherCommand;
 
 import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
 
+/**
+ * Prepares find command.
+ */
 public class PrepareFindCommand extends PrepareCommand {
     protected static final String CALORIE_TAG = "c/";
 
