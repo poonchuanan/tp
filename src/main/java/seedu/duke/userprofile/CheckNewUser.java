@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+//@@author jlifah
 /**
  * Checks if the user is a new user.
  */
@@ -24,3 +25,4 @@ public class CheckNewUser {
         return false;
     }
 }
+//@@author jlifah

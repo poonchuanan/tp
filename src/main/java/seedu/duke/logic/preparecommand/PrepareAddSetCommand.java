@@ -9,9 +9,6 @@ import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.ui.ExceptionMessages;
 import seedu.duke.ui.Ui;
 
-import static seedu.duke.ui.ExceptionMessages.displayMissingAddSetInfoMessage;
-
-import static seedu.duke.ui.ExceptionMessages.displayInvalidCreateSetCommandMessage;
 import static seedu.duke.ui.ExceptionMessages.displayCorruptedSetMessage;
 
 import java.io.BufferedReader;

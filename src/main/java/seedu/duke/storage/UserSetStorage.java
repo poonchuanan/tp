@@ -23,6 +23,10 @@ import seedu.duke.ui.Ui;
 import static seedu.duke.ui.ExceptionMessages.displayExistingShortcutMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 
+
+/**
+ * Updates the text file with short cut info.
+ */
 public class UserSetStorage {
     private static final String PATH = new File("").getAbsolutePath();
     private static final Integer MAX_CALORIES = 3000;
@@ -32,9 +36,14 @@ public class UserSetStorage {
     private static final String CALORIE_TAG = "c/";
     private static final String EXERCISE_TAG = "e/";
 
+    /**
+     * Checks if tags and file are given by user.
+     *
+     * @param userInput command given by user to createSet
+     */
     public static void prepareNewSet(String userInput) {
         try {
-            checkFileNamePresent(userInput);
+            checkFileNameNotPresent(userInput);
             checkActivityAndCalorieTag(userInput);
             String fileName = userInput.substring(0, userInput.indexOf("/") - 2);
 
@@ -47,6 +56,12 @@ public class UserSetStorage {
         }
     }
 
+    /**
+     * Creates a new text file with shortcut surname.
+     *
+     * @param fileName shortcut name
+     * @param toTrim contents to be added into shortcut
+     */
     public static void createNewTextFile(String fileName, String toTrim) {
         String filePath = PATH + fileName;
 
@@ -64,11 +79,22 @@ public class UserSetStorage {
         updateTextFile(filePath, toTrim);
     }
 
+    /**
+     * Deletes an corrupted text file.
+     *
+     * @param filePath name of shortcut to be deleted
+     */
     public static void deleteInvalidSetFile(String filePath) {
         File file = new File(filePath);
         file.delete();
     }
 
+    /**
+     * Writes shortcut content to text file.
+     *
+     * @param path shortcut name
+     * @param toTrim contents to be added into shortcut
+     */
     public static void updateTextFile(String path, String toTrim) {
         try {
             FileOutputStream fos = new FileOutputStream(path);
@@ -144,12 +170,22 @@ public class UserSetStorage {
         }
     }
 
+    /**
+     * Checks whether a description given by user is empty or null.
+     *
+     * @param description user input
+     */
     private static void checkEmptyDescription(String description) throws EmptyDescriptionException {
         if (description.isBlank() || description.isEmpty()) {
             throw new EmptyDescriptionException();
         }
     }
 
+    /**
+     * Check that an existing shortcut exists.
+     *
+     * @param fileName short cut name
+     */
     private static void checkExistingFile(String fileName) throws FileAlreadyExistException {
         File file = new File(fileName);
         if (file.exists()) {
@@ -157,12 +193,22 @@ public class UserSetStorage {
         }
     }
 
+    /**
+     * Check that there are activity and calorie has tag.
+     *
+     * @param input user input
+     */
     private static void checkActivityAndCalorieTag(String input) throws InvalidCreateSetCommandException {
         if (!input.contains(CALORIE_TAG) && !(input.contains(FOOD_TAG) | input.contains(EXERCISE_TAG))) {
             throw new InvalidCreateSetCommandException();
         }
     }
 
+    /**
+     * Check that calorie is within 0 and 3000 kcal.
+     *
+     * @param input user input
+     */
     private static void checkValidCalorieRange(String input) throws InvalidCalorieException {
         int calories = Integer.parseInt(input);
         if (calories < MIN_CALORIES || calories > MAX_CALORIES) {
@@ -170,11 +216,21 @@ public class UserSetStorage {
         }
     }
 
+    /**
+     * Check that calorie is of integer type.
+     *
+     * @param input user input
+     */
     private static void checkCalorieType(String input) throws NumberFormatException {
         Integer.parseInt(input);
     }
 
-    private static void checkFileNamePresent(String input) throws NoFileNameException {
+    /**
+     * Check if user gave short cut name.
+     *
+     * @param input user input
+     */
+    private static void checkFileNameNotPresent(String input) throws NoFileNameException {
         if (input.indexOf(FOOD_TAG) == 1 || input.indexOf(EXERCISE_TAG) == 1) {
             throw new NoFileNameException();
         }

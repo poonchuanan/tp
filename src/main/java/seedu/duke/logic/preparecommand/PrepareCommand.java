@@ -158,7 +158,13 @@ public abstract class PrepareCommand {
         }
     }
 
-
+    /**
+     * Checks if the number of argument is within limit.
+     *
+     * @param limit limit of description length
+     * @return true if descrption length is within limit
+     * @throws InvalidNumberOfArguments if description exceeds limit
+     */
     protected boolean isNumberOfArgumentsValid(int limit) throws InvalidNumberOfArguments {
         if (description.length != limit) {
             throw new InvalidNumberOfArguments();
