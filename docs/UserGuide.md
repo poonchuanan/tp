@@ -1563,17 +1563,17 @@ Example of usage:
 <br>
 
 # Frequently asked questions
-This section answers questions you may have.
+This section contains frequently asked questions.
 
-**Q**: How do I transfer your data to another computer? 
+**Q**: How do I transfer my data to another computer? 
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
+**A**: Install the application in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
 
 **Q**: How do I know if the data you have input is saved?
 
 **A**: **traKCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
-**Q**: Is traKCAL optimized for all operating systems?
+**Q**: Is **traKCAL** optimized for all operating systems?
 
 **A**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
 
