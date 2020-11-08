@@ -47,6 +47,8 @@ public class UserProfile {
     private static final Integer MIN_AL = 1;
     private static final Integer MAX_AL = 5;
     private static final String WHITE_SPACES = " ";
+    private static final Integer NUM_PARAMETERS = 7;
+    private static final String COMMAND_SEPARATOR = ",";
 
     /**
      * Reading user input.
@@ -99,15 +101,17 @@ public class UserProfile {
      */
     public static void edit(String info) throws IOException {
         try {
-            String description;
             ArrayList<String> previous = UserInfoStorage.update();
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < NUM_PARAMETERS; i++) {
                 data[i] = previous.get(i);
             }
 
-            String[] arguments = info.split(",");
+            String[] arguments = info.split(COMMAND_SEPARATOR);
 
             for (String argument : arguments) {
+                argument = removeWhiteSpaces(argument);
+                String description;
+
                 if (argument.startsWith("n/")) {
                     description = removeWhiteSpaces(argument.substring(2));
                     editName(description);
@@ -121,13 +125,13 @@ public class UserProfile {
                     description = removeWhiteSpaces(argument.substring(2));
                     editHeight(description);
                 } else if (argument.startsWith("age/")) {
-                    description = removeWhiteSpaces(argument.substring(2));
+                    description = removeWhiteSpaces(argument.substring(4));
                     editAge(description);
                 } else if (argument.startsWith("al/")) {
-                    description = removeWhiteSpaces(argument.substring(2));
+                    description = removeWhiteSpaces(argument.substring(3));
                     editAl(description);
                 } else if (argument.startsWith("goal/")) {
-                    description = removeWhiteSpaces(argument.substring(2));
+                    description = removeWhiteSpaces(argument.substring(5));
                     editGoal(description);
                 } else {
                     throw new InvalidEditedUserProfileException();
