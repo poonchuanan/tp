@@ -1494,8 +1494,14 @@ Example of usage:
 
 ### 10.1.1 Possible errors when graphing
 
-```
+#### Adding extra inputs after graph command
 
+* graph 123
+
+```
+====================================================================================
+This command has no description!
+====================================================================================
 ```
 
 <br>
