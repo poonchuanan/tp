@@ -6,6 +6,7 @@ import seedu.duke.command.Command;
 import seedu.duke.logic.parser.ChainingParser;
 import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.model.DayMap;
+import seedu.duke.model.ListDrawer;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.userprofile.UserProfile;
@@ -13,6 +14,7 @@ import seedu.duke.userprofile.InitialiseUserProfile;
 import seedu.duke.userprofile.CheckNewUser;
 
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import static seedu.duke.logic.parser.CommandParser.SPACE;
@@ -39,6 +41,7 @@ public class Trakcal {
     public static void main(String[] args) {
         displayWelcomeMessage();
         storage.loadData(calList);
+        calList.setLastSeenList(calList.getActivityList(LocalDate.now().atStartOfDay()));
         if (CheckNewUser.isNewUser()) {
             profile = UserProfile.createNewProfile();
         } else {
@@ -92,4 +95,5 @@ public class Trakcal {
         return new File(Trakcal.class.getProtectionDomain().getCodeSource().getLocation().getPath())
                 .getParent().replace("%20", SPACE);
     }
+
 }

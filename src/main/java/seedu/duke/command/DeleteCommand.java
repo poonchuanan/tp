@@ -59,7 +59,7 @@ public class DeleteCommand extends Command {
             try {
                 dayMap.deleteActivity(index);
                 displaySavedMessage();
-            } catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException | NullPointerException e) {
                 displayMessage("Invalid Index");
             }
         }

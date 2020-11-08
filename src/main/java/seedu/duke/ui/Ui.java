@@ -213,7 +213,7 @@ public class Ui {
         drawDivider();
         System.out.println(message);
         drawDivider();
-        print("Noted! The following has been added into list:");
+        //print("Noted! The following has been added into list:");
     }
 
     /**
