@@ -1114,7 +1114,6 @@ Please input 'help' for the commands and their respective input format.
 ### 7.1 Finding entries via keyword - basic
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
->Additionally, you can use the advanced find commands to find all matching keywords or just one matching keyword.
 
 Format for find by description: `find d/ **DESCRIPTION**`
 
@@ -1150,9 +1149,16 @@ No.        Date                Type                                Description  
 
 ### 7.1.1 Possible errors when finding entries via keyword - basic
 
+An error will occur if any of the conditions below are met. <br>
+The respective error message will also be shown to you.
+> Any text in this format is an example of a command that will produce the respective error.
+```
+Any text in this format is the error message that you will be shown.
+```
+
 #### Wrong find command tag/format
-If the command tag is not *d* or *c*, an error would occur
-> the following would be printed out if you input `find p/ KEYWORD`
+* If you input any command tag is not *d* or *c* or the format is not correct.
+> `find p/ KEYWORD`
 
 ```
 ====================================================================================
@@ -1169,11 +1175,14 @@ Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 #### Empty keyword input
-If the **KEYWORD** to search for is empty, an error would occur
-> the following would be printed out if you input `find d/`
+* If you do not input any keywords to be searched.
+> `find d/`
 
 ```
-Keyword cannot be empty!
+====================================================================================
+Current keyword is empty!
+Please input a valid keyword that is not empty!
+====================================================================================
 ```
 <br>
 
@@ -1218,8 +1227,8 @@ No.        Date                Type                                Description  
 ### 7.2.1 Possible error messages when finding entries - advanced
 
 #### Wrong find command tag/format
-If the command tag is not *a* or *e*, an error would occur
-> the following would be printed out if you input `find p/ KEYWORD`
+* If you input any command tag is not *a* or *e* or the format is not correct.
+> `find p/ KEYWORD`
 
 ```
 ====================================================================================
@@ -1236,20 +1245,25 @@ Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 #### Empty keyword input
-If the **KEYWORD** to search for is empty, an error would occur
-> the following would be printed out if you input `find d/`
+* If you do not input any keywords to be searched.
+> `find d/`
 
 ```
-Keyword cannot be empty!
+====================================================================================
+Current keyword is empty!
+Please input a valid keyword that is not empty!
+====================================================================================
 ```
 
 #### Consecutive slashes present
-Slashes are used as delimiters for this function
-If there are 2 or more '/' in your input, an error would occur
-> the following would be printed out if you input `find a//`
+* Slashes are used as delimiters for this function
+* If there are 2 or more '/' in your input, an error would occur
+> `find a//`
 
 ```
+====================================================================================
 There are consecutive slashes in your input!
+====================================================================================
 ```
 
 <br>

@@ -1,9 +1,12 @@
 package seedu.duke.command;
 
-import seedu.duke.exception.EmptyDescriptionException;
+import seedu.duke.exception.EmptyKeywordException;
 import seedu.duke.exception.FindSlashException;
-import seedu.duke.model.FindDrawer;
 import seedu.duke.exception.KeywordNotFoundException;
+
+import static seedu.duke.ui.ExceptionMessages.displayEmptyKeywordMessage;
+import static seedu.duke.ui.ExceptionMessages.displayKeywordNotFoundMessage;
+import static seedu.duke.ui.ExceptionMessages.displayFindSlashExceptionMessage;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -32,11 +35,11 @@ public class FindEitherCommand extends Command {
             dayMap.listActivitiesContainingEither(userInput);
             dayMap.drawListAfterFindCommand();
         } catch (KeywordNotFoundException e) {
-            System.out.println("No results were found!");
-        } catch (EmptyDescriptionException e) {
-            System.out.println("Keyword cannot be empty!");
+            displayKeywordNotFoundMessage();
+        } catch (EmptyKeywordException e) {
+            displayEmptyKeywordMessage();
         } catch (FindSlashException e) {
-            System.out.println("There are consecutive slashes in your input!");
+            displayFindSlashExceptionMessage();
         }
     }
 }
