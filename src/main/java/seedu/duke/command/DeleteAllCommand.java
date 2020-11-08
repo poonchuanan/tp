@@ -9,7 +9,6 @@ public class DeleteAllCommand extends Command {
 
     public DeleteAllCommand() {
         this.date = LocalDateTime.now();
-        this.canBeChained = true;
     }
 
     @Override

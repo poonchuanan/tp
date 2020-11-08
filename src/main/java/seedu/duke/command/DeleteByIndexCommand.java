@@ -15,7 +15,6 @@ public class DeleteByIndexCommand extends Command {
     public DeleteByIndexCommand(int index) {
         this.date = LocalDateTime.now();
         this.index = index;
-        this.canBeChained = true;
     }
 
     @Override

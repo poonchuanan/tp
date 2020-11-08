@@ -20,7 +20,6 @@ public class MoveActivityCommand extends Command {
     public MoveActivityCommand(int indexToBeChanged, int indexToBeInsertedBelow) {
         this.indexToBeMovedFrom = indexToBeChanged;
         this.indexToBeInsertedBelow = indexToBeInsertedBelow;
-        this.canBeChained = true;
     }
 
     @Override
