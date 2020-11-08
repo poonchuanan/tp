@@ -13,7 +13,7 @@ import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
  * Prepares graph command.
  */
 public class PrepareGraphCommand extends PrepareCommand {
-    protected final int ARGUMENT_LIMIT = 1;
+    protected static final int ARGUMENT_LIMIT = 1;
 
     public PrepareGraphCommand(String[] description) {
         super(description);
@@ -25,7 +25,7 @@ public class PrepareGraphCommand extends PrepareCommand {
      * @return graphCommand
      * @throws Exception if no records are found
      */
-    public Command prepareCommand() throws Exception {
+    public Command prepareCommand() {
         try {
             isNumberOfArgumentsValid(ARGUMENT_LIMIT);
             isListEmpty();

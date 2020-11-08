@@ -10,7 +10,7 @@ import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
  * Prepares create new user command.
  */
 public class PrepareCreateNewUserCommand extends PrepareCommand {
-    protected final int ARGUMENT_LIMIT = 1;
+    protected static final int ARGUMENT_LIMIT = 1;
 
     /**
      * Initializes PrepareCreateNewUserCommand.

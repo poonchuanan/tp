@@ -10,7 +10,7 @@ import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
  * Prepares bye command.
  */
 public class PrepareByeCommand extends PrepareCommand {
-    protected final int ARGUMENT_LIMIT = 1;
+    protected static final int ARGUMENT_LIMIT = 1;
 
     public PrepareByeCommand(String[] description) {
         super(description);

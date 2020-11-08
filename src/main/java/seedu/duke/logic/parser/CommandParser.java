@@ -93,8 +93,6 @@ public class CommandParser extends Parser {
             }
         } catch (StringIndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
-        } catch (IOException e) {
-            displayIoExceptionMessage();
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }

@@ -13,8 +13,8 @@ import static seedu.duke.ui.ExceptionMessages.displayShortageOfArguments;
  * Prepares user input for delete command.
  */
 public class PrepareDeleteCommand extends PrepareCommand {
-    protected final int ARGUMENT_LIMIT = 2;
-    protected final String DELETE_ALL_KEYWORD = "all";
+    protected static final int ARGUMENT_LIMIT = 2;
+    protected static final String DELETE_ALL_KEYWORD = "all";
     protected DayMap dayMap;
 
     /**
