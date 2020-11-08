@@ -127,11 +127,15 @@ The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add
 
 The following Sequence Diagram shows how `AddFoodCommand` is carried out when the user issues add command, in this case, `add f/ food c/ 170 d/ 2020-10-22`:
 
-![Add Activity](diagrams/AddFoodFeature.jpg)
+![Add Activity](diagrams/addFoodFeature.png)
 
 *Figure 5. Component interactions for add food command*
 
 > `AddExerciseCommand` diagram has a similar logic.
+
+![Add Exercise](diagrams/AddExerciseFeature.png)
+
+*Figure 6. Component interactions for add exercise command*
 
 <br>
 
@@ -216,11 +220,13 @@ The editing mechanism is used by `EditFoodCommand` and `EditExerciseCommand` to 
 
 The following Sequence Diagram shows how `EditFoodCommand` is carried out when the user issues edit command, in this case, `edit 1 f/ egg c/ 10`:
 
-![Edit Activity](diagrams/EditActivityFeature.jpg)
+![Edit Food](diagrams/EditFood.png)
 
 *Figure 9. Sequence diagram of edit food feature*
 
 > `EditExerciseCommand` diagram has a similar logic.
+
+![Edit Exercise](diagrams/EditExercise.png)
 
 <br>
 
