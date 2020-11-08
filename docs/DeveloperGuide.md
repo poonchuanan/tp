@@ -99,12 +99,13 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 *Figure 2. Diagram for logic component*
 
 The main bulk of data processing takes place in the logic component. In this component, 
-the data from the userinput is checked for its validity and parsed down futher to its respective command blocks.
-These blocks of command are derived from the abstract Command class. Each different command block deals with the 
+the data from the userinput is checked for its validity and parsed down futher by the preparecommand class to its respective command blocks.
+These command class are derived from the abstract Command class. Each different command block deals with the 
 proposed functionality which can be associated with `Ui`,`storage` or `model` components. 
 
 * **traKCAL** uses the parser class to filter based on command words by user.
-* Description that comes after is further parsed down by the Parser.
+* Description that comes after is further parsed down by the PrepareCommand class 
+and validity of those description are checked..
 * Respective Command object is created and is executed by **traKCAL**.
 * Respective execution methods can be further associated with `UI`, `Storage` and `Model` components.
 
@@ -316,11 +317,16 @@ The following sequence diagram shows how the `move` command is executed, where i
 
 The graph implementation shows the progress of the daily net 
 calories over the period of 7 days. The GraphProperty class extracts the available days from the 
-hashmap.
+stored data in the application.
 
 The days are sorted accordingly and the latest 7 days are chosen from the sorted list. 
-The properties of the graph such as axis range are also calculated. The GraphDrawing class makes use of these properties
+The GraphProperty class extracts these data and calculates the attributes needed to build the graph. The GraphDrawing class makes use of these properties
 to draw the graph.
+
+> Examples of graph properties include:
+> 1. Maximum/minimum calories
+> 1. Calorie interval
+> 1. 2-Dimensional array representation of the graph
 
 ![Graph_Sequence_Diagram](diagrams/GraphSequenceDiagram.png)
 
