@@ -6,6 +6,7 @@ import seedu.duke.command.GraphCommand;
 import seedu.duke.exception.InvalidNumberOfArguments;
 import seedu.duke.exception.ListNotFoundException;
 
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyListError;
 import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
 
@@ -31,9 +32,11 @@ public class PrepareGraphCommand extends PrepareCommand {
             isListEmpty();
             return new GraphCommand();
         } catch (InvalidNumberOfArguments e) {
+            logging.writeToLogInfo("Too many arguments!");
             displayExcessNumberOfArguments();
         } catch (ListNotFoundException e) {
             displayEmptyListError();
+            logging.writeToLogInfo("List is empty.");
         }
         return null;
     }

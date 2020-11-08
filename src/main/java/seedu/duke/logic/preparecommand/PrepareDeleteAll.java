@@ -58,10 +58,13 @@ public class PrepareDeleteAll extends PrepareDeleteCommand {
      */
     public boolean isDeleteConfirmed() throws NoSuchElementException {
         System.out.println("Are you sure you want to delete all activities in today's list? [yes/no]");
+        logging.writeToLogInfo("Prompt to delete all asked.");
         String userInput = Trakcal.in.nextLine().trim().toLowerCase();
         if (userInput.equals("yes")) {
+            logging.writeToLogInfo("User input yes");
             return true;
         } else if (userInput.equals("no")) {
+            logging.writeToLogInfo("User Input no.");
             print("Delete command aborted.");
         } else {
             print("Invalid input....aborting delete command.");
