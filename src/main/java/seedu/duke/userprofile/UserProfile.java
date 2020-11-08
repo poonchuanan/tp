@@ -1,11 +1,13 @@
 package seedu.duke.userprofile;
 
 import seedu.duke.Trakcal;
+import seedu.duke.exception.InvalidEditedUserProfileException;
 import seedu.duke.storage.UserInfoStorage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+import static seedu.duke.ui.ExceptionMessages.displayInvalidEditCommandMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidEditedUserProfileMessage;
 import seedu.duke.exception.EmptyDescriptionException;
 import static seedu.duke.ui.Ui.displayEditWeightMessage;
@@ -81,30 +83,38 @@ public class UserProfile {
     }
 
     public static void edit(String info) throws IOException {
-        ArrayList<String> previous = UserInfoStorage.update();
-        for (int i = 0; i < 7; i++) {
-            data[i] = previous.get(i);
-        }
-
-        String[] arguments = info.split(",");
-
-        for (String argument : arguments) {
-            if (argument.startsWith("n/")) {
-                editName(argument.substring(2));
-            } else if (argument.startsWith("g/")) {
-                editGender(argument.substring(2));
-            } else if (argument.startsWith("w/")) {
-                editWeight(argument.substring(2));
-            } else if (argument.startsWith("h/")) {
-                editHeight(argument.substring(2));
-            } else if (argument.startsWith("age/")) {
-                editAge(argument.substring(4));
-            } else if (argument.startsWith("al/")) {
-                editAl(argument.substring(3));
-            } else if (argument.startsWith("goal/")) {
-                editGoal(argument.substring(5));
+        try {
+            ArrayList<String> previous = UserInfoStorage.update();
+            for (int i = 0; i < 7; i++) {
+                data[i] = previous.get(i);
             }
+
+            String[] arguments = info.split(",");
+
+            for (String argument : arguments) {
+                if (argument.startsWith("n/")) {
+                    editName(argument.substring(2));
+                } else if (argument.startsWith("g/")) {
+                    editGender(argument.substring(2));
+                } else if (argument.startsWith("w/")) {
+                    editWeight(argument.substring(2));
+                } else if (argument.startsWith("h/")) {
+                    editHeight(argument.substring(2));
+                } else if (argument.startsWith("age/")) {
+                    editAge(argument.substring(4));
+                } else if (argument.startsWith("al/")) {
+                    editAl(argument.substring(3));
+                } else if (argument.startsWith("goal/")) {
+                    editGoal(argument.substring(5));
+                } else {
+                    throw new InvalidEditedUserProfileException();
+                }
+            }
+        } catch (InvalidEditedUserProfileException e) {
+            displayInvalidEditCommandMessage();
+            return;
         }
+
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
         UserProfile.save(profile);
@@ -462,7 +472,7 @@ public class UserProfile {
     }
 
     public static void checkEmptyInput(String userInput) throws EmptyDescriptionException {
-        if (userInput.equals(" ") || userInput.equals("")) {
+        if (userInput.equals(" ") || userInput.equals("") || userInput.isEmpty() || userInput.isBlank()) {
             throw new EmptyDescriptionException();
         }
     }
@@ -514,12 +524,16 @@ public class UserProfile {
 
         for (int i = 0; i < 7; i++) {
             try {
-                if (!previousInput.get(i).isEmpty()) {
+                if (!previousInput.get(i).isEmpty() && !previousInput.get(i).isBlank()) {
                     data[i] = previousInput.get(i);
                 } else {
                     throw new NullPointerException();
                 }
             } catch (IndexOutOfBoundsException e) {
+                displayInvalidEditedUserProfileMessage();
+                createNewProfile();
+                return null;
+            } catch (NullPointerException e) {
                 displayInvalidEditedUserProfileMessage();
                 createNewProfile();
                 return null;

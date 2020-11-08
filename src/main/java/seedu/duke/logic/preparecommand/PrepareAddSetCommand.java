@@ -9,7 +9,6 @@ import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.ui.ExceptionMessages;
 import seedu.duke.ui.Ui;
 
-import static seedu.duke.Trakcal.in;
 import static seedu.duke.ui.ExceptionMessages.displayMissingAddSetInfoMessage;
 
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCreateSetCommandMessage;
@@ -81,14 +80,8 @@ public class PrepareAddSetCommand extends PrepareCommand {
             ExceptionMessages.displayShortcutDoesNotExistMessage();
         } catch (IOException e) {
             ExceptionMessages.displayIoExceptionMessage();
-        } catch (IllegalArgumentException e) {
-            displayInvalidCreateSetCommandMessage();
-            displayCorruptedSetMessage();
-        } catch (EmptyDescriptionException | CalorieCountException e) {
-            displayMissingAddSetInfoMessage();
-            displayCorruptedSetMessage();
-            deleteInvalidSetFile(filePath);
-        } catch (EmptyTextFileException e) {
+        } catch (IllegalArgumentException | EmptyDescriptionException
+                | CalorieCountException | EmptyTextFileException e) {
             displayCorruptedSetMessage();
             deleteInvalidSetFile(filePath);
         }

@@ -247,49 +247,49 @@ public class Ui {
      * Prints out edited name.
      */
     public static void displayEditNameMessage() {
-        print("Your name has been updated to ");
+        System.out.print("Your name has been updated to ");
     }
 
     /**
      * Prints out edited gender.
      */
     public static void displayEditGenderMessage() {
-        print("Your gender has been updated to ");
+        System.out.print("Your gender has been updated to ");
     }
 
     /**
      * Prints out edited weight.
      */
     public static void displayEditWeightMessage() {
-        print("Your weight has been updated to ");
+        System.out.print("Your weight has been updated to ");
     }
 
     /**
      * Prints out the edited height.
      */
     public static void displayEditHeightMessage() {
-        print("Your height has been updated to ");
+        System.out.print("Your height has been updated to ");
     }
 
     /**
      * Prints out the edited age.
      */
     public static void displayEditAgeMessage() {
-        print("Your age has been updated to ");
+        System.out.print("Your age has been updated to ");
     }
 
     /**
      * Prints out edited activity level.
      */
     public static void displayEditActivityLevelMessage() {
-        print("Your activity level has been updated to ");
+        System.out.print("Your activity level has been updated to ");
     }
 
     /**
      * Printed updated goal.
      */
     public static void displayEditGoalMessage() {
-        print("Your weight goal has been updated to ");
+        System.out.print("Your weight goal has been updated to ");
     }
 
     /**

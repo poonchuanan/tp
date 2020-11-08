@@ -146,33 +146,17 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints out error message when attributes input by user is empty.
-     */
-    public static void displayEmptyEditActivityErrorMessage() {
-        print("Sorry! There is missing input!");
-    }
-
-    /**
-     * Prints message when there is a presence of a duplicated naming for file.
-     */
-    public static void displayExistingFileMessage() {
-        print("Sorry! There is an existing set with this name, please use another name!");
-    }
-
-    /**
      * Prints out error message when invalid gender input.
      */
     public static void displayInvalidGenderMessage() {
-        print("Please input female or male as gender only!");
-        System.out.println();
+        print("Sorry this is an invalid gender format! Please input gender as female or male only!");
     }
 
     /**
      * Prints out error message when invalid weight goal input.
      */
     public static void displayInvalidWeightGoalMessage() {
-        print("Please input lose or maintain or gain as weight goal only!");
-        System.out.println();
+        print("Please input lose/maintain/gain as weight goal only!");
     }
 
     /**
@@ -180,7 +164,6 @@ public class ExceptionMessages {
      */
     public static void displayInvalidWeightMessage() {
         print("Please enter a valid weight format!");
-        System.out.println();
     }
 
     /**
@@ -188,15 +171,13 @@ public class ExceptionMessages {
      */
     public static void displayInvalidHeightMessage() {
         print("Please enter a valid height format!");
-        System.out.println();
     }
 
     /**
      * Prints out error message when invalid age input.
      */
     public static void displayInvalidAgeMessage() {
-        print("Please enter a valid age!");
-        System.out.println();
+        print("Please enter a valid age format!");
     }
 
     /**
@@ -204,9 +185,7 @@ public class ExceptionMessages {
      */
     public static void displayInvalidActivityLevelMessage() {
         print("Sorry this is an invalid activity factor!\n"
-                + "Please enter an integer from 1 to 5, with 1 being the least\n"
-                + "active and 5 being the most active");
-        System.out.println();
+                + "Please enter an integer from 1 to 5, with 1 being the least active and 5 being the most active");
     }
 
     /**
@@ -334,7 +313,7 @@ public class ExceptionMessages {
      * Prints message when string entered is empty.
      */
     public static void displayEmptyStringMessage() {
-        System.out.println("Please do not enter an empty input");
+        print("Please do not enter an empty input");
     }
 
     public static void displayInvalidEditedUserProfileMessage() {
@@ -355,7 +334,7 @@ public class ExceptionMessages {
 
     public static void displayInvalidCreateSetCommandMessage() {
         drawDivider();
-        System.out.println("You are missing a activity tag or calorie tag or both");
+        System.out.println("You are missing an activity tag or calorie tag or both");
         drawDivider();
     }
 
@@ -373,7 +352,7 @@ public class ExceptionMessages {
 
     public static void displayIncompleteSetMessage() {
         drawDivider();
-        System.out.println("This short cut was not been successfully created as there was an error in your input.");
+        System.out.println("This short cut was not successfully created as there was an error in your input.");
         System.out.println("Please try again!");
         drawDivider();
         System.out.println();
@@ -399,7 +378,11 @@ public class ExceptionMessages {
 
     public static void displayMissingAddSetInfoMessage() {
         drawDivider();
-        System.out.println("This shortcut has an empty description or calorie tag or both.");
+        System.out.println("This shortcut has an empty description for activity or calorie or both.");
         drawDivider();
+    }
+
+    public static void displayInvalidEditCommandMessage() {
+        print("I do not understand this edit command. You command has only been processed partially.");
     }
 }
