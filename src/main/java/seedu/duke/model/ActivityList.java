@@ -39,8 +39,8 @@ public class ActivityList extends Trakcal {
     public ArrayList getArrayList() {
         return activities;
     }
-    //@@author chewyang
 
+    //@@author chewyang
     /**
      * Adds new activity to the list and updates the netCalorie accordingly to the activity type added.
      *
@@ -59,6 +59,7 @@ public class ActivityList extends Trakcal {
         }
     }
 
+    //@@author e0425705
     /**
      * This method replaces the current activity at index with a new activity.
      * To change the description of the current activity.
@@ -118,8 +119,8 @@ public class ActivityList extends Trakcal {
     public int getNetCalorie() {
         return netCalorie;
     }
-    //@@author chewyang
 
+    //@@author chewyang
     public Activity getActivity(int index) throws IndexOutOfBoundsException {
         if (isValidIndex(index)) {
             return activities.get(index);
@@ -163,8 +164,8 @@ public class ActivityList extends Trakcal {
             }
         }
     }
-    //@@author chewyang
 
+    //@@author chewyang
     /**
      * Checks if the index is valid.
      *
@@ -200,8 +201,8 @@ public class ActivityList extends Trakcal {
         activitiesString = activitiesString.substring(1, activitiesString.length() - 1);
         return (activitiesString);
     }
-    //@@author chewyang
 
+    //@@author chewyang
     /**
      * Returns the date of activity.
      *

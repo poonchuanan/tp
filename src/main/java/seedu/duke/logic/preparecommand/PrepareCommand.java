@@ -57,6 +57,7 @@ public abstract class PrepareCommand {
         }
     }
 
+    //@@author e0425705
     /**
      * Process date input by user.
      *
@@ -68,7 +69,7 @@ public abstract class PrepareCommand {
         return LocalDate.parse(dateInput);
     }
 
-
+    //@@author e0425705
     /**
      * Returns current date.
      *
@@ -80,6 +81,7 @@ public abstract class PrepareCommand {
         return date;
     }
 
+    //@@author e0425705
     /**
      * Checks if the date is valid.
      *
@@ -101,6 +103,7 @@ public abstract class PrepareCommand {
         }
     }
 
+    //@@author e0425705
     /**
      * Checks if calorie input by user is empty.
      *
@@ -116,6 +119,7 @@ public abstract class PrepareCommand {
         }
     }
 
+    //@@author e0425705
     /**
      * Checks if the description is filled.
      *
@@ -131,6 +135,7 @@ public abstract class PrepareCommand {
         }
     }
 
+    //@@author e0425705
     /**
      * Checks if the calorie input is within accepted range.
      *
@@ -146,6 +151,7 @@ public abstract class PrepareCommand {
         }
     }
 
+    //@@author e0425705
     /**
      * Checks if the description character counts is within accepted range.
      *
