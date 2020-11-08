@@ -1,8 +1,10 @@
 package seedu.duke.command;
 
-import seedu.duke.exception.EmptyDescriptionException;
-import seedu.duke.model.FindDrawer;
+import seedu.duke.exception.EmptyKeywordException;
 import seedu.duke.exception.KeywordNotFoundException;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyDescriptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyKeywordMessage;
+import static seedu.duke.ui.ExceptionMessages.displayKeywordNotFoundMessage;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -32,9 +34,9 @@ public class FindDescriptionCommand extends Command {
             dayMap.listActivitiesContainingDescription(description);
             dayMap.drawListAfterFindCommand();
         } catch (KeywordNotFoundException e) {
-            System.out.println("No results were found!");
-        } catch (EmptyDescriptionException e) {
-            System.out.println("Keyword cannot be empty!");
+            displayKeywordNotFoundMessage();
+        } catch (EmptyKeywordException e) {
+            displayEmptyKeywordMessage();
         }
     }
 }
