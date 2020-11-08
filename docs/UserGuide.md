@@ -1339,8 +1339,12 @@ No.        Type                        Description                        Calori
 * `delete 2`
 
 ```
+====================================================================================
 Activity removed!
+====================================================================================
+====================================================================================
 The current activity list has been saved.
+====================================================================================
 ```
 
 * `list` after deleting
@@ -1361,8 +1365,50 @@ No.        Type                        Description                        Calori
 
 ### 9.1.1 Possible errors when deleting an entry in list
 
+#### Delete command has missing description
+
+If only delete command has been typed, the following error will be shown.
+
+* delete
+```
+====================================================================================
+This command has missing description!
+====================================================================================
 ```
 
+### Delete command has invalid description
+
+If delete command is followed by any other combinations of letters/symbols other than "all/",
+the following error will be shown.
+
+
+
+* delete abc
+```
+====================================================================================
+Index is not a number!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+#### Deleting when index is not in range
+
+The following scenarios will result in the error message as shown below:
+
+Scenario 1:
+Index is negative number or 0.
+
+Scenario 2: 
+Index is bigger than the number of items in the list.
+
+Scenario 3:
+Attempting to delete an item on an empty list.
+In this case, any index will show the following error.
+
+```
+====================================================================================
+Invalid Index!
+====================================================================================
 ```
 
 <br>
@@ -1392,19 +1438,25 @@ No.        Type                        Description                        Calori
 * `delete all/`
 
 ```
-The current activity list has been saved.
+====================================================================================
+All activities have been deleted
+====================================================================================
 ```
 
 * `list` after deleting
 
 ```
-Nothing was added!
+There is no data for 2020-11-08
 ```
 
 ### 9.2.2 Possible errors when deleting all entries from list
 
+#### Deleting all on an empty list will result in the following error.
 ```
-
+====================================================================================
+There is no index to remove!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
 ```
 
 <br>
@@ -1442,8 +1494,14 @@ Example of usage:
 
 ### 10.1.1 Possible errors when graphing
 
-```
+#### Adding extra inputs after graph command
 
+* graph 123
+
+```
+====================================================================================
+This command has no description!
+====================================================================================
 ```
 
 <br>
