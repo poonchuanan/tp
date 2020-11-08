@@ -72,7 +72,7 @@ This section gives you a detailed description of each feature available in **tra
 <br>
 <br>
 
-## 1.0 Viewing help
+## 1.0 Viewing help - Puah Siew Wen
 
 Do you need help? Do you need a reminder of what the function and their respective input format is? Well this section solves it for you!
 
@@ -546,7 +546,7 @@ Items in the shortcut may have been added partially only.
 <br>
 <br>
 
-## 4.0 Add
+## 4.0 Add - Puah Siew Wen
 
 ### 4.1 Adding a food entry
 
@@ -641,12 +641,7 @@ No.        Type                        Description                        Calori
 3          Food           banana cake_______________________________________________70
 ```
 
-### 4.1.1 Possible errors when adding a food entry
-
-```
-
-```
-
+<br>
 <br>
 
 ### 4.2 Adding an exercise entry
@@ -758,7 +753,7 @@ No.        Type                        Description                        Calori
 5        Exercise         brisk walking_____________________________________________20
 ```
 
-### 4.2.1 Possible errors when adding an exercise entry
+### 4.3 Possible errors when adding an activity entry
 
 #### Missing tags
 If you have missing tags, such as missing calorie tag, an error would occur
@@ -914,7 +909,7 @@ Please do input 'help' for the commands and their respective input format.
 <br>
 <br>
 
-## 6.0 Edit
+## 6.0 Edit - Puah Siew Wen
 
 ### 6.1 Editing an entry in list
 
@@ -1147,10 +1142,31 @@ No.        Date                Type                                Description  
 
 ### 7.1.2 Possible errors when finding entries via keyword
 
-```
+#### Wrong find command tag
+If the command tag is not *d, c, a* or *e*, an error would occur
+> the following would be printed out if you input `find p/ KEYWORD`
 
 ```
+====================================================================================
+I do not understand what you mean!
+The input format for finding food or exercise activity
+	via keyword is 'find d/ DESCRIPTION' - where keyword is DESCRIPTION
+The input format for finding calorie count
+	via keyword is 'find c/ CALORIE_COUNT' - where calories count is CALORIE_COUNT
+The input format for finding (all)
+	 is 'find a/ KEYWORD1 / KEYWORD2...' - where KEYWORDS are all the words that matches the search result
+The input format for finding (either)
+	 is 'find e/ KEYWORD1 / KEYWORD2...' - where just one KEYWORD has to match the search result
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+#### Wrong find command tag
+If the **KEYWORD** to search for is empty, an error would occur
+> the following would be printed out if you input `find d/`
 
+```
+No results were found!
+```
 <br>
 
 ### 7.2 Finding entries via keywords - advanced
@@ -1433,7 +1449,7 @@ Example of usage:
 <br>
 <br>
 
-## 11.0 Chaining
+## 11.0 Chaining - Puah Siew Wen
 
 ### 11.1 Chaining of features
 
@@ -1442,7 +1458,7 @@ Chaining is the right feature for your needs!
 
 > Do note
 >* Chaining is only available to 3 features
->* [list](#50-list), [add](#40-add) and [edita](#61-editing-an-entry-in-list)
+>* [list](#50-list), [add](#40-add---puah-siew-wen) and [edita](#61-editing-an-entry-in-list)
 >* The respective things to adhere to for each feature still applies.
 >* For example, [edita](#61-editing-an-entry-in-list), you MUST call out the list you want to edit on before editing on it.
 
@@ -1542,9 +1558,9 @@ The current activity list has been saved.
 ### 11.1.1 Possible errors when chaining
 
 *The possible errors follows the errors for adding, listing and editing*
-Possible errors for adding: [errors for add](#43-possible-errors-when-adding)
-Possible errors for listing: [errors for list](#52-possible-errors-when-listing)
-Possible errors for editing: [errors for edit](#62-possible-errors-when-editing)
+Possible errors for adding: [errors for add](#43-possible-errors-when-adding-an-activity-entry)
+Possible errors for listing: [errors for list](#511-possible-errors-when-listing)
+Possible errors for editing: [errors for edit](#611-possible-errors-when-editing)
 
 <br>
 <br>
@@ -1568,17 +1584,17 @@ Example of usage:
 <br>
 
 # Frequently asked questions
-This section answers questions you may have.
+This section contains frequently asked questions.
 
-**Q**: How do I transfer your data to another computer? 
+**Q**: How do I transfer my data to another computer? 
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
+**A**: Install the application in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
 
 **Q**: How do I know if the data you have input is saved?
 
 **A**: **traKCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
-**Q**: Is traKCAL optimized for all operating systems?
+**Q**: Is **traKCAL** optimized for all operating systems?
 
 **A**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
 

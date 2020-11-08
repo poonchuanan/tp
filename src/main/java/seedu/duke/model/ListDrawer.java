@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
+//@@ chewyang
 /**
  * This class is used to create a responsive interface for the listing feature after a list command.
  */
@@ -175,7 +176,7 @@ public class ListDrawer {
 
 
         }
-        //    ----------------------------------------
+
         String calorieString = Integer.toString(activityList.getActivity(index).getActivityCalories());
 
         return indexString

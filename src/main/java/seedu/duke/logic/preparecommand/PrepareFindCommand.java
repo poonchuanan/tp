@@ -12,7 +12,10 @@ import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
  * Prepares find command.
  */
 public class PrepareFindCommand extends PrepareCommand {
+    protected static final String DESCRIPTION_TAG = "d/";
     protected static final String CALORIE_TAG = "c/";
+    protected static final String ALL_TAG = "a/";
+    protected static final String EITHER_TAG = "e/";
 
     public PrepareFindCommand(String[] description) {
         super(description);
@@ -29,15 +32,15 @@ public class PrepareFindCommand extends PrepareCommand {
     @Override
     public Command prepareCommand() {
         try {
-            if (description[1].startsWith("d/")) {
+            if (description[1].startsWith(DESCRIPTION_TAG)) {
                 String descriptionString = description[1].substring(2).trim();
                 return new FindDescriptionCommand(descriptionString);
             } else if (description[1].startsWith(CALORIE_TAG)) {
                 String calorie = description[1].substring(2).trim();
                 return new FindCalorieCommand(calorie);
-            } else if (description[1].startsWith("a/")) {
+            } else if (description[1].startsWith(ALL_TAG)) {
                 return new FindAllCommand(description[1]);
-            } else if (description[1].startsWith("e/")) {
+            } else if (description[1].startsWith(EITHER_TAG)) {
                 return new FindEitherCommand(description[1]);
             } else {
                 displayFindErrorMessage();
