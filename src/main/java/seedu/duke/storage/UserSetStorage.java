@@ -35,6 +35,7 @@ public class UserSetStorage {
     private static final String FOOD_TAG = "/f";
     private static final String CALORIE_TAG = "c/";
     private static final String EXERCISE_TAG = "e/";
+    private static final String SLASH = "/";
 
     /**
      * Checks if tags and file are given by user.
@@ -45,9 +46,9 @@ public class UserSetStorage {
         try {
             checkFileNameNotPresent(userInput);
             checkActivityAndCalorieTag(userInput);
-            String fileName = userInput.substring(0, userInput.indexOf("/") - 2);
+            String fileName = userInput.substring(0, userInput.indexOf(SLASH) - 2);
 
-            createNewTextFile("/" + fileName + ".txt", userInput.substring(userInput.indexOf("/") - 1));
+            createNewTextFile(SLASH + fileName + ".txt", userInput.substring(userInput.indexOf(SLASH) - 1));
         } catch (NoFileNameException e) {
             displayMissingFileNameMessage();
         } catch (InvalidCreateSetCommandException e) {
