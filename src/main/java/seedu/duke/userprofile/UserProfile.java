@@ -46,6 +46,7 @@ public class UserProfile {
     private static final Integer MAX_AGE = 120;
     private static final Integer MIN_AL = 1;
     private static final Integer MAX_AL = 5;
+    private static final String WHITE_SPACES = " ";
 
     /**
      * Reading user input.
@@ -98,6 +99,7 @@ public class UserProfile {
      */
     public static void edit(String info) throws IOException {
         try {
+            String description;
             ArrayList<String> previous = UserInfoStorage.update();
             for (int i = 0; i < 7; i++) {
                 data[i] = previous.get(i);
@@ -107,19 +109,26 @@ public class UserProfile {
 
             for (String argument : arguments) {
                 if (argument.startsWith("n/")) {
-                    editName(argument.substring(2));
+                    description = removeWhiteSpaces(argument.substring(2));
+                    editName(description);
                 } else if (argument.startsWith("g/")) {
-                    editGender(argument.substring(2));
+                    description = removeWhiteSpaces(argument.substring(2));
+                    editGender(description);
                 } else if (argument.startsWith("w/")) {
-                    editWeight(argument.substring(2));
+                    description = removeWhiteSpaces(argument.substring(2));
+                    editWeight(description);
                 } else if (argument.startsWith("h/")) {
-                    editHeight(argument.substring(2));
+                    description = removeWhiteSpaces(argument.substring(2));
+                    editHeight(description);
                 } else if (argument.startsWith("age/")) {
-                    editAge(argument.substring(4));
+                    description = removeWhiteSpaces(argument.substring(2));
+                    editAge(description);
                 } else if (argument.startsWith("al/")) {
-                    editAl(argument.substring(3));
+                    description = removeWhiteSpaces(argument.substring(2));
+                    editAl(description);
                 } else if (argument.startsWith("goal/")) {
-                    editGoal(argument.substring(5));
+                    description = removeWhiteSpaces(argument.substring(2));
+                    editGoal(description);
                 } else {
                     throw new InvalidEditedUserProfileException();
                 }
@@ -135,6 +144,17 @@ public class UserProfile {
         profile.calculateEditedUserDetails();
     }
 
+    private static String removeWhiteSpaces(String description) {
+        while (description.startsWith(WHITE_SPACES)) {
+            description = description.substring(1);
+        }
+
+        while (description.endsWith(WHITE_SPACES)) {
+            description = description.substring(0, description.length() - 1);
+        }
+        return description;
+    }
+
     /**
      * Edit name.
      *
@@ -145,7 +165,7 @@ public class UserProfile {
             checkEmptyInput(name);
             data[0] = name;
             displayEditNameMessage();
-            System.out.println(data[0] + ".\n");
+            System.out.println(data[0] + ".");
         } catch (EmptyDescriptionException e) {
             ExceptionMessages.displayEmptyStringMessage();
         }
@@ -162,7 +182,7 @@ public class UserProfile {
             checkGender(gender);
             data[1] = gender;
             displayEditGenderMessage();
-            System.out.println(data[1] + ".\n");
+            System.out.println(data[1] + ".");
 
         } catch (IllegalArgumentException e) {
             displayInvalidGenderMessage();
@@ -183,7 +203,7 @@ public class UserProfile {
             checkWeightIsWithinRange(weight);
             data[2] = weight;
             displayEditWeightMessage();
-            System.out.println(data[2] + "kg.\n");
+            System.out.println(data[2] + "kg.");
 
         } catch (NumberFormatException e) {
             displayInvalidWeightMessage();
@@ -206,7 +226,7 @@ public class UserProfile {
             checkHeightIsWithinRange(height);
             data[3] = height;
             displayEditHeightMessage();
-            System.out.println(data[3] + "cm.\n");
+            System.out.println(data[3] + "cm.");
 
         } catch (NumberFormatException e) {
             displayInvalidHeightMessage();
@@ -229,7 +249,7 @@ public class UserProfile {
             checkAgeIsWithinRange(age);
             data[4] = age;
             displayEditAgeMessage();
-            System.out.println(data[4] + "years old.\n");
+            System.out.println(data[4] + "years old.");
 
         } catch (NumberFormatException e) {
             displayInvalidAgeMessage();
@@ -252,7 +272,7 @@ public class UserProfile {
             checkAcLeIsWithinRange(al);
             data[5] = al;
             displayEditActivityLevelMessage();
-            System.out.println(data[5] + ".\n");
+            System.out.println(data[5] + ".");
 
         } catch (NumberFormatException e) {
             displayInvalidActivityLevelMessage();
@@ -274,7 +294,7 @@ public class UserProfile {
             checkWeightGoal(goal);
             data[6] = goal;
             displayEditGoalMessage();
-            System.out.println(data[6] + ".\n");
+            System.out.println(data[6] + ".");
 
         } catch (IllegalArgumentException e) {
             displayInvalidWeightGoalMessage();
