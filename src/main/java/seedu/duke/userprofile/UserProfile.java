@@ -32,6 +32,7 @@ import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightRangeMessage;
 
+//@@author jlifah
 /**
  * Initialises user profile after asking for user input.
  */
@@ -57,10 +58,14 @@ public class UserProfile {
         } catch (NoSuchElementException e) {
             System.out.println("Force quit. See you again!");
         }
-        //return Trakcal.in.nextLine();
         return null;
     }
 
+    /**
+     * Create a new user profile.
+     *
+     * @return InitialiseUserProfile
+     */
     public static InitialiseUserProfile createNewProfile() {
         InitialiseUserProfile profile = null;
         gatherData();
@@ -72,6 +77,10 @@ public class UserProfile {
         return profile;
     }
 
+    /**
+     * Calls method to gather user info.
+     *
+     */
     public static void gatherData() {
         name();
         gender();
@@ -82,6 +91,11 @@ public class UserProfile {
         weightGoal();
     }
 
+    /**
+     * Interprets edit commands from user.
+     *
+     * @param info user input
+     */
     public static void edit(String info) throws IOException {
         try {
             ArrayList<String> previous = UserInfoStorage.update();
@@ -121,6 +135,11 @@ public class UserProfile {
         profile.calculateEditedUserDetails();
     }
 
+    /**
+     * Edit name.
+     *
+     * @param name user input
+     */
     private static void editName(String name) {
         try {
             checkEmptyInput(name);
@@ -132,6 +151,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Edit gender.
+     *
+     * @param gender user input
+     */
     private static void editGender(String gender) {
         try {
             checkEmptyInput(gender);
@@ -147,6 +171,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Edit weight.
+     *
+     * @param weight user input
+     */
     private static void editWeight(String weight) {
         try {
             checkEmptyInput(weight);
@@ -165,6 +194,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Edit height.
+     *
+     * @param height user input
+     */
     private static void editHeight(String height) {
         try {
             checkEmptyInput(height);
@@ -183,6 +217,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Edit age.
+     *
+     * @param age user input
+     */
     private static void editAge(String age) {
         try {
             checkEmptyInput(age);
@@ -201,6 +240,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Edit activity level.
+     *
+     * @param al user input
+     */
     private static void editAl(String al) {
         try {
             checkEmptyInput(al);
@@ -219,6 +263,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Edit goal.
+     *
+     * @param goal user input
+     */
     private static void editGoal(String goal) {
         try {
             checkEmptyInput(goal);
@@ -420,6 +469,12 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Check genders validity.
+     *
+     * @param gender user input
+     * @throws IllegalArgumentException
+     */
     private static void checkGender(String gender) throws IllegalArgumentException {
         for (GenderEnum validGender : GenderEnum.values()) {
             if (validGender.name().equals(gender)) {
@@ -430,38 +485,80 @@ public class UserProfile {
         throw new IllegalArgumentException();
     }
 
+    /**
+     * Check if input is of type double.
+     *
+     * @param userInput user input
+     * @throws NumberFormatException
+     */
     private static void checkInputIsDouble(String userInput) throws NumberFormatException {
         Double.parseDouble(userInput);
     }
 
+    /**
+     * Check weight is within range.
+     *
+     * @param weight user input
+     * @throws IllegalArgumentException
+     */
     private static void checkWeightIsWithinRange(String weight) throws IllegalArgumentException {
         if (Double.parseDouble(weight) < MIN_WEIGHT || Double.parseDouble(weight) > MAX_WEIGHT) {
             throw new IllegalArgumentException();
         }
     }
 
+    /**
+     * Check height is within range.
+     *
+     * @param height user input
+     * @throws IllegalArgumentException
+     */
     private static void checkHeightIsWithinRange(String height) throws IllegalArgumentException {
         if (Double.parseDouble(height) < MIN_HEIGHT || Double.parseDouble(height) > MAX_HEIGHT) {
             throw new IllegalArgumentException();
         }
     }
 
+    /**
+     * Check age is within range.
+     *
+     * @param age user input
+     * @throws IllegalArgumentException
+     */
     private static void checkAgeIsWithinRange(String age) throws IllegalArgumentException {
         if (Integer.parseInt(age) < MIN_AGE || Integer.parseInt(age) > MAX_AGE) {
             throw new IllegalArgumentException();
         }
     }
 
+    /**
+     * Check input is of type integer.
+     *
+     * @param userInput user input
+     * @throws IllegalArgumentException
+     */
     private static void checkInputIsInt(String userInput) throws NumberFormatException {
         Integer.parseInt(userInput);
     }
 
+    /**
+     * Check input is within range.
+     *
+     * @param al user input
+     * @throws IllegalArgumentException
+     */
     private static void checkAcLeIsWithinRange(String al) throws IllegalArgumentException {
         if (Integer.parseInt(al) < MIN_AL || Integer.parseInt(al) > MAX_AL) {
             throw new IllegalArgumentException();
         }
     }
 
+    /**
+     * Check weight goal fits enum.
+     *
+     * @param wg user input
+     * @throws IllegalArgumentException
+     */
     private static void checkWeightGoal(String wg) throws IllegalArgumentException {
         for (WeightGoalEnum validWg : WeightGoalEnum.values()) {
             if (validWg.name().equals(wg)) {
@@ -471,12 +568,24 @@ public class UserProfile {
         throw new IllegalArgumentException();
     }
 
+    /**
+     * Check for empty input for string.
+     *
+     * @param userInput user input
+     * @throws EmptyDescriptionException
+     */
     public static void checkEmptyInput(String userInput) throws EmptyDescriptionException {
         if (userInput.equals(" ") || userInput.equals("") || userInput.isEmpty() || userInput.isBlank()) {
             throw new EmptyDescriptionException();
         }
     }
 
+    /**
+     * Check for empty input for array.
+     *
+     * @param data user input
+     * @throws IllegalArgumentException
+     */
     public static void checkEmptyInput2(String[] data) throws EmptyDescriptionException {
         for (String datum : data) {
             if (datum.isEmpty() || datum.isBlank()) {
@@ -485,6 +594,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Saves new user info.
+     *
+     * @throws IOException
+     */
     public static InitialiseUserProfile enterNewUserInfo() throws IOException {
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
@@ -569,3 +683,4 @@ public class UserProfile {
         return profile;
     }
 }
+//@@author jlifah
