@@ -45,7 +45,7 @@ This section gives the steps you need to get started quickly.
 ```
    * Tip: 
      Increase your windows length if the greeting message appears congested like this:
-     ![Congested opening message](diagrams/openingMessageError.png)
+     ![Congested opening message](diagrams/openingMessageError.png | width=150)
 
 6. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window
 
@@ -68,6 +68,7 @@ This section gives you a detailed description of each feature available in **tra
 >* Inputs that look like `<THIS>` are optional parameters and do not need to be supplied by user if not needed.  
 >* Input format should adhere to the one in the help list or in this user guide.
 >* All features such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
+>* An :exclamation: emoticon denotes possible errors and possible mistakes
 
 <br>
 <br>
