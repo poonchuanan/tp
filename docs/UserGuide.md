@@ -888,12 +888,8 @@ Any text in this format is the error message that you will be shown.
 
 #### Accessing a list with no entries
 * For example if there are no entries for 2020-10-31, the following command will produce an error: 
-<<<<<<< HEAD
-> list 2020-10-31
-
-=======
 > `list 2020-10-31`
->>>>>>> c2a9c362f2975712c8b5e008f6877deb74e547e5
+
 ```
 ====================================================================================
 List is empty!
