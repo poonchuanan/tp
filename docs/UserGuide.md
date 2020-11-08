@@ -68,7 +68,6 @@ This section gives you a detailed description of each feature available in **tra
 >* Inputs that look like `<THIS>` are optional parameters and do not need to be supplied by user if not needed.  
 >* Input format should adhere to the one in the help list or in this user guide.
 >* All features such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
->* An :exclamation: emoticon denotes a possible error
 
 <br>
 <br>
@@ -178,8 +177,7 @@ bye                    - Terminates the application
 
 ### 2.1 Creating a new user profile
 
-If this is your first time using **traKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
-**traKCAL** will then use these details from your user profile to calculate the following: 
+If this is your first time using **traKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command. **traKCAL** will then use these details from your user profile to calculate the following: 
 
 * BMI
 * Recommended daily calorie
@@ -227,78 +225,94 @@ To gain weight, you should consume 2076.65 calories instead.
 
 ### 2.1.1 Possible errors when creating a new user profile
 
-:exclamation: There is no restriction on the type of name you can supply.  `X Æ A-Xii` and `Tammy` will both be accepted.
-:exclamation: Please input you gender as female or male only. If not the following error message will be shown.
-  * ```
-    =====================================================================================================
-    Sorry this is an invalid gender format! Please input gender as female or male only!
-    =====================================================================================================
-    ```
-    
-:exclamation: Please input a reasonable weight between 30 to 650kg. Otherwise, the following error message might be shown. 
-  * ```
-    =====================================================================================================
-    Please enter a weight range from 30kg to 650kg
-    =====================================================================================================
-    ```
+#### Empty descriptions
 
-:exclamation: Please input your weight as a number and not as text. Otherwise, the following error message might be shown.
-  * ```
-    =====================================================================================================
-    Please enter a valid weight format!
-    =====================================================================================================
-    ```
+* If any of the input to the questions are empty, the following error message will be shown
+
+```
+=====================================================================================================
+Please do not enter an empty input
+=====================================================================================================
+```
+
+#### Invalid parameters
+
+* If gender is not specified as female or male only (eg `tree`), the following error message will be shown
+```
+=====================================================================================================
+Sorry this is an invalid gender format! Please input gender as female or male only!
+=====================================================================================================
+```
+
+* If weight is not between 30 to 650kg (eg `10000`), the following error message will be shown
+```
+=====================================================================================================
+Please enter a weight range from 30kg to 650kg
+=====================================================================================================
+```
+
+* If weight is not of a convertable type (eg. `thirty-three`), the following error message will be shown
+```
+=====================================================================================================
+Please enter a valid weight format!
+=====================================================================================================
+```
+
+* If height is not between 90 to 300cm (eg `350`), the following error message will be shown
+```
+=====================================================================================================
+Please enter a height range from 90cm to 300cm
+=====================================================================================================
+```
+
+* If height is not of a convertable type (eg. `one-hundred-meters`), the following error message will be shown
+```
+=====================================================================================================
+Please enter a valid height format!
+=====================================================================================================
+```
+
+* If age is not between 1 to 120 years old (eg `200`), the following error message will be shown
+```
+=====================================================================================================
+Please enter an age range from 1 to 120 years old
+=====================================================================================================
+```
+
+* If age is not of a convertable type (eg. `two-hundred-years-old`), the following error message will be shown
+```
+=====================================================================================================
+Please enter a valid age format!
+=====================================================================================================
+```
     
-:exclamation: Please input a reasonable weight between 90 to 300cm. Otherwise, the following error messages might be shown. 
-  * ```
-    =====================================================================================================
-    Please enter a height range from 90cm to 300cm
-    =====================================================================================================
-    ```
-    
-:exclamation: Please input your height as a number and not as text. Otherwise, the following error message might be shown.
-  * ```
-    =====================================================================================================
-    Please enter a valid height format!
-    =====================================================================================================
-    ```
-    
-:exclamation: Please input a reasonable age between 1 to 120 years old. Otherwise, the following error message might be shown. 
-  * ```
-    =====================================================================================================
-    Please enter an age range from 1 to 120 years old
-    =====================================================================================================
-    ```
-    
-:exclamation: Please input your age as a number and not as text. Otherwise, the following error message might be shown.
-  * ```
-      =====================================================================================================
-      Please enter a valid age format!
-      =====================================================================================================
-    ```
-    
-:exclamation: Please input your activity level as an integer between 1 to 5. Otherwise, the following error message will be shown. 
-  * ```
-    =====================================================================================================
-    Sorry this is an invalid activity factor!
-    Please enter an integer from 1 to 5, with 1 being the least
-    active and 5 being the most active
-    =====================================================================================================
-    ```
-    
-:exclamation: Please input lose, maintain or gain as weight goal only. If not, the following error message will be shown. 
-  * ```
-    =====================================================================================================
-    Please input lsoe/maintain/gain as weight goal only!
-    =====================================================================================================
-    ```
-    
-:exclamation: Please do not enter an empty input. Otherwise, the following error message will be shown. 
-  * ```
-    =====================================================================================================
-    Please do not enter an empty input
-    =====================================================================================================
-    ```     
+* If activity level is not between 1 and 5, the following error message will be shown
+```
+=====================================================================================================
+Sorry this is an invalid activity factor!
+Please enter an integer from 1 to 5, with 1 being the least active and 5 being the most active
+=====================================================================================================
+```
+
+* If weight goals is not specified as lose or maintain or gain only (eg `cut`), the following error message will be shown
+```
+=====================================================================================================
+Please input lsoe/maintain/gain as weight goal only!
+=====================================================================================================
+```
+
+#### Corrupted user profile
+
+* If the user edits the text file containing the user profile to an unreadable format, the following error message will be shown in the subsequent run and the user will be directed to create a new user profile automatically
+```
+====================================================================================
+Corrupted user profile!
+Please do not edit the text file unnecessarily.
+You are being directed to create a new user profile.
+This is to ensure that all features can be used properly.
+====================================================================================
+``` 
+
 <br>
 
 ### 2.2 Editing user profile
@@ -321,18 +335,14 @@ Example of usage:
 
 ```
 Your name has been updated to Tom.
-
 Your weight has been updated to 90kg.
 ```
 
 ### 2.2.1 Possible errors when editing a user profile
 
-:exclamation: Please do not enter an empty input. Otherwise, the following error message will be shown. 
-  * ```
-    =====================================================================================================
-    Please do not enter an empty input
-    =====================================================================================================
-    ```     
+#### Invalid parameters
+
+* The [error messages](#211-possible-errors-when-creating-a-new-user-profile) for edit user profile feature are the same as those found in creating user profile. 
 
 <br>
 
@@ -424,7 +434,7 @@ Please try again!
 ====================================================================================
 ```
 
-#### Wrong parameters
+#### Invalid parameters
 * If a shortcut name given already exist, the following error message will be shown
 ```
 ====================================================================================

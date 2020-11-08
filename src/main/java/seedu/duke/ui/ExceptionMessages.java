@@ -164,7 +164,6 @@ public class ExceptionMessages {
      */
     public static void displayInvalidWeightMessage() {
         print("Please enter a valid weight format!");
-        System.out.println();
     }
 
     /**
@@ -172,7 +171,6 @@ public class ExceptionMessages {
      */
     public static void displayInvalidHeightMessage() {
         print("Please enter a valid height format!");
-        System.out.println();
     }
 
     /**
@@ -180,7 +178,6 @@ public class ExceptionMessages {
      */
     public static void displayInvalidAgeMessage() {
         print("Please enter a valid age format!");
-        System.out.println();
     }
 
     /**
@@ -188,9 +185,7 @@ public class ExceptionMessages {
      */
     public static void displayInvalidActivityLevelMessage() {
         print("Sorry this is an invalid activity factor!\n"
-                + "Please enter an integer from 1 to 5, with 1 being the least\n"
-                + "active and 5 being the most active");
-        System.out.println();
+                + "Please enter an integer from 1 to 5, with 1 being the least active and 5 being the most active");
     }
 
     /**
