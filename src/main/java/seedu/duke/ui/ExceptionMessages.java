@@ -450,8 +450,8 @@ public class ExceptionMessages {
      * Prints message when there are consecutive slashes in input.
      */
     public static void displayEmptyKeywordMessage() {
-        print("Current keyword is empty!\n" +
-                "Please input a valid keyword that is not empty!");
+        print("Current keyword is empty!\n"
+                +"Please input a valid keyword that is not empty!");
     }
 
     /**
