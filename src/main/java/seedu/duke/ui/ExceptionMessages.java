@@ -423,18 +423,30 @@ public class ExceptionMessages {
         print("I do not understand all or part of this edit command. Your command has only been processed partially.");
     }
 
+    /**
+     * Prints message when there is too many arguments.
+     */
     public static void displayExcessNumberOfArguments() {
         print("This command has no description!");
     }
 
+    /**
+     * Prints message when there is too little arguments.
+     */
     public static void displayShortageOfArguments() {
         print("This command has missing description!");
     }
 
+    /**
+     * Prints message when the list is empty.
+     */
     public static void displayEmptyListError() {
         print("List is empty!");
     }
 
+    /**
+     * Prints message when traKCAL is unable to write/read file.
+     */
     public static void displayFileError() {
         print("Unable to read/write file");
     }

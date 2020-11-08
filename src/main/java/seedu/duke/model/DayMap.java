@@ -5,10 +5,8 @@ import java.util.regex.Pattern;
 
 import seedu.duke.exception.EmptyKeywordException;
 import seedu.duke.exception.FindSlashException;
-import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.exception.KeywordNotFoundException;
 import seedu.duke.exception.ListNotFoundException;
-import seedu.duke.storage.UserInfoStorage;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
