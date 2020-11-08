@@ -228,6 +228,8 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 
 ![Edit Exercise](diagrams/EditExercise.png)
 
+*Figure 10. Sequence diagram of edit exercise feature*
+
 <br>
 
 #### 3.5.2 Design Considerations
