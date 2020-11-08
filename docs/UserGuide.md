@@ -1142,10 +1142,31 @@ No.        Date                Type                                Description  
 
 ### 7.1.2 Possible errors when finding entries via keyword
 
-```
+#### Wrong find command tag
+If the command tag is not *d, c, a* or *e*, an error would occur
+> the following would be printed out if you input `find p/ KEYWORD`
 
 ```
+====================================================================================
+I do not understand what you mean!
+The input format for finding food or exercise activity
+	via keyword is 'find d/ DESCRIPTION' - where keyword is DESCRIPTION
+The input format for finding calorie count
+	via keyword is 'find c/ CALORIE_COUNT' - where calories count is CALORIE_COUNT
+The input format for finding (all)
+	 is 'find a/ KEYWORD1 / KEYWORD2...' - where KEYWORDS are all the words that matches the search result
+The input format for finding (either)
+	 is 'find e/ KEYWORD1 / KEYWORD2...' - where just one KEYWORD has to match the search result
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+#### Wrong find command tag
+If the **KEYWORD** to search for is empty, an error would occur
+> the following would be printed out if you input `find d/`
 
+```
+No results were found!
+```
 <br>
 
 ### 7.2 Finding entries via keywords - advanced
@@ -1318,8 +1339,12 @@ No.        Type                        Description                        Calori
 * `delete 2`
 
 ```
+====================================================================================
 Activity removed!
+====================================================================================
+====================================================================================
 The current activity list has been saved.
+====================================================================================
 ```
 
 * `list` after deleting
@@ -1340,8 +1365,50 @@ No.        Type                        Description                        Calori
 
 ### 9.1.1 Possible errors when deleting an entry in list
 
+#### Delete command has missing description
+
+If only delete command has been typed, the following error will be shown.
+
+* delete
+```
+====================================================================================
+This command has missing description!
+====================================================================================
 ```
 
+### Delete command has invalid description
+
+If delete command is followed by any other combinations of letters/symbols other than "all/",
+the following error will be shown.
+
+
+
+* delete abc
+```
+====================================================================================
+Index is not a number!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+#### Deleting when index is not in range
+
+The following scenarios will result in the error message as shown below:
+
+Scenario 1:
+Index is negative number or 0.
+
+Scenario 2: 
+Index is bigger than the number of items in the list.
+
+Scenario 3:
+Attempting to delete an item on an empty list.
+In this case, any index will show the following error.
+
+```
+====================================================================================
+Invalid Index!
+====================================================================================
 ```
 
 <br>
@@ -1371,19 +1438,25 @@ No.        Type                        Description                        Calori
 * `delete all/`
 
 ```
-The current activity list has been saved.
+====================================================================================
+All activities have been deleted
+====================================================================================
 ```
 
 * `list` after deleting
 
 ```
-Nothing was added!
+There is no data for 2020-11-08
 ```
 
 ### 9.2.2 Possible errors when deleting all entries from list
 
+#### Deleting all on an empty list will result in the following error.
 ```
-
+====================================================================================
+There is no index to remove!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
 ```
 
 <br>
@@ -1421,8 +1494,14 @@ Example of usage:
 
 ### 10.1.1 Possible errors when graphing
 
-```
+#### Adding extra inputs after graph command
 
+* graph 123
+
+```
+====================================================================================
+This command has no description!
+====================================================================================
 ```
 
 <br>
@@ -1563,17 +1642,17 @@ Example of usage:
 <br>
 
 # Frequently asked questions
-This section answers questions you may have.
+This section contains frequently asked questions.
 
-**Q**: How do I transfer your data to another computer? 
+**Q**: How do I transfer my data to another computer? 
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
+**A**: Install the application in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
 
 **Q**: How do I know if the data you have input is saved?
 
 **A**: **traKCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
-**Q**: Is traKCAL optimized for all operating systems?
+**Q**: Is **traKCAL** optimized for all operating systems?
 
 **A**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
 
