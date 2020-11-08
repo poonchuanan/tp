@@ -144,6 +144,11 @@ public class UserProfile {
         profile.calculateEditedUserDetails();
     }
 
+    /**
+     * Removes all white spaces before and after given description.
+     *
+     * @param description to have white spaces removed from
+     */
     private static String removeWhiteSpaces(String description) {
         while (description.startsWith(WHITE_SPACES)) {
             description = description.substring(1);
