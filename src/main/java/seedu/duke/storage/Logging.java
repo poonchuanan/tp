@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import java.util.logging.ConsoleHandler;
 
 import static seedu.duke.Trakcal.storage;
+
 
 public class Logging extends Storage {
     Logger logger = Logger.getLogger("MyLog");
@@ -38,6 +40,7 @@ public class Logging extends Storage {
     }
 
     public void writeToLog(String logMessage) {
+        this.logger.setUseParentHandlers(false);
         this.logger.info(logMessage);
     }
 
