@@ -162,6 +162,8 @@ public class DayMap {
     }
 
     //@@author chewyang
+
+    //@@author poonchuanan
     /**
      * Finds the activities containing a keyword.
      *
@@ -188,7 +190,6 @@ public class DayMap {
                     String descriptionToCheck = currentLine.substring(currentLine.indexOf("|") + 1);
                     descriptionToCheck = descriptionToCheck.substring(0, descriptionToCheck.indexOf("|")).trim();
                     if (descriptionToCheck.contains(description)) {
-                        //System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
                         lastSeenList.addActivity(activities.getActivity(i));
                         activityFindCounter++;
                     }
@@ -366,6 +367,7 @@ public class DayMap {
         return tags;
     }
 
+    //@@author
     /**
      * Deletes the activity with a given index.
      *

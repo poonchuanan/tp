@@ -8,6 +8,7 @@ import seedu.duke.command.FindEitherCommand;
 
 import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
 
+//@@author poonchuanan
 /**
  * Prepares find command.
  */
