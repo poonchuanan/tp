@@ -17,6 +17,7 @@ import seedu.duke.logic.preparecommand.PrepareUserCommand;
 
 import java.io.IOException;
 
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
@@ -59,6 +60,7 @@ public class CommandParser extends Parser {
     @Override
     public Command parseArgument() {
         this.userInput = checkExtraSpaces();
+        logging.writeToLogInfo("UserInput about to be parsed.");
         String[] arguments = userInput.split(SPACE, SPLIT_LIMIT);
         try {
             switch (arguments[0].toLowerCase()) {

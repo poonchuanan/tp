@@ -7,6 +7,8 @@ import seedu.duke.model.GraphProperty;
 
 import java.util.HashMap;
 
+import static seedu.duke.Trakcal.logging;
+
 /**
  * Displays the graph of illustrating the net calorie gain/loss throughout the period.
  */
@@ -23,6 +25,7 @@ public class GraphCommand extends Command {
 
     @Override
     public void execute() {
+        logging.writeToLogInfo("Executing graph command.");
         GraphProperty graphProperties = new GraphProperty(dayMap, (int) Trakcal.profile.getCalories());
         graphProperties.setProperties();
         System.out.println(new GraphDrawing(graphProperties).drawGraph());

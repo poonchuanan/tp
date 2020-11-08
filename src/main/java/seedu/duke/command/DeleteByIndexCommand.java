@@ -4,6 +4,7 @@ import seedu.duke.model.DayMap;
 
 import java.time.LocalDateTime;
 
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.Ui.displayMessage;
 import static seedu.duke.ui.Ui.displaySavedMessage;
 
@@ -27,11 +28,14 @@ public class DeleteByIndexCommand extends Command {
 
     @Override
     public void execute() {
+        logging.writeToLogInfo("Executing delete by index command.");
         if (index >= 0) {
             try {
                 dayMap.deleteActivity(index);
+                logging.writeToLogInfo("Activity deleted successfully.");
                 displaySavedMessage();
             } catch (IndexOutOfBoundsException | NullPointerException e) {
+                logging.writeToLogInfo("Invalid Index from DeleteByIndexCommand.execute");
                 displayMessage("Invalid Index");
             }
         }
