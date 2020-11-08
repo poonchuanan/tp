@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
 
-
+//@@author chewyang
 /**
  * List of activities for any day.
  */
@@ -38,7 +38,7 @@ public class ActivityList extends Trakcal {
     public ArrayList getArrayList() {
         return activities;
     }
-
+    //@@author chewyang
 
     /**
      * Adds new activity to the list and updates the netCalorie accordingly to the activity type added.
@@ -88,7 +88,7 @@ public class ActivityList extends Trakcal {
             throw new IndexOutOfBoundsException();
         }
     }
-
+    //@@author chewyang
     /**
      * This method moves a activity from a given index and to a place below a given index.
      *
@@ -116,6 +116,7 @@ public class ActivityList extends Trakcal {
     public int getNetCalorie() {
         return netCalorie;
     }
+    //@@author chewyang
 
     public Activity getActivity(int index) throws IndexOutOfBoundsException {
         if (isValidIndex(index)) {
@@ -146,7 +147,7 @@ public class ActivityList extends Trakcal {
             throw new IndexOutOfBoundsException();
         }
     }
-
+    //@@author chewyang
     /**
      * Prints the list of activities.
      */
@@ -159,6 +160,7 @@ public class ActivityList extends Trakcal {
             }
         }
     }
+    //@@author chewyang
 
     /**
      * Checks if the index is valid.
@@ -182,7 +184,7 @@ public class ActivityList extends Trakcal {
         netCalorie = 0;
     }
 
-
+    //@@author chewyang
     /**
      * Sets the activities as a string.
      * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | push-up | 10, [E] | jogging | 60
@@ -195,6 +197,7 @@ public class ActivityList extends Trakcal {
         activitiesString = activitiesString.substring(1, activitiesString.length() - 1);
         return (activitiesString);
     }
+    //@@author chewyang
 
     /**
      * Returns the date of activity.

@@ -2,7 +2,7 @@ package seedu.duke.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+//@@author chewyang
 /**
  * This class is used to create a responsive interface for the listing feature after a list command.
  */
