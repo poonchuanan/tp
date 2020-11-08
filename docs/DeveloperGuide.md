@@ -258,7 +258,7 @@ The chaining mechanism can be used by the various commands available The followi
 
 The following sequence diagram shows how the chaining works after command is entered:
 
-![ChainCommandFeature](diagrams/ChainCommandFeature.jpg)
+![Chain Command Feature](diagrams/ChainCommand.png)
 
 *Figure 10. Sequence diagram of chaining feature*
 
