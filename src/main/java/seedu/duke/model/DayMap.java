@@ -1,8 +1,13 @@
 package seedu.duke.model;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import seedu.duke.exception.FindSlashException;
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.exception.KeywordNotFoundException;
 import seedu.duke.exception.ListNotFoundException;
+import seedu.duke.storage.UserInfoStorage;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,6 +27,8 @@ public class DayMap {
 
     private HashMap<LocalDate, ActivityList> dayMap;
     private ActivityList lastSeenList;
+    private static final String findConsecutiveSlashRegex = "/{2,}";
+    private Pattern pattern = Pattern.compile(findConsecutiveSlashRegex);
 
     public DayMap() {
         this.dayMap = new HashMap<>();
@@ -245,12 +252,15 @@ public class DayMap {
      * @throws EmptyDescriptionException when search term is empty
      */
     public void listActivitiesContainingAll(String userInput)
-            throws KeywordNotFoundException, EmptyDescriptionException {
+            throws KeywordNotFoundException, EmptyDescriptionException, FindSlashException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
+        Matcher matcher = pattern.matcher(userInput.replaceAll("\\s",""));
         if (userInput.trim().equals("")) {
             throw new EmptyDescriptionException();
+        } else if (matcher.find()) {
+            throw new FindSlashException();
         }
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
@@ -282,12 +292,15 @@ public class DayMap {
      * @throws EmptyDescriptionException when search term is empty
      */
     public void listActivitiesContainingEither(String userInput)
-            throws KeywordNotFoundException, EmptyDescriptionException {
+            throws KeywordNotFoundException, EmptyDescriptionException, FindSlashException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
+        Matcher matcher = pattern.matcher(userInput.replaceAll("\\s",""));
         if (userInput.trim().equals("")) {
             throw new EmptyDescriptionException();
+        } else if (matcher.find()) {
+            throw new FindSlashException();
         }
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
