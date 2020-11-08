@@ -73,6 +73,7 @@ public class DayMap {
         FindDrawer findDrawer = new FindDrawer(lastSeenList);
         findDrawer.printList();
     }
+
     //@@author chewyang
     /**
      * Adds activity into activityList under the corresponding dateTime.
@@ -129,6 +130,7 @@ public class DayMap {
             return alist.getNumberOfActivities();
         }
     }
+
     //@@author chewyang
     /**
      * Returns the net calorie.
@@ -157,6 +159,7 @@ public class DayMap {
             getActivityList(date.atStartOfDay()).printList();
         }
     }
+
     //@@author chewyang
     /**
      * Finds the activities containing a keyword.

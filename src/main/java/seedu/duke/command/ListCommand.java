@@ -5,9 +5,10 @@ import seedu.duke.model.ListDrawer;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
+
 //@@author chewyang
+
 /**
- *
  * Prints the list of activities for the given day.
  * If no date attribute was given by the user, prints the list of activities for today.
  * Prints error message if there is no activities for the given day.

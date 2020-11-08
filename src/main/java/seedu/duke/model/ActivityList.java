@@ -88,6 +88,7 @@ public class ActivityList extends Trakcal {
             throw new IndexOutOfBoundsException();
         }
     }
+
     //@@author chewyang
     /**
      * This method moves a activity from a given index and to a place below a given index.
@@ -147,6 +148,7 @@ public class ActivityList extends Trakcal {
             throw new IndexOutOfBoundsException();
         }
     }
+
     //@@author chewyang
     /**
      * Prints the list of activities.
