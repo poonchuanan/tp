@@ -43,7 +43,7 @@ public abstract class PrepareCommand {
      * @throws IndexOutOfBoundsException if index is below 0
      */
     protected void checkIndex(int index) throws IndexOutOfBoundsException {
-        if (index < 0 ) {
+        if (index < 0) {
             throw new IndexOutOfBoundsException();
         }
     }
