@@ -173,7 +173,7 @@ bye                    - Terminates the application
 <br>
 <br>
 
-## 2.0 User Profiling
+## 2.0 User Profile - Jenny
 
 ### 2.1 Creating a new user profile
 
@@ -238,6 +238,7 @@ Please do not enter an empty input
 #### Invalid parameters
 
 * If gender is not specified as female or male only (eg `tree`), the following error message will be shown
+
 ```
 =====================================================================================================
 Sorry this is an invalid gender format! Please input gender as female or male only!
@@ -245,6 +246,7 @@ Sorry this is an invalid gender format! Please input gender as female or male on
 ```
 
 * If weight is not between 30 to 650kg (eg `10000`), the following error message will be shown
+
 ```
 =====================================================================================================
 Please enter a weight range from 30kg to 650kg
@@ -252,6 +254,7 @@ Please enter a weight range from 30kg to 650kg
 ```
 
 * If weight is not of a convertable type (eg. `thirty-three`), the following error message will be shown
+
 ```
 =====================================================================================================
 Please enter a valid weight format!
@@ -259,6 +262,7 @@ Please enter a valid weight format!
 ```
 
 * If height is not between 90 to 300cm (eg `350`), the following error message will be shown
+
 ```
 =====================================================================================================
 Please enter a height range from 90cm to 300cm
@@ -266,6 +270,7 @@ Please enter a height range from 90cm to 300cm
 ```
 
 * If height is not of a convertable type (eg. `one-hundred-meters`), the following error message will be shown
+
 ```
 =====================================================================================================
 Please enter a valid height format!
@@ -273,6 +278,7 @@ Please enter a valid height format!
 ```
 
 * If age is not between 1 to 120 years old (eg `200`), the following error message will be shown
+
 ```
 =====================================================================================================
 Please enter an age range from 1 to 120 years old
@@ -280,6 +286,7 @@ Please enter an age range from 1 to 120 years old
 ```
 
 * If age is not of a convertable type (eg. `two-hundred-years-old`), the following error message will be shown
+
 ```
 =====================================================================================================
 Please enter a valid age format!
@@ -287,6 +294,7 @@ Please enter a valid age format!
 ```
     
 * If activity level is not between 1 and 5, the following error message will be shown
+
 ```
 =====================================================================================================
 Sorry this is an invalid activity factor!
@@ -295,6 +303,7 @@ Please enter an integer from 1 to 5, with 1 being the least active and 5 being t
 ```
 
 * If weight goals is not specified as lose or maintain or gain only (eg `cut`), the following error message will be shown
+
 ```
 =====================================================================================================
 Please input lsoe/maintain/gain as weight goal only!
@@ -304,6 +313,7 @@ Please input lsoe/maintain/gain as weight goal only!
 #### Corrupted user profile
 
 * If the user edits the text file containing the user profile to an unreadable format, the following error message will be shown in the subsequent run and the user will be directed to create a new user profile automatically
+
 ```
 ====================================================================================
 Corrupted user profile!
@@ -367,7 +377,7 @@ Weight Goal : gain
 <br>
 <br>
 
-## 3.0 Shortcut
+## 3.0 Shortcut - Jenny Lin
 
 ### 3.1 Creating a shortcut for a set of entries 
 
@@ -413,6 +423,7 @@ As such, no shortcut was created. Please try again!
 ```
 
 * If the descriptions for activity or calorie is empty (eg `createSet fishy lunch f/fish c/`), the following error message will be shown
+
 ```
 ====================================================================================
 This shortcut has an empty description or calorie tag or both.
@@ -424,6 +435,7 @@ Please try again!
 ```
 
 * If there are no calorie and/or activity tag (eg `createSet healthy lunch` or `createSet healthy f/oatmeal`), the following error message will be shown
+
 ```
 ====================================================================================
 You are missing an activity tag or calorie tag or both
@@ -436,12 +448,14 @@ Please try again!
 
 #### Invalid parameters
 * If a shortcut name given already exist, the following error message will be shown
+
 ```
 ====================================================================================
 There is a shortcut with this name already. Please choose another name
 ====================================================================================
 ```
 * If a given calorie is not between 0 to 3000 kcal (eg `createSet dinner f/beans c/100000`), the following error message will be shown
+
 ```
 ====================================================================================
 Please enter a valid calorie range.
@@ -452,6 +466,7 @@ Please try again!
 ====================================================================================
 ```
  * If a given calorie is not of integer type or exceeds the threshold of integer conversion (eg `createSet dinner f/beans c/1000000000000000`, `createSet dinner f/beans c/test`), the following error message will be shown
+ 
  ```
 ====================================================================================
 Please enter calorie as integer.
@@ -496,6 +511,7 @@ The current activity list has been saved.
 #### Wrong keywords
 
 * If a shortcut has not been created yet, the following error message will be shown
+
 ```
 ====================================================================================
 This shortcut does not exists!
@@ -506,6 +522,7 @@ Please create a shortcut before adding it!
 #### Missing keywords 
 
 * If shortcut name was not specified (eg `addSet `), the following error message will be shown
+
 ```
 Index 1 out of bounds for length 1
 ====================================================================================
