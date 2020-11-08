@@ -9,6 +9,7 @@ import seedu.duke.model.DayMap;
 import java.time.LocalDate;
 import java.util.NoSuchElementException;
 
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.print;
 
 /**
@@ -40,8 +41,10 @@ public class PrepareDeleteAll extends PrepareDeleteCommand {
                 return new DeleteAllCommand();
             }
         } catch (ListNotFoundException e) {
+            logging.writeToLogInfo("Exception! Empty List.");
             print("List is empty");
         } catch (NoSuchElementException e) {
+            logging.writeToLogInfo("Exception! Input interrupted");
             print("Invalid input....aborting delete command.");
         }
         return null;

@@ -7,6 +7,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static seedu.duke.Trakcal.logging;
+
 /**
  * Properties of graph.
  */
@@ -47,6 +49,7 @@ public class GraphProperty {
     private int checkSize() {
         int size = dayMap.getHashMap().size();
         assert size != 0;
+        logging.writeToLogInfo("Checking number of days for graph.");
         if (size < GraphCommand.MAXIMUM_DAYS) {
             return size;
         }
@@ -61,6 +64,7 @@ public class GraphProperty {
         this.keys = sortKeys();
         ArrayList<Integer> calories = getCalories();
         this.table = initiateTable(calories);
+        logging.writeToLogInfo("Properties has been set.");
     }
 
     /**
@@ -70,6 +74,7 @@ public class GraphProperty {
         for (int[] row : table) {
             Arrays.fill(row, EMPTY);
         }
+        logging.writeToLogInfo("Empty table set!");
         return table;
     }
 
@@ -89,6 +94,7 @@ public class GraphProperty {
         for (int i = keys.size() - row; i < keys.size(); i++) {
             newKeys.add(keys.get(i));
         }
+        logging.writeToLogInfo("Keys sorted successfully.");
         return newKeys;
     }
 
@@ -120,6 +126,7 @@ public class GraphProperty {
         }
         this.minCalories = minCalories;
         this.maxCalories = maxCalories;
+        logging.writeToLogInfo("Graph boundaries set!.");
 
     }
 
@@ -186,6 +193,7 @@ public class GraphProperty {
                 setTable(table, limitNumber, i, j);
             }
         }
+        logging.writeToLogInfo("2D Array table filled.");
     }
 
     /**
