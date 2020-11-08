@@ -13,12 +13,12 @@ import seedu.duke.userprofile.InitialiseUserProfile;
 import seedu.duke.userprofile.CheckNewUser;
 
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import static seedu.duke.logic.parser.CommandParser.SPACE;
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
 import static seedu.duke.ui.Ui.displayWelcomeMessage;
-import static seedu.duke.ui.ExceptionMessages.displayParserNullPointerExceptionMessage;
 
 /**
  * Entry point of the traKCAL application.
@@ -39,8 +39,8 @@ public class Trakcal {
      */
     public static void main(String[] args) {
         displayWelcomeMessage();
-        System.out.println();
         storage.loadData(calList);
+        calList.setLastSeenList(calList.getActivityList(LocalDate.now().atStartOfDay()));
         if (CheckNewUser.isNewUser()) {
             profile = UserProfile.createNewProfile();
         } else {
@@ -67,7 +67,7 @@ public class Trakcal {
                     storage.updateFile(calList);
                 }
             } catch (NullPointerException e) {
-                displayParserNullPointerExceptionMessage();
+                //Exception is already taken care of
             } catch (IndexOutOfBoundsException e) {
                 displayNotSavedMessage();
             }
@@ -94,4 +94,5 @@ public class Trakcal {
         return new File(Trakcal.class.getProtectionDomain().getCodeSource().getLocation().getPath())
                 .getParent().replace("%20", SPACE);
     }
+
 }

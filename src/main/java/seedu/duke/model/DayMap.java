@@ -34,7 +34,6 @@ public class DayMap {
      * @param activityList is the list to be passed into the lastSeenList
      */
     public void setLastSeenList(ActivityList activityList) {
-        this.lastSeenList = new ActivityList();
         this.lastSeenList = activityList;
     }
 

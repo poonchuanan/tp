@@ -2,6 +2,9 @@ package seedu.duke.logic.preparecommand;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.HelpCommand;
+import seedu.duke.exception.InvalidNumberOfArguments;
+
+import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
 
 //@@author e0425705
 /**
@@ -14,6 +17,12 @@ public class PrepareHelpCommand extends PrepareCommand {
 
     @Override
     public Command prepareCommand() {
-        return new HelpCommand();
+        try {
+            isNumberOfArgumentsValid(1);
+            return new HelpCommand();
+        } catch (InvalidNumberOfArguments e) {
+            displayExcessNumberOfArguments();
+        }
+        return null;
     }
 }
