@@ -52,8 +52,8 @@ public class DeleteCommand extends Command {
     public void execute() {
 
         if ((index == -1) && (isDeleteConfirmed())) {
-            dayList.getActivityList(this.date).clearList();
-            dayList.getHashMap().remove(this.date.toLocalDate());
+            dayMap.getActivityList(this.date).clearList();
+            dayMap.getHashMap().remove(this.date.toLocalDate());
             displayMessage("All activities have been deleted");
         } else if (index >= 0) {
             try {

@@ -38,7 +38,6 @@ public class Trakcal {
      */
     public static void main(String[] args) {
         displayWelcomeMessage();
-        System.out.println();
         storage.loadData(calList);
         if (CheckNewUser.isNewUser()) {
             profile = UserProfile.createNewProfile();

@@ -24,7 +24,6 @@ public class DayMap {
 
     public DayMap() {
         this.dayMap = new HashMap<>();
-        this.lastSeenList = new ActivityList();
     }
 
     /**
