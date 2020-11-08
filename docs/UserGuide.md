@@ -834,7 +834,7 @@ Please input 'help' for the commands and their respective input format.
 <br>
 <br>
 
-## 5.0 List
+## 5.0 List - 
 
 ### 5.1 Listing entries for the specified day
 

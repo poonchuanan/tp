@@ -1,10 +1,7 @@
 package seedu.duke.command;
 
-import seedu.duke.model.ListDrawer;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
 
 import static seedu.duke.Trakcal.logging;
 
@@ -40,7 +37,7 @@ public class ListCommand extends Command {
 
         } catch (NullPointerException e) {
             System.out.println("There is no data for " + date.toString());
-            logging.writeToLog("no data found");
+            logging.writeToLogInfo("no data found");
         }
 
     }
