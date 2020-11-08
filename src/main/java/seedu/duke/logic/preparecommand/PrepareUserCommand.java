@@ -14,7 +14,7 @@ public class PrepareUserCommand extends PrepareCommand {
     }
 
     @Override
-    public Command prepareCommand() throws Exception {
+    public Command prepareCommand() {
         try {
             isNumberOfArgumentsValid(ARGUMENT_LIMIT);
         } catch (InvalidNumberOfArguments e) {

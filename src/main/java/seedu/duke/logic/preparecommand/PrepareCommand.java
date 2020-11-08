@@ -8,6 +8,7 @@ import seedu.duke.exception.DescriptionLengthExceedException;
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.exception.InvalidCalorieException;
 import seedu.duke.exception.InvalidNumberOfArguments;
+import seedu.duke.exception.ListNotFoundException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,7 +34,7 @@ public abstract class PrepareCommand {
     }
 
 
-    public abstract Command prepareCommand() throws Exception;
+    public abstract Command prepareCommand() throws Exception, ListNotFoundException;
 
     /**
      * Checks for index of the delete command.

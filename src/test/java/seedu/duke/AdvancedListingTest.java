@@ -3,7 +3,8 @@ package seedu.duke;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.Command;
-import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.DeleteAllCommand;
+import seedu.duke.command.DeleteByIndexCommand;
 import seedu.duke.command.FindDescriptionCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.exception.KeywordNotFoundException;
@@ -46,7 +47,7 @@ class AdvancedListingTest {
         assertEquals("2020-10-09, [F] | rice with eggs | 50, [E] | run 2km | 100",
                 dummyMap.toString(date.atStartOfDay()));
 
-        Command deleteCommand = new DeleteCommand(0);
+        Command deleteCommand = new DeleteByIndexCommand(0);
         deleteCommand.setData(dummyMap);
         deleteCommand.execute();
         assertEquals("2020-10-09, [E] | run 2km | 100", dummyMap.toString(date.atStartOfDay()));
@@ -61,7 +62,7 @@ class AdvancedListingTest {
         listCommand.setData(dummyMap);
         listCommand.execute();
 
-        Command deleteCommand = new DeleteCommand(0);
+        Command deleteCommand = new DeleteAllCommand();
         deleteCommand.setData(dummyMap);
         deleteCommand.execute();
         assertEquals("2020-10-09, [E] | run 2km | 100", dummyMap.toString(date.atStartOfDay()));
@@ -84,7 +85,7 @@ class AdvancedListingTest {
         assertEquals("[F] | rice with vegs | 51, [F] | rice with pork | 101, [F] | rice with tofu | 101, "
                 + "[F] | rice with eggs | 50", dummyMap.getLastSeenList().toString());
 
-        Command deleteCommand = new DeleteCommand(2);
+        Command deleteCommand = new DeleteByIndexCommand(2);
         deleteCommand.setData(dummyMap);
         deleteCommand.execute();
 
@@ -102,7 +103,7 @@ class AdvancedListingTest {
         findCommand.setData(dummyMap);
         findCommand.execute();
 
-        Command deleteCommand = new DeleteCommand(0);
+        Command deleteCommand = new DeleteAllCommand();
         deleteCommand.setData(dummyMap);
         deleteCommand.execute();
 
