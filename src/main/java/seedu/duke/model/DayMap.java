@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
 
-
+//@@author chewyang
 /**
  * Use hashmap of to store all the data.
  * The key of the hashmap would be the date and the value would be the activityList for that day.
@@ -75,6 +75,7 @@ public class DayMap {
         findDrawer.printList();
     }
 
+    //@@author chewyang
     /**
      * Adds activity into activityList under the corresponding dateTime.
      * Creates a new activityList if there are none under the specified date.
@@ -131,6 +132,7 @@ public class DayMap {
         }
     }
 
+    //@@author chewyang
     /**
      * Returns the net calorie.
      *
@@ -159,6 +161,7 @@ public class DayMap {
         }
     }
 
+    //@@author chewyang
     /**
      * Finds the activities containing a keyword.
      *
@@ -413,7 +416,7 @@ public class DayMap {
 
     }
 
-
+    //@@author chewyang
     /**
      * Moves an activity from one index to another.
      * @param indexToBeMovedFrom the index to be moved from
@@ -449,4 +452,5 @@ public class DayMap {
         System.out.println(date.toString());
         getActivityList(date.atStartOfDay()).printList();
     }
+    //@@author chewyang
 }
