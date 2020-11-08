@@ -40,7 +40,7 @@ public class ListCommand extends Command {
 
         } catch (NullPointerException e) {
             System.out.println("There is no data for " + date.toString());
-           logging.writeToLog("no data found");
+            logging.writeToLog("no data found");
         }
 
     }
