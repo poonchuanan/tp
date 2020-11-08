@@ -47,7 +47,7 @@ public class Trakcal {
     public static void main(String[] args) {
         displayWelcomeMessage();
         System.out.println();
-        logging.setLogger();
+        logging.setUpLogger();
         storage.loadData(calList);
         calList.setLastSeenList(calList.getActivityList(LocalDate.now().atStartOfDay()));
         if (CheckNewUser.isNewUser()) {
@@ -74,7 +74,6 @@ public class Trakcal {
                     command = parser.parseArgument();
                     executeCmd(command);
                     storage.updateFile(calList);
-                    logging.writeToLog("try first message");
                 }
             } catch (NullPointerException e) {
                 //Exception is already taken care of

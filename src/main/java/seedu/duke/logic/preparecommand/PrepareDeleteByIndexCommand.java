@@ -3,7 +3,7 @@ package seedu.duke.logic.preparecommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.DeleteByIndexCommand;
 
-import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNumberFormatExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayIndexNotNumberExceptionMessage;
 
 public class PrepareDeleteByIndexCommand extends PrepareCommand {
 
@@ -19,7 +19,7 @@ public class PrepareDeleteByIndexCommand extends PrepareCommand {
             checkIndex(index);
             return new DeleteByIndexCommand(index);
         } catch (NumberFormatException e) {
-            displayDeleteCommandNumberFormatExceptionMessage();
+            displayIndexNotNumberExceptionMessage();
         }
         return null;
     }
