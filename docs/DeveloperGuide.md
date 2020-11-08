@@ -26,9 +26,11 @@ This guide will also explain the various features available in **traKCAL**, to p
 
 ## 2.0 Setting up
 1. Fork the traKCAL repository [here]() and git clone it to a convenient location on your desktop eg. Desktop.
-2. SOME COMMANDS INTELLIJ IMPORT
-3. Go to `src` -> `main` -> `java` -> `seedu.duke` -> `Trakcal` and right click on Trakcal. Select the `Run 'Trakcal.main()'` option.
-4. Upon successful run, the following opening message will be shown: 
+2. Open any IDE (Intellij preferred) and click `Configure` -> `Project Defaults` -> `Project Structure` -> `New` and ensure that a valid Java 11 SDK is selected.
+3. Go to `Import Project` and select the build.gradle file. 
+4. Click `Open as Project` and accept all default settings. 
+5. After opening the project, go to `src` -> `main` -> `java` -> `seedu.duke` -> `Trakcal` and right click on the Trakcal class. Select the `Run 'Trakcal.main()'` option.
+6. Upon successful run, the following opening message will be shown: 
 ```
 ====================================================================================
 | Hello from                                                                       |
