@@ -26,6 +26,10 @@ import static seedu.duke.ui.ExceptionMessages.displayIncorrectDateTimeFormatEnte
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieExceptionMessage;
 import static seedu.duke.ui.Ui.displayAddMessage;
 
+//@@author e0425705
+/**
+ * Prepares user input for add command.
+ */
 public class PrepareAddCommand extends PrepareCommand {
     protected static final String CALORIE_TAG = "c/";
     protected static final String FOOD_TAG = "f/";
@@ -38,7 +42,6 @@ public class PrepareAddCommand extends PrepareCommand {
     public PrepareAddCommand(String[] description) {
         super(description);
     }
-
 
     /**
      * Prepares the add command by checking the userInput.

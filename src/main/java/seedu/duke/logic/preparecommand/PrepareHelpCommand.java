@@ -6,6 +6,10 @@ import seedu.duke.exception.InvalidNumberOfArguments;
 
 import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
 
+//@@author e0425705
+/**
+ * Prepares help command.
+ */
 public class PrepareHelpCommand extends PrepareCommand {
     public PrepareHelpCommand(String[] description) {
         super(description);

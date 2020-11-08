@@ -1,10 +1,13 @@
 package seedu.duke.userprofile;
 
 import seedu.duke.Trakcal;
-import seedu.duke.storage.Userinfotextfilestorage;
+import seedu.duke.exception.InvalidEditedUserProfileException;
+import seedu.duke.storage.UserInfoStorage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
+import static seedu.duke.ui.ExceptionMessages.displayInvalidEditCommandMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidEditedUserProfileMessage;
 import seedu.duke.exception.EmptyDescriptionException;
 import static seedu.duke.ui.Ui.displayEditWeightMessage;
@@ -29,11 +32,20 @@ import static seedu.duke.ui.ExceptionMessages.displayInvalidGenderMessage;
 import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidWeightRangeMessage;
 
+//@@author jlifah
 /**
  * Initialises user profile after asking for user input.
  */
 public class UserProfile {
     private static String[] data = new String[7];
+    private static final Integer MAX_WEIGHT = 650;
+    private static final Integer MIN_WEIGHT = 30;
+    private static final Integer MAX_HEIGHT = 300;
+    private static final Integer MIN_HEIGHT = 90;
+    private static final Integer MIN_AGE = 1;
+    private static final Integer MAX_AGE = 120;
+    private static final Integer MIN_AL = 1;
+    private static final Integer MAX_AL = 5;
 
     /**
      * Reading user input.
@@ -41,9 +53,19 @@ public class UserProfile {
      * @return user input
      */
     public static String input() {
-        return Trakcal.in.nextLine();
+        try {
+            return Trakcal.in.nextLine();
+        } catch (NoSuchElementException e) {
+            System.out.println("Force quit. See you again!");
+        }
+        return null;
     }
 
+    /**
+     * Create a new user profile.
+     *
+     * @return InitialiseUserProfile
+     */
     public static InitialiseUserProfile createNewProfile() {
         InitialiseUserProfile profile = null;
         gatherData();
@@ -55,6 +77,10 @@ public class UserProfile {
         return profile;
     }
 
+    /**
+     * Calls method to gather user info.
+     *
+     */
     public static void gatherData() {
         name();
         gender();
@@ -65,37 +91,55 @@ public class UserProfile {
         weightGoal();
     }
 
+    /**
+     * Interprets edit commands from user.
+     *
+     * @param info user input
+     */
     public static void edit(String info) throws IOException {
-        ArrayList<String> previous = Userinfotextfilestorage.update();
-        for (int i = 0; i < 7; i++) {
-            data[i] = previous.get(i);
-        }
-
-        String[] arguments = info.split(",");
-
-        for (String argument : arguments) {
-            if (argument.startsWith("n/")) {
-                editName(argument.substring(2));
-            } else if (argument.startsWith("g/")) {
-                editGender(argument.substring(2));
-            } else if (argument.startsWith("w/")) {
-                editWeight(argument.substring(2));
-            } else if (argument.startsWith("h/")) {
-                editHeight(argument.substring(2));
-            } else if (argument.startsWith("age/")) {
-                editAge(argument.substring(4));
-            } else if (argument.startsWith("al/")) {
-                editAl(argument.substring(3));
-            } else if (argument.startsWith("goal/")) {
-                editGoal(argument.substring(5));
+        try {
+            ArrayList<String> previous = UserInfoStorage.update();
+            for (int i = 0; i < 7; i++) {
+                data[i] = previous.get(i);
             }
+
+            String[] arguments = info.split(",");
+
+            for (String argument : arguments) {
+                if (argument.startsWith("n/")) {
+                    editName(argument.substring(2));
+                } else if (argument.startsWith("g/")) {
+                    editGender(argument.substring(2));
+                } else if (argument.startsWith("w/")) {
+                    editWeight(argument.substring(2));
+                } else if (argument.startsWith("h/")) {
+                    editHeight(argument.substring(2));
+                } else if (argument.startsWith("age/")) {
+                    editAge(argument.substring(4));
+                } else if (argument.startsWith("al/")) {
+                    editAl(argument.substring(3));
+                } else if (argument.startsWith("goal/")) {
+                    editGoal(argument.substring(5));
+                } else {
+                    throw new InvalidEditedUserProfileException();
+                }
+            }
+        } catch (InvalidEditedUserProfileException e) {
+            displayInvalidEditCommandMessage();
+            return;
         }
+
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
         UserProfile.save(profile);
         profile.calculateEditedUserDetails();
     }
 
+    /**
+     * Edit name.
+     *
+     * @param name user input
+     */
     private static void editName(String name) {
         try {
             checkEmptyInput(name);
@@ -107,6 +151,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Edit gender.
+     *
+     * @param gender user input
+     */
     private static void editGender(String gender) {
         try {
             checkEmptyInput(gender);
@@ -122,6 +171,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Edit weight.
+     *
+     * @param weight user input
+     */
     private static void editWeight(String weight) {
         try {
             checkEmptyInput(weight);
@@ -140,6 +194,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Edit height.
+     *
+     * @param height user input
+     */
     private static void editHeight(String height) {
         try {
             checkEmptyInput(height);
@@ -158,6 +217,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Edit age.
+     *
+     * @param age user input
+     */
     private static void editAge(String age) {
         try {
             checkEmptyInput(age);
@@ -176,6 +240,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Edit activity level.
+     *
+     * @param al user input
+     */
     private static void editAl(String al) {
         try {
             checkEmptyInput(al);
@@ -194,6 +263,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Edit goal.
+     *
+     * @param goal user input
+     */
     private static void editGoal(String goal) {
         try {
             checkEmptyInput(goal);
@@ -218,6 +292,7 @@ public class UserProfile {
         Ui.displayAskUserNameMessage();
         String name = input();
         try {
+            assert name != null;
             checkEmptyInput(name);
             data[0] = name;
         } catch (EmptyDescriptionException e) {
@@ -244,6 +319,7 @@ public class UserProfile {
         String gender = input();
 
         try {
+            assert gender != null;
             checkEmptyInput(gender);
             checkGender(gender);
             data[1] = gender;
@@ -266,6 +342,7 @@ public class UserProfile {
         String weight = input();
 
         try {
+            assert weight != null;
             checkEmptyInput(weight);
             checkInputIsDouble(weight);
             checkWeightIsWithinRange(weight);
@@ -291,6 +368,7 @@ public class UserProfile {
         Ui.displayAskUserHeightMessage();
         String height = input();
         try {
+            assert height != null;
             checkEmptyInput(height);
             checkInputIsDouble(height);
             checkHeightIsWithinRange(height);
@@ -316,6 +394,7 @@ public class UserProfile {
         Ui.displayAskUserAgeMessage();
         String age = input();
         try {
+            assert age != null;
             checkEmptyInput(age);
             checkInputIsInt(age);
             checkAgeIsWithinRange(age);
@@ -341,6 +420,7 @@ public class UserProfile {
         Ui.displayAskUserActivityLevelMessage();
         String activityLevel = input();
         try {
+            assert activityLevel != null;
             checkEmptyInput(activityLevel);
             checkInputIsInt(activityLevel);
             checkAcLeIsWithinRange(activityLevel);
@@ -375,6 +455,7 @@ public class UserProfile {
         String weightGoal = input();
 
         try {
+            assert weightGoal != null;
             checkEmptyInput(weightGoal);
             checkWeightGoal(weightGoal);
             data[6] = weightGoal;
@@ -388,6 +469,11 @@ public class UserProfile {
         }
     }
 
+    /**
+     * Check genders validity.
+     *
+     * @param gender user input
+     */
     private static void checkGender(String gender) throws IllegalArgumentException {
         for (GenderEnum validGender : GenderEnum.values()) {
             if (validGender.name().equals(gender)) {
@@ -398,38 +484,73 @@ public class UserProfile {
         throw new IllegalArgumentException();
     }
 
+    /**
+     * Check if input is of type double.
+     *
+     * @param userInput user input
+     */
     private static void checkInputIsDouble(String userInput) throws NumberFormatException {
         Double.parseDouble(userInput);
     }
 
+    /**
+     * Check weight is within range.
+     *
+     * @param weight user input
+     */
     private static void checkWeightIsWithinRange(String weight) throws IllegalArgumentException {
-        if (Double.parseDouble(weight) < 20 || Double.parseDouble(weight) > 650) {
+        if (Double.parseDouble(weight) < MIN_WEIGHT || Double.parseDouble(weight) > MAX_WEIGHT) {
             throw new IllegalArgumentException();
         }
     }
 
+    /**
+     * Check height is within range.
+     *
+     * @param height user input
+     */
     private static void checkHeightIsWithinRange(String height) throws IllegalArgumentException {
-        if (Double.parseDouble(height) < 10 || Double.parseDouble(height) > 300) {
+        if (Double.parseDouble(height) < MIN_HEIGHT || Double.parseDouble(height) > MAX_HEIGHT) {
             throw new IllegalArgumentException();
         }
     }
 
+    /**
+     * Check age is within range.
+     *
+     * @param age user input
+     */
     private static void checkAgeIsWithinRange(String age) throws IllegalArgumentException {
-        if (Integer.parseInt(age) < 1 || Integer.parseInt(age) > 120) {
+        if (Integer.parseInt(age) < MIN_AGE || Integer.parseInt(age) > MAX_AGE) {
             throw new IllegalArgumentException();
         }
     }
 
+    /**
+     * Check input is of type integer.
+     *
+     * @param userInput user input
+     */
     private static void checkInputIsInt(String userInput) throws NumberFormatException {
         Integer.parseInt(userInput);
     }
 
+    /**
+     * Check input is within range.
+     *
+     * @param al user input
+     */
     private static void checkAcLeIsWithinRange(String al) throws IllegalArgumentException {
-        if (Integer.parseInt(al) < 1 || Integer.parseInt(al) > 5) {
+        if (Integer.parseInt(al) < MIN_AL || Integer.parseInt(al) > MAX_AL) {
             throw new IllegalArgumentException();
         }
     }
 
+    /**
+     * Check weight goal fits enum.
+     *
+     * @param wg user input
+     */
     private static void checkWeightGoal(String wg) throws IllegalArgumentException {
         for (WeightGoalEnum validWg : WeightGoalEnum.values()) {
             if (validWg.name().equals(wg)) {
@@ -439,20 +560,34 @@ public class UserProfile {
         throw new IllegalArgumentException();
     }
 
+    /**
+     * Check for empty input for string.
+     *
+     * @param userInput user input
+     */
     public static void checkEmptyInput(String userInput) throws EmptyDescriptionException {
-        if (userInput.equals(" ") || userInput.equals("")) {
+        if (userInput.equals(" ") || userInput.equals("") || userInput.isEmpty() || userInput.isBlank()) {
             throw new EmptyDescriptionException();
         }
     }
 
+    /**
+     * Check for empty input for array.
+     *
+     * @param data user input
+     */
     public static void checkEmptyInput2(String[] data) throws EmptyDescriptionException {
         for (String datum : data) {
-            if (datum.isEmpty()) {
+            if (datum.isEmpty() || datum.isBlank()) {
                 throw new EmptyDescriptionException();
             }
         }
     }
 
+    /**
+     * Saves new user info.
+     *
+     */
     public static InitialiseUserProfile enterNewUserInfo() throws IOException {
         InitialiseUserProfile profile =
                 new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
@@ -476,7 +611,7 @@ public class UserProfile {
      * @param profile question to be printed
      */
     public static void save(InitialiseUserProfile profile) throws IOException {
-        Userinfotextfilestorage storage = new Userinfotextfilestorage();
+        UserInfoStorage storage = new UserInfoStorage();
         storage.save(profile.toString());
     }
 
@@ -487,9 +622,25 @@ public class UserProfile {
      */
     public static InitialiseUserProfile loadProfile() {
         String[] data = new String[7];
-        ArrayList<String> previous = Userinfotextfilestorage.update();
+        ArrayList<String> previousInput = UserInfoStorage.update();
+
+
         for (int i = 0; i < 7; i++) {
-            data[i] = previous.get(i);
+            try {
+                if (!previousInput.get(i).isEmpty() && !previousInput.get(i).isBlank()) {
+                    data[i] = previousInput.get(i);
+                } else {
+                    throw new NullPointerException();
+                }
+            } catch (IndexOutOfBoundsException e) {
+                displayInvalidEditedUserProfileMessage();
+                createNewProfile();
+                return null;
+            } catch (NullPointerException e) {
+                displayInvalidEditedUserProfileMessage();
+                createNewProfile();
+                return null;
+            }
         }
 
         try {
@@ -504,8 +655,9 @@ public class UserProfile {
             checkAgeIsWithinRange(data[4]);
             checkWeightIsWithinRange(data[2]);
             checkHeightIsWithinRange(data[3]);
-        } catch (IllegalArgumentException | EmptyDescriptionException e) {
+        } catch (IllegalArgumentException | EmptyDescriptionException | NullPointerException e) {
             displayInvalidEditedUserProfileMessage();
+            createNewProfile();
             return null;
         }
 
@@ -520,3 +672,4 @@ public class UserProfile {
         return profile;
     }
 }
+//@@author jlifah

@@ -14,13 +14,20 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Prepare commands.
+ * Contains methods that are shared between commands.
+ */
 public abstract class PrepareCommand {
     public String[] description;
     public LocalDateTime date;
-    public static final int MAXIMUM_DESCRIPTION_LENGTH = 40;
-    public static final int MAXIMUM_CALORIE_COUNT = 3000;
-    public static final int MINIMUM_CALORIE_COUNT = 0;
-    public static final String APPLICATION_LAUNCH_DATE = "2020-11-01";
+    protected static final int MAXIMUM_DESCRIPTION_LENGTH = 40;
+    protected static final int MAXIMUM_CALORIE_COUNT = 3000;
+    protected static final int MINIMUM_CALORIE_COUNT = 0;
+    protected static final int MINIMUM_INDEX = 0;
+    protected static final String APPLICATION_LAUNCH_DATE = "2020-10-14";
+    protected static final String SPACE = " ";
+    protected static final String NOTHING = "";
     protected static final int ALPHABET_WITH_SLASH_LENGTH = 2;
 
     public PrepareCommand(String[] description) {
@@ -28,7 +35,9 @@ public abstract class PrepareCommand {
         setDate();
     }
 
-
+    /**
+     * Gets current date.
+     */
     private void setDate() {
         this.date = LocalDateTime.now();
     }
@@ -43,7 +52,7 @@ public abstract class PrepareCommand {
      * @throws IndexOutOfBoundsException if index is below 0
      */
     protected void checkIndex(int index) throws IndexOutOfBoundsException {
-        if (index < 0) {
+        if (index < MINIMUM_INDEX) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -100,7 +109,7 @@ public abstract class PrepareCommand {
      * @throws InvalidCalorieException if the calorie count is empty
      */
     protected int parseCalorie(String calorieInput) throws InvalidCalorieException {
-        if (!calorieInput.equals("")) {
+        if (!calorieInput.equals(NOTHING)) {
             return Integer.parseInt(calorieInput);
         } else {
             throw new InvalidCalorieException();
@@ -115,7 +124,7 @@ public abstract class PrepareCommand {
      * @throws EmptyDescriptionException if description input has error
      */
     protected boolean isDescriptionNotEmpty(String description) throws EmptyDescriptionException {
-        if (description.equals(" ") || description.equals("")) {
+        if (description.equals(SPACE) || description.equals(NOTHING)) {
             throw new EmptyDescriptionException();
         } else {
             return true;
@@ -145,13 +154,20 @@ public abstract class PrepareCommand {
      * @throws DescriptionLengthExceedException if description exceeds range
      */
     protected boolean isDescriptionLengthWithinRange(String description) throws DescriptionLengthExceedException {
-        if (description.length() >= MAXIMUM_DESCRIPTION_LENGTH) {
+        if (description.length() > MAXIMUM_DESCRIPTION_LENGTH) {
             throw new DescriptionLengthExceedException();
         } else {
             return true;
         }
     }
 
+    /**
+     * Checks if the number of argument is within limit.
+     *
+     * @param limit limit of description length
+     * @return true if descrption length is within limit
+     * @throws InvalidNumberOfArguments if description exceeds limit
+     */
     protected boolean isNumberOfArgumentsValid(int limit) throws InvalidNumberOfArguments {
         if (description.length != limit) {
             throw new InvalidNumberOfArguments();

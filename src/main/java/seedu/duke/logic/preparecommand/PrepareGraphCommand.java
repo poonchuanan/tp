@@ -9,6 +9,9 @@ import seedu.duke.exception.ListNotFoundException;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyListError;
 import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
 
+/**
+ * Prepares graph command.
+ */
 public class PrepareGraphCommand extends PrepareCommand {
 
     public PrepareGraphCommand(String[] description) {

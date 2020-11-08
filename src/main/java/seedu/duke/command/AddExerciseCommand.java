@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 import java.util.logging.Level;
 
 import static seedu.duke.ui.Ui.displaySavedMessage;
-import static seedu.duke.ui.Ui.drawDivider;
 
+//@@author e0425705
 /**
  * Add exercise.
  */

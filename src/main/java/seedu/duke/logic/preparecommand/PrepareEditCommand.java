@@ -16,6 +16,10 @@ import static seedu.duke.ui.ExceptionMessages.displayEditActivityExceptionMessag
 import static seedu.duke.ui.ExceptionMessages.displayEmptyDescriptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieExceptionMessage;
 
+//@@author e0425705
+/**
+ * Prepares user input for edit command.
+ */
 public class PrepareEditCommand extends PrepareCommand {
     protected static final String CALORIE_TAG = "c/";
     protected static final String FOOD_TAG = "f/";

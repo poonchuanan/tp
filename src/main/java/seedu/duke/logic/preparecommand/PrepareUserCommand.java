@@ -21,7 +21,6 @@ public class PrepareUserCommand extends PrepareCommand {
             displayShortageOfArguments();
         }
         String[] input = description[1].split(" ", 2);
-        PrepareCommand command;
 
         switch (input[0].trim()) {
         case "l/":

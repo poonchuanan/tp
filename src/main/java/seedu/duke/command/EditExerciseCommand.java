@@ -6,9 +6,10 @@ import java.time.LocalDate;
 import java.util.logging.Level;
 
 import static seedu.duke.ui.ExceptionMessages.displayEditIndexOutOfBoundsExceptionMessage;
+import static seedu.duke.ui.Ui.displayEditMessage;
 import static seedu.duke.ui.Ui.displaySavedMessage;
-import static seedu.duke.ui.Ui.drawDivider;
 
+//@@author e0425705
 /**
  * Edits exercise and its attributes at the indicated index.
  */
@@ -36,6 +37,7 @@ public class EditExerciseCommand extends Command {
     public void execute() {
         try {
             LocalDate dateOfActivityToBeEdited = dayMap.getDateFromLastSeenListAtIndex(index);
+            displayEditMessage();
             this.exercise = new Exercise(description, calories,dateOfActivityToBeEdited, false);
             dayMap.insertActivity(index, exercise);
             displaySavedMessage();

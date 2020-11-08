@@ -2,8 +2,9 @@ package seedu.duke.model;
 
 import java.time.LocalDate;
 
+//@@author e0425705
 /**
- * Store activities attributes.
+ * Stores activities attributes.
  */
 public class Activity {
     protected String description;

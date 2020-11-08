@@ -3,7 +3,11 @@ package seedu.duke.logic.preparecommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.MoveActivityCommand;
+//@@author chewyang
 
+/**
+ * Prepares move command.
+ */
 public class PrepareMoveIndexCommand extends PrepareCommand {
     public static final String SPACE = " ";
 

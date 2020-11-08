@@ -2,6 +2,7 @@ package seedu.duke.userprofile;
 
 import java.text.DecimalFormat;
 
+//@@author jlifah
 /**
  * Initialises user profile.
  */
@@ -26,40 +27,84 @@ public class InitialiseUserProfile {
         this.weightGoal = weightGoal;
     }
 
+    /**
+     * Gets name.
+     *
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets gender.
+     *
+     * @return gender
+     */
     public String getGender() {
         return gender;
     }
 
+    /**
+     * Gets weight.
+     *
+     * @return weight
+     */
     public String getWeight() {
         return weight;
     }
 
+    /**
+     * Gets height.
+     *
+     * @return height
+     */
     public String getHeight() {
         return height;
     }
 
+    /**
+     * Gets age.
+     *
+     * @return age
+     */
     public String getAge() {
         return age;
     }
 
+    /**
+     * Gets activity level.
+     *
+     * @return activityLevel
+     */
     public String getActivityLevel() {
         return activityLevel;
     }
 
+    /**
+     * Gets weight goal.
+     *
+     * @return weight goal
+     */
     public String getWeightGoal() {
         return weightGoal;
     }
 
+    /**
+     * Gets calories.
+     *
+     * @return calories
+     */
     public double getCalories() {
         return calories;
     }
 
     private static DecimalFormat df2 = new DecimalFormat("#.00");
 
+    /**
+     * Calculates edited user bmi, recommended calories and actual calories needed.
+     *
+     */
     public void calculateEditedUserDetails() {
         double activityMultiple = calculateActivityMultiple(this.activityLevel);
         double bmi = calculateBmi(this.weight, this.height);
@@ -69,6 +114,10 @@ public class InitialiseUserProfile {
         assert calories > 0 : "calories should be greater than 0";
     }
 
+    /**
+     * Calculates user bmi, recommended calories and actual calories needed.
+     *
+     */
     public String calculateNewUserDetails() {
         double activityMultiple = calculateActivityMultiple(this.activityLevel);
 
@@ -95,6 +144,12 @@ public class InitialiseUserProfile {
         return details;
     }
 
+    /**
+     * Calculates activity multiple from activity level.
+     *
+     * @param activityLevel how active is the user from 1 to 5
+     * @return activity multiple
+     */
     public double calculateActivityMultiple(String activityLevel) {
         switch (Integer.parseInt(activityLevel)) {
         case 1:
@@ -112,12 +167,28 @@ public class InitialiseUserProfile {
         return 1;
     }
 
+    /**
+     * Calculates bmi of user.
+     *
+     * @param weight of user
+     * @param height of user
+     * @return bmi
+     */
     public double calculateBmi(String weight, String height) {
         return (Double.parseDouble(weight)
                 / (Double.parseDouble(height) * Double.parseDouble(height)))
                 * 10000;
     }
 
+    /**
+     * Calculates recommended calories.
+     *
+     * @param gender of user
+     * @param weight of user
+     * @param height of user
+     * @param age of user
+     * @return activity multiple
+     */
     public double calculateCalories(String gender, String weight, String height, String age) {
         double v = (10 * Double.parseDouble(weight))
                 + (6.25 * Double.parseDouble(height));
@@ -135,4 +206,5 @@ public class InitialiseUserProfile {
                 + getHeight() + "," + getAge() + "," + getActivityLevel() + "," + getWeightGoal();
     }
 }
+//@@author jlifah
 

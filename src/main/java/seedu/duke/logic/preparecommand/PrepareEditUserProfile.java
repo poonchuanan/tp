@@ -3,13 +3,15 @@ package seedu.duke.logic.preparecommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.EditUserProfileCommand;
 import seedu.duke.exception.InvalidNumberOfArguments;
-import seedu.duke.userprofile.UserProfile;
+
 
 import java.io.IOException;
 
-import static seedu.duke.ui.ExceptionMessages.displayFileError;
 import static seedu.duke.ui.ExceptionMessages.displayShortageOfArguments;
 
+/**
+ * Prepares editing of user profile.
+ */
 public class PrepareEditUserProfile extends PrepareCommand {
 
     public PrepareEditUserProfile(String[] description) {

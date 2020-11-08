@@ -9,6 +9,9 @@ import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExc
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandStringOutOfBoundExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayShortageOfArguments;
 
+/**
+ * Prepares user input for delete command.
+ */
 public class PrepareDeleteCommand extends PrepareCommand {
     private DayMap dayMap;
 

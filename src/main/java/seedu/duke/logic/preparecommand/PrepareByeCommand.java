@@ -6,6 +6,9 @@ import seedu.duke.exception.InvalidNumberOfArguments;
 
 import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
 
+/**
+ * Prepares bye command.
+ */
 public class PrepareByeCommand extends PrepareCommand {
     public PrepareByeCommand(String[] description) {
         super(description);
