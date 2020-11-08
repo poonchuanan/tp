@@ -31,7 +31,7 @@ Here are some of their commands:
 
 #### Contributions to User Guide 
 
-* I contributed to section 2 (user profile), section 3 (short cut) in the user profile as well as overall formatting of the User Guide. 
+* I contributed to section 2 (user profile), section 3 (shortcut) in the user profile as well as overall formatting of the User Guide. 
 
 #### Contributions to the Developer Guide
 

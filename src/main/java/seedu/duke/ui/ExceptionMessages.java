@@ -93,12 +93,12 @@ public class ExceptionMessages {
         print("I do not understand what you mean!\n"
                 + "The input format for finding food or exercise activity\n\tvia keyword is 'find d/ DESCRIPTION'"
                 + " - where keyword is DESCRIPTION\n"
-                + "The input format for finding calorie count\n\tvia keyword is 'find c/ CALORIE_COUNT'"
-                + " - where calories count is CALORIE_COUNT\n"
-                + "The input format for finding (all)\n\t is 'find a/ KEYWORD1 / KEYWORD2...'"
-                + " - where KEYWORDS are all the words that matches the search result\n"
-                + "The input format for finding (either)\n\t is 'find e/ KEYWORD1 / KEYWORD2...'"
-                + " - where just one KEYWORD has to match the search result\n"
+                + "The input format for finding calorie count via keyword is 'find c/ CALORIE_COUNT'\n"
+                + "\t- where calories count is CALORIE_COUNT\n"
+                + "The input format for finding (all) is 'find a/ KEYWORD1 / KEYWORD2...'\n"
+                + "\t- where KEYWORDS are all the words that matches the search result\n"
+                + "The input format for finding (either) is 'find e/ KEYWORD1 / KEYWORD2...'\n"
+                + "\t- where just one KEYWORD has to match the search result\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -154,7 +154,7 @@ public class ExceptionMessages {
      * Prints out error message when invalid gender input.
      */
     public static void displayInvalidGenderMessage() {
-        print("Sorry this is an invalid gender format! Please input gender as female or male only!");
+        print("Sorry this is an invalid gender format!\nPlease input gender as female or male only!");
     }
 
     /**
@@ -400,7 +400,7 @@ public class ExceptionMessages {
     public static void displayCorruptedSetMessage() {
         drawDivider();
         System.out.println("Your shortcut text file is corrupted!");
-        System.out.println("As such, it will now be deleted. Please avoid editing the text file to the "
+        System.out.println("As such, it will now be deleted.\n Please avoid editing the text file to the "
                 + "wrong format in the future.");
         System.out.println("Items in the shortcut may have been added partially only.");
         drawDivider();

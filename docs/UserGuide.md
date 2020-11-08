@@ -343,7 +343,7 @@ Parameters:
 * `**WEIGHT_GOALS**`: Whether user wants to lose/maintain/gain weight.
 
 Example of usage: 
-* `user e/ n/ Tom,w/ 90`
+* `user e/ n/ Tom, w/ 90`
 
 ```
 Your name has been updated to Tom.
@@ -1279,6 +1279,7 @@ No.        Type                        Description                        Calori
 An error will occur if any of the conditions below are met. <br>
 The respective error message will also be shown to you.
 > Any text in this format is an example of a command that will produce the respective error.
+
 ```
 Any text in this format is the error message that you will be shown.
 ```
@@ -1286,6 +1287,7 @@ Any text in this format is the error message that you will be shown.
 #### Missing keywords
 * The appropriate keywords `from/` and `below/` are missing from your command.
 > move 1 2
+
 ```
 ====================================================================================
 'from/' and 'below/' keyword is missing!
@@ -1305,6 +1307,7 @@ Please do input 'help' for the commands and their respective input format.
 
 * Only the `below/` keyword is missing.
 > move from/ 1 below 2
+
 ```
 ====================================================================================
 'below/' keyword is missing!
@@ -1313,9 +1316,10 @@ Please do input 'help' for the commands and their respective input format.
 ```
 
 #### Index of invalid range used
-* Any of the `**INDEX1**` or `**INDEX2**` paramters you entered for the respective keywords are not of valid range.
+* Any of the `**INDEX1**` or `**INDEX2**` parameters you entered for the respective keywords are not of valid range.
 * For example, a list with only 3 entries will result in an error if a command similar to the one below is entered:
 > move from/ 5 below/ 2
+
 ```
 ====================================================================================
 The index entered is not within the range!
@@ -1327,6 +1331,7 @@ Please do input 'help' for the commands and their respective input format.
 * Any of the `**INDEX1` or `**INDEX2**` entered for the respective keywords are invalid.
 * For example if the user enters a character instead of a number similar to the example command below 
 > move from/ a below/ ~
+
 ```
 ====================================================================================
 Index is not a number!
@@ -1723,23 +1728,25 @@ This section contains frequently asked questions.
 
 # Command Summary
 
-This section gives you a cheat sheet of commands available.
+This section gives you a cheat sheet of commands available. The following are only examples of what the input command can look like!
 >Things you should take note of:
->* Input that look like THIS are parameters to be supplied by user.
+>* Words that look like THIS are parameters to be supplied by user.
+>* Words that look like <this> are optional parameters
 
 Action         | Format | Example
 -------------- | ---------- | --------
 Help | `help` | 
-Create User Profile | `create new user` | 
-Create Set | `createSet SET_NAME f/FOOD_DESCRIPTION c/CALORIE COUNT + e/EXERCISE_DESCRIPTION c/CALORIE COUNT + ...` | `createSet morning routine f/oatmeal c/200 + e/yoga c/200`
+Create User Profile | `user c/` |
+Edit User Profile | `user e/ <n/ **NAME**>,<g/ **GENDER**>,<w/ **WEIGHT**>,<h/ **HEIGHT**>,<age/ **AGE**><al/ **ACTIVITY_FACTOR**>,<goal/ **WEIGHT_GOALS**>` | `user e/ n/ Sammy`
+Display User Profile | `user l/` |
+Create Set | `createSet SET_NAME f/ FOOD_DESCRIPTION c/ CALORIE COUNT + e/ EXERCISE_DESCRIPTION c/ CALORIE COUNT` | `createSet morning routine f/ oatmeal c/ 200 + e/ yoga c/ 200`
 Add Set | `addSet SET_NAME` | `addSet morning routine`
-Add Food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ ice cream c/ 78 d/ 2020-10-19`
-Add Exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE` | `add e/ jumping c/ 65 d/ 2020-10-19`
-Add Set |   `addSet SET_NAME`  |    `addset morning routine`
+Add Food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` | `add e/ ice cream c/ 78 d/ 2020-10-19`
+Add Exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` | `add e/ jumping c/ 65`
 List | `list` OR `list DATE` | `list` OR `list 2020-10-24` 
 Edit Profile | `edit n/ NAME, g/ GENDER, w/ WEIGHT, h/HEIGHT, a/ AGE, af/ ACTIVITY_FACTOR, goal/ WEIGHT_GOALS` | `edit n/ Sam g/ female w/ 50 h/ 165 a/ 10 af/ 4 goal/ gain`
-Edit Activity to Food | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` | `edita 1 f/ ice kacang c/150`
-Edit Activity to Exercise | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT` | `edita 1 e/ running c/100`
+Edit Activity to Food | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` | `edita 1 f/ ice kacang c/ 150`
+Edit Activity to Exercise | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT` | `edita 1 e/ running c/ 100`
 Find Description | `find d/ DESCRIPTION` | `find d/ apple`
 Find Calorie | `find c/ CALORIE` | `find c/ 55`
 Find Either | `find e/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3 ...` | `find e/ apple / orange / grape ...`
@@ -1748,4 +1755,5 @@ Move Activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
 Delete Entry | `delete INDEX` | `delete 2`
 Delete All for Today| `delete all/` | 
 Graph | `graph` | 
+Chain | `` |
 Exit | `bye` | 
