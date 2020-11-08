@@ -35,11 +35,15 @@ public class UserSetStorage {
     public static void prepareNewSet(String userInput) {
         try {
             checkFileNamePresent(userInput);
+            checkActivityAndCalorieTag(userInput);
             String fileName = userInput.substring(0, userInput.indexOf("/") - 2);
 
             createNewTextFile("/" + fileName + ".txt", userInput.substring(userInput.indexOf("/") - 1));
         } catch (NoFileNameException e) {
             displayMissingFileNameMessage();
+        } catch (InvalidCreateSetCommandException e) {
+            displayInvalidCreateSetCommandMessage();
+            displayIncompleteSetMessage();
         }
     }
 
@@ -74,7 +78,6 @@ public class UserSetStorage {
             int index = 1;
 
             for (String s : activity) {
-                checkActivityAndCalorieTag(s);
                 while (s.startsWith(WHITE_SPACE)) {
                     s = s.substring(1);
                 }
@@ -85,7 +88,16 @@ public class UserSetStorage {
 
                 bw.write(s);
                 String calories = s.substring(s.indexOf(CALORIE_TAG) + 2);
+                calories.replaceAll("\\s","");
                 String description = s.substring(2,s.indexOf(CALORIE_TAG) - 1);
+
+                while (description.startsWith(WHITE_SPACE)) {
+                    description = description.substring(1);
+                }
+
+                while (description.endsWith(WHITE_SPACE)) {
+                    description = description.substring(0, description.length() - 1);
+                }
 
                 checkEmptyDescription(description);
                 checkEmptyDescription(calories);
@@ -117,11 +129,7 @@ public class UserSetStorage {
         } catch (IOException e) {
             displayIncompleteSetMessage();
             deleteInvalidSetFile(path);
-        } catch (InvalidCreateSetCommandException e) {
-            displayInvalidCreateSetCommandMessage();
-            displayIncompleteSetMessage();
-            deleteInvalidSetFile(path);
-        } catch (InvalidCalorieException e) {
+        }  catch (InvalidCalorieException e) {
             displayInvalidCalorieMessage();
             displayIncompleteSetMessage();
             deleteInvalidSetFile(path);
@@ -150,7 +158,7 @@ public class UserSetStorage {
     }
 
     private static void checkActivityAndCalorieTag(String input) throws InvalidCreateSetCommandException {
-        if (!input.contains(CALORIE_TAG) || !(input.contains(FOOD_TAG) || input.contains(EXERCISE_TAG))) {
+        if (!input.contains(CALORIE_TAG) && !(input.contains(FOOD_TAG) | input.contains(EXERCISE_TAG))) {
             throw new InvalidCreateSetCommandException();
         }
     }

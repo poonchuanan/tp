@@ -392,6 +392,7 @@ You have created a shortcut containing:
 ### 3.1.1 Possible errors when creating shortcut
 
 #### Missing keywords
+
 * If a shortcut name is not specified (eg `createSet f/fish c/100`), the following error message will be shown
 
 ```
@@ -412,9 +413,48 @@ Please try again!
 ====================================================================================
 ```
 
+* If there are no calorie and/or activity tag (eg `createSet healthy lunch` or `createSet healthy f/oatmeal`), the following error message will be shown
+```
+====================================================================================
+You are missing an activity tag or calorie tag or both
+====================================================================================
+====================================================================================
+This short cut was not been successfully created as there was an error in your input.
+Please try again!
+====================================================================================
+```
+
+#### Wrong parameters
+* If a shortcut name given already exist, the following error message will be shown
+```
+====================================================================================
+There is a shortcut with this name already. Please choose another name
+====================================================================================
+```
+* If a given calorie is not between 0 to 3000 kcal (eg `createSet dinner f/beans c/100000`), the following error message will be shown
+```
+====================================================================================
+Please enter a valid calorie range.
+====================================================================================
+====================================================================================
+This short cut was not successfully created as there was an error in your input.
+Please try again!
+====================================================================================
+```
+ * If a given calorie is not of integer type or exceeds the threshold of integer conversion (eg `createSet dinner f/beans c/1000000000000000`, `createSet dinner f/beans c/test`), the following error message will be shown
+ ```
+====================================================================================
+Please enter calorie as integer.
+====================================================================================
+====================================================================================
+This short cut was not successfully created as there was an error in your input.
+Please try again!
+====================================================================================
+```
+
 <br>
 
-### 3.2 Adding a set of entries
+### 3.2 Adding a shortcut of repeated task to today's list
 
 Adds a set of repeated entries at once.
 
@@ -428,6 +468,9 @@ Example of usage:
 
 ```
 =====================================================================================================
+We are attempting to add activities listed in this shortcut.
+=====================================================================================================
+=====================================================================================================
 Noted! The following has been added into list:
 [F] | ice cream | 78
 The current activity list has been saved.
@@ -438,10 +481,39 @@ The current activity list has been saved.
 =====================================================================================================
 ```
 
-### 3.2.1 Possible errors when creating shortcut
+### 3.2.1 Possible errors when adding shortcut
 
+#### Wrong keywords
+
+* If a shortcut has not been created yet, the following error message will be shown
+```
+====================================================================================
+This shortcut does not exists!
+Please create a shortcut before adding it!
+====================================================================================
 ```
 
+#### Missing keywords 
+
+* If shortcut name was not specified (eg `addSet `), the following error message will be shown
+```
+Index 1 out of bounds for length 1
+====================================================================================
+Invalid command!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+#### Corrupted text file for shortcut
+
+* If a user edits the text file containing the shortcut to an unreadable format and calls the shortcut in a subsequent run, the following error message will be shown 
+  
+```
+====================================================================================
+Your shortcut text file is corrupted!
+As such, it will now be deleted. Please avoid editing the text file to the wrong format in the future.
+Items in the shortcut may have been added partially only.
+====================================================================================
 ```
 
 <br>
@@ -1009,7 +1081,7 @@ Please input 'help' for the commands and their respective input format.
 
 ## 7.0 Find
 
-### 7.1 Finding entries via keyword
+### 7.1 Finding entries via keyword - basic
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
 >Additionally, you can use the advanced find commands to find all matching keywords or just one matching keyword.

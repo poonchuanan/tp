@@ -339,7 +339,7 @@ public class ExceptionMessages {
 
     public static void displayInvalidCreateSetCommandMessage() {
         drawDivider();
-        System.out.println("You are missing a activity tag or calorie tag or both");
+        System.out.println("You are missing an activity tag or calorie tag or both");
         drawDivider();
     }
 
@@ -357,7 +357,7 @@ public class ExceptionMessages {
 
     public static void displayIncompleteSetMessage() {
         drawDivider();
-        System.out.println("This short cut was not been successfully created as there was an error in your input.");
+        System.out.println("This short cut was not successfully created as there was an error in your input.");
         System.out.println("Please try again!");
         drawDivider();
         System.out.println();
@@ -383,7 +383,7 @@ public class ExceptionMessages {
 
     public static void displayMissingAddSetInfoMessage() {
         drawDivider();
-        System.out.println("This shortcut has an empty description or calorie tag or both.");
+        System.out.println("This shortcut has an empty description for activity or calorie or both.");
         drawDivider();
     }
 }
