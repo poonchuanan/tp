@@ -94,6 +94,10 @@ public class ExceptionMessages {
                 + " - where keyword is DESCRIPTION\n"
                 + "The input format for finding calorie count\n\tvia keyword is 'find c/ CALORIE_COUNT'"
                 + " - where calories count is CALORIE_COUNT\n"
+                + "The input format for finding (all)\n\t is 'find a/ KEYWORD1 / KEYWORD2...'"
+                + " - where KEYWORDS are all the words that matches the search result\n"
+                + "The input format for finding (either)\n\t is 'find e/ KEYWORD1 / KEYWORD2...'"
+                + " - where just one KEYWORD has to match the search result\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 

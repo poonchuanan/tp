@@ -1028,10 +1028,31 @@ No.        Date                Type                                Description  
 
 ### 7.1.2 Possible errors when finding entries via keyword
 
-```
+#### Wrong find command tag
+If the command tag is not *d, c, a* or *e*, an error would occur
+> the following would be printed out if you input `find p/ KEYWORD`
 
 ```
+====================================================================================
+I do not understand what you mean!
+The input format for finding food or exercise activity
+	via keyword is 'find d/ DESCRIPTION' - where keyword is DESCRIPTION
+The input format for finding calorie count
+	via keyword is 'find c/ CALORIE_COUNT' - where calories count is CALORIE_COUNT
+The input format for finding (all)
+	 is 'find a/ KEYWORD1 / KEYWORD2...' - where KEYWORDS are all the words that matches the search result
+The input format for finding (either)
+	 is 'find e/ KEYWORD1 / KEYWORD2...' - where just one KEYWORD has to match the search result
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+#### Wrong find command tag
+If the **KEYWORD** to search for is empty, an error would occur
+> the following would be printed out if you input `find d/`
 
+```
+No results were found!
+```
 <br>
 <br>
 
