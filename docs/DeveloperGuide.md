@@ -147,7 +147,7 @@ The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add
 
 The following Sequence Diagram shows how `AddFoodCommand` is carried out when the user issues add command, in this case, `add f/ food c/ 170 d/ 2020-10-22`:
 
-![Add Activity](diagrams/addFoodFeature.png)
+![Add Food](diagrams/addFoodFeature.png)
 
 *Figure 5. Component interactions for add food command*
 
@@ -163,7 +163,7 @@ The following Sequence Diagram shows how `AddFoodCommand` is carried out when th
 
 Aspect: How to add activity
 
->Alternative 1(current choice): Using single letter words as tags for input commands. (e.g. add f/ XXX c/ XXX d/ XXX)
+>Alternative 1(current choice): Using single letter words as tags for input commands. (e.g. add f/ jelly c/ 100 d/ 2020-11-09)
 >* Pros: Faster and shorter input keys for user.
 >* Cons: Have to ensure that user is clear on what tags to input.
 
@@ -257,7 +257,7 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 Aspect: How to edit activity
 
 >Alternative 1 (current choice): Same command able to edit both activities, food and exercise in list.
->* Pros: Able to guarantee that no abnormal behaviour will happen.
+>* Pros: Easy to implement.
 >* Cons: Have to ensure that the different type of editing is implemented correctly.
 
 >Alternative 2: Have separate commands for editing the different activity type.
@@ -275,6 +275,7 @@ The chaining mechanism can be used by the various commands available The followi
 - list
 - add
 - edita
+- graph
 
 The following sequence diagram shows how the chaining works after command is entered:
 
@@ -289,7 +290,7 @@ The following sequence diagram shows how the chaining works after command is ent
 Aspect: Which features to chain
 
 >Alternative 1 (current choice): Allow only certain commands to be chained.
->* Pros: Able to guarantee that no abnormal behaviour will happen.
+>* Pros: Able to better track input of users.
 >* Cons: User must know which commands can be chained.
 
 >Alternative 2: Allow all commands to be chained.
