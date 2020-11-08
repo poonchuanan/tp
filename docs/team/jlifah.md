@@ -27,7 +27,7 @@ Here are some of their commands:
 * `addSet` adds all the entries within the shortcut to the current day's list.
 
 
-**Justifications** `user profile` feature gives the user a clear idea of their calorie journey. It also links to other features like graphs in traKCAL. `short cut` feature reduces user fatigue by offering a quick way to add in entries repeated often into the activity list.  
+**Justifications**: `user profile` feature gives the user a clear idea of their calorie journey. It also links to other features like graphs in traKCAL. `short cut` feature reduces user fatigue by offering a quick way to add in entries repeated often into the activity list.  
 
 #### Contributions to User Guide 
 
