@@ -12,8 +12,7 @@ By: CS2113-T09-4    Since: October 2020   Licence: MIT
 
 **traKCAL** is a desktop application for managing and visualizing your calorie intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
 
-This guide will provide information on the design and implementation of **traKCAL**. It will help you get started on your journey of becoming a contributor to **traKCAL**. 
-This guide will also explain the various features available in **traKCAL**, to provide you with a better understanding of the current version of **traKCAL**
+This guide will provide information on the design and implementation of **traKCAL** to help you get started on your journey of becoming a contributor to **traKCAL**. This guide will also explain the various features available in **traKCAL**, to provide you with a better understanding of the current version of **traKCAL**
 
 <br>
 
@@ -25,6 +24,27 @@ This guide will also explain the various features available in **traKCAL**, to p
 <br>
 
 ## 2.0 Setting up
+1. Fork the traKCAL repository [here]() and git clone it to a convenient location on your desktop eg. Desktop.
+2. Open any IDE (Intellij preferred) and click `Configure` -> `Project Defaults` -> `Project Structure` -> `New` and ensure that a valid Java 11 SDK is selected.
+3. Next, go to `Import Project` and select the *build.gradle* file. 
+4. Click `Open as Project` and accept all default settings. 
+5. After opening the project, go to `src` -> `main` -> `java` -> `seedu.duke` -> `Trakcal` and right click on the Trakcal class. Select the `Run 'Trakcal.main()'` option.
+6. Upon successful run, the following opening message will be shown: 
+```
+====================================================================================
+| Hello from                                                                       |
+|  _                  _  __   ___     _     _                                      |
+| | |_   _ _   __ _  | |/ /  / __|   /_\   | |                                     |
+| |  _| | '_| / _` | | ' <  | (__   / _ \  | |__                                   |
+|  \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|                                  |
+|                                                                                  |
+| Hello! I'm traKCAL.                                                              |
+| Please do input 'help' for the commands and their respective input format.       |
+====================================================================================
+```
+7. You will then be prompted to create a new user profile.  
+
+<br>
 
 ### 2.1 Prerequisites
  * Java 11 (can be download from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html))
@@ -127,7 +147,7 @@ The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add
 
 The following Sequence Diagram shows how `AddFoodCommand` is carried out when the user issues add command, in this case, `add f/ food c/ 170 d/ 2020-10-22`:
 
-![Add_Food](diagrams/addFoodFeature.png)
+![Add Food](diagrams/addFoodFeature.png)
 
 *Figure 5. Component interactions for add food command*
 
@@ -143,7 +163,7 @@ The following Sequence Diagram shows how `AddFoodCommand` is carried out when th
 
 Aspect: How to add activity
 
->Alternative 1(current choice): Using single letter words as tags for input commands. (e.g. add f/ XXX c/ XXX d/ XXX)
+>Alternative 1(current choice): Using single letter words as tags for input commands. (e.g. add f/ jelly c/ 100 d/ 2020-11-09)
 >* Pros: Faster and shorter input keys for user.
 >* Cons: Have to ensure that user is clear on what tags to input.
 
@@ -237,7 +257,7 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 Aspect: How to edit activity
 
 >Alternative 1 (current choice): Same command able to edit both activities, food and exercise in list.
->* Pros: Able to guarantee that no abnormal behaviour will happen.
+>* Pros: Easy to implement.
 >* Cons: Have to ensure that the different type of editing is implemented correctly.
 
 >Alternative 2: Have separate commands for editing the different activity type.
@@ -255,6 +275,7 @@ The chaining mechanism can be used by the various commands available The followi
 - list
 - add
 - edita
+- graph
 
 The following sequence diagram shows how the chaining works after command is entered:
 
@@ -269,7 +290,7 @@ The following sequence diagram shows how the chaining works after command is ent
 Aspect: Which features to chain
 
 >Alternative 1 (current choice): Allow only certain commands to be chained.
->* Pros: Able to guarantee that no abnormal behaviour will happen.
+>* Pros: Able to better track input of users.
 >* Cons: User must know which commands can be chained.
 
 >Alternative 2: Allow all commands to be chained.

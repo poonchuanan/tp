@@ -16,6 +16,7 @@ public class ExceptionMessages {
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
+
     /**
      * Prints error message when IOException occurs.
      */
@@ -27,7 +28,7 @@ public class ExceptionMessages {
     /**
      * Prints error message when NumberFormatException occurs in delete command.
      */
-    public static void displayDeleteCommandNumberFormatExceptionMessage() {
+    public static void displayIndexNotNumberExceptionMessage() {
         print("Index is not a number!\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
@@ -92,12 +93,12 @@ public class ExceptionMessages {
         print("I do not understand what you mean!\n"
                 + "The input format for finding food or exercise activity\n\tvia keyword is 'find d/ DESCRIPTION'"
                 + " - where keyword is DESCRIPTION\n"
-                + "The input format for finding calorie count\n\tvia keyword is 'find c/ CALORIE_COUNT'"
-                + " - where calories count is CALORIE_COUNT\n"
-                + "The input format for finding (all)\n\t is 'find a/ KEYWORD1 / KEYWORD2...'"
-                + " - where KEYWORDS are all the words that matches the search result\n"
-                + "The input format for finding (either)\n\t is 'find e/ KEYWORD1 / KEYWORD2...'"
-                + " - where just one KEYWORD has to match the search result\n"
+                + "The input format for finding calorie count via keyword is 'find c/ CALORIE_COUNT'\n"
+                + "\t- where calories count is CALORIE_COUNT\n"
+                + "The input format for finding (all) is 'find a/ KEYWORD1 / KEYWORD2...'\n"
+                + "\t- where KEYWORDS are all the words that matches the search result\n"
+                + "The input format for finding (either) is 'find e/ KEYWORD1 / KEYWORD2...'\n"
+                + "\t- where just one KEYWORD has to match the search result\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -153,7 +154,7 @@ public class ExceptionMessages {
      * Prints out error message when invalid gender input.
      */
     public static void displayInvalidGenderMessage() {
-        print("Sorry this is an invalid gender format! Please input gender as female or male only!");
+        print("Sorry this is an invalid gender format!\nPlease input gender as female or male only!");
     }
 
     /**
@@ -334,7 +335,7 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints message when short cut of similar name already exists.
+     * Prints message when shortcut of similar name already exists.
      *
      */
     public static void displayExistingShortcutMessage() {
@@ -375,31 +376,31 @@ public class ExceptionMessages {
      */
     public static void displayIncompleteSetMessage() {
         drawDivider();
-        System.out.println("This short cut was not successfully created as there was an error in your input.");
+        System.out.println("This shortcut was not successfully created as there was an error in your input.");
         System.out.println("Please try again!");
         drawDivider();
         System.out.println();
     }
 
     /**
-     * Prints message when user did not specify short cut name.
+     * Prints message when user did not specify shortcut name.
      */
     public static void displayMissingFileNameMessage() {
         drawDivider();
-        System.out.println("You did not specify a short cut name in your createSet command.");
+        System.out.println("You did not specify a shortcut name in your createSet command.");
         System.out.println("As such, no shortcut was created. Please try again!");
         drawDivider();
         System.out.println();
     }
 
     /**
-     * Prints corrupted short cut message.
+     * Prints corrupted shortcut message.
      *
      */
     public static void displayCorruptedSetMessage() {
         drawDivider();
         System.out.println("Your shortcut text file is corrupted!");
-        System.out.println("As such, it will now be deleted. Please avoid editing the text file to the "
+        System.out.println("As such, it will now be deleted.\n Please avoid editing the text file to the "
                 + "wrong format in the future.");
         System.out.println("Items in the shortcut may have been added partially only.");
         drawDivider();
@@ -436,5 +437,27 @@ public class ExceptionMessages {
 
     public static void displayFileError() {
         print("Unable to read/write file");
+    }
+
+    /**
+     * Prints message when find command finds no results.
+     */
+    public static void displayKeywordNotFoundMessage() {
+        print("No results were found!");
+    }
+
+    /**
+     * Prints message when there are consecutive slashes in input.
+     */
+    public static void displayEmptyKeywordMessage() {
+        print("Current keyword is empty!\n"
+                + "Please input a valid keyword that is not empty!");
+    }
+
+    /**
+     * Prints message when there are consecutive slashes in input.
+     */
+    public static void displayFindSlashExceptionMessage() {
+        print("There are consecutive slashes in your input!");
     }
 }

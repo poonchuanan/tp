@@ -32,9 +32,10 @@ public class UserSetStorage {
     private static final Integer MAX_CALORIES = 3000;
     private static final Integer MIN_CALORIES = 0;
     private static final String WHITE_SPACE = " ";
-    private static final String FOOD_TAG = "/f";
+    private static final String FOOD_TAG = "f/";
     private static final String CALORIE_TAG = "c/";
     private static final String EXERCISE_TAG = "e/";
+    private static final String SLASH = "/";
 
     /**
      * Checks if tags and file are given by user.
@@ -45,9 +46,8 @@ public class UserSetStorage {
         try {
             checkFileNameNotPresent(userInput);
             checkActivityAndCalorieTag(userInput);
-            String fileName = userInput.substring(0, userInput.indexOf("/") - 2);
-
-            createNewTextFile("/" + fileName + ".txt", userInput.substring(userInput.indexOf("/") - 1));
+            String fileName = userInput.substring(0, userInput.indexOf(SLASH) - 2);
+            createNewTextFile(SLASH + fileName + ".txt", userInput.substring(userInput.indexOf(SLASH) - 1));
         } catch (NoFileNameException e) {
             displayMissingFileNameMessage();
         } catch (InvalidCreateSetCommandException e) {
@@ -104,27 +104,12 @@ public class UserSetStorage {
             int index = 1;
 
             for (String s : activity) {
-                while (s.startsWith(WHITE_SPACE)) {
-                    s = s.substring(1);
-                }
-
-                while (s.endsWith(WHITE_SPACE)) {
-                    s = s.substring(0, s.length() - 1);
-                }
-
+                s = removeWhiteSpaces(s);
                 bw.write(s);
                 String calories = s.substring(s.indexOf(CALORIE_TAG) + 2);
-                calories.replaceAll("\\s","");
+                calories = removeWhiteSpaces(calories);
                 String description = s.substring(2,s.indexOf(CALORIE_TAG) - 1);
-
-                while (description.startsWith(WHITE_SPACE)) {
-                    description = description.substring(1);
-                }
-
-                while (description.endsWith(WHITE_SPACE)) {
-                    description = description.substring(0, description.length() - 1);
-                }
-
+                description = removeWhiteSpaces(description);
                 checkEmptyDescription(description);
                 checkEmptyDescription(calories);
                 checkCalorieType(calories);
@@ -136,10 +121,10 @@ public class UserSetStorage {
                     System.out.println("You have created a shortcut containing:");
                 }
 
-                if (s.indexOf(FOOD_TAG) == 1) {
+                if (s.indexOf(FOOD_TAG) == 0) {
                     System.out.println(index + ". " + "Food: " + description
                             + ", Calories: " + calories);
-                } else if (s.indexOf(EXERCISE_TAG) == 1) {
+                } else if (s.indexOf(EXERCISE_TAG) == 0) {
                     System.out.println(index + ". " + "Exercise: " + description
                             + ", Calories: " + calories);
                 }
@@ -231,8 +216,25 @@ public class UserSetStorage {
      * @param input user input
      */
     private static void checkFileNameNotPresent(String input) throws NoFileNameException {
-        if (input.indexOf(FOOD_TAG) == 1 || input.indexOf(EXERCISE_TAG) == 1) {
+        if (input.indexOf(FOOD_TAG) == 0 || input.indexOf(EXERCISE_TAG) == 0) {
             throw new NoFileNameException();
         }
+    }
+
+    /**
+     * Removes all white spaces at front and back of input.
+     *
+     * @param input user input
+     * @return input of edited param without white spaces
+     */
+    private static String removeWhiteSpaces(String input) {
+        while (input.startsWith(WHITE_SPACE)) {
+            input = input.substring(1);
+        }
+
+        while (input.endsWith(WHITE_SPACE)) {
+            input = input.substring(0, input.length() - 1);
+        }
+        return input;
     }
 }
