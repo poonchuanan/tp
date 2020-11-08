@@ -451,7 +451,7 @@ public class ExceptionMessages {
      */
     public static void displayEmptyKeywordMessage() {
         print("Current keyword is empty!\n"
-                +"Please input a valid keyword that is not empty!");
+                + "Please input a valid keyword that is not empty!");
     }
 
     /**
