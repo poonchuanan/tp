@@ -4,9 +4,15 @@ import java.time.LocalDateTime;
 
 import static seedu.duke.ui.Ui.displayMessage;
 
+/**
+ * Delete All Command.
+ */
 public class DeleteAllCommand extends Command {
     protected LocalDateTime date;
 
+    /**
+     * Initializes delete all command.
+     */
     public DeleteAllCommand() {
         this.date = LocalDateTime.now();
     }

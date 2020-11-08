@@ -7,6 +7,9 @@ import java.io.IOException;
 
 import static seedu.duke.ui.ExceptionMessages.displayFileError;
 
+/**
+ * Lists the user profile details.
+ */
 public class ListUserProfileCommand extends Command {
 
     @Override
