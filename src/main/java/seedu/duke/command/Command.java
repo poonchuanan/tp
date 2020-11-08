@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 public class Command {
     protected DayMap dayMap;
     protected boolean canBeChained = false;
-    protected  static Logger commandLogger = Logger.getLogger("Command");
 
     /**
      * This method is to be override by the specific commands.

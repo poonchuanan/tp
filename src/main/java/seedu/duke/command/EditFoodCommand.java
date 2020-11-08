@@ -44,7 +44,7 @@ public class EditFoodCommand extends Command {
             displaySavedMessage();
         } catch (IndexOutOfBoundsException e) {
             displayEditIndexOutOfBoundsExceptionMessage();
-            commandLogger.log(Level.WARNING,"Accessing an index that is out of bound!");
+            //commandLogger.log(Level.WARNING,"Accessing an index that is out of bound!");
         }
     }
 }

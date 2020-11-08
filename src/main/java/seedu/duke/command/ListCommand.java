@@ -1,10 +1,10 @@
 package seedu.duke.command;
 
-import seedu.duke.model.ListDrawer;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
+
+import static seedu.duke.Trakcal.logging;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyListError;
 
 //@@author chewyang
 
@@ -16,6 +16,7 @@ import java.util.logging.Level;
 public class ListCommand extends Command {
 
     protected LocalDate date;
+
 
     public ListCommand(LocalDate date) {
         this.date = date;
@@ -37,8 +38,8 @@ public class ListCommand extends Command {
             dayMap.drawListAfterListCommand(date);
 
         } catch (NullPointerException e) {
-            System.out.println("There is no data for " + date.toString());
-            commandLogger.log(Level.WARNING,"Accessing a list without any data");
+            displayEmptyListError();
+            logging.writeToLogInfo("no data found");
         }
 
     }

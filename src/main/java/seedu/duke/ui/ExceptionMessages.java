@@ -16,6 +16,7 @@ public class ExceptionMessages {
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
+
     /**
      * Prints error message when IOException occurs.
      */
@@ -27,7 +28,7 @@ public class ExceptionMessages {
     /**
      * Prints error message when NumberFormatException occurs in delete command.
      */
-    public static void displayDeleteCommandNumberFormatExceptionMessage() {
+    public static void displayIndexNotNumberExceptionMessage() {
         print("Index is not a number!\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
@@ -436,5 +437,27 @@ public class ExceptionMessages {
 
     public static void displayFileError() {
         print("Unable to read/write file");
+    }
+
+    /**
+     * Prints message when find command finds no results.
+     */
+    public static void displayKeywordNotFoundMessage() {
+        print("No results were found!");
+    }
+
+    /**
+     * Prints message when there are consecutive slashes in input.
+     */
+    public static void displayEmptyKeywordMessage() {
+        print("Current keyword is empty!\n"
+                + "Please input a valid keyword that is not empty!");
+    }
+
+    /**
+     * Prints message when there are consecutive slashes in input.
+     */
+    public static void displayFindSlashExceptionMessage() {
+        print("There are consecutive slashes in your input!");
     }
 }

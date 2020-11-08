@@ -1,8 +1,18 @@
-# Developer Guide for trakCAL
+# Developer Guide for traKCAL
 
 The purpose of this developer guide is as reference for future collaborators of **trakCAL**.
 
-By: CS2113-T09-4    Since: September 2020   Licence: MIT
+By: CS2113-T09-4    Since: October 2020   Licence: MIT
+
+<br>
+
+## 1.0 Introduction
+
+**Welcome to traKCAL!**
+
+**traKCAL** is a desktop application for managing and visualizing your calorie intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
+
+This guide will provide information on the design and implementation of **traKCAL** to help you get started on your journey of becoming a contributor to **traKCAL**. This guide will also explain the various features available in **traKCAL**, to provide you with a better understanding of the current version of **traKCAL**
 
 <br>
 
@@ -13,15 +23,36 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 <br>
 
-## 1.0 Setting up
+## 2.0 Setting up
+1. Fork the traKCAL repository [here]() and git clone it to a convenient location on your desktop eg. Desktop.
+2. Open any IDE (Intellij preferred) and click `Configure` -> `Project Defaults` -> `Project Structure` -> `New` and ensure that a valid Java 11 SDK is selected.
+3. Next, go to `Import Project` and select the *build.gradle* file. 
+4. Click `Open as Project` and accept all default settings. 
+5. After opening the project, go to `src` -> `main` -> `java` -> `seedu.duke` -> `Trakcal` and right click on the Trakcal class. Select the `Run 'Trakcal.main()'` option.
+6. Upon successful run, the following opening message will be shown: 
+```
+====================================================================================
+| Hello from                                                                       |
+|  _                  _  __   ___     _     _                                      |
+| | |_   _ _   __ _  | |/ /  / __|   /_\   | |                                     |
+| |  _| | '_| / _` | | ' <  | (__   / _ \  | |__                                   |
+|  \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|                                  |
+|                                                                                  |
+| Hello! I'm traKCAL.                                                              |
+| Please do input 'help' for the commands and their respective input format.       |
+====================================================================================
+```
+7. You will then be prompted to create a new user profile.  
 
-### 1.1 Prerequisites
+<br>
+
+### 2.1 Prerequisites
  * Java 11 (can be download from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html))
  * Intellij IDE
  
 <br>
     
-### 1.2 Setting up:    
+### 2.2 Setting up:    
 * Download the latest **traKCAL** jar file ([here](https://github.com/AY2021S1-CS2113T-T09-4/tp/releases))
 * Copy jar file into an empty folder in a convenient location (eg. Desktop)
 * Open terminal and navigate directory to the folder containing jar file 
@@ -31,9 +62,9 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 <br>
 <br>    
     
-## 2.0 Design 
+## 3.0 Design 
 
-### 2.1 Architecture
+### 3.1 Architecture
 
 ![Architecture](diagrams/Architecture.png)
 
@@ -41,7 +72,7 @@ By: CS2113-T09-4    Since: September 2020   Licence: MIT
 
 The Architecture Diagram shown above explains the high-level design of **traKCAL**.
 
-**traKCAL** is made up of mainly 6 components.
+**traKCAL** is made up of mainly 8 components.
 
 `trakCAL`: tracKCAL starts here
 
@@ -55,9 +86,13 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 
 `Model`: Structure of the data
 
+`Exception`: 
+
+`UserProfile`:
+
 <br>
 
-### 2.2 Logic component
+### 3.2 Logic component
 
 ![Logic Component](diagrams/LogicComponent.png)
 
@@ -76,7 +111,7 @@ and validity of those description are checked..
 
 <br>
 
-### 2.3 Model component
+### 3.3 Model component
 
 ![Model_Component](diagrams/model.png)
 
@@ -113,11 +148,15 @@ The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add
 
 The following Sequence Diagram shows how `AddFoodCommand` is carried out when the user issues add command, in this case, `add f/ food c/ 170 d/ 2020-10-22`:
 
-![Add Activity](diagrams/AddFoodFeature.jpg)
+![Add Activity](diagrams/addFoodFeature.png)
 
 *Figure 5. Component interactions for add food command*
 
 > `AddExerciseCommand` diagram has a similar logic.
+
+![Add Exercise](diagrams/AddExerciseFeature.png)
+
+*Figure 6. Component interactions for add exercise command*
 
 <br>
 
@@ -187,7 +226,7 @@ The mechanism used to display the lastSeenList invoked by the list or find comma
 
 The following sequence diagram shows how the listDrawer class is used to display the lastSeenList.
 
-![list_Drawer](diagrams/listDrawer.png)
+![list_Drawer](diagrams/listDrawer.PNG)
 
 *Figure 8. Sequence diagram of the usage of listDrawer to display the list*
 
@@ -202,11 +241,15 @@ The editing mechanism is used by `EditFoodCommand` and `EditExerciseCommand` to 
 
 The following Sequence Diagram shows how `EditFoodCommand` is carried out when the user issues edit command, in this case, `edit 1 f/ egg c/ 10`:
 
-![Edit Activity](diagrams/EditActivityFeature.jpg)
+![Edit Food](diagrams/EditFood.png)
 
 *Figure 9. Sequence diagram of edit food feature*
 
 > `EditExerciseCommand` diagram has a similar logic.
+
+![Edit Exercise](diagrams/EditExercise.png)
+
+*Figure 10. Sequence diagram of edit exercise feature*
 
 <br>
 
@@ -236,7 +279,7 @@ The chaining mechanism can be used by the various commands available The followi
 
 The following sequence diagram shows how the chaining works after command is entered:
 
-![ChainCommandFeature](diagrams/ChainCommandFeature.jpg)
+![Chain Command Feature](diagrams/ChainCommand.png)
 
 *Figure 10. Sequence diagram of chaining feature*
 
