@@ -36,7 +36,7 @@ public class ExceptionMessages {
      * Prints error message when NullPointerException occurs in delete command.
      */
     public static void displayDeleteCommandNullPointerExceptionMessage() {
-        print("There is not index to remove!\n"
+        print("There is no index to remove!\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
@@ -420,5 +420,21 @@ public class ExceptionMessages {
      */
     public static void displayInvalidEditCommandMessage() {
         print("I do not understand all or part of this edit command. Your command has only been processed partially.");
+    }
+
+    public static void displayExcessNumberOfArguments() {
+        print("This command has no description!");
+    }
+
+    public static void displayShortageOfArguments() {
+        print("This command has missing description!");
+    }
+
+    public static void displayEmptyListError() {
+        print("List is empty!");
+    }
+
+    public static void displayFileError() {
+        print("Unable to read/write file");
     }
 }
