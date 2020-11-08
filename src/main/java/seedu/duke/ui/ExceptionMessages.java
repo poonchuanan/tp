@@ -381,4 +381,8 @@ public class ExceptionMessages {
         System.out.println("This shortcut has an empty description for activity or calorie or both.");
         drawDivider();
     }
+
+    public static void displayInvalidEditCommandMessage() {
+        print("I do not understand this edit command. You command has only been processed partially.");
+    }
 }
