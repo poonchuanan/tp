@@ -45,4 +45,4 @@ Here are some of their commands:
 
 #### Contributions beyond the project team
 
-* KIV
+* I helped identify bugs for other teams, my comments can be found [here](https://github.com/AY2021S1-CS2113T-F11-1/tp/issues).
