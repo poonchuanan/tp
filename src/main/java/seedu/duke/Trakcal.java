@@ -6,7 +6,6 @@ import seedu.duke.command.Command;
 import seedu.duke.logic.parser.ChainingParser;
 import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.model.DayMap;
-import seedu.duke.model.ListDrawer;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.userprofile.UserProfile;

@@ -54,27 +54,6 @@ class AdvancedListingTest {
     }
 
     @Test
-    void deleteAllTasks_andExpect_NullPointerException_fromListCommand() {
-        DayMap dummyMap = new DayMap();
-        createObjects(dummyMap);
-
-        Command listCommand = new ListCommand(date);
-        listCommand.setData(dummyMap);
-        listCommand.execute();
-
-        Command deleteCommand = new DeleteAllCommand();
-        deleteCommand.setData(dummyMap);
-        deleteCommand.execute();
-        assertEquals("2020-10-09, [E] | run 2km | 100", dummyMap.toString(date.atStartOfDay()));
-        deleteCommand.execute();
-
-        Assertions.assertThrows(NullPointerException.class, () -> {
-            dummyMap.getActivityList(date.atStartOfDay()).getActivity(0);
-        });
-    }
-
-
-    @Test
     void findDescription_andDeleteFromActivityListShown_successfully() {
         DayMap dummyMap = new DayMap();
         createObjects(dummyMap);
@@ -91,31 +70,6 @@ class AdvancedListingTest {
 
         assertEquals("[F] | rice with vegs | 51, [F] | rice with pork | 101, [F] | rice with eggs | 50",
                 dummyMap.getLastSeenList().toString());
-    }
-
-
-    @Test
-    void deleteAllTasks_andExpect_KeywordNotFoundExceptions_fromFindCommand() {
-        DayMap dummyMap = new DayMap();
-        createObjects(dummyMap);
-
-        Command findCommand = new FindDescriptionCommand("run");
-        findCommand.setData(dummyMap);
-        findCommand.execute();
-
-        Command deleteCommand = new DeleteAllCommand();
-        deleteCommand.setData(dummyMap);
-        deleteCommand.execute();
-
-        assertEquals("[E] | run 2km | 100", dummyMap.getLastSeenList().toString());
-
-
-
-        deleteCommand.execute();
-        assertEquals("", dummyMap.getLastSeenList().toString());
-        Assertions.assertThrows(KeywordNotFoundException.class, () -> {
-            dummyMap.listActivitiesContainingDescription("run");
-        });
     }
 
 }
