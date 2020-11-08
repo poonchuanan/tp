@@ -201,15 +201,4 @@ public class ActivityList extends Trakcal {
         activitiesString = activitiesString.substring(1, activitiesString.length() - 1);
         return (activitiesString);
     }
-
-    //@@author chewyang
-    /**
-     * Returns the date of activity.
-     *
-     * @param index index of activity
-     * @return date
-     */
-    public LocalDate getDateOfActivityAtIndex(int index) {
-        return getActivity(index).getActivityDate();
-    }
 }
