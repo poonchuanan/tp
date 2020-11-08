@@ -224,6 +224,7 @@ public class ExceptionMessages {
 
     /**
      * Prints out error message when age is not between 0 to 120 years old.
+     *
      */
     public static void displayInvalidAgeRangeMessage() {
         print("Please enter an age range from 1 to 120 years old");
@@ -231,6 +232,7 @@ public class ExceptionMessages {
 
     /**
      * Prints out error message when height is not between 10 to 300cm.
+     *
      */
     public static void displayInvalidHeightRangeMessage() {
         print("Please enter a height range from 90cm to 300cm");
@@ -315,6 +317,7 @@ public class ExceptionMessages {
 
     /**
      * Prints message when string entered is empty.
+     *
      */
     public static void displayEmptyStringMessage() {
         print("Please do not enter an empty input");
@@ -330,30 +333,46 @@ public class ExceptionMessages {
         System.out.println();
     }
 
+    /**
+     * Prints message when short cut of similar name already exists.
+     *
+     */
     public static void displayExistingShortcutMessage() {
         drawDivider();
         System.out.println("There is a shortcut with this name already. Please choose another name");
         drawDivider();
     }
 
+    /**
+     * Prints message when missing calorie tag and/or activity tag.
+     */
     public static void displayInvalidCreateSetCommandMessage() {
         drawDivider();
         System.out.println("You are missing an activity tag or calorie tag or both");
         drawDivider();
     }
 
+    /**
+     * Prints message when calories is not within range.
+     */
     public static void displayInvalidCalorieMessage() {
         drawDivider();
         System.out.println("Please enter a valid calorie range.");
         drawDivider();
     }
 
+    /**
+     * Prints message user did not enter type integer as calorie.
+     */
     public static void displayCalorieMustBeIntegerMessage() {
         drawDivider();
         System.out.println("Please enter calorie as integer.");
         drawDivider();
     }
 
+    /**
+     * Prints message for wrongly edited set text file.
+     */
     public static void displayIncompleteSetMessage() {
         drawDivider();
         System.out.println("This short cut was not successfully created as there was an error in your input.");
@@ -362,6 +381,9 @@ public class ExceptionMessages {
         System.out.println();
     }
 
+    /**
+     * Prints message when user did not specify short cut name.
+     */
     public static void displayMissingFileNameMessage() {
         drawDivider();
         System.out.println("You did not specify a short cut name in your createSet command.");
@@ -370,6 +392,10 @@ public class ExceptionMessages {
         System.out.println();
     }
 
+    /**
+     * Prints corrupted short cut message.
+     *
+     */
     public static void displayCorruptedSetMessage() {
         drawDivider();
         System.out.println("Your shortcut text file is corrupted!");
@@ -380,14 +406,20 @@ public class ExceptionMessages {
         System.out.println();
     }
 
+    /**
+     * Prints out empty description for activity of calories tag message.
+     */
     public static void displayMissingAddSetInfoMessage() {
         drawDivider();
         System.out.println("This shortcut has an empty description for activity or calorie or both.");
         drawDivider();
     }
 
+    /**
+     * Prints message when edit user profile command is invalid.
+     */
     public static void displayInvalidEditCommandMessage() {
-        print("I do not understand this edit command. You command has only been processed partially.");
+        print("I do not understand all or part of this edit command. Your command has only been processed partially.");
     }
 
     public static void displayExcessNumberOfArguments() {
