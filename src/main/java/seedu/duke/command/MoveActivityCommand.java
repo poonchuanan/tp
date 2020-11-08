@@ -30,10 +30,10 @@ public class MoveActivityCommand extends Command {
             print("Activity has been successfully moved!");
         } catch (IndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
-            commandLogger.log(Level.WARNING, "Accessing an index that is out of bounds");
+            //commandLogger.log(Level.WARNING, "Accessing an index that is out of bounds");
         } catch (ListNotFoundException e) {
             displayListNotFoundExceptionMessage();
-            commandLogger.log(Level.WARNING, "Accessing a list that does not exist");
+            //commandLogger.log(Level.WARNING, "Accessing a list that does not exist");
         }
 
     }

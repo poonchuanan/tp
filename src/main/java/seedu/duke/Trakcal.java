@@ -7,6 +7,7 @@ import seedu.duke.logic.parser.ChainingParser;
 import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.model.DayMap;
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.Logging;
 import seedu.duke.ui.Ui;
 import seedu.duke.userprofile.UserProfile;
 import seedu.duke.userprofile.InitialiseUserProfile;
@@ -31,6 +32,12 @@ public class Trakcal {
 
     public static Scanner in = new Scanner(System.in);
     public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
+    //public static Storage loggingStorage = new Storage(getJarFilePath() + "/tpdata/tpLogging.txt");
+    public static Logging logging = new Logging(getJarFilePath() + "/tpdata/tpLogging.log");
+
+
+
+
 
     /**
      * Main function.
@@ -39,6 +46,8 @@ public class Trakcal {
      */
     public static void main(String[] args) {
         displayWelcomeMessage();
+        System.out.println();
+        logging.setLogger();
         storage.loadData(calList);
         calList.setLastSeenList(calList.getActivityList(LocalDate.now().atStartOfDay()));
         if (CheckNewUser.isNewUser()) {
@@ -65,6 +74,7 @@ public class Trakcal {
                     command = parser.parseArgument();
                     executeCmd(command);
                     storage.updateFile(calList);
+                    logging.writeToLog("try first message");
                 }
             } catch (NullPointerException e) {
                 //Exception is already taken care of
