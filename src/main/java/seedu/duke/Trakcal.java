@@ -7,6 +7,7 @@ import seedu.duke.logic.parser.ChainingParser;
 import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.model.DayMap;
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.logging;
 import seedu.duke.ui.Ui;
 import seedu.duke.userprofile.UserProfile;
 import seedu.duke.userprofile.InitialiseUserProfile;
@@ -14,6 +15,7 @@ import seedu.duke.userprofile.CheckNewUser;
 
 
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 import static seedu.duke.logic.parser.CommandParser.SPACE;
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
@@ -31,6 +33,12 @@ public class Trakcal {
 
     public static Scanner in = new Scanner(System.in);
     public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
+    //public static Storage loggingStorage = new Storage(getJarFilePath() + "/tpdata/tpLogging.txt");
+    public static logging logging = new logging(getJarFilePath() +"/tpdata/tpLogging.log");
+
+
+
+
 
     /**
      * Main function.
@@ -40,6 +48,7 @@ public class Trakcal {
     public static void main(String[] args) {
         displayWelcomeMessage();
         System.out.println();
+        logging.setLogger();
         storage.loadData(calList);
         if (CheckNewUser.isNewUser()) {
             profile = UserProfile.createNewProfile();
@@ -65,6 +74,7 @@ public class Trakcal {
                     command = parser.parseArgument();
                     executeCmd(command);
                     storage.updateFile(calList);
+                    logging.writeToLog("try first message");
                 }
             } catch (NullPointerException e) {
                 displayParserNullPointerExceptionMessage();
