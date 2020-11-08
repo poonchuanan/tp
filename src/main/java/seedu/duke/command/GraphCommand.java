@@ -14,6 +14,7 @@ public class GraphCommand extends Command {
     public static final int MAXIMUM_DAYS = 7;
 
     public GraphCommand() {
+    this.canBeChained = true;
     }
 
     boolean isMapValid(DayMap dayMap) {
