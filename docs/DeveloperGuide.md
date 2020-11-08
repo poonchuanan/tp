@@ -12,8 +12,7 @@ By: CS2113-T09-4    Since: October 2020   Licence: MIT
 
 **traKCAL** is a desktop application for managing and visualizing your calorie intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
 
-This guide will provide information on the design and implementation of **traKCAL**. It will help you get started on your journey of becoming a contributor to **traKCAL**. 
-This guide will also explain the various features available in **traKCAL**, to provide you with a better understanding of the current version of **traKCAL**
+This guide will provide information on the design and implementation of **traKCAL** to help you get started on your journey of becoming a contributor to **traKCAL**. This guide will also explain the various features available in **traKCAL**, to provide you with a better understanding of the current version of **traKCAL**
 
 <br>
 
