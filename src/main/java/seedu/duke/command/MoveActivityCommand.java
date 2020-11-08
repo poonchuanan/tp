@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import static seedu.duke.ui.ExceptionMessages.displayListNotFoundExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.print;
+//@@author chewyang
 
 /**
  * This command moves an activity from one index to another.
@@ -37,3 +38,4 @@ public class MoveActivityCommand extends Command {
 
     }
 }
+//@@author chewyang

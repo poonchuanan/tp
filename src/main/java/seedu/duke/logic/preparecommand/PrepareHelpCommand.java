@@ -3,6 +3,7 @@ package seedu.duke.logic.preparecommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.HelpCommand;
 
+//@@author e0425705
 /**
  * Prepares help command.
  */
@@ -12,7 +13,7 @@ public class PrepareHelpCommand extends PrepareCommand {
     }
 
     @Override
-    public Command prepareCommand() throws Exception {
+    public Command prepareCommand() {
         return new HelpCommand();
     }
 }
