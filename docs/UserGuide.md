@@ -1140,10 +1140,10 @@ No.        Date                Type                                Description  
 
 ```
 
-### 7.1.2 Possible errors when finding entries via keyword
+### 7.1.1 Possible errors when finding entries via keyword
 
-#### Wrong find command tag
-If the command tag is not *d, c, a* or *e*, an error would occur
+#### Wrong find command tag/format
+If the command tag is not *d* or *c*, an error would occur
 > the following would be printed out if you input `find p/ KEYWORD`
 
 ```
@@ -1160,19 +1160,19 @@ The input format for finding (either)
 Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
-#### Wrong find command tag
+#### Empty keyword input
 If the **KEYWORD** to search for is empty, an error would occur
 > the following would be printed out if you input `find d/`
 
 ```
-No results were found!
+Keyword cannot be empty!
 ```
 <br>
 
 ### 7.2 Finding entries via keywords - advanced
 
 Format for find by all descriptions: `find a/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
-> This command will search of entries matching ALL description keywords typed. There is no limit to the number of descriptions allowed.
+> This command will search of entries matching ALL description keywords you have typed. There is no limit to the number of descriptions allowed.
 
 Parameters:
 * `**DESCRIPTION1**`: Keyword to look for from calorie list.
@@ -1189,7 +1189,7 @@ No.        Date                Type                                Description  
 ```
 
 Format for find by just one matching description: `find e/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
-> As long as just one of the description keywords matches in the entry, the activity will be listed. There is no limit to the number of descriptions allowed.
+> As long as just one of your description keywords matches in the entry, the activity will be listed. There is no limit to the number of descriptions allowed.
 
 Parameters:
 * `**DESCRIPTION1**`: Keyword to look for from calorie list.
@@ -1207,8 +1207,30 @@ No.        Date                Type                                Description  
 
 ### 7.2.1 Possible error messages when finding entries - advanced
 
-```
+#### Wrong find command tag/format
+If the command tag is not *a* or *e*, an error would occur
+> the following would be printed out if you input `find j/ KEYWORD`
 
+```
+====================================================================================
+I do not understand what you mean!
+The input format for finding food or exercise activity
+	via keyword is 'find d/ DESCRIPTION' - where keyword is DESCRIPTION
+The input format for finding calorie count
+	via keyword is 'find c/ CALORIE_COUNT' - where calories count is CALORIE_COUNT
+The input format for finding (all)
+	 is 'find a/ KEYWORD1 / KEYWORD2...' - where KEYWORDS are all the words that matches the search result
+The input format for finding (either)
+	 is 'find e/ KEYWORD1 / KEYWORD2...' - where just one KEYWORD has to match the search result
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+#### Empty keyword input
+If the **KEYWORD** to search for is empty, an error would occur
+> the following would be printed out if you input `find e/`
+
+```
+Keyword cannot be empty!
 ```
 
 <br>

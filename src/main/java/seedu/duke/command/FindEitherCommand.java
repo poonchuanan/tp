@@ -33,7 +33,7 @@ public class FindEitherCommand extends Command {
         } catch (KeywordNotFoundException e) {
             System.out.println("No results were found!");
         } catch (EmptyDescriptionException e) {
-            System.out.println("No results were found!");
+            System.out.println("Keyword cannot be empty!");
         }
     }
 }

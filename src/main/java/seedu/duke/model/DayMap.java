@@ -249,7 +249,7 @@ public class DayMap {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
-        if (userInput.trim().equals("")) {
+        if (userInput.substring(2).trim().equals("")) {
             throw new EmptyDescriptionException();
         }
         while (it.hasNext()) {
@@ -286,7 +286,7 @@ public class DayMap {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
-        if (userInput.trim().equals("")) {
+        if (userInput.substring(2).trim().equals("")) {
             throw new EmptyDescriptionException();
         }
         while (it.hasNext()) {
