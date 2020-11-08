@@ -10,14 +10,21 @@ import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
  * Prepares bye command.
  */
 public class PrepareByeCommand extends PrepareCommand {
+    protected static final int ARGUMENT_LIMIT = 1;
+
     public PrepareByeCommand(String[] description) {
         super(description);
     }
 
+    /**
+     * Checks validity of bye command.
+     *
+     * @return byecommand
+     */
     @Override
-    public Command prepareCommand() throws Exception {
+    public Command prepareCommand() {
         try {
-            isNumberOfArgumentsValid(1);
+            isNumberOfArgumentsValid(ARGUMENT_LIMIT);
             return new ByeCommand();
         } catch (InvalidNumberOfArguments e) {
             displayExcessNumberOfArguments();

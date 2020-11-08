@@ -19,7 +19,6 @@ public class UserInfoStorage {
 
     /**
      * Create text file is present, if not create a new run.
-     *
      */
     public static ArrayList<String> update() {
         if (Files.exists(Path.of(PATH))) {
@@ -51,7 +50,6 @@ public class UserInfoStorage {
 
     /**
      * Creates a new text file for user profile.
-     *
      */
     private static void createDataFile() throws IOException {
         File file = new File(UserInfoStorage.PATH);
@@ -65,7 +63,6 @@ public class UserInfoStorage {
 
     /**
      * Writes user profile to text profile.
-     *
      */
     public void save(String test) throws IOException {
         String[] parts = test.split(",");

@@ -13,6 +13,7 @@ import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
  * Prepares graph command.
  */
 public class PrepareGraphCommand extends PrepareCommand {
+    protected static final int ARGUMENT_LIMIT = 1;
 
     public PrepareGraphCommand(String[] description) {
         super(description);
@@ -24,9 +25,9 @@ public class PrepareGraphCommand extends PrepareCommand {
      * @return graphCommand
      * @throws Exception if no records are found
      */
-    public Command prepareCommand() throws Exception {
+    public Command prepareCommand() {
         try {
-            isNumberOfArgumentsValid(1);
+            isNumberOfArgumentsValid(ARGUMENT_LIMIT);
             isListEmpty();
             return new GraphCommand();
         } catch (InvalidNumberOfArguments e) {
@@ -37,6 +38,12 @@ public class PrepareGraphCommand extends PrepareCommand {
         return null;
     }
 
+    /**
+     * Checks if the list is empty.
+     *
+     * @return false if list is not empty
+     * @throws ListNotFoundException if list is empty or not found.
+     */
     public boolean isListEmpty() throws ListNotFoundException {
         if (Trakcal.calList.getHashMap().size() == 0) {
             throw new ListNotFoundException();

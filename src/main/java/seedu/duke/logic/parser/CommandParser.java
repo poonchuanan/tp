@@ -26,6 +26,20 @@ import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExcep
  */
 public class CommandParser extends Parser {
     public static final String SPACE = " ";
+    public static final int SPLIT_LIMIT = 2;
+
+    private static final String USER_COMMAND = "user";
+    private static final String CREATESET_COMMAND = "createset";
+    private static final String ADD_COMMAND = "add";
+    private static final String ADDSET_COMMAND = "addset";
+    private static final String FIND_COMMAND = "find";
+    private static final String EDITA_COMMAND = "edit";
+    private static final String DELETE_COMMAND = "delete";
+    private static final String LIST_COMMAND = "list";
+    private static final String HELP_COMMAND = "help";
+    private static final String MOVE_COMMAND = "move";
+    private static final String BYE_COMMAND = "bye";
+    private static final String GRAPH_COMMAND = "graph";
 
 
     /**
@@ -45,40 +59,38 @@ public class CommandParser extends Parser {
     @Override
     public Command parseArgument() {
         this.userInput = checkExtraSpaces();
-        String[] arguments = userInput.split(SPACE, 2);
+        String[] arguments = userInput.split(SPACE, SPLIT_LIMIT);
         try {
             switch (arguments[0].toLowerCase()) {
-            case "user":
+            case USER_COMMAND:
                 return new PrepareUserCommand(arguments).prepareCommand();
-            case "createset":
+            case CREATESET_COMMAND:
                 return new CreateNewSet(arguments[1]);
-            case "add":
+            case ADD_COMMAND:
                 return new PrepareAddCommand(arguments).prepareCommand();
-            case "addset":
+            case ADDSET_COMMAND:
                 return new PrepareAddSetCommand(arguments).prepareCommand();
-            case "find":
+            case FIND_COMMAND:
                 return new PrepareFindCommand(arguments).prepareCommand();
-            case "edita":
+            case EDITA_COMMAND:
                 return new PrepareEditCommand(arguments).prepareCommand();
-            case "delete":
+            case DELETE_COMMAND:
                 return new PrepareDeleteCommand(arguments).prepareCommand();
-            case "list":
+            case LIST_COMMAND:
                 return new PrepareListCommand(arguments).prepareCommand();
-            case "help":
+            case HELP_COMMAND:
                 return new PrepareHelpCommand(arguments).prepareCommand();
-            case "move":
+            case MOVE_COMMAND:
                 return new PrepareMoveIndexCommand(arguments).prepareCommand();
-            case "bye":
+            case BYE_COMMAND:
                 return new PrepareByeCommand(arguments).prepareCommand();
-            case "graph":
+            case GRAPH_COMMAND:
                 return new PrepareGraphCommand(arguments).prepareCommand();
             default:
                 return new InvalidCommand(displayInvalidInputErrorMessage());
             }
         } catch (StringIndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
-        } catch (IOException e) {
-            displayIoExceptionMessage();
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }

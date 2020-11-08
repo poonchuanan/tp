@@ -11,14 +11,27 @@ import java.util.NoSuchElementException;
 
 import static seedu.duke.ui.ExceptionMessages.print;
 
+/**
+ * Prepares Delete All Command.
+ */
 public class PrepareDeleteAll extends PrepareDeleteCommand {
     DayMap dayMap;
 
+    /**
+     * Initializes PrepareDeleteAll command.
+     *
+     * @param description list of descripition parsed from parser.
+     */
     public PrepareDeleteAll(String[] description) {
         super(description);
         this.dayMap = Trakcal.calList;
     }
 
+    /**
+     * Checks for validity of deleteAll description.
+     *
+     * @return DeleteAllCommand
+     */
     @Override
     public Command prepareCommand() {
         try {
@@ -38,6 +51,7 @@ public class PrepareDeleteAll extends PrepareDeleteCommand {
      * Gets input from the user to confirm the delete command.
      *
      * @return true if the user says yes
+     * @throws NoSuchElementException if user inputs ctrl-c.
      */
     public boolean isDeleteConfirmed() throws NoSuchElementException {
         System.out.println("Are you sure you want to delete all activities in today's list? [yes/no]");
@@ -53,6 +67,11 @@ public class PrepareDeleteAll extends PrepareDeleteCommand {
 
     }
 
+    /**
+     * Checks if the list if empty.
+     *
+     * @throws ListNotFoundException List is empty or not found.
+     */
     private void checkList() throws ListNotFoundException {
         if (dayMap.getActivityList(LocalDate.now().atStartOfDay()).getNumberOfActivities() == 0) {
             throw new ListNotFoundException();

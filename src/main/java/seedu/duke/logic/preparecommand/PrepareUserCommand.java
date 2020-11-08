@@ -6,6 +6,9 @@ import seedu.duke.exception.InvalidNumberOfArguments;
 
 import static seedu.duke.ui.ExceptionMessages.displayShortageOfArguments;
 
+/**
+ * Prepares user command.
+ */
 public class PrepareUserCommand extends PrepareCommand {
     private static final int ARGUMENT_LIMIT = 2;
 
@@ -13,6 +16,11 @@ public class PrepareUserCommand extends PrepareCommand {
         super(description);
     }
 
+    /**
+     * Check validity for user commands.
+     *
+     * @return command depending on the description.
+     */
     @Override
     public Command prepareCommand() {
         try {
