@@ -98,11 +98,11 @@ public class UserSetStorage {
                     System.out.println("You have created a shortcut containing:");
                 }
 
-                if (s.startsWith(FOOD_TAG)) {
-                    System.out.println(index + ". " + "Food: " + s.substring(2,s.indexOf(CALORIE_TAG) - 1)
+                if (s.indexOf(FOOD_TAG) == 1) {
+                    System.out.println(index + ". " + "Food: " + description
                             + ", Calories: " + calories);
-                } else if (s.startsWith(EXERCISE_TAG)) {
-                    System.out.println(index + ". " + "Exercise: " + s.substring(2,s.indexOf(CALORIE_TAG) - 1)
+                } else if (s.indexOf(EXERCISE_TAG) == 1) {
+                    System.out.println(index + ". " + "Exercise: " + description
                             + ", Calories: " + calories);
                 }
 

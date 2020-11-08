@@ -146,33 +146,17 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints out error message when attributes input by user is empty.
-     */
-    public static void displayEmptyEditActivityErrorMessage() {
-        print("Sorry! There is missing input!");
-    }
-
-    /**
-     * Prints message when there is a presence of a duplicated naming for file.
-     */
-    public static void displayExistingFileMessage() {
-        print("Sorry! There is an existing set with this name, please use another name!");
-    }
-
-    /**
      * Prints out error message when invalid gender input.
      */
     public static void displayInvalidGenderMessage() {
-        print("Please input female or male as gender only!");
-        System.out.println();
+        print("Sorry this is an invalid gender format! Please input gender as female or male only!");
     }
 
     /**
      * Prints out error message when invalid weight goal input.
      */
     public static void displayInvalidWeightGoalMessage() {
-        print("Please input lose or maintain or gain as weight goal only!");
-        System.out.println();
+        print("Please input lose/maintain/gain as weight goal only!");
     }
 
     /**
@@ -195,7 +179,7 @@ public class ExceptionMessages {
      * Prints out error message when invalid age input.
      */
     public static void displayInvalidAgeMessage() {
-        print("Please enter a valid age!");
+        print("Please enter a valid age format!");
         System.out.println();
     }
 
@@ -334,7 +318,7 @@ public class ExceptionMessages {
      * Prints message when string entered is empty.
      */
     public static void displayEmptyStringMessage() {
-        System.out.println("Please do not enter an empty input");
+        print("Please do not enter an empty input");
     }
 
     public static void displayInvalidEditedUserProfileMessage() {

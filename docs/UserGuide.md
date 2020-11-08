@@ -45,7 +45,7 @@ This section gives the steps you need to get started quickly.
 ```
    * Tip: 
      Increase your windows length if the greeting message appears congested like this:
-     ![Congested opening message](diagrams/openingMessageError.png | width=150)
+     ![Congested opening message](diagrams/openingMessageError.png)
 
 6. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window
 
@@ -68,7 +68,7 @@ This section gives you a detailed description of each feature available in **tra
 >* Inputs that look like `<THIS>` are optional parameters and do not need to be supplied by user if not needed.  
 >* Input format should adhere to the one in the help list or in this user guide.
 >* All features such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
->* An :exclamation: emoticon denotes possible errors and possible mistakes
+>* An :exclamation: emoticon denotes a possible error
 
 <br>
 <br>
@@ -176,30 +176,7 @@ bye                    - Terminates the application
 
 ## 2.0 User Profiling
 
-### 2.1.1 View current user profile
-
-Do you want to see you own profile? 
-
-Format: `user l/`
-
-Example of usage:
-* `user l/`
-
-```
-Here is your user profile:
-Name : Sam
-Gender : female
-Weight : 50
-Height : 100 
-Age : 10
-Activity Level : 4
-Weight Goal : gain
-```
-
-<br>
-<br>
-
-### 2.2.1 Creating a new user profile
+### 2.1 Creating a new user profile
 
 If this is your first time using **traKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command.
 **traKCAL** will then use these details from your user profile to calculate the following: 
@@ -208,36 +185,39 @@ If this is your first time using **traKCAL**, you will be automatically prompted
 * Recommended daily calorie
 * Calorie goal to reach weight goal
 
-> Want to create a completely new profile? You have to use this command!
-> words in output window that look like the following are inputs by user
-
-```
-**this**
-```
-
-> where this is the input by user
-
-Format: `user c/`
-
 Example of usage:
 * `user c/`
 
 ```
 Hey there! We do not have a record of your profile. Please create one now! :)
 
+====================================================================================
 What is your name?
+====================================================================================
 **Sam**
+====================================================================================
 What is your gender (male/female)?
+====================================================================================
 **female**
+====================================================================================
 What is your weight in kg?
+====================================================================================
 **50**
+====================================================================================
 What is your height in cm?
+====================================================================================
 **100**
+====================================================================================
 What is your age?
+====================================================================================
 **10**
+====================================================================================
 How active are you on a scale of 1-5? With 1 being least active and 5 being most active.
+====================================================================================
 **4**
-Do you want to lose/maintain/gain weight?
+====================================================================================
+Do you wish to lose/maintain/gain weight?
+====================================================================================
 **gain**
 
 Your BMI is 50.0
@@ -245,72 +225,83 @@ Your recommend daily calories intake is 1576.65 calories.
 To gain weight, you should consume 2076.65 calories instead.
 ```
 
-### 2.2.2 Possible errors when creating new profile
+### 2.1.1 Possible errors when creating a new user profile
 
-Tips: 
-* There is no restriction on the type of name you can supply.  `X Æ A-Xii` and `Tammy` will both be accepted.
-* Please input you gender as female or male only. If not the following error message will be shown.
+:exclamation: There is no restriction on the type of name you can supply.  `X Æ A-Xii` and `Tammy` will both be accepted.
+:exclamation: Please input you gender as female or male only. If not the following error message will be shown.
   * ```
     =====================================================================================================
-    Please input female or male as gender only!
+    Sorry this is an invalid gender format! Please input gender as female or male only!
     =====================================================================================================
     ```
     
-* Please input your weight as a number between 20 to 650kg. If not, the following error messages will be shown. 
+:exclamation: Please input a reasonable weight between 30 to 650kg. Otherwise, the following error message might be shown. 
+  * ```
+    =====================================================================================================
+    Please enter a weight range from 30kg to 650kg
+    =====================================================================================================
+    ```
+
+:exclamation: Please input your weight as a number and not as text. Otherwise, the following error message might be shown.
   * ```
     =====================================================================================================
     Please enter a valid weight format!
     =====================================================================================================
     ```
+    
+:exclamation: Please input a reasonable weight between 90 to 300cm. Otherwise, the following error messages might be shown. 
   * ```
     =====================================================================================================
-    Please enter a weight range from 20kg to 650kg
+    Please enter a height range from 90cm to 300cm
     =====================================================================================================
     ```
     
-* Please input your height as a number between 10 to 300cm. If not, the following error message will be shown. 
+:exclamation: Please input your height as a number and not as text. Otherwise, the following error message might be shown.
   * ```
     =====================================================================================================
     Please enter a valid height format!
     =====================================================================================================
     ```
+    
+:exclamation: Please input a reasonable age between 1 to 120 years old. Otherwise, the following error message might be shown. 
   * ```
     =====================================================================================================
-    Please enter a height range from 10cm to 300cm
+    Please enter an age range from 1 to 120 years old
     =====================================================================================================
     ```
     
-* Please input your age as an integer between 1 to 120 years old. If not, the following error message will be shown. 
-  * ```
-    =====================================================================================================
-    Please enter a valid age!
-    =====================================================================================================
-    ```
+:exclamation: Please input your age as a number and not as text. Otherwise, the following error message might be shown.
   * ```
       =====================================================================================================
-      Please enter an age range from 1 to 120 years old
+      Please enter a valid age format!
       =====================================================================================================
     ```
     
-* Please input your activity level as an integer between 1 to 5. If not, the following error message will be shown. 
+:exclamation: Please input your activity level as an integer between 1 to 5. Otherwise, the following error message will be shown. 
   * ```
     =====================================================================================================
-    Please integer for activity level only!
+    Sorry this is an invalid activity factor!
+    Please enter an integer from 1 to 5, with 1 being the least
+    active and 5 being the most active
     =====================================================================================================
-    ```
-  * ```
-      =====================================================================================================
-      Please enter an age range from 1 to 5
-      =====================================================================================================
     ```
     
-* Please input lose, maintain or gain as weight goal only. If not, the following error message will be shown. 
+:exclamation: Please input lose, maintain or gain as weight goal only. If not, the following error message will be shown. 
   * ```
     =====================================================================================================
     Please input lsoe/maintain/gain as weight goal only!
     =====================================================================================================
     ```
-### 2.3.1 Editing user profile
+    
+:exclamation: Please do not enter an empty input. Otherwise, the following error message will be shown. 
+  * ```
+    =====================================================================================================
+    Please do not enter an empty input
+    =====================================================================================================
+    ```     
+<br>
+
+### 2.2 Editing user profile
 
 Edits user profile of an existing user.
 
@@ -329,24 +320,38 @@ Example of usage:
 * `user e/ n/ Tom,w/ 90`
 
 ```
-====================================================================================
-Your name has been updated to 
-====================================================================================
- Tom.
+Your name has been updated to Tom.
 
-====================================================================================
-Your weight has been updated to 
-====================================================================================
- 90kg.
+Your weight has been updated to 90kg.
 ```
 
-Tip:
-* The parameters should conform to the same style used in `create new user`. Explanations to possible error messages can be found [here](#221-creating-a-new-user-profile).
+### 2.2.1 Possible errors when editing a user profile
 
-### 2.3.2 Possible errors when editing user profile
+:exclamation: Please do not enter an empty input. Otherwise, the following error message will be shown. 
+  * ```
+    =====================================================================================================
+    Please do not enter an empty input
+    =====================================================================================================
+    ```     
+
+<br>
+
+### 2.3 View current user profile
+
+Lists the user profile of an existing user.
+
+Example of usage:
+* `user l/`
 
 ```
-
+Here is your user profile:
+Name : Sam
+Gender : female
+Weight : 50
+Height : 100 
+Age : 10
+Activity Level : 4
+Weight Goal : gain
 ```
 
 <br>
@@ -354,11 +359,12 @@ Tip:
 
 ## 3.0 Shortcut
 
-### 3.1.1 Creating a shortcut for a set of entries 
+### 3.1 Creating a shortcut for a set of entries 
 
-This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add in multiple common entries. 
+This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add multiple common entries. 
 
-Format: *not extensive, there is a lot of combinations available*
+Format: `createSet **SHORTCUT_NAME** ...`
+:exclamation: there must be at least 1 food or exercise entry to create a shortcut
 
 Examples of the format accepted:
 >`createSet **SHORTCUT_NAME** f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** + f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT**`
@@ -383,16 +389,32 @@ You have created a shortcut containing:
 =====================================================================================================
 ```
 
-### 3.1.2 Possible errors when creating shortcut
+### 3.1.1 Possible errors when creating shortcut
+
+#### Missing keywords
+* If a shortcut name is not specified (eg `createSet f/fish c/100`), the following error message will be shown
 
 ```
+====================================================================================
+You did not specify a short cut name in your createSet command.
+As such, no shortcut was created. Please try again!
+====================================================================================
+```
 
+* If the descriptions for activity or calorie is empty (eg `createSet fishy lunch f/fish c/`), the following error message will be shown
+```
+====================================================================================
+This shortcut has an empty description or calorie tag or both.
+====================================================================================
+====================================================================================
+This short cut was not been successfully created as there was an error in your input.
+Please try again!
+====================================================================================
 ```
 
 <br>
-<br>
 
-### 3.2.1 Adding a set of entries
+### 3.2 Adding a set of entries
 
 Adds a set of repeated entries at once.
 
@@ -414,6 +436,12 @@ The current activity list has been saved.
 [E] | jumping jacks | 100
 The current activity list has been saved.
 =====================================================================================================
+```
+
+### 3.2.1 Possible errors when creating shortcut
+
+```
+
 ```
 
 <br>
@@ -514,7 +542,12 @@ No.        Type                        Description                        Calori
 3          Food           banana cake_______________________________________________70
 ```
 
-<br>
+### 4.1.1 Possible errors when adding a food entry
+
+```
+
+```
+
 <br>
 
 ### 4.2 Adding an exercise entry
@@ -626,7 +659,7 @@ No.        Type                        Description                        Calori
 5        Exercise         brisk walking_____________________________________________20
 ```
 
-### 4.3 Possible errors when adding
+### 4.2.1 Possible errors when adding an exercise entry
 
 #### Missing tags
 If you have missing tags, such as missing calorie tag, an error would occur
@@ -642,7 +675,6 @@ Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
-<br>
 
 #### Activity date is before application launch date or after today's date
 If your entry is before 2020-10-14 or after today's date, an error would occur
@@ -659,8 +691,6 @@ Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
-<br>
-
 #### Calorie count exceeds acceptable range
 If your calorie count is <= 0 or > 3000, an error would occur
 > the following would be printed out if you input `add f/ jelly c/ -30`
@@ -676,7 +706,6 @@ Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
-<br>
 
 #### Description length exceeds acceptable range
 If the description you input has more than 40 characters, an error would occur
@@ -692,7 +721,6 @@ Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
-<br>
 
 #### Empty inputs will not be accepted
 If any of the parameters input by you is empty, an error would occur
@@ -762,13 +790,11 @@ No.        Type                        Description                        Calori
 6          Food           Biscuit___________________________________________________20
 ```
 
-### 5.2 Possible errors when listing
+### 5.1.1 Possible errors when listing
 
 #### Accessing a list with no entries
 If you are trying to access a list that does not have any entries <br>
 For example if there are no entries for 2020-10-31, the following error message will be shown: 
-
-<br>
 
 ```
 There is no data for 2020-10-31
@@ -776,8 +802,6 @@ There is no data for 2020-10-31
 
 #### Using an invalid date format for list **DATE**
 If the **DATE** format is not of YYYY-MM-DD, the following error message will be shown: 
-
-<br>
 
 ```
 ====================================================================================
@@ -920,7 +944,7 @@ No.        Type                        Description                        Calori
 5        Exercise         brisk walking_____________________________________________20
 ```
 
-### 6.2 Possible errors when editing
+### 6.1.1 Possible errors when editing
 
 #### Not calling list before editing
 If you try to edit activity before calling out the list you want to edit on, an error would occur
@@ -933,7 +957,6 @@ Please pull out the list for the day before editing on it!
 ====================================================================================
 ```
 
-<br>
 
 #### Calorie count exceeds acceptable range
 If your calorie count is <= 0 or > 3000, an error would occur
@@ -950,7 +973,6 @@ Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
-<br>
 
 #### Description length exceeds acceptable range
 If the description you input has more than 40 characters, an error would occur
@@ -966,7 +988,6 @@ Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
-<br>
 
 #### Empty inputs will not be accepted
 If any of the parameters input by you is empty, an error would occur
@@ -988,8 +1009,7 @@ Please input 'help' for the commands and their respective input format.
 
 ## 7.0 Find
 
-### 7.1.1 Finding entries via keyword
-
+### 7.1 Finding entries via keyword
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
 >Additionally, you can use the advanced find commands to find all matching keywords or just one matching keyword.
@@ -1033,9 +1053,8 @@ No.        Date                Type                                Description  
 ```
 
 <br>
-<br>
 
-### 7.2.1 Finding entries via keywords - advanced
+### 7.2 Finding entries via keywords - advanced
 
 Format for find by all descriptions: `find a/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 > This command will search of entries matching ALL description keywords typed. There is no limit to the number of descriptions allowed.
@@ -1071,7 +1090,7 @@ No.        Date                Type                                Description  
 1        2020-10-11          Exercise              running at stadium for 10km at 5pm evening_________________100
 ```
 
-### 7.2.2 Possible error messages when finding entries - advanced
+### 7.2.1 Possible error messages when finding entries - advanced
 
 ```
 
@@ -1134,6 +1153,7 @@ No.        Type                        Description                        Calori
 ```
 
 ### 8.1.2 Possible errors when moving
+
 #### Missing keywords
 * If the appropriate keywords 'from/' and 'below/' are missing, the following error message will be shown
 
@@ -1158,6 +1178,7 @@ No.        Type                        Description                        Calori
 'below/' keyword is missing!
 ====================================================================================
 ```
+
 #### Invalid index used
 * If the index entered for the respective keywords are not of valid range, the following error message will be shown
 
@@ -1172,7 +1193,7 @@ The index entered is not within the range!Please do input 'help' for the command
 
 ## 9.0 Delete
 
-### 9.1.1 Deleting an entry in list
+### 9.1 Deleting an entry in list
 
 Deletes an entry via index in the last shown list.
 
@@ -1223,15 +1244,13 @@ No.        Type                        Description                        Calori
 
 ```
 
-### 9.1.2 Possible errors when deleting an entry in list
+### 9.1.1 Possible errors when deleting an entry in list
 
 ```
 
 ```
 
 <br>
-<br>
-
 
 ### 9.2.1 Deleting all entries in list
 
@@ -1267,7 +1286,7 @@ The current activity list has been saved.
 Nothing was added!
 ```
 
-### 9.2.2 Possible errors when deleting all entries from  list
+### 9.2.2 Possible errors when deleting all entries from list
 
 ```
 
@@ -1278,7 +1297,7 @@ Nothing was added!
 
 ## 10.0 Graph
 
-### 10.1.1 Showing past net calories
+### 10.1 Showing past net calories
 
 Shows a graph of target calorie and net calorie obtained upto last 7 days.
 
@@ -1306,7 +1325,7 @@ Example of usage:
 > `***` shows the target calories.
 > If less than 7 days are stored in storage file, all the days will be displayed
 
-### 10.1.2 Possible errors when graphing
+### 10.1.1 Possible errors when graphing
 
 ```
 
@@ -1317,7 +1336,7 @@ Example of usage:
 
 ## 11.0 Chaining
 
-### 11.1 Chaining of features - advanced
+### 11.1 Chaining of features
 
 Do you wish to save time individually typing in the features? Or do you want to type out all the commands you want at one go?
 Chaining is the right feature for your needs! 
@@ -1421,7 +1440,7 @@ The current activity list has been saved.
 ====================================================================================
 ```
 
-### 11.2 Possible errors when chaining
+### 11.1.1 Possible errors when chaining
 
 *The possible errors follows the errors for adding, listing and editing*
 Possible errors for adding: [errors for add](#43-possible-errors-when-adding)
@@ -1452,11 +1471,11 @@ Example of usage:
 # Frequently asked questions
 This section answers questions you may have.
 
-**Q**: How do you transfer your data to another computer? 
+**Q**: How do I transfer your data to another computer? 
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
 
-**Q**: How do you know if the data you have input is saved?
+**Q**: How do I know if the data you have input is saved?
 
 **A**: **traKCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
@@ -1464,9 +1483,9 @@ This section answers questions you may have.
 
 **A**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
 
-**Q**: How do you contact us if you have doubts or have issues to raise?
+**Q**: How do I contact us if I have doubts or have issues to raise?
 
-**A**: We can be reached either via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
+**A**: You can reach us via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
 
 
 <br>

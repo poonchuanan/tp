@@ -462,7 +462,7 @@ public class UserProfile {
     }
 
     public static void checkEmptyInput(String userInput) throws EmptyDescriptionException {
-        if (userInput.equals(" ") || userInput.equals("")) {
+        if (userInput.equals(" ") || userInput.equals("") || userInput.isEmpty() || userInput.isBlank()) {
             throw new EmptyDescriptionException();
         }
     }
@@ -514,12 +514,16 @@ public class UserProfile {
 
         for (int i = 0; i < 7; i++) {
             try {
-                if (!previousInput.get(i).isEmpty()) {
+                if (!previousInput.get(i).isEmpty() && !previousInput.get(i).isBlank()) {
                     data[i] = previousInput.get(i);
                 } else {
                     throw new NullPointerException();
                 }
             } catch (IndexOutOfBoundsException e) {
+                displayInvalidEditedUserProfileMessage();
+                createNewProfile();
+                return null;
+            } catch (NullPointerException e) {
                 displayInvalidEditedUserProfileMessage();
                 createNewProfile();
                 return null;
