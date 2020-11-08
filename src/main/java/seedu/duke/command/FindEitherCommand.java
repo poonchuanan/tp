@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.model.FindDrawer;
 import seedu.duke.exception.KeywordNotFoundException;
 
@@ -29,6 +30,8 @@ public class FindEitherCommand extends Command {
             dayMap.listActivitiesContainingEither(userInput);
             dayMap.drawListAfterFindCommand();
         } catch (KeywordNotFoundException e) {
+            System.out.println("No results were found!");
+        } catch (EmptyDescriptionException e) {
             System.out.println("No results were found!");
         }
     }

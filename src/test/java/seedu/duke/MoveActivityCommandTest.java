@@ -14,6 +14,7 @@ import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author chewyang
 public class MoveActivityCommandTest {
 
     LocalDate date = LocalDate.of(2020, Month.AUGUST, 9);
