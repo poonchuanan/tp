@@ -175,7 +175,7 @@ bye                    - Terminates the application
 <br>
 <br>
 
-## 2.0 User Profile - Jenny
+## 2.0 User Profile - Jenny Lin
 
 ### 2.1 Creating a new user profile
 
@@ -386,7 +386,6 @@ Weight Goal : gain
 This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add multiple common entries. 
 
 Format: `createSet **SHORTCUT_NAME** ...`
-:exclamation: there must be at least 1 food or exercise entry to create a shortcut
 
 Examples of the format accepted:
 >`createSet **SHORTCUT_NAME** f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** + f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT**`
