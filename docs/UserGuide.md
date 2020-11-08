@@ -1439,12 +1439,17 @@ No.        Type                        Description                        Calori
 ```
 
 ### 9.1.1 Possible errors when deleting an entry in list
-
+An error will occur if any of the conditions below are met. <br>
+The respective error message will also be shown to you.
+> Any text in this format is an example of a command that will produce the respective error.
+```
+Any text in this format is the error message that you will be shown.
+```
 #### Delete command has missing description
 
-If you have only entered `delete` without its **INDEX** parameter, the following error will be shown.
+* Entering `delete` without its **INDEX** parameter.
 
-* delete
+> `delete`
 ```
 ====================================================================================
 This command has missing description!
@@ -1453,12 +1458,9 @@ This command has missing description!
 
 ### Delete command has invalid description
 
-If delete command is followed by any other combinations of letters/symbols other than "all/",
-the following error will be shown.
+* Delete command is followed by any other combinations of letters/symbols other than "all/".
 
-
-
-* delete abc
+> `delete abc`
 ```
 ====================================================================================
 Index is not a number!
@@ -1468,17 +1470,14 @@ Please input 'help' for the commands and their respective input format.
 
 #### Deleting when index is not in range
 
-The following scenarios will result in the error message as shown below:
+The following scenarios will result in the same error message as shown below:
 
-Scenario 1:
-Index is negative number or 0.
-
-Scenario 2: 
-Index is bigger than the number of items in the list.
-
-Scenario 3:
-Attempting to delete an item on an empty list.
-In this case, any index will show the following error.
+* Index is negative number or 0.
+> `delete -1`
+* Index is bigger than the number of items in the list. For example, if a list contains only 5 entries, the following command will produce an error:
+> `delete 10`
+* Attempting to delete an item on an empty list.
+> `delete 2`
 
 ```
 ====================================================================================
@@ -1526,7 +1525,8 @@ There is no data for 2020-11-08
 
 ### 9.2.2 Possible errors when deleting all entries from list
 
-#### Deleting all on an empty list will result in the following error.
+#### Deleting all on an empty list
+* Performing `delete all/` on a list that does not have any entries. 
 ```
 ====================================================================================
 There is no index to remove!
@@ -1541,7 +1541,7 @@ Please input 'help' for the commands and their respective input format.
 
 ### 10.1 Showing past net calories
 
-Shows a graph of target calorie and net calorie obtained upto last 7 days.
+You can view a graphical representation of your recent net calories relative to your target calories for up to 7 days.
 
 Format: `graph`
 
