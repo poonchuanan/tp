@@ -335,7 +335,7 @@ public class ExceptionMessages {
     }
 
     /**
-     * Prints message when short cut of similar name already exists.
+     * Prints message when shortcut of similar name already exists.
      *
      */
     public static void displayExistingShortcutMessage() {
@@ -376,25 +376,25 @@ public class ExceptionMessages {
      */
     public static void displayIncompleteSetMessage() {
         drawDivider();
-        System.out.println("This short cut was not successfully created as there was an error in your input.");
+        System.out.println("This shortcut was not successfully created as there was an error in your input.");
         System.out.println("Please try again!");
         drawDivider();
         System.out.println();
     }
 
     /**
-     * Prints message when user did not specify short cut name.
+     * Prints message when user did not specify shortcut name.
      */
     public static void displayMissingFileNameMessage() {
         drawDivider();
-        System.out.println("You did not specify a short cut name in your createSet command.");
+        System.out.println("You did not specify a shortcut name in your createSet command.");
         System.out.println("As such, no shortcut was created. Please try again!");
         drawDivider();
         System.out.println();
     }
 
     /**
-     * Prints corrupted short cut message.
+     * Prints corrupted shortcut message.
      *
      */
     public static void displayCorruptedSetMessage() {
