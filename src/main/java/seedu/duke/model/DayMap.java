@@ -1,5 +1,6 @@
 package seedu.duke.model;
 
+import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.exception.KeywordNotFoundException;
 import seedu.duke.exception.ListNotFoundException;
 
@@ -166,11 +167,16 @@ public class DayMap {
      *
      * @param description is the keyword where the activity should contain
      * @throws KeywordNotFoundException when the keyword is not found in any activity
+     * @throws EmptyDescriptionException when search term is empty
      */
-    public void listActivitiesContainingDescription(String description) throws KeywordNotFoundException {
+    public void listActivitiesContainingDescription(String description)
+            throws KeywordNotFoundException, EmptyDescriptionException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
+        if (description.trim().equals("")) {
+            throw new EmptyDescriptionException();
+        }
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
             String date = pair.getKey().toString();
@@ -199,11 +205,16 @@ public class DayMap {
      *
      * @param calorie is the calorie to be matched
      * @throws KeywordNotFoundException when the keyword is not found in any activity
+     * @throws EmptyDescriptionException when search term is empty
      */
-    public void listActivitiesContainingCalorie(String calorie) throws KeywordNotFoundException {
+    public void listActivitiesContainingCalorie(String calorie)
+            throws KeywordNotFoundException, EmptyDescriptionException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
+        if (calorie.trim().equals("")) {
+            throw new EmptyDescriptionException();
+        }
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
             String date = pair.getKey().toString();
@@ -231,11 +242,16 @@ public class DayMap {
      *
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
+     * @throws EmptyDescriptionException when search term is empty
      */
-    public void listActivitiesContainingAll(String userInput) throws KeywordNotFoundException {
+    public void listActivitiesContainingAll(String userInput)
+            throws KeywordNotFoundException, EmptyDescriptionException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
+        if (userInput.trim().equals("")) {
+            throw new EmptyDescriptionException();
+        }
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
             String date = pair.getKey().toString();
@@ -263,11 +279,16 @@ public class DayMap {
      *
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
+     * @throws EmptyDescriptionException when search term is empty
      */
-    public void listActivitiesContainingEither(String userInput) throws KeywordNotFoundException {
+    public void listActivitiesContainingEither(String userInput)
+            throws KeywordNotFoundException, EmptyDescriptionException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
+        if (userInput.trim().equals("")) {
+            throw new EmptyDescriptionException();
+        }
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
             String date = pair.getKey().toString();
@@ -294,6 +315,7 @@ public class DayMap {
      * Checks if all keywords inputted by user is present in entry.
      *
      * @param currentLine current entry to be checked
+     * @param userInput String user typed into CLI
      * @return true if all words are present, false otherwise
      */
     private boolean checkAllWords(String currentLine, String userInput) {
@@ -311,6 +333,7 @@ public class DayMap {
      * Checks if one of the keywords inputted by user is present in entry.
      *
      * @param currentLine current entry to be checked
+     * @param userInput String user typed into CLI
      * @return  hasOneWord true if just one word is present, false otherwise
      */
     private boolean checkEitherWords(String currentLine, String userInput) {
