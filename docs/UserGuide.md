@@ -226,10 +226,15 @@ To gain weight, you should consume 2076.65 calories instead.
 ```
 
 ### 2.1.1 Possible errors when creating a new user profile
-
+An error will occur if any of the conditions below are met. <br>
+The respective error message will also be shown to you.
+> `Any text in this format is an example of a command that will produce the respective error.`
+```
+Any text in this format is the error message that you will be shown.
+```
 #### Empty descriptions
 
-* If any of the input to the questions are empty, the following error message will be shown
+* Empty input to any questions.
 
 ```
 =====================================================================================================
@@ -239,64 +244,64 @@ Please do not enter an empty input
 
 #### Invalid parameters
 
-* If gender is not specified as female or male only (eg `tree`), the following error message will be shown
-
+* Gender entered is not specified as female or male.
+> `tree`
 ```
 =====================================================================================================
 Sorry this is an invalid gender format! Please input gender as female or male only!
 =====================================================================================================
 ```
 
-* If weight is not between 30 to 650kg (eg `10000`), the following error message will be shown
-
+* Weight is not between 30 to 650kg. 
+> `1000`
 ```
 =====================================================================================================
 Please enter a weight range from 30kg to 650kg
 =====================================================================================================
 ```
 
-* If weight is not of a convertable type (eg. `thirty-three`), the following error message will be shown
-
+* Weight is not of a convertable type.
+> `thirty-three`
 ```
 =====================================================================================================
 Please enter a valid weight format!
 =====================================================================================================
 ```
 
-* If height is not between 90 to 300cm (eg `350`), the following error message will be shown
-
+* Height is not between 90 to 300cm.
+> `350`
 ```
 =====================================================================================================
 Please enter a height range from 90cm to 300cm
 =====================================================================================================
 ```
 
-* If height is not of a convertable type (eg. `one-hundred-meters`), the following error message will be shown
-
+* Height is not of a convertable type.
+> `one-hundred-meters`
 ```
 =====================================================================================================
 Please enter a valid height format!
 =====================================================================================================
 ```
 
-* If age is not between 1 to 120 years old (eg `200`), the following error message will be shown
-
+* Age is not between 1 to 120 years old.
+> `200`
 ```
 =====================================================================================================
 Please enter an age range from 1 to 120 years old
 =====================================================================================================
 ```
 
-* If age is not of a convertable type (eg. `two-hundred-years-old`), the following error message will be shown
-
+* If age is not of a convertable type.
+> `two-hundred-years-old`
 ```
 =====================================================================================================
 Please enter a valid age format!
 =====================================================================================================
 ```
     
-* If activity level is not between 1 and 5, the following error message will be shown
-
+* Activity level is not between 1 and 5.
+> `8`
 ```
 =====================================================================================================
 Sorry this is an invalid activity factor!
@@ -304,8 +309,8 @@ Please enter an integer from 1 to 5, with 1 being the least active and 5 being t
 =====================================================================================================
 ```
 
-* If weight goals is not specified as lose or maintain or gain only (eg `cut`), the following error message will be shown
-
+* Weight goals is not specified as lose or maintain or gain only.
+> `cut`
 ```
 =====================================================================================================
 Please input lsoe/maintain/gain as weight goal only!
@@ -314,7 +319,7 @@ Please input lsoe/maintain/gain as weight goal only!
 
 #### Corrupted user profile
 
-* If the user edits the text file containing the user profile to an unreadable format, the following error message will be shown in the subsequent run and the user will be directed to create a new user profile automatically
+* If the text file containing the user profile is of an unreadable format, the following error message will be shown in the subsequent run and the user will be directed to create a new user profile automatically
 
 ```
 ====================================================================================
@@ -411,11 +416,16 @@ You have created a shortcut containing:
 ```
 
 ### 3.1.1 Possible errors when creating shortcut
-
+An error will occur if any of the conditions below are met. <br>
+The respective error message will also be shown to you.
+> `Any text in this format is an example of a command that will produce the respective error.`
+```
+Any text in this format is the error message that you will be shown.
+```
 #### Missing keywords
 
-* If a shortcut name is not specified (eg `createSet f/fish c/100`), the following error message will be shown
-
+* Shortcut name is not specified.
+> `createSet f/fish c/100`
 ```
 ====================================================================================
 You did not specify a short cut name in your createSet command.
@@ -423,8 +433,8 @@ As such, no shortcut was created. Please try again!
 ====================================================================================
 ```
 
-* If the descriptions for activity or calorie is empty (eg `createSet fishy lunch f/fish c/`), the following error message will be shown
-
+* Descriptions for activity or calorie is empty.
+> `createSet fishy lunch f/fish c/`
 ```
 ====================================================================================
 This shortcut has an empty description or calorie tag or both.
@@ -435,8 +445,8 @@ Please try again!
 ====================================================================================
 ```
 
-* If there are no calorie and/or activity tag (eg `createSet healthy lunch` or `createSet healthy f/oatmeal`), the following error message will be shown
-
+*There are no calorie and/or activity tag.
+> `createSet healthy lunch` or `createSet healthy f/oatmeal`
 ```
 ====================================================================================
 You are missing an activity tag or calorie tag or both
@@ -448,15 +458,16 @@ Please try again!
 ```
 
 #### Invalid parameters
-* If a shortcut name given already exist, the following error message will be shown
+* Shortcut name given already exist within the database. For example if a set named `morning routine` already exists, the following command would produce the error:
+> createSet morning routine f/beans c/100000`
 
 ```
 ====================================================================================
 There is a shortcut with this name already. Please choose another name
 ====================================================================================
 ```
-* If a given calorie is not between 0 to 3000 kcal (eg `createSet dinner f/beans c/100000`), the following error message will be shown
-
+* Calorie entered is not between 0 to 3000 kcal.
+> `createSet dinner f/beans c/100000`
 ```
 ====================================================================================
 Please enter a valid calorie range.
@@ -466,8 +477,9 @@ This short cut was not successfully created as there was an error in your input.
 Please try again!
 ====================================================================================
 ```
- * If a given calorie is not of integer type or exceeds the threshold of integer conversion (eg `createSet dinner f/beans c/1000000000000000`, `createSet dinner f/beans c/test`), the following error message will be shown
- 
+ * Calorie is not of integer type or exceeds the threshold of integer conversion.
+ > `createSet dinner f/beans c/1000000000000000` or <br>
+ > `createSet dinner f/beans c/test`
  ```
 ====================================================================================
 Please enter calorie as integer.
@@ -511,8 +523,8 @@ The current activity list has been saved.
 
 #### Wrong keywords
 
-* If a shortcut has not been created yet, the following error message will be shown
-
+* Using a shortcut that has not been created yet. For example if a set named 'dinner' has not yet been created, the following command will produce an error:
+> `addset dinner`
 ```
 ====================================================================================
 This shortcut does not exists!
@@ -522,8 +534,8 @@ Please create a shortcut before adding it!
 
 #### Missing keywords 
 
-* If shortcut name was not specified (eg `addSet `), the following error message will be shown
-
+* Name of the set was not specified.
+> `addSet `
 ```
 Index 1 out of bounds for length 1
 ====================================================================================
@@ -894,7 +906,7 @@ Any text in this format is the error message that you will be shown.
 ```
 #### Accessing a list with no entries
 * For example if there are no entries for 2020-10-31, the following command will produce an error: 
-> list 2020-10-31
+> `list 2020-10-31`
 ```
 ====================================================================================
 List is empty!
@@ -903,7 +915,7 @@ List is empty!
 
 #### Using an invalid date format for list **DATE**
 * <DATE> format you entered is not of YYYY-MM-DD format.
-> list 2020/10/31
+> `list 2020/10/31`
 
 ```
 ====================================================================================
@@ -1331,7 +1343,7 @@ Any text in this format is the error message that you will be shown.
 
 #### Missing keywords
 * The appropriate keywords `from/` and `below/` are missing from your command.
-> move 1 2
+> `move 1 2`
 ```
 ====================================================================================
 'from/' and 'below/' keyword is missing!
@@ -1340,7 +1352,7 @@ Please do input 'help' for the commands and their respective input format.
 ```
 
 * Only the `from/` keyword is missing.
-> move 1 below/ 2
+> `move 1 below/ 2`
 
 ```
 ====================================================================================
@@ -1350,7 +1362,7 @@ Please do input 'help' for the commands and their respective input format.
 ```
 
 * Only the `below/` keyword is missing.
-> move from/ 1 below 2
+> `move from/ 1 below 2`
 ```
 ====================================================================================
 'below/' keyword is missing!
@@ -1361,7 +1373,7 @@ Please do input 'help' for the commands and their respective input format.
 #### Index of invalid range used
 * Any of the `**INDEX1**` or `**INDEX2**` paramters you entered for the respective keywords are not of valid range.
 * For example, a list with only 3 entries will result in an error if a command similar to the one below is entered:
-> move from/ 5 below/ 2
+> `move from/ 5 below/ 2`
 ```
 ====================================================================================
 The index entered is not within the range!
@@ -1372,7 +1384,7 @@ Please do input 'help' for the commands and their respective input format.
 #### Invalid index used
 * Any of the `**INDEX1` or `**INDEX2**` entered for the respective keywords are invalid.
 * For example if the user enters a character instead of a number similar to the example command below 
-> move from/ a below/ ~
+> `move from/ a below/ ~`
 ```
 ====================================================================================
 Index is not a number!
@@ -1441,12 +1453,17 @@ No.        Type                        Description                        Calori
 ```
 
 ### 9.1.1 Possible errors when deleting an entry in list
-
+An error will occur if any of the conditions below are met. <br>
+The respective error message will also be shown to you.
+> Any text in this format is an example of a command that will produce the respective error.
+```
+Any text in this format is the error message that you will be shown.
+```
 #### Delete command has missing description
 
-If you have only entered `delete` without its **INDEX** parameter, the following error will be shown.
+* Entering `delete` without its **INDEX** parameter.
 
-* delete
+> `delete`
 ```
 ====================================================================================
 This command has missing description!
@@ -1455,12 +1472,9 @@ This command has missing description!
 
 ### Delete command has invalid description
 
-If delete command is followed by any other combinations of letters/symbols other than "all/",
-the following error will be shown.
+* Delete command is followed by any other combinations of letters/symbols other than "all/".
 
-
-
-* delete abc
+> `delete abc`
 ```
 ====================================================================================
 Index is not a number!
@@ -1470,17 +1484,14 @@ Please input 'help' for the commands and their respective input format.
 
 #### Deleting when index is not in range
 
-The following scenarios will result in the error message as shown below:
+The following scenarios will result in the same error message as shown below:
 
-Scenario 1:
-Index is negative number or 0.
-
-Scenario 2: 
-Index is bigger than the number of items in the list.
-
-Scenario 3:
-Attempting to delete an item on an empty list.
-In this case, any index will show the following error.
+* Index is negative number or 0.
+> `delete -1`
+* Index is bigger than the number of items in the list. For example, if a list contains only 5 entries, the following command will produce an error:
+> `delete 10`
+* Attempting to delete an item on an empty list.
+> `delete 2`
 
 ```
 ====================================================================================
@@ -1528,7 +1539,8 @@ There is no data for 2020-11-08
 
 ### 9.2.2 Possible errors when deleting all entries from list
 
-#### Deleting all on an empty list will result in the following error.
+#### Deleting all on an empty list
+* Performing `delete all/` on a list that does not have any entries. 
 ```
 ====================================================================================
 There is no index to remove!
@@ -1543,7 +1555,7 @@ Please input 'help' for the commands and their respective input format.
 
 ### 10.1 Showing past net calories
 
-Shows a graph of target calorie and net calorie obtained upto last 7 days.
+You can view a graphical representation of your recent net calories relative to your target calories for up to 7 days.
 
 Format: `graph`
 
