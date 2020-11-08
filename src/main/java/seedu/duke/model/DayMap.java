@@ -164,6 +164,7 @@ public class DayMap {
      *
      * @param description is the keyword where the activity should contain
      * @throws KeywordNotFoundException when the keyword is not found in any activity
+     * @throws EmptyDescriptionException when search term is empty
      */
     public void listActivitiesContainingDescription(String description)
             throws KeywordNotFoundException, EmptyDescriptionException {
@@ -201,6 +202,7 @@ public class DayMap {
      *
      * @param calorie is the calorie to be matched
      * @throws KeywordNotFoundException when the keyword is not found in any activity
+     * @throws EmptyDescriptionException when search term is empty
      */
     public void listActivitiesContainingCalorie(String calorie)
             throws KeywordNotFoundException, EmptyDescriptionException {
@@ -237,6 +239,7 @@ public class DayMap {
      *
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
+     * @throws EmptyDescriptionException when search term is empty
      */
     public void listActivitiesContainingAll(String userInput)
             throws KeywordNotFoundException, EmptyDescriptionException {
@@ -273,6 +276,7 @@ public class DayMap {
      *
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
+     * @throws EmptyDescriptionException when search term is empty
      */
     public void listActivitiesContainingEither(String userInput)
             throws KeywordNotFoundException, EmptyDescriptionException {
@@ -308,6 +312,7 @@ public class DayMap {
      * Checks if all keywords inputted by user is present in entry.
      *
      * @param currentLine current entry to be checked
+     * @param userInput String user typed into CLI
      * @return true if all words are present, false otherwise
      */
     private boolean checkAllWords(String currentLine, String userInput) {
@@ -325,6 +330,7 @@ public class DayMap {
      * Checks if one of the keywords inputted by user is present in entry.
      *
      * @param currentLine current entry to be checked
+     * @param userInput String user typed into CLI
      * @return  hasOneWord true if just one word is present, false otherwise
      */
     private boolean checkEitherWords(String currentLine, String userInput) {
