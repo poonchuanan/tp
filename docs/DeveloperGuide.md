@@ -43,6 +43,7 @@ This guide will also explain the various features available in **traKCAL**, to p
 | Please do input 'help' for the commands and their respective input format.       |
 ====================================================================================
 ```
+7. You will then be prompted to create a new user profile.  
 
 <br>
 
