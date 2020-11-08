@@ -744,10 +744,20 @@ No.        Type                        Description                        Calori
 ```
 
 ### 4.3 Possible errors when adding an activity entry
+An error will occur if any of the conditions below are met. 
+
+<br>
+
+The respective error message will also be shown to you.
+> Any text in this format is an example of a command that will produce the respective error.
+
+```
+Any text in this format is the error message that you will be shown.
+```
 
 #### Missing tags
-If you have missing tags, such as missing calorie tag, an error would occur
-> the following would be printed out if you input `add f/ jelly 90 `
+For example, if you have missing tags, such as missing calorie tag, the following input will produce an error:
+> `add f/ jelly 90 `
 
 ```
 ====================================================================================
@@ -756,8 +766,8 @@ Calorie count tag[c/] is missing in your input!
 ```
 
 #### Activity date is before application launch date or after today's date
-If your entry is before 2020-10-14 or after today's date, an error would occur
-> the following would be printed out if you input `add f/ jelly c/ 90 d/ 2020-10-13`
+If your entry is before 2020-10-14 or after today's date, the following input will produce an error:
+> `add f/ jelly c/ 90 d/ 2020-10-13`
 
 ```
 ====================================================================================
@@ -767,8 +777,8 @@ Date input has to be from 2020-10-14 to current date!
 ```
 
 #### Calorie count exceeds acceptable range
-If your calorie count is <= 0 or > 3000, an error would occur
-> the following would be printed out if you input `add f/ jelly c/ -30`
+If your calorie count is <= 0 or > 3000, the following input will produce an error:
+> `add f/ jelly c/ -30`
 
 ```
 ====================================================================================
@@ -779,8 +789,8 @@ Please input a valid calorie count that is within the range!
 
 
 #### Description length exceeds acceptable range
-If the description you input has more than 40 characters, an error would occur
-> the following would be printed out if you input `add e/ jumping up and down in a merry round in Singapore c/ 80`
+If the description you input has more than 40 characters, the following input will produce an error:
+> `add e/ jumping up and down in a merry round in Singapore c/ 80`
 
 ```
 ====================================================================================
@@ -789,8 +799,8 @@ Maximum description length is 40 characters only!
 ```
 
 #### Empty inputs will not be accepted
-If any of the parameters input by you is empty, an error would occur
-> the following would be printed out if you input `add e/ c/ `
+If any of the parameters input by you is empty, the following input will produce an error:
+> `add e/ c/ `
 
 ```
 ====================================================================================
@@ -853,15 +863,21 @@ No.        Type                        Description                        Calori
 ```
 
 ### 5.1.1 Possible errors when listing
-An error will occur if any of the conditions below are met. <br>
+An error will occur if any of the conditions below are met. 
+
+<br>
+
 The respective error message will also be shown to you.
 > Any text in this format is an example of a command that will produce the respective error.
+
 ```
 Any text in this format is the error message that you will be shown.
 ```
+
 #### Accessing a list with no entries
 * For example if there are no entries for 2020-10-31, the following command will produce an error: 
 > list 2020-10-31
+
 ```
 ====================================================================================
 List is empty!
@@ -869,7 +885,7 @@ List is empty!
 ```
 
 #### Using an invalid date format for list **DATE**
-* <DATE> format you entered is not of YYYY-MM-DD format.
+* **DATE** format you entered is not of YYYY-MM-DD format.
 > list 2020/10/31
 
 ```
@@ -1015,9 +1031,20 @@ No.        Type                        Description                        Calori
 
 ### 6.1.1 Possible errors when editing
 
+An error will occur if any of the conditions below are met. 
+
+<br>
+
+The respective error message will also be shown to you.
+> Any text in this format is an example of a command that will produce the respective error.
+
+```
+Any text in this format is the error message that you will be shown.
+```
+
 #### Calorie count exceeds acceptable range
-If your calorie count is <= 0 or > 3000, an error would occur
-> the following would be printed out if you input `edita 1 f/ jelly c/ -30`
+If your calorie count is <= 0 or > 3000, the following input will produce an error:
+> `edita 1 f/ jelly c/ -30`
 
 ```
 ====================================================================================
@@ -1027,8 +1054,8 @@ Please input a valid calorie count that is within the range!
 ```
 
 #### Description length exceeds acceptable range
-If the description you input has more than 40 characters, an error would occur
-> the following would be printed out if you input `edita 2 e/ jumping up and down in a merry round in Singapore c/ 80`
+If the description you input has more than 40 characters, the following input will produce an error:
+> `edita 2 e/ jumping up and down in a merry round in Singapore c/ 80`
 
 ```
 ====================================================================================
@@ -1037,8 +1064,8 @@ Maximum description length is 40 characters only!
 ```
 
 #### Empty inputs will not be accepted
-If any of the parameters input by you is empty, an error would occur
-> the following would be printed out if you input `edita 3 e/ c/ `
+If any of the parameters input by you is empty, the following input will produce an error:
+> `edita 3 e/ c/ `
 
 ```
 ====================================================================================
@@ -1520,9 +1547,8 @@ Chaining is the right feature for your needs!
 
 > Do note
 >* Chaining is only available to 3 features
->* [list](#50-list), [add](#40-add---puah-siew-wen) and [edita](#61-editing-an-entry-in-list)
->* The respective things to adhere to for each feature still applies.
->* For example, [edita](#61-editing-an-entry-in-list), you MUST call out the list you want to edit on before editing on it.
+>* [list](#50-list---owen-chew-yang), [add](#40-add---puah-siew-wen), [edita](#60-edit---puah-siew-wen) and [graph](#100-graph).
+>* The respective formats to adhere to for each feature still applies.
 
 Format: *not extensive, there is a lot of combinations available*
         *commands just need to be separated by `&&`*
@@ -1532,6 +1558,7 @@ Examples of the possible format:
 >`add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
 >`edita INDEX e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
 >`list <**DATE**> && list <**DATE**> && list <**DATE**>`
+>`list <**DATE**> && graph`
 
 Examples of usage: 
 
@@ -1617,12 +1644,42 @@ The current activity list has been saved.
 ====================================================================================
 ```
 
+3rd example:
+
+* `list && graph`
+
+```
+-----------------------------------------
+|  2020-11-08  |  Net Calorie: 15 kcal  |
+-----------------------------------------
+No.        Type                        Description                        Calories gain or lost
+-----------------------------------------------------------------------------------------------
+1          Food           bun_______________________________________________________80
+
+2        Exercise         jumping___________________________________________________65
+
+2766|******************************************
+    |                                          
+    |                                          
+    |                                          
+    |                                          
+    |                                          
+    |                                          
+    |                                          
+    |                                          
+    ||-|                                       
+15  || |   |-|   |-|   |-|   |-|   |-|   |-|   
+    |-+-----+-----+-----+-----+-----+-----+--
+    02/11 03/11 04/11 05/11 06/11 07/11 08/11 
+```
+
 ### 11.1.1 Possible errors when chaining
 
-*The possible errors follows the errors for adding, listing and editing*
+*The possible errors follows the errors for adding, listing, editing and graphing*
 Possible errors for adding: [errors for add](#43-possible-errors-when-adding-an-activity-entry)
 Possible errors for listing: [errors for list](#511-possible-errors-when-listing)
 Possible errors for editing: [errors for edit](#611-possible-errors-when-editing)
+Possible errors for graphing: [errors for edit](#1011-possible-errors-when-graphing)
 
 <br>
 <br>
@@ -1663,9 +1720,6 @@ This section contains frequently asked questions.
 **Q**: How do I contact us if I have doubts or have issues to raise?
 
 **A**: You can reach us via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
-
-
-<br>
 
 # Command Summary
 
