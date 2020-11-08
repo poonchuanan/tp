@@ -1,4 +1,4 @@
-# Jenny Lin - Project Portfolio Page
+# Jenny Lin - Project Portfolio Page for traKCAL
 
 ## Overview
 * **traKCAL** is a desktop application for managing calorie intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). **traKCAL** can manage your activities faster than traditional GUI applications.
