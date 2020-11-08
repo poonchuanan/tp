@@ -15,6 +15,7 @@ public class InitialiseUserProfile {
     protected String activityLevel;
     protected String weightGoal;
     protected double calories;
+    private static final Integer DIFFERENCE_CALORIES = 500;
 
     public InitialiseUserProfile(String name, String gender, String weight, String height,
                                  String age, String activityLevel, String weightGoal) {
@@ -99,7 +100,7 @@ public class InitialiseUserProfile {
         return calories;
     }
 
-    private static DecimalFormat df2 = new DecimalFormat("#.00");
+    private static final DecimalFormat df2 = new DecimalFormat("#.00");
 
     /**
      * Calculates edited user bmi, recommended calories and actual calories needed.
@@ -133,11 +134,11 @@ public class InitialiseUserProfile {
         details += "Your recommend daily calories intake is " + df2.format(calories) + " calories." + "\n";
 
         if (this.getWeightGoal().equals("lose")) {
-            calories -= 500;
+            calories -= DIFFERENCE_CALORIES;
             details += "To " + this.getWeightGoal() + " weight, you should consume "
                     + df2.format(calories) + " calories instead.\n";
         } else if (this.getWeightGoal().equals("gain")) {
-            calories += 500;
+            calories += DIFFERENCE_CALORIES;
             details += "To " + this.getWeightGoal() + " weight, you should consume "
                     + df2.format(calories) + " calories instead.\n";
         }

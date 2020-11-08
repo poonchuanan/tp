@@ -46,7 +46,7 @@ public class Storage {
      *
      * @throws IOException if there is an issue
      */
-    private void createFileHierarchy() throws IOException {
+    protected void createFileHierarchy() throws IOException {
         if (dataFile.getParentFile().exists()) {
             if (dataFile.exists()) {
                 return;

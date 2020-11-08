@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.exception.EmptyDescriptionException;
+import seedu.duke.exception.FindSlashException;
 import seedu.duke.model.FindDrawer;
 import seedu.duke.exception.KeywordNotFoundException;
 
@@ -34,6 +35,11 @@ public class FindEitherCommand extends Command {
             System.out.println("No results were found!");
         } catch (EmptyDescriptionException e) {
             System.out.println("Keyword cannot be empty!");
+<<<<<<< HEAD
+=======
+        } catch (FindSlashException e) {
+            System.out.println("There are consecutive slashes in your input!");
+>>>>>>> master
         }
     }
 }

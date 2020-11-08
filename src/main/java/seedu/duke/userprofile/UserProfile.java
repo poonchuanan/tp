@@ -46,6 +46,26 @@ public class UserProfile {
     private static final Integer MAX_AGE = 120;
     private static final Integer MIN_AL = 1;
     private static final Integer MAX_AL = 5;
+    private static final String WHITE_SPACES = " ";
+    private static final String BLANKS = "";
+    private static final Integer NUM_PARAMETERS = 7;
+    private static final String COMMAND_SEPARATOR = ",";
+    private static final String NAME_TAG = "n/";
+    private static final String GENDER_TAG = "g/";
+    private static final String WEIGHT_TAG = "w/";
+    private static final String HEIGHT_TAG = "h/";
+    private static final String AGE_TAG = "age/";
+    private static final String ACTIVITY_LEVEL_TAG = "al/";
+    private static final String GOAL_TAG = "goal/";
+    private static final Integer NAME_INDEX = 0;
+    private static final Integer GENDER_INDEX = 1;
+    private static final Integer WEIGHT_INDEX = 2;
+    private static final Integer HEIGHT_INDEX = 3;
+    private static final Integer AGE_INDEX = 4;
+    private static final Integer ACTIVITY_LEVEL_INDEX = 5;
+    private static final Integer GOAL_INDEX = 6;
+
+
 
     /**
      * Reading user input.
@@ -99,27 +119,37 @@ public class UserProfile {
     public static void edit(String info) throws IOException {
         try {
             ArrayList<String> previous = UserInfoStorage.update();
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < NUM_PARAMETERS; i++) {
                 data[i] = previous.get(i);
             }
 
-            String[] arguments = info.split(",");
+            String[] arguments = info.split(COMMAND_SEPARATOR);
 
             for (String argument : arguments) {
-                if (argument.startsWith("n/")) {
-                    editName(argument.substring(2));
-                } else if (argument.startsWith("g/")) {
-                    editGender(argument.substring(2));
-                } else if (argument.startsWith("w/")) {
-                    editWeight(argument.substring(2));
-                } else if (argument.startsWith("h/")) {
-                    editHeight(argument.substring(2));
-                } else if (argument.startsWith("age/")) {
-                    editAge(argument.substring(4));
-                } else if (argument.startsWith("al/")) {
-                    editAl(argument.substring(3));
-                } else if (argument.startsWith("goal/")) {
-                    editGoal(argument.substring(5));
+                argument = removeWhiteSpaces(argument);
+                String description;
+
+                if (argument.startsWith(NAME_TAG)) {
+                    description = removeWhiteSpaces(argument.substring(2));
+                    editName(description);
+                } else if (argument.startsWith(GENDER_TAG)) {
+                    description = removeWhiteSpaces(argument.substring(2));
+                    editGender(description);
+                } else if (argument.startsWith(WEIGHT_TAG)) {
+                    description = removeWhiteSpaces(argument.substring(2));
+                    editWeight(description);
+                } else if (argument.startsWith(HEIGHT_TAG)) {
+                    description = removeWhiteSpaces(argument.substring(2));
+                    editHeight(description);
+                } else if (argument.startsWith(AGE_TAG)) {
+                    description = removeWhiteSpaces(argument.substring(4));
+                    editAge(description);
+                } else if (argument.startsWith(ACTIVITY_LEVEL_TAG)) {
+                    description = removeWhiteSpaces(argument.substring(3));
+                    editAl(description);
+                } else if (argument.startsWith(GOAL_TAG)) {
+                    description = removeWhiteSpaces(argument.substring(5));
+                    editGoal(description);
                 } else {
                     throw new InvalidEditedUserProfileException();
                 }
@@ -130,9 +160,26 @@ public class UserProfile {
         }
 
         InitialiseUserProfile profile =
-                new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
+                new InitialiseUserProfile(data[NAME_INDEX],data[GENDER_INDEX],data[WEIGHT_INDEX],data[HEIGHT_INDEX],
+                        data[AGE_INDEX],data[ACTIVITY_LEVEL_INDEX],data[GOAL_INDEX]);
         UserProfile.save(profile);
         profile.calculateEditedUserDetails();
+    }
+
+    /**
+     * Removes all white spaces before and after given description.
+     *
+     * @param description to have white spaces removed from
+     */
+    private static String removeWhiteSpaces(String description) {
+        while (description.startsWith(WHITE_SPACES)) {
+            description = description.substring(1);
+        }
+
+        while (description.endsWith(WHITE_SPACES)) {
+            description = description.substring(0, description.length() - 1);
+        }
+        return description;
     }
 
     /**
@@ -143,9 +190,9 @@ public class UserProfile {
     private static void editName(String name) {
         try {
             checkEmptyInput(name);
-            data[0] = name;
+            data[NAME_INDEX] = name;
             displayEditNameMessage();
-            System.out.println(data[0] + ".\n");
+            System.out.println(data[NAME_INDEX] + ".");
         } catch (EmptyDescriptionException e) {
             ExceptionMessages.displayEmptyStringMessage();
         }
@@ -160,9 +207,9 @@ public class UserProfile {
         try {
             checkEmptyInput(gender);
             checkGender(gender);
-            data[1] = gender;
+            data[GENDER_INDEX] = gender;
             displayEditGenderMessage();
-            System.out.println(data[1] + ".\n");
+            System.out.println(data[GENDER_INDEX] + ".");
 
         } catch (IllegalArgumentException e) {
             displayInvalidGenderMessage();
@@ -181,9 +228,9 @@ public class UserProfile {
             checkEmptyInput(weight);
             checkInputIsDouble(weight);
             checkWeightIsWithinRange(weight);
-            data[2] = weight;
+            data[WEIGHT_INDEX] = weight;
             displayEditWeightMessage();
-            System.out.println(data[2] + "kg.\n");
+            System.out.println(data[WEIGHT_INDEX] + "kg.");
 
         } catch (NumberFormatException e) {
             displayInvalidWeightMessage();
@@ -204,9 +251,9 @@ public class UserProfile {
             checkEmptyInput(height);
             checkInputIsDouble(height);
             checkHeightIsWithinRange(height);
-            data[3] = height;
+            data[HEIGHT_INDEX] = height;
             displayEditHeightMessage();
-            System.out.println(data[3] + "cm.\n");
+            System.out.println(data[HEIGHT_INDEX] + "cm.");
 
         } catch (NumberFormatException e) {
             displayInvalidHeightMessage();
@@ -227,9 +274,9 @@ public class UserProfile {
             checkEmptyInput(age);
             checkInputIsInt(age);
             checkAgeIsWithinRange(age);
-            data[4] = age;
+            data[AGE_INDEX] = age;
             displayEditAgeMessage();
-            System.out.println(data[4] + "years old.\n");
+            System.out.println(data[AGE_INDEX] + "years old.");
 
         } catch (NumberFormatException e) {
             displayInvalidAgeMessage();
@@ -250,9 +297,9 @@ public class UserProfile {
             checkEmptyInput(al);
             checkInputIsInt(al);
             checkAcLeIsWithinRange(al);
-            data[5] = al;
+            data[ACTIVITY_LEVEL_INDEX] = al;
             displayEditActivityLevelMessage();
-            System.out.println(data[5] + ".\n");
+            System.out.println(data[ACTIVITY_LEVEL_INDEX] + ".");
 
         } catch (NumberFormatException e) {
             displayInvalidActivityLevelMessage();
@@ -272,9 +319,9 @@ public class UserProfile {
         try {
             checkEmptyInput(goal);
             checkWeightGoal(goal);
-            data[6] = goal;
+            data[GOAL_INDEX] = goal;
             displayEditGoalMessage();
-            System.out.println(data[6] + ".\n");
+            System.out.println(data[GOAL_INDEX] + ".");
 
         } catch (IllegalArgumentException e) {
             displayInvalidWeightGoalMessage();
@@ -294,7 +341,7 @@ public class UserProfile {
         try {
             assert name != null;
             checkEmptyInput(name);
-            data[0] = name;
+            data[NAME_INDEX] = name;
         } catch (EmptyDescriptionException e) {
             ExceptionMessages.displayEmptyStringMessage();
             name();
@@ -322,7 +369,7 @@ public class UserProfile {
             assert gender != null;
             checkEmptyInput(gender);
             checkGender(gender);
-            data[1] = gender;
+            data[GENDER_INDEX] = gender;
 
         } catch (IllegalArgumentException e) {
             displayInvalidGenderMessage();
@@ -346,7 +393,7 @@ public class UserProfile {
             checkEmptyInput(weight);
             checkInputIsDouble(weight);
             checkWeightIsWithinRange(weight);
-            data[2] = weight;
+            data[WEIGHT_INDEX] = weight;
 
         } catch (NumberFormatException e) {
             displayInvalidWeightMessage();
@@ -372,7 +419,7 @@ public class UserProfile {
             checkEmptyInput(height);
             checkInputIsDouble(height);
             checkHeightIsWithinRange(height);
-            data[3] = height;
+            data[HEIGHT_INDEX] = height;
 
         } catch (NumberFormatException e) {
             displayInvalidHeightMessage();
@@ -398,7 +445,7 @@ public class UserProfile {
             checkEmptyInput(age);
             checkInputIsInt(age);
             checkAgeIsWithinRange(age);
-            data[4] = age;
+            data[AGE_INDEX] = age;
 
         } catch (NumberFormatException e) {
             displayInvalidAgeMessage();
@@ -424,7 +471,7 @@ public class UserProfile {
             checkEmptyInput(activityLevel);
             checkInputIsInt(activityLevel);
             checkAcLeIsWithinRange(activityLevel);
-            data[5] = activityLevel;
+            data[ACTIVITY_LEVEL_INDEX] = activityLevel;
 
         } catch (NumberFormatException e) {
             displayInvalidActivityLevelMessage();
@@ -458,7 +505,7 @@ public class UserProfile {
             assert weightGoal != null;
             checkEmptyInput(weightGoal);
             checkWeightGoal(weightGoal);
-            data[6] = weightGoal;
+            data[GOAL_INDEX] = weightGoal;
 
         } catch (IllegalArgumentException e) {
             displayInvalidWeightGoalMessage();
@@ -566,7 +613,7 @@ public class UserProfile {
      * @param userInput user input
      */
     public static void checkEmptyInput(String userInput) throws EmptyDescriptionException {
-        if (userInput.equals(" ") || userInput.equals("") || userInput.isEmpty() || userInput.isBlank()) {
+        if (userInput.equals(WHITE_SPACES) || userInput.equals(BLANKS) || userInput.isEmpty() || userInput.isBlank()) {
             throw new EmptyDescriptionException();
         }
     }
@@ -590,7 +637,8 @@ public class UserProfile {
      */
     public static InitialiseUserProfile enterNewUserInfo() throws IOException {
         InitialiseUserProfile profile =
-                new InitialiseUserProfile(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
+                new InitialiseUserProfile(data[NAME_INDEX],data[GENDER_INDEX],data[WEIGHT_INDEX],data[HEIGHT_INDEX],
+                        data[AGE_INDEX],data[ACTIVITY_LEVEL_INDEX],data[GOAL_INDEX]);
         System.out.println(profile.calculateNewUserDetails());
         UserProfile.save(profile);
         return profile;
@@ -621,22 +669,18 @@ public class UserProfile {
      * @return Storage type
      */
     public static InitialiseUserProfile loadProfile() {
-        String[] data = new String[7];
+        String[] data = new String[NUM_PARAMETERS];
         ArrayList<String> previousInput = UserInfoStorage.update();
 
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < NUM_PARAMETERS; i++) {
             try {
                 if (!previousInput.get(i).isEmpty() && !previousInput.get(i).isBlank()) {
                     data[i] = previousInput.get(i);
                 } else {
                     throw new NullPointerException();
                 }
-            } catch (IndexOutOfBoundsException e) {
-                displayInvalidEditedUserProfileMessage();
-                createNewProfile();
-                return null;
-            } catch (NullPointerException e) {
+            } catch (IndexOutOfBoundsException | NullPointerException e) {
                 displayInvalidEditedUserProfileMessage();
                 createNewProfile();
                 return null;
@@ -645,16 +689,16 @@ public class UserProfile {
 
         try {
             checkEmptyInput2(data);
-            checkGender(data[1]);
-            checkWeightGoal(data[6]);
-            checkInputIsInt(data[4]);
-            checkInputIsDouble(data[2]);
-            checkInputIsInt(data[5]);
-            checkInputIsDouble(data[3]);
-            checkAcLeIsWithinRange(data[5]);
-            checkAgeIsWithinRange(data[4]);
-            checkWeightIsWithinRange(data[2]);
-            checkHeightIsWithinRange(data[3]);
+            checkGender(data[GENDER_INDEX]);
+            checkWeightGoal(data[GOAL_INDEX]);
+            checkInputIsInt(data[AGE_INDEX]);
+            checkInputIsDouble(data[WEIGHT_INDEX]);
+            checkInputIsInt(data[ACTIVITY_LEVEL_INDEX]);
+            checkInputIsDouble(data[HEIGHT_INDEX]);
+            checkAcLeIsWithinRange(data[ACTIVITY_LEVEL_INDEX]);
+            checkAgeIsWithinRange(data[AGE_INDEX]);
+            checkWeightIsWithinRange(data[WEIGHT_INDEX]);
+            checkHeightIsWithinRange(data[HEIGHT_INDEX]);
         } catch (IllegalArgumentException | EmptyDescriptionException | NullPointerException e) {
             displayInvalidEditedUserProfileMessage();
             createNewProfile();
@@ -662,7 +706,8 @@ public class UserProfile {
         }
 
         InitialiseUserProfile profile =
-                new InitialiseUserProfile(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
+                new InitialiseUserProfile(data[NAME_INDEX], data[GENDER_INDEX], data[WEIGHT_INDEX], data[HEIGHT_INDEX],
+                        data[AGE_INDEX], data[ACTIVITY_LEVEL_INDEX], data[GOAL_INDEX]);
         profile.calculateNewUserDetails();
         try {
             UserProfile.saveExistingUserInfo(profile);

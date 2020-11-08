@@ -2,11 +2,13 @@
 
 The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
 
-By: CS2113-T09-4     Since: September 2020    Licence: MIT
+By: CS2113-T09-4     Since: October 2020    Licence: MIT
 
 <br>
 
 # Introduction
+
+**Welcome to traKCAL**
 
 **traKCAL** is a desktop application for managing and visualizing your calorie intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
 
@@ -64,8 +66,8 @@ This section gives the steps you need to get started quickly.
 This section gives you a detailed description of each feature available in **traKCAL**.
 
 >Some things to take note of:
->* Inputs that look like `**THIS**` are compulsory parameters to be supplied by user.
->* Inputs that look like `<THIS>` are optional parameters and do not need to be supplied by user if not needed.  
+>* Inputs that look like `**THIS**` are compulsory parameters for you to fill in.
+>* Inputs that look like `<THIS>` are optional parameters that you do not need to fill in to achieve the desired outcome.  
 >* Input format should adhere to the one in the help list or in this user guide.
 >* All features such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
 
@@ -173,7 +175,7 @@ bye                    - Terminates the application
 <br>
 <br>
 
-## 2.0 User Profile - Jenny
+## 2.0 User Profile - Jenny Lin
 
 ### 2.1 Creating a new user profile
 
@@ -384,7 +386,6 @@ Weight Goal : gain
 This command creates a shortcut for a set of commonly called exercise and/or food entries, reducing the amount of time needed for you to add multiple common entries. 
 
 Format: `createSet **SHORTCUT_NAME** ...`
-:exclamation: there must be at least 1 food or exercise entry to create a shortcut
 
 Examples of the format accepted:
 >`createSet **SHORTCUT_NAME** f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** + f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT**`
@@ -834,18 +835,18 @@ Please input 'help' for the commands and their respective input format.
 <br>
 <br>
 
-## 5.0 List
+## 5.0 List - Owen Chew Yang
 
 ### 5.1 Listing entries for the specified day
 
-Displays the list of activities for the given day.
+You can view your entries for a specific day by using this `list` command.
 
-Format: `list <**DATE**>`
+Format: `list <DATE>`
 
 Parameters:
-* `**DATE**`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
+* `<DATE>`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 >NOTE: 
->*`**DATE**` is optional, if you enter list command without it, it will print out the list of activities for the current date.
+>*The `<DATE>` parameter is optional, if you enter list command without it, it will print out the list of activities for today's date.
 
 Examples of usage: 
 * `list`
@@ -885,17 +886,24 @@ No.        Type                        Description                        Calori
 ```
 
 ### 5.1.1 Possible errors when listing
-
-#### Accessing a list with no entries
-If you are trying to access a list that does not have any entries <br>
-For example if there are no entries for 2020-10-31, the following error message will be shown: 
-
+An error will occur if any of the conditions below are met. <br>
+The respective error message will also be shown to you.
+> Any text in this format is an example of a command that will produce the respective error.
 ```
-There is no data for 2020-10-31
+Any text in this format is the error message that you will be shown.
+```
+#### Accessing a list with no entries
+* For example if there are no entries for 2020-10-31, the following command will produce an error: 
+> list 2020-10-31
+```
+====================================================================================
+List is empty!
+====================================================================================
 ```
 
 #### Using an invalid date format for list **DATE**
-If the **DATE** format is not of YYYY-MM-DD, the following error message will be shown: 
+* <DATE> format you entered is not of YYYY-MM-DD format.
+> list 2020/10/31
 
 ```
 ====================================================================================
@@ -1106,7 +1114,6 @@ Please input 'help' for the commands and their respective input format.
 ### 7.1 Finding entries via keyword - basic
 
 Finds activity based on keywords entered and list them out. Allows user to search by activity description or calorie count.
->Additionally, you can use the advanced find commands to find all matching keywords or just one matching keyword.
 
 Format for find by description: `find d/ **DESCRIPTION**`
 
@@ -1140,7 +1147,8 @@ No.        Date                Type                                Description  
 
 ```
 
-### 7.1.1 Possible errors when finding entries via keyword
+
+### 7.1.1 Possible errors when finding entries via keyword - basic
 
 #### Wrong find command tag/format
 If the command tag is not *d* or *c*, an error would occur
@@ -1172,7 +1180,9 @@ Keyword cannot be empty!
 ### 7.2 Finding entries via keywords - advanced
 
 Format for find by all descriptions: `find a/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
-> This command will search of entries matching ALL description keywords you have typed. There is no limit to the number of descriptions allowed.
+> This command will search of entries matching ALL description keywords you have typed. 
+>There is no limit to the number of descriptions allowed.
+
 
 Parameters:
 * `**DESCRIPTION1**`: Keyword to look for from calorie list.
@@ -1180,7 +1190,7 @@ Parameters:
 * so on...
 
 Example of usage:
- * `find a/running / 10km / 5pm`
+ * `find a/ running / 10km / 5pm`
  
 ```
 No.        Date                Type                                Description                        Calories gain or lost
@@ -1189,7 +1199,9 @@ No.        Date                Type                                Description  
 ```
 
 Format for find by just one matching description: `find e/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
-> As long as just one of your description keywords matches in the entry, the activity will be listed. There is no limit to the number of descriptions allowed.
+> As long as just one of your description keyword matches in the entry, the activity will be listed. 
+>There is no limit to the number of descriptions allowed.
+
 
 Parameters:
 * `**DESCRIPTION1**`: Keyword to look for from calorie list.
@@ -1233,14 +1245,23 @@ If the **KEYWORD** to search for is empty, an error would occur
 Keyword cannot be empty!
 ```
 
+#### Consecutive slashes present
+Slashes are used as delimiters for this function
+If there are 2 or more '/' in your input, an error would occur
+> the following would be printed out if you input `find a//`
+
+```
+There are consecutive slashes in your input!
+```
+
 <br>
 <br>
 
-## 8.0 Move
+## 8.0 Move - Owen Chew Yang
 
 ### 8.1.1 Moving an activity to another position
 
-Moves an activity to another position in the last shown list.
+You can move an activity to another position in the last shown list using this `move` command.
 
 Format: `move from/ **INDEX1** below/ **INDEX2**`
 
@@ -1250,7 +1271,7 @@ Parameters:
 
 Examples of usage:
 * After a `list 2020-10-11` command,
- `move from/ 3 below/ 1` moves the 3rd entry in the list for below the 1st entry as shown below.
+ `move from/ 3 below/ 1` moves the 3rd entry in the list to a position below the 1st entry as shown below.
 
 Example of usage: 
 
@@ -1270,7 +1291,6 @@ No.        Type                        Description                        Calori
 
 ```
 
-* `move from/ 5 below/ 2`
 
 *`list 2020-10-11` after `move from/ 3 below/ 1`
 
@@ -1290,41 +1310,64 @@ No.        Type                        Description                        Calori
 ```
 
 ### 8.1.2 Possible errors when moving
+An error will occur if any of the conditions below are met. <br>
+The respective error message will also be shown to you.
+> Any text in this format is an example of a command that will produce the respective error.
+```
+Any text in this format is the error message that you will be shown.
+```
 
 #### Missing keywords
-* If the appropriate keywords 'from/' and 'below/' are missing, the following error message will be shown
-
+* The appropriate keywords `from/` and `below/` are missing from your command.
+> move 1 2
 ```
 ====================================================================================
 'from/' and 'below/' keyword is missing!
+Please do input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
-* If only appropriate keywords 'from/' is missing the following error message will be shown
+* Only the `from/` keyword is missing.
+> move 1 below/ 2
 
 ```
 ====================================================================================
 'from/' keyword is missing!
+Please do input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
-* If only appropriate keywords 'below/' is missing the following error message will be shown
-
+* Only the `below/` keyword is missing.
+> move from/ 1 below 2
 ```
 ====================================================================================
 'below/' keyword is missing!
+Please do input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+#### Index of invalid range used
+* Any of the `**INDEX1**` or `**INDEX2**` paramters you entered for the respective keywords are not of valid range.
+* For example, a list with only 3 entries will result in an error if a command similar to the one below is entered:
+> move from/ 5 below/ 2
+```
+====================================================================================
+The index entered is not within the range!
+Please do input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
 #### Invalid index used
-* If the index entered for the respective keywords are not of valid range, the following error message will be shown
-
+* Any of the `**INDEX1` or `**INDEX2**` entered for the respective keywords are invalid.
+* For example if the user enters a character instead of a number similar to the example command below 
+> move from/ a below/ ~
 ```
 ====================================================================================
-The index entered is not within the range!Please do input 'help' for the commands and their respective input format.
+Index is not a number!
+Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
-
+ 
 <br>
 <br>
 
@@ -1332,7 +1375,7 @@ The index entered is not within the range!Please do input 'help' for the command
 
 ### 9.1 Deleting an entry in list
 
-Deletes an entry via index in the last shown list.
+You can delete an entry in the list using the `delete` command.
 
 Format: `delete **INDEX**`
 
@@ -1361,8 +1404,12 @@ No.        Type                        Description                        Calori
 * `delete 2`
 
 ```
+====================================================================================
 Activity removed!
+====================================================================================
+====================================================================================
 The current activity list has been saved.
+====================================================================================
 ```
 
 * `list` after deleting
@@ -1383,8 +1430,50 @@ No.        Type                        Description                        Calori
 
 ### 9.1.1 Possible errors when deleting an entry in list
 
+#### Delete command has missing description
+
+If you have only entered `delete` without its **INDEX** parameter, the following error will be shown.
+
+* delete
+```
+====================================================================================
+This command has missing description!
+====================================================================================
 ```
 
+### Delete command has invalid description
+
+If delete command is followed by any other combinations of letters/symbols other than "all/",
+the following error will be shown.
+
+
+
+* delete abc
+```
+====================================================================================
+Index is not a number!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+#### Deleting when index is not in range
+
+The following scenarios will result in the error message as shown below:
+
+Scenario 1:
+Index is negative number or 0.
+
+Scenario 2: 
+Index is bigger than the number of items in the list.
+
+Scenario 3:
+Attempting to delete an item on an empty list.
+In this case, any index will show the following error.
+
+```
+====================================================================================
+Invalid Index!
+====================================================================================
 ```
 
 <br>
@@ -1414,19 +1503,25 @@ No.        Type                        Description                        Calori
 * `delete all/`
 
 ```
-The current activity list has been saved.
+====================================================================================
+All activities have been deleted
+====================================================================================
 ```
 
 * `list` after deleting
 
 ```
-Nothing was added!
+There is no data for 2020-11-08
 ```
 
 ### 9.2.2 Possible errors when deleting all entries from list
 
+#### Deleting all on an empty list will result in the following error.
 ```
-
+====================================================================================
+There is no index to remove!
+Please input 'help' for the commands and their respective input format.
+====================================================================================
 ```
 
 <br>
@@ -1464,8 +1559,14 @@ Example of usage:
 
 ### 10.1.1 Possible errors when graphing
 
-```
+#### Adding extra inputs after graph command
 
+* graph 123
+
+```
+====================================================================================
+This command has no description!
+====================================================================================
 ```
 
 <br>
