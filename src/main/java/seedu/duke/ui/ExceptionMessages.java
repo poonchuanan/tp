@@ -16,6 +16,7 @@ public class ExceptionMessages {
                 + PROMPTUSEROFHELPMESSAGE);
     }
 
+
     /**
      * Prints error message when IOException occurs.
      */
@@ -27,7 +28,7 @@ public class ExceptionMessages {
     /**
      * Prints error message when NumberFormatException occurs in delete command.
      */
-    public static void displayDeleteCommandNumberFormatExceptionMessage() {
+    public static void displayIndexNotNumberExceptionMessage() {
         print("Index is not a number!\n"
                 + PROMPTUSEROFHELPMESSAGE);
     }
