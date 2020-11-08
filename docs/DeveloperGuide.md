@@ -25,6 +25,24 @@ This guide will also explain the various features available in **traKCAL**, to p
 <br>
 
 ## 2.0 Setting up
+1. Fork the traKCAL repository [here]() and git clone it to a convenient location on your desktop eg. Desktop.
+2. SOME COMMANDS INTELLIJ IMPORT
+3. Go to `src` -> `main` -> `java` -> `seedu.duke` -> `Trakcal` and right click on Trakcal. Select the `Run 'Trakcal.main()'` option.
+4. Upon successful run, the following opening message will be shown: 
+```
+====================================================================================
+| Hello from                                                                       |
+|  _                  _  __   ___     _     _                                      |
+| | |_   _ _   __ _  | |/ /  / __|   /_\   | |                                     |
+| |  _| | '_| / _` | | ' <  | (__   / _ \  | |__                                   |
+|  \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|                                  |
+|                                                                                  |
+| Hello! I'm traKCAL.                                                              |
+| Please do input 'help' for the commands and their respective input format.       |
+====================================================================================
+```
+
+<br>
 
 ### 2.1 Prerequisites
  * Java 11 (can be download from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html))
