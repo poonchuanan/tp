@@ -67,35 +67,21 @@ This guide will provide information on the design and implementation of **traKCA
 
 ### 3.1 Architecture
 
-![Architecture](diagrams/Architecture.png)
+![ArchitectureDiagram](diagrams/ArchitectureDiagram.png)
 
-*Figure 1. Diagram for Model component*
+*Figure 1. Architecture diagram of traKCAL*
 
-The Architecture Diagram shown above explains the high-level design of **traKCAL**.
-
-**traKCAL** is made up of mainly 8 components.
-
-`trakCAL`: tracKCAL starts here
-
-`Ui`: Displays any message that the user can see and interact with
-
-`Logic`: Interprets what the user input
-
-`Model`: Structure of the data
-
-`Command`: Executes specific command according to interpretation by `Logic`
-
-`Storage`: Saves required data into the hard disk or retrieves data
-
-`Exception`: Contains additional exceptions used in code.
-
-`UserProfile`: Processes user details
+The Architecture Diagram shown above explains the high-level design of **traKCAL**. There are 8 components in traKCAL and their functionalities will be discussed below:
 
 <br>
+
+---
 
 ### 3.2 Ui component
 
 <br>
+
+---
 
 ### 3.3 Logic component
 
@@ -116,6 +102,8 @@ and validity of those description are checked..
 
 <br>
 
+---
+
 ### 3.4 Model component
 
 ![Model_Component](diagrams/model.png)
@@ -131,17 +119,26 @@ In the Model component,
 
 <br>
 
+---
+
 ### 3.5 Command component
 
+
 <br>
+
+---
 
 ### 3.6 Storage component
 
 <br>
 
+---
+
 ### 3.7 Exception component
 
 <br>
+
+---
 
 ### 3.8 UserProfile component
 
@@ -154,9 +151,18 @@ In the Model component,
 
 The sequence diagram below shows how the components will react to a new user or for a returning user. 
 
-![CreateNewUser](diagrams/CreateNewUser.png)
+![CreateNewUserFeature](diagrams/CreateNewUserFeature.png)
 
 *Figure 4. Components interactions for tracKCAL checks for new or existing user*
+
+To following has been omitted from the diagram to increase readibility: 
+* Exception handling 
+* External text file creation block
+
+Some design considerations: 
+* New users are required to create a new user profile before being able to use other features like `graph` to avoid unnecessarily being thrown exceptions
+* Genders were limited to female and male instead of other genders like binary as our recommended calories equation only took into account female and male as genders
+* Similarly, weight goals were limited to lose, maintain or gain as opposed to other forms of weight goal like cut as our current equations were only able to accomodate lose, maintain or gain
 
 <br>
 
