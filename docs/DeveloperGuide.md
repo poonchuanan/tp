@@ -583,6 +583,35 @@ Exiting the application
 ```
 
 ---
+
+#### Editing user profile
+
+>Editing user name and gender
+    Test case: `user e/ n/ Sam , g/ female`
+    Expected: User name will be changed to `Sam` and user gender will be changed to `female`.
+ 
+>Editing user activity level
+    Test case: `user e/ al/ 3`
+    Expected: User activity level will be changed to `3`.
+ 
+ >Incorrect inputs to try:
+    `user e/ n/        `: empty description for name
+    `user e/ g/ meIsMale`: invalid gender type
+    `user e/ g/ gender + n/ tom`: wrong separator used. gender will be read as `gender + n/ tom` instead. `+` should be changed to `.`
+    `user e/ g/ female , w/ 1000000`: weight is not within 30 to 650 kg range
+    `user e/ g/ female , w/ test`: weight is not of valid type to parse to an integer
+    `user e/ g/ male , h/ -10`: height is not within 90 to 300 cm range
+    `user e/ g/ female , h/ one hundred`: height is not of valid type to parse to an integer
+    `user e/ g/ female , age/ 200`: age is not within 10 to 120 years old range
+    `user e/ g/ male , age/ twenty`: age is not of valid type to parse to an integer
+    `user e/ g/ female , al/ 8`: age is not within 1 to 5
+    `user e/ g/ male , age/ twenty`: activity level is not of valid type to parse to an integer
+    Editing the user profile text file `tp.txt` will corrupt the next run and user will be directed to create a new user profile
+    `user e/ goal/ meWantLoseWeight`: invalid goal type
+    `user e/ jkdsfhdskjfhdksfkjsdf/ karen`: invalid tag
+    Expected: Message with error will be shown.
+
+
 #### Creating a shortcut
 
 >Creating a shortcut with 2 food entries
@@ -642,7 +671,7 @@ Exiting the application
 
 >Adding an exercise entry without date
     Test case: `add e/ 50 sit-ups c/ 75`
-    Expected: An entry with food description `50 sit-ups` and calories of `75` would be added into today's list.
+    Expected: An entry with food description `50 sit-ups` and calories of `75` would be added into today's list
 
 >Incorrect inputs to try:
     `add f/ jelly 90 `: has missing calorie tag
