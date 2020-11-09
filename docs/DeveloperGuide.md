@@ -75,17 +75,13 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 
 <br>
 
----
-
-### 3.2 Ui component
+### 3.2 ui component
 
 ![Ui Component](diagrams/ui.png)
 
 *Figure 2. Diagram for logic component*
 
 <br>
-
----
 
 ### 3.3 Logic component
 
@@ -106,8 +102,6 @@ and validity of those description are checked..
 
 <br>
 
----
-
 ### 3.4 Model component
 
 ![Model_Component](diagrams/model.png)
@@ -123,17 +117,19 @@ In the Model component,
 
 <br>
 
----
-
 ### 3.5 Command component
+
+Before carrying out the command, user input first has to be prepared.
+
+![Prepare_Component](diagrams/PrepareCommand.png)
+
+*Figure 4. Diagram for PrepareCommand*
 
 ![Command_Component](diagrams/Command.png)
 
 *Figure 4. Diagram for Command component*
 
 <br>
-
----
 
 ### 3.6 Storage component
 
@@ -159,7 +155,7 @@ On Command execution:
 * The respective logs will also be updated according to the given commands through `Logging`.
 * `UserSetStorage` will store the relevant shortcuts created by the using *createSet* command is called.
 
----
+<br>
 
 ### 3.7 Exception component
 
@@ -169,9 +165,11 @@ On Command execution:
 
 <br>
 
----
-
 ### 3.8 UserProfile component
+
+![userProfile](diagrams/userProfile.png)
+
+*Figure 4. Diagram for UserProfile component*
 
 <br>
 <br>
@@ -182,7 +180,7 @@ On Command execution:
 
 The sequence diagram below shows how the components will react to a new user or for a returning user. 
 
-![CreateNewUserFeature](diagrams/CreateNewUserFeature.png)
+![CreateNewUserFeature](diagrams/createNewUserFeature.png)
 
 *Figure 7. Components interactions for **traKCAL** create user profile feature*
 
@@ -221,7 +219,7 @@ Some examples include:
 
 Design considerations: 
 * At least one activity tag (`e/` or `f/`) and calorie tag (`c/`) must be specified by user for a shortcut to be created.
-* The order of the entry must be activity tag first before calorie tag. Calorie tag followed by activity tag is not allowed. This is to facilitate the adding of each entry in the shortcut, as seen in [section 3.3](#33-add-activity-feature).
+* The order of the entry must be activity tag first before calorie tag. Calorie tag followed by activity tag is not allowed. This is to facilitate the adding of each entry in the shortcut, as seen in [section 4.3](#43-add-activity-feature).
 * Multiple entries in shortcut should be separated be a `+` as it is a key. 
 
 <br>
@@ -601,33 +599,104 @@ Exiting the application
 =====================================================================================================
 ```
 
----
+#### Editing user profile
+
+>Editing user name and gender
+    Test case: `user e/ n/ Sam , g/ female`
+    Expected: User name will be changed to `Sam` and user gender will be changed to `female`.
+ 
+>Editing user activity level
+    Test case: `user e/ al/ 3`
+    Expected: User activity level will be changed to `3`.
+ 
+>Incorrect inputs to try:
+    `user e/ n/        `: empty description for name
+    `user e/ g/ meIsMale`: invalid gender type
+    `user e/ g/ gender + n/ tom`: wrong separator used. gender will be read as `gender + n/ tom` instead. `+` should be changed to `.`
+    `user e/ g/ female , w/ 1000000`: weight is not within 30 to 650 kg range
+    `user e/ g/ female , w/ test`: weight is not of valid type to parse to an integer
+    `user e/ g/ male , h/ -10`: height is not within 90 to 300 cm range
+    `user e/ g/ female , h/ one hundred`: height is not of valid type to parse to an integer
+    `user e/ g/ female , age/ 200`: age is not within 10 to 120 years old range
+    `user e/ g/ male , age/ twenty`: age is not of valid type to parse to an integer
+    `user e/ g/ female , al/ 8`: age is not within 1 to 5
+    `user e/ g/ male , age/ twenty`: activity level is not of valid type to parse to an integer
+    Editing the user profile text file `tp.txt` will corrupt the next run and user will be directed to create a new user profile
+    `user e/ goal/ meWantLoseWeight`: invalid goal type
+    `user e/ jkdsfhdskjfhdksfkjsdf/ karen`: invalid tag
+    Expected: Message with error will be shown.
+
+<br>
+
+#### Creating a shortcut
+
+>Creating a shortcut with 2 food entries
+    Test case: `createSet dinner f/ chicken c/ 100 + f/ beef c/ 100`
+    Expected: A text file named `dinner.txt` will be created in ... with first line as `f/ chicken c/ 100` and second line as `f/ beef c/ 100`.
+
+>Creating a shortcut with 1 exercise entry
+    Test case: `createSet morning exercise e/ run c/ 100`
+    Expected: A text file named `morning exercise.txt` will be created in ... with first line as `e/ run c/ 100`.
+
+>Creating a shortcut with 1 food entry and 1 exercise entry
+    Test case: `createSet morning routine f/ oatmeal c/ 300 + e/ jumping jacks c/ 50`
+    Expected: A text file named `morning routine.txt` will be created in ... with first line as `f/ oatmeal c/ 300` and second line as `e/ jumping jacks c/ 50`.
+ 
+>Incorrect inputs to try:
+    `createSet f/ chicken c/ 100 + f/ beef c/ 100`: missing shortcut name
+    `createSet meat f/ chicken f/ fish`: each `f/` or `e/` must be followed be a `c/`
+    `createSet fishy lunch f/ fish c/      `: empty description for calories
+    `createSet fishy lunch f/        c/ 100`: empty description for food
+    `createSet healthy lunch`: missing activity and calorie tag
+    `createSet dinner f/ beans c/ 100000`: invalid calorie range, only 0 to 3000 kcal accepted
+    `createSet dinner f/ beans c/ test`: calorie not of valid type to parse to an integer
+    `createSet dinner f/ beans c/ 1000000000000000`: calorie too large to be an integer
+    Expected: Message with error will be shown.
+ 
+<br>
+
+
+#### Adding a shortcut into list
+
+>Adding a shortcut
+    Test case: `addSet dinner`
+    Expected: Contents within `dinner.txt` will be added into today's list.
+
+>Incorrect inputs to try:
+    `addSet test1`: if test1 is not yet created as shortcut
+    `addSet `: a shortcut name not specified
+    `addSet test2`: if test2 has been edited to the wrong format by user
+    Expected: Message with error will be shown.
+ 
+<br>
  
 #### Adding an entry into list
 
 >Adding a food entry with date
-    Test case: `add f/ cheesy chicken c/ 180 d/ 2020-11-09`
-    Expected: An entry with food description `cheesy chicken` and calories of `100` would be added into 2020-11-09's list.
+>* Test case: `add f/ cheesy chicken c/ 180 d/ 2020-11-09`
+>* Expected: An entry with food description `cheesy chicken` and calories of `100` would be added into 2020-11-09's list.
 
 >Adding a food entry without date
-    Test case: `add f/ milk tea with pearls c/ 125`
-    Expected: An entry with food description `milk tea with pearls` and calories of `150` would be added into today's list.
+>* Test case: `add f/ milk tea with pearls c/ 125`
+>* Expected: An entry with food description `milk tea with pearls` and calories of `150` would be added into today's list.
 
 >Adding an exercise entry with date
-    Test case: `add e/ walking c/ 10 d/ 2020-11-05`
-    Expected: An entry with exercise description `walking` and calories of `10` would be added into 2020-11-05's list.
+>* Test case: `add e/ walking c/ 10 d/ 2020-11-05`
+>* Expected: An entry with exercise description `walking` and calories of `10` would be added into 2020-11-05's list.
 
 >Adding an exercise entry without date
-    Test case: `add e/ 50 sit-ups c/ 75`
-    Expected: An entry with food description `50 sit-ups` and calories of `75` would be added into today's list.
+>* Test case: `add e/ 50 sit-ups c/ 75`
+>* Expected: An entry with food description `50 sit-ups` and calories of `75` would be added into today's list.
 
 >Incorrect inputs to try:
-    `add f/ jelly 90 `: has missing calorie tag
-    `add f/ jelly c/ 90 d/ 2020-10-13`: date is before application launch date, 2020-10-14 or after today's date
-    `add f/ jelly c/ -30`: calories is less than or equals to 0 or more than 3000
-    `add e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
-    `add e/ c/ `: empty input parameters
-    Expected: Message with error will be shown.
+>* `add f/ jelly 90 `: has missing calorie tag
+>* `add f/ jelly c/ 90 d/ 2020-10-13`: date is before application launch date, 2020-10-14 or after today's date
+>* `add f/ jelly c/ -30`: calories is less than or equals to 0 or more than 3000
+>* `add e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
+>* `add e/ c/ `: empty input parameters
+>* Expected: Message with error will be shown.
+
+<br>
 
 #### Editing an entry in list
 
@@ -638,26 +707,28 @@ This feature allows editing of list entry from:
 4. exercise to exercise
 
 >Editing an entry in today's list from food to food
-    Test case: `edita 1 f/ ice kacang c/ 90`
-    Expected: Entry at index `1` of today's list(which is a food entry) would be edited to food description of `ice kacang` and calories of `90`.
+>* Test case: `edita 1 f/ ice kacang c/ 90`
+>* Expected: Entry at index `1` of today's list(which is a food entry) would be edited to food description of `ice kacang` and calories of `90`.
 
 >Editing an entry in today's list from food to exercise
-    Test case: `edita 2 e/ running c/ 50`
-    Expected: Entry at index `2` of today's list(which is a food entry) would be edited to exercise description of `running` and calories of `50`.
+>* Test case: `edita 2 e/ running c/ 50`
+>* Expected: Entry at index `2` of today's list(which is a food entry) would be edited to exercise description of `running` and calories of `50`.
        
 >Editing an entry in another day's list from exercise to exercise
-    Test case: `list 2020-11-07` then `edita 3 e/ 50 jumping jacks c/ 25`
-    Expected: Entry at index `3` of 2020-11-07's list(which is an exercise entry) would be edited to exercise description of `50 jumping jacks` and calories of `25`.
+>* Test case: `list 2020-11-07` then `edita 3 e/ 50 jumping jacks c/ 25`
+>* Expected: Entry at index `3` of 2020-11-07's list(which is an exercise entry) would be edited to exercise description of `50 jumping jacks` and calories of `25`.
 
 >Editing an entry in another day's list from exercise to food
-    Test case: `list 2020-11-01` then `edita 2 f/ corn chips c/ 75`
-    Expected: Entry at index `3` of 2020-11-01's list(which is an exercise entry) would be edited to food description of `corn chips` and calories of `75`.
+>* Test case: `list 2020-11-01` then `edita 2 f/ corn chips c/ 75`
+>* Expected: Entry at index `3` of 2020-11-01's list(which is an exercise entry) would be edited to food description of `corn chips` and calories of `75`.
 
 >Incorrect inputs to try:
-    `edita 1 f/ jelly c/ -30`: calories is less than or equals to 0 or more than 3000
-    `edita 2 e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
-    `edita 3 e/ c/ `: empty input parameters
-    Expected: Message with error will be shown.
+>* `edita 1 f/ jelly c/ -30`: calories is less than or equals to 0 or more than 3000
+>* `edita 2 e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
+>* `edita 3 e/ c/ `: empty input parameters
+>* Expected: Message with error will be shown.
+
+<br>
 
 #### Chaining of features
 
@@ -666,22 +737,22 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 *Input commands MUST be separated by `&&`*
 
 >Example 1
-    Test case: `add f/ ice cream c/ 90 && add e/ running c/ 50 && list`
-    Expected: An entry with food description `ice cream` and calories of `90` would be added into today's list, an entry with exercise description `running` and calories of `50` would be added into today's list and today's list would be printed out.
+>* Test case: `add f/ ice cream c/ 90 && add e/ running c/ 50 && list`
+>* Expected: An entry with food description `ice cream` and calories of `90` would be added into today's list, an entry with exercise description `running` and calories of `50` would be added into today's list and today's list would be printed out.
 
 >Example 2
-    Test case: `list && graph`
-    Expected: Prints today's `list` and `graph`
+>* Test case: `list && graph`
+>* Expected: Prints today's `list` and `graph`
 
 >Example 3
-    Test case: `list && list 2020-11-06 && list 2020-11-08`
-    Expected: Prints today's list, prints 2020-11-06's list and prints 2020-11-08's list
+>* Test case: `list && list 2020-11-06 && list 2020-11-08`
+>* Expected: Prints today's list, prints 2020-11-06's list and prints 2020-11-08's list
 
 >Example 4
-    Test case: `add f/ ice cream c/ 90 d/ 2020-11-07 && list && edita 7 e/ walking c/ 15`
-    Expected: An entry with food description `ice cream` and calories of `90` would be added into today's list, prints today's list and entry at index `7` of today's list would be edited to exercise description of `walking` and calories of `15`.
+>* Test case: `add f/ ice cream c/ 90 d/ 2020-11-07 && list && edita 7 e/ walking c/ 15`
+>* Expected: An entry with food description `ice cream` and calories of `90` would be added into today's list, prints today's list and entry at index `7` of today's list would be edited to exercise description of `walking` and calories of `15`.
 
 >Incorrect inputs to try:
-    Test case: The incorrect input from [add](#adding-an-entry-into-list), list, [edit](#editing-an-entry-in-list), graph
-    Expected: Message with error will be shown.
+>* Test case: The incorrect input from [add](#adding-an-entry-into-list), list, [edit](#editing-an-entry-in-list), graph
+>* Expected: Message with error will be shown.
 

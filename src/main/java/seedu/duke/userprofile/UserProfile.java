@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidEditCommandMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidEditedUserProfileMessage;
 import seedu.duke.exception.EmptyDescriptionException;
@@ -88,7 +89,9 @@ public class UserProfile {
      */
     public static InitialiseUserProfile createNewProfile() {
         InitialiseUserProfile profile = null;
+        logging.writeToLogInfo("Attempting to gather all user data.");
         gatherData();
+        logging.writeToLogInfo("All user data valid.");
         try {
             profile = enterNewUserInfo();
         } catch (IOException e) {
@@ -189,7 +192,9 @@ public class UserProfile {
      */
     private static void editName(String name) {
         try {
+            logging.writeToLogInfo("Attempting to edit name.");
             checkEmptyInput(name);
+            logging.writeToLogInfo("Name has been edited.");
             data[NAME_INDEX] = name;
             displayEditNameMessage();
             System.out.println(data[NAME_INDEX] + ".");
@@ -205,8 +210,10 @@ public class UserProfile {
      */
     private static void editGender(String gender) {
         try {
+            logging.writeToLogInfo("Attempting to edit gender.");
             checkEmptyInput(gender);
             checkGender(gender);
+            logging.writeToLogInfo("Gender has been edited.");
             data[GENDER_INDEX] = gender;
             displayEditGenderMessage();
             System.out.println(data[GENDER_INDEX] + ".");
@@ -225,9 +232,11 @@ public class UserProfile {
      */
     private static void editWeight(String weight) {
         try {
+            logging.writeToLogInfo("Attempting to edit weight.");
             checkEmptyInput(weight);
             checkInputIsDouble(weight);
             checkWeightIsWithinRange(weight);
+            logging.writeToLogInfo("Weight has been edited.");
             data[WEIGHT_INDEX] = weight;
             displayEditWeightMessage();
             System.out.println(data[WEIGHT_INDEX] + "kg.");
@@ -248,9 +257,11 @@ public class UserProfile {
      */
     private static void editHeight(String height) {
         try {
+            logging.writeToLogInfo("Attempting to edit height.");
             checkEmptyInput(height);
             checkInputIsDouble(height);
             checkHeightIsWithinRange(height);
+            logging.writeToLogInfo("Height has been edited.");
             data[HEIGHT_INDEX] = height;
             displayEditHeightMessage();
             System.out.println(data[HEIGHT_INDEX] + "cm.");
@@ -271,9 +282,11 @@ public class UserProfile {
      */
     private static void editAge(String age) {
         try {
+            logging.writeToLogInfo("Attempting to edit age.");
             checkEmptyInput(age);
             checkInputIsInt(age);
             checkAgeIsWithinRange(age);
+            logging.writeToLogInfo("Age has been edited.");
             data[AGE_INDEX] = age;
             displayEditAgeMessage();
             System.out.println(data[AGE_INDEX] + "years old.");
@@ -294,9 +307,11 @@ public class UserProfile {
      */
     private static void editAl(String al) {
         try {
+            logging.writeToLogInfo("Attempting to edit activity level.");
             checkEmptyInput(al);
             checkInputIsInt(al);
             checkAcLeIsWithinRange(al);
+            logging.writeToLogInfo("Activity level has been edited.");
             data[ACTIVITY_LEVEL_INDEX] = al;
             displayEditActivityLevelMessage();
             System.out.println(data[ACTIVITY_LEVEL_INDEX] + ".");
@@ -317,8 +332,10 @@ public class UserProfile {
      */
     private static void editGoal(String goal) {
         try {
+            logging.writeToLogInfo("Attempting to edit goal.");
             checkEmptyInput(goal);
             checkWeightGoal(goal);
+            logging.writeToLogInfo("Goal has been edited.");
             data[GOAL_INDEX] = goal;
             displayEditGoalMessage();
             System.out.println(data[GOAL_INDEX] + ".");

@@ -67,9 +67,11 @@ public class UserSetStorage {
         String filePath = jarFilePath + "/tpdata" + fileName;
 
         try {
+            logging.writeToLogInfo("Attempting to create shortcut file.");
             checkExistingFile(filePath);
             File file = new File(filePath);
             file.createNewFile();
+            logging.writeToLogInfo("Shortcut file successfully created.");
 
         } catch (IOException e) {
             displayIoExceptionMessage();
@@ -107,6 +109,7 @@ public class UserSetStorage {
             int index = 1;
 
             for (String s : activity) {
+                logging.writeToLogInfo("Check if entry is of valid format.");
                 s = removeWhiteSpaces(s);
                 bw.write(s);
                 String calories = s.substring(s.indexOf(CALORIE_TAG) + 2);
@@ -118,6 +121,7 @@ public class UserSetStorage {
                 checkCalorieType(calories);
                 checkValidCalorieRange(calories);
                 Integer.parseInt(calories);
+                logging.writeToLogInfo("Entry is of valid format.");
 
                 if (index == 1) {
                     Ui.drawDivider();
@@ -187,7 +191,7 @@ public class UserSetStorage {
      * @param input user input
      */
     private static void checkActivityAndCalorieTag(String input) throws InvalidCreateSetCommandException {
-        if (!input.contains(CALORIE_TAG) && !(input.contains(FOOD_TAG) | input.contains(EXERCISE_TAG))) {
+        if (!input.contains(CALORIE_TAG) || !(input.contains(FOOD_TAG) | input.contains(EXERCISE_TAG))) {
             throw new InvalidCreateSetCommandException();
         }
     }
