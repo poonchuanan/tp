@@ -450,9 +450,13 @@ The following sequence diagram shows how the chaining works after command is ent
 
 *Figure 17. Sequence diagram of chaining feature*
 
+The following is a diagram on the classes that are allowed to be chained.
+
 ![Object_Diagram_Of_PrepareCommand](diagrams/chainCommand_PrepareCommand.png)
 
 *Figure 18. Object diagram of allowed PrepareCommand subclass*
+
+The following is a diagram on the classes that are allowed to be chained.
 
 ![Object_Diagram_Of_Command](diagrams/chainCommand_Command.png)
 
