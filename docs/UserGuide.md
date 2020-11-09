@@ -67,13 +67,13 @@ This section gives the steps you need to get started quickly.
 This section gives you a detailed description of each feature available in **traKCAL**.
 
 >Things to take note of:
->* Inputs that look like `**THIS**` are compulsory parameters for you to fill in.
->* Inputs that look like `<THIS>` are optional parameters that you do not need to fill in to achieve the desired outcome.  
->* Input format should adhere to the one in the help list or in this user guide.
->* All features such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
+>*Inputs that look like `**THIS**` are compulsory parameters for you to fill in.
+>*Inputs that look like `<THIS>` are optional parameters that you do not need to fill in to achieve the desired outcome.  
+>*Input format should adhere to the one in the help list or in this user guide.
+>*All features such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
 
 >IMPORTANT:
->* If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
+>*If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
 
 <br>
 <br>
@@ -984,6 +984,8 @@ Parameters:
 >*The list in which you want to edit to have to be pulled out first before being able to edit on it, else editing would be on today's list!
 >*This command edits the latest list pulled out. For example, if `list 2020-10-21` is the latest list to be pulled out, then `edit` will edit index stated in date 2020-10-21's list.
 
+>IMPORTANT:
+>*If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
 
 >IMPORTANT:
 >*This feature cannot be exercised on find feature!
@@ -1465,6 +1467,9 @@ The indexes entered for this move command does not result in any change!
 ### 9.1 Deleting an entry in list
 
 You can delete an entry in the list using the `delete` command.
+
+>IMPORTANT:
+>*If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
 
 Format: `delete **INDEX**`
 
