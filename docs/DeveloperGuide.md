@@ -633,7 +633,7 @@ The sequence diagram for the `Delete all` is very similar to this diagram where 
 
 Starting up application
 1. Ensure that you have Java 11 or above installed, if not, it can be found [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html)
-2. Down the latest version of `trakCAL` from [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/releases)
+2. Down the latest version of `traKCAL` from [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/releases)
 3. Create an empty folder in a convenient location eg. Desktop and copy jar file over to it.
 4. Open command window/terminal in that window and navigate into the file directory,
 5. Run the command `java -jar {filename}.jar` e.g., `java -jar traKCAL.jar`.
