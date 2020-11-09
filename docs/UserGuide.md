@@ -258,7 +258,8 @@ Please do not enter an empty input
 
 ```
 =====================================================================================================
-Sorry this is an invalid gender format! Please input gender as female or male only!
+Sorry this is an invalid gender format! 
+Please input gender as female or male only!
 =====================================================================================================
 ```
 
@@ -320,10 +321,9 @@ Please enter a valid age format!
 > `8`
 
 ```
-=====================================================================================================
-Sorry this is an invalid activity factor!
-Please enter an integer from 1 to 5, with 1 being the least active and 5 being the most active
-=====================================================================================================
+====================================================================================
+Please enter an activity level from 1 to 5 only
+====================================================================================
 ```
 
 * Weight goals is not specified as lose or maintain or gain only.
@@ -487,7 +487,7 @@ Please try again!
 
 #### Invalid parameters
 * Shortcut name given already exist within the database. For example if a set named `morning routine` already exists, the following command would produce the error:
-> createSet morning routine f/ beans c/ 100000`
+> `createSet morning routine f/ beans c/ 100000`
 
 ```
 ====================================================================================
@@ -1432,6 +1432,17 @@ Please do input 'help' for the commands and their respective input format.
 ====================================================================================
 Index is not a number!
 Please input 'help' for the commands and their respective input format.
+====================================================================================
+```
+
+#### Moving which results in no change
+* Any of the `**INDEX_1` or `**INDEX_2**` entered for the respective keyword will not result in any changes to the list.
+> `move from/ 1 below/ 0` OR <br>
+> `move from/ 2 below/ 2`
+
+```
+====================================================================================
+The indexes entered for this move command does not result in any change!
 ====================================================================================
 ```
  
