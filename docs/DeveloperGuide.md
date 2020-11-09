@@ -424,7 +424,7 @@ Aspect: How editing is carried out
 
 >Current choice: User MUST pull out the list they want to edit to before calling the edit function. `list` then `edit f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` OR `edit e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT`
 >* Pros: The entry that is being edit is clear to the user.
->* Cons: More steps requried to edit an entry.
+>* Cons: More steps required to edit an entry.
 
 >Alternative: Adding a date tag in edit: `edit f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` OR `edit e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE`
 >* Pros: Faster and shorter time to edit an entry.
@@ -442,7 +442,6 @@ The chaining mechanism can be used by the various commands available The followi
 - add
 - edit
 - graph
->this is due to attribute canBeChained in those commands being true.
 
 The following sequence diagram shows how the chaining works after command is entered:
 
