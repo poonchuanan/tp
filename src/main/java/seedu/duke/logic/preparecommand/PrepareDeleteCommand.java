@@ -2,7 +2,7 @@ package seedu.duke.logic.preparecommand;
 
 import seedu.duke.Trakcal;
 import seedu.duke.command.Command;
-import seedu.duke.exception.InvalidNumberOfArguments;
+import seedu.duke.exception.InvalidNumberOfArgumentsException;
 import seedu.duke.model.DayMap;
 
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
@@ -44,7 +44,7 @@ public class PrepareDeleteCommand extends PrepareCommand {
             displayDeleteCommandNullPointerExceptionMessage();
         } catch (IndexOutOfBoundsException e) {
             displayDeleteCommandStringOutOfBoundExceptionMessage();
-        } catch (InvalidNumberOfArguments e) {
+        } catch (InvalidNumberOfArgumentsException e) {
             displayShortageOfArguments();
         }
         return null;
