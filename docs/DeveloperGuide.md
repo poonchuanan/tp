@@ -740,3 +740,7 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >* Test case: The incorrect input from [add](#adding-an-entry-into-list), list, [edit](#editing-an-entry-in-list), graph
 >* Expected: Message with error will be shown.
 
+#### Moving of activities
+
+This feature allows you to move activities in a list from one position to another.
+
