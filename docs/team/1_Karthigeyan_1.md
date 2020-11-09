@@ -44,7 +44,7 @@ so that users will be able to know if their goals are met.
 #### Contributions to team-based tasks
 
 * Added 43 team issues/tasks which can be found [[here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues?q=is%3Aissue+author%3A1-Karthigeyan-1+)]
-* Reviwed 34 pull request which can be found [[here](https://github.com/AY2021S1-CS2113T-T09-4/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)]
+* Reviewed 34 pull request which can be found [[here](https://github.com/AY2021S1-CS2113T-T09-4/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)]
 
 #### Review/mentoring contributions
 
