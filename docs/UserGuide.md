@@ -1139,7 +1139,7 @@ Finds entry/entries based on keywords entered and list them out. Allows user to 
 Format: `find d/ **DESCRIPTION**`
 
 Parameters:
-* `**DESCRIPTION**`: Keyword to look for from description list.
+* `**DESCRIPTION**`: Keyword to look for from the list.
 
 Example of usage:
 * `find d/ rice with veg`
@@ -1162,7 +1162,7 @@ Finds entry/entries based on keywords entered and list them out. Allows user to 
 Format: `find c/ **CALORIES**`
 
 Parameters:
-* `**CALORIES**`: Keyword to look for from calorie list.
+* `**CALORIES**`: Keyword to look for from the list.
 
 Example of usage:
 * `find c/ 100` 
@@ -1220,15 +1220,15 @@ Please input a valid keyword that is not empty!
 
 ### 7.3.1 Finding entries via keywords - all
 
-**INTRODUCTION HELLO PLS PUT**
+For users who want to perform more complex find operations, you can make use of this advanced find command to achieve your needs.
+This command will search of entries matching ALL description keywords you have typed. 
 
 Format for find by all descriptions: `find a/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
-> This command will search of entries matching ALL description keywords you have typed. 
 > There is no limit to the number of descriptions allowed.
 
 Parameters:
-* `**DESCRIPTION1**`: Keyword to look for from calorie list.
-* `**DESCRIPTION2**`: Keyword to look for from calorie list.
+* `**DESCRIPTION1**`: Keyword to look for from the list.
+* `**DESCRIPTION2**`: Keyword to look for from the list.
 * so on...
 
 Example of usage:
@@ -1244,15 +1244,15 @@ No.        Date                Type                                Description  
 
 ### 7.3.2 Finding entries via keywords - either
 
-**INTRODUCTION HELLO PLS PUT**
+Similar to the above command, this is an advanced command that refines your search term.
+As long as just one of your description keyword matches in the entry, the entry will be listed. 
 
 Format for find by just one matching description: `find e/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
-> As long as just one of your description keyword matches in the entry, the entry will be listed. 
 >There is no limit to the number of descriptions allowed.
 
 Parameters:
-* `**DESCRIPTION1**`: Keyword to look for from calorie list.
-* `**DESCRIPTION2**`: Keyword to look for from calorie list.
+* `**DESCRIPTION1**`: Keyword to look for from the list.
+* `**DESCRIPTION2**`: Keyword to look for from the list.
 * so on...
 
 Example of usage:
