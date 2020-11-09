@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayMissingAddSetInfoMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCreateSetCommandMessage;
@@ -85,8 +86,10 @@ public class UserSetStorage {
      * @param filePath name of shortcut to be deleted
      */
     public static void deleteInvalidSetFile(String filePath) {
+        logging.writeToLogInfo("Attempting to deleted corrupted shortcut file.");
         File file = new File(filePath);
         file.delete();
+        logging.writeToLogInfo("Corrupted shortcut file deleted successfully.");
     }
 
     /**

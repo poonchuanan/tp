@@ -1,7 +1,7 @@
 package seedu.duke.logic.parser;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.CreateNewSet;
+import seedu.duke.command.CreateNewSetCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.exception.ListNotFoundException;
 import seedu.duke.logic.preparecommand.PrepareAddCommand;
@@ -18,11 +18,8 @@ import seedu.duke.logic.preparecommand.PrepareMoveIndexCommand;
 import seedu.duke.logic.preparecommand.PrepareNewSetCommand;
 import seedu.duke.logic.preparecommand.PrepareUserCommand;
 
-import java.io.IOException;
-
 import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
-import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayListNotFoundExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 
