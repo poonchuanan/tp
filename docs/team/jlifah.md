@@ -12,9 +12,9 @@ This section shows a brief overview of my contribution to traKCAL. It includes c
 
 #### Enhancements implemented
 
-* I implemented the `user profile` and `short cut` enhancements. For `user profile`, **traKCAL** automatically asks for a new user profile if there is no current one and deletes it if there is an unreadable one. 
+* I implemented the `user profile` and `shortcut` enhancements. For `user profile`, **traKCAL** automatically asks for a new user profile if it does not detect one and deletes the user profile if is is unreadable. 
 
-Here are some of their commands: 
+Here are some of their commands for `user profile` and `shortcut`: 
 * `user c/` to create a new user profile. At the same time, it also 
    * calculates bmi
    * calculates recommended calories
@@ -25,7 +25,7 @@ Here are some of their commands:
 * `addSet` to add all the entries within the shortcut to the current day's list.
 
 
-**Justifications**: `user profile` feature gives the user a clear idea of their calorie journey. It also links to other features like graphs in traKCAL. `short cut` feature reduces user fatigue by offering a quick way to add in entries often repeated into the activity list.  
+**Justifications**: `user profile` feature gives the user a clear idea of their calorie journey. It also links to other features like graphs in traKCAL. `shortcut` feature reduces user fatigue by offering a quick way to add in entries often repeated into the activity list.  
 
 #### Contributions to User Guide 
 
@@ -33,11 +33,11 @@ Here are some of their commands:
 
 #### Contributions to the Developer Guide
 
-* I contributed to the `user profile` and `shortcut` sections in Section 3, Section 4 and Manually Testing, including the UML diagrams. Additionally, I formatted the DG and added in missing components given in the feedbacks from past DG submissions. 
+* I contributed to the `user profile` and `shortcut` sections in Section 3, Section 4 and Manually Testing, including the UML diagrams. Additionally, I formatted the DG and added in missing components flagged out in feedbacks from past DG submissions. 
 
 #### Contributions to team-based tasks
 
-* I took part in brain storming user stories
+* I took part in brain storming user stories.
 
 #### Review/mentoring contributions
 
