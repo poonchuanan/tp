@@ -2,7 +2,7 @@
 
 Display | Name | Github Profile | Portfolio 
 --------|:----:|:--------------:|:---------:
-![Karthigeyan](diagrams/karthig.jpg) | Rani Karthigeyan Rajendrakumar| [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
+![Karthigeyan](diagrams/karthig.jpg) | Rani Karthigeyan Rajendrakumar| [Github](https://github.com/1-Karthigeyan-1) | [Portfolio](team/1-Karthigeyan-1.md)
 ![Chuan An](diagrams/chuan_an.jpg) | Poon Chuan An | [Github](https://github.com/poonchuanan) | [Portfolio](team/poonchuanan.md)
 ![Jenny](diagrams/jenny.jpg) | Jenny Lin | [Github](https://github.com/jlifah) | [Portfolio](team/jlifah.md)
 ![Owen](diagrams/owen.jpg) | Owen Chew | [Github](https://github.com/chewyang) | [Portfolio](team/chewyang.md)
