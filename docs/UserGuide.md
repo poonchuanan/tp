@@ -72,6 +72,9 @@ This section gives you a detailed description of each feature available in **tra
 >* Input format should adhere to the one in the help list or in this user guide.
 >* All features such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
 
+>IMPORTANT:
+>* If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
+
 <br>
 <br>
 
