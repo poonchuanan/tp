@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.duke.model.ActivityList;
 import seedu.duke.model.Food;
@@ -31,4 +32,21 @@ class ActivityListTest {
         dummyList.clearList();
         assertEquals(0, dummyList.getNumberOfActivities());
     }
+
+    @Test
+    void removeActivity_InvalidPositiveIndex_success() {
+        createObjects(dummyList);
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+            dummyList.removeActivity(10);;
+        });
+    }
+
+    @Test
+    void removeActivity_InvalidNegativeIndex_success() {
+        createObjects(dummyList);
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+            dummyList.removeActivity(-1);;
+        });
+    }
+
 }

@@ -12,7 +12,7 @@ import static seedu.duke.Trakcal.storage;
  */
 public class ChainingParser extends Parser {
     public static final String CHAIN_SEPARATOR = "&&";
-    protected static final int CHAIN_SEPARATOR_LENGTH = 2;
+    public static final int CHAIN_SEPARATOR_LENGTH = 2;
 
     public ChainingParser(String userInput) {
         super(userInput);

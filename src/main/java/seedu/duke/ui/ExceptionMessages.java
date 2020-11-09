@@ -25,6 +25,14 @@ public class ExceptionMessages {
     }
 
     /**
+     * Prints error message when the user does not have logging permission.
+     */
+    public static void displaySecurityExceptionMessage() {
+        print("Sorry! It appears you do not have logging permissions!\n"
+                + PROMPT_USER_OF_HELP_MESSAGE);
+    }
+
+    /**
      * Prints error message when NumberFormatException occurs in delete command.
      */
     public static void displayIndexNotNumberExceptionMessage() {
@@ -219,7 +227,7 @@ public class ExceptionMessages {
      *
      */
     public static void displayInvalidAgeRangeMessage() {
-        print("Please enter an age range from 1 to 120 years old");
+        print("Please enter an age range from 10 to 120 years old");
     }
 
     /**

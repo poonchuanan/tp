@@ -3,9 +3,11 @@ package seedu.duke.logic.parser;
 import seedu.duke.command.Command;
 import seedu.duke.command.CreateNewSetCommand;
 import seedu.duke.command.InvalidCommand;
+import seedu.duke.exception.ListNotFoundException;
 import seedu.duke.logic.preparecommand.PrepareAddCommand;
 import seedu.duke.logic.preparecommand.PrepareAddSetCommand;
 import seedu.duke.logic.preparecommand.PrepareByeCommand;
+import seedu.duke.logic.preparecommand.PrepareCommand;
 import seedu.duke.logic.preparecommand.PrepareDeleteCommand;
 import seedu.duke.logic.preparecommand.PrepareEditCommand;
 import seedu.duke.logic.preparecommand.PrepareFindCommand;
@@ -13,10 +15,12 @@ import seedu.duke.logic.preparecommand.PrepareGraphCommand;
 import seedu.duke.logic.preparecommand.PrepareHelpCommand;
 import seedu.duke.logic.preparecommand.PrepareListCommand;
 import seedu.duke.logic.preparecommand.PrepareMoveIndexCommand;
+import seedu.duke.logic.preparecommand.PrepareNewSetCommand;
 import seedu.duke.logic.preparecommand.PrepareUserCommand;
 
 import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
+import static seedu.duke.ui.ExceptionMessages.displayListNotFoundExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 
 /**
@@ -59,41 +63,58 @@ public class CommandParser extends Parser {
         this.userInput = checkExtraSpaces();
         logging.writeToLogInfo("UserInput about to be parsed.");
         String[] arguments = userInput.split(SPACE, SPLIT_LIMIT);
+        PrepareCommand prepareCorrectCommand;
+        Command command  = null;
         try {
             switch (arguments[0].toLowerCase()) {
             case USER_COMMAND:
-                return new PrepareUserCommand(arguments).prepareCommand();
+                prepareCorrectCommand = new PrepareUserCommand(arguments);
+                break;
             case CREATESET_COMMAND:
-                return new CreateNewSetCommand(arguments[1]);
+                prepareCorrectCommand = new PrepareNewSetCommand(arguments);
+                break;
             case ADD_COMMAND:
-                return new PrepareAddCommand(arguments).prepareCommand();
+                prepareCorrectCommand = new PrepareAddCommand(arguments);
+                break;
             case ADDSET_COMMAND:
-                return new PrepareAddSetCommand(arguments).prepareCommand();
+                prepareCorrectCommand = new PrepareAddSetCommand(arguments);
+                break;
             case FIND_COMMAND:
-                return new PrepareFindCommand(arguments).prepareCommand();
+                prepareCorrectCommand = new PrepareFindCommand(arguments);
+                break;
             case EDITA_COMMAND:
-                return new PrepareEditCommand(arguments).prepareCommand();
+                prepareCorrectCommand = new PrepareEditCommand(arguments);
+                break;
             case DELETE_COMMAND:
-                return new PrepareDeleteCommand(arguments).prepareCommand();
+                prepareCorrectCommand = new PrepareDeleteCommand(arguments);
+                break;
             case LIST_COMMAND:
-                return new PrepareListCommand(arguments).prepareCommand();
+                prepareCorrectCommand = new PrepareListCommand(arguments);
+                break;
             case HELP_COMMAND:
-                return new PrepareHelpCommand(arguments).prepareCommand();
+                prepareCorrectCommand = new PrepareHelpCommand(arguments);
+                break;
             case MOVE_COMMAND:
-                return new PrepareMoveIndexCommand(arguments).prepareCommand();
+                prepareCorrectCommand = new PrepareMoveIndexCommand(arguments);
+                break;
             case BYE_COMMAND:
-                return new PrepareByeCommand(arguments).prepareCommand();
+                prepareCorrectCommand = new PrepareByeCommand(arguments);
+                break;
             case GRAPH_COMMAND:
-                return new PrepareGraphCommand(arguments).prepareCommand();
+                prepareCorrectCommand = new PrepareGraphCommand(arguments);
+                break;
             default:
                 return new InvalidCommand(displayInvalidInputErrorMessage());
             }
+            command = prepareCorrectCommand.prepareCommand();
         } catch (StringIndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
+        } catch (ListNotFoundException e) {
+            displayListNotFoundExceptionMessage();
         }
-        return null;
+        return command;
     }
 
 }
