@@ -594,7 +594,7 @@ Exiting the application
     Test case: `user e/ al/ 3`
     Expected: User activity level will be changed to `3`.
  
- >Incorrect inputs to try:
+>Incorrect inputs to try:
     `user e/ n/        `: empty description for name
     `user e/ g/ meIsMale`: invalid gender type
     `user e/ g/ gender + n/ tom`: wrong separator used. gender will be read as `gender + n/ tom` instead. `+` should be changed to `.`
@@ -611,6 +611,7 @@ Exiting the application
     `user e/ jkdsfhdskjfhdksfkjsdf/ karen`: invalid tag
     Expected: Message with error will be shown.
 
+<br>
 
 #### Creating a shortcut
 
@@ -626,7 +627,7 @@ Exiting the application
     Test case: `createSet morning routine f/ oatmeal c/ 300 + e/ jumping jacks c/ 50`
     Expected: A text file named `morning routine.txt` will be created in ... with first line as `f/ oatmeal c/ 300` and second line as `e/ jumping jacks c/ 50`.
  
- >Incorrect inputs to try:
+>Incorrect inputs to try:
     `createSet f/ chicken c/ 100 + f/ beef c/ 100`: missing shortcut name
     `createSet meat f/ chicken f/ fish`: each `f/` or `e/` must be followed be a `c/`
     `createSet fishy lunch f/ fish c/      `: empty description for calories
@@ -646,7 +647,7 @@ Exiting the application
     Test case: `addSet dinner`
     Expected: Contents within `dinner.txt` will be added into today's list.
 
- >Incorrect inputs to try:
+>Incorrect inputs to try:
     `addSet test1`: if test1 is not yet created as shortcut
     `addSet `: a shortcut name not specified
     `addSet test2`: if test2 has been edited to the wrong format by user
