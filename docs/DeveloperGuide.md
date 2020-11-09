@@ -90,7 +90,7 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 *Figure 2. Diagram for logic component*
 
 The main bulk of data processing takes place in the logic component. In this component, 
-the data from the user input is checked for its validity and parsed down futher by the preparecommand class to its respective command blocks.
+the data from the user input is checked for its validity and parsed down futher by the PrepareCommand class to its respective command blocks.
 These command classes are derived from the Command class. Each different command block deals with the 
 proposed functionality which can be associated with `Ui`,`storage` or `model` components. 
 
