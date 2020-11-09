@@ -864,7 +864,7 @@ Please input a valid description that is not empty!
 
 ## 5.0 List - Owen Chew Yang
 
-### 5.1 Listing entries for the specified day
+### 5.1 Listing entries
 
 You can view your entries for a specific day by using this `list` command.
 
@@ -874,7 +874,7 @@ Parameters:
 * `<**DATE**>`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 >REMINDER: 
->*The `**DATE**` parameter is optional, if you enter list command without it, it will print out the list of entries for today's date.
+>*The `**DATE**` parameter is optional, if were to you enter list command without it, it will print out the list of entries for today's date.
 
 Examples of usage: 
 
