@@ -75,8 +75,6 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 
 <br>
 
----
-
 ### 3.2 Ui component
 
 ![Ui Component](diagrams/ui.png)
@@ -84,8 +82,6 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 *Figure 2. Diagram for logic component*
 
 <br>
-
----
 
 ### 3.3 Logic component
 
@@ -106,8 +102,6 @@ and validity of those description are checked..
 
 <br>
 
----
-
 ### 3.4 Model component
 
 ![Model_Component](diagrams/model.png)
@@ -123,9 +117,12 @@ In the Model component,
 
 <br>
 
----
-
 ### 3.5 Command component
+
+Before carrying out the command, user input first has to be prepared.
+
+![Prepare_Component](diagrams/PrepareCommand.png)
+*Figure 4. Diagram for PrepareCommand*
 
 ![Command_Component](diagrams/Command.png)
 
@@ -133,13 +130,9 @@ In the Model component,
 
 <br>
 
----
-
 ### 3.6 Storage component
 
 <br>
-
----
 
 ### 3.7 Exception component
 
@@ -148,8 +141,6 @@ In the Model component,
 *Figure 4. Diagram for Exception component*
 
 <br>
-
----
 
 ### 3.8 UserProfile component
 
