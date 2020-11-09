@@ -8,7 +8,7 @@ This section shows a brief overview of my contribution to traKCAL. It includes c
 
 #### Code contributed
 
-* My code contributions can be found [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=jlifah&tabRepo=AY2021S1-CS2113T-T09-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other).
+* My code contributions can be found [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/commits/master).
 
 #### Enhancements implemented
 
