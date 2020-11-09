@@ -145,6 +145,10 @@ Before carrying out the command, user input first has to be prepared.
 
 ### 3.8 UserProfile component
 
+![userProfile](diagrams/userProfile.png)
+
+*Figure 4. Diagram for UserProfile component*
+
 <br>
 <br>
 
@@ -154,7 +158,7 @@ Before carrying out the command, user input first has to be prepared.
 
 The sequence diagram below shows how the components will react to a new user or for a returning user. 
 
-![CreateNewUserFeature](diagrams/CreateNewUserFeature.png)
+![CreateNewUserFeature](diagrams/createNewUserFeature.png)
 
 *Figure 4. Components interactions for **traKCAL** create user profile feature*
 
@@ -569,6 +573,77 @@ Exiting the application
 | Thank you for using traKCAL. See you again!                                                       |
 =====================================================================================================
 ```
+
+#### Editing user profile
+
+>Editing user name and gender
+    Test case: `user e/ n/ Sam , g/ female`
+    Expected: User name will be changed to `Sam` and user gender will be changed to `female`.
+ 
+>Editing user activity level
+    Test case: `user e/ al/ 3`
+    Expected: User activity level will be changed to `3`.
+ 
+>Incorrect inputs to try:
+    `user e/ n/        `: empty description for name
+    `user e/ g/ meIsMale`: invalid gender type
+    `user e/ g/ gender + n/ tom`: wrong separator used. gender will be read as `gender + n/ tom` instead. `+` should be changed to `.`
+    `user e/ g/ female , w/ 1000000`: weight is not within 30 to 650 kg range
+    `user e/ g/ female , w/ test`: weight is not of valid type to parse to an integer
+    `user e/ g/ male , h/ -10`: height is not within 90 to 300 cm range
+    `user e/ g/ female , h/ one hundred`: height is not of valid type to parse to an integer
+    `user e/ g/ female , age/ 200`: age is not within 10 to 120 years old range
+    `user e/ g/ male , age/ twenty`: age is not of valid type to parse to an integer
+    `user e/ g/ female , al/ 8`: age is not within 1 to 5
+    `user e/ g/ male , age/ twenty`: activity level is not of valid type to parse to an integer
+    Editing the user profile text file `tp.txt` will corrupt the next run and user will be directed to create a new user profile
+    `user e/ goal/ meWantLoseWeight`: invalid goal type
+    `user e/ jkdsfhdskjfhdksfkjsdf/ karen`: invalid tag
+    Expected: Message with error will be shown.
+
+<br>
+
+#### Creating a shortcut
+
+>Creating a shortcut with 2 food entries
+    Test case: `createSet dinner f/ chicken c/ 100 + f/ beef c/ 100`
+    Expected: A text file named `dinner.txt` will be created in ... with first line as `f/ chicken c/ 100` and second line as `f/ beef c/ 100`.
+
+>Creating a shortcut with 1 exercise entry
+    Test case: `createSet morning exercise e/ run c/ 100`
+    Expected: A text file named `morning exercise.txt` will be created in ... with first line as `e/ run c/ 100`.
+
+>Creating a shortcut with 1 food entry and 1 exercise entry
+    Test case: `createSet morning routine f/ oatmeal c/ 300 + e/ jumping jacks c/ 50`
+    Expected: A text file named `morning routine.txt` will be created in ... with first line as `f/ oatmeal c/ 300` and second line as `e/ jumping jacks c/ 50`.
+ 
+>Incorrect inputs to try:
+    `createSet f/ chicken c/ 100 + f/ beef c/ 100`: missing shortcut name
+    `createSet meat f/ chicken f/ fish`: each `f/` or `e/` must be followed be a `c/`
+    `createSet fishy lunch f/ fish c/      `: empty description for calories
+    `createSet fishy lunch f/        c/ 100`: empty description for food
+    `createSet healthy lunch`: missing activity and calorie tag
+    `createSet dinner f/ beans c/ 100000`: invalid calorie range, only 0 to 3000 kcal accepted
+    `createSet dinner f/ beans c/ test`: calorie not of valid type to parse to an integer
+    `createSet dinner f/ beans c/ 1000000000000000`: calorie too large to be an integer
+    Expected: Message with error will be shown.
+ 
+<br>
+
+
+#### Adding a shortcut into list
+
+>Adding a shortcut
+    Test case: `addSet dinner`
+    Expected: Contents within `dinner.txt` will be added into today's list.
+
+>Incorrect inputs to try:
+    `addSet test1`: if test1 is not yet created as shortcut
+    `addSet `: a shortcut name not specified
+    `addSet test2`: if test2 has been edited to the wrong format by user
+    Expected: Message with error will be shown.
+ 
+<br>
  
 #### Adding an entry into list
 
@@ -595,6 +670,8 @@ Exiting the application
 >* `add e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
 >* `add e/ c/ `: empty input parameters
 >* Expected: Message with error will be shown.
+
+<br>
 
 #### Editing an entry in list
 
@@ -625,6 +702,8 @@ This feature allows editing of list entry from:
 >* `edita 2 e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
 >* `edita 3 e/ c/ `: empty input parameters
 >* Expected: Message with error will be shown.
+
+<br>
 
 #### Chaining of features
 
