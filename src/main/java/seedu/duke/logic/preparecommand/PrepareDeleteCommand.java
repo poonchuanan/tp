@@ -14,7 +14,7 @@ import static seedu.duke.ui.ExceptionMessages.displayShortageOfArguments;
  */
 public class PrepareDeleteCommand extends PrepareCommand {
     protected static final int ARGUMENT_LIMIT = 2;
-    protected static final String DELETE_ALL_KEYWORD = "all";
+    protected static final String DELETE_ALL_KEYWORD = "all/";
     protected DayMap dayMap;
 
     /**
@@ -35,7 +35,7 @@ public class PrepareDeleteCommand extends PrepareCommand {
     public Command prepareCommand() {
         try {
             isNumberOfArgumentsValid(ARGUMENT_LIMIT);
-            if (description[1].equals(DELETE_ALL_KEYWORD)) {
+            if (description[1].toLowerCase().equals(DELETE_ALL_KEYWORD)) {
                 return new PrepareDeleteAll(description).prepareCommand();
             } else {
                 return new PrepareDeleteByIndexCommand(description).prepareCommand();
