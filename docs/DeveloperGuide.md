@@ -2,7 +2,7 @@
 
 The purpose of this developer guide is as reference for future collaborators of **trakCAL**.
 
-By: CS2113-T09-4    Since: October 2020   Licence: MIT
+By: CS2113-T09-4 <br>   Since: October 2020  <br> Licence: MIT
 
 <br>
 
@@ -16,14 +16,21 @@ This guide will provide information on the design and implementation of **traKCA
 
 <br>
 
-## Table of Contents
+### 1.1 Table of Contents
 
 * Table of Contents
 {:toc}
 
 <br>
 
-## 2.0 Setting up
+### 2.0 Prerequisites
+ * Java 11 (can be download from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html))
+ * Intellij IDE
+
+<br>
+<br>
+
+## 2.1 Setting up
 1. Fork the traKCAL repository [here]() and git clone it to a convenient location on your desktop eg. Desktop.
 2. Open any IDE (Intellij preferred) and click `Configure` -> `Project Defaults` -> `Project Structure` -> `New` and ensure that a valid Java 11 SDK is selected.
 3. Next, go to `Import Project` and select the *build.gradle* file. 
@@ -31,35 +38,22 @@ This guide will provide information on the design and implementation of **traKCA
 5. After opening the project, go to `src` -> `main` -> `java` -> `seedu.duke` -> `Trakcal` and right click on the Trakcal class. Select the `Run 'Trakcal.main()'` option.
 6. Upon successful run, the following opening message will be shown: 
 
-```
-====================================================================================
-| Hello from                                                                       |
-|  _                  _  __   ___     _     _                                      |
-| | |_   _ _   __ _  | |/ /  / __|   /_\   | |                                     |
-| |  _| | '_| / _` | | ' <  | (__   / _ \  | |__                                   |
-|  \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|                                  |
-|                                                                                  |
-| Hello! I'm traKCAL.                                                              |
-| Please do input 'help' for the commands and their respective input format.       |
-====================================================================================
-```
+    ```
+    ====================================================================================
+    | Hello from                                                                       |
+    |  _                  _  __   ___     _     _                                      |
+    | | |_   _ _   __ _  | |/ /  / __|   /_\   | |                                     |
+    | |  _| | '_| / _` | | ' <  | (__   / _ \  | |__                                   |
+    |  \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|                                  |
+    |                                                                                  |
+    | Hello! I'm traKCAL.                                                              |
+    | Please do input 'help' for the commands and their respective input format.       |
+    ====================================================================================
+    ```
+
 7. You will then be prompted to create a new user profile.  
 
-<br>
 
-### 2.1 Prerequisites
- * Java 11 (can be download from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html))
- * Intellij IDE
- 
-<br>
-    
-### 2.2 Setting up:    
-* Download the latest **traKCAL** jar file ([here](https://github.com/AY2021S1-CS2113T-T09-4/tp/releases))
-* Copy jar file into an empty folder in a convenient location (eg. Desktop)
-* Open terminal and navigate directory to the folder containing jar file 
-* Enter the following command line to run program: ```java -jar traKCAL.jar```   
-* Look through the user guide for a full detailed explanation on the functionality of **traKCAL**
-    
 <br>
 <br>    
     
@@ -75,11 +69,14 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 
 <br>
 
-### 3.2 ui component
+### 3.2 Ui component
 
 ![Ui Component](diagrams/ui.png)
 
-*Figure 2. Diagram for logic component*
+*Figure 2. Diagram for UI component*
+
+The UI component deals with interactions with the user by displaying appropriate messages to the user, including the welcome message and appropriate error messages whenever an error has been detected. 
+
 
 <br>
 
@@ -89,8 +86,11 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 
 *Figure 2. Diagram for logic component*
 
+
+ \* This means that there are multiple PrepareCommand children classes inherited by the PrepareCommand class.
+
 The main bulk of data processing takes place in the logic component. In this component, 
-the data from the user input is checked for its validity and parsed down futher by the PrepareCommand class to its respective command blocks.
+the data from the user input is checked for its validity and parsed down further to the PrepareCommand class to its respective command classes.
 These command classes are derived from the Command class. Each different command block deals with the 
 proposed functionality which can be associated with `Ui`,`storage` or `model` components. 
 
@@ -111,19 +111,23 @@ and validity of those description are checked..
 
 In the Model component, 
 
-* Stores a DayMap object that holds the data for each date.
-* Stores an ActivityList that holds the list of Activities, Food or Exercise for each day 
+* Contains a hashmap, dayMap, where the key is the date and the value is the list of activities for the respective day.
+* Contains a list of activities, lastSeenList where this list would contain the activities 
 * Does not depend on any of the other components.
 
 <br>
 
 ### 3.5 Command component
 
-Before carrying out the command, user input first has to be prepared.
+Before executing the command, user input has to be prepared first to ensure that all the parameters are correctly in place. 
+This is done by the PrepareCommand class.
 
 ![Prepare_Component](diagrams/PrepareCommand.png)
 
 *Figure 4. Diagram for PrepareCommand*
+
+After preparing the user input and ensuring that all necessary parameters are in place, the respective prepareCommand classes will return a 
+command which will be executed by traKCAL. Below shows all the different Command classes inherited.
 
 ![Command_Component](diagrams/Command.png)
 
@@ -133,7 +137,7 @@ Before carrying out the command, user input first has to be prepared.
 
 ### 3.6 Storage component
 
-**traKCAL** saves both user profile data and activity entries in text file and csv(comma separated values) files respectively. <br>
+**traKCAL** saves both user profile data and activity entries in a text file and csv (comma separated values) file respectively. <br>
 It also handles the logging file that records down the different types operations or errors that was performed during the program.
 
 ![Storage_Component](diagrams/storage.jpg)
@@ -151,13 +155,15 @@ On program launch:
 
 On Command execution:
 
-* Whenever the user changes the list by performing an operation such as add or delete entry, `Storage` parses the model objects and writes into the csv file.
+* Whenever the user changes the list by performing an operation such as *add* or *delete* entry, `Storage` parses the model objects and writes into the csv file.
 * The respective logs will also be updated according to the given commands through `Logging`.
 * `UserSetStorage` will store the relevant shortcuts created by the using *createSet* command is called.
 
 <br>
 
 ### 3.7 Exception component
+
+This component contains all the exception classes used in traKCAL.
 
 ![Exception_Component](diagrams/Exception.png)
 
@@ -166,6 +172,8 @@ On Command execution:
 <br>
 
 ### 3.8 UserProfile component
+
+This component contains the information such as the user's name, gender, height, weight, active level and the weight goal. 
 
 ![userProfile](diagrams/UserProfile.png)
 
@@ -213,7 +221,9 @@ Users can create a shortcut with unlimited number of entries in this format: `cr
 
 Some examples include:
 >`createSet **SHORTCUT_NAME** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+
 >`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+
 >`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 ![createSetFeature](diagrams/createSetFeature.png)
@@ -226,12 +236,12 @@ Some examples include:
 
 * At least one activity tag (`e/` or `f/`) and calorie tag (`c/`) must be specified by user for a shortcut to be created.
 * The order of the entry must be activity tag first before calorie tag. Calorie tag followed by activity tag is not allowed. This is to facilitate the adding of each entry in the shortcut, as seen in [section 4.3](#43-add-activity-feature).
-* Multiple entries in shortcut should be separated be a `+` as it is a key. 
+* Multiple entries in shortcut should be separated by a `+`. 
 
 <br>
 <br>
 
-### 4.2.2 Adding a shortcut to activity list
+### 4.2.2 Using a shortcut to add to a activity list
 
 #### Current Implementation
 
@@ -243,15 +253,12 @@ Users can call any existing shortcut in this format: `addSet **SHORTCUT_NAME**`
 
 *Figure 9. Components interaction for **traKCAL** add set feature*
 
-The following has been omitted from the diagram to increase readability: 
-* Exception handling 
-* Components after adding each entry in the shortcut to the activity list as the same diagram will be repeated in [section 4.3](#43-add-activity-feature). Instead, it is replaced by the updateList() self invocation call. 
 
 <br>
 
 #### Design Considerations
 
-* Activities added from shortcut are only for current date.
+* Activities added using shortcuts are only added to the activity list for the current date.
 
 <br>
 <br>
@@ -271,9 +278,6 @@ The following sequence diagram shows how `AddFoodCommand` is carried out when th
 
 > `AddExerciseCommand` diagram has a similar logic.
 
-![Add_Exercise](diagrams/AddExerciseFeature.png)
-
-*Figure 11. Component interactions for add exercise command*
 
 <br>
 
@@ -293,7 +297,7 @@ Aspect: How to add food/exercise
 Aspect: Input parameters for add food/exercise
 
 >Current choice: Input format for adding: `add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` OR `add f/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>`
->Where words in CAPS are parameters to be filled by the user and word in <this> are optional. None addition date would add to today's list.
+>Where words in CAPS are parameters to be filled by the user and word in <this> are optional. Not including the <date> parameter would add to today's list.
 >* Pros: Faster and shorter input time for user.
 >* Cons: Have to ensure that user entry would be added to the correct date.
 
@@ -329,8 +333,8 @@ Using the lastSeenList allows users to make changes e.g `edit`, `delete`, `move`
 
 Given below is an example usage scenario and how the lastSeenList behaves for different `list` commands.
 
-Step 1. The user launches the application for the first time. The lastSeenList will be pointed to the activityList for today's date.
-This means that any `edit`, `delete` or `move` commands will be performed on the activityList for today's date in this case, the date would be 2020-11-12.
+Step 1. The user launches the application for the first time. The lastSeenList will be pointed to the ActivityList for today's date.
+This means that any `edit`, `delete` or `move` commands will be performed on the ActivityList for today's date in this case, the date would be 2020-11-12.
 ![lastSeenList first state](diagrams/initialStateOfLastSeenList.PNG)
 *Figure 12. First state of lastSeenList*
 
@@ -357,10 +361,10 @@ The following sequence diagram shows how the lastSeenList is set after a “list
 
 This listing feature for the `find` command also uses the lastSeenList which is of ActivityList class.  <br>
 The lastSeenList is the list that the user would see after a `list` command. <br>
-For example, 
-* A `find e/ food` command would go throught the dayMap and add activities containing the keyword/s into the lastSeenList.
-
 Using the lastSeenList allows users to make changes e.g `delete` command using the numbered index of a single `find` command.
+
+For example, 
+* A `find e/ food` command would loop through the dayMap and add activities containing the keyword/s into the lastSeenList.
 
 The editing mechanism is used by the basic find features: `FindDescriptionCommand`, `FindCalorieCommand`, 
 as well as the advanced find features: `FindAllCommand` and `FindEitherCommand` to look for keywords in the list.
@@ -372,6 +376,8 @@ This lastSeenList will not point to any other activityList in the dayMap hashmap
 ![lastSeenList third state](diagrams/thirdStateOfLastSeenList.PNG)
 *Figure 12. Third state of lastSeenList*
 
+<br>
+
 The following sequence diagram shows how the lastSeenList is set after a find command.
 
 ![Find Sequence Diagram](diagrams/FindSequenceDiagram.jpg)
@@ -381,7 +387,7 @@ The following sequence diagram shows how the lastSeenList is set after a find co
 <br>
 <br>
 
-### 4.5 List feature after `find` or `list` commands
+### 4.5 Displaying the list after `find` or `list` commands
 
 #### 4.5.1 Current implementation
 The mechanism used to display the lastSeenList invoked by the list or find commands is facilitated by the listDrawer and findDrawer class respectively. They both work the same way but the list produced by findDrawer has an extra column which contains the dates of the respective entries.
@@ -409,24 +415,9 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 
 > `EditExerciseCommand` diagram has a similar logic.
 
-![Edit_Exercise](diagrams/EditExercise.png)
-
-*Figure 16. Sequence diagram of edit exercise feature*
-
 <br>
 
 #### 4.6.2 Design considerations
-
-Aspect: How to edit food/exercise
-
->Current choice: Using single letter words as tags for input commands. (e.g. edit f/ jelly c/ 100 d/ 2020-11-09)
->* Pros: Faster and shorter input keys for user.
->* Cons: Have to ensure that user is clear on what tags to input.
-
->Alternative: Using full words as tags for input commands. (e.g. edit food/ chicken chop calorie/ 70 date/ 2020-11-08)
->* Pros: Tags are obvious in what input is expected.
->* Cons: More wordy input needed from user.
-
 
 Aspect: How editing is carried out
 
@@ -450,7 +441,6 @@ The chaining mechanism can be used by the various commands available The followi
 - add
 - edit
 - graph
->this is due to attribute canBeChained in those commands being true.
 
 The following sequence diagram shows how the chaining works after command is entered:
 
@@ -526,7 +516,8 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 #4.10 Delete feature
 
 ![Delete_Sequence_Diagram](diagrams/DeleteSequeunceDiagram.png)
-*Figure 13. Sequence diagram of delete by index feature
+
+* Figure 13. Sequence diagram of delete by index feature
 
 ## 5.0 Appendix: Requirements
 
