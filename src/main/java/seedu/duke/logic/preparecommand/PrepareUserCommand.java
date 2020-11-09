@@ -2,6 +2,7 @@ package seedu.duke.logic.preparecommand;
 
 import seedu.duke.command.Command;
 import seedu.duke.exception.InvalidNumberOfArgumentsException;
+import static seedu.duke.ui.ExceptionMessages.displayInvalidEditUserProfileMessage;
 
 import static seedu.duke.ui.ExceptionMessages.displayShortageOfArguments;
 
@@ -37,6 +38,7 @@ public class PrepareUserCommand extends PrepareCommand {
         case "e/":
             return new PrepareEditUserProfileCommand(input).prepareCommand();
         default:
+            displayInvalidEditUserProfileMessage();
             return null;
         }
     }

@@ -258,7 +258,8 @@ Please do not enter an empty input
 
 ```
 =====================================================================================================
-Sorry this is an invalid gender format! Please input gender as female or male only!
+Sorry this is an invalid gender format! 
+Please input gender as female or male only!
 =====================================================================================================
 ```
 
@@ -320,10 +321,9 @@ Please enter a valid age format!
 > `8`
 
 ```
-=====================================================================================================
-Sorry this is an invalid activity factor!
-Please enter an integer from 1 to 5, with 1 being the least active and 5 being the most active
-=====================================================================================================
+====================================================================================
+Please enter an activity level from 1 to 5 only
+====================================================================================
 ```
 
 * Weight goals is not specified as lose or maintain or gain only.
@@ -487,7 +487,7 @@ Please try again!
 
 #### Invalid parameters
 * Shortcut name given already exist within the database. For example if a set named `morning routine` already exists, the following command would produce the error:
-> createSet morning routine f/ beans c/ 100000`
+> `createSet morning routine f/ beans c/ 100000`
 
 ```
 ====================================================================================
@@ -1440,6 +1440,17 @@ Index is not a number!
 Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
+
+#### Moving which results in no change
+* Any of the `**INDEX_1` or `**INDEX_2**` entered for the respective keyword will not result in any changes to the list.
+> `move from/ 1 below/ 0` OR <br>
+> `move from/ 2 below/ 2`
+
+```
+====================================================================================
+The indexes entered for this move command does not result in any change!
+====================================================================================
+```
  
 <br>
 <br>
@@ -1852,13 +1863,18 @@ This section contains frequently asked questions.
 
 **A2**: **traKCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
-**Q3**: Is **traKCAL** optimized for all operating systems?
+**A3**: I keep getting errors with the storage files when using **traKCAL**, how do I solve them?
 
-**A3**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
+**Q4**: Do take a look at the error sections above of the User Guide for solutions. When all else fails, you can delete the tpdata file to reset your data. 
+        Alternatively, make sure your csv file is not open when **traKCAL** is running to prevent write conflicts.
 
-**Q4**: How do I contact us if I have doubts or have issues to raise?
+**Q4**: Is **traKCAL** optimized for all operating systems?
 
-**A4**: You can reach us via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
+**A4**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
+
+**Q5**: How do I contact us if I have doubts or have issues to raise?
+
+**A5**: You can reach us via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
 
 <br>
 
@@ -1874,10 +1890,10 @@ For more information please go to the respective section for the feature details
 
 Action         | Format | Example
 -------------- | ---------- | --------
-Help | `help` | 
-Create User Profile | `user c/` |
+Help | `help` | `help`
+Create User Profile | `user c/` |  `user c/`
 Edit User Profile | `user e/ <n/ NAME>, <g/ GENDER>, <w/ WEIGHT>, <h/ HEIGHT>, <age/ AGE>, <al/ ACTIVITY_FACTOR>, <goal/ WEIGHT_GOALS>` | `user e/ n/ Sammy`
-List User Profile | `user l/` |
+List User Profile | `user l/` | `user l/`
 Create Shortcut | `createSet SHORTCUT f/ FOOD_DESCRIPTION c/ CALORIE COUNT + e/ EXERCISE_DESCRIPTION c/ CALORIE COUNT` | `createSet morning routine f/ oatmeal c/ 200 + e/ yoga c/ 200`
 Add Shortcut | `addSet SHORTCUT` | `addSet morning routine`
 Add Food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` | `add e/ ice cream c/ 78 d/ 2020-10-19`
@@ -1891,7 +1907,7 @@ Find Either | `find e/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3` | `find e/ ap
 Find All | `find a/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3` | `find a/ running / jumping / cake`
 Move Activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
 Delete Entry | `delete INDEX` | `delete 2`
-Delete All for Today| `delete all/` | 
-Graph | `graph` | 
+Delete All for Today| `delete all/` | `delete all/`
+Graph | `graph` | `graph` 
 Chain | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE> && list && graph` | `add e/ ice cream c/ 78 && list && graph`
-Exit | `bye` | 
+Exit | `bye` | `bye`
