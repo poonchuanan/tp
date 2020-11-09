@@ -75,7 +75,7 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 
 <br>
 
-### 3.2 Ui component
+### 3.2 ui component
 
 ![Ui Component](diagrams/ui.png)
 
