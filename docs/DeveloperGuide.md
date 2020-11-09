@@ -312,6 +312,7 @@ Aspect: Input parameters for add food/exercise
 ### 4.4 Listing feature for find and list commands
 
 The listing mechanism used by `ListCommand` and `FindCommand` to display the required list of activities is facilitated by the lastSeenList of class `ActivityList`. 
+The lastSeenList is the list that the user would see after a `list` or `find` command. <br>
 The following operations could be applied to the lastSeenList which would change the actual data in the database:
 
 - delete
@@ -324,14 +325,15 @@ The details of those operations can be found further down.
 
 #### 4.4.1 List
 
-This listing feature for the `list` command uses the lastSeenList which is of ActivityList class.  <br>
-The lastSeenList is the list that the user would see after a `list` command. <br>
+The `list` command displays the list of entries for the current date while the `list <DATE>` command displays the list of entries for the date as specified by the <DATE> parameter.
+
 For example, 
 * A `list 2020-11-11` command would use the activityList for 2020-11-11 as the lastSeenList.<br>
 
-Using the lastSeenList allows users to make changes e.g `edit`, `delete`, `move` commands using the numbered index of a single `list` command.
 
 Given below is an example usage scenario and how the lastSeenList behaves for different `list` commands.
+
+<br>
 
 Step 1. The user launches the application for the first time. The lastSeenList will be pointed to the ActivityList for today's date.
 This means that any `edit`, `delete` or `move` commands will be performed on the ActivityList for today's date in this case, the date would be 2020-11-12.
@@ -353,6 +355,10 @@ The following sequence diagram shows how the lastSeenList is set after a “list
 ![Listing feature for find and list commands](diagrams/setLastSeenList.png)
 
 *Figure 14. Sequence diagram of setting the lastSeenList after a `list` command*
+
+#### Design considerations
+
+* Allowing the user to view the list of activities for the current date by not including the `<DATE>` parameter would make it easier for the user.
 
 <br>
 <br>
@@ -390,13 +396,18 @@ The following sequence diagram shows how the lastSeenList is set after a find co
 ### 4.5 Displaying the list after `find` or `list` commands
 
 #### 4.5.1 Current implementation
-The mechanism used to display the lastSeenList invoked by the list or find commands is facilitated by the listDrawer and findDrawer class respectively. They both work the same way but the list produced by findDrawer has an extra column which contains the dates of the respective entries.
+The mechanism used to display the lastSeenList invoked by the list or find commands is facilitated by the listDrawer and findDrawer class respectively. 
+They both work in a similar manner but the list produced by findDrawer has an extra column which contains the dates of the respective entries.
 
 The following sequence diagram shows how the listDrawer class is used to display the lastSeenList.
 
 ![list_Drawer](diagrams/listDrawer.PNG)
 
 *Figure 14. Sequence diagram of the usage of listDrawer to display the list*
+
+#### Design considerations
+* The list displayed to the user after both `find` and `list` commands has enough whitespace between the columns and rows to make it easier for the user to view the entries.
+* The list displayed to the user after a `find` command has the date attribute at the left hand side of the list so as to make it easier for the user to connect the entries found to the respective date, making it easier for the user to make changes accurately
 
 <br>
 <br>
@@ -474,7 +485,7 @@ Aspect: Which features to chain
 <br>
 
 ### 4.8 Move feature
-This feature allows the user to manually `move` activities from one position to another position 
+This feature allows the user to manually move an activity from one position to another.
 
 The following sequence diagram shows how the `move` command is executed, where index1 is the position to be moved from and index 2 is the position to be moved below. 
 
@@ -483,6 +494,13 @@ The following sequence diagram shows how the `move` command is executed, where i
 *Figure 20. Sequence diagram of move feature*
 
 <br>
+#### Design Considerations
+
+* Pros: The tags `from/` and `below` was used to make this command more intuitive for the user.
+* Cons: For the user to move an activity from a position to the 1st position, the index tied to the `below/` tag would have to be 0 which may not be as clear to the user. 
+        For example, `move from/ 2 below/ 0`
+
+
 <br>
 
 ### 4.9 Graph feature
@@ -811,3 +829,37 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >
 >* Test case: Consecutive slashes in input for `a/` or `e/`. Example:`find a// apple / pie`
 >* Expected: Message with error will be shown.
+
+
+#### List Feature
+>Listing the activities for today
+>* Test case: `list`
+>* Expected: The list of activities for today would be displayed unless the list is empty.
+ 
+>Listing the activities for a specific day
+>* Test case: `list 2020-11-31`
+>* Expected: The list of activities would be displayed unless the list is empty.
+
+>Incorrect inputs to try:
+>* Test case: `list 2020/11/31`
+>* Expected: The list for 2020-11-31 will not be displayed and a error message will be shown.
+
+
+#### Move feature
+>Moving an activity from the 1st position to the 4th position
+>* Test case: `move from/ 1 below/ 3`
+>* Expected: The activity at position 1 will be move to position 4 in the list.
+
+>Moving an activity from the 4th position to the 1st position
+>* Test case: `move from/4 below/0`
+>* Expected: The activity at position 4 will be moved to the 1st position in the list.
+
+>Other incorrect commands to try
+>* Test case: `move from/2 below/2`
+>* Expected: There would be no change. An error message will be shown.
+>
+>* Test case: `move from/0 below/2`
+>* Expected: 0 is a invalid index. An error message will be shown.
+>
+>* Test case: `move from/2 below/1`
+>* Expected: There would be no change. An error message will be shown.
