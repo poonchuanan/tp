@@ -867,7 +867,7 @@ Please input a valid description that is not empty!
 
 ## 5.0 List - Owen Chew Yang
 
-### 5.1 Listing entries for the specified day
+### 5.1 Listing entries
 
 You can view your entries for a specific day by using this `list` command.
 
@@ -877,7 +877,7 @@ Parameters:
 * `<**DATE**>`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 >REMINDER: 
->*The `**DATE**` parameter is optional, if you enter list command without it, it will print out the list of entries for today's date.
+>*The `**DATE**` parameter is optional, if were to you enter list command without it, it will print out the list of entries for today's date.
 
 Examples of usage: 
 
@@ -1873,9 +1873,9 @@ This section contains frequently asked questions.
 
 **A2**: **traKCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
-**A3**: I keep getting errors with the storage files when using **traKCAL**, how do I solve them?
+**Q3**: I keep getting errors with the storage files when using **traKCAL**, how do I solve them?
 
-**Q4**: Do take a look at the error sections above of the User Guide for solutions. When all else fails, you can delete the tpdata file to reset your data. 
+**A3**: Do take a look at the error sections above of the User Guide for solutions. When all else fails, you can delete the tpdata file to reset your data. 
         Alternatively, make sure your csv file is not open when **traKCAL** is running to prevent write conflicts.
 
 **Q4**: Is **traKCAL** optimized for all operating systems?
