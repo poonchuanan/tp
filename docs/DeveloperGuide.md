@@ -71,7 +71,7 @@ This guide will provide information on the design and implementation of **traKCA
 
 *Figure 1. Architecture diagram of traKCAL*
 
-The Architecture Diagram shown above explains the high-level design of **traKCAL**. There are 8 components in traKCAL and their functionalities will be discussed below:
+The Architecture Diagram shown above explains the high-level design of **traKCAL**. There are 8 components in traKCAL, and their functionalities will be discussed below:
 
 <br>
 
@@ -90,8 +90,8 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 *Figure 2. Diagram for logic component*
 
 The main bulk of data processing takes place in the logic component. In this component, 
-the data from the userinput is checked for its validity and parsed down futher by the preparecommand class to its respective command blocks.
-These command class are derived from the abstract Command class. Each different command block deals with the 
+the data from the user input is checked for its validity and parsed down futher by the PrepareCommand class to its respective command blocks.
+These command classes are derived from the Command class. Each different command block deals with the 
 proposed functionality which can be associated with `Ui`,`storage` or `model` components. 
 
 * **traKCAL** uses the parser class to filter based on command words by user.
@@ -133,13 +133,35 @@ Before carrying out the command, user input first has to be prepared.
 
 ### 3.6 Storage component
 
+**traKCAL** saves both user profile data and activity entries in text file and csv(comma separated values) files respectively. <br>
+It also handles the logging file that records down the different types operations or errors that was performed during the program.
+
+![Storage_Component](diagrams/storage.jpg)
+
+*Figure 5. Diagram for Storage component*
+
+<br>
+
+On program launch:
+
+1. `Storage` is initialised and checks for existing saved data.
+2. If saved data exists, `Storage` will read the saved data and parses them into model objects such as activity lists for the activity data.
+3. Else, if saved data does not exist, `Storage` will create an empty save file in the tpData directory.
+4. New users will be prompted to create their profile by inputting their details and saved through `UserInfoStorage`.
+
+On Command execution:
+
+* Whenever the user changes the list by performing an operation such as add or delete entry, `Storage` parses the model objects and writes into the csv file.
+* The respective logs will also be updated according to the given commands through `Logging`.
+* `UserSetStorage` will store the relevant shortcuts created by the using *createSet* command is called.
+
 <br>
 
 ### 3.7 Exception component
 
 ![Exception_Component](diagrams/Exception.png)
 
-*Figure 4. Diagram for Exception component*
+*Figure 6. Diagram for Exception component*
 
 <br>
 
@@ -162,7 +184,7 @@ The sequence diagram below shows how the components will react to a new user or 
 
 ![CreateNewUserFeature](diagrams/createNewUserFeature.png)
 
-*Figure 4. Components interactions for **traKCAL** create user profile feature*
+*Figure 7. Components interactions for **traKCAL** create user profile feature*
 
 The following has been omitted from the diagram to increase readability: 
 * Exception handling 
@@ -196,7 +218,7 @@ Some examples include:
 
 ![createSetFeature](diagrams/createSetFeature.png)
 
-*Figure 5. Components interaction for **traKCAL** create set feature*
+*Figure 8. Components interaction for **traKCAL** create set feature*
 
 <br>
 
@@ -219,7 +241,7 @@ Users can call any existing shortcut in this format: `addSet **SHORTCUT_NAME**`
 
 ![addSetFeature](diagrams/addSetFeature.png)
 
-*Figure 6. Components interaction for **traKCAL** add set feature*
+*Figure 9. Components interaction for **traKCAL** add set feature*
 
 The following has been omitted from the diagram to increase readability: 
 * Exception handling 
@@ -239,33 +261,46 @@ The following has been omitted from the diagram to increase readability:
 
 #### Current Implementation
 
-The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add to the list of date stated in user input.
+The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add to the list of date stated in user input. If date is not stated, then it will be added to today's list.
 
-The following Sequence Diagram shows how `AddFoodCommand` is carried out when the user issues add command, in this case, `add f/ food c/ 170 d/ 2020-10-22`:
+The following sequence diagram shows how `AddFoodCommand` is carried out when the user issues add command, in this case, `add f/ food c/ 170 d/ 2020-10-22`:
 
 ![Add Food](diagrams/addFoodFeature.png)
 
-*Figure 5. Component interactions for add food command*
+*Figure 10. Component interactions for add food command*
 
 > `AddExerciseCommand` diagram has a similar logic.
 
 ![Add_Exercise](diagrams/AddExerciseFeature.png)
 
-*Figure 6. Component interactions for add exercise command*
+*Figure 11. Component interactions for add exercise command*
 
 <br>
 
 #### Design Considerations
 
-Aspect: How to add activity
+Aspect: How to add food/exercise
 
 >Current choice: Using single letter words as tags for input commands. (e.g. add f/ jelly c/ 100 d/ 2020-11-09)
 >* Pros: Faster and shorter input keys for user.
 >* Cons: Have to ensure that user is clear on what tags to input.
 
->Alternative: Using full words as tags for input commands. (e.g. add food/ XXX calorie/ XXX date/ XXX)
+>Alternative: Using full words as tags for input commands. (e.g. add food/ chicken chop calorie/ 70 date/ 2020-11-08)
 >* Pros: Tags are obvious in what input is expected.
 >* Cons: More wordy input needed from user.
+
+
+Aspect: Input parameters for add food/exercise
+
+>Current choice: Input format for adding: `add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` OR `add f/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>`
+>Where words in CAPS are parameters to be filled by the user and word in <this> are optional. None addition date would add to today's list.
+>* Pros: Faster and shorter input time for user.
+>* Cons: Have to ensure that user entry would be added to the correct date.
+
+>Alternative: Input format for adding: `add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` OR `add f/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE`
+>Where words in CAPS are parameters to be filled by the user. 
+>* Pros: List where food/exercise entry to be added to is clear.
+>* Cons: Longer input time for user.
 
 <br>
 <br>
@@ -277,7 +312,7 @@ The following operations could be applied to the lastSeenList which would change
 
 - delete
 - move
-- edita
+- edit
 
 The details of those operations can be found further down.
 
@@ -297,12 +332,14 @@ Given below is an example usage scenario and how the lastSeenList behaves for di
 Step 1. The user launches the application for the first time. The lastSeenList will be pointed to the activityList for today's date.
 This means that any `edit`, `delete` or `move` commands will be performed on the activityList for today's date in this case, the date would be 2020-11-12.
 ![lastSeenList first state](diagrams/initialStateOfLastSeenList.PNG)
+*Figure 12. First state of lastSeenList*
 
 <br>
 
 Step 2. The user executes a `list 2020-11-10`. This `list 2020-11-10` command causes the lastSeenList to be pointed to the actvityList for 2020-11-10.
 This This means that any `edit`, `delete` or `move` commands will be performed on the activityList for 2020-11-10.
 ![lastSeenList second state](diagrams/secondStateOfLastSeenList.PNG)
+*Figure 13. Second state of lastSeenList*
 
 <br>
 
@@ -311,7 +348,7 @@ The following sequence diagram shows how the lastSeenList is set after a “list
 
 ![Listing feature for find and list commands](diagrams/setLastSeenList.png)
 
-*Figure 6. Sequence diagram of setting the lastSeenList after a `list` command*
+*Figure 14. Sequence diagram of setting the lastSeenList after a `list` command*
 
 <br>
 <br>
@@ -333,12 +370,13 @@ Given below is an example usage scenario and how the lastSeenList for a `find` c
 Step 1. The user executes a `find e/ running` This `find e/ running` command will intialize the lastSeenList to a new ActivityList and is made up of Activities that contains the `running` keyword as per the command.
 This lastSeenList will not point to any other activityList in the dayMap hashmap.
 ![lastSeenList third state](diagrams/thirdStateOfLastSeenList.PNG)
+*Figure 12. Third state of lastSeenList*
 
 The following sequence diagram shows how the lastSeenList is set after a find command.
 
-![Find Sequence Diagram](diagrams/FindSequenceDiagram.png)
+![Find Sequence Diagram](diagrams/FindSequenceDiagram.jpg)
 
-*Figure 7. Sequence diagram of setting the lastSeenList after a find command*
+*Figure 13. Sequence diagram of setting the lastSeenList after a find command*
 
 <br>
 <br>
@@ -352,7 +390,7 @@ The following sequence diagram shows how the listDrawer class is used to display
 
 ![list_Drawer](diagrams/listDrawer.PNG)
 
-*Figure 8. Sequence diagram of the usage of listDrawer to display the list*
+*Figure 14. Sequence diagram of the usage of listDrawer to display the list*
 
 <br>
 <br>
@@ -367,27 +405,38 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 
 ![Edit_Food](diagrams/EditFood.png)
 
-*Figure 9. Sequence diagram of edit food feature*
+*Figure 15. Sequence diagram of edit food feature*
 
 > `EditExerciseCommand` diagram has a similar logic.
 
 ![Edit_Exercise](diagrams/EditExercise.png)
 
-*Figure 10. Sequence diagram of edit exercise feature*
+*Figure 16. Sequence diagram of edit exercise feature*
 
 <br>
 
-**Design considerations:**
+#### 4.6.2 Design considerations
 
-Aspect: How to edit activity
+Aspect: How to edit food/exercise
 
->Alternative 1 (current choice): Same command able to edit both activities, food and exercise in list.
->* Pros: Easy to implement.
->* Cons: Have to ensure that the different type of editing is implemented correctly.
+>Current choice: Using single letter words as tags for input commands. (e.g. edit f/ jelly c/ 100 d/ 2020-11-09)
+>* Pros: Faster and shorter input keys for user.
+>* Cons: Have to ensure that user is clear on what tags to input.
 
->Alternative 2: Have separate commands for editing the different activity type.
->* Pros: Clear distinction of the classes.
->* Cons: Increase in number of lines. Separate methods with similar logic will be created.
+>Alternative: Using full words as tags for input commands. (e.g. edit food/ chicken chop calorie/ 70 date/ 2020-11-08)
+>* Pros: Tags are obvious in what input is expected.
+>* Cons: More wordy input needed from user.
+
+
+Aspect: How editing is carried out
+
+>Current choice: User MUST pull out the list they want to edit to before calling the edit function. `list` then `edit f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` OR `edit e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT`
+>* Pros: The entry that is being edit is clear to the user.
+>* Cons: More steps requried to edit an entry.
+
+>Alternative: Adding a date tag in edit: `edit f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` OR `edit e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE`
+>* Pros: Faster and shorter time to edit an entry.
+>* Cons: If list of the date is not pulled out and edit carried out immediately, high chance of the wrong entry being edited as there might be recent changes to the list.
 
 <br>
 <br>
@@ -399,7 +448,7 @@ Aspect: How to edit activity
 The chaining mechanism can be used by the various commands available The following are the types of command that can be chained:
 - list
 - add
-- edita
+- edit
 - graph
 >this is due to attribute canBeChained in those commands being true.
 
@@ -407,29 +456,29 @@ The following sequence diagram shows how the chaining works after command is ent
 
 ![Chain_Command](diagrams/ChainCommand.png)
 
-*Figure 10. Sequence diagram of chaining feature*
+*Figure 17. Sequence diagram of chaining feature*
 
 ![Object_Diagram_Of_PrepareCommand](diagrams/chainCommand_PrepareCommand.png)
 
-*Figure 11. Object diagram of allowed PrepareCommand subclass*
+*Figure 18. Object diagram of allowed PrepareCommand subclass*
 
 ![Object_Diagram_Of_Command](diagrams/chainCommand_Command.png)
 
-*Figure 12. Object diagram of allowed Command subclass*
+*Figure 19. Object diagram of allowed Command subclass*
 
 <br>
 
-**Design considerations:**
+#### 4.7.2 Design considerations
 
 Aspect: Which features to chain
 
->Alternative 1 (current choice): Allow only certain commands to be chained.
+>Alternative 1 (current choice): Allow only certain features to be chained.
 >* Pros: Able to better track input of users.
 >* Cons: User must know which commands can be chained.
 
->Alternative 2: Allow all commands to be chained.
->* Pros: Easy to implement.
->* Cons: May give abnormal behaviour.
+>Alternative 2: Allow all features to be chained.
+>* Pros: Easy to implement. Attribute canBeChained marked as true for all features.
+>* Cons: May give abnormal behaviour. As some features have dependencies on other features.
 
 <br>
 <br>
@@ -441,7 +490,7 @@ The following sequence diagram shows how the `move` command is executed, where i
 
 ![Move_command](diagrams/moveCommand.png)
 
-*Figure 11. Sequence diagram of move feature*
+*Figure 20. Sequence diagram of move feature*
 
 <br>
 <br>
@@ -463,7 +512,7 @@ to draw the graph.
 
 ![Graph_Sequence_Diagram](diagrams/GraphSequenceDiagram.png)
 
-*Figure 12. Sequence diagram of move feature*
+*Figure 21. Sequence diagram of move feature*
 
 As shown above, when the execute command of GraphCommand is called, the GraphProperty object 
 is created, the properties of the graph are then stored and calculated in setProperty function.
@@ -473,6 +522,11 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 <br>
+
+#4.10 Delete feature
+
+![Delete_Sequence_Diagram](diagrams/DeleteSequeunceDiagram.png)
+*Figure 13. Sequence diagram of delete by index feature
 
 ## 5.0 Appendix: Requirements
 
@@ -691,25 +745,25 @@ This feature allows editing of list entry from:
 4. exercise to exercise
 
 >Editing an entry in today's list from food to food
->* Test case: `edita 1 f/ ice kacang c/ 90`
+>* Test case: `edit 1 f/ ice kacang c/ 90`
 >* Expected: Entry at index `1` of today's list(which is a food entry) would be edited to food description of `ice kacang` and calories of `90`.
 
 >Editing an entry in today's list from food to exercise
->* Test case: `edita 2 e/ running c/ 50`
+>* Test case: `edit 2 e/ running c/ 50`
 >* Expected: Entry at index `2` of today's list(which is a food entry) would be edited to exercise description of `running` and calories of `50`.
        
 >Editing an entry in another day's list from exercise to exercise
->* Test case: `list 2020-11-07` then `edita 3 e/ 50 jumping jacks c/ 25`
+>* Test case: `list 2020-11-07` then `edit 3 e/ 50 jumping jacks c/ 25`
 >* Expected: Entry at index `3` of 2020-11-07's list(which is an exercise entry) would be edited to exercise description of `50 jumping jacks` and calories of `25`.
 
 >Editing an entry in another day's list from exercise to food
->* Test case: `list 2020-11-01` then `edita 2 f/ corn chips c/ 75`
+>* Test case: `list 2020-11-01` then `edit 2 f/ corn chips c/ 75`
 >* Expected: Entry at index `3` of 2020-11-01's list(which is an exercise entry) would be edited to food description of `corn chips` and calories of `75`.
 
 >Incorrect inputs to try:
->* `edita 1 f/ jelly c/ -30`: calories is less than or equals to 0 or more than 3000
->* `edita 2 e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
->* `edita 3 e/ c/ `: empty input parameters
+>* `edit 1 f/ jelly c/ -30`: calories is less than or equals to 0 or more than 3000
+>* `edit 2 e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
+>* `edit 3 e/ c/ `: empty input parameters
 >* Expected: Message with error will be shown.
 
 <br>
@@ -733,14 +787,33 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >* Expected: Prints today's list, prints 2020-11-06's list and prints 2020-11-08's list
 
 >Example 4
->* Test case: `add f/ ice cream c/ 90 d/ 2020-11-07 && list && edita 7 e/ walking c/ 15`
+>* Test case: `add f/ ice cream c/ 90 d/ 2020-11-07 && list && edit 7 e/ walking c/ 15`
 >* Expected: An entry with food description `ice cream` and calories of `90` would be added into today's list, prints today's list and entry at index `7` of today's list would be edited to exercise description of `walking` and calories of `15`.
 
 >Incorrect inputs to try:
 >* Test case: The incorrect input from [add](#adding-an-entry-into-list), list, [edit](#editing-an-entry-in-list), graph
 >* Expected: Message with error will be shown.
 
-#### Moving of activities
 
-This feature allows you to move activities in a list from one position to another.
+#### Find feature
+>Finding an entry using find d/
+    Test case: `find d/ apple`
+    Expected: All entries with food description `apple` would be displayed.
 
+>Finding an entry using find c/
+     Test case: `find c/ 500`
+     Expected: All entries with calories count `100` would be displayed.
+
+>Finding an entry using find a/
+      Test case: `find a/ run / garden / evening`
+      Expected: All entries with descriptions containing `run`, `garden` **and** `evening` would be displayed.
+
+>Finding an entry using find e/
+      Test case: `find e/ walk / jump / kick`
+      Expected: All entries with descriptions containing at least one of of the keyword "`walk`, `jump` **or** `kick`" would be displayed.
+
+>Incorrect inputs to try:
+     Test case: Not specifying keywords to be searched for. Example: `find d/`
+     Expected: Message with error will be shown.
+     Test case: Consecutive slashes in input for `a/` or `e/`. Example:`find a// apple / pie`
+     Expected: Message with error will be shown.

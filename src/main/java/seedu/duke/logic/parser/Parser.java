@@ -12,7 +12,7 @@ public abstract class Parser {
     /**
      * Initialises Parser class.
      *
-     * @param description userinput to be parsed
+     * @param description user input to be parsed
      */
     public Parser(String description) {
         this.userInput = description;

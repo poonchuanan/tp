@@ -6,7 +6,6 @@ By: CS2113-T09-4     Since: October 2020    Licence: MIT
 
 <br>
 
-
 # Introduction
 
 **Welcome to traKCAL**
@@ -131,10 +130,10 @@ list                   - Prints out the list of entries.
 list DATE              - Prints out the list of entries for the date(YYYY-MM-DD), DATE
 
 Editing:
-edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT
+edit LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT
                        - Edits entry at index LIST_INDEX of latest list printed out
                          to food consumed, FOOD_DESCRIPTION, calories gained, CALORIE_COUNT
-edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT
+edit LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT
                        - Edits entry at index LIST_INDEX of latest list printed out
                          to exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT
 
@@ -162,9 +161,10 @@ graph                  - Generates a graph of target calorie and net calorie obt
 
 Chaining:
 *[This command is extensive, there are a lot of variations,
-                          but is only available to add, list and edita.]*
+                          but is only available to add, list and edit.]*
 *[One possible example is:]*
-add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && list && edita LIST_INDEX f/ FOOD_DESCRIPTION
+add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && list && edit LIST_INDEX f/ FOOD_DESCRIPTION
+add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && list && edit LIST_INDEX f/ FOOD_DESCRIPTION
                          c/ CALORIE_COUNT
 *[Another possible example is:]*
 add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT
@@ -828,7 +828,7 @@ Date input has to be from 2020-10-14 to current date!
 
 #### Calorie count exceeds acceptable range
 * Calorie count is <= 0 or > 3000.
-> `add f/ jelly c/ -30`
+> `add e/ jump c/ -30`
 
 ```
 ====================================================================================
@@ -962,13 +962,13 @@ Please do input 'help' for the commands and their respective input format.
 
 A typo when entering input? Do you want to edit attributes of a particular entry in the list? This feature solves it!
 
-Format: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**` OR `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+Format: `edit **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**` OR `edit **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 Examples of formats accepted:
-1. Editing an entry in list from food to food: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
-2. Editing an entry in list from food to exercise: `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
-3. Editing an entry in list from exercise to exercise: `edita **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
-4. Editing an entry in list from exercise to food: `edita **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+1. Editing an entry in list from food to food: `edit **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+2. Editing an entry in list from food to exercise: `edit **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+3. Editing an entry in list from exercise to exercise: `edit **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+4. Editing an entry in list from exercise to food: `edit **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 Parameters:
 * `**LIST_INDEX**`: Index of entry to be edited in the latest pull out list.
@@ -979,7 +979,7 @@ Parameters:
 >Things you should take note of:
 >*This feature allows the changing of a food activity to exercise activity in the list. Vice versa.
 >*The list in which you want to edit to have to be pulled out first before being able to edit on it, else editing would be today's list!
->*This command edits the latest list pulled out. For example, if `list 2020-10-21` is the latest list to be pulled out, then edita will edit index stated in date 2020-10-21's list.
+>*This command edits the latest list pulled out. For example, if `list 2020-10-21` is the latest list to be pulled out, then edit will edit index stated in date 2020-10-21's list.
 
 >IMPORTANT:
 >*This feature cannot be exercised on find feature!
@@ -1006,7 +1006,7 @@ No.        Type                        Description                        Calori
 5        Exercise         brisk walking_____________________________________________20
 ```
 
-* `edita 1 f/ orange c/ 35`
+* `edit 1 f/ orange c/ 35`
 
 ```
 ====================================================================================
@@ -1057,7 +1057,7 @@ No.        Type                        Description                        Calori
 5        Exercise         brisk walking_____________________________________________20
 ```
 
-* `edita 3 e/ 50 sit ups c/ 75`
+* `edit 3 e/ 50 sit ups c/ 75`
 
 ```
 ====================================================================================
@@ -1105,7 +1105,7 @@ Any text in this format is the error message that you will be shown.
 
 #### Calorie count exceeds acceptable range
 * Calorie count is <= 0 or > 3000.
-> `edita 1 f/ jelly c/ -30`
+> `edit 1 f/ jelly c/ -30`
 
 ```
 ====================================================================================
@@ -1116,7 +1116,7 @@ Please input a valid calorie count that is within the range!
 
 #### Description length exceeds acceptable range
 * Description with more than 40 characters.
-> `edita 2 e/ jumping up and down in a merry round in Singapore c/ 80`
+> `edit 2 e/ jumping up and down in a merry round in Singapore c/ 80`
 
 ```
 ====================================================================================
@@ -1126,7 +1126,7 @@ Maximum description length is 40 characters only!
 
 #### Empty inputs will not be accepted
 * Empty input parameters.
-> `edita 3 e/ c/ `
+> `edit 3 e/ c/ `
 
 ```
 ====================================================================================
@@ -1352,6 +1352,13 @@ No.        Type                        Description                        Calori
 
 ```
 
+* `move from/ 3 below/ 1`
+```
+====================================================================================
+Activity has been successfully moved!
+====================================================================================
+```
+
 *`list 2020-10-11` after `move from/ 3 below/ 1` 
 
 ```
@@ -1365,7 +1372,6 @@ No.        Type                        Description                        Calori
 2          Food           tea break_______________________________________________150
 
 3          Food           second breakfast________________________________________200
-
 
 ```
 
@@ -1580,6 +1586,12 @@ No.        Type                        Description                        Calori
 * `delete all/`
 
 ```
+Are you sure you want to delete all activities in today's list? [yes/no]
+```
+
+* `yes`
+
+```
 ====================================================================================
 All activities have been deleted
 ====================================================================================
@@ -1588,7 +1600,9 @@ All activities have been deleted
 * `list` after deleting
 
 ```
-There is no data for 2020-11-08
+====================================================================================
+List is empty!
+====================================================================================
 ```
 
 ### 9.2.2 Possible errors when deleting all entries from list
@@ -1672,7 +1686,7 @@ Format: *not extensive, there is a lot of combinations available*
 Examples of formats accepted:
 >* `add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**>`
 >* `add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
->* `edita INDEX e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
+>* `edit INDEX e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
 >* `list <**DATE**> && list <**DATE**> && list <**DATE**>`
 >* `list <**DATE**> && graph`
 
@@ -1719,7 +1733,7 @@ No.        Type                        Description                        Calori
 ```
 
 2nd example:
-* `add f/ ice cream c/ 90 d/ 2020-11-07 && list && edita 7 e/ walking c/ 15`
+* `add f/ ice cream c/ 90 d/ 2020-11-07 && list && edit 7 e/ walking c/ 15`
 
 ```
 ====================================================================================
@@ -1849,43 +1863,51 @@ This section contains frequently asked questions.
 
 **A2**: **traKCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
-**Q3**: Is **traKCAL** optimized for all operating systems?
+**A3**: I keep getting errors with the storage files when using **traKCAL**, how do I solve them?
 
-**A3**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
+**Q4**: Do take a look at the error sections above of the User Guide for solutions. When all else fails, you can delete the tpdata file to reset your data. 
+        Alternatively, make sure your csv file is not open when **traKCAL** is running to prevent write conflicts.
 
-**Q4**: How do I contact us if I have doubts or have issues to raise?
+**Q4**: Is **traKCAL** optimized for all operating systems?
 
-**A4**: You can reach us via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
+**A4**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
+
+**Q5**: How do I contact us if I have doubts or have issues to raise?
+
+**A5**: You can reach us via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
 
 <br>
 
 # Command Summary
 
-This section gives you a cheat sheet of commands available. The following are only examples of what the input command can look like! For more information please go to the respective section for the feature.
+This section gives you a cheat sheet of commands available. 
+The following are only examples of what the input command can look like! 
+For more information please go to the respective section for the feature details!
+
 >Things you should take note of:
 >* Words that look like THIS are parameters to be supplied by user.
 >* Words that look like <this> are optional parameters
 
 Action         | Format | Example
 -------------- | ---------- | --------
-Help | `help` | 
-Create User Profile | `user c/` |
+Help | `help` | `help`
+Create User Profile | `user c/` |  `user c/`
 Edit User Profile | `user e/ <n/ NAME>, <g/ GENDER>, <w/ WEIGHT>, <h/ HEIGHT>, <age/ AGE>, <al/ ACTIVITY_FACTOR>, <goal/ WEIGHT_GOALS>` | `user e/ n/ Sammy`
-List User Profile | `user l/` |
+List User Profile | `user l/` | `user l/`
 Create Shortcut | `createSet SHORTCUT f/ FOOD_DESCRIPTION c/ CALORIE COUNT + e/ EXERCISE_DESCRIPTION c/ CALORIE COUNT` | `createSet morning routine f/ oatmeal c/ 200 + e/ yoga c/ 200`
 Add Shortcut | `addSet SHORTCUT` | `addSet morning routine`
 Add Food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` | `add e/ ice cream c/ 78 d/ 2020-10-19`
 Add Exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` | `add e/ jumping c/ 65`
-List | `list <DATE>` | `list` OR `list 2020-10-24` 
-Edit Activity to Food | `edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` | `edita 1 f/ ice kacang c/ 150`
-Edit Activity to Exercise | `edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT` | `edita 1 e/ running c/ 100`
+List | `list <DATE>` | `list 2020-10-24` 
+Edit Activity to Food | `edit LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` | `edit 1 f/ ice kacang c/ 150`
+Edit Activity to Exercise | `edit LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT` | `edit 1 e/ running c/ 100`
 Find Description | `find d/ DESCRIPTION` | `find d/ apple`
 Find Calorie | `find c/ CALORIE` | `find c/ 55`
-Find Either | `find e/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3 ...` | `find e/ apple / orange / grape ...`
-Find All | `find a/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3 ...` | `find a/ running / jumping / cake ...`
+Find Either | `find e/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3` | `find e/ apple / orange / grape`
+Find All | `find a/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3` | `find a/ running / jumping / cake`
 Move Activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
 Delete Entry | `delete INDEX` | `delete 2`
-Delete All for Today| `delete all/` | 
-Graph | `graph` | 
+Delete All for Today| `delete all/` | `delete all/`
+Graph | `graph` | `graph` 
 Chain | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE> && list && graph` | `add e/ ice cream c/ 78 && list && graph`
-Exit | `bye` | 
+Exit | `bye` | `bye`
