@@ -352,7 +352,7 @@ This is to ensure that all features can be used properly.
 
 ### 2.2 Editing user profile
 
-Edits user profile of an existing user.
+This feature allows you to edit an existing user profile easily.
 
 Format: `user e/ <n/ **NAME**>,<g/ **GENDER**>,<w/ **WEIGHT**>,<h/ **HEIGHT**>,<age/ **AGE**><al/ **ACTIVITY_FACTOR**>,<goal/ **WEIGHT_GOALS**>`
 
@@ -385,7 +385,7 @@ Your weight has been updated to 90kg.
 
 ### 2.3 View current user profile
 
-Lists the user profile of an existing user.
+Want to see your current user profile? This feature will be just right for you!
 
 Format: `user l/`
 
@@ -410,7 +410,7 @@ Weight Goal : gain
 
 ### 3.1 Creating a shortcut for a set of entries 
 
-This command creates a shortcut for a set of commonly used exercise and/or food entries, reducing the amount of time needed for you to add multiple common entries. 
+This command helps you create a shortcut for a set of commonly used exercise and/or food entries, reducing the amount of time needed for you to add multiple common entries. 
 
 Format: `createSet **SHORTCUT_NAME** ...`
 
@@ -525,7 +525,7 @@ Please try again!
 
 ### 3.2 Adding a shortcut of repeated task to today's list
 
-Adds a set of repeated entries at once.
+Want to add in a set of entries all at once? This feature teaches you how to do so!
 
 Format: `addSet **SHORTCUT_NAME**`
 
@@ -1142,7 +1142,7 @@ Please input a valid description that is not empty!
 
 ### 7.1.1 Finding entries via description
 
-Finds entry/entries based on keywords entered and list them out. Allows user to search by activity description.
+Finds entry/entries based on your keywords entered and list them out. Allows user to search by activity description.
 
 Format: `find d/ **DESCRIPTION**`
 
@@ -1165,7 +1165,7 @@ No.        Date                Type                                Description  
 
 ### 7.1.2 Finding entries via calories
 
-Finds entry/entries based on keywords entered and list them out. Allows user to search by calories.
+Finds entry/entries based on your keywords entered and list them out. Allows user to search by calories.
 
 Format: `find c/ **CALORIES**`
 
@@ -1231,6 +1231,8 @@ Please input a valid keyword that is not empty!
 For users who want to perform more complex find operations, you can make use of this advanced find command to achieve your needs.
 This command will search of entries matching ALL description keywords you have typed. 
 
+You can make use of this feature to 
+
 Format for find by all descriptions: `find a/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 > There is no limit to the number of descriptions allowed.
 
@@ -1252,8 +1254,7 @@ No.        Date                Type                                Description  
 
 ### 7.3.2 Finding entries via keywords - either
 
-Similar to the above command, this is an advanced command that refines your search term.
-As long as just one of your description keyword matches in the entry, the entry will be listed. 
+Want to show even more search results? As long as just one of your description keyword matches a description in the entry, the entry will be listed. 
 
 Format for find by just one matching description: `find e/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 >There is no limit to the number of descriptions allowed.
@@ -1323,7 +1324,7 @@ There are consecutive slashes in your input!
 
 ### 8.1 Moving an entry to another position
 
-You can move an entry to another position in the last shown list using this `move` command.
+Want to see list out your calories in an interesting order? You can use the `move` command to move an entry to another position in the last shown list to create your desired list!
 
 Format: `move from/ **INDEX_1** below/ **INDEX_2**`
 
@@ -1563,7 +1564,7 @@ Invalid Index!
 
 ### 9.2.1 Deleting all entries in list
 
-Deletes all entry in list.
+You can delete all your entries at once with this feature!
 
 Format : `delete all/`
 
@@ -1624,7 +1625,7 @@ Please input 'help' for the commands and their respective input format.
 
 ### 10.1 Showing past net calories
 
-You can view a graphical representation of your recent net calories relative to your target calories for up to 7 days.
+Want to see you calorie story all at once? You can view a graphical representation of your recent net calories relative to your target calories for up to 7 days using this feature.
 
 Format: `graph`
 
