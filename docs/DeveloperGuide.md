@@ -166,7 +166,7 @@ In the Model component,
 
 The sequence diagram below shows how the components will react to a new user or for a returning user. 
 
-![CreateNewUserFeature](diagrams/CreateNewUserFeature.png)
+![CreateNewUserFeature](diagrams/createNewUserFeature.png)
 
 *Figure 4. Components interactions for **traKCAL** create user profile feature*
 
