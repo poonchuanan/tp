@@ -258,7 +258,8 @@ Please do not enter an empty input
 
 ```
 =====================================================================================================
-Sorry this is an invalid gender format! Please input gender as female or male only!
+Sorry this is an invalid gender format! 
+Please input gender as female or male only!
 =====================================================================================================
 ```
 
@@ -320,10 +321,9 @@ Please enter a valid age format!
 > `8`
 
 ```
-=====================================================================================================
-Sorry this is an invalid activity factor!
-Please enter an integer from 1 to 5, with 1 being the least active and 5 being the most active
-=====================================================================================================
+====================================================================================
+Please enter an activity level from 1 to 5 only
+====================================================================================
 ```
 
 * Weight goals is not specified as lose or maintain or gain only.
@@ -487,7 +487,7 @@ Please try again!
 
 #### Invalid parameters
 * Shortcut name given already exist within the database. For example if a set named `morning routine` already exists, the following command would produce the error:
-> createSet morning routine f/ beans c/ 100000`
+> `createSet morning routine f/ beans c/ 100000`
 
 ```
 ====================================================================================
@@ -1434,6 +1434,17 @@ Index is not a number!
 Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
+
+#### Moving which results in no change
+* Any of the `**INDEX_1` or `**INDEX_2**` entered for the respective keyword will not result in any changes to the list.
+> `move from/ 1 below/ 0` OR <br>
+> `move from/ 2 below/ 2`
+
+```
+====================================================================================
+The indexes entered for this move command does not result in any change!
+====================================================================================
+```
  
 <br>
 <br>
@@ -1659,11 +1670,11 @@ Format: *not extensive, there is a lot of combinations available*
         *commands just need to be separated by `&&`*
         
 Examples of formats accepted:
->`add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**>`
->`add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
->`edita INDEX e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
->`list <**DATE**> && list <**DATE**> && list <**DATE**>`
->`list <**DATE**> && graph`
+>* `add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**>`
+>* `add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
+>* `edita INDEX e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
+>* `list <**DATE**> && list <**DATE**> && list <**DATE**>`
+>* `list <**DATE**> && graph`
 
 Examples of usage: 
 
@@ -1781,11 +1792,30 @@ No.        Type                        Description                        Calori
 
 ### 11.1.1 Possible errors when chaining
 
+An error will occur if any of the conditions below are met. <br> 
+The respective error message will also be shown to you.
+> Any text in this format is an example of a command that will produce the respective error.
+
+```
+Any text in this format is the error message that you will be shown.
+```
+
+#### Chaining a feature that is not accepted
+* When you input contains features that are not accepted such as
+> `bye && graph`
+
+```
+====================================================================================
+'bye' cannot be chained!
+====================================================================================
+```
+
+#### Other errors
 *The possible errors follows the errors for adding, listing, editing and graphing*
-Possible errors for adding: [errors for add](#43-possible-errors-when-adding-an-entry-into-activity-list)
-Possible errors for listing: [errors for list](#511-possible-errors-when-listing)
-Possible errors for editing: [errors for edit](#611-possible-errors-when-editing)
-Possible errors for graphing: [errors for edit](#1011-possible-errors-when-graphing)
+>* Possible errors for adding: [errors for add](#43-possible-errors-when-adding-an-entry-into-activity-list)
+>* Possible errors for listing: [errors for list](#511-possible-errors-when-listing)
+>* Possible errors for editing: [errors for edit](#611-possible-errors-when-editing)
+>* Possible errors for graphing: [errors for edit](#1011-possible-errors-when-graphing)
 
 <br>
 <br>

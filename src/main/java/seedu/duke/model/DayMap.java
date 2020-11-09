@@ -7,6 +7,7 @@ import seedu.duke.exception.EmptyKeywordException;
 import seedu.duke.exception.FindSlashException;
 import seedu.duke.exception.KeywordNotFoundException;
 import seedu.duke.exception.ListNotFoundException;
+import seedu.duke.exception.SameIndexForMoveCommandException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -478,7 +479,7 @@ public class DayMap {
      * @throws ListNotFoundException when the list is not found
      */
     public void move(int indexToBeMovedFrom, int indexToBeInsertedBelow)
-            throws IndexOutOfBoundsException, ListNotFoundException {
+            throws IndexOutOfBoundsException, ListNotFoundException, SameIndexForMoveCommandException {
         if (lastSeenList.getNumberOfActivities() == 0) {
             throw new ListNotFoundException();
         } else {
