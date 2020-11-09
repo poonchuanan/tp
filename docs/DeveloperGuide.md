@@ -2,7 +2,7 @@
 
 The purpose of this developer guide is as reference for future collaborators of **trakCAL**.
 
-By: CS2113-T09-4    Since: October 2020   Licence: MIT
+By: CS2113-T09-4 <br>   Since: October 2020  <br> Licence: MIT
 
 <br>
 
@@ -16,14 +16,21 @@ This guide will provide information on the design and implementation of **traKCA
 
 <br>
 
-## Table of Contents
+### 1.1 Table of Contents
 
 * Table of Contents
 {:toc}
 
 <br>
 
-## 2.0 Setting up
+### 2.0 Prerequisites
+ * Java 11 (can be download from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html))
+ * Intellij IDE
+
+<br>
+<br>
+
+## 2.1 Setting up
 1. Fork the traKCAL repository [here]() and git clone it to a convenient location on your desktop eg. Desktop.
 2. Open any IDE (Intellij preferred) and click `Configure` -> `Project Defaults` -> `Project Structure` -> `New` and ensure that a valid Java 11 SDK is selected.
 3. Next, go to `Import Project` and select the *build.gradle* file. 
@@ -31,35 +38,22 @@ This guide will provide information on the design and implementation of **traKCA
 5. After opening the project, go to `src` -> `main` -> `java` -> `seedu.duke` -> `Trakcal` and right click on the Trakcal class. Select the `Run 'Trakcal.main()'` option.
 6. Upon successful run, the following opening message will be shown: 
 
-```
-====================================================================================
-| Hello from                                                                       |
-|  _                  _  __   ___     _     _                                      |
-| | |_   _ _   __ _  | |/ /  / __|   /_\   | |                                     |
-| |  _| | '_| / _` | | ' <  | (__   / _ \  | |__                                   |
-|  \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|                                  |
-|                                                                                  |
-| Hello! I'm traKCAL.                                                              |
-| Please do input 'help' for the commands and their respective input format.       |
-====================================================================================
-```
+    ```
+    ====================================================================================
+    | Hello from                                                                       |
+    |  _                  _  __   ___     _     _                                      |
+    | | |_   _ _   __ _  | |/ /  / __|   /_\   | |                                     |
+    | |  _| | '_| / _` | | ' <  | (__   / _ \  | |__                                   |
+    |  \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|                                  |
+    |                                                                                  |
+    | Hello! I'm traKCAL.                                                              |
+    | Please do input 'help' for the commands and their respective input format.       |
+    ====================================================================================
+    ```
+
 7. You will then be prompted to create a new user profile.  
 
-<br>
 
-### 2.1 Prerequisites
- * Java 11 (can be download from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html))
- * Intellij IDE
- 
-<br>
-    
-### 2.2 Setting up:    
-* Download the latest **traKCAL** jar file ([here](https://github.com/AY2021S1-CS2113T-T09-4/tp/releases))
-* Copy jar file into an empty folder in a convenient location (eg. Desktop)
-* Open terminal and navigate directory to the folder containing jar file 
-* Enter the following command line to run program: ```java -jar traKCAL.jar```   
-* Look through the user guide for a full detailed explanation on the functionality of **traKCAL**
-    
 <br>
 <br>    
     
@@ -75,11 +69,14 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 
 <br>
 
-### 3.2 ui component
+### 3.2 Ui component
 
 ![Ui Component](diagrams/ui.png)
 
-*Figure 2. Diagram for logic component*
+*Figure 2. Diagram for UI component*
+
+The UI component deals with interactions with the user by displaying appropriate messages to the user, including the welcome message and appropriate error messages whenever an error has been detected. 
+
 
 <br>
 
@@ -89,8 +86,11 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 
 *Figure 2. Diagram for logic component*
 
+
+ \* This means that there are multiple PrepareCommand children classes inherited by the PrepareCommand class.
+
 The main bulk of data processing takes place in the logic component. In this component, 
-the data from the user input is checked for its validity and parsed down futher by the PrepareCommand class to its respective command blocks.
+the data from the user input is checked for its validity and parsed down further to the PrepareCommand class to its respective command classes.
 These command classes are derived from the Command class. Each different command block deals with the 
 proposed functionality which can be associated with `Ui`,`storage` or `model` components. 
 
@@ -111,19 +111,23 @@ and validity of those description are checked..
 
 In the Model component, 
 
-* Stores a DayMap object that holds the data for each date.
-* Stores an ActivityList that holds the list of Activities, Food or Exercise for each day 
+* Contains a hashmap, dayMap, where the key is the date and the value is the list of activities for the respective day.
+* Contains a list of activities, lastSeenList where this list would contain the activities 
 * Does not depend on any of the other components.
 
 <br>
 
 ### 3.5 Command component
 
-Before carrying out the command, user input first has to be prepared.
+Before executing the command, user input has to be prepared first to ensure that all the parameters are correctly in place. 
+This is done by the PrepareCommand class.
 
 ![Prepare_Component](diagrams/PrepareCommand.png)
 
 *Figure 4. Diagram for PrepareCommand*
+
+After preparing the user input and ensuring that all necessary parameters are in place, the respective prepareCommand classes will return a 
+command which will be executed by traKCAL. Below shows all the different Command classes inherited.
 
 ![Command_Component](diagrams/Command.png)
 
@@ -133,7 +137,7 @@ Before carrying out the command, user input first has to be prepared.
 
 ### 3.6 Storage component
 
-**traKCAL** saves both user profile data and activity entries in text file and csv(comma separated values) files respectively. <br>
+**traKCAL** saves both user profile data and activity entries in a text file and csv (comma separated values) file respectively. <br>
 It also handles the logging file that records down the different types operations or errors that was performed during the program.
 
 ![Storage_Component](diagrams/storage.jpg)
@@ -151,13 +155,15 @@ On program launch:
 
 On Command execution:
 
-* Whenever the user changes the list by performing an operation such as add or delete entry, `Storage` parses the model objects and writes into the csv file.
+* Whenever the user changes the list by performing an operation such as *add* or *delete* entry, `Storage` parses the model objects and writes into the csv file.
 * The respective logs will also be updated according to the given commands through `Logging`.
 * `UserSetStorage` will store the relevant shortcuts created by the using *createSet* command is called.
 
 <br>
 
 ### 3.7 Exception component
+
+This component contains all the exception classes used in traKCAL.
 
 ![Exception_Component](diagrams/Exception.png)
 
@@ -167,7 +173,11 @@ On Command execution:
 
 ### 3.8 UserProfile component
 
-![userProfile](diagrams/userprofile.png)
+
+This component contains the information such as the user's name, gender, height, weight, active level and the weight goal. 
+
+![userProfile](diagrams/UserProfile.png)
+
 
 *Figure 4. Diagram for UserProfile component*
 
@@ -213,7 +223,9 @@ Users can create a shortcut with unlimited number of entries in this format: `cr
 
 Some examples include:
 >`createSet **SHORTCUT_NAME** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+
 >`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+
 >`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 ![createSetFeature](diagrams/createSet.png)
@@ -226,12 +238,12 @@ Some examples include:
 
 * At least one activity tag (`e/` or `f/`) and calorie tag (`c/`) must be specified by user for a shortcut to be created.
 * The order of the entry must be activity tag first before calorie tag. Calorie tag followed by activity tag is not allowed. This is to facilitate the adding of each entry in the shortcut, as seen in [section 4.3](#43-add-activity-feature).
-* Multiple entries in shortcut should be separated be a `+` as it is a key. 
+* Multiple entries in shortcut should be separated by a `+`. 
 
 <br>
 <br>
 
-### 4.2.2 Adding a shortcut to activity list
+### 4.2.2 Using a shortcut to add to a activity list
 
 #### Current Implementation
 
@@ -243,15 +255,12 @@ Users can call any existing shortcut in this format: `addSet **SHORTCUT_NAME**`
 
 *Figure 9. Components interaction for **traKCAL** add set feature*
 
-The following has been omitted from the diagram to increase readability: 
-* Exception handling 
-* Components after adding each entry in the shortcut to the activity list as the same diagram will be repeated in [section 4.3](#43-add-activity-feature). Instead, it is replaced by the updateList() self invocation call. 
 
 <br>
 
 #### Design Considerations
 
-* Activities added from shortcut are only for current date.
+* Activities added using shortcuts are only added to the activity list for the current date.
 
 <br>
 <br>
@@ -271,6 +280,7 @@ The following sequence diagram shows how `AddFoodCommand` is carried out when th
 
 > `AddExerciseCommand` diagram has a similar logic.
 
+
 <br>
 
 #### Design Considerations
@@ -289,7 +299,7 @@ Aspect: How to add food/exercise
 Aspect: Input parameters for add food/exercise
 
 >Current choice: Input format for adding: `add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` OR `add f/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>`
->Where words in CAPS are parameters to be filled by the user and word in <this> are optional. None addition date would add to today's list.
+>Where words in CAPS are parameters to be filled by the user and word in <this> are optional. Not including the <date> parameter would add to today's list.
 >* Pros: Faster and shorter input time for user.
 >* Cons: Have to ensure that user entry would be added to the correct date.
 
@@ -304,6 +314,7 @@ Aspect: Input parameters for add food/exercise
 ### 4.4 Listing feature for find and list commands
 
 The listing mechanism used by `ListCommand` and `FindCommand` to display the required list of activities is facilitated by the lastSeenList of class `ActivityList`. 
+The lastSeenList is the list that the user would see after a `list` or `find` command. <br>
 The following operations could be applied to the lastSeenList which would change the actual data in the database:
 
 - delete
@@ -316,17 +327,18 @@ The details of those operations can be found further down.
 
 #### 4.4.1 List
 
-This listing feature for the `list` command uses the lastSeenList which is of ActivityList class.  <br>
-The lastSeenList is the list that the user would see after a `list` command. <br>
+The `list` command displays the list of entries for the current date while the `list <DATE>` command displays the list of entries for the date as specified by the <DATE> parameter.
+
 For example, 
 * A `list 2020-11-11` command would use the activityList for 2020-11-11 as the lastSeenList.<br>
 
-Using the lastSeenList allows users to make changes e.g `edit`, `delete`, `move` commands using the numbered index of a single `list` command.
 
 Given below is an example usage scenario and how the lastSeenList behaves for different `list` commands.
 
-Step 1. The user launches the application for the first time. The lastSeenList will be pointed to the activityList for today's date.
-This means that any `edit`, `delete` or `move` commands will be performed on the activityList for today's date in this case, the date would be 2020-11-12.
+<br>
+
+Step 1. The user launches the application for the first time. The lastSeenList will be pointed to the ActivityList for today's date.
+This means that any `edit`, `delete` or `move` commands will be performed on the ActivityList for today's date in this case, the date would be 2020-11-12.
 ![lastSeenList first state](diagrams/initialStateOfLastSeenList.PNG)
 *Figure 12. First state of lastSeenList*
 
@@ -346,6 +358,10 @@ The following sequence diagram shows how the lastSeenList is set after a “list
 
 *Figure 14. Sequence diagram of setting the lastSeenList after a `list` command*
 
+#### Design considerations
+
+* Allowing the user to view the list of activities for the current date by not including the `<DATE>` parameter would make it easier for the user.
+
 <br>
 <br>
 
@@ -353,10 +369,10 @@ The following sequence diagram shows how the lastSeenList is set after a “list
 
 This listing feature for the `find` command also uses the lastSeenList which is of ActivityList class.  <br>
 The lastSeenList is the list that the user would see after a `list` command. <br>
-For example, 
-* A `find e/ food` command would go throught the dayMap and add activities containing the keyword/s into the lastSeenList.
-
 Using the lastSeenList allows users to make changes e.g `delete` command using the numbered index of a single `find` command.
+
+For example, 
+* A `find e/ food` command would loop through the dayMap and add activities containing the keyword/s into the lastSeenList.
 
 The editing mechanism is used by the basic find features: `FindDescriptionCommand`, `FindCalorieCommand`, 
 as well as the advanced find features: `FindAllCommand` and `FindEitherCommand` to look for keywords in the list.
@@ -368,6 +384,8 @@ This lastSeenList will not point to any other activityList in the dayMap hashmap
 ![lastSeenList third state](diagrams/thirdStateOfLastSeenList.PNG)
 *Figure 12. Third state of lastSeenList*
 
+<br>
+
 The following sequence diagram shows how the lastSeenList is set after a find command.
 
 ![Find Sequence Diagram](diagrams/FindSequenceDiagram.jpg)
@@ -377,16 +395,21 @@ The following sequence diagram shows how the lastSeenList is set after a find co
 <br>
 <br>
 
-### 4.5 List feature after `find` or `list` commands
+### 4.5 Displaying the list after `find` or `list` commands
 
 #### 4.5.1 Current implementation
-The mechanism used to display the lastSeenList invoked by the list or find commands is facilitated by the listDrawer and findDrawer class respectively. They both work the same way but the list produced by findDrawer has an extra column which contains the dates of the respective entries.
+The mechanism used to display the lastSeenList invoked by the list or find commands is facilitated by the listDrawer and findDrawer class respectively. 
+They both work in a similar manner but the list produced by findDrawer has an extra column which contains the dates of the respective entries.
 
 The following sequence diagram shows how the listDrawer class is used to display the lastSeenList.
 
 ![list_Drawer](diagrams/listDrawer.PNG)
 
 *Figure 14. Sequence diagram of the usage of listDrawer to display the list*
+
+#### Design considerations
+* The list displayed to the user after both `find` and `list` commands has enough whitespace between the columns and rows to make it easier for the user to view the entries.
+* The list displayed to the user after a `find` command has the date attribute at the left hand side of the list so as to make it easier for the user to connect the entries found to the respective date, making it easier for the user to make changes accurately
 
 <br>
 <br>
@@ -408,17 +431,6 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 <br>
 
 #### 4.6.2 Design considerations
-
-Aspect: How to edit food/exercise
-
->Current choice: Using single letter words as tags for input commands. (e.g. edit f/ jelly c/ 100 d/ 2020-11-09)
->* Pros: Faster and shorter input keys for user.
->* Cons: Have to ensure that user is clear on what tags to input.
-
->Alternative: Using full words as tags for input commands. (e.g. edit food/ chicken chop calorie/ 70 date/ 2020-11-08)
->* Pros: Tags are obvious in what input is expected.
->* Cons: More wordy input needed from user.
-
 
 Aspect: How editing is carried out
 
@@ -479,7 +491,7 @@ Aspect: Which features to chain
 <br>
 
 ### 4.8 Move feature
-This feature allows the user to manually `move` activities from one position to another position 
+This feature allows the user to manually move an activity from one position to another.
 
 The following sequence diagram shows how the `move` command is executed, where index1 is the position to be moved from and index 2 is the position to be moved below. 
 
@@ -488,6 +500,13 @@ The following sequence diagram shows how the `move` command is executed, where i
 *Figure 20. Sequence diagram of move feature*
 
 <br>
+#### Design Considerations
+
+* Pros: The tags `from/` and `below` was used to make this command more intuitive for the user.
+* Cons: For the user to move an activity from a position to the 1st position, the index tied to the `below/` tag would have to be 0 which may not be as clear to the user. 
+        For example, `move from/ 2 below/ 0`
+
+
 <br>
 
 ### 4.9 Graph feature
@@ -520,9 +539,20 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 ### 4.10 Delete feature
 
+The `delete` feature consists of `delete by index` and `delete all` commands. `Delete by index` deletes the activities one at a time while
+the `delete all` deletes all the activities for the current day.
+
 ![Delete_Sequence_Diagram](diagrams/DeleteSequeunceDiagram.png)
 
-*Figure 13. Sequence diagram of delete by index feature*
+*Figure 22. Sequence diagram of delete by index feature*
+
+As shown above, when the `DeleteByIndexCommand` is executed, the deleteActivity method is called from the DayMap class where the 
+ActivityList containing the intended activities to be deleted is selected and calls removeActivity method to remove the specific activity from the ActivityList.
+
+The sequence diagram for the `Delete all` is very similar to this diagram where the whole ActivityList is cleared instead of one Activity. The resulting list will be empty.
+
+<br>
+<br>
 
 ## 5.0 Appendix: Requirements
 
@@ -790,7 +820,7 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >* Expected: An entry with food description `ice cream` and calories of `90` would be added into today's list, prints today's list and entry at index `7` of today's list would be edited to exercise description of `walking` and calories of `15`.
 
 >Incorrect inputs to try:
->* Test case: The incorrect input from [add](#adding-an-entry-into-list), list, [edit](#editing-an-entry-in-list), graph
+>* Test case: The incorrect input from [add](#adding-an-entry-into-list), list, [edit](#editing-an-entry-in-list), graph [graph](#graph-features)
 >* Expected: Message with error will be shown.
 
 
@@ -814,6 +844,83 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >Incorrect inputs to try:
 >* Test case: Not specifying keywords to be searched for. Example: `find d/`
 >* Expected: Message with error will be shown.
+>* Test case: Consecutive slashes in input for `a/` or `e/`. Example:`find a// apple / pie`
+>* Expected: Message with error will be shown.
+
+#### Deleting Activities
+
+This feature has two further sub features, delete by index and delete all.
+*Both delete features require at least one activity to be in the list*
+*Deletion of entry can further by checked by `list` command.* 
+
+>Deleting 2nd entry from a list with 2 items
+>* Test case: `delete 2`
+>* Expected: `Activity removed!` will be displayed. Only 1 entry will be displayed. 
+
+>Deleting all entries from the list with some activities in list.
+>* Test case: `delete all/`
+>* Expected: A confirmation message will be shown. If confirmed, `All activities have been deleted` will be displayed.
+>*           If not confirmed, `Delete command aborted` will be displayed.
+
+>Incorrect Input:
+>Deleting on an empty list or invalid index:
+>* Test case: `delete 1000`
+>* Test case: `delete -1`
+>* Test case: `delete all/`
+>* Expected: `Invalid Index!` will be displayed.
+
+>Deleting with invalid description:
+>* Test case: `delete abc`
+>* Expected: `Index is not a number!` will be displayed.
+
+#### Graph features
+
+>Shows upto 7 days of net calories.
+>* Test case: `graph`
+>* Expected: A graph will be showm.
+
+> There is no data at all.
+>* Test case: `graph`
+>* Expected: `List is empty` will be shown.
+
+>* Test case: Not specifying keywords to be searched for. Example: `find d/`
+>* Expected: Message with error will be shown.
 >
 >* Test case: Consecutive slashes in input for `a/` or `e/`. Example:`find a// apple / pie`
 >* Expected: Message with error will be shown.
+
+
+
+#### List Feature
+>Listing the activities for today
+>* Test case: `list`
+>* Expected: The list of activities for today would be displayed unless the list is empty.
+ 
+>Listing the activities for a specific day
+>* Test case: `list 2020-11-31`
+>* Expected: The list of activities would be displayed unless the list is empty.
+
+>Incorrect inputs to try:
+>* Test case: `list 2020/11/31`
+>* Expected: The list for 2020-11-31 will not be displayed and a error message will be shown.
+
+
+#### Move feature
+>Moving an activity from the 1st position to the 4th position
+>* Test case: `move from/ 1 below/ 3`
+>* Expected: The activity at position 1 will be move to position 4 in the list.
+
+>Moving an activity from the 4th position to the 1st position
+>* Test case: `move from/4 below/0`
+>* Expected: The activity at position 4 will be moved to the 1st position in the list.
+
+>Other incorrect commands to try
+>* Test case: `move from/2 below/2`
+>* Expected: There would be no change. An error message will be shown.
+>
+>* Test case: `move from/0 below/2`
+>* Expected: 0 is a invalid index. An error message will be shown.
+>
+>* Test case: `move from/2 below/1`
+>* Expected: There would be no change. An error message will be shown.
+
