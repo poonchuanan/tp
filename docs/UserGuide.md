@@ -1868,10 +1868,10 @@ This section gives you a cheat sheet of commands available. The following are on
 
 Action         | Format | Example
 -------------- | ---------- | --------
-Help | `help` | 
-Create User Profile | `user c/` |
+Help | `help` | `help`
+Create User Profile | `user c/` |  `user c/`
 Edit User Profile | `user e/ <n/ NAME>, <g/ GENDER>, <w/ WEIGHT>, <h/ HEIGHT>, <age/ AGE>, <al/ ACTIVITY_FACTOR>, <goal/ WEIGHT_GOALS>` | `user e/ n/ Sammy`
-List User Profile | `user l/` |
+List User Profile | `user l/` | `user l/`
 Create Shortcut | `createSet SHORTCUT f/ FOOD_DESCRIPTION c/ CALORIE COUNT + e/ EXERCISE_DESCRIPTION c/ CALORIE COUNT` | `createSet morning routine f/ oatmeal c/ 200 + e/ yoga c/ 200`
 Add Shortcut | `addSet SHORTCUT` | `addSet morning routine`
 Add Food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` | `add e/ ice cream c/ 78 d/ 2020-10-19`
@@ -1885,7 +1885,7 @@ Find Either | `find e/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3 ...` | `find e
 Find All | `find a/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3 ...` | `find a/ running / jumping / cake ...`
 Move Activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
 Delete Entry | `delete INDEX` | `delete 2`
-Delete All for Today| `delete all/` | 
-Graph | `graph` | 
+Delete All for Today| `delete all/` | `delete all/`
+Graph | `graph` | `graph` 
 Chain | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE> && list && graph` | `add e/ ice cream c/ 78 && list && graph`
-Exit | `bye` | 
+Exit | `bye` | `bye`
