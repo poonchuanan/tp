@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static seedu.duke.Trakcal.jarFilePath;
 import static seedu.duke.ui.ExceptionMessages.displayFileError;
 
 //@@author jlifah
@@ -16,8 +17,8 @@ public class ListUserProfileCommand extends Command {
     @Override
     public void execute() {
         try {
-            String initialPath = new File("").getAbsolutePath();
-            String filePath = initialPath + "/tp.txt";
+
+            String filePath = jarFilePath + "/tpdata/tp.txt";
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line = reader.readLine();
 

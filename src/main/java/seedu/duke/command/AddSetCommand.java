@@ -17,6 +17,7 @@ import java.util.Date;
 
 import static seedu.duke.Trakcal.calList;
 import static seedu.duke.Trakcal.executeCmd;
+import static seedu.duke.Trakcal.jarFilePath;
 import static seedu.duke.Trakcal.storage;
 import static seedu.duke.ui.ExceptionMessages.displayCorruptedSetMessage;
 
@@ -43,8 +44,7 @@ public class AddSetCommand extends Command {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
         String strDate = formatter.format(date);
-        String initialPath = new File("").getAbsolutePath();
-        String filePath = initialPath + "/" + description + ".txt";
+        String filePath = jarFilePath + "/tpdata" + "/" + description + ".txt";
 
         try {
             File file = new File(filePath);
