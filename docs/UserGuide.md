@@ -1873,9 +1873,9 @@ This section contains frequently asked questions.
 
 **A2**: **traKCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
-**A3**: I keep getting errors with the storage files when using **traKCAL**, how do I solve them?
+**Q3**: I keep getting errors with the storage files when using **traKCAL**, how do I solve them?
 
-**Q4**: Do take a look at the error sections above of the User Guide for solutions. When all else fails, you can delete the tpdata file to reset your data. 
+**A3**: Do take a look at the error sections above of the User Guide for solutions. When all else fails, you can delete the tpdata file to reset your data. 
         Alternatively, make sure your csv file is not open when **traKCAL** is running to prevent write conflicts.
 
 **Q4**: Is **traKCAL** optimized for all operating systems?
