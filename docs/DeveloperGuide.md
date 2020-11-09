@@ -145,7 +145,7 @@ Before carrying out the command, user input first has to be prepared.
 
 ### 3.8 UserProfile component
 
-![userProfile](diagrams/userProfile.png)
+![userProfile](diagrams/UserProfile.png)
 
 *Figure 4. Diagram for UserProfile component*
 
