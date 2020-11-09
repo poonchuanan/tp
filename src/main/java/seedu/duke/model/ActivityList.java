@@ -1,6 +1,7 @@
 package seedu.duke.model;
 
 import seedu.duke.Trakcal;
+import seedu.duke.exception.SameIndexForMoveCommandException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,22 +99,31 @@ public class ActivityList extends Trakcal {
      * @param indexToBeInsertedBelow this is the index at which the activity will be moved to below
      * @throws IndexOutOfBoundsException if the index is not within the limits
      */
-    public void moveActivity(int indexToBeMovedFrom, int indexToBeInsertedBelow) throws IndexOutOfBoundsException {
+    public void moveActivity(int indexToBeMovedFrom, int indexToBeInsertedBelow) throws IndexOutOfBoundsException,
+            SameIndexForMoveCommandException {
 
-        if (isValidIndex(indexToBeMovedFrom) && isValidIndex(indexToBeInsertedBelow)) {
-            if (indexToBeMovedFrom > indexToBeInsertedBelow) {
+        if (isValidIndexForMoveCommand(indexToBeMovedFrom) && isValidIndexForMoveCommand(indexToBeInsertedBelow)) {
+
+            if (indexToBeInsertedBelow - indexToBeMovedFrom == 1) {
+                throw new SameIndexForMoveCommandException();
+            } else if (indexToBeMovedFrom > indexToBeInsertedBelow) {
                 Activity activity = getActivity(indexToBeMovedFrom);
                 activities.remove(indexToBeMovedFrom);
                 activities.add(indexToBeInsertedBelow, activity);
-            } else {
+
+            } else if (indexToBeMovedFrom < indexToBeInsertedBelow) {
                 Activity activity = getActivity(indexToBeMovedFrom);
                 activities.remove(indexToBeMovedFrom);
                 activities.add(indexToBeInsertedBelow - 1, activity);
+            } else {
+                throw new SameIndexForMoveCommandException();
             }
         } else {
             throw new IndexOutOfBoundsException();
         }
     }
+
+
 
     public int getNetCalorie() {
         return netCalorie;
@@ -164,6 +174,20 @@ public class ActivityList extends Trakcal {
                 System.out.println((i + 1) + ". " + getActivity(i).toString());
             }
         }
+    }
+
+
+    /**
+     * Checks if the index is valid for a move command.
+     * This is added to fulfill edge cases.
+     * @param index is the index to be checked for validity
+     * @return
+     */
+    public boolean isValidIndexForMoveCommand(int index) {
+        if ((index >= 0) && (index <= activityCounter)) {
+            return true;
+        }
+        return false;
     }
 
     /**
