@@ -1,8 +1,7 @@
 package seedu.duke.logic.preparecommand;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.CreateNewUserCommand;
-import seedu.duke.exception.InvalidNumberOfArguments;
+import seedu.duke.exception.InvalidNumberOfArgumentsException;
 
 import static seedu.duke.ui.ExceptionMessages.displayShortageOfArguments;
 
@@ -25,7 +24,7 @@ public class PrepareUserCommand extends PrepareCommand {
     public Command prepareCommand() {
         try {
             isNumberOfArgumentsValid(ARGUMENT_LIMIT);
-        } catch (InvalidNumberOfArguments e) {
+        } catch (InvalidNumberOfArgumentsException e) {
             displayShortageOfArguments();
         }
         String[] input = description[1].split(" ", 2);

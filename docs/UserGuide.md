@@ -1644,7 +1644,7 @@ Chaining is the right feature for your needs!
 
 >IMPORTANT
 >*Chaining is only available to 4 features:
->*[list](#50-list---owen-chew-yang), [add](#40-add---puah-siew-wen), [edita](#60-edit---puah-siew-wen) and [graph](#100-graph---rani-karthigeyan-rajendrakumar).
+>*[list](#50-list---owen-chew-yang), [add](#40-add---puah-siew-wen), [edit](#60-edit---puah-siew-wen) and [graph](#100-graph---rani-karthigeyan-rajendrakumar).
 >*The respective formats to adhere to for each feature still applies.
 
 Format: *not extensive, there is a lot of combinations available*
