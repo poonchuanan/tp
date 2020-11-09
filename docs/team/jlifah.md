@@ -8,13 +8,11 @@ This section shows a brief overview of my contribution to traKCAL. It includes c
 
 #### Code contributed
 
-* I contributed the code for user profile and shortcut. 
-
-> Special thanks to Karthig for improving the readability of initial command line and Owen for refactoring the code to different packages.
+My code contributions can be found [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=jlifah&tabRepo=AY2021S1-CS2113T-T09-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other).
 
 #### Enhancements implemented
 
-I implemented the `user profile` and `short cut` enhancements. For `user profile`, **traKCAL** automatically asks for a new user profile if there is no current one and deletes it if there is an unreadable one. 
+* I implemented the `user profile` and `short cut` enhancements. For `user profile`, **traKCAL** automatically asks for a new user profile if there is no current one and deletes it if there is an unreadable one. 
 
 Here are some of their commands: 
 * `user c/` to create a new user profile. At the same time, it also 
@@ -22,12 +20,12 @@ Here are some of their commands:
    * calculates recommended calories
    * calculates calories based on weight goal
 * `user e/` to edit 1 or more sections of the user profile. 
-* `user l/` lists out the current user profile.
-* `createSet` creates shortcut with 1 or more activities.
-* `addSet` adds all the entries within the shortcut to the current day's list.
+* `user l/` to list out the current user profile.
+* `createSet` to create a shortcut with 1 or more activity.
+* `addSet` to add all the entries within the shortcut to the current day's list.
 
 
-**Justifications**: `user profile` feature gives the user a clear idea of their calorie journey. It also links to other features like graphs in traKCAL. `short cut` feature reduces user fatigue by offering a quick way to add in entries repeated often into the activity list.  
+**Justifications**: `user profile` feature gives the user a clear idea of their calorie journey. It also links to other features like graphs in traKCAL. `short cut` feature reduces user fatigue by offering a quick way to add in entries often repeated into the activity list.  
 
 #### Contributions to User Guide 
 
@@ -47,4 +45,4 @@ Here are some of their commands:
 
 #### Contributions beyond the project team
 
-* I helped identify bugs for other teams, my comments can be found [here](https://github.com/AY2021S1-CS2113T-F11-1/tp/issues).
+* I helped test and identify bugs for other teams, some of my comments can be found [here](https://github.com/jlifah/ped/issues).
