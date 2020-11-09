@@ -1,11 +1,15 @@
 package seedu.duke;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.Command;
 import seedu.duke.command.FindAllCommand;
 import seedu.duke.command.FindCalorieCommand;
 import seedu.duke.command.FindDescriptionCommand;
 import seedu.duke.command.FindEitherCommand;
+import seedu.duke.exception.EmptyKeywordException;
+import seedu.duke.exception.FindSlashException;
+import seedu.duke.exception.KeywordNotFoundException;
 import seedu.duke.model.DayMap;
 import seedu.duke.model.Exercise;
 import seedu.duke.model.Food;
@@ -101,5 +105,35 @@ class ActivityFindTest {
         findCommand.setData(dummyMap);
         findCommand.execute();
         assertEquals("", dummyMap.getLastSeenList().toString());
+    }
+
+    @Test
+    void findDescriptionAll_consecutiveSlashException_success() {
+        DayMap dummyMap = new DayMap();
+        createObjects(dummyMap);
+
+        Assertions.assertThrows(FindSlashException.class, () -> {
+            dummyMap.listActivitiesContainingAll("find e/ papaya // western");
+        });
+    }
+
+    @Test
+    void findDescription_emptyKeywordException_success() {
+        DayMap dummyMap = new DayMap();
+        createObjects(dummyMap);
+
+        Assertions.assertThrows(EmptyKeywordException.class, () -> {
+            dummyMap.listActivitiesContainingDescription("");
+        });
+    }
+
+    @Test
+    void findCalorie_keywordNotFoundException_success() {
+        DayMap dummyMap = new DayMap();
+        createObjects(dummyMap);
+
+        Assertions.assertThrows(KeywordNotFoundException.class, () -> {
+            dummyMap.listActivitiesContainingCalorie("1000");
+        });
     }
 }
