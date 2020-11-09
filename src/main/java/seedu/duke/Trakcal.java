@@ -29,11 +29,11 @@ public class Trakcal {
 
     public static DayMap calList = new DayMap();
     public static InitialiseUserProfile profile;
-
+    public static String jarFilePath = getJarFilePath();
     public static Scanner in = new Scanner(System.in);
-    public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
+    public static Storage storage = new Storage(jarFilePath + "/tpdata/tpcsv.csv");
     //public static Storage loggingStorage = new Storage(getJarFilePath() + "/tpdata/tpLogging.txt");
-    public static Logging logging = new Logging(getJarFilePath() + "/tpdata/tpLogging.log");
+    public static Logging logging = new Logging(jarFilePath + "/tpdata/tpLogging.log");
 
 
 
@@ -99,7 +99,7 @@ public class Trakcal {
      *
      * @return string of the file path
      */
-    private static String getJarFilePath() {
+    public static String getJarFilePath() {
         return new File(Trakcal.class.getProtectionDomain().getCodeSource().getLocation().getPath())
                 .getParent().replace("%20", SPACE);
     }

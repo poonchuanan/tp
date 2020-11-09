@@ -2,12 +2,11 @@ package seedu.duke.model;
 
 import seedu.duke.Trakcal;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
-import static seedu.duke.ui.Ui.displayMessage;
+
 
 //@@author chewyang
 /**
@@ -40,7 +39,7 @@ public class ActivityList extends Trakcal {
         return activities;
     }
 
-    //@@author chewyang
+    //@@author e0425705
     /**
      * Adds new activity to the list and updates the netCalorie accordingly to the activity type added.
      *
@@ -59,7 +58,7 @@ public class ActivityList extends Trakcal {
         }
     }
 
-    //@@author e0425705
+
     /**
      * This method replaces the current activity at index with a new activity.
      * To change the description of the current activity.
@@ -116,12 +115,11 @@ public class ActivityList extends Trakcal {
         }
     }
 
-    //@@author 1-Karthigeyan-1
     public int getNetCalorie() {
         return netCalorie;
     }
 
-    //@@author chewyang
+
     public Activity getActivity(int index) throws IndexOutOfBoundsException {
         if (isValidIndex(index)) {
             return activities.get(index);
@@ -129,6 +127,7 @@ public class ActivityList extends Trakcal {
             throw new IndexOutOfBoundsException();
         }
     }
+
 
     //@@author 1-Karthigeyan-1
     /**
@@ -152,6 +151,7 @@ public class ActivityList extends Trakcal {
         }
     }
 
+
     //@@author chewyang
     /**
      * Prints the list of activities.
@@ -166,7 +166,6 @@ public class ActivityList extends Trakcal {
         }
     }
 
-    //@@author chewyang
     /**
      * Checks if the index is valid.
      *

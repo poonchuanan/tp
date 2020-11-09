@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
+import static seedu.duke.Trakcal.jarFilePath;
 import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayMissingAddSetInfoMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieMessage;
@@ -29,7 +30,6 @@ import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
  * Updates the text file with short cut info.
  */
 public class UserSetStorage {
-    private static final String PATH = new File("").getAbsolutePath();
     private static final Integer MAX_CALORIES = 3000;
     private static final Integer MIN_CALORIES = 0;
     private static final String WHITE_SPACE = " ";
@@ -64,7 +64,7 @@ public class UserSetStorage {
      * @param toTrim contents to be added into shortcut
      */
     public static void createNewTextFile(String fileName, String toTrim) {
-        String filePath = PATH + fileName;
+        String filePath = jarFilePath + "/tpdata" + fileName;
 
         try {
             checkExistingFile(filePath);
