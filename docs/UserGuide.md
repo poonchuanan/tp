@@ -2,7 +2,7 @@
 
 The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
 
-By: CS2113-T09-4     Since: October 2020    Licence: MIT
+By: CS2113-T09-4  <br>   Since: October 2020  <br>  Licence: MIT
 
 <br>
 
