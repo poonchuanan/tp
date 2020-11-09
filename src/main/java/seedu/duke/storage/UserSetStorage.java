@@ -46,6 +46,7 @@ public class UserSetStorage {
     public static void prepareNewSet(String userInput) {
         try {
             checkFileNameNotPresent(userInput);
+            System.out.println(userInput);
             checkActivityAndCalorieTag(userInput);
             String fileName = userInput.substring(0, userInput.indexOf(SLASH) - 2);
             createNewTextFile(SLASH + fileName + ".txt", userInput.substring(userInput.indexOf(SLASH) - 1));
@@ -191,7 +192,7 @@ public class UserSetStorage {
      * @param input user input
      */
     private static void checkActivityAndCalorieTag(String input) throws InvalidCreateSetCommandException {
-        if (!input.contains(CALORIE_TAG) && !(input.contains(FOOD_TAG) | input.contains(EXERCISE_TAG))) {
+        if (!input.contains(CALORIE_TAG) || !(input.contains(FOOD_TAG) | input.contains(EXERCISE_TAG))) {
             throw new InvalidCreateSetCommandException();
         }
     }

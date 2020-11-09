@@ -10,7 +10,7 @@ public class PrepareNewSetCommand extends PrepareCommand {
     }
 
     @Override
-    public Command prepareCommand() throws Exception, ListNotFoundException {
+    public Command prepareCommand() {
         return new CreateNewSetCommand(description[1]);
     }
 }
