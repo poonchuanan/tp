@@ -95,6 +95,10 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 
 ### 3.2 Ui component
 
+![Ui Component](diagrams/ui.png)
+
+*Figure 2. Diagram for logic component*
+
 <br>
 
 ### 3.3 Logic component
@@ -133,6 +137,10 @@ In the Model component,
 
 ### 3.5 Command component
 
+![Command_Component](diagrams/Command.png)
+
+*Figure 4. Diagram for Command component*
+
 <br>
 
 ### 3.6 Storage component
@@ -140,6 +148,10 @@ In the Model component,
 <br>
 
 ### 3.7 Exception component
+
+![Exception_Component](diagrams/Exception.png)
+
+*Figure 4. Diagram for Exception component*
 
 <br>
 
@@ -297,12 +309,21 @@ The chaining mechanism can be used by the various commands available The followi
 - add
 - edita
 - graph
+>this is due to attribute canBeChained in those commands being true.
 
 The following sequence diagram shows how the chaining works after command is entered:
 
 ![Chain_Command](diagrams/ChainCommand.png)
 
 *Figure 10. Sequence diagram of chaining feature*
+
+![Object_Diagram_Of_PrepareCommand](diagrams/chainCommand_PrepareCommand.png)
+
+*Figure 11. Object diagram of allowed PrepareCommand subclass*
+
+![Object_Diagram_Of_Command](diagrams/chainCommand_Command.png)
+
+*Figure 12. Object diagram of allowed Command subclass*
 
 <br>
 

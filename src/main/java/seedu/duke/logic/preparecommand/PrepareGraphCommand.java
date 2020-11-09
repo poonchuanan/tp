@@ -3,7 +3,7 @@ package seedu.duke.logic.preparecommand;
 import seedu.duke.Trakcal;
 import seedu.duke.command.Command;
 import seedu.duke.command.GraphCommand;
-import seedu.duke.exception.InvalidNumberOfArguments;
+import seedu.duke.exception.InvalidNumberOfArgumentsException;
 import seedu.duke.exception.ListNotFoundException;
 
 import static seedu.duke.Trakcal.logging;
@@ -31,7 +31,7 @@ public class PrepareGraphCommand extends PrepareCommand {
             isNumberOfArgumentsValid(ARGUMENT_LIMIT);
             isListEmpty();
             return new GraphCommand();
-        } catch (InvalidNumberOfArguments e) {
+        } catch (InvalidNumberOfArgumentsException e) {
             logging.writeToLogInfo("Too many arguments!");
             displayExcessNumberOfArguments();
         } catch (ListNotFoundException e) {
