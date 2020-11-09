@@ -155,7 +155,6 @@ public class Storage {
         } catch (IOException e) {
             System.out.println(LOAD_DATA_FAILURE_MESSAGE);
             logging.writeToLogWarning(LOAD_DATA_FAILURE_MESSAGE);
-
         }
     }
 
@@ -206,6 +205,7 @@ public class Storage {
             break;
         default:
             System.out.println("Corrupted data. Activity should be either exercise or food");
+            logging.writeToLogWarning(LOAD_DATA_FAILURE_MESSAGE);
         }
     }
 }
