@@ -40,9 +40,9 @@ Here are some of the commands:
 #### Review/mentoring contributions
 
 * I have reviewed and approved PRs from the team. 
-For example, [link1](https://github.com/AY2021S1-CS2113T-T09-4/tp/pull/172) and [link2](https://github.com/AY2021S1-CS2113T-T09-4/tp/pull/255)
+For example, [link1](https://github.com/AY2021S1-CS2113T-T09-4/tp/pull/172) and [link2.](https://github.com/AY2021S1-CS2113T-T09-4/tp/pull/255)
 
 #### Contributions beyond the project team
 
 * I have reviewed other team's project and gave feedback to them for improvements.
-For example, [link3](https://github.com/poonchuanan/ped/issues)
+For example, [link3.](https://github.com/poonchuanan/ped/issues)
