@@ -6,6 +6,7 @@ import seedu.duke.command.ListCommand;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
 
 //@@author chewyang
@@ -36,6 +37,7 @@ public class PrepareListCommand extends PrepareCommand {
                 return new ListCommand(date);
             } catch (DateTimeParseException e) {
                 displayIncorrectDateTimeFormatEnteredMessage();
+                logging.writeToLogWarning("Date entered is of incorrect format");
                 return null;
             }
         }

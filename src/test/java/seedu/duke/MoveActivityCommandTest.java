@@ -104,5 +104,48 @@ public class MoveActivityCommandTest {
 
     }
 
+    @Test
+    void moveTest_TopToBottom() {
+        DayMap dummyMap = new DayMap();
+        createObjects(dummyMap);
+        Command listCommand = new ListCommand(date);
+        listCommand.setData(dummyMap);
+        listCommand.execute();
+        assertEquals("2020-08-09, [F] | Apple | 50, [F] | Banana | 100, [F] | Orange | 25",
+                dummyMap.toString(date.atStartOfDay()));
+
+        CommandParser parser = new CommandParser("move from/ 3 below/ 1");
+        Command command = parser.parseArgument();
+        command.setData(dummyMap);
+        command.execute();
+        assertEquals("2020-08-09, [F] | Apple | 50, [F] | Orange | 25, [F] | Banana | 100",
+                dummyMap.toString(date.atStartOfDay()));
+
+        CommandParser parser2 = new CommandParser("move from/1 below/ 2");
+        Command command2 = parser2.parseArgument();
+        command2.setData(dummyMap);
+        command2.execute();
+        assertEquals("2020-08-09, [F] | Orange | 25, [F] | Apple | 50, [F] | Banana | 100",
+                dummyMap.toString(date.atStartOfDay()));
+    }
+
+    @Test
+    void moveTest_BottomToTop() {
+        DayMap dummyMap = new DayMap();
+        createObjects(dummyMap);
+        Command listCommand = new ListCommand(date);
+        listCommand.setData(dummyMap);
+        listCommand.execute();
+        assertEquals("2020-08-09, [F] | Apple | 50, [F] | Banana | 100, [F] | Orange | 25",
+                dummyMap.toString(date.atStartOfDay()));
+
+        CommandParser parser2 = new CommandParser("move from/1 below/ 2");
+        Command command2 = parser2.parseArgument();
+        command2.setData(dummyMap);
+        command2.execute();
+        assertEquals("2020-08-09, [F] | Banana | 100, [F] | Apple | 50, [F] | Orange | 25",
+                dummyMap.toString(date.atStartOfDay()));
+    }
+
 
 }
