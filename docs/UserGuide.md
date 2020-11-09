@@ -13,8 +13,6 @@ By: CS2113-T09-4     Since: October 2020    Licence: MIT
 
 **traKCAL** is a desktop application for managing and visualizing your calorie intake, optimized for use via Command Line Interface (CLI) whilst retaining the benefits of a Graphical User Interface (GUI). 
 
-This guide walks you through the various features available in **traKCAL**.
-
 If you are a fast typist, **traKCAL** is perfect for you!
 
 <br>
@@ -184,7 +182,6 @@ bye                    - Terminates the application
 ### 2.1 Creating a new user profile
 
 If this is your first time using **traKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command. **traKCAL** will then use these details from your user profile to calculate the following: 
-> For this section only, words that look like *this* is user input
 
 * BMI
 * Recommended daily calorie
@@ -194,6 +191,8 @@ Format: `user c/`
 
 Example of usage:
 * `user c/`
+
+> For this section only, words that look like *this* is user input
 
 ```
 Hey there! We do not have a record of your profile. Please create one now! :)
@@ -241,6 +240,7 @@ The respective error message will also be shown to you.
 ```
 Any text in this format is the error message that you will be shown.
 ```
+
 #### Empty descriptions
 
 * Empty input to any questions.
@@ -379,7 +379,7 @@ Your weight has been updated to 90kg.
 
 #### Invalid parameters
 
-* The [error messages](#211-possible-errors-when-creating-a-new-user-profile) for edit user profile feature are the same as those found in creating user profile. 
+* The [error messages](#211-possible-errors-when-creating-a-new-user-profile) for edit user profile feature are the same as those found when creating a new user profile. 
 
 <br>
 
@@ -553,6 +553,13 @@ The current activity list has been saved.
 <br>
 
 ### 3.2.1 Possible errors when adding shortcut
+An error will occur if any of the conditions below are met. <br>
+The respective error message will also be shown to you.
+> Any text in this format is an example of a command that will produce the respective error.
+
+```
+Any text in this format is the error message that you will be shown.
+```
 
 #### Wrong keywords
 * Using a shortcut that has not been created yet. For example, if a set named 'dinner' has not yet been created, the following command will produce an error:
