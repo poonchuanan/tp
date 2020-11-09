@@ -789,3 +789,25 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >* Test case: The incorrect input from [add](#adding-an-entry-into-list), list, [edit](#editing-an-entry-in-list), graph
 >* Expected: Message with error will be shown.
 
+#### Find feature
+>Finding an entry using find d/
+    Test case: `find d/ apple`
+    Expected: All entries with food description `apple` would be displayed.
+
+>Finding an entry using find c/
+     Test case: `find c/ 500`
+     Expected: All entries with calories count `100` would be displayed.
+
+>Finding an entry using find a/
+      Test case: `find a/ run / garden / evening`
+      Expected: All entries with descriptions containing `run`, `garden` **and** `evening` would be displayed.
+
+>Finding an entry using find e/
+      Test case: `find e/ walk / jump / kick`
+      Expected: All entries with descriptions containing at least one of of the keyword "`walk`, `jump` **or** `kick`" would be displayed.
+
+>Incorrect inputs to try:
+     Test case: Not specifying keywords to be searched for. Example: `find d/`
+     Expected: Message with error will be shown.
+     Test case: Consecutive slashes in input for `a/` or `e/`. Example:`find a// apple / pie`
+     Expected: Message with error will be shown.
