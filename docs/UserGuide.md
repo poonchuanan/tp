@@ -352,7 +352,7 @@ This is to ensure that all features can be used properly.
 
 ### 2.2 Editing user profile
 
-Edits user profile of an existing user.
+This feature allows you to edit an existing user profile easily.
 
 Format: `user e/ <n/ **NAME**>,<g/ **GENDER**>,<w/ **WEIGHT**>,<h/ **HEIGHT**>,<age/ **AGE**><al/ **ACTIVITY_FACTOR**>,<goal/ **WEIGHT_GOALS**>`
 
@@ -385,7 +385,7 @@ Your weight has been updated to 90kg.
 
 ### 2.3 View current user profile
 
-Lists the user profile of an existing user.
+Want to see your current user profile? This feature will be just right for you!
 
 Format: `user l/`
 
@@ -410,7 +410,7 @@ Weight Goal : gain
 
 ### 3.1 Creating a shortcut for a set of entries 
 
-This command creates a shortcut for a set of commonly used exercise and/or food entries, reducing the amount of time needed for you to add multiple common entries. 
+This command helps you create a shortcut for a set of commonly used exercise and/or food entries, reducing the amount of time needed for you to add multiple common entries. 
 
 Format: `createSet **SHORTCUT_NAME** ...`
 
@@ -525,7 +525,7 @@ Please try again!
 
 ### 3.2 Adding a shortcut of repeated task to today's list
 
-Adds a set of repeated entries at once.
+Want to add in a set of entries at once? This feature teaches you how to do so!
 
 Format: `addSet **SHORTCUT_NAME**`
 
