@@ -9,6 +9,7 @@ import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author chewyang
 class DayMapTest {
     LocalDate date = LocalDate.of(2020, Month.AUGUST, 9);
     LocalDate date2 = LocalDate.of(2020, Month.AUGUST, 10);

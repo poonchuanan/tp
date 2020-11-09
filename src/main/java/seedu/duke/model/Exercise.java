@@ -17,7 +17,7 @@ public class Exercise extends Activity {
     }
 
     /**
-     * Get exercise string.
+     * Gets exercise string.
      *
      * @return exercise string
      */

@@ -3,21 +3,23 @@ package seedu.duke;
 import java.io.File;
 
 import seedu.duke.command.Command;
-import seedu.duke.logic.Parser;
+import seedu.duke.logic.parser.ChainingParser;
+import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.model.DayMap;
 import seedu.duke.storage.Storage;
-import seedu.duke.userprofile.SaveAndAskForUserProfile;
-import seedu.duke.userprofile.InitialiseAndCalculateUserProfile;
+import seedu.duke.storage.Logging;
+import seedu.duke.ui.Ui;
+import seedu.duke.userprofile.UserProfile;
+import seedu.duke.userprofile.InitialiseUserProfile;
 import seedu.duke.userprofile.CheckNewUser;
 
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
-import static seedu.duke.logic.Parser.CHAIN_SEPARATOR;
-import static seedu.duke.logic.Parser.SPACE;
+import static seedu.duke.logic.parser.CommandParser.SPACE;
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
 import static seedu.duke.ui.Ui.displayWelcomeMessage;
-import static seedu.duke.ui.ExceptionMessages.displayParserNullPointerExceptionMessage;
 
 /**
  * Entry point of the traKCAL application.
@@ -26,27 +28,33 @@ import static seedu.duke.ui.ExceptionMessages.displayParserNullPointerExceptionM
 public class Trakcal {
 
     public static DayMap calList = new DayMap();
-    public static InitialiseAndCalculateUserProfile profile;
+    public static InitialiseUserProfile profile;
 
     public static Scanner in = new Scanner(System.in);
     public static Storage storage = new Storage(getJarFilePath() + "/tpdata/tpcsv.csv");
+    //public static Storage loggingStorage = new Storage(getJarFilePath() + "/tpdata/tpLogging.txt");
+    public static Logging logging = new Logging(getJarFilePath() + "/tpdata/tpLogging.log");
+
+
+
+
 
     /**
      * Main function.
+     *
      * @param args args
      */
     public static void main(String[] args) {
         displayWelcomeMessage();
         System.out.println();
-        try {
-            storage.loadData(calList);
-        } catch (StringIndexOutOfBoundsException e) {
-            System.out.println("here");
-        }
+        logging.setUpLogger();
+        storage.loadData(calList);
+        calList.setLastSeenList(calList.getActivityList(LocalDate.now().atStartOfDay()));
         if (CheckNewUser.isNewUser()) {
-            profile = SaveAndAskForUserProfile.createNewProfile();
+            profile = UserProfile.createNewProfile();
         } else {
-            profile = SaveAndAskForUserProfile.loadProfile();
+            Ui.displayReturningUserMessage();
+            profile = UserProfile.loadProfile();
         }
         Trakcal.run();
     }
@@ -57,19 +65,18 @@ public class Trakcal {
     public static void run()  {
         while (in.hasNextLine()) {
             String userInput = in.nextLine();
-            Parser parser = new Parser(userInput);
+            CommandParser parser = new CommandParser(userInput);
             try {
-                Command cmd;
-                if (userInput.contains(CHAIN_SEPARATOR)) {
-                    parser.prepareChaining(userInput);
+                Command command;
+                if (userInput.contains(ChainingParser.CHAIN_SEPARATOR)) {
+                    new ChainingParser(userInput).parseArgument();
                 } else {
-                    cmd = parser.parseCommand();
-                    executeCmd(cmd);
+                    command = parser.parseArgument();
+                    executeCmd(command);
                     storage.updateFile(calList);
                 }
-                System.out.println();
             } catch (NullPointerException e) {
-                displayParserNullPointerExceptionMessage();
+                //Exception is already taken care of
             } catch (IndexOutOfBoundsException e) {
                 displayNotSavedMessage();
             }
@@ -78,6 +85,7 @@ public class Trakcal {
 
     /**
      * Sets the data for each command and executes the command.
+     *
      * @param command command to execute
      * @throws NullPointerException if invalid command
      */
@@ -88,10 +96,12 @@ public class Trakcal {
 
     /**
      * Gets the file path of the jar file.
+     *
      * @return string of the file path
      */
     private static String getJarFilePath() {
         return new File(Trakcal.class.getProtectionDomain().getCodeSource().getLocation().getPath())
                 .getParent().replace("%20", SPACE);
     }
+
 }

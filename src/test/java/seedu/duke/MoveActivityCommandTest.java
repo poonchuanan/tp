@@ -4,18 +4,17 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.Command;
 import seedu.duke.command.ListCommand;
-import seedu.duke.command.MoveActivityCommand;
 import seedu.duke.exception.ListNotFoundException;
-import seedu.duke.logic.Parser;
+import seedu.duke.logic.parser.CommandParser;
 import seedu.duke.model.DayMap;
 import seedu.duke.model.Food;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author chewyang
 public class MoveActivityCommandTest {
 
     LocalDate date = LocalDate.of(2020, Month.AUGUST, 9);
@@ -42,15 +41,15 @@ public class MoveActivityCommandTest {
         assertEquals("2020-08-09, [F] | Apple | 50, [F] | Banana | 100, [F] | Orange | 25",
                 dummyMap.toString(date.atStartOfDay()));
 
-        Parser parser = new Parser("move from/   3 below/ 1");
-        Command command = parser.parseCommand();
+        CommandParser parser = new CommandParser("move from/   3 below/ 1");
+        Command command = parser.parseArgument();
         command.setData(dummyMap);
         command.execute();
         assertEquals("2020-08-09, [F] | Apple | 50, [F] | Orange | 25, [F] | Banana | 100",
                 dummyMap.toString(date.atStartOfDay()));
 
-        Parser parser2 = new Parser("move from/3 below/  1");
-        Command command2 = parser2.parseCommand();
+        CommandParser parser2 = new CommandParser("move from/3 below/  1");
+        Command command2 = parser2.parseArgument();
         command2.setData(dummyMap);
         command2.execute();
         assertEquals("2020-08-09, [F] | Apple | 50, [F] | Banana | 100, [F] | Orange | 25",
@@ -68,10 +67,10 @@ public class MoveActivityCommandTest {
         assertEquals("2020-08-09, [F] | Apple | 50, [F] | Banana | 100, [F] | Orange | 25",
                 dummyMap.toString(date.atStartOfDay()));
 
-        Parser parser = new Parser("move from/a below/2");
+        CommandParser parser = new CommandParser("move from/a below/2");
 
         Assertions.assertThrows(NullPointerException.class, () -> {
-            parser.parseCommand().execute();
+            parser.parseArgument().execute();
         });
     }
 

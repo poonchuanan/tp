@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
+import static seedu.duke.ui.Ui.displayMessage;
 
-
+//@@author chewyang
 /**
  * List of activities for any day.
  */
@@ -39,7 +40,7 @@ public class ActivityList extends Trakcal {
         return activities;
     }
 
-
+    //@@author chewyang
     /**
      * Adds new activity to the list and updates the netCalorie accordingly to the activity type added.
      *
@@ -56,9 +57,9 @@ public class ActivityList extends Trakcal {
         } else {
             throw new IndexOutOfBoundsException();
         }
-        //displaySavedMessage();
     }
 
+    //@@author e0425705
     /**
      * This method replaces the current activity at index with a new activity.
      * To change the description of the current activity.
@@ -68,19 +69,29 @@ public class ActivityList extends Trakcal {
      */
     public void insertActivity(int index, Activity activity) throws IndexOutOfBoundsException {
         if (isValidIndex(index)) {
+
+            // removes calories of previous in list index
+            Activity activityToReplace = activities.get(index);
+            if (activityToReplace instanceof Food) {
+                netCalorie -= activityToReplace.calories;
+            } else if (activityToReplace instanceof Exercise) {
+                netCalorie += activityToReplace.calories;
+            }
+
             activities.set(index, activity);
 
+            // updates calories of edited list index
             if (activity instanceof Food) {
                 netCalorie += activity.calories;
             } else if (activity instanceof Exercise) {
                 netCalorie -= activity.calories;
             }
-            //displaySavedMessage();
         } else {
             throw new IndexOutOfBoundsException();
         }
     }
 
+    //@@author chewyang
     /**
      * This method moves a activity from a given index and to a place below a given index.
      *
@@ -91,10 +102,15 @@ public class ActivityList extends Trakcal {
     public void moveActivity(int indexToBeMovedFrom, int indexToBeInsertedBelow) throws IndexOutOfBoundsException {
 
         if (isValidIndex(indexToBeMovedFrom) && isValidIndex(indexToBeInsertedBelow)) {
-            Activity activity = getActivity(indexToBeMovedFrom);
-            activities.remove(indexToBeMovedFrom);
-            activities.add(indexToBeInsertedBelow, activity);
-            //displaySavedMessage();
+            if (indexToBeMovedFrom > indexToBeInsertedBelow) {
+                Activity activity = getActivity(indexToBeMovedFrom);
+                activities.remove(indexToBeMovedFrom);
+                activities.add(indexToBeInsertedBelow, activity);
+            } else {
+                Activity activity = getActivity(indexToBeMovedFrom);
+                activities.remove(indexToBeMovedFrom);
+                activities.add(indexToBeInsertedBelow - 1, activity);
+            }
         } else {
             throw new IndexOutOfBoundsException();
         }
@@ -104,6 +120,7 @@ public class ActivityList extends Trakcal {
         return netCalorie;
     }
 
+    //@@author chewyang
     public Activity getActivity(int index) throws IndexOutOfBoundsException {
         if (isValidIndex(index)) {
             return activities.get(index);
@@ -127,13 +144,14 @@ public class ActivityList extends Trakcal {
             }
             activities.remove(index);
             activityCounter--;
-            System.out.print("Activity removed!\n");
+            displayMessage("Activity removed!");
         } else {
             System.out.println("Please make sure index is within range");
             throw new IndexOutOfBoundsException();
         }
     }
 
+    //@@author chewyang
     /**
      * Prints the list of activities.
      */
@@ -147,10 +165,11 @@ public class ActivityList extends Trakcal {
         }
     }
 
+    //@@author chewyang
     /**
      * Checks if the index is valid.
      *
-     * @param index index of acitvity in list
+     * @param index index of activity in list
      * @return true if index is within range, else false
      */
     public boolean isValidIndex(int index) {
@@ -169,10 +188,10 @@ public class ActivityList extends Trakcal {
         netCalorie = 0;
     }
 
-
+    //@@author chewyang
     /**
      * Sets the activities as a string.
-     * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60
+     * For e.g, [F] | apple | 50, [F] | banana | 100, [E] | push-up | 10, [E] | jogging | 60
      *
      * @return activities as a string
      */
@@ -183,8 +202,10 @@ public class ActivityList extends Trakcal {
         return (activitiesString);
     }
 
+    //@@author chewyang
     /**
      * Returns the date of activity.
+     *
      * @param index index of activity
      * @return date
      */

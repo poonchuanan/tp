@@ -1,24 +1,24 @@
 package seedu.duke.command;
 
-import seedu.duke.model.ActivityList;
 import seedu.duke.model.Food;
 
 import java.time.LocalDate;
+import java.util.logging.Level;
 
 import static seedu.duke.ui.ExceptionMessages.displayEditIndexOutOfBoundsExceptionMessage;
+import static seedu.duke.ui.Ui.displayEditMessage;
 import static seedu.duke.ui.Ui.displaySavedMessage;
-import static seedu.duke.ui.Ui.drawDivider;
 
-
+//@@author e0425705
 /**
  * Edits food and its attributes at the indicated index.
  */
 public class EditFoodCommand extends Command {
     protected int index;
     protected Food food;
-    protected LocalDate date;
     protected String description;
     protected int calories;
+    protected LocalDate date;
 
 
     /**
@@ -37,16 +37,14 @@ public class EditFoodCommand extends Command {
     @Override
     public void execute() {
         try {
-            ActivityList lastSeenList = dayMap.getLastSeenList();
-            LocalDate dateOfActivityToBeEdited = lastSeenList.getDateOfActivityAtIndex(index);
+            LocalDate dateOfActivityToBeEdited = dayMap.getDateFromLastSeenListAtIndex(index);
+            displayEditMessage();
             this.food = new Food(description, calories, dateOfActivityToBeEdited, false);
             dayMap.insertActivity(index, food);
-
-            System.out.println();
             displaySavedMessage();
-            drawDivider();
         } catch (IndexOutOfBoundsException e) {
             displayEditIndexOutOfBoundsExceptionMessage();
+            //commandLogger.log(Level.WARNING,"Accessing an index that is out of bound!");
         }
     }
 }

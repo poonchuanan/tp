@@ -2,6 +2,10 @@ package seedu.duke.command;
 
 import seedu.duke.model.DayMap;
 
+import java.io.IOException;
+import java.util.logging.Logger;
+
+//@@author chewyang
 /**
  * Execute command.
  */
@@ -13,7 +17,6 @@ public class Command {
      * This method is to be override by the specific commands.
      */
     public void execute() {
-        return;
     }
 
     /**

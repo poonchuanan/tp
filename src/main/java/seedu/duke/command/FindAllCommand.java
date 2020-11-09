@@ -1,11 +1,16 @@
 package seedu.duke.command;
 
-import seedu.duke.model.FindDrawer;
+import seedu.duke.exception.EmptyKeywordException;
+import seedu.duke.exception.FindSlashException;
 import seedu.duke.exception.KeywordNotFoundException;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyKeywordMessage;
+import static seedu.duke.ui.ExceptionMessages.displayFindSlashExceptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayKeywordNotFoundMessage;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+//@@author poonchuanan
 /**
  * Initialises Command to find all description tags.
  */
@@ -27,10 +32,13 @@ public class FindAllCommand extends Command {
     public void execute() {
         try {
             dayMap.listActivitiesContainingAll(userInput);
-            FindDrawer findDrawer = new FindDrawer(dayMap.getLastSeenList());
-            findDrawer.printList();
+            dayMap.drawListAfterFindCommand();
         } catch (KeywordNotFoundException e) {
-            System.out.println("No results were found!");
+            displayKeywordNotFoundMessage();
+        } catch (EmptyKeywordException e) {
+            displayEmptyKeywordMessage();
+        } catch (FindSlashException e) {
+            displayFindSlashExceptionMessage();
         }
     }
 }

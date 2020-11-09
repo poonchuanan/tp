@@ -1,10 +1,16 @@
 package seedu.duke.command;
 
+import seedu.duke.exception.EmptyKeywordException;
 import seedu.duke.exception.KeywordNotFoundException;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyDescriptionMessage;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyKeywordMessage;
+import static seedu.duke.ui.ExceptionMessages.displayKeywordNotFoundMessage;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+
+//@@author poonchuanan
 /**
  * Initialises Command to find calorie count.
  */
@@ -27,10 +33,12 @@ public class  FindCalorieCommand extends Command {
     public void execute() {
         try {
             dayMap.listActivitiesContainingCalorie(calorie);
+            dayMap.drawListAfterFindCommand();
         } catch (KeywordNotFoundException e) {
-            System.out.println("No results were found!");
+            displayKeywordNotFoundMessage();
+        } catch (EmptyKeywordException e) {
+            displayEmptyKeywordMessage();
         }
-
     }
 }
 

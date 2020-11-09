@@ -9,11 +9,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
-public class Userinfotextfilestorage {
+//@@author jlifah
+/**
+ * Updates the text file with user info.
+ */
+public class UserInfoStorage {
     private static final String PATH = new File("").getAbsolutePath();
     public static final String FILE_PATH = PATH + "/tp.txt";
 
+    /**
+     * Create text file is present, if not create a new run.
+     *
+     */
     public static ArrayList<String> update() {
         if (Files.exists(Path.of(PATH))) {
             File file = new File(FILE_PATH);
@@ -42,18 +49,27 @@ public class Userinfotextfilestorage {
         }
     }
 
+    /**
+     * Creates a new text file for user profile.
+     *
+     */
     private static void createDataFile() throws IOException {
-        File file = new File(Userinfotextfilestorage.PATH);
+        File file = new File(UserInfoStorage.PATH);
         boolean isDirCreated = file.mkdir();
 
         if (isDirCreated) {
-            file = new File(Userinfotextfilestorage.PATH + "/tp.txt");
+            file = new File(UserInfoStorage.PATH + "/tp.txt");
             file.createNewFile();
         }
     }
 
+    /**
+     * Writes user profile to text profile.
+     *
+     */
     public void save(String test) throws IOException {
         String[] parts = test.split(",");
         Files.write(Path.of(FILE_PATH), Arrays.asList(parts));
     }
 }
+//@@author jlifah

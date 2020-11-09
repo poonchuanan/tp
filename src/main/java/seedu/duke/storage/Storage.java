@@ -22,6 +22,7 @@ import java.util.Map;
 
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
 
+//@@author chewyang
 /**
  * Storage class to decode and encode the .csv file.
  */
@@ -32,6 +33,7 @@ public class Storage {
 
     /**
      * Constructor for the storage class.
+     *
      * @param filePath path of file to be stored into
      */
     public Storage(String filePath) {
@@ -41,9 +43,10 @@ public class Storage {
 
     /**
      * Creates the file hierarchy if not present.
+     *
      * @throws IOException if there is an issue
      */
-    private void createFileHierarchy() throws IOException {
+    protected void createFileHierarchy() throws IOException {
         if (dataFile.getParentFile().exists()) {
             if (dataFile.exists()) {
                 return;
@@ -58,6 +61,7 @@ public class Storage {
 
     /**
      * Appends to the file.
+     *
      * @param textToAdd string to append the file with
      */
     private void appendToFile(String textToAdd) {
@@ -78,6 +82,7 @@ public class Storage {
 
     /**
      * Overwrites the file.
+     *
      * @param textToAdd string to override the file with
      */
     private void writeToFile(String textToAdd) {
@@ -94,6 +99,7 @@ public class Storage {
 
     /**
      * Updates the file.
+     *
      * @param dayMap dayMap to update the file with
      */
     public void updateFile(DayMap dayMap) {
@@ -108,9 +114,12 @@ public class Storage {
         }
         //displaySaveMessage();
     }
+    //@@author chewyang
 
+    //@@author poonchuanan
     /**
      * Loads saved CSV data into the list when the program starts.
+     *
      * @param calList used to store the current activities
      */
     public void loadData(DayMap calList) {
@@ -127,7 +136,6 @@ public class Storage {
             for (int i = 0; i < lines.size(); i++) {
                 processData(calList, lines.get(i));
             }
-
         } catch (IOException e) {
             System.out.println("Unable to load data");
         }
