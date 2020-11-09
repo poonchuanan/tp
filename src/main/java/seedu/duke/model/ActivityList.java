@@ -2,12 +2,11 @@ package seedu.duke.model;
 
 import seedu.duke.Trakcal;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
-import static seedu.duke.ui.Ui.displayMessage;
+
 
 //@@author chewyang
 /**
@@ -39,7 +38,6 @@ public class ActivityList extends Trakcal {
     public ArrayList getArrayList() {
         return activities;
     }
-    //@@author chewyang
 
     //@@author e0425705
     /**
@@ -91,7 +89,6 @@ public class ActivityList extends Trakcal {
             throw new IndexOutOfBoundsException();
         }
     }
-    //@@author e0425705
 
     //@@author chewyang
     /**
@@ -130,9 +127,9 @@ public class ActivityList extends Trakcal {
             throw new IndexOutOfBoundsException();
         }
     }
-    //@@author chewyang
 
-    //author _________
+
+    //@@author 1-Karthigeyan-1
     /**
      * Removes an activity from the list via index.
      *
@@ -148,13 +145,11 @@ public class ActivityList extends Trakcal {
             }
             activities.remove(index);
             activityCounter--;
-            displayMessage("Activity removed!");
         } else {
             System.out.println("Please make sure index is within range");
             throw new IndexOutOfBoundsException();
         }
     }
-    //author _________
 
 
     //@@author chewyang
@@ -183,9 +178,8 @@ public class ActivityList extends Trakcal {
         }
         return false;
     }
-    //@@author chewyang
 
-    //@@author ___
+    //@@author 1-Karthigeyan-1
     /**
      * Clears the list of activities.
      */
@@ -194,7 +188,6 @@ public class ActivityList extends Trakcal {
         activityCounter = 0;
         netCalorie = 0;
     }
-    //@@author ___
 
     //@@author chewyang
     /**
@@ -209,5 +202,4 @@ public class ActivityList extends Trakcal {
         activitiesString = activitiesString.substring(1, activitiesString.length() - 1);
         return (activitiesString);
     }
-    //@@author chewyang
 }
