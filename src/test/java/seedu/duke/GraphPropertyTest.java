@@ -70,7 +70,7 @@ class GraphPropertyTest {
     @Test
     public void setProperty_NegativeCalories_success() {
         DayMap dummyMap = setDummyMap();
-        dummyMap.addActivity(date1.atStartOfDay(), new Exercise("pushup", -1000, date1, false));
+        dummyMap.addActivity(date1.atStartOfDay(), new Exercise("pushup", 1000, date1, false));
         dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
         GraphProperty graphProperty = new GraphProperty(dummyMap, 1000);
         graphProperty.setProperties();
