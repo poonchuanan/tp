@@ -57,7 +57,7 @@ class ActivityFindTest {
     }
 
     @Test
-    void findDescriptionAll_success(){
+    void findDescriptionAll_success() {
         DayMap dummyMap = new DayMap();
         createObjects(dummyMap);
 
@@ -69,7 +69,7 @@ class ActivityFindTest {
     }
 
     @Test
-    void findDescriptionAll_withNoResult_success(){
+    void findDescriptionAll_withNoResult_success() {
         DayMap dummyMap = new DayMap();
         createObjects(dummyMap);
 
@@ -80,7 +80,7 @@ class ActivityFindTest {
     }
 
     @Test
-    void findDescriptionEither_success(){
+    void findDescriptionEither_success() {
         DayMap dummyMap = new DayMap();
         createObjects(dummyMap);
 
@@ -93,7 +93,7 @@ class ActivityFindTest {
     }
 
     @Test
-    void findDescriptionEither_withNoResult_success(){
+    void findDescriptionEither_withNoResult_success() {
         DayMap dummyMap = new DayMap();
         createObjects(dummyMap);
 
