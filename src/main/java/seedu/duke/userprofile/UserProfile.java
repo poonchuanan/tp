@@ -42,7 +42,7 @@ public class UserProfile {
     private static final Integer MIN_WEIGHT = 30;
     private static final Integer MAX_HEIGHT = 300;
     private static final Integer MIN_HEIGHT = 90;
-    private static final Integer MIN_AGE = 1;
+    private static final Integer MIN_AGE = 10;
     private static final Integer MAX_AGE = 120;
     private static final Integer MIN_AL = 1;
     private static final Integer MAX_AL = 5;

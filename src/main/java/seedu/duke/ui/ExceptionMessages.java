@@ -219,7 +219,7 @@ public class ExceptionMessages {
      *
      */
     public static void displayInvalidAgeRangeMessage() {
-        print("Please enter an age range from 1 to 120 years old");
+        print("Please enter an age range from 10 to 120 years old");
     }
 
     /**
