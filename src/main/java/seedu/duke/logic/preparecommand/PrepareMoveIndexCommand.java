@@ -23,7 +23,8 @@ public class PrepareMoveIndexCommand extends PrepareCommand {
             + PROMPT_USER_OF_HELP_MESSAGE;
     public static final String BELOW_TAG_MISSING_ERROR_MESSAGE = "'below/' keyword is missing!\n"
             + PROMPT_USER_OF_HELP_MESSAGE;
-
+    private static final String INDEX_NOT_A_NUMBER_MESSAGE = "Accessing a list with a index that is not a number, "
+            + "move unsuccessful";
 
     public PrepareMoveIndexCommand(String[] description) {
         super(description);
@@ -68,7 +69,7 @@ public class PrepareMoveIndexCommand extends PrepareCommand {
             return new MoveActivityCommand(indexToBeChanged, indexToBeInsertedBelow);
         } catch (NumberFormatException e) {
             displayIndexNotNumberExceptionMessage();
-            logging.writeToLogWarning("Accessing a list with a index that is not a number");
+            logging.writeToLogWarning(INDEX_NOT_A_NUMBER_MESSAGE);
         }
         return null;
     }
