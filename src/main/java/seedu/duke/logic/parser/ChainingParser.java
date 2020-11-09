@@ -5,6 +5,7 @@ import seedu.duke.command.Command;
 import static seedu.duke.Trakcal.calList;
 import static seedu.duke.Trakcal.executeCmd;
 import static seedu.duke.Trakcal.storage;
+import static seedu.duke.ui.ExceptionMessages.print;
 
 //@@author e0425705
 /**
@@ -38,7 +39,7 @@ public class ChainingParser extends Parser {
             if (command.getCanBeChained()) {
                 executeCmd(command);
             } else {
-                System.out.println("'" + firstString + "' cannot be chained!");
+                print("'" + firstString + "' cannot be chained!");
                 break;
             }
             storage.updateFile(calList);
