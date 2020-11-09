@@ -167,7 +167,7 @@ On Command execution:
 
 ### 3.8 UserProfile component
 
-![userProfile](diagrams/UserProfile.png)
+![userProfile](diagrams/userprofile.png)
 
 *Figure 4. Diagram for UserProfile component*
 
@@ -182,7 +182,7 @@ On Command execution:
 
 The sequence diagram below shows how the components will react to a new user or for a returning user. 
 
-![CreateNewUserFeature](diagrams/createNewUserFeature.png)
+![CreateNewUserFeature](diagrams/createNewUser.png)
 
 *Figure 7. Components interactions for **traKCAL** create user profile feature*
 
@@ -216,7 +216,7 @@ Some examples include:
 >`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
 >`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
 
-![createSetFeature](diagrams/createSetFeature.png)
+![createSetFeature](diagrams/createSet.png)
 
 *Figure 8. Components interaction for **traKCAL** create set feature*
 
@@ -239,7 +239,7 @@ The sequence diagram below shows how the components in **traKCAL** work together
 
 Users can call any existing shortcut in this format: `addSet **SHORTCUT_NAME**`
 
-![addSetFeature](diagrams/addSetFeature.png)
+![addSetFeature](diagrams/addSet.png)
 
 *Figure 9. Components interaction for **traKCAL** add set feature*
 
