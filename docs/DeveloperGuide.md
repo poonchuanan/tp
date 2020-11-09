@@ -450,9 +450,13 @@ The following sequence diagram shows how the chaining works after command is ent
 
 *Figure 17. Sequence diagram of chaining feature*
 
+The following is a diagram on the classes that are allowed to be chained.
+
 ![Object_Diagram_Of_PrepareCommand](diagrams/chainCommand_PrepareCommand.png)
 
 *Figure 18. Object diagram of allowed PrepareCommand subclass*
+
+The following is a diagram on the classes that are allowed to be chained.
 
 ![Object_Diagram_Of_Command](diagrams/chainCommand_Command.png)
 
@@ -502,7 +506,7 @@ to draw the graph.
 > 1. Calorie interval
 > 1. 2-Dimensional array representation of the graph
 
-![Graph_Sequence_Diagram](diagrams/GraphSequenceDiagram.png)
+![Graph_Sequence_Diagram](diagrams/GraphSequeunceDiagram.png)
 
 *Figure 21. Sequence diagram of move feature*
 
@@ -515,7 +519,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 <br>
 <br>
 
-#4.10 Delete feature
+### 4.10 Delete feature
 
 ![Delete_Sequence_Diagram](diagrams/DeleteSequeunceDiagram.png)
 *Figure 13. Sequence diagram of delete by index feature
