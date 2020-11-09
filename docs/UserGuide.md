@@ -1781,6 +1781,25 @@ No.        Type                        Description                        Calori
 
 ### 11.1.1 Possible errors when chaining
 
+An error will occur if any of the conditions below are met. <br> 
+The respective error message will also be shown to you.
+> Any text in this format is an example of a command that will produce the respective error.
+
+```
+Any text in this format is the error message that you will be shown.
+```
+
+#### Chaining a feature that is not accepted
+* When you input contains features that are not accepted such as
+> `bye && graph`
+
+```
+====================================================================================
+'bye' cannot be chained!
+====================================================================================
+```
+
+#### Other errors
 *The possible errors follows the errors for adding, listing, editing and graphing*
 Possible errors for adding: [errors for add](#43-possible-errors-when-adding-an-entry-into-activity-list)
 Possible errors for listing: [errors for list](#511-possible-errors-when-listing)
