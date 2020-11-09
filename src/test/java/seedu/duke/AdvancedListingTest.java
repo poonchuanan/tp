@@ -1,13 +1,10 @@
 package seedu.duke;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.Command;
-import seedu.duke.command.DeleteAllCommand;
 import seedu.duke.command.DeleteByIndexCommand;
 import seedu.duke.command.FindDescriptionCommand;
 import seedu.duke.command.ListCommand;
-import seedu.duke.exception.KeywordNotFoundException;
 import seedu.duke.model.DayMap;
 import seedu.duke.model.Exercise;
 import seedu.duke.model.Food;
@@ -17,7 +14,6 @@ import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//@@author chewyang
 class AdvancedListingTest {
     LocalDate date = LocalDate.of(2020, Month.OCTOBER, 9);
     LocalDate date2 = LocalDate.of(2020, Month.NOVEMBER, 10);

@@ -35,7 +35,7 @@ public class PrepareUserCommand extends PrepareCommand {
         case "c/":
             return new PrepareCreateNewUserCommand(input).prepareCommand();
         case "e/":
-            return new PrepareEditUserProfile(input).prepareCommand();
+            return new PrepareEditUserProfileCommand(input).prepareCommand();
         default:
             return null;
         }
