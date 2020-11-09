@@ -3,7 +3,7 @@ package seedu.duke.command;
 import seedu.duke.model.Food;
 
 import java.time.LocalDate;
-import java.util.logging.Level;
+import static seedu.duke.Trakcal.logging;
 
 import static seedu.duke.ui.ExceptionMessages.displayEditIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ui.Ui.displayEditMessage;
@@ -44,7 +44,7 @@ public class EditFoodCommand extends Command {
             displaySavedMessage();
         } catch (IndexOutOfBoundsException e) {
             displayEditIndexOutOfBoundsExceptionMessage();
-            //commandLogger.log(Level.WARNING,"Accessing an index that is out of bound!");
+            logging.writeToLogWarning("Accessing an index that is out of bound!");
         }
     }
 }

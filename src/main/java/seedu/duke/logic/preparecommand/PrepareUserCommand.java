@@ -1,11 +1,13 @@
 package seedu.duke.logic.preparecommand;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.CreateNewUserCommand;
-import seedu.duke.exception.InvalidNumberOfArguments;
+import seedu.duke.exception.InvalidNumberOfArgumentsException;
 
 import static seedu.duke.ui.ExceptionMessages.displayShortageOfArguments;
 
+/**
+ * Prepares user command.
+ */
 public class PrepareUserCommand extends PrepareCommand {
     private static final int ARGUMENT_LIMIT = 2;
 
@@ -13,11 +15,16 @@ public class PrepareUserCommand extends PrepareCommand {
         super(description);
     }
 
+    /**
+     * Check validity for user commands.
+     *
+     * @return command depending on the description.
+     */
     @Override
     public Command prepareCommand() {
         try {
             isNumberOfArgumentsValid(ARGUMENT_LIMIT);
-        } catch (InvalidNumberOfArguments e) {
+        } catch (InvalidNumberOfArgumentsException e) {
             displayShortageOfArguments();
         }
         String[] input = description[1].split(" ", 2);

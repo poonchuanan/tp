@@ -2,7 +2,7 @@ package seedu.duke.logic.preparecommand;
 
 import seedu.duke.Trakcal;
 import seedu.duke.command.Command;
-import seedu.duke.exception.InvalidNumberOfArguments;
+import seedu.duke.exception.InvalidNumberOfArgumentsException;
 import seedu.duke.model.DayMap;
 
 import static seedu.duke.ui.ExceptionMessages.displayDeleteCommandNullPointerExceptionMessage;
@@ -13,8 +13,15 @@ import static seedu.duke.ui.ExceptionMessages.displayShortageOfArguments;
  * Prepares user input for delete command.
  */
 public class PrepareDeleteCommand extends PrepareCommand {
-    private DayMap dayMap;
+    protected static final int ARGUMENT_LIMIT = 2;
+    protected static final String DELETE_ALL_KEYWORD = "all";
+    protected DayMap dayMap;
 
+    /**
+     * Initializes PrepareDeleteCommand.
+     *
+     * @param description list of description from parser.
+     */
     public PrepareDeleteCommand(String[] description) {
         super(description);
         dayMap = Trakcal.calList;
@@ -27,8 +34,8 @@ public class PrepareDeleteCommand extends PrepareCommand {
      */
     public Command prepareCommand() {
         try {
-            isNumberOfArgumentsValid(2);
-            if (description[1].equals("all/")) {
+            isNumberOfArgumentsValid(ARGUMENT_LIMIT);
+            if (description[1].equals(DELETE_ALL_KEYWORD)) {
                 return new PrepareDeleteAll(description).prepareCommand();
             } else {
                 return new PrepareDeleteByIndexCommand(description).prepareCommand();
@@ -37,7 +44,7 @@ public class PrepareDeleteCommand extends PrepareCommand {
             displayDeleteCommandNullPointerExceptionMessage();
         } catch (IndexOutOfBoundsException e) {
             displayDeleteCommandStringOutOfBoundExceptionMessage();
-        } catch (InvalidNumberOfArguments e) {
+        } catch (InvalidNumberOfArgumentsException e) {
             displayShortageOfArguments();
         }
         return null;
