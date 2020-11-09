@@ -46,7 +46,6 @@ public class UserSetStorage {
     public static void prepareNewSet(String userInput) {
         try {
             checkFileNameNotPresent(userInput);
-            System.out.println(userInput);
             checkActivityAndCalorieTag(userInput);
             String fileName = userInput.substring(0, userInput.indexOf(SLASH) - 2);
             createNewTextFile(SLASH + fileName + ".txt", userInput.substring(userInput.indexOf(SLASH) - 1));

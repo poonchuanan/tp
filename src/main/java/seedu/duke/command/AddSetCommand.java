@@ -17,6 +17,7 @@ import java.util.Date;
 
 import static seedu.duke.Trakcal.calList;
 import static seedu.duke.Trakcal.executeCmd;
+import static seedu.duke.Trakcal.in;
 import static seedu.duke.Trakcal.jarFilePath;
 import static seedu.duke.Trakcal.storage;
 import static seedu.duke.ui.ExceptionMessages.displayCorruptedSetMessage;
@@ -33,7 +34,9 @@ public class AddSetCommand extends Command {
     protected static final String CALORIE_TAG = "c/";
     protected static final String FOOD_TAG = "f/";
     protected static final String EXERCISE_TAG = "e/";
+    protected static final String DATE_TAG = "d/";
     protected String description;
+    private static final String WHITE_SPACE = " ";
 
     public AddSetCommand(String description) {
         this.description = description;
@@ -54,16 +57,24 @@ public class AddSetCommand extends Command {
                 String line = reader.readLine();
                 checkEmptyFile(filePath);
 
+                boolean index = true;
                 while (line != null) {
                     checkTags(line);
                     String description = line.substring(2, line.indexOf(CALORIE_TAG) - 1);
                     String calories = line.substring(line.indexOf(CALORIE_TAG) + 2);
+                    calories = removeWhiteSpaces(calories);
+                    description = removeWhiteSpaces(description);
                     checkEmptyDescription(description);
                     checkEmptyDescription(calories);
                     checkInteger(calories);
                     checkCalorieRange(calories);
-                    Ui.displayAddSetConfirmationMessage();
-                    CommandParser parser = new CommandParser("add " + line + " d/ " + strDate);
+
+                    if (index) {
+                        Ui.displayAddSetConfirmationMessage();
+                        index = false;
+                    }
+
+                    CommandParser parser = new CommandParser("add " + line + " " + DATE_TAG + " " + strDate);
                     Command cmd = parser.parseArgument();
                     executeCmd(cmd);
                     storage.updateFile(calList);
@@ -141,6 +152,23 @@ public class AddSetCommand extends Command {
         if (file.length() == 0) {
             throw new EmptyTextFileException();
         }
+    }
+
+    /**
+     * Removes all white spaces at front and back of input.
+     *
+     * @param input user input
+     * @return input of edited param without white spaces
+     */
+    private static String removeWhiteSpaces(String input) {
+        while (input.startsWith(WHITE_SPACE)) {
+            input = input.substring(1);
+        }
+
+        while (input.endsWith(WHITE_SPACE)) {
+            input = input.substring(0, input.length() - 1);
+        }
+        return input;
     }
 }
 //@@author jlifah
