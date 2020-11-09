@@ -842,10 +842,10 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >* Expected: All entries with descriptions containing at least one of of the keyword "`walk`, `jump` **or** `kick`" would be displayed.
 
 >Incorrect inputs to try:
-     Test case: Not specifying keywords to be searched for. Example: `find d/`
-     Expected: Message with error will be shown.
-     Test case: Consecutive slashes in input for `a/` or `e/`. Example:`find a// apple / pie`
-     Expected: Message with error will be shown.
+>* Test case: Not specifying keywords to be searched for. Example: `find d/`
+>* Expected: Message with error will be shown.
+>* Test case: Consecutive slashes in input for `a/` or `e/`. Example:`find a// apple / pie`
+>* Expected: Message with error will be shown.
 
 #### Deleting Activities
 
