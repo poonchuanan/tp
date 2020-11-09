@@ -71,7 +71,7 @@ This guide will provide information on the design and implementation of **traKCA
 
 *Figure 1. Architecture diagram of traKCAL*
 
-The Architecture Diagram shown above explains the high-level design of **traKCAL**. There are 8 components in traKCAL and their functionalities will be discussed below:
+The Architecture Diagram shown above explains the high-level design of **traKCAL**. There are 8 components in traKCAL, and their functionalities will be discussed below:
 
 <br>
 
@@ -90,8 +90,8 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 *Figure 2. Diagram for logic component*
 
 The main bulk of data processing takes place in the logic component. In this component, 
-the data from the userinput is checked for its validity and parsed down futher by the preparecommand class to its respective command blocks.
-These command class are derived from the abstract Command class. Each different command block deals with the 
+the data from the user input is checked for its validity and parsed down futher by the preparecommand class to its respective command blocks.
+These command classes are derived from the Command class. Each different command block deals with the 
 proposed functionality which can be associated with `Ui`,`storage` or `model` components. 
 
 * **traKCAL** uses the parser class to filter based on command words by user.
