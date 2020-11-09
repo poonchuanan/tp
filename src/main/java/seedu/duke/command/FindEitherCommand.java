@@ -1,12 +1,18 @@
 package seedu.duke.command;
 
-import seedu.duke.exception.EmptyDescriptionException;
-import seedu.duke.model.FindDrawer;
+import seedu.duke.exception.EmptyKeywordException;
+import seedu.duke.exception.FindSlashException;
 import seedu.duke.exception.KeywordNotFoundException;
+
+import static seedu.duke.Trakcal.logging;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyKeywordMessage;
+import static seedu.duke.ui.ExceptionMessages.displayKeywordNotFoundMessage;
+import static seedu.duke.ui.ExceptionMessages.displayFindSlashExceptionMessage;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+//@@author poonchuanan
 /**
  * Initialises Command to find all description tags.
  */
@@ -30,9 +36,14 @@ public class FindEitherCommand extends Command {
             dayMap.listActivitiesContainingEither(userInput);
             dayMap.drawListAfterFindCommand();
         } catch (KeywordNotFoundException e) {
-            System.out.println("No results were found!");
-        } catch (EmptyDescriptionException e) {
-            System.out.println("No results were found!");
+            displayKeywordNotFoundMessage();
+            logging.writeToLogWarning("No results found after find (either)");
+        } catch (EmptyKeywordException e) {
+            displayEmptyKeywordMessage();
+            logging.writeToLogWarning("Empty keyword for input (either)");
+        } catch (FindSlashException e) {
+            displayFindSlashExceptionMessage();
+            logging.writeToLogWarning("Consecutive slashes present in find input (either)");
         }
     }
 }

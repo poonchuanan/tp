@@ -3,6 +3,9 @@ package seedu.duke.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import static seedu.duke.Trakcal.logging;
+
+//@@author 1-Karthigeyan-1
 /**
  * Displays the graph of the net calorie gain/loss throughout the period.
  */
@@ -75,6 +78,7 @@ public class GraphDrawing {
      * @return date labels
      */
     public String generateDateLabels(int maxCalorieSize,  ArrayList<LocalDate> keys) {
+        logging.writeToLogInfo("Generating date labels for graph.");
         assert keys != null;
         assert maxCalorieSize >= 1;
         return repeatCharacter(SPACE, maxCalorieSize - 1) + SPACE + graphProperty.parseDate(keys);
@@ -89,6 +93,7 @@ public class GraphDrawing {
      * @return vertical axis label
      */
     private String generateVerticalAxisLabel(int columnNumber, int maxColumn, int maxSize) {
+        logging.writeToLogInfo("Generating vertical axis for graph.");
         String label = "";
         if (columnNumber == maxColumn - 1) {
             label = this.maxCaloriesString + repeatCharacter(SPACE, maxSize - this.maxCaloriesString.length());
@@ -101,6 +106,7 @@ public class GraphDrawing {
         } else {
             label = repeatCharacter(SPACE, maxSize);
         }
+        logging.writeToLogInfo("Vertical axis generation complete.");
         return label;
     }
 
@@ -156,9 +162,9 @@ public class GraphDrawing {
             }
             drawing += "\n";
         }
-
         drawing += generate_x_axis(maxSize, graphProperty.row);
         drawing += generateDateLabels(maxSize, keys);
+        logging.writeToLogInfo("Graph drawn successfully");
         return drawing;
     }
 

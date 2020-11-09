@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
 
 //@@author chewyang
@@ -29,7 +30,18 @@ import static seedu.duke.ui.Ui.displayNotSavedMessage;
 public class Storage {
     String filePath;
     File dataFile;
-
+    public static final String LOAD_DATA_SUCCESS_MESSAGE = "Data successfully loaded into application";
+    public static final String LOAD_DATA_FAILURE_MESSAGE = "Unable to load data from the file, the CSV file might "
+            + "be corrupted";
+    public static final String BOTH_PARENT_AND_DATA_EXIST_MESSAGE = "Parent folder /tpdata and data file "
+            + "/tpdata/tpcsv already exists, "
+            + "proceeding to use this folder.";
+    public static final String ONLY_PARENT_FOLDER_EXISTS_MESSAGE = "Parent folder /tpdata exists but data file "
+            + "/tpdata/tpcsv has not been "
+            + "created yet, proceeding to create this file";
+    public static final String PARENT_FOLDER_NOT_EXIST_MESSAGE = "Parent folder /tpdata does not exist, "
+            + "proceeding to create both the"
+            + " parent folder /tpdata and data file /tpdata/tpcsv";
 
     /**
      * Constructor for the storage class.
@@ -46,16 +58,19 @@ public class Storage {
      *
      * @throws IOException if there is an issue
      */
-    private void createFileHierarchy() throws IOException {
+    protected void createFileHierarchy() throws IOException {
         if (dataFile.getParentFile().exists()) {
             if (dataFile.exists()) {
+                logging.writeToLogInfo(BOTH_PARENT_AND_DATA_EXIST_MESSAGE);
                 return;
             } else {
                 dataFile.createNewFile();
+                logging.writeToLogInfo(ONLY_PARENT_FOLDER_EXISTS_MESSAGE);
             }
         } else {
             dataFile.getParentFile().mkdir();
             dataFile.createNewFile();
+            logging.writeToLogInfo(PARENT_FOLDER_NOT_EXIST_MESSAGE);
         }
     }
 
@@ -116,6 +131,7 @@ public class Storage {
     }
     //@@author chewyang
 
+    //@@author poonchuanan
     /**
      * Loads saved CSV data into the list when the program starts.
      *
@@ -135,9 +151,10 @@ public class Storage {
             for (int i = 0; i < lines.size(); i++) {
                 processData(calList, lines.get(i));
             }
-
+            logging.writeToLogInfo(LOAD_DATA_SUCCESS_MESSAGE);
         } catch (IOException e) {
-            System.out.println("Unable to load data");
+            System.out.println(LOAD_DATA_FAILURE_MESSAGE);
+            logging.writeToLogWarning(LOAD_DATA_FAILURE_MESSAGE);
         }
     }
 
@@ -188,6 +205,7 @@ public class Storage {
             break;
         default:
             System.out.println("Corrupted data. Activity should be either exercise or food");
+            logging.writeToLogWarning(LOAD_DATA_FAILURE_MESSAGE);
         }
     }
 }

@@ -1,6 +1,5 @@
 package seedu.duke.ui;
 
-import seedu.duke.userprofile.InitialiseUserProfile;
 
 import static seedu.duke.ui.ExceptionMessages.print;
 
@@ -8,22 +7,25 @@ import static seedu.duke.ui.ExceptionMessages.print;
  * Deals with interactions with the user.
  */
 public class Ui {
+    //@@author e0425705
     /**
      * Prompts user to seek help if needed.
      */
-    public static final String PROMPTUSEROFHELPMESSAGE = "Please input 'help' for the commands "
+    public static final String PROMPT_USER_OF_HELP_MESSAGE = "Please input 'help' for the commands "
             + "and their respective input format.";
 
+    //@@author e0425705
     /**
      * Divider.
      */
     public static final String DIVIDER = "=========================================="
             + "==========================================";
 
+    //@@author e0425705
     /**
      * Help list divider.
      */
-    public static final String HELPLIST_DIVIDER = "============================================================"
+    public static final String HELP_LIST_DIVIDER = "============================================================"
             + "========================================";
 
     /**
@@ -37,7 +39,7 @@ public class Ui {
             + "|  \\__| |_|   \\__,_| |_|\\_\\  \\___| /_/ \\_\\ |____|                                  |\n"
             + "|                                                                                  |\n"
             + "| Hello! I'm traKCAL.                                                              |\n"
-            + "| " + PROMPTUSEROFHELPMESSAGE + "          |";
+            + "| " + PROMPT_USER_OF_HELP_MESSAGE + "          |";
 
     /**
      * Prints out welcome message to user when program is run.
@@ -46,6 +48,7 @@ public class Ui {
         print(LOGO);
     }
 
+    //@@author e0425705
     /**
      * Prints out the divider.
      */
@@ -53,11 +56,12 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    //@@author e0425705
     /**
      * Prints out help list showing the commands available.
      */
     public static void displayHelpMessage() {
-        System.out.println(HELPLIST_DIVIDER);
+        System.out.println(HELP_LIST_DIVIDER);
         String helpList = "This section displays the commands available and their respective input format.\n"
                 + "> Words in CAPS are parameters to be filled in by you!\n"
                 + "> Variables in <here> are optional!"
@@ -104,30 +108,30 @@ public class Ui {
                 + "list DATE              - Prints out the list of entries for the date(YYYY-MM-DD), DATE\n"
                 + "\n"
                 + "Editing:\n"
-                + "edita LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT\n"
-                + "                       - Edits activity at index LIST_INDEX of latest list printed out\n"
+                + "edit LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT\n"
+                + "                       - Edits entry at index LIST_INDEX of latest list printed out\n"
                 + "                         to food consumed, FOOD_DESCRIPTION, calories gained, CALORIE_COUNT\n"
-                + "edita LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT\n"
-                + "                       - Edits activity at index LIST_INDEX of latest list printed out\n"
+                + "edit LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT\n"
+                + "                       - Edits entry at index LIST_INDEX of latest list printed out\n"
                 + "                         to exercise done, EXERCISE_DESCRIPTION, calories lost, CALORIE_COUNT\n"
                 + "\n"
                 + "Finding:\n"
-                + "find d/ DESCRIPTION    - Searches for all activities description with the DESCRIPTION keyword\n"
-                + "find c/ CALORIE_COUNT  - Searches for all activities with calories of CALORIE_COUNT\n"
+                + "find d/ DESCRIPTION    - Searches for all entries description with the DESCRIPTION keyword\n"
+                + "find c/ CALORIE_COUNT  - Searches for all entries with calories of CALORIE_COUNT\n"
                 + "find a/ DESCRIPTION1 / DESCRIPTION2 ... / DESCRIPTION\n"
-                + "                        - Searches for all activities with ALL matching keywords from\n"
+                + "                        - Searches for all entries with ALL matching keywords from\n"
                 + "                          DESCRIPTION1 to DESCRIPTION\n"
                 + "find e/ DESCRIPTION1 / DESCRIPTION2 ... / DESCRIPTION\n"
-                + "                        - Searches for all activities with AT LEAST one matching keyword from\n"
+                + "                        - Searches for all entries with AT LEAST one matching keyword from\n"
                 + "                          DESCRIPTION1 to DESCRIPTION\n"
                 + "\n"
                 + "Moving:\n"
                 + "move from/ INDEX1 below/ INDEX2\n"
-                + "                       - Moves the activity at index INDEX1 to the index below INDEX2\n"
+                + "                       - Moves the entry at index INDEX1 to the index below INDEX2\n"
                 + "\n"
                 + "Deleting:\n"
-                + "delete LIST_INDEX      - Deletes activity located at index LIST_INDEX of latest list printed out\n"
-                + "delete all/            - Deletes all activities in current date list\n"
+                + "delete LIST_INDEX      - Deletes entry located at index LIST_INDEX of latest list printed out\n"
+                + "delete all/            - Deletes all entries in current date list\n"
                 + "\n"
                 + "Graphing:\n"
                 + "graph                  - Generates a graph of target calorie and net calorie obtained up to\n"
@@ -135,9 +139,10 @@ public class Ui {
                 + "\n"
                 + "Chaining:\n"
                 + "*[This command is extensive, there are a lot of variations,\n"
-                + "                          but is only available to add, list and edita.]*\n"
+                + "                          but is only available to add, list and edit.]*\n"
                 + "*[One possible example is:]*\n"
-                + "add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && list && edita LIST_INDEX f/ FOOD_DESCRIPTION\n"
+                + "add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && list && edit LIST_INDEX f/ FOOD_DESCRIPTION\n"
+                + "add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && list && edit LIST_INDEX f/ FOOD_DESCRIPTION\n"
                 + "                         c/ CALORIE_COUNT\n"
                 + "*[Another possible example is:]*\n"
                 + "add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT\n"
@@ -145,9 +150,10 @@ public class Ui {
                 + "Exiting:\n"
                 + "bye                    - Terminates the application\n";
         System.out.print(helpList);
-        System.out.println(HELPLIST_DIVIDER);
+        System.out.println(HELP_LIST_DIVIDER);
     }
 
+    //@@author e0425705
     /**
      * Prints out message when editing activity successful.
      */
@@ -155,6 +161,7 @@ public class Ui {
         print("Noted! The following has been edited:");
     }
 
+    //@@author e0425705
     /**
      * Prints out message when adding activity successful.
      */
@@ -167,7 +174,6 @@ public class Ui {
      */
     public static void displaySavedMessage() {
         print("The current activity list has been saved.");
-        System.out.println();
     }
 
     /**
@@ -176,9 +182,10 @@ public class Ui {
     public static void displayNotSavedMessage() {
         print("The current activity list has not been saved.\n"
                 + "An error has occurred!\n"
-                + PROMPTUSEROFHELPMESSAGE);
+                + PROMPT_USER_OF_HELP_MESSAGE);
     }
 
+    //@@author e0425705
     /**
      * Prints out bye message and let the user know that the current list has been saved to file.
      */
@@ -186,7 +193,6 @@ public class Ui {
         print("| Thank you for using traKCAL. See you again!"
                 + "                                      |");
     }
-
 
     /**
      * Prints out message when list command given but activity list is empty.
@@ -239,8 +245,9 @@ public class Ui {
     }
 
     public static void displayMessage(String message) {
-        print(message);
-        print("Noted! The following has been added into list:");
+        drawDivider();
+        System.out.println(message);
+        drawDivider();
     }
 
     /**

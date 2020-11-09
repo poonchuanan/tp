@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
+import static seedu.duke.Trakcal.jarFilePath;
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayMissingAddSetInfoMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCalorieMessage;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidCreateSetCommandMessage;
@@ -28,13 +30,13 @@ import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
  * Updates the text file with short cut info.
  */
 public class UserSetStorage {
-    private static final String PATH = new File("").getAbsolutePath();
     private static final Integer MAX_CALORIES = 3000;
     private static final Integer MIN_CALORIES = 0;
     private static final String WHITE_SPACE = " ";
-    private static final String FOOD_TAG = "/f";
+    private static final String FOOD_TAG = "f/";
     private static final String CALORIE_TAG = "c/";
     private static final String EXERCISE_TAG = "e/";
+    private static final String SLASH = "/";
 
     /**
      * Checks if tags and file are given by user.
@@ -45,9 +47,8 @@ public class UserSetStorage {
         try {
             checkFileNameNotPresent(userInput);
             checkActivityAndCalorieTag(userInput);
-            String fileName = userInput.substring(0, userInput.indexOf("/") - 2);
-
-            createNewTextFile("/" + fileName + ".txt", userInput.substring(userInput.indexOf("/") - 1));
+            String fileName = userInput.substring(0, userInput.indexOf(SLASH) - 2);
+            createNewTextFile(SLASH + fileName + ".txt", userInput.substring(userInput.indexOf(SLASH) - 1));
         } catch (NoFileNameException e) {
             displayMissingFileNameMessage();
         } catch (InvalidCreateSetCommandException e) {
@@ -63,12 +64,14 @@ public class UserSetStorage {
      * @param toTrim contents to be added into shortcut
      */
     public static void createNewTextFile(String fileName, String toTrim) {
-        String filePath = PATH + fileName;
+        String filePath = jarFilePath + "/tpdata" + fileName;
 
         try {
+            logging.writeToLogInfo("Attempting to create shortcut file.");
             checkExistingFile(filePath);
             File file = new File(filePath);
             file.createNewFile();
+            logging.writeToLogInfo("Shortcut file successfully created.");
 
         } catch (IOException e) {
             displayIoExceptionMessage();
@@ -85,8 +88,10 @@ public class UserSetStorage {
      * @param filePath name of shortcut to be deleted
      */
     public static void deleteInvalidSetFile(String filePath) {
+        logging.writeToLogInfo("Attempting to deleted corrupted shortcut file.");
         File file = new File(filePath);
         file.delete();
+        logging.writeToLogInfo("Corrupted shortcut file deleted successfully.");
     }
 
     /**
@@ -104,42 +109,29 @@ public class UserSetStorage {
             int index = 1;
 
             for (String s : activity) {
-                while (s.startsWith(WHITE_SPACE)) {
-                    s = s.substring(1);
-                }
-
-                while (s.endsWith(WHITE_SPACE)) {
-                    s = s.substring(0, s.length() - 1);
-                }
-
+                logging.writeToLogInfo("Check if entry is of valid format.");
+                s = removeWhiteSpaces(s);
                 bw.write(s);
                 String calories = s.substring(s.indexOf(CALORIE_TAG) + 2);
-                calories.replaceAll("\\s","");
+                calories = removeWhiteSpaces(calories);
                 String description = s.substring(2,s.indexOf(CALORIE_TAG) - 1);
-
-                while (description.startsWith(WHITE_SPACE)) {
-                    description = description.substring(1);
-                }
-
-                while (description.endsWith(WHITE_SPACE)) {
-                    description = description.substring(0, description.length() - 1);
-                }
-
+                description = removeWhiteSpaces(description);
                 checkEmptyDescription(description);
                 checkEmptyDescription(calories);
                 checkCalorieType(calories);
                 checkValidCalorieRange(calories);
                 Integer.parseInt(calories);
+                logging.writeToLogInfo("Entry is of valid format.");
 
                 if (index == 1) {
                     Ui.drawDivider();
                     System.out.println("You have created a shortcut containing:");
                 }
 
-                if (s.indexOf(FOOD_TAG) == 1) {
+                if (s.indexOf(FOOD_TAG) == 0) {
                     System.out.println(index + ". " + "Food: " + description
                             + ", Calories: " + calories);
-                } else if (s.indexOf(EXERCISE_TAG) == 1) {
+                } else if (s.indexOf(EXERCISE_TAG) == 0) {
                     System.out.println(index + ". " + "Exercise: " + description
                             + ", Calories: " + calories);
                 }
@@ -199,7 +191,7 @@ public class UserSetStorage {
      * @param input user input
      */
     private static void checkActivityAndCalorieTag(String input) throws InvalidCreateSetCommandException {
-        if (!input.contains(CALORIE_TAG) && !(input.contains(FOOD_TAG) | input.contains(EXERCISE_TAG))) {
+        if (!input.contains(CALORIE_TAG) || !(input.contains(FOOD_TAG) | input.contains(EXERCISE_TAG))) {
             throw new InvalidCreateSetCommandException();
         }
     }
@@ -231,8 +223,25 @@ public class UserSetStorage {
      * @param input user input
      */
     private static void checkFileNameNotPresent(String input) throws NoFileNameException {
-        if (input.indexOf(FOOD_TAG) == 1 || input.indexOf(EXERCISE_TAG) == 1) {
+        if (input.indexOf(FOOD_TAG) == 0 || input.indexOf(EXERCISE_TAG) == 0) {
             throw new NoFileNameException();
         }
+    }
+
+    /**
+     * Removes all white spaces at front and back of input.
+     *
+     * @param input user input
+     * @return input of edited param without white spaces
+     */
+    private static String removeWhiteSpaces(String input) {
+        while (input.startsWith(WHITE_SPACE)) {
+            input = input.substring(1);
+        }
+
+        while (input.endsWith(WHITE_SPACE)) {
+            input = input.substring(0, input.length() - 1);
+        }
+        return input;
     }
 }

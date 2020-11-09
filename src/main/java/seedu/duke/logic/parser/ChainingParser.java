@@ -5,13 +5,15 @@ import seedu.duke.command.Command;
 import static seedu.duke.Trakcal.calList;
 import static seedu.duke.Trakcal.executeCmd;
 import static seedu.duke.Trakcal.storage;
+import static seedu.duke.ui.ExceptionMessages.print;
 
+//@@author e0425705
 /**
  * Process chained input by user.
  */
 public class ChainingParser extends Parser {
     public static final String CHAIN_SEPARATOR = "&&";
-    protected static final int CHAIN_SEPARATOR_LENGTH = 2;
+    public static final int CHAIN_SEPARATOR_LENGTH = 2;
 
     public ChainingParser(String userInput) {
         super(userInput);
@@ -37,7 +39,7 @@ public class ChainingParser extends Parser {
             if (command.getCanBeChained()) {
                 executeCmd(command);
             } else {
-                System.out.println("'" + firstString + "' cannot be chained!");
+                print("'" + firstString + "' cannot be chained!");
                 break;
             }
             storage.updateFile(calList);

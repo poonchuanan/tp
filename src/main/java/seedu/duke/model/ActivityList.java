@@ -1,12 +1,13 @@
 package seedu.duke.model;
 
 import seedu.duke.Trakcal;
+import seedu.duke.exception.SameIndexForMoveCommandException;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
+
 
 //@@author chewyang
 /**
@@ -38,8 +39,8 @@ public class ActivityList extends Trakcal {
     public ArrayList getArrayList() {
         return activities;
     }
-    //@@author chewyang
 
+    //@@author e0425705
     /**
      * Adds new activity to the list and updates the netCalorie accordingly to the activity type added.
      *
@@ -57,6 +58,7 @@ public class ActivityList extends Trakcal {
             throw new IndexOutOfBoundsException();
         }
     }
+
 
     /**
      * This method replaces the current activity at index with a new activity.
@@ -97,27 +99,36 @@ public class ActivityList extends Trakcal {
      * @param indexToBeInsertedBelow this is the index at which the activity will be moved to below
      * @throws IndexOutOfBoundsException if the index is not within the limits
      */
-    public void moveActivity(int indexToBeMovedFrom, int indexToBeInsertedBelow) throws IndexOutOfBoundsException {
+    public void moveActivity(int indexToBeMovedFrom, int indexToBeInsertedBelow) throws IndexOutOfBoundsException,
+            SameIndexForMoveCommandException {
 
-        if (isValidIndex(indexToBeMovedFrom) && isValidIndex(indexToBeInsertedBelow)) {
-            if (indexToBeMovedFrom > indexToBeInsertedBelow) {
+        if (isValidIndexForMoveCommand(indexToBeMovedFrom) && isValidIndexForMoveCommand(indexToBeInsertedBelow)) {
+
+            if (indexToBeInsertedBelow - indexToBeMovedFrom == 1) {
+                throw new SameIndexForMoveCommandException();
+            } else if (indexToBeMovedFrom > indexToBeInsertedBelow) {
                 Activity activity = getActivity(indexToBeMovedFrom);
                 activities.remove(indexToBeMovedFrom);
                 activities.add(indexToBeInsertedBelow, activity);
-            } else {
+
+            } else if (indexToBeMovedFrom < indexToBeInsertedBelow) {
                 Activity activity = getActivity(indexToBeMovedFrom);
                 activities.remove(indexToBeMovedFrom);
                 activities.add(indexToBeInsertedBelow - 1, activity);
+            } else {
+                throw new SameIndexForMoveCommandException();
             }
         } else {
             throw new IndexOutOfBoundsException();
         }
     }
 
+
+
     public int getNetCalorie() {
         return netCalorie;
     }
-    //@@author chewyang
+
 
     public Activity getActivity(int index) throws IndexOutOfBoundsException {
         if (isValidIndex(index)) {
@@ -127,6 +138,8 @@ public class ActivityList extends Trakcal {
         }
     }
 
+
+    //@@author 1-Karthigeyan-1
     /**
      * Removes an activity from the list via index.
      *
@@ -142,12 +155,12 @@ public class ActivityList extends Trakcal {
             }
             activities.remove(index);
             activityCounter--;
-            System.out.print("Activity removed!\n");
         } else {
             System.out.println("Please make sure index is within range");
             throw new IndexOutOfBoundsException();
         }
     }
+
 
     //@@author chewyang
     /**
@@ -162,7 +175,20 @@ public class ActivityList extends Trakcal {
             }
         }
     }
-    //@@author chewyang
+
+
+    /**
+     * Checks if the index is valid for a move command.
+     * This is added to fulfill edge cases.
+     * @param index is the index to be checked for validity
+     * @return
+     */
+    public boolean isValidIndexForMoveCommand(int index) {
+        if ((index >= 0) && (index <= activityCounter)) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Checks if the index is valid.
@@ -177,6 +203,7 @@ public class ActivityList extends Trakcal {
         return false;
     }
 
+    //@@author 1-Karthigeyan-1
     /**
      * Clears the list of activities.
      */
@@ -198,16 +225,5 @@ public class ActivityList extends Trakcal {
         String activitiesString = Arrays.toString(activities.toArray());
         activitiesString = activitiesString.substring(1, activitiesString.length() - 1);
         return (activitiesString);
-    }
-    //@@author chewyang
-
-    /**
-     * Returns the date of activity.
-     *
-     * @param index index of activity
-     * @return date
-     */
-    public LocalDate getDateOfActivityAtIndex(int index) {
-        return getActivity(index).getActivityDate();
     }
 }

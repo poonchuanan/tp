@@ -1,10 +1,12 @@
 package seedu.duke.command;
 
-import seedu.duke.model.ListDrawer;
+import seedu.duke.model.ActivityList;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
+
+import static seedu.duke.Trakcal.logging;
+import static seedu.duke.ui.ExceptionMessages.displayEmptyListError;
 
 //@@author chewyang
 
@@ -16,6 +18,8 @@ import java.util.logging.Level;
 public class ListCommand extends Command {
 
     protected LocalDate date;
+    private static final String NO_DATA_MESSAGE = "No data found for this list command";
+
 
     public ListCommand(LocalDate date) {
         this.date = date;
@@ -33,14 +37,14 @@ public class ListCommand extends Command {
     @Override
     public void execute() {
         try {
-            dayMap.setLastSeenList(dayMap.getActivityList(date.atStartOfDay()));
+            ActivityList activityList = dayMap.getActivityList(date.atStartOfDay());
+            dayMap.setLastSeenList(activityList);
             dayMap.drawListAfterListCommand(date);
 
         } catch (NullPointerException e) {
-            System.out.println("There is no data for " + date.toString());
-            commandLogger.log(Level.WARNING,"Accessing a list without any data");
+            displayEmptyListError();
+            logging.writeToLogWarning(NO_DATA_MESSAGE);
         }
 
     }
 }
-//@@author chewyang

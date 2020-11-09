@@ -1,8 +1,9 @@
 package seedu.duke.command;
 
-import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.print;
 
+//@@author 1-Karthigeyan-1
 /**
  * Represents an invalid command.
  */
@@ -17,6 +18,7 @@ public class InvalidCommand extends Command {
 
     @Override
     public void execute() {
+        logging.writeToLogInfo("Executing invalid command.");
         print(invalidCommandMessage);
     }
 }

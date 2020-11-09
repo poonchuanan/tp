@@ -6,12 +6,14 @@ import seedu.duke.exception.DateLimitException;
 import seedu.duke.exception.DescriptionLengthExceedException;
 import seedu.duke.exception.EmptyDescriptionException;
 import seedu.duke.exception.InvalidCalorieException;
-import seedu.duke.exception.InvalidNumberOfArguments;
+import seedu.duke.exception.InvalidNumberOfArgumentsException;
+import seedu.duke.exception.ListNotFoundException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+//@@author 1-Karthigeyan-1
 /**
  * Prepare commands.
  * Contains methods that are shared between commands.
@@ -40,8 +42,10 @@ public abstract class PrepareCommand {
         this.date = LocalDateTime.now();
     }
 
-    public abstract Command prepareCommand() throws Exception;
 
+    public abstract Command prepareCommand() throws Exception, ListNotFoundException;
+
+    //@@author e0425705
     /**
      * Checks for index of the delete command.
      *
@@ -54,6 +58,7 @@ public abstract class PrepareCommand {
         }
     }
 
+    //@@author e0425705
     /**
      * Process date input by user.
      *
@@ -65,7 +70,7 @@ public abstract class PrepareCommand {
         return LocalDate.parse(dateInput);
     }
 
-
+    //@@author e0425705
     /**
      * Returns current date.
      *
@@ -77,6 +82,7 @@ public abstract class PrepareCommand {
         return date;
     }
 
+    //@@author e0425705
     /**
      * Checks if the date is valid.
      *
@@ -98,6 +104,7 @@ public abstract class PrepareCommand {
         }
     }
 
+    //@@author e0425705
     /**
      * Checks if calorie input by user is empty.
      *
@@ -113,6 +120,7 @@ public abstract class PrepareCommand {
         }
     }
 
+    //@@author e0425705
     /**
      * Checks if the description is filled.
      *
@@ -128,6 +136,7 @@ public abstract class PrepareCommand {
         }
     }
 
+    //@@author e0425705
     /**
      * Checks if the calorie input is within accepted range.
      *
@@ -143,6 +152,7 @@ public abstract class PrepareCommand {
         }
     }
 
+    //@@author e0425705
     /**
      * Checks if the description character counts is within accepted range.
      *
@@ -162,13 +172,14 @@ public abstract class PrepareCommand {
      * Checks if the number of argument is within limit.
      *
      * @param limit limit of description length
-     * @return true if descrption length is within limit
-     * @throws InvalidNumberOfArguments if description exceeds limit
+     * @return true if description length is within limit
+     * @throws InvalidNumberOfArgumentsException if description exceeds limit
      */
-    protected boolean isNumberOfArgumentsValid(int limit) throws InvalidNumberOfArguments {
+    protected boolean isNumberOfArgumentsValid(int limit) throws InvalidNumberOfArgumentsException {
         if (description.length != limit) {
-            throw new InvalidNumberOfArguments();
+            throw new InvalidNumberOfArgumentsException();
         }
         return true;
     }
+
 }

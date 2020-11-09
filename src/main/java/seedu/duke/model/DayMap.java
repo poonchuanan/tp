@@ -1,8 +1,13 @@
 package seedu.duke.model;
 
-import seedu.duke.exception.EmptyDescriptionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import seedu.duke.exception.EmptyKeywordException;
+import seedu.duke.exception.FindSlashException;
 import seedu.duke.exception.KeywordNotFoundException;
 import seedu.duke.exception.ListNotFoundException;
+import seedu.duke.exception.SameIndexForMoveCommandException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,8 +17,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
+import static seedu.duke.ui.Ui.displayMessage;
 
-//@@author chewyang
 /**
  * Use hashmap of to store all the data.
  * The key of the hashmap would be the date and the value would be the activityList for that day.
@@ -22,7 +27,10 @@ public class DayMap {
 
     private HashMap<LocalDate, ActivityList> dayMap;
     private ActivityList lastSeenList;
+    private static final String findConsecutiveSlashRegex = "/{2,}";
+    private Pattern pattern = Pattern.compile(findConsecutiveSlashRegex);
 
+    //@@author chewyang
     public DayMap() {
         this.dayMap = new HashMap<>();
         this.lastSeenList = new ActivityList();
@@ -34,7 +42,6 @@ public class DayMap {
      * @param activityList is the list to be passed into the lastSeenList
      */
     public void setLastSeenList(ActivityList activityList) {
-        this.lastSeenList = new ActivityList();
         this.lastSeenList = activityList;
     }
 
@@ -75,7 +82,6 @@ public class DayMap {
         findDrawer.printList();
     }
 
-    //@@author chewyang
     /**
      * Adds activity into activityList under the corresponding dateTime.
      * Creates a new activityList if there are none under the specified date.
@@ -90,8 +96,6 @@ public class DayMap {
             alist = this.getActivityList(dateTime);
         }
         alist.addActivity(activity);
-        //System.out.println("Total calorie count for "
-        // + dateTime.toLocalDate().toString() + " = " + alist.getNetCalorie());
     }
 
 
@@ -103,7 +107,6 @@ public class DayMap {
      */
     public void insertActivity(int index, Activity activity) {
         lastSeenList.insertActivity(index, activity);
-
     }
 
 
@@ -132,7 +135,6 @@ public class DayMap {
         }
     }
 
-    //@@author chewyang
     /**
      * Returns the net calorie.
      *
@@ -161,21 +163,21 @@ public class DayMap {
         }
     }
 
-    //@@author chewyang
+    //@@author poonchuanan
     /**
      * Finds the activities containing a keyword.
      *
      * @param description is the keyword where the activity should contain
      * @throws KeywordNotFoundException when the keyword is not found in any activity
-     * @throws EmptyDescriptionException when search term is empty
+     * @throws EmptyKeywordException when search term is empty
      */
     public void listActivitiesContainingDescription(String description)
-            throws KeywordNotFoundException, EmptyDescriptionException {
+            throws KeywordNotFoundException, EmptyKeywordException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
         if (description.trim().equals("")) {
-            throw new EmptyDescriptionException();
+            throw new EmptyKeywordException();
         }
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
@@ -188,7 +190,6 @@ public class DayMap {
                     String descriptionToCheck = currentLine.substring(currentLine.indexOf("|") + 1);
                     descriptionToCheck = descriptionToCheck.substring(0, descriptionToCheck.indexOf("|")).trim();
                     if (descriptionToCheck.contains(description)) {
-                        //System.out.println((activityFindCounter + 1) + ". " + date + " " + currentLine);
                         lastSeenList.addActivity(activities.getActivity(i));
                         activityFindCounter++;
                     }
@@ -205,15 +206,15 @@ public class DayMap {
      *
      * @param calorie is the calorie to be matched
      * @throws KeywordNotFoundException when the keyword is not found in any activity
-     * @throws EmptyDescriptionException when search term is empty
+     * @throws EmptyKeywordException when search term is empty
      */
     public void listActivitiesContainingCalorie(String calorie)
-            throws KeywordNotFoundException, EmptyDescriptionException {
+            throws KeywordNotFoundException, EmptyKeywordException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
         if (calorie.trim().equals("")) {
-            throw new EmptyDescriptionException();
+            throw new EmptyKeywordException();
         }
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
@@ -242,15 +243,19 @@ public class DayMap {
      *
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
-     * @throws EmptyDescriptionException when search term is empty
+     * @throws EmptyKeywordException when search term is empty
+     * @throws FindSlashException when there are 2 or more consecutive slashes in input
      */
     public void listActivitiesContainingAll(String userInput)
-            throws KeywordNotFoundException, EmptyDescriptionException {
+            throws KeywordNotFoundException, EmptyKeywordException, FindSlashException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
-        if (userInput.trim().equals("")) {
-            throw new EmptyDescriptionException();
+        Matcher matcher = pattern.matcher(userInput.replaceAll("\\s",""));
+        if (userInput.substring(2).trim().equals("")) {
+            throw new EmptyKeywordException();
+        } else if (matcher.find()) {
+            throw new FindSlashException();
         }
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
@@ -279,15 +284,19 @@ public class DayMap {
      *
      * @param userInput is the unparsed activity description
      * @throws KeywordNotFoundException when the keyword is not found in any activity
-     * @throws EmptyDescriptionException when search term is empty
+     * @throws EmptyKeywordException when search term is empty
+     * @throws FindSlashException when there are 2 or more consecutive slashes in input
      */
     public void listActivitiesContainingEither(String userInput)
-            throws KeywordNotFoundException, EmptyDescriptionException {
+            throws KeywordNotFoundException, EmptyKeywordException, FindSlashException {
         setLastSeenList(new ActivityList());
         Iterator it = dayMap.entrySet().iterator();
         int activityFindCounter = 0;
-        if (userInput.trim().equals("")) {
-            throw new EmptyDescriptionException();
+        Matcher matcher = pattern.matcher(userInput.replaceAll("\\s",""));
+        if (userInput.substring(2).trim().equals("")) {
+            throw new EmptyKeywordException();
+        } else if (matcher.find()) {
+            throw new FindSlashException();
         }
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
@@ -366,6 +375,7 @@ public class DayMap {
         return tags;
     }
 
+    //@@author 1-Karthigeyan-1
     /**
      * Deletes the activity with a given index.
      *
@@ -390,30 +400,74 @@ public class DayMap {
                 ActivityList activities = (ActivityList) pair.getValue();
                 int activityCounter = activities.getNumberOfActivities();
 
-                if (activityCounter > 0) {
-                    for (int i = 0; i < activityCounter; i++) {
-                        if (activityToMatch.equals(activities.getActivity(i))) {
-                            activities.removeActivity(i);
-                            //if deleted the last item in the ActivityList then obtain the key to be deleted from daymap
-                            if (activities.getNumberOfActivities() == 0) {
-                                keyToDelete = (LocalDate) pair.getKey();
-                            }
-                            break;
-                        }
-                    }
-                    //If encountered a activitylist with a count of 0,
-                    // which will be resulted if deleted the last item of ActivityList from a list command
-                } else if (activityCounter == 0) {
-                    keyToDelete = (LocalDate)pair.getKey();
-                }
+                keyToDelete = getKeyToRemove(activityToMatch, keyToDelete, pair, activities, activityCounter);
             }
-            //removes key from the daymap
             dayMap.remove(keyToDelete);
-            //displaySavedMessage();
+            displayMessage("Activity removed!");
         } else {
             throw new IndexOutOfBoundsException();
         }
 
+    }
+
+    /**
+     * Get key to remove by matching.
+     *
+     * @param activityToMatch activity to match
+     * @param keyToDelete the key to be deleted
+     * @param pair DayMap entry pair
+     * @param activities activity list
+     * @param activityCounter the maximum activities in the list
+     * @return key to delete
+     */
+    private LocalDate getKeyToRemove(Activity activityToMatch, LocalDate keyToDelete, Map.Entry pair,
+                                     ActivityList activities, int activityCounter) {
+        if (activityCounter > 0) {
+            keyToDelete = checkActivitiesInList(activityToMatch, keyToDelete, pair, activities, activityCounter);
+            //If encountered a activitylist with a count of 0,
+            // which will be resulted if deleted the last item of ActivityList from a list command
+        } else {
+            keyToDelete = checkEmptyList(keyToDelete, pair, activityCounter);
+        }
+        return keyToDelete;
+    }
+
+    /**
+     * Iterate through the activities in the list.
+     *
+     * @param activityToMatch activity to match
+     * @param keyToDelete the key to be deleted
+     * @param pair DayMap entry pair
+     * @param activities activity list
+     * @param activityCounter the maximum activites in the list
+     * @return key to delete
+     */
+    private LocalDate checkActivitiesInList(Activity activityToMatch, LocalDate keyToDelete,
+                                            Map.Entry pair, ActivityList activities, int activityCounter) {
+        for (int i = 0; i < activityCounter; i++) {
+            if (activityToMatch.equals(activities.getActivity(i))) {
+                activities.removeActivity(i);
+                //if deleted the last item in the ActivityList then obtain the key to be deleted from daymap
+                keyToDelete = checkEmptyList(keyToDelete, pair, activities.getNumberOfActivities());
+                break;
+            }
+        }
+        return keyToDelete;
+    }
+
+    /**
+     * Checks for empty list.
+     *
+     * @param keyToDelete key for dayMap
+     * @param pair DayMap entry pair
+     * @param numberOfActivities number of activites in the current list
+     * @return the key to delete
+     */
+    private LocalDate checkEmptyList(LocalDate keyToDelete, Map.Entry pair, int numberOfActivities) {
+        if (numberOfActivities == 0) {
+            keyToDelete = (LocalDate) pair.getKey();
+        }
+        return keyToDelete;
     }
 
     //@@author chewyang
@@ -425,7 +479,7 @@ public class DayMap {
      * @throws ListNotFoundException when the list is not found
      */
     public void move(int indexToBeMovedFrom, int indexToBeInsertedBelow)
-            throws IndexOutOfBoundsException, ListNotFoundException {
+            throws IndexOutOfBoundsException, ListNotFoundException, SameIndexForMoveCommandException {
         if (lastSeenList.getNumberOfActivities() == 0) {
             throw new ListNotFoundException();
         } else {
@@ -433,6 +487,7 @@ public class DayMap {
         }
     }
 
+    //@@author e0425705
     /**
      * Sets the activities at a given date as a string.
      * For e.g, 2020-10-11: [F] | apple | 50, [F] | banana | 100, [E] | pushup | 10, [E] | jogging | 60.
@@ -452,5 +507,4 @@ public class DayMap {
         System.out.println(date.toString());
         getActivityList(date.atStartOfDay()).printList();
     }
-    //@@author chewyang
 }
