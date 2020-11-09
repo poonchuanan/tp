@@ -522,6 +522,11 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 <br>
 <br>
 
+#4.10 Delete feature
+
+![Delete_Sequence_Diagram](diagrams/DeleteSequeunceDiagram.png)
+*Figure 13. Sequence diagram of delete by index feature
+
 ## 5.0 Appendix: Requirements
 
 ### 5.1 Product scope
@@ -789,6 +794,7 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >Incorrect inputs to try:
 >* Test case: The incorrect input from [add](#adding-an-entry-into-list), list, [edit](#editing-an-entry-in-list), graph
 >* Expected: Message with error will be shown.
+
 
 #### Find feature
 >Finding an entry using find d/
