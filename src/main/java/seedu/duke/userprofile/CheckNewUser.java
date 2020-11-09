@@ -13,7 +13,7 @@ import static seedu.duke.Trakcal.jarFilePath;
  */
 public class CheckNewUser {
 
-    public static final String FILE_PATH = jarFilePath + "/tpdata/tp.txt" ;
+    public static final String FILE_PATH = jarFilePath + "/tpdata/tp.txt";
 
     /**
      * Check if it is a new user.
