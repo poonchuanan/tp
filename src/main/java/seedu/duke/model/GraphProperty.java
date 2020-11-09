@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import static seedu.duke.Trakcal.logging;
 
+//@@author 1-Karthigeyan-1
 /**
  * Properties of graph.
  */

@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import static seedu.duke.Trakcal.logging;
 
+//@@author 1-Karthigeyan-1
 /**
  * Displays the graph of illustrating the net calorie gain/loss throughout the period.
  */

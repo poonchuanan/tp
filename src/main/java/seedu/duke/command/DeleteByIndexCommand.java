@@ -8,6 +8,7 @@ import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.Ui.displayMessage;
 import static seedu.duke.ui.Ui.displaySavedMessage;
 
+//@@author 1-Karthigeyan-1
 /**
  * Delete by index command.
  */
