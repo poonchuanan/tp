@@ -525,8 +525,18 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 #4.10 Delete feature
 
+The `delete` feature consists of `delete by index` and `delete all` commands. `Delete by index` deletes the activities one at a time while
+the `delete all` deletes all the activities for the current day.
+
 ![Delete_Sequence_Diagram](diagrams/DeleteSequeunceDiagram.png)
-*Figure 13. Sequence diagram of delete by index feature
+
+*Figure 22. Sequence diagram of delete by index feature*
+
+As shown above, when the `DeleteByIndexCommand` is executed, the deleteActivity method is called from the DayMap class where the 
+ActivityList containing the intended activities to be deleted is selected and calls removeActivity method to remove the specific activity from the ActivityList.
+
+The sequence diagram for the `Delete all` is very similar to this diagram where the whole ActivityList is cleared instead of one Activity. The resulting list will be empty.
+
 
 ## 5.0 Appendix: Requirements
 
@@ -791,7 +801,7 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >* Expected: An entry with food description `ice cream` and calories of `90` would be added into today's list, prints today's list and entry at index `7` of today's list would be edited to exercise description of `walking` and calories of `15`.
 
 >Incorrect inputs to try:
->* Test case: The incorrect input from [add](#adding-an-entry-into-list), list, [edit](#editing-an-entry-in-list), graph
+>* Test case: The incorrect input from [add](#adding-an-entry-into-list), list, [edit](#editing-an-entry-in-list), graph [graph](#graph-features)
 >* Expected: Message with error will be shown.
 
 #### Find feature
@@ -816,3 +826,39 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
      Expected: Message with error will be shown.
      Test case: Consecutive slashes in input for `a/` or `e/`. Example:`find a// apple / pie`
      Expected: Message with error will be shown.
+
+#### Deleting Activities
+
+This feature has two further sub features, delete by index and delete all.
+*Both delete features require at least one activity to be in the list*
+*Deletion of entry can further by checked by `list` command.* 
+
+>Deleting 2nd entry from a list with 2 items
+>* Test case: `delete 2`
+>* Expected: `Activity removed!` will be displayed. Only 1 entry will be displayed. 
+
+>Deleting all entries from the list with some activities in list.
+>* Test case: `delete all/`
+>* Expected: A confirmation message will be shown. If confirmed, `All activities have been deleted` will be displayed.
+>*           If not confirmed, `Delete command aborted` will be displayed.
+
+>Incorrect Input:
+>Deleting on an empty list or invalid index:
+>* Test case: `delete 1000`
+>* Test case: `delete -1`
+>* Test case: `delete all/`
+>* Expected: `Invalid Index!` will be displayed.
+
+>Deleting with invalid description:
+>* Test case: `delete abc`
+>* Expected: `Index is not a number!` will be displayed.
+
+#### Graph features
+
+>Shows upto 7 days of net calories.
+>* Test case: `graph`
+>* Expected: A graph will be showm.
+
+> There is no data at all.
+>* Test case: `graph`
+>* Expected: `List is empty` will be shown.
