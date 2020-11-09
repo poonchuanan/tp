@@ -280,12 +280,27 @@ The details of those operations can be found further down.
 
 #### 4.4.1 List
 
-This listing feature uses the lastSeenList which is of ActivtyList class.  <br>
-The lastSeenList is the list that the user would see after a `list` or `find` command. <br>
+This listing feature for the `list` command uses the lastSeenList which is of ActivityList class.  <br>
+The lastSeenList is the list that the user would see after a `list` command. <br>
 For example, 
 * A `list 2020-11-11` command would use the activityList for 2020-11-11 as the lastSeenList.<br>
-* A `find e/ food` command would go throught the dayMap and add activities containing the keyword/s into the lastSeenList.
-Using the lastSeenList allows users to make changes e.g `edit`, `delete`, `move` commands using the numbered index of a single `list` or `find` command.
+
+Using the lastSeenList allows users to make changes e.g `edit`, `delete`, `move` commands using the numbered index of a single `list` command.
+
+Given below is an example usage scenario and how the lastSeenList behaves for different `list` commands.
+
+Step 1. The user launches the application for the first time. The lastSeenList will be pointed to the activityList for today's date.
+This means that any `edit`, `delete` or `move` commands will be performed on the activityList for today's date in this case, the date would be 2020-11-12.
+![lastSeenList first state](diagrams/initialStateOfLastSeenList.PNG)
+
+<br>
+
+Step 2. The user executes a `list 2020-11-10`. This `list 2020-11-10` command causes the lastSeenList to be pointed to the actvityList for 2020-11-10.
+This This means that any `edit`, `delete` or `move` commands will be performed on the activityList for 2020-11-10.
+![lastSeenList second state](diagrams/secondStateOfLastSeenList.PNG)
+
+<br>
+
 
 The following sequence diagram shows how the lastSeenList is set after a “list date" command where date is of YYYY-MM-DD or after a “list” command where the date is the current date.
 
@@ -298,8 +313,21 @@ The following sequence diagram shows how the lastSeenList is set after a “list
 
 #### 4.4.2 Find
 
+This listing feature for the `find` command also uses the lastSeenList which is of ActivityList class.  <br>
+The lastSeenList is the list that the user would see after a `list` command. <br>
+For example, 
+* A `find e/ food` command would go throught the dayMap and add activities containing the keyword/s into the lastSeenList.
+
+Using the lastSeenList allows users to make changes e.g `delete` command using the numbered index of a single `find` command.
+
 The editing mechanism is used by the basic find features: `FindDescriptionCommand`, `FindCalorieCommand`, 
 as well as the advanced find features: `FindAllCommand` and `FindEitherCommand` to look for keywords in the list.
+
+Given below is an example usage scenario and how the lastSeenList for a `find` command.
+
+Step 1. The user executes a `find e/ running` This `find e/ running` command will intialize the lastSeenList to a new ActivityList and is made up of Activities that contains the `running` keyword as per the command.
+This lastSeenList will not point to any other activityList in the dayMap hashmap.
+![lastSeenList third state](diagrams/thirdStateOfLastSeenList.PNG)
 
 The following sequence diagram shows how the lastSeenList is set after a find command.
 

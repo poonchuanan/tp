@@ -1,5 +1,7 @@
 package seedu.duke.command;
 
+import seedu.duke.model.ActivityList;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -34,7 +36,8 @@ public class ListCommand extends Command {
     @Override
     public void execute() {
         try {
-            dayMap.setLastSeenList(dayMap.getActivityList(date.atStartOfDay()));
+            ActivityList activityList = dayMap.getActivityList(date.atStartOfDay());
+            dayMap.setLastSeenList(activityList);
             dayMap.drawListAfterListCommand(date);
 
         } catch (NullPointerException e) {
