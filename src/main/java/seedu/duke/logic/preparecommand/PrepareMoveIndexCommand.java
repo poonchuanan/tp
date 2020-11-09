@@ -4,6 +4,7 @@ import seedu.duke.command.Command;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.MoveActivityCommand;
 
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayIndexNotNumberExceptionMessage;
 import static seedu.duke.ui.Ui.PROMPT_USER_OF_HELP_MESSAGE;
 
@@ -14,13 +15,13 @@ import static seedu.duke.ui.Ui.PROMPT_USER_OF_HELP_MESSAGE;
 public class PrepareMoveIndexCommand extends PrepareCommand {
 
     public static final String SPACE = " ";
-    public static final String FROM_KEYWORD = "from/";
-    public static final String BELOW_KEYWORD = "below/";
-    public static final String BOTH_KEY_MISSING_ERROR_MESSAGE = "'from/' and 'below/' keyword is missing!\n "
+    public static final String FROM_TAG = "from/";
+    public static final String BELOW_TAG = "below/";
+    public static final String BOTH_TAGS_MISSING_ERROR_MESSAGE = "'from/' and 'below/' keyword is missing!\n "
             + PROMPT_USER_OF_HELP_MESSAGE;
-    public static final String FROM_KEY_MISSING_ERROR_MESSAGE = "'from/' keyword is missing!\n"
+    public static final String FROM_TAG_MISSING_ERROR_MESSAGE = "'from/' keyword is missing!\n"
             + PROMPT_USER_OF_HELP_MESSAGE;
-    public static final String BELOW_KEY_MISSING_ERROR_MESSAGE = "'below/' keyword is missing!\n"
+    public static final String BELOW_TAG_MISSING_ERROR_MESSAGE = "'below/' keyword is missing!\n"
             + PROMPT_USER_OF_HELP_MESSAGE;
 
 
@@ -40,15 +41,15 @@ public class PrepareMoveIndexCommand extends PrepareCommand {
         String after = description[1].trim().replaceAll(" +", SPACE).toLowerCase();
 
 
-        int firstIndex = after.indexOf(FROM_KEYWORD) + FROM_KEYWORD.length(); //index after first keyword
-        int secondIndex = after.indexOf(BELOW_KEYWORD) + BELOW_KEYWORD.length(); //index after second keyword
+        int firstIndex = after.indexOf(FROM_TAG) + FROM_TAG.length(); //index after first keyword
+        int secondIndex = after.indexOf(BELOW_TAG) + BELOW_TAG.length(); //index after second keyword
 
-        if (!after.contains(FROM_KEYWORD) && !after.contains(BELOW_KEYWORD)) {
-            return new InvalidCommand(BOTH_KEY_MISSING_ERROR_MESSAGE);
-        } else if (!after.contains(FROM_KEYWORD)) {
-            return new InvalidCommand(FROM_KEY_MISSING_ERROR_MESSAGE);
-        } else if (!after.contains(BELOW_KEYWORD)) {
-            return new InvalidCommand(BELOW_KEY_MISSING_ERROR_MESSAGE);
+        if (!after.contains(FROM_TAG) && !after.contains(BELOW_TAG)) {
+            return new InvalidCommand(BOTH_TAGS_MISSING_ERROR_MESSAGE);
+        } else if (!after.contains(FROM_TAG)) {
+            return new InvalidCommand(FROM_TAG_MISSING_ERROR_MESSAGE);
+        } else if (!after.contains(BELOW_TAG)) {
+            return new InvalidCommand(BELOW_TAG_MISSING_ERROR_MESSAGE);
         }
 
 
@@ -57,12 +58,17 @@ public class PrepareMoveIndexCommand extends PrepareCommand {
         int indexToBeChanged;
         int indexToBeInsertedBelow;
         try {
+
             indexToBeChanged = Integer.parseInt(firstIndexString);
+            assert indexToBeChanged > 0 : "Index should be more than 0";
+
             indexToBeInsertedBelow = Integer.parseInt(secondIndexString);
+            assert indexToBeInsertedBelow >= 0 : "Index should be more than 0";
+
             return new MoveActivityCommand(indexToBeChanged, indexToBeInsertedBelow);
         } catch (NumberFormatException e) {
             displayIndexNotNumberExceptionMessage();
-            //return new InvalidCommand();
+            logging.writeToLogWarning("Accessing a list with a index that is not a number");
         }
         return null;
     }

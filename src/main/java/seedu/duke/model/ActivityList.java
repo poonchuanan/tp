@@ -39,8 +39,9 @@ public class ActivityList extends Trakcal {
     public ArrayList getArrayList() {
         return activities;
     }
-
     //@@author chewyang
+
+    //@@author e0425705
     /**
      * Adds new activity to the list and updates the netCalorie accordingly to the activity type added.
      *
@@ -59,7 +60,7 @@ public class ActivityList extends Trakcal {
         }
     }
 
-    //@@author e0425705
+
     /**
      * This method replaces the current activity at index with a new activity.
      * To change the description of the current activity.
@@ -90,6 +91,7 @@ public class ActivityList extends Trakcal {
             throw new IndexOutOfBoundsException();
         }
     }
+    //@@author e0425705
 
     //@@author chewyang
     /**
@@ -120,7 +122,7 @@ public class ActivityList extends Trakcal {
         return netCalorie;
     }
 
-    //@@author chewyang
+
     public Activity getActivity(int index) throws IndexOutOfBoundsException {
         if (isValidIndex(index)) {
             return activities.get(index);
@@ -128,7 +130,9 @@ public class ActivityList extends Trakcal {
             throw new IndexOutOfBoundsException();
         }
     }
+    //@@author chewyang
 
+    //author _________
     /**
      * Removes an activity from the list via index.
      *
@@ -150,6 +154,8 @@ public class ActivityList extends Trakcal {
             throw new IndexOutOfBoundsException();
         }
     }
+    //author _________
+
 
     //@@author chewyang
     /**
@@ -165,7 +171,6 @@ public class ActivityList extends Trakcal {
         }
     }
 
-    //@@author chewyang
     /**
      * Checks if the index is valid.
      *
@@ -178,7 +183,9 @@ public class ActivityList extends Trakcal {
         }
         return false;
     }
+    //@@author chewyang
 
+    //@@author ___
     /**
      * Clears the list of activities.
      */
@@ -187,6 +194,7 @@ public class ActivityList extends Trakcal {
         activityCounter = 0;
         netCalorie = 0;
     }
+    //@@author ___
 
     //@@author chewyang
     /**
@@ -201,4 +209,5 @@ public class ActivityList extends Trakcal {
         activitiesString = activitiesString.substring(1, activitiesString.length() - 1);
         return (activitiesString);
     }
+    //@@author chewyang
 }
