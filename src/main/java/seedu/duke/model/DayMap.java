@@ -19,6 +19,7 @@ import java.util.Map;
 import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
 import static seedu.duke.ui.Ui.displayMessage;
 
+//@@author chewyang
 /**
  * Use hashmap of to store all the data.
  * The key of the hashmap would be the date and the value would be the activityList for that day.
@@ -30,7 +31,6 @@ public class DayMap {
     private static final String findConsecutiveSlashRegex = "/{2,}";
     private Pattern pattern = Pattern.compile(findConsecutiveSlashRegex);
 
-    //@@author chewyang
     public DayMap() {
         this.dayMap = new HashMap<>();
         this.lastSeenList = new ActivityList();
