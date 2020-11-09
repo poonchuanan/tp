@@ -271,10 +271,6 @@ The following sequence diagram shows how `AddFoodCommand` is carried out when th
 
 > `AddExerciseCommand` diagram has a similar logic.
 
-![Add_Exercise](diagrams/AddExerciseFeature.png)
-
-*Figure 11. Component interactions for add exercise command*
-
 <br>
 
 #### Design Considerations
@@ -408,10 +404,6 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 *Figure 15. Sequence diagram of edit food feature*
 
 > `EditExerciseCommand` diagram has a similar logic.
-
-![Edit_Exercise](diagrams/EditExercise.png)
-
-*Figure 16. Sequence diagram of edit exercise feature*
 
 <br>
 
