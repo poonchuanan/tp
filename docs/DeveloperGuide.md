@@ -583,6 +583,33 @@ Exiting the application
 ```
 
 ---
+#### Creating a shortcut
+
+>Creating a shortcut with 2 food entries
+    Test case: `createSet dinner f/ chicken c/ 100 + f/ beef c/ 100`
+    Expected: A text file named `dinner.txt` will be created in ... with first line as `f/ chicken c/ 100` and second line as `f/ beef c/ 100`.
+
+>Creating a shortcut with 1 exercise entry
+    Test case: `createSet morning exercise e/ run c/ 100`
+    Expected: A text file named `morning exercise.txt` will be created in ... with first line as `e/ run c/ 100`.
+
+>Creating a shortcut with 1 food entry and 1 exercise entry
+    Test case: `createSet morning routine f/ oatmeal c/ 300 + e/ jumping jacks c/ 50`
+    Expected: A text file named `morning routine.txt` will be created in ... with first line as `f/ oatmeal c/ 300` and second line as `e/ jumping jacks c/ 50`.
+ 
+ >Incorrect inputs to try:
+    `createSet f/ chicken c/ 100 + f/ beef c/ 100`: missing shortcut name
+    `createSet meat f/ chicken f/ fish`: each `f/` or `e/` must be followed be a `c/`
+    `createSet fishy lunch f/ fish c/      `: empty description for calories
+    `createSet fishy lunch f/        c/ 100`: empty description for food
+    `createSet healthy lunch`: missing activity and calorie tag
+    `createSet dinner f/ beans c/ 100000`: invalid calorie range, only 0 to 3000 kcal accepted
+    `createSet dinner f/ beans c/ test`: calorie not of valid type to parse to an integer
+    `createSet dinner f/ beans c/ 1000000000000000`: calorie too large to be an integer
+    Expected: Message with error will be shown.
+ 
+ 
+ 
  
 #### Adding an entry into list
 
@@ -609,6 +636,8 @@ Exiting the application
     `add e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
     `add e/ c/ `: empty input parameters
     Expected: Message with error will be shown.
+
+<br>
 
 #### Editing an entry in list
 
@@ -639,6 +668,8 @@ This feature allows editing of list entry from:
     `edita 2 e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
     `edita 3 e/ c/ `: empty input parameters
     Expected: Message with error will be shown.
+
+<br>
 
 #### Chaining of features
 
