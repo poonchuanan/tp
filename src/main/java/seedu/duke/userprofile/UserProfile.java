@@ -77,8 +77,8 @@ public class UserProfile {
             return Trakcal.in.nextLine();
         } catch (NoSuchElementException e) {
             System.out.println("Force quit. See you again!");
+            return null;
         }
-        return null;
     }
 
     /**
