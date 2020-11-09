@@ -551,8 +551,8 @@ ActivityList containing the intended activities to be deleted is selected and ca
 
 The sequence diagram for the `Delete all` is very similar to this diagram where the whole ActivityList is cleared instead of one Activity. The resulting list will be empty.
 
-
->>>>>>> 33fe56e95bdf78d99fa19ab1fb4b4a0a4adc2dcf
+<br>
+<br>
 
 ## 5.0 Appendix: Requirements
 
