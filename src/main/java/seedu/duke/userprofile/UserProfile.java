@@ -68,7 +68,7 @@ public class UserProfile {
 
 
     /**
-     * Reading user input.
+     * Read user input.
      *
      * @return user input
      */
