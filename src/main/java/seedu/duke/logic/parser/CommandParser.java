@@ -36,7 +36,7 @@ public class CommandParser extends Parser {
     private static final String ADD_COMMAND = "add";
     private static final String ADDSET_COMMAND = "addset";
     private static final String FIND_COMMAND = "find";
-    private static final String EDITA_COMMAND = "edit";
+    private static final String EDIT_COMMAND = "edit";
     private static final String DELETE_COMMAND = "delete";
     private static final String LIST_COMMAND = "list";
     private static final String HELP_COMMAND = "help";
@@ -83,7 +83,7 @@ public class CommandParser extends Parser {
             case FIND_COMMAND:
                 prepareCorrectCommand = new PrepareFindCommand(arguments);
                 break;
-            case EDITA_COMMAND:
+            case EDIT_COMMAND:
                 prepareCorrectCommand = new PrepareEditCommand(arguments);
                 break;
             case DELETE_COMMAND:

@@ -71,7 +71,7 @@ This guide will provide information on the design and implementation of **traKCA
 
 *Figure 1. Architecture diagram of traKCAL*
 
-The Architecture Diagram shown above explains the high-level design of **traKCAL**. There are 8 components in traKCAL and their functionalities will be discussed below:
+The Architecture Diagram shown above explains the high-level design of **traKCAL**. There are 8 components in traKCAL, and their functionalities will be discussed below:
 
 <br>
 
@@ -90,8 +90,8 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 *Figure 2. Diagram for logic component*
 
 The main bulk of data processing takes place in the logic component. In this component, 
-the data from the userinput is checked for its validity and parsed down futher by the preparecommand class to its respective command blocks.
-These command class are derived from the abstract Command class. Each different command block deals with the 
+the data from the user input is checked for its validity and parsed down futher by the PrepareCommand class to its respective command blocks.
+These command classes are derived from the Command class. Each different command block deals with the 
 proposed functionality which can be associated with `Ui`,`storage` or `model` components. 
 
 * **traKCAL** uses the parser class to filter based on command words by user.
@@ -261,9 +261,9 @@ The following has been omitted from the diagram to increase readability:
 
 #### Current Implementation
 
-The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add to the list of date stated in user input.
+The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add to the list of date stated in user input. If date is not stated, then it will be added to today's list.
 
-The following Sequence Diagram shows how `AddFoodCommand` is carried out when the user issues add command, in this case, `add f/ food c/ 170 d/ 2020-10-22`:
+The following sequence diagram shows how `AddFoodCommand` is carried out when the user issues add command, in this case, `add f/ food c/ 170 d/ 2020-10-22`:
 
 ![Add Food](diagrams/addFoodFeature.png)
 
@@ -279,15 +279,28 @@ The following Sequence Diagram shows how `AddFoodCommand` is carried out when th
 
 #### Design Considerations
 
-Aspect: How to add activity
+Aspect: How to add food/exercise
 
 >Current choice: Using single letter words as tags for input commands. (e.g. add f/ jelly c/ 100 d/ 2020-11-09)
 >* Pros: Faster and shorter input keys for user.
 >* Cons: Have to ensure that user is clear on what tags to input.
 
->Alternative: Using full words as tags for input commands. (e.g. add food/ XXX calorie/ XXX date/ XXX)
+>Alternative: Using full words as tags for input commands. (e.g. add food/ chicken chop calorie/ 70 date/ 2020-11-08)
 >* Pros: Tags are obvious in what input is expected.
 >* Cons: More wordy input needed from user.
+
+
+Aspect: Input parameters for add food/exercise
+
+>Current choice: Input format for adding: `add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` OR `add f/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>`
+>Where words in CAPS are parameters to be filled by the user and word in <this> are optional. None addition date would add to today's list.
+>* Pros: Faster and shorter input time for user.
+>* Cons: Have to ensure that user entry would be added to the correct date.
+
+>Alternative: Input format for adding: `add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` OR `add f/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE`
+>Where words in CAPS are parameters to be filled by the user. 
+>* Pros: List where food/exercise entry to be added to is clear.
+>* Cons: Longer input time for user.
 
 <br>
 <br>
@@ -299,7 +312,7 @@ The following operations could be applied to the lastSeenList which would change
 
 - delete
 - move
-- edita
+- edit
 
 The details of those operations can be found further down.
 
@@ -402,17 +415,28 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 
 <br>
 
-**Design considerations:**
+#### 4.6.2 Design considerations
 
-Aspect: How to edit activity
+Aspect: How to edit food/exercise
 
->Alternative 1 (current choice): Same command able to edit both activities, food and exercise in list.
->* Pros: Easy to implement.
->* Cons: Have to ensure that the different type of editing is implemented correctly.
+>Current choice: Using single letter words as tags for input commands. (e.g. edit f/ jelly c/ 100 d/ 2020-11-09)
+>* Pros: Faster and shorter input keys for user.
+>* Cons: Have to ensure that user is clear on what tags to input.
 
->Alternative 2: Have separate commands for editing the different activity type.
->* Pros: Clear distinction of the classes.
->* Cons: Increase in number of lines. Separate methods with similar logic will be created.
+>Alternative: Using full words as tags for input commands. (e.g. edit food/ chicken chop calorie/ 70 date/ 2020-11-08)
+>* Pros: Tags are obvious in what input is expected.
+>* Cons: More wordy input needed from user.
+
+
+Aspect: How editing is carried out
+
+>Current choice: User MUST pull out the list they want to edit to before calling the edit function. `list` then `edit f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` OR `edit e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT`
+>* Pros: The entry that is being edit is clear to the user.
+>* Cons: More steps requried to edit an entry.
+
+>Alternative: Adding a date tag in edit: `edit f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` OR `edit e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE`
+>* Pros: Faster and shorter time to edit an entry.
+>* Cons: If list of the date is not pulled out and edit carried out immediately, high chance of the wrong entry being edited as there might be recent changes to the list.
 
 <br>
 <br>
@@ -424,7 +448,7 @@ Aspect: How to edit activity
 The chaining mechanism can be used by the various commands available The following are the types of command that can be chained:
 - list
 - add
-- edita
+- edit
 - graph
 >this is due to attribute canBeChained in those commands being true.
 
@@ -444,17 +468,17 @@ The following sequence diagram shows how the chaining works after command is ent
 
 <br>
 
-**Design considerations:**
+#### 4.7.2 Design considerations
 
 Aspect: Which features to chain
 
->Alternative 1 (current choice): Allow only certain commands to be chained.
+>Alternative 1 (current choice): Allow only certain features to be chained.
 >* Pros: Able to better track input of users.
 >* Cons: User must know which commands can be chained.
 
->Alternative 2: Allow all commands to be chained.
->* Pros: Easy to implement.
->* Cons: May give abnormal behaviour.
+>Alternative 2: Allow all features to be chained.
+>* Pros: Easy to implement. Attribute canBeChained marked as true for all features.
+>* Cons: May give abnormal behaviour. As some features have dependencies on other features.
 
 <br>
 <br>
@@ -716,25 +740,25 @@ This feature allows editing of list entry from:
 4. exercise to exercise
 
 >Editing an entry in today's list from food to food
->* Test case: `edita 1 f/ ice kacang c/ 90`
+>* Test case: `edit 1 f/ ice kacang c/ 90`
 >* Expected: Entry at index `1` of today's list(which is a food entry) would be edited to food description of `ice kacang` and calories of `90`.
 
 >Editing an entry in today's list from food to exercise
->* Test case: `edita 2 e/ running c/ 50`
+>* Test case: `edit 2 e/ running c/ 50`
 >* Expected: Entry at index `2` of today's list(which is a food entry) would be edited to exercise description of `running` and calories of `50`.
        
 >Editing an entry in another day's list from exercise to exercise
->* Test case: `list 2020-11-07` then `edita 3 e/ 50 jumping jacks c/ 25`
+>* Test case: `list 2020-11-07` then `edit 3 e/ 50 jumping jacks c/ 25`
 >* Expected: Entry at index `3` of 2020-11-07's list(which is an exercise entry) would be edited to exercise description of `50 jumping jacks` and calories of `25`.
 
 >Editing an entry in another day's list from exercise to food
->* Test case: `list 2020-11-01` then `edita 2 f/ corn chips c/ 75`
+>* Test case: `list 2020-11-01` then `edit 2 f/ corn chips c/ 75`
 >* Expected: Entry at index `3` of 2020-11-01's list(which is an exercise entry) would be edited to food description of `corn chips` and calories of `75`.
 
 >Incorrect inputs to try:
->* `edita 1 f/ jelly c/ -30`: calories is less than or equals to 0 or more than 3000
->* `edita 2 e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
->* `edita 3 e/ c/ `: empty input parameters
+>* `edit 1 f/ jelly c/ -30`: calories is less than or equals to 0 or more than 3000
+>* `edit 2 e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
+>* `edit 3 e/ c/ `: empty input parameters
 >* Expected: Message with error will be shown.
 
 <br>
@@ -758,7 +782,7 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >* Expected: Prints today's list, prints 2020-11-06's list and prints 2020-11-08's list
 
 >Example 4
->* Test case: `add f/ ice cream c/ 90 d/ 2020-11-07 && list && edita 7 e/ walking c/ 15`
+>* Test case: `add f/ ice cream c/ 90 d/ 2020-11-07 && list && edit 7 e/ walking c/ 15`
 >* Expected: An entry with food description `ice cream` and calories of `90` would be added into today's list, prints today's list and entry at index `7` of today's list would be edited to exercise description of `walking` and calories of `15`.
 
 >Incorrect inputs to try:
