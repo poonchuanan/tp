@@ -145,30 +145,58 @@ In the Model component,
 <br>
 <br>
 
-## 3.0 Implementation
+## 4.0 Implementation
 
-### 3.1 Create User Profile
+### 4.1 Create User Profile feature
 
 The sequence diagram below shows how the components will react to a new user or for a returning user. 
 
 ![CreateNewUserFeature](diagrams/CreateNewUserFeature.png)
 
-*Figure 4. Components interactions for tracKCAL checks for new or existing user*
+*Figure 4. Components interactions for **traKCAL** create user profile feature*
 
-To following has been omitted from the diagram to increase readibility: 
+To following has been omitted from the diagram to increase readability: 
 * Exception handling 
 * External text file creation block
 
-Some design considerations: 
-* New users are required to create a new user profile before being able to use other features like `graph` to avoid unnecessarily being thrown exceptions
-* Genders were limited to female and male instead of other genders like binary as our recommended calories equation only took into account female and male as genders
-* Similarly, weight goals were limited to lose, maintain or gain as opposed to other forms of weight goal like cut as our current equations were only able to accomodate lose, maintain or gain
+Design considerations: 
+* New users are required to create a new user profile before being able to use other features like `graph` to avoid unnecessarily being thrown exceptions.
+* Genders were limited to female and male instead of other genders like binary as our recommended calories equation only took into account female and male as genders.
+* Similarly, weight goals were limited to lose, maintain or gain as opposed to other forms of weight goal like cut as our current equations were only able to accomodate lose, maintain or gain.
 
 <br>
+<br>
 
-### 3.2 Add activity feature
+### 4.2 Shortcut feature
 
-#### 3.2.1 Current Implementation
+#### 4.2.1 Creating a shortcut
+
+The sequence diagram below shows how the components in **traKCAL** work together to create a new shortcut. 
+
+![createSetFeature](diagrams/createSetFeature.png)
+
+*Figure 5. Components interaction for **traKCAL** create set feature*
+
+Design considerations: 
+* At least one activity tag (`e/` or `f/`) and calorie tag (`c/`) must be specified by user for a shortcut to be created.
+* The order of the entry must be activity tag first before calorie tag. Calorie tag followed by activity tag is not allowed. This is to facilitate the adding of each entries in the shortcut, as seen in [section 3.3](#33-add-activity-feature).
+* Multiple entries in shortcut should be seperated be a `,` as it is a key. 
+
+#### 4.2.2 Adding a shortcut to activity list
+
+The sequence diagram below shows how the components in **traKCAL** work together to add entries in a shortcut to the activity list. 
+
+![addSetFeature](diagrams/addSetFeature.png)
+
+*Figure 6. Components interaction for **traKCAL** add set feature*
+
+<br>
+<br>
+
+
+### 4.3 Add activity feature
+
+#### 4.3.1 Current Implementation
 
 The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add to the list of date stated in user input.
 
@@ -186,22 +214,23 @@ The following Sequence Diagram shows how `AddFoodCommand` is carried out when th
 
 <br>
 
-#### 3.2.2 Design Considerations
+#### 4.3.2 Design Considerations
 
 Aspect: How to add activity
 
->Alternative 1(current choice): Using single letter words as tags for input commands. (e.g. add f/ jelly c/ 100 d/ 2020-11-09)
+>Current choice: Using single letter words as tags for input commands. (e.g. add f/ jelly c/ 100 d/ 2020-11-09)
 >* Pros: Faster and shorter input keys for user.
 >* Cons: Have to ensure that user is clear on what tags to input.
 
->Alternative 2: Using full words as tags for input commands. (e.g. add food/ XXX calorie/ XXX date/ XXX)
+>Alternative: Using full words as tags for input commands. (e.g. add food/ XXX calorie/ XXX date/ XXX)
 >* Pros: Tags are obvious in what input is expected.
 >* Cons: More wordy input needed from user.
 
 <br>
 <br>
 
-### 3.3 Listing feature for find and list commands
+### 4.4 Listing feature for find and list commands
+
 The listing mechanism used by `ListCommand` and `FindCommand` to display the required list of activities is facilitated by the lastSeenList of class `ActivityList`. 
 The following operations could be applied to the lastSeenList which would change the actual data in the database:
 
@@ -213,7 +242,7 @@ The details of those operations can be found further down.
 
 <br>
 
-#### 3.3.1 List
+#### 4.4.1 List
 
 This listing feature uses the lastSeenList which is of ActivtyList class.  <br>
 The lastSeenList is the list that the user would see after a `list` or `find` command. <br>
@@ -231,7 +260,7 @@ The following sequence diagram shows how the lastSeenList is set after a “list
 <br>
 <br>
 
-#### 3.3.2 Find
+#### 4.4.2 Find
 
 The editing mechanism is used by the basic find features: `FindDescriptionCommand`, `FindCalorieCommand`, 
 as well as the advanced find features: `FindAllCommand` and `FindEitherCommand` to look for keywords in the list.
@@ -245,9 +274,9 @@ The following sequence diagram shows how the lastSeenList is set after a find co
 <br>
 <br>
 
-### 3.4 Displaying the list after `find` or `list` commands
+### 4.5 List feature after `find` or `list` commands
 
-#### 3.4.1 Current implementation
+#### 4.5.1 Current implementation
 The mechanism used to display the lastSeenList invoked by the list or find commands is facilitated by the listDrawer and findDrawer class respectively. They both work the same way but the list produced by findDrawer has an extra column which contains the dates of the respective entries.
 
 The following sequence diagram shows how the listDrawer class is used to display the lastSeenList.
@@ -259,9 +288,9 @@ The following sequence diagram shows how the listDrawer class is used to display
 <br>
 <br>
 
-### 3.5 Edit activity in list feature
+### 4.6 Edit activity in list feature
 
-#### 3.5.1 Current Implementation
+#### 4.6.1 Current Implementation
 
 The editing mechanism is used by `EditFoodCommand` and `EditExerciseCommand` to amend the current list of activities.
 
@@ -279,7 +308,7 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 
 <br>
 
-#### 3.5.2 Design Considerations
+**Design considerations:**
 
 Aspect: How to edit activity
 
@@ -294,9 +323,9 @@ Aspect: How to edit activity
 <br>
 <br>
 
-### 3.6 Chaining feature
+### 4.7 Chaining feature
 
-#### 3.6.1 Current Implementation
+#### 4.7.1 Current Implementation
 
 The chaining mechanism can be used by the various commands available The following are the types of command that can be chained:
 - list
@@ -312,7 +341,7 @@ The following sequence diagram shows how the chaining works after command is ent
 
 <br>
 
-#### 3.6.2 Design Considerations
+**Design considerations:**
 
 Aspect: Which features to chain
 
@@ -327,7 +356,7 @@ Aspect: Which features to chain
 <br>
 <br>
 
-### 3.7 Move feature
+### 4.8 Move feature
 This feature allows the user to manually `move` activities from one position to another position 
 
 The following sequence diagram shows how the `move` command is executed, where index1 is the position to be moved from and index 2 is the position to be moved below. 
@@ -339,7 +368,7 @@ The following sequence diagram shows how the `move` command is executed, where i
 <br>
 <br>
 
-### 3.8 Graph feature
+### 4.9 Graph feature
 
 The graph implementation shows the progress of the daily net 
 calories over the period of 7 days. The GraphProperty class extracts the available days from the 
