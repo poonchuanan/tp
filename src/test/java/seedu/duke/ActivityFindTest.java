@@ -13,7 +13,6 @@ import seedu.duke.exception.KeywordNotFoundException;
 import seedu.duke.model.DayMap;
 import seedu.duke.model.Exercise;
 import seedu.duke.model.Food;
-import seedu.duke.model.GraphProperty;
 
 import java.time.LocalDate;
 import java.time.Month;
