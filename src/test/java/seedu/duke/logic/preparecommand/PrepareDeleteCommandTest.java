@@ -1,11 +1,8 @@
 package seedu.duke.logic.preparecommand;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.Command;
-import seedu.duke.command.DeleteAllCommand;
 import seedu.duke.command.DeleteByIndexCommand;
-import seedu.duke.model.ActivityList;
 import seedu.duke.model.DayMap;
 import seedu.duke.model.Exercise;
 import seedu.duke.model.Food;
@@ -13,7 +10,6 @@ import seedu.duke.model.Food;
 import java.time.LocalDate;
 import java.time.Month;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PrepareDeleteCommandTest {
@@ -34,7 +30,6 @@ class PrepareDeleteCommandTest {
         assertTrue(command instanceof DeleteByIndexCommand);
         command.setData(dayMap);
         command.execute();
-       // assertEquals();
     }
 
 }
