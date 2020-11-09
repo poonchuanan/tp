@@ -461,6 +461,11 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 <br>
 <br>
 
+#4.10 Delete feature
+
+![Delete_Sequence_Diagram](diagrams/DeleteSequeunceDiagram.png)
+*Figure 13. Sequence diagram of delete by index feature
+
 ## 5.0 Appendix: Requirements
 
 ### 5.1 Product scope
