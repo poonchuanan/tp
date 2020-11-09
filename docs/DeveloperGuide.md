@@ -77,7 +77,8 @@ The Architecture Diagram shown above explains the high-level design of **traKCAL
 
 ### 3.2 ui component
 
-![Ui Component](diagrams/ui.png =1000x400)
+![Ui Component](diagrams/ui.png)
+
 *Figure 2. Diagram for logic component*
 
 <br>
@@ -120,11 +121,11 @@ In the Model component,
 
 Before carrying out the command, user input first has to be prepared.
 
-![Prepare_Component](diagrams/PrepareCommand.png =1000x)
+![Prepare_Component](diagrams/PrepareCommand.png)
 
 *Figure 4. Diagram for PrepareCommand*
 
-![Command_Component](diagrams/Command.png = 1000x)
+![Command_Component](diagrams/Command.png)
 
 *Figure 4. Diagram for Command component*
 
@@ -158,7 +159,7 @@ On Command execution:
 
 ### 3.7 Exception component
 
-![Exception_Component](diagrams/Exception.png =1000x)
+![Exception_Component](diagrams/Exception.png)
 
 *Figure 6. Diagram for Exception component*
 
@@ -264,15 +265,11 @@ The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add
 
 The following sequence diagram shows how `AddFoodCommand` is carried out when the user issues add command, in this case, `add f/ food c/ 170 d/ 2020-10-22`:
 
-![Add Food](diagrams/addFoodFeature.png =1000x)
+![Add Food](diagrams/addFoodFeature.png)
 
 *Figure 10. Component interactions for add food command*
 
 > `AddExerciseCommand` diagram has a similar logic.
-
-![Add_Exercise](diagrams/AddExerciseFeature.png =1000x)
-
-*Figure 11. Component interactions for add exercise command*
 
 <br>
 
@@ -402,15 +399,11 @@ The editing mechanism is used by `EditFoodCommand` and `EditExerciseCommand` to 
 
 The following Sequence Diagram shows how `EditFoodCommand` is carried out when the user issues edit command, in this case, `edit 1 f/ egg c/ 10`:
 
-![Edit_Food](diagrams/EditFood.png =1000x)
+![Edit_Food](diagrams/EditFood.png)
 
 *Figure 15. Sequence diagram of edit food feature*
 
 > `EditExerciseCommand` diagram has a similar logic.
-
-![Edit_Exercise](diagrams/EditExercise.png =1000x)
-
-*Figure 16. Sequence diagram of edit exercise feature*
 
 <br>
 
@@ -453,15 +446,15 @@ The chaining mechanism can be used by the various commands available The followi
 
 The following sequence diagram shows how the chaining works after command is entered:
 
-![Chain_Command](diagrams/ChainCommand.png =1000x)
+![Chain_Command](diagrams/ChainCommand.png)
 
 *Figure 17. Sequence diagram of chaining feature*
 
-![Object_Diagram_Of_PrepareCommand](diagrams/chainCommand_PrepareCommand.png =1000x)
+![Object_Diagram_Of_PrepareCommand](diagrams/chainCommand_PrepareCommand.png)
 
 *Figure 18. Object diagram of allowed PrepareCommand subclass*
 
-![Object_Diagram_Of_Command](diagrams/chainCommand_Command.png =1000x)
+![Object_Diagram_Of_Command](diagrams/chainCommand_Command.png)
 
 *Figure 19. Object diagram of allowed Command subclass*
 
