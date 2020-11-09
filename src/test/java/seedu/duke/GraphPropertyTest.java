@@ -3,6 +3,7 @@ package seedu.duke;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.duke.model.DayMap;
+import seedu.duke.model.Exercise;
 import seedu.duke.model.Food;
 import seedu.duke.model.GraphProperty;
 
@@ -69,7 +70,7 @@ class GraphPropertyTest {
     @Test
     public void setProperty_NegativeCalories_success() {
         DayMap dummyMap = setDummyMap();
-        dummyMap.addActivity(date1.atStartOfDay(), new Food("apple", -1000, date1, false));
+        dummyMap.addActivity(date1.atStartOfDay(), new Exercise("pushup", 1000, date1, false));
         dummyMap.addActivity(date2.atStartOfDay(), new Food("banana", 2000, date2, false));
         GraphProperty graphProperty = new GraphProperty(dummyMap, 1000);
         graphProperty.setProperties();
