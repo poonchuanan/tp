@@ -5,7 +5,7 @@ import seedu.duke.storage.UserSetStorage;
 /**
  * Creates new shortcut command.
  */
-public class CreateNewSet extends Command {
+public class CreateNewSetCommand extends Command {
     protected String trimmedInput;
 
     /**
@@ -13,7 +13,7 @@ public class CreateNewSet extends Command {
      *
      * @param trimmedUserInput user input
      */
-    public CreateNewSet(String trimmedUserInput) {
+    public CreateNewSetCommand(String trimmedUserInput) {
         this.canBeChained = true;
         this.trimmedInput = trimmedUserInput;
     }

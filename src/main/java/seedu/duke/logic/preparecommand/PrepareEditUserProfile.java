@@ -2,7 +2,7 @@ package seedu.duke.logic.preparecommand;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.EditUserProfileCommand;
-import seedu.duke.exception.InvalidNumberOfArguments;
+import seedu.duke.exception.InvalidNumberOfArgumentsException;
 
 
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class PrepareEditUserProfile extends PrepareCommand {
         try {
             isNumberOfArgumentsValid(2);
             return new EditUserProfileCommand(description[1]);
-        } catch (InvalidNumberOfArguments e) {
+        } catch (InvalidNumberOfArgumentsException e) {
             displayShortageOfArguments();
         }
         return null;

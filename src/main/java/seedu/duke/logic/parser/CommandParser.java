@@ -1,7 +1,7 @@
 package seedu.duke.logic.parser;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.CreateNewSet;
+import seedu.duke.command.CreateNewSetCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.logic.preparecommand.PrepareAddCommand;
 import seedu.duke.logic.preparecommand.PrepareAddSetCommand;
@@ -15,11 +15,8 @@ import seedu.duke.logic.preparecommand.PrepareListCommand;
 import seedu.duke.logic.preparecommand.PrepareMoveIndexCommand;
 import seedu.duke.logic.preparecommand.PrepareUserCommand;
 
-import java.io.IOException;
-
 import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayInvalidInputErrorMessage;
-import static seedu.duke.ui.ExceptionMessages.displayIoExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 
 /**
@@ -67,7 +64,7 @@ public class CommandParser extends Parser {
             case USER_COMMAND:
                 return new PrepareUserCommand(arguments).prepareCommand();
             case CREATESET_COMMAND:
-                return new CreateNewSet(arguments[1]);
+                return new CreateNewSetCommand(arguments[1]);
             case ADD_COMMAND:
                 return new PrepareAddCommand(arguments).prepareCommand();
             case ADDSET_COMMAND:

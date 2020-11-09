@@ -5,9 +5,8 @@ import seedu.duke.command.FindAllCommand;
 import seedu.duke.command.FindCalorieCommand;
 import seedu.duke.command.FindDescriptionCommand;
 import seedu.duke.command.FindEitherCommand;
-import seedu.duke.exception.InvalidNumberOfArguments;
+import seedu.duke.exception.InvalidNumberOfArgumentsException;
 
-import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
 import static seedu.duke.ui.ExceptionMessages.displayFindErrorMessage;
 import static seedu.duke.ui.ExceptionMessages.displayShortageOfArguments;
 
@@ -52,7 +51,7 @@ public class PrepareFindCommand extends PrepareCommand {
             }
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             displayFindErrorMessage();
-        } catch (InvalidNumberOfArguments e) {
+        } catch (InvalidNumberOfArgumentsException e) {
             displayShortageOfArguments();
         }
         return null;
