@@ -12,9 +12,9 @@ import static seedu.duke.ui.ExceptionMessages.displayShortageOfArguments;
 /**
  * Prepares editing of user profile.
  */
-public class PrepareEditUserProfile extends PrepareCommand {
+public class PrepareEditUserProfileCommand extends PrepareCommand {
 
-    public PrepareEditUserProfile(String[] description) {
+    public PrepareEditUserProfileCommand(String[] description) {
         super(description);
     }
 

@@ -8,6 +8,7 @@ import java.io.IOException;
 import static seedu.duke.Trakcal.jarFilePath;
 import static seedu.duke.ui.ExceptionMessages.displayFileError;
 
+//@@author jlifah
 /**
  * Lists the user profile details.
  */
@@ -41,3 +42,4 @@ public class ListUserProfileCommand extends Command {
         }
     }
 }
+//@@author jlifah

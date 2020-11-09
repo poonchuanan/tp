@@ -10,6 +10,7 @@ import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyListError;
 import static seedu.duke.ui.ExceptionMessages.displayExcessNumberOfArguments;
 
+//@@author 1-Karthigeyan-1
 /**
  * Prepares graph command.
  */

@@ -5,6 +5,7 @@ import seedu.duke.command.DeleteByIndexCommand;
 
 import static seedu.duke.ui.ExceptionMessages.displayIndexNotNumberExceptionMessage;
 
+//@@author 1-Karthigeyan-1
 /**
  * Prepares delete by index command.
  */
