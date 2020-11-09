@@ -145,7 +145,7 @@ Before carrying out the command, user input first has to be prepared.
 
 ### 3.8 UserProfile component
 
-![userProfile](diagrams/userProfile.png)
+![userProfile](diagrams/UserProfile.png)
 
 *Figure 4. Diagram for UserProfile component*
 
@@ -154,7 +154,9 @@ Before carrying out the command, user input first has to be prepared.
 
 ## 4.0 Implementation
 
-### 4.1 Create User Profile feature
+## 4.1 Create User Profile feature
+
+#### Current Implementation
 
 The sequence diagram below shows how the components will react to a new user or for a returning user. 
 
@@ -168,7 +170,8 @@ The following has been omitted from the diagram to increase readability:
 
 <br>
 
-Design considerations: 
+#### Design Considerations
+
 * New users are required to create a new user profile before being able to use other features like `graph` to avoid unnecessarily being thrown exceptions.
 * Genders were limited to female and male instead of other genders like binary as our recommended calories equation only took into account female and male as genders.
 * Similarly, weight goals were limited to lose, maintain or gain as opposed to other forms of weight goal like cut as our current equations were only able to accomodate lose, maintain or gain.
@@ -176,9 +179,11 @@ Design considerations:
 <br>
 <br>
 
-### 4.2 Shortcut feature
+## 4.2 Shortcut feature
 
-#### 4.2.1 Creating a shortcut
+### 4.2.1 Creating a shortcut
+
+#### Current Implementation
 
 The sequence diagram below shows how the components in **traKCAL** work together to create a new shortcut. 
 
@@ -195,7 +200,8 @@ Some examples include:
 
 <br>
 
-Design considerations: 
+#### Design Considerations
+
 * At least one activity tag (`e/` or `f/`) and calorie tag (`c/`) must be specified by user for a shortcut to be created.
 * The order of the entry must be activity tag first before calorie tag. Calorie tag followed by activity tag is not allowed. This is to facilitate the adding of each entry in the shortcut, as seen in [section 4.3](#43-add-activity-feature).
 * Multiple entries in shortcut should be separated be a `+` as it is a key. 
@@ -203,7 +209,9 @@ Design considerations:
 <br>
 <br>
 
-#### 4.2.2 Adding a shortcut to activity list
+### 4.2.2 Adding a shortcut to activity list
+
+#### Current Implementation
 
 The sequence diagram below shows how the components in **traKCAL** work together to add entries in a shortcut to the activity list. 
 
@@ -219,16 +227,17 @@ The following has been omitted from the diagram to increase readability:
 
 <br>
 
-Design considerations: 
+#### Design Considerations
+
 * Activities added from shortcut are only for current date.
 
 <br>
 <br>
 
 
-### 4.3 Add activity feature
+## 4.3 Add activity feature
 
-#### 4.3.1 Current Implementation
+#### Current Implementation
 
 The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add to the list of date stated in user input.
 
@@ -246,7 +255,7 @@ The following Sequence Diagram shows how `AddFoodCommand` is carried out when th
 
 <br>
 
-#### 4.3.2 Design Considerations
+#### Design Considerations
 
 Aspect: How to add activity
 
