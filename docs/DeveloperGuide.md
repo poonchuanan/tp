@@ -122,6 +122,7 @@ In the Model component,
 Before carrying out the command, user input first has to be prepared.
 
 ![Prepare_Component](diagrams/PrepareCommand.png)
+
 *Figure 4. Diagram for PrepareCommand*
 
 ![Command_Component](diagrams/Command.png)
