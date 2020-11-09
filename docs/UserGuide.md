@@ -602,7 +602,7 @@ Items in the shortcut may have been added partially only.
 
 ### 4.1 Adding a food entry
 
-Want to add a food entry? This feature solves it by adding a food entry with its respective calories to the list!
+Want to add a food entry? This feature solves it for you by adding a food entry with its respective calories to the list!
 
 Format: `add f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** <d/ **DATE**>`
 
@@ -694,7 +694,7 @@ No.        Type                        Description                        Calori
 
 ### 4.2 Adding an exercise entry
 
-Want to add an exercise entry? This feature solves it by adding an exercise entry with its respective calories to the list.
+Want to add an exercise entry? This feature solves it for you by adding an exercise entry with its respective calories to the list.
 
 Format: `add e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** <d/ **DATE**>`
 
@@ -806,7 +806,7 @@ Any text in this format is the error message that you will be shown.
 ```
 
 #### Missing tags
-* Input with missing calorie tag.
+* When you input command with missing calorie tag.
 > `add f/ jelly 90 `
 
 ```
@@ -816,7 +816,7 @@ Calorie count tag[c/] is missing in your input!
 ```
 
 #### Activity date is before application launch date or after today's date
-* Input that is before 2020-10-14 or after today's date.
+* When you input command that is before 2020-10-14 or after today's date.
 > `add f/ jelly c/ 90 d/ 2020-10-13`
 
 ```
@@ -827,7 +827,7 @@ Date input has to be from 2020-10-14 to current date!
 ```
 
 #### Calorie count exceeds acceptable range
-* Calorie count is <= 0 or > 3000.
+* When you input calorie count that is <= 0 or > 3000.
 > `add e/ jump c/ -30`
 
 ```
@@ -839,7 +839,7 @@ Please input a valid calorie count that is within the range!
 
 
 #### Description length exceeds acceptable range
-* Description with more than 40 characters.
+* When you input description with more than 40 characters.
 > `add e/ jumping up and down in a merry round in Singapore c/ 80`
 
 ```
@@ -849,7 +849,7 @@ Maximum description length is 40 characters only!
 ```
 
 #### Empty inputs will not be accepted
-* Empty input parameters.
+* When you have empty input parameters.
 > `add e/ c/ `
 
 ```
@@ -960,7 +960,7 @@ Please do input 'help' for the commands and their respective input format.
 
 ### 6.1 Editing an entry in list
 
-A typo when entering input? Do you want to edit attributes of a particular entry in the list? This feature solves it!
+A typo when entering input? Do you want to edit attributes of a particular entry in the list? This feature solves it for you!
 
 Format: `edit **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**` OR `edit **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
 
@@ -978,8 +978,9 @@ Parameters:
 
 >Things you should take note of:
 >*This feature allows the changing of a food activity to exercise activity in the list. Vice versa.
->*The list in which you want to edit to have to be pulled out first before being able to edit on it, else editing would be today's list!
->*This command edits the latest list pulled out. For example, if `list 2020-10-21` is the latest list to be pulled out, then edit will edit index stated in date 2020-10-21's list.
+>*The list in which you want to edit to have to be pulled out first before being able to edit on it, else editing would be on today's list!
+>*This command edits the latest list pulled out. For example, if `list 2020-10-21` is the latest list to be pulled out, then `edit` will edit index stated in date 2020-10-21's list.
+
 
 >IMPORTANT:
 >*This feature cannot be exercised on find feature!
@@ -1104,7 +1105,7 @@ Any text in this format is the error message that you will be shown.
 ```
 
 #### Calorie count exceeds acceptable range
-* Calorie count is <= 0 or > 3000.
+* When you input calorie count that is <= 0 or > 3000.
 > `edit 1 f/ jelly c/ -30`
 
 ```
@@ -1115,7 +1116,7 @@ Please input a valid calorie count that is within the range!
 ```
 
 #### Description length exceeds acceptable range
-* Description with more than 40 characters.
+* When you input description with more than 40 characters.
 > `edit 2 e/ jumping up and down in a merry round in Singapore c/ 80`
 
 ```
@@ -1125,7 +1126,7 @@ Maximum description length is 40 characters only!
 ```
 
 #### Empty inputs will not be accepted
-* Empty input parameters.
+* When you have empty input parameters.
 > `edit 3 e/ c/ `
 
 ```
@@ -1681,7 +1682,7 @@ Chaining is the right feature for your needs!
 >*The respective formats to adhere to for each feature still applies.
 
 Format: *not extensive, there is a lot of combinations available*
-        *commands just need to be separated by `&&`*
+        *your commands just need to be separated by `&&`*
         
 Examples of formats accepted:
 >* `add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**>`
@@ -1815,7 +1816,7 @@ Any text in this format is the error message that you will be shown.
 ```
 
 #### Chaining a feature that is not accepted
-* When you input contains features that are not accepted such as
+* When your input contains features that are not accepted such as
 > `bye && graph`
 
 ```
@@ -1829,7 +1830,7 @@ Any text in this format is the error message that you will be shown.
 >* Possible errors for adding: [errors for add](#43-possible-errors-when-adding-an-entry-into-activity-list)
 >* Possible errors for listing: [errors for list](#511-possible-errors-when-listing)
 >* Possible errors for editing: [errors for edit](#611-possible-errors-when-editing)
->* Possible errors for graphing: [errors for edit](#1011-possible-errors-when-graphing)
+>* Possible errors for graphing: [errors for graph](#1011-possible-errors-when-graphing)
 
 <br>
 <br>
@@ -1885,7 +1886,7 @@ The following are only examples of what the input command can look like!
 For more information please go to the respective section for the feature details!
 
 >Things you should take note of:
->* Words that look like THIS are parameters to be supplied by user.
+>* Words that look like THIS are parameters to be supplied by you.
 >* Words that look like <this> are optional parameters
 
 Action         | Format | Example

@@ -521,7 +521,8 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 ### 4.10 Delete feature
 
 ![Delete_Sequence_Diagram](diagrams/DeleteSequeunceDiagram.png)
-*Figure 13. Sequence diagram of delete by index feature
+
+*Figure 13. Sequence diagram of delete by index feature*
 
 ## 5.0 Appendix: Requirements
 
@@ -572,6 +573,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 |v2.0|weight conscious person|track the amount of calories gained or lost|maintain my weight|
 |v2.0|careless student|go back and edit entries entered earlier|correct the errors I have made|
 |v2.0|frequent user|have pre-set repetitive actions entered by me|save time when inputting data|
+|v2.0|lazy user|be able to chain input|save time when inputting data|
 
 <br>
 
