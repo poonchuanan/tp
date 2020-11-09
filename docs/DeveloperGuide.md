@@ -211,6 +211,11 @@ The following has been omitted from the diagram to increase readability:
 * Components after adding each entry in the shortcut to the activity list as the same diagram will be repeated in [section 4.3](#43-add-activity-feature). Instead, it is replaced by the updateList() self invocation call. 
 
 <br>
+
+Design considerations: 
+* Activities added from shortcut are only for current date.
+
+<br>
 <br>
 
 
