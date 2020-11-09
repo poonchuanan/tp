@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.Ui.displayNotSavedMessage;
 
 //@@author chewyang
@@ -138,6 +139,7 @@ public class Storage {
             }
         } catch (IOException e) {
             System.out.println("Unable to load data");
+            logging.writeToLogWarning("Cannot load csv file");
         }
     }
 
@@ -188,6 +190,7 @@ public class Storage {
             break;
         default:
             System.out.println("Corrupted data. Activity should be either exercise or food");
+            logging.writeToLogWarning("CSV file corrupted - Not food or exercise");
         }
     }
 }
