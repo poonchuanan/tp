@@ -5,7 +5,11 @@
 
 ### Summary of Contributions
 
+This section shows a brief overview of my contribution to traKCAL. It includes contributions like code writing, code documentation, UG/DG writing and other contributions for traKCAL. 
+
 #### Code contributed
+
+[contributions](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=Rani%20Karth&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code)
 
 #### Enhancements implemented
 
