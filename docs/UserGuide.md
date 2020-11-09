@@ -319,7 +319,7 @@ Please input lsoe/maintain/gain as weight goal only!
 
 #### Corrupted user profile
 
-* If the text file containing the user profile is of an unreadable format, the following error message will be shown in the subsequent run and the user will be directed to create a new user profile automatically
+* If the text file containing the user profile is of an unreadable format, the following error message will be shown in the subsequent run and the user will be directed to create a new user profile automatically.
 
 ```
 ====================================================================================
@@ -847,7 +847,7 @@ Please input 'help' for the commands and their respective input format.
 <br>
 <br>
 
-## 5.0 List - Owen Chew Yang
+## 5.0 List - Owen Chew
 
 ### 5.1 Listing entries for the specified day
 
@@ -1121,7 +1121,7 @@ Please input 'help' for the commands and their respective input format.
 <br>
 <br>
 
-## 7.0 Find
+## 7.0 Find - Poon Chuan An
 
 ### 7.1 Finding entries via keyword - basic
 
@@ -1281,7 +1281,7 @@ There are consecutive slashes in your input!
 <br>
 <br>
 
-## 8.0 Move - Owen Chew Yang
+## 8.0 Move - Owen Chew
 
 ### 8.1.1 Moving an activity to another position
 
@@ -1395,7 +1395,7 @@ Please input 'help' for the commands and their respective input format.
 <br>
 <br>
 
-## 9.0 Delete
+## 9.0 Delete - Karthig
 
 ### 9.1 Deleting an entry in list
 
@@ -1501,7 +1501,7 @@ Invalid Index!
 
 <br>
 
-### 9.2.1 Deleting all entries in list
+### 9.2.1 Deleting all entries in list - Karthig
 
 Deletes all entry in list.
 
@@ -1551,7 +1551,7 @@ Please input 'help' for the commands and their respective input format.
 <br>
 <br>
 
-## 10.0 Graph
+## 10.0 Graph - Karthig
 
 ### 10.1 Showing past net calories
 
