@@ -11,8 +11,8 @@ import static seedu.duke.ui.ExceptionMessages.displayListNotFoundExceptionMessag
 import static seedu.duke.ui.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ui.ExceptionMessages.print;
 import static seedu.duke.ui.ExceptionMessages.sameIndexForMoveCommandExceptionMessage;
-//@@author chewyang
 
+//@@author chewyang
 /**
  * This command moves an activity from one index to another.
  */
@@ -51,4 +51,4 @@ public class MoveActivityCommand extends Command {
 
     }
 }
-//@@author chewyang
+
