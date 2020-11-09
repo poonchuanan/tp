@@ -29,7 +29,7 @@ Here are some of the commands:
 
 #### Contributions to the Developer Guide
 
-* I contributed to the find section of the DG.
+* I contributed to the find section and storage component of the DG.
 * I checked through the DG for any errors as well.
 
 

@@ -1849,13 +1849,18 @@ This section contains frequently asked questions.
 
 **A2**: **traKCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
-**Q3**: Is **traKCAL** optimized for all operating systems?
+**A3**: I keep getting errors with the storage files when using **traKCAL**, how do I solve them?
 
-**A3**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
+**Q4**: Do take a look at the error sections above of the User Guide for solutions. When all else fails, you can delete the tpdata file to reset your data. 
+        Alternatively, make sure your csv file is not open when **traKCAL** is running to prevent write conflicts.
 
-**Q4**: How do I contact us if I have doubts or have issues to raise?
+**Q4**: Is **traKCAL** optimized for all operating systems?
 
-**A4**: You can reach us via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
+**A4**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
+
+**Q5**: How do I contact us if I have doubts or have issues to raise?
+
+**A5**: You can reach us via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
 
 <br>
 
