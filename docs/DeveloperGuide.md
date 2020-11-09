@@ -151,7 +151,7 @@ On program launch:
 
 On Command execution:
 
-* Whenever the user changes the list by performing an operation such as add or delete entry, `Storage` parses the model objects and writes into the csv file.
+* Whenever the user changes the list by performing an operation such as *add* or *delete* entry, `Storage` parses the model objects and writes into the csv file.
 * The respective logs will also be updated according to the given commands through `Logging`.
 * `UserSetStorage` will store the relevant shortcuts created by the using *createSet* command is called.
 
