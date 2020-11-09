@@ -36,9 +36,7 @@ public class ActivityAddTest {
 
         AddFoodCommand food = new AddFoodCommand("Apple", 50, false);
 
-        Assertions.assertThrows(NullPointerException.class, () -> {
-            food.execute();
-        });
+        Assertions.assertThrows(NullPointerException.class, food::execute);
     }
 
     @Test
@@ -55,8 +53,6 @@ public class ActivityAddTest {
 
         AddExerciseCommand exercise = new AddExerciseCommand("Running", 450, false);
 
-        Assertions.assertThrows(NullPointerException.class, () -> {
-            exercise.execute();
-        });
+        Assertions.assertThrows(NullPointerException.class, exercise::execute);
     }
 }

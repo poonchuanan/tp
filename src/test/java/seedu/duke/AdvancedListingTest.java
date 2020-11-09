@@ -1,13 +1,10 @@
 package seedu.duke;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.Command;
-import seedu.duke.command.DeleteAllCommand;
 import seedu.duke.command.DeleteByIndexCommand;
 import seedu.duke.command.FindDescriptionCommand;
 import seedu.duke.command.ListCommand;
-import seedu.duke.exception.KeywordNotFoundException;
 import seedu.duke.model.DayMap;
 import seedu.duke.model.Exercise;
 import seedu.duke.model.Food;
