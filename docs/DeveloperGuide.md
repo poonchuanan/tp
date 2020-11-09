@@ -153,6 +153,10 @@ In the Model component,
 
 ### 3.8 UserProfile component
 
+![userProfile](diagrams/userProfile.png)
+
+*Figure 4. Diagram for UserProfile component*
+
 <br>
 <br>
 

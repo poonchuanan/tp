@@ -20,6 +20,10 @@ import static seedu.duke.Trakcal.executeCmd;
 import static seedu.duke.Trakcal.storage;
 import static seedu.duke.ui.ExceptionMessages.displayCorruptedSetMessage;
 
+//@@author jlifah
+/**
+ * Add Set Command.
+ */
 public class AddSetCommand extends Command {
 
     protected static final int MAXIMUM_CALORIE_COUNT = 3000;
@@ -139,3 +143,4 @@ public class AddSetCommand extends Command {
         }
     }
 }
+//@@author jlifah
