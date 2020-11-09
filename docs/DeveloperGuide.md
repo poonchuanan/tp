@@ -608,7 +608,22 @@ Exiting the application
     `createSet dinner f/ beans c/ 1000000000000000`: calorie too large to be an integer
     Expected: Message with error will be shown.
  
+<br>
+
+
+#### Adding a shortcut into list
+
+>Adding a shortcut
+    Test case: `addSet dinner`
+    Expected: Contents within `dinner.txt` will be added into today's list.
+
+ >Incorrect inputs to try:
+    `addSet test1`: if test1 is not yet created as shortcut
+    `addSet `: a shortcut name not specified
+    `addSet test2`: if test2 has been edited to the wrong format by user
+    Expected: Message with error will be shown.
  
+<br>
  
  
 #### Adding an entry into list
