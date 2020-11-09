@@ -133,13 +133,35 @@ Before carrying out the command, user input first has to be prepared.
 
 ### 3.6 Storage component
 
+**traKCAL** saves both user profile data and activity entries in text file and csv(comma separated values) files respectively. <br>
+It also handles the logging file that records down the different types operations or errors that was performed during the program.
+
+![Storage_Component](diagrams/storage.jpg)
+
+*Figure 5. Diagram for Storage component*
+
+<br>
+
+On program launch:
+
+1. `Storage` is initialised and checks for existing saved data.
+2. If saved data exists, `Storage` will read the saved data and parses them into model objects such as activity lists for the activity data.
+3. Else, if saved data does not exist, `Storage` will create an empty save file in the tpData directory.
+4. New users will be prompted to create their profile by inputting their details and saved through `UserInfoStorage`.
+
+On Command execution:
+
+* Whenever the user changes the list by performing an operation such as add or delete entry, `Storage` parses the model objects and writes into the csv file.
+* The respective logs will also be updated according to the given commands through `Logging`.
+* `UserSetStorage` will store the relevant shortcuts created by the using *createSet* command is called.
+
 <br>
 
 ### 3.7 Exception component
 
 ![Exception_Component](diagrams/Exception.png)
 
-*Figure 4. Diagram for Exception component*
+*Figure 6. Diagram for Exception component*
 
 <br>
 
@@ -162,7 +184,7 @@ The sequence diagram below shows how the components will react to a new user or 
 
 ![CreateNewUserFeature](diagrams/createNewUserFeature.png)
 
-*Figure 4. Components interactions for **traKCAL** create user profile feature*
+*Figure 7. Components interactions for **traKCAL** create user profile feature*
 
 The following has been omitted from the diagram to increase readability: 
 * Exception handling 
@@ -196,7 +218,7 @@ Some examples include:
 
 ![createSetFeature](diagrams/createSetFeature.png)
 
-*Figure 5. Components interaction for **traKCAL** create set feature*
+*Figure 8. Components interaction for **traKCAL** create set feature*
 
 <br>
 
@@ -219,7 +241,7 @@ Users can call any existing shortcut in this format: `addSet **SHORTCUT_NAME**`
 
 ![addSetFeature](diagrams/addSetFeature.png)
 
-*Figure 6. Components interaction for **traKCAL** add set feature*
+*Figure 9. Components interaction for **traKCAL** add set feature*
 
 The following has been omitted from the diagram to increase readability: 
 * Exception handling 
@@ -245,13 +267,13 @@ The following Sequence Diagram shows how `AddFoodCommand` is carried out when th
 
 ![Add Food](diagrams/addFoodFeature.png)
 
-*Figure 5. Component interactions for add food command*
+*Figure 10. Component interactions for add food command*
 
 > `AddExerciseCommand` diagram has a similar logic.
 
 ![Add_Exercise](diagrams/AddExerciseFeature.png)
 
-*Figure 6. Component interactions for add exercise command*
+*Figure 11. Component interactions for add exercise command*
 
 <br>
 
@@ -297,12 +319,14 @@ Given below is an example usage scenario and how the lastSeenList behaves for di
 Step 1. The user launches the application for the first time. The lastSeenList will be pointed to the activityList for today's date.
 This means that any `edit`, `delete` or `move` commands will be performed on the activityList for today's date in this case, the date would be 2020-11-12.
 ![lastSeenList first state](diagrams/initialStateOfLastSeenList.PNG)
+*Figure 12. First state of lastSeenList*
 
 <br>
 
 Step 2. The user executes a `list 2020-11-10`. This `list 2020-11-10` command causes the lastSeenList to be pointed to the actvityList for 2020-11-10.
 This This means that any `edit`, `delete` or `move` commands will be performed on the activityList for 2020-11-10.
 ![lastSeenList second state](diagrams/secondStateOfLastSeenList.PNG)
+*Figure 13. Second state of lastSeenList*
 
 <br>
 
@@ -311,7 +335,7 @@ The following sequence diagram shows how the lastSeenList is set after a “list
 
 ![Listing feature for find and list commands](diagrams/setLastSeenList.png)
 
-*Figure 6. Sequence diagram of setting the lastSeenList after a `list` command*
+*Figure 14. Sequence diagram of setting the lastSeenList after a `list` command*
 
 <br>
 <br>
@@ -333,12 +357,13 @@ Given below is an example usage scenario and how the lastSeenList for a `find` c
 Step 1. The user executes a `find e/ running` This `find e/ running` command will intialize the lastSeenList to a new ActivityList and is made up of Activities that contains the `running` keyword as per the command.
 This lastSeenList will not point to any other activityList in the dayMap hashmap.
 ![lastSeenList third state](diagrams/thirdStateOfLastSeenList.PNG)
+*Figure 12. Third state of lastSeenList*
 
 The following sequence diagram shows how the lastSeenList is set after a find command.
 
-![Find Sequence Diagram](diagrams/FindSequenceDiagram.png)
+![Find Sequence Diagram](diagrams/FindSequenceDiagram.jpg)
 
-*Figure 7. Sequence diagram of setting the lastSeenList after a find command*
+*Figure 13. Sequence diagram of setting the lastSeenList after a find command*
 
 <br>
 <br>
@@ -352,7 +377,7 @@ The following sequence diagram shows how the listDrawer class is used to display
 
 ![list_Drawer](diagrams/listDrawer.PNG)
 
-*Figure 8. Sequence diagram of the usage of listDrawer to display the list*
+*Figure 14. Sequence diagram of the usage of listDrawer to display the list*
 
 <br>
 <br>
@@ -367,13 +392,13 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 
 ![Edit_Food](diagrams/EditFood.png)
 
-*Figure 9. Sequence diagram of edit food feature*
+*Figure 15. Sequence diagram of edit food feature*
 
 > `EditExerciseCommand` diagram has a similar logic.
 
 ![Edit_Exercise](diagrams/EditExercise.png)
 
-*Figure 10. Sequence diagram of edit exercise feature*
+*Figure 16. Sequence diagram of edit exercise feature*
 
 <br>
 
@@ -407,15 +432,15 @@ The following sequence diagram shows how the chaining works after command is ent
 
 ![Chain_Command](diagrams/ChainCommand.png)
 
-*Figure 10. Sequence diagram of chaining feature*
+*Figure 17. Sequence diagram of chaining feature*
 
 ![Object_Diagram_Of_PrepareCommand](diagrams/chainCommand_PrepareCommand.png)
 
-*Figure 11. Object diagram of allowed PrepareCommand subclass*
+*Figure 18. Object diagram of allowed PrepareCommand subclass*
 
 ![Object_Diagram_Of_Command](diagrams/chainCommand_Command.png)
 
-*Figure 12. Object diagram of allowed Command subclass*
+*Figure 19. Object diagram of allowed Command subclass*
 
 <br>
 
@@ -441,7 +466,7 @@ The following sequence diagram shows how the `move` command is executed, where i
 
 ![Move_command](diagrams/moveCommand.png)
 
-*Figure 11. Sequence diagram of move feature*
+*Figure 20. Sequence diagram of move feature*
 
 <br>
 <br>
@@ -463,7 +488,7 @@ to draw the graph.
 
 ![Graph_Sequence_Diagram](diagrams/GraphSequenceDiagram.png)
 
-*Figure 12. Sequence diagram of move feature*
+*Figure 21. Sequence diagram of move feature*
 
 As shown above, when the execute command of GraphCommand is called, the GraphProperty object 
 is created, the properties of the graph are then stored and calculated in setProperty function.
