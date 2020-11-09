@@ -40,6 +40,11 @@ public class ExceptionMessages {
                 + PROMPT_USER_OF_HELP_MESSAGE);
     }
 
+    public static void sameIndexForMoveCommandExceptionMessage() {
+        print("The indexes entered for this move command does not result in any change!");
+    }
+
+
     /**
      * Prints error message when NullPointerException occurs in delete command.
      */
