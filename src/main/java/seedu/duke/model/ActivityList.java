@@ -116,6 +116,7 @@ public class ActivityList extends Trakcal {
         }
     }
 
+    //@@author 1-Karthigeyan-1
     public int getNetCalorie() {
         return netCalorie;
     }
@@ -129,6 +130,7 @@ public class ActivityList extends Trakcal {
         }
     }
 
+    //@@author 1-Karthigeyan-1
     /**
      * Removes an activity from the list via index.
      *
@@ -144,7 +146,6 @@ public class ActivityList extends Trakcal {
             }
             activities.remove(index);
             activityCounter--;
-            displayMessage("Activity removed!");
         } else {
             System.out.println("Please make sure index is within range");
             throw new IndexOutOfBoundsException();
@@ -179,6 +180,7 @@ public class ActivityList extends Trakcal {
         return false;
     }
 
+    //@@author 1-Karthigeyan-1
     /**
      * Clears the list of activities.
      */

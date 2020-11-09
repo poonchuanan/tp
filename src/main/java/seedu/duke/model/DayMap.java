@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import static seedu.duke.ui.Ui.displayEmptyActivityCounterMessage;
+import static seedu.duke.ui.Ui.displayMessage;
 
 //@@author chewyang
 /**
@@ -402,30 +403,74 @@ public class DayMap {
                 ActivityList activities = (ActivityList) pair.getValue();
                 int activityCounter = activities.getNumberOfActivities();
 
-                if (activityCounter > 0) {
-                    for (int i = 0; i < activityCounter; i++) {
-                        if (activityToMatch.equals(activities.getActivity(i))) {
-                            activities.removeActivity(i);
-                            //if deleted the last item in the ActivityList then obtain the key to be deleted from daymap
-                            if (activities.getNumberOfActivities() == 0) {
-                                keyToDelete = (LocalDate) pair.getKey();
-                            }
-                            break;
-                        }
-                    }
-                    //If encountered a activitylist with a count of 0,
-                    // which will be resulted if deleted the last item of ActivityList from a list command
-                } else if (activityCounter == 0) {
-                    keyToDelete = (LocalDate)pair.getKey();
-                }
+                keyToDelete = getKeyToRemove(activityToMatch, keyToDelete, pair, activities, activityCounter);
             }
-            //removes key from the daymap
             dayMap.remove(keyToDelete);
-            //displaySavedMessage();
+            displayMessage("Activity removed!");
         } else {
             throw new IndexOutOfBoundsException();
         }
 
+    }
+
+    /**
+     * Get key to remove by matching.
+     *
+     * @param activityToMatch activity to match
+     * @param keyToDelete the key to be deleted
+     * @param pair DayMap entry pair
+     * @param activities activity list
+     * @param activityCounter the maximum activities in the list
+     * @return key to delete
+     */
+    private LocalDate getKeyToRemove(Activity activityToMatch, LocalDate keyToDelete, Map.Entry pair,
+                                     ActivityList activities, int activityCounter) {
+        if (activityCounter > 0) {
+            keyToDelete = checkActivitiesInList(activityToMatch, keyToDelete, pair, activities, activityCounter);
+            //If encountered a activitylist with a count of 0,
+            // which will be resulted if deleted the last item of ActivityList from a list command
+        } else {
+            keyToDelete = checkEmptyList(keyToDelete, pair, activityCounter);
+        }
+        return keyToDelete;
+    }
+
+    /**
+     * Iterate through the activities in the list.
+     *
+     * @param activityToMatch activity to match
+     * @param keyToDelete the key to be deleted
+     * @param pair DayMap entry pair
+     * @param activities activity list
+     * @param activityCounter the maximum activites in the list
+     * @return key to delete
+     */
+    private LocalDate checkActivitiesInList(Activity activityToMatch, LocalDate keyToDelete,
+                                            Map.Entry pair, ActivityList activities, int activityCounter) {
+        for (int i = 0; i < activityCounter; i++) {
+            if (activityToMatch.equals(activities.getActivity(i))) {
+                activities.removeActivity(i);
+                //if deleted the last item in the ActivityList then obtain the key to be deleted from daymap
+                keyToDelete = checkEmptyList(keyToDelete, pair, activities.getNumberOfActivities());
+                break;
+            }
+        }
+        return keyToDelete;
+    }
+
+    /**
+     * Checks for empty list.
+     *
+     * @param keyToDelete key for dayMap
+     * @param pair DayMap entry pair
+     * @param numberOfActivities number of activites in the current list
+     * @return the key to delete
+     */
+    private LocalDate checkEmptyList(LocalDate keyToDelete, Map.Entry pair, int numberOfActivities) {
+        if (numberOfActivities == 0) {
+            keyToDelete = (LocalDate) pair.getKey();
+        }
+        return keyToDelete;
     }
 
     //@@author chewyang
