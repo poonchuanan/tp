@@ -4,6 +4,7 @@ import seedu.duke.exception.EmptyKeywordException;
 import seedu.duke.exception.FindSlashException;
 import seedu.duke.exception.KeywordNotFoundException;
 
+import static seedu.duke.Trakcal.logging;
 import static seedu.duke.ui.ExceptionMessages.displayEmptyKeywordMessage;
 import static seedu.duke.ui.ExceptionMessages.displayKeywordNotFoundMessage;
 import static seedu.duke.ui.ExceptionMessages.displayFindSlashExceptionMessage;
@@ -36,10 +37,13 @@ public class FindEitherCommand extends Command {
             dayMap.drawListAfterFindCommand();
         } catch (KeywordNotFoundException e) {
             displayKeywordNotFoundMessage();
+            logging.writeToLogWarning("No results found after find (either)");
         } catch (EmptyKeywordException e) {
             displayEmptyKeywordMessage();
+            logging.writeToLogWarning("Empty keyword for input (either)");
         } catch (FindSlashException e) {
             displayFindSlashExceptionMessage();
+            logging.writeToLogWarning("Consecutive slashes present in find input (either)");
         }
     }
 }
