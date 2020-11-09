@@ -18,7 +18,7 @@ import static seedu.duke.ui.ExceptionMessages.displayEmptyListError;
 public class ListCommand extends Command {
 
     protected LocalDate date;
-    private final String NO_DATA_MESSAGE = "No data found for this list command";
+    private static final String NO_DATA_MESSAGE = "No data found for this list command";
 
 
     public ListCommand(LocalDate date) {

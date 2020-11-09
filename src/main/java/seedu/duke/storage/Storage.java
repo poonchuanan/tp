@@ -30,14 +30,19 @@ import static seedu.duke.ui.Ui.displayNotSavedMessage;
 public class Storage {
     String filePath;
     File dataFile;
-    String LOAD_DATA_SUCCESS_MESSAGE = "Data successfully loaded into application";
-    String LOAD_DATA_FAILURE_MESSAGE = "Unable to load data from the file, the CSV file might be corrupted";
-    String BOTH_PARENT_AND_DATA_EXIST_MESSAGE = "Parent folder /tpdata and data file /tpdata/tpcsv already exists, "
+    public static final String LOAD_DATA_SUCCESS_MESSAGE = "Data successfully loaded into application";
+    public static final String LOAD_DATA_FAILURE_MESSAGE = "Unable to load data from the file, the CSV file might "
+            + "be corrupted";
+    public static final String BOTH_PARENT_AND_DATA_EXIST_MESSAGE = "Parent folder /tpdata and data file "
+            + "/tpdata/tpcsv already exists, "
             + "proceeding to use this folder.";
-    String ONLY_PARENT_FOLDER_EXISTS_MESSAGE = "Parent folder /tpdata exists but data file /tpdata/tpcsv has not been "
+    public static final String ONLY_PARENT_FOLDER_EXISTS_MESSAGE = "Parent folder /tpdata exists but data file "
+            + "/tpdata/tpcsv has not been "
             + "created yet, proceeding to create this file";
-    String PARENT_FOLDER_NOT_EXIST_MESSAGE = "Parent folder /tpdata does not exist, proceeding to create both the"
+    public static final String PARENT_FOLDER_NOT_EXIST_MESSAGE = "Parent folder /tpdata does not exist, "
+            + "proceeding to create both the"
             + " parent folder /tpdata and data file /tpdata/tpcsv";
+
     /**
      * Constructor for the storage class.
      *
