@@ -176,7 +176,7 @@ This component contains all the exception classes used in traKCAL.
 
 This component contains the information such as the user's name, gender, height, weight, active level and the weight goal. 
 
-![userProfile](diagrams/UserProfile.png)
+![userProfile](diagrams/userprofile.png)
 
 
 *Figure 4. Diagram for UserProfile component*
