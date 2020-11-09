@@ -67,35 +67,21 @@ This guide will provide information on the design and implementation of **traKCA
 
 ### 3.1 Architecture
 
-![Architecture](diagrams/Architecture.png)
+![ArchitectureDiagram](diagrams/ArchitectureDiagram.png)
 
-*Figure 1. Diagram for Model component*
+*Figure 1. Architecture diagram of traKCAL*
 
-The Architecture Diagram shown above explains the high-level design of **traKCAL**.
-
-**traKCAL** is made up of mainly 8 components.
-
-`trakCAL`: tracKCAL starts here
-
-`Ui`: Displays any message that the user can see and interact with
-
-`Logic`: Interprets what the user input
-
-`Model`: Structure of the data
-
-`Command`: Executes specific command according to interpretation by `Logic`
-
-`Storage`: Saves required data into the hard disk or retrieves data
-
-`Exception`: Contains additional exceptions used in code.
-
-`UserProfile`: Processes user details
+The Architecture Diagram shown above explains the high-level design of **traKCAL**. There are 8 components in traKCAL and their functionalities will be discussed below:
 
 <br>
+
+---
 
 ### 3.2 Ui component
 
 <br>
+
+---
 
 ### 3.3 Logic component
 
@@ -116,6 +102,8 @@ and validity of those description are checked..
 
 <br>
 
+---
+
 ### 3.4 Model component
 
 ![Model_Component](diagrams/model.png)
@@ -131,38 +119,109 @@ In the Model component,
 
 <br>
 
+---
+
 ### 3.5 Command component
 
+
 <br>
+
+---
 
 ### 3.6 Storage component
 
 <br>
 
+---
+
 ### 3.7 Exception component
 
 <br>
+
+---
 
 ### 3.8 UserProfile component
 
 <br>
 <br>
 
-## 3.0 Implementation
+## 4.0 Implementation
 
-### 3.1 Create User Profile
+### 4.1 Create User Profile feature
 
 The sequence diagram below shows how the components will react to a new user or for a returning user. 
 
-![CreateNewUser](diagrams/CreateNewUser.png)
+![CreateNewUserFeature](diagrams/CreateNewUserFeature.png)
 
-*Figure 4. Components interactions for tracKCAL checks for new or existing user*
+*Figure 4. Components interactions for **traKCAL** create user profile feature*
+
+The following has been omitted from the diagram to increase readability: 
+* Exception handling 
+* External text file creation block
 
 <br>
 
-### 3.2 Add activity feature
+Design considerations: 
+* New users are required to create a new user profile before being able to use other features like `graph` to avoid unnecessarily being thrown exceptions.
+* Genders were limited to female and male instead of other genders like binary as our recommended calories equation only took into account female and male as genders.
+* Similarly, weight goals were limited to lose, maintain or gain as opposed to other forms of weight goal like cut as our current equations were only able to accomodate lose, maintain or gain.
 
-#### 3.2.1 Current Implementation
+<br>
+<br>
+
+### 4.2 Shortcut feature
+
+#### 4.2.1 Creating a shortcut
+
+The sequence diagram below shows how the components in **traKCAL** work together to create a new shortcut. 
+
+Users can create a shortcut with unlimited number of entries in this format: `createSet **SHORTCUT_NAME** ...`
+
+Some examples include:
+>`createSet **SHORTCUT_NAME** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+>`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+>`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+
+![createSetFeature](diagrams/createSetFeature.png)
+
+*Figure 5. Components interaction for **traKCAL** create set feature*
+
+<br>
+
+Design considerations: 
+* At least one activity tag (`e/` or `f/`) and calorie tag (`c/`) must be specified by user for a shortcut to be created.
+* The order of the entry must be activity tag first before calorie tag. Calorie tag followed by activity tag is not allowed. This is to facilitate the adding of each entry in the shortcut, as seen in [section 3.3](#33-add-activity-feature).
+* Multiple entries in shortcut should be separated be a `+` as it is a key. 
+
+<br>
+<br>
+
+#### 4.2.2 Adding a shortcut to activity list
+
+The sequence diagram below shows how the components in **traKCAL** work together to add entries in a shortcut to the activity list. 
+
+Users can call any existing shortcut in this format: `addSet **SHORTCUT_NAME**`
+
+![addSetFeature](diagrams/addSetFeature.png)
+
+*Figure 6. Components interaction for **traKCAL** add set feature*
+
+The following has been omitted from the diagram to increase readability: 
+* Exception handling 
+* Components after adding each entry in the shortcut to the activity list as the same diagram will be repeated in [section 4.3](#43-add-activity-feature). Instead, it is replaced by the updateList() self invocation call. 
+
+<br>
+
+Design considerations: 
+* Activities added from shortcut are only for current date.
+
+<br>
+<br>
+
+
+### 4.3 Add activity feature
+
+#### 4.3.1 Current Implementation
 
 The adding mechanism is used by `AddFoodCommand` and `AddExerciseCommand` to add to the list of date stated in user input.
 
@@ -180,22 +239,23 @@ The following Sequence Diagram shows how `AddFoodCommand` is carried out when th
 
 <br>
 
-#### 3.2.2 Design Considerations
+#### 4.3.2 Design Considerations
 
 Aspect: How to add activity
 
->Alternative 1(current choice): Using single letter words as tags for input commands. (e.g. add f/ jelly c/ 100 d/ 2020-11-09)
+>Current choice: Using single letter words as tags for input commands. (e.g. add f/ jelly c/ 100 d/ 2020-11-09)
 >* Pros: Faster and shorter input keys for user.
 >* Cons: Have to ensure that user is clear on what tags to input.
 
->Alternative 2: Using full words as tags for input commands. (e.g. add food/ XXX calorie/ XXX date/ XXX)
+>Alternative: Using full words as tags for input commands. (e.g. add food/ XXX calorie/ XXX date/ XXX)
 >* Pros: Tags are obvious in what input is expected.
 >* Cons: More wordy input needed from user.
 
 <br>
 <br>
 
-### 3.3 Listing feature for find and list commands
+### 4.4 Listing feature for find and list commands
+
 The listing mechanism used by `ListCommand` and `FindCommand` to display the required list of activities is facilitated by the lastSeenList of class `ActivityList`. 
 The following operations could be applied to the lastSeenList which would change the actual data in the database:
 
@@ -207,7 +267,7 @@ The details of those operations can be found further down.
 
 <br>
 
-#### 3.3.1 List
+#### 4.4.1 List
 
 This listing feature uses the lastSeenList which is of ActivtyList class.  <br>
 The lastSeenList is the list that the user would see after a `list` or `find` command. <br>
@@ -225,7 +285,7 @@ The following sequence diagram shows how the lastSeenList is set after a “list
 <br>
 <br>
 
-#### 3.3.2 Find
+#### 4.4.2 Find
 
 The editing mechanism is used by the basic find features: `FindDescriptionCommand`, `FindCalorieCommand`, 
 as well as the advanced find features: `FindAllCommand` and `FindEitherCommand` to look for keywords in the list.
@@ -239,9 +299,9 @@ The following sequence diagram shows how the lastSeenList is set after a find co
 <br>
 <br>
 
-### 3.4 Displaying the list after `find` or `list` commands
+### 4.5 List feature after `find` or `list` commands
 
-#### 3.4.1 Current implementation
+#### 4.5.1 Current implementation
 The mechanism used to display the lastSeenList invoked by the list or find commands is facilitated by the listDrawer and findDrawer class respectively. They both work the same way but the list produced by findDrawer has an extra column which contains the dates of the respective entries.
 
 The following sequence diagram shows how the listDrawer class is used to display the lastSeenList.
@@ -253,9 +313,9 @@ The following sequence diagram shows how the listDrawer class is used to display
 <br>
 <br>
 
-### 3.5 Edit activity in list feature
+### 4.6 Edit activity in list feature
 
-#### 3.5.1 Current Implementation
+#### 4.6.1 Current Implementation
 
 The editing mechanism is used by `EditFoodCommand` and `EditExerciseCommand` to amend the current list of activities.
 
@@ -273,7 +333,7 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 
 <br>
 
-#### 3.5.2 Design Considerations
+**Design considerations:**
 
 Aspect: How to edit activity
 
@@ -288,9 +348,9 @@ Aspect: How to edit activity
 <br>
 <br>
 
-### 3.6 Chaining feature
+### 4.7 Chaining feature
 
-#### 3.6.1 Current Implementation
+#### 4.7.1 Current Implementation
 
 The chaining mechanism can be used by the various commands available The following are the types of command that can be chained:
 - list
@@ -306,7 +366,7 @@ The following sequence diagram shows how the chaining works after command is ent
 
 <br>
 
-#### 3.6.2 Design Considerations
+**Design considerations:**
 
 Aspect: Which features to chain
 
@@ -321,7 +381,7 @@ Aspect: Which features to chain
 <br>
 <br>
 
-### 3.7 Move feature
+### 4.8 Move feature
 This feature allows the user to manually `move` activities from one position to another position 
 
 The following sequence diagram shows how the `move` command is executed, where index1 is the position to be moved from and index 2 is the position to be moved below. 
@@ -333,7 +393,7 @@ The following sequence diagram shows how the `move` command is executed, where i
 <br>
 <br>
 
-### 3.8 Graph feature
+### 4.9 Graph feature
 
 The graph implementation shows the progress of the daily net 
 calories over the period of 7 days. The GraphProperty class extracts the available days from the 
@@ -361,15 +421,15 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 <br>
 <br>
 
-## 4.0 Appendix: Requirements
+## 5.0 Appendix: Requirements
 
-### 4.1 Product scope
+### 5.1 Product scope
 
-#### 4.1.1 Target user profile
+#### 5.1.1 Target user profile
 
 {Describe the target user profile}
 * Tech savvy university students that have knowledge on the exercise and calories or know where to get the information before inputting it in the application.
-    - Can type fast
+    - Fast typist
     - Prefers desktop applications
     - Prefers typing to mouse interactions
     - Conscious about daily calorie intake
@@ -378,7 +438,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-#### 4.1.2 Value proposition
+#### 5.1.2 Value proposition
 
 {Describe the value proposition: what problem does it solve?}
 * Functionality
@@ -393,7 +453,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### 4.2 User Stories
+### 5.2 User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -413,7 +473,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### 4.3 Non-Functional Requirements
+### 5.3 Non-Functional Requirements
 
 {Give non-functional requirements}
 
@@ -422,9 +482,8 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### 4.4 Glossary
+### 5.4 Glossary
 
-* *glossary item* - Definition
 * *GUI* - Graphics User Interface
 * *CLI* - Command Line Interface
 * *OS* - Operating System
@@ -434,7 +493,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### 4.5 Instructions for manual testing
+### 5.5 Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
@@ -470,25 +529,28 @@ Exiting the application
 | Thank you for using traKCAL. See you again!                                                       |
 =====================================================================================================
 ```
+
+---
  
 #### Adding an entry into list
-    1. Adding a food entry with date
-        Test case: `add f/ cheesy chicken c/ 180 d/ 2020-11-09`
-        Expected: An entry with food description `cheesy chicken` and calories of `100` would be added into `2020-11-09`'s list.
-    2. Adding a food entry without date
-        Test case: `add f/ milk tea with pearls c/ 125`
-        Expected: An entry with food description `milk tea with pearls` and calories of `150` would be added into today's list.
-    3. Adding an exercise entry with date
-        Test case: `add e/ walking c/ 10 d/ 2020-11-05`
-        Expected: An entry with exercise description `walking` and calories of `10` would be added into `2020-11-05`'s list.
-    4. Adding an exercise entry without date
-        Test case: `add e/ 50 sit-ups c/ 75`
-        Expected: An entry with food description `50 sit-ups` and calories of `75` would be added into today's list.
-    5. Incorrect inputs to try:
-        `add f/ jelly 90 `: has missing calorie tag [c/]
-        `add f/ jelly c/ 90 d/ 2020-10-13`: date is before application launch date, 2020-10-14
-        `add f/ jelly c/ -30`: calories is less than or equals to 0
-        `add e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
-        `add e/ c/ `: empty input parameters
-        Expected: Message with error will be shown
+
+1. Adding a food entry with date
+    Test case: `add f/ cheesy chicken c/ 180 d/ 2020-11-09`
+    Expected: An entry with food description `cheesy chicken` and calories of `100` would be added into `2020-11-09`'s list.
+2. Adding a food entry without date
+    Test case: `add f/ milk tea with pearls c/ 125`
+    Expected: An entry with food description `milk tea with pearls` and calories of `150` would be added into today's list.
+3. Adding an exercise entry with date
+    Test case: `add e/ walking c/ 10 d/ 2020-11-05`
+    Expected: An entry with exercise description `walking` and calories of `10` would be added into `2020-11-05`'s list.
+4. Adding an exercise entry without date
+    Test case: `add e/ 50 sit-ups c/ 75`
+    Expected: An entry with food description `50 sit-ups` and calories of `75` would be added into today's list.
+5. Incorrect inputs to try:
+    `add f/ jelly 90 `: has missing calorie tag [c/]
+    `add f/ jelly c/ 90 d/ 2020-10-13`: date is before application launch date, 2020-10-14
+    `add f/ jelly c/ -30`: calories is less than or equals to 0
+    `add e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
+    `add e/ c/ `: empty input parameters
+    Expected: Message with error will be shown
        
