@@ -8,7 +8,7 @@ This section shows a brief overview of my contribution to traKCAL. It includes c
 
 #### Code contributed
 
-My code contributions can be found [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=jlifah&tabRepo=AY2021S1-CS2113T-T09-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other).
+* My code contributions can be found [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=jlifah&tabRepo=AY2021S1-CS2113T-T09-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other).
 
 #### Enhancements implemented
 
@@ -33,7 +33,7 @@ Here are some of their commands:
 
 #### Contributions to the Developer Guide
 
-* *Which sections did you contribute to the DG? Which UML diagrams did you add/updated?*
+* I contributed to the `user profile` and `shortcut` sections in Section 3, Section 4 and Manually Testing, including the UML diagrams. Additionally, I formatted the DG and added in missing components given in the feedbacks from past DG submissions. 
 
 #### Contributions to team-based tasks
 
