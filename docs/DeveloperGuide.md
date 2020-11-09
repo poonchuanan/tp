@@ -173,9 +173,11 @@ This component contains all the exception classes used in traKCAL.
 
 ### 3.8 UserProfile component
 
+
 This component contains the information such as the user's name, gender, height, weight, active level and the weight goal. 
 
 ![userProfile](diagrams/UserProfile.png)
+
 
 *Figure 4. Diagram for UserProfile component*
 
@@ -190,7 +192,7 @@ This component contains the information such as the user's name, gender, height,
 
 The sequence diagram below shows how the components will react to a new user or for a returning user. 
 
-![CreateNewUserFeature](diagrams/createNewUserFeature.png)
+![CreateNewUserFeature](diagrams/createNewUser.png)
 
 *Figure 7. Components interactions for **traKCAL** create user profile feature*
 
@@ -226,7 +228,7 @@ Some examples include:
 
 >`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
 
-![createSetFeature](diagrams/createSetFeature.png)
+![createSetFeature](diagrams/createSet.png)
 
 *Figure 8. Components interaction for **traKCAL** create set feature*
 
@@ -249,7 +251,7 @@ The sequence diagram below shows how the components in **traKCAL** work together
 
 Users can call any existing shortcut in this format: `addSet **SHORTCUT_NAME**`
 
-![addSetFeature](diagrams/addSetFeature.png)
+![addSetFeature](diagrams/addSet.png)
 
 *Figure 9. Components interaction for **traKCAL** add set feature*
 
@@ -459,9 +461,13 @@ The following sequence diagram shows how the chaining works after command is ent
 
 *Figure 17. Sequence diagram of chaining feature*
 
+The following is a diagram on the classes that are allowed to be chained.
+
 ![Object_Diagram_Of_PrepareCommand](diagrams/chainCommand_PrepareCommand.png)
 
 *Figure 18. Object diagram of allowed PrepareCommand subclass*
+
+The following is a diagram on the classes that are allowed to be chained.
 
 ![Object_Diagram_Of_Command](diagrams/chainCommand_Command.png)
 
@@ -518,7 +524,7 @@ to draw the graph.
 > 1. Calorie interval
 > 1. 2-Dimensional array representation of the graph
 
-![Graph_Sequence_Diagram](diagrams/GraphSequenceDiagram.png)
+![Graph_Sequence_Diagram](diagrams/GraphSequeunceDiagram.png)
 
 *Figure 21. Sequence diagram of move feature*
 
@@ -531,11 +537,22 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 <br>
 <br>
 
-#4.10 Delete feature
+### 4.10 Delete feature
+
+The `delete` feature consists of `delete by index` and `delete all` commands. `Delete by index` deletes the activities one at a time while
+the `delete all` deletes all the activities for the current day.
 
 ![Delete_Sequence_Diagram](diagrams/DeleteSequeunceDiagram.png)
 
-* Figure 13. Sequence diagram of delete by index feature
+
+*Figure 22. Sequence diagram of delete by index feature*
+
+As shown above, when the `DeleteByIndexCommand` is executed, the deleteActivity method is called from the DayMap class where the 
+ActivityList containing the intended activities to be deleted is selected and calls removeActivity method to remove the specific activity from the ActivityList.
+
+The sequence diagram for the `Delete all` is very similar to this diagram where the whole ActivityList is cleared instead of one Activity. The resulting list will be empty.
+
+
 
 ## 5.0 Appendix: Requirements
 
@@ -802,7 +819,7 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >* Expected: An entry with food description `ice cream` and calories of `90` would be added into today's list, prints today's list and entry at index `7` of today's list would be edited to exercise description of `walking` and calories of `15`.
 
 >Incorrect inputs to try:
->* Test case: The incorrect input from [add](#adding-an-entry-into-list), list, [edit](#editing-an-entry-in-list), graph
+>* Test case: The incorrect input from [add](#adding-an-entry-into-list), list, [edit](#editing-an-entry-in-list), graph [graph](#graph-features)
 >* Expected: Message with error will be shown.
 
 
@@ -824,11 +841,53 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >* Expected: All entries with descriptions containing at least one of of the keyword "`walk`, `jump` **or** `kick`" would be displayed.
 
 >Incorrect inputs to try:
+     Test case: Not specifying keywords to be searched for. Example: `find d/`
+     Expected: Message with error will be shown.
+     Test case: Consecutive slashes in input for `a/` or `e/`. Example:`find a// apple / pie`
+     Expected: Message with error will be shown.
+
+#### Deleting Activities
+
+This feature has two further sub features, delete by index and delete all.
+*Both delete features require at least one activity to be in the list*
+*Deletion of entry can further by checked by `list` command.* 
+
+>Deleting 2nd entry from a list with 2 items
+>* Test case: `delete 2`
+>* Expected: `Activity removed!` will be displayed. Only 1 entry will be displayed. 
+
+>Deleting all entries from the list with some activities in list.
+>* Test case: `delete all/`
+>* Expected: A confirmation message will be shown. If confirmed, `All activities have been deleted` will be displayed.
+>*           If not confirmed, `Delete command aborted` will be displayed.
+
+>Incorrect Input:
+>Deleting on an empty list or invalid index:
+>* Test case: `delete 1000`
+>* Test case: `delete -1`
+>* Test case: `delete all/`
+>* Expected: `Invalid Index!` will be displayed.
+
+>Deleting with invalid description:
+>* Test case: `delete abc`
+>* Expected: `Index is not a number!` will be displayed.
+
+#### Graph features
+
+>Shows upto 7 days of net calories.
+>* Test case: `graph`
+>* Expected: A graph will be showm.
+
+> There is no data at all.
+>* Test case: `graph`
+>* Expected: `List is empty` will be shown.
+
 >* Test case: Not specifying keywords to be searched for. Example: `find d/`
 >* Expected: Message with error will be shown.
 >
 >* Test case: Consecutive slashes in input for `a/` or `e/`. Example:`find a// apple / pie`
 >* Expected: Message with error will be shown.
+
 
 
 #### List Feature
@@ -863,3 +922,4 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >
 >* Test case: `move from/2 below/1`
 >* Expected: There would be no change. An error message will be shown.
+
