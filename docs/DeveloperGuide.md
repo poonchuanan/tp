@@ -502,7 +502,7 @@ to draw the graph.
 > 1. Calorie interval
 > 1. 2-Dimensional array representation of the graph
 
-![Graph_Sequence_Diagram](diagrams/GraphSequenceDiagram.png)
+![Graph_Sequence_Diagram](diagrams/GraphSequeunceDiagram.png)
 
 *Figure 21. Sequence diagram of move feature*
 
@@ -515,7 +515,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 <br>
 <br>
 
-#4.10 Delete feature
+### 4.10 Delete feature
 
 ![Delete_Sequence_Diagram](diagrams/DeleteSequeunceDiagram.png)
 *Figure 13. Sequence diagram of delete by index feature
