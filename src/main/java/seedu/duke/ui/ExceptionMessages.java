@@ -40,6 +40,11 @@ public class ExceptionMessages {
                 + PROMPT_USER_OF_HELP_MESSAGE);
     }
 
+    public static void sameIndexForMoveCommandExceptionMessage() {
+        print("The indexes entered for this move command does not result in any change!");
+    }
+
+
     /**
      * Prints error message when NullPointerException occurs in delete command.
      */
@@ -155,6 +160,7 @@ public class ExceptionMessages {
                 + "The input format of date is YYYY-MM-DD!\n");
     }
 
+    //@@author jlifah
     /**
      * Prints out error message when invalid gender input.
      */
@@ -197,6 +203,7 @@ public class ExceptionMessages {
         print("Sorry this is an invalid activity factor!\n"
                 + "Please enter an integer from 1 to 5, with 1 being the least active and 5 being the most active");
     }
+    //@@author jlifah
 
     //@@author e0425705
     /**
@@ -206,7 +213,9 @@ public class ExceptionMessages {
         print("Index entered is not within the range!\n"
                 + "Please pull out the list for the day before editing on it!");
     }
+    //@@author e0425705
 
+    //@@author jlifah
     /**
      * Prints out error message when a shortcut has not been created in addSet command.
      */
@@ -244,6 +253,7 @@ public class ExceptionMessages {
     public static void displayInvalidActivityLevelRangeMessage() {
         print("Please enter an activity level from 1 to 5 only");
     }
+    //@@author jlifah
 
     //@@author e0425705
     /**
@@ -321,6 +331,7 @@ public class ExceptionMessages {
         System.out.println(DIVIDER);
     }
 
+    //@@author jlifah
     /**
      * Prints message when string entered is empty.
      */
@@ -428,6 +439,7 @@ public class ExceptionMessages {
     public static void displayInvalidEditCommandMessage() {
         print("I do not understand all or part of this edit command. Your command has only been processed partially.");
     }
+    //@@author jlifah
 
     /**
      * Prints message when there is too many arguments.
@@ -477,5 +489,12 @@ public class ExceptionMessages {
      */
     public static void displayFindSlashExceptionMessage() {
         print("There are consecutive slashes in your input!");
+    }
+
+    /**
+     * Prints message when there are consecutive slashes in input.
+     */
+    public static void displayInvalidEditUserProfileMessage() {
+        print("I do not understand this edit user profile command!");
     }
 }
