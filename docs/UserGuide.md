@@ -1659,11 +1659,11 @@ Format: *not extensive, there is a lot of combinations available*
         *commands just need to be separated by `&&`*
         
 Examples of formats accepted:
->`add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**>`
->`add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
->`edita INDEX e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
->`list <**DATE**> && list <**DATE**> && list <**DATE**>`
->`list <**DATE**> && graph`
+>* `add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**>`
+>* `add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
+>* `edita INDEX e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && list <**DATE**>`
+>* `list <**DATE**> && list <**DATE**> && list <**DATE**>`
+>* `list <**DATE**> && graph`
 
 Examples of usage: 
 
@@ -1801,10 +1801,10 @@ Any text in this format is the error message that you will be shown.
 
 #### Other errors
 *The possible errors follows the errors for adding, listing, editing and graphing*
-Possible errors for adding: [errors for add](#43-possible-errors-when-adding-an-entry-into-activity-list)
-Possible errors for listing: [errors for list](#511-possible-errors-when-listing)
-Possible errors for editing: [errors for edit](#611-possible-errors-when-editing)
-Possible errors for graphing: [errors for edit](#1011-possible-errors-when-graphing)
+>* Possible errors for adding: [errors for add](#43-possible-errors-when-adding-an-entry-into-activity-list)
+>* Possible errors for listing: [errors for list](#511-possible-errors-when-listing)
+>* Possible errors for editing: [errors for edit](#611-possible-errors-when-editing)
+>* Possible errors for graphing: [errors for edit](#1011-possible-errors-when-graphing)
 
 <br>
 <br>
