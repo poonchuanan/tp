@@ -155,9 +155,11 @@ The sequence diagram below shows how the components will react to a new user or 
 
 *Figure 4. Components interactions for **traKCAL** create user profile feature*
 
-To following has been omitted from the diagram to increase readability: 
+The following has been omitted from the diagram to increase readability: 
 * Exception handling 
 * External text file creation block
+
+<br>
 
 Design considerations: 
 * New users are required to create a new user profile before being able to use other features like `graph` to avoid unnecessarily being thrown exceptions.
@@ -173,22 +175,40 @@ Design considerations:
 
 The sequence diagram below shows how the components in **traKCAL** work together to create a new shortcut. 
 
+Users can create a shortcut with unlimited number of entries in this format: `createSet **SHORTCUT_NAME** ...`
+
+Some examples include:
+>`createSet **SHORTCUT_NAME** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+>`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+>`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+
 ![createSetFeature](diagrams/createSetFeature.png)
 
 *Figure 5. Components interaction for **traKCAL** create set feature*
 
+<br>
+
 Design considerations: 
 * At least one activity tag (`e/` or `f/`) and calorie tag (`c/`) must be specified by user for a shortcut to be created.
-* The order of the entry must be activity tag first before calorie tag. Calorie tag followed by activity tag is not allowed. This is to facilitate the adding of each entries in the shortcut, as seen in [section 3.3](#33-add-activity-feature).
-* Multiple entries in shortcut should be seperated be a `,` as it is a key. 
+* The order of the entry must be activity tag first before calorie tag. Calorie tag followed by activity tag is not allowed. This is to facilitate the adding of each entry in the shortcut, as seen in [section 3.3](#33-add-activity-feature).
+* Multiple entries in shortcut should be separated be a `+` as it is a key. 
+
+<br>
+<br>
 
 #### 4.2.2 Adding a shortcut to activity list
 
 The sequence diagram below shows how the components in **traKCAL** work together to add entries in a shortcut to the activity list. 
 
+Users can call any existing shortcut in this format: `addSet **SHORTCUT_NAME**`
+
 ![addSetFeature](diagrams/addSetFeature.png)
 
 *Figure 6. Components interaction for **traKCAL** add set feature*
+
+The following has been omitted from the diagram to increase readability: 
+* Exception handling 
+* Components after adding each entry in the shortcut to the activity list as the same diagram will be repeated in [section 4.3](#43-add-activity-feature). Instead, it is replaced by the updateList() self invocation call. 
 
 <br>
 <br>
@@ -396,15 +416,15 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 <br>
 <br>
 
-## 4.0 Appendix: Requirements
+## 5.0 Appendix: Requirements
 
-### 4.1 Product scope
+### 5.1 Product scope
 
-#### 4.1.1 Target user profile
+#### 5.1.1 Target user profile
 
 {Describe the target user profile}
 * Tech savvy university students that have knowledge on the exercise and calories or know where to get the information before inputting it in the application.
-    - Can type fast
+    - Fast typist
     - Prefers desktop applications
     - Prefers typing to mouse interactions
     - Conscious about daily calorie intake
@@ -413,7 +433,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-#### 4.1.2 Value proposition
+#### 5.1.2 Value proposition
 
 {Describe the value proposition: what problem does it solve?}
 * Functionality
@@ -428,7 +448,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### 4.2 User Stories
+### 5.2 User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -448,7 +468,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### 4.3 Non-Functional Requirements
+### 5.3 Non-Functional Requirements
 
 {Give non-functional requirements}
 
@@ -457,9 +477,8 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### 4.4 Glossary
+### 5.4 Glossary
 
-* *glossary item* - Definition
 * *GUI* - Graphics User Interface
 * *CLI* - Command Line Interface
 * *OS* - Operating System
@@ -469,7 +488,7 @@ Next, the graphDrawing object is created and uses the properties calculated earl
 
 <br>
 
-### 4.5 Instructions for manual testing
+### 5.5 Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
@@ -505,25 +524,28 @@ Exiting the application
 | Thank you for using traKCAL. See you again!                                                       |
 =====================================================================================================
 ```
+
+---
  
 #### Adding an entry into list
-    1. Adding a food entry with date
-        Test case: `add f/ cheesy chicken c/ 180 d/ 2020-11-09`
-        Expected: An entry with food description `cheesy chicken` and calories of `100` would be added into `2020-11-09`'s list.
-    2. Adding a food entry without date
-        Test case: `add f/ milk tea with pearls c/ 125`
-        Expected: An entry with food description `milk tea with pearls` and calories of `150` would be added into today's list.
-    3. Adding an exercise entry with date
-        Test case: `add e/ walking c/ 10 d/ 2020-11-05`
-        Expected: An entry with exercise description `walking` and calories of `10` would be added into `2020-11-05`'s list.
-    4. Adding an exercise entry without date
-        Test case: `add e/ 50 sit-ups c/ 75`
-        Expected: An entry with food description `50 sit-ups` and calories of `75` would be added into today's list.
-    5. Incorrect inputs to try:
-        `add f/ jelly 90 `: has missing calorie tag [c/]
-        `add f/ jelly c/ 90 d/ 2020-10-13`: date is before application launch date, 2020-10-14
-        `add f/ jelly c/ -30`: calories is less than or equals to 0
-        `add e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
-        `add e/ c/ `: empty input parameters
-        Expected: Message with error will be shown
+
+1. Adding a food entry with date
+    Test case: `add f/ cheesy chicken c/ 180 d/ 2020-11-09`
+    Expected: An entry with food description `cheesy chicken` and calories of `100` would be added into `2020-11-09`'s list.
+2. Adding a food entry without date
+    Test case: `add f/ milk tea with pearls c/ 125`
+    Expected: An entry with food description `milk tea with pearls` and calories of `150` would be added into today's list.
+3. Adding an exercise entry with date
+    Test case: `add e/ walking c/ 10 d/ 2020-11-05`
+    Expected: An entry with exercise description `walking` and calories of `10` would be added into `2020-11-05`'s list.
+4. Adding an exercise entry without date
+    Test case: `add e/ 50 sit-ups c/ 75`
+    Expected: An entry with food description `50 sit-ups` and calories of `75` would be added into today's list.
+5. Incorrect inputs to try:
+    `add f/ jelly 90 `: has missing calorie tag [c/]
+    `add f/ jelly c/ 90 d/ 2020-10-13`: date is before application launch date, 2020-10-14
+    `add f/ jelly c/ -30`: calories is less than or equals to 0
+    `add e/ jumping up and down in a merry round in Singapore c/ 80`: description is longer than 40 characters
+    `add e/ c/ `: empty input parameters
+    Expected: Message with error will be shown
        
