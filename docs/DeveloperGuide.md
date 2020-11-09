@@ -377,7 +377,7 @@ The following Sequence Diagram shows how `EditFoodCommand` is carried out when t
 
 <br>
 
-**Design considerations:**
+#### 4.6.2 Design considerations
 
 Aspect: How to edit food/exercise
 
@@ -430,7 +430,7 @@ The following sequence diagram shows how the chaining works after command is ent
 
 <br>
 
-**Design considerations:**
+#### 4.7.2 Design considerations
 
 Aspect: Which features to chain
 
