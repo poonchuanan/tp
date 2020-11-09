@@ -1,7 +1,7 @@
 package seedu.duke.logic.preparecommand;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.CreateNewSet;
+import seedu.duke.command.CreateNewSetCommand;
 import seedu.duke.exception.ListNotFoundException;
 
 public class PrepareNewSetCommand extends PrepareCommand {
@@ -11,6 +11,6 @@ public class PrepareNewSetCommand extends PrepareCommand {
 
     @Override
     public Command prepareCommand() throws Exception, ListNotFoundException {
-        return new CreateNewSet(description[1]);
+        return new CreateNewSetCommand(description[1]);
     }
 }
