@@ -6,7 +6,6 @@
 ### Summary of Contributions
 
 This section shows a brief overview of my contribution to traKCAL. It includes contributions like code writing, code documentation, UG/DG writing and other contributions for traKCAL. 
-* I added
 
 #### Code contributed
 
