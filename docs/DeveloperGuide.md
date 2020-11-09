@@ -176,7 +176,7 @@ This component contains all the exception classes used in traKCAL.
 
 This component contains the information such as the user's name, gender, height, weight, active level and the weight goal. 
 
-![userProfile](diagrams/UserProfile.png)
+![userProfile](diagrams/userprofile.png)
 
 
 *Figure 4. Diagram for UserProfile component*
@@ -436,7 +436,7 @@ Aspect: How editing is carried out
 
 >Current choice: User MUST pull out the list they want to edit to before calling the edit function. `list` then `edit f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` OR `edit e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT`
 >* Pros: The entry that is being edit is clear to the user.
->* Cons: More steps requried to edit an entry.
+>* Cons: More steps required to edit an entry.
 
 >Alternative: Adding a date tag in edit: `edit f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE` OR `edit e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT d/ DATE`
 >* Pros: Faster and shorter time to edit an entry.
@@ -544,7 +544,6 @@ the `delete all` deletes all the activities for the current day.
 
 ![Delete_Sequence_Diagram](diagrams/DeleteSequeunceDiagram.png)
 
-
 *Figure 22. Sequence diagram of delete by index feature*
 
 As shown above, when the `DeleteByIndexCommand` is executed, the deleteActivity method is called from the DayMap class where the 
@@ -552,7 +551,8 @@ ActivityList containing the intended activities to be deleted is selected and ca
 
 The sequence diagram for the `Delete all` is very similar to this diagram where the whole ActivityList is cleared instead of one Activity. The resulting list will be empty.
 
-
+<br>
+<br>
 
 ## 5.0 Appendix: Requirements
 
@@ -603,6 +603,7 @@ The sequence diagram for the `Delete all` is very similar to this diagram where 
 |v2.0|weight conscious person|track the amount of calories gained or lost|maintain my weight|
 |v2.0|careless student|go back and edit entries entered earlier|correct the errors I have made|
 |v2.0|frequent user|have pre-set repetitive actions entered by me|save time when inputting data|
+|v2.0|lazy user|be able to chain input|save time when inputting data|
 
 <br>
 
@@ -841,10 +842,10 @@ This feature allows only 4 features to be chained, add, list, edit and graph.
 >* Expected: All entries with descriptions containing at least one of of the keyword "`walk`, `jump` **or** `kick`" would be displayed.
 
 >Incorrect inputs to try:
-     Test case: Not specifying keywords to be searched for. Example: `find d/`
-     Expected: Message with error will be shown.
-     Test case: Consecutive slashes in input for `a/` or `e/`. Example:`find a// apple / pie`
-     Expected: Message with error will be shown.
+>* Test case: Not specifying keywords to be searched for. Example: `find d/`
+>* Expected: Message with error will be shown.
+>* Test case: Consecutive slashes in input for `a/` or `e/`. Example:`find a// apple / pie`
+>* Expected: Message with error will be shown.
 
 #### Deleting Activities
 
