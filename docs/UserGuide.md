@@ -165,6 +165,7 @@ Chaining:
                           but is only available to add, list and edit.]*
 *[One possible example is:]*
 add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && list && edit LIST_INDEX f/ FOOD_DESCRIPTION
+add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && list && edit LIST_INDEX f/ FOOD_DESCRIPTION
                          c/ CALORIE_COUNT
 *[Another possible example is:]*
 add f/ FOOD_DESCRIPTION c/ CALORIE_COUNT d/ DATE && add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT
@@ -828,7 +829,7 @@ Date input has to be from 2020-10-14 to current date!
 
 #### Calorie count exceeds acceptable range
 * Calorie count is <= 0 or > 3000.
-> `add f/ jelly c/ -30`
+> `add e/ jump c/ -30`
 
 ```
 ====================================================================================
@@ -1352,6 +1353,13 @@ No.        Type                        Description                        Calori
 
 ```
 
+* `move from/ 3 below/ 1`
+```
+====================================================================================
+Activity has been successfully moved!
+====================================================================================
+```
+
 *`list 2020-10-11` after `move from/ 3 below/ 1` 
 
 ```
@@ -1365,7 +1373,6 @@ No.        Type                        Description                        Calori
 2          Food           tea break_______________________________________________150
 
 3          Food           second breakfast________________________________________200
-
 
 ```
 
@@ -1569,6 +1576,12 @@ No.        Type                        Description                        Calori
 * `delete all/`
 
 ```
+Are you sure you want to delete all activities in today's list? [yes/no]
+```
+
+* `yes`
+
+```
 ====================================================================================
 All activities have been deleted
 ====================================================================================
@@ -1577,7 +1590,9 @@ All activities have been deleted
 * `list` after deleting
 
 ```
-There is no data for 2020-11-08
+====================================================================================
+List is empty!
+====================================================================================
 ```
 
 ### 9.2.2 Possible errors when deleting all entries from list
