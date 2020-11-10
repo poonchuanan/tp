@@ -67,13 +67,13 @@ This section gives the steps you need to get started quickly.
 This section gives you a detailed description of each feature available in **traKCAL**.
 
 >Things to take note of:
->*Inputs that look like `**THIS**` are compulsory parameters for you to fill in.
->*Inputs that look like `<THIS>` are optional parameters that you do not need to fill in to achieve the desired outcome.  
->*Input format should adhere to the one in the help list or in this user guide.
->*All features such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
+>* Inputs that look like `**THIS**` are compulsory parameters for you to fill in.
+>* Inputs that look like `<THIS>` are optional parameters that you do not need to fill in to achieve the desired outcome.  
+>* Input format should adhere to the one in the help list or in this user guide.
+>* All features such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
 
 >IMPORTANT:
->*If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
+>* If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
 
 <br>
 <br>
@@ -615,7 +615,7 @@ Parameters:
 * `<**DATE**>`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 > REMINDER: 
->*`d/ **DATE**` is optional, if you enter add command without it, it will add to the current date list. 
+>* `d/ **DATE**` is optional, if you enter add command without it, it will add to the current date list. 
 
 Examples of usage: 
 
@@ -707,7 +707,7 @@ Parameters:
 * `<**DATE**>`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 > REMINDER: 
->*`d/ **DATE**` is optional, if you enter add command without it, it will add to the current date list. 
+>* `d/ **DATE**` is optional, if you enter add command without it, it will add to the current date list. 
 
 Examples of usage: 
 
@@ -877,7 +877,7 @@ Parameters:
 * `<**DATE**>`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 >REMINDER: 
->*The `**DATE**` parameter is optional, if were to you enter list command without it, it will print out the list of entries for today's date.
+>* The `**DATE**` parameter is optional, if were to you enter list command without it, it will print out the list of entries for today's date.
 
 Examples of usage: 
 
@@ -980,15 +980,15 @@ Parameters:
 * `**CALORIE_COUNT**`: New amount of calories gained/lost.
 
 >Things you should take note of:
->*This feature allows the changing of a food activity to exercise activity in the list. Vice versa.
->*The list in which you want to edit to have to be pulled out first before being able to edit on it, else editing would be on today's list!
->*This command edits the latest list pulled out. For example, if `list 2020-10-21` is the latest list to be pulled out, then `edit` will edit index stated in date 2020-10-21's list.
+>* This feature allows the changing of a food activity to exercise activity in the list. Vice versa.
+>* The list in which you want to edit to have to be pulled out first before being able to edit on it.
+>* This command edits the latest list pulled out. For example, if `list 2020-10-21` is the latest list to be pulled out, then `edit` will edit index stated in date 2020-10-21's list.
 
 >IMPORTANT:
->*If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
+>* If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
 
 >IMPORTANT:
->*This feature cannot be exercised on find feature!
+>* This feature cannot be exercised on find feature!
 
 Example of usage:
 
@@ -1469,7 +1469,7 @@ The indexes entered for this move command does not result in any change!
 You can delete an entry in the list using the `delete` command.
 
 >IMPORTANT:
->*If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
+>* If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
 
 Format: `delete **INDEX**`
 
@@ -1658,8 +1658,8 @@ Example of usage:
 ```
 
 > Things to take note of:
->*`***` shows the target calories.
->*If less than 7 days are stored in storage file, all the days will be displayed
+>* `***` shows the target calories.
+>* If less than 7 days are stored in storage file, all the days will be displayed
 
 <br>
 
@@ -1686,9 +1686,9 @@ Do you wish to save time individually typing in the features? Or do you want to 
 Chaining is the right feature for your needs! 
 
 >IMPORTANT
->*Chaining is only available to 4 features:
->*[list](#50-list---owen-chew-yang), [add](#40-add---puah-siew-wen), [edit](#60-edit---puah-siew-wen) and [graph](#100-graph---rani-karthigeyan-rajendrakumar).
->*The respective formats to adhere to for each feature still applies.
+>* Chaining is only available to 4 features:
+>* [list](#50-list---owen-chew-yang), [add](#40-add---puah-siew-wen), [edit](#60-edit---puah-siew-wen) and [graph](#100-graph---rani-karthigeyan-rajendrakumar).
+>* The respective formats to adhere to for each feature still applies.
 
 Format: *not extensive, there is a lot of combinations available*
         *your commands just need to be separated by `&&`*
