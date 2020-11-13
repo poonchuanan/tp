@@ -1,6 +1,6 @@
 # User Guide for traKCAL
 
-The purpose of this user guide is to guide the users on the commands available in this application, their respective uses and the expected inputs.
+The purpose of this user guide is to guide you on the commands available in this application, their respective uses and the expected inputs.
 
 By: CS2113-T09-4  <br>   Since: October 2020  <br>  Licence: MIT
 
@@ -32,7 +32,7 @@ This section gives the steps you need to get started quickly.
 3. Create an empty folder in a convenient location eg. Desktop and copy jar file over to it.
 4. Open command window/terminal in that window and navigate into the file directory,
 5. Run the command `java -jar {filename}.jar` e.g., `java -jar traKCAL.jar`.
-6. Upon successful run, you will get the following greeting message.
+6. Upon successful run, you will get the following greeting message. **traKCAL** is now ready for use!
 
 ```
 ====================================================================================
@@ -43,22 +43,22 @@ This section gives the steps you need to get started quickly.
 |  \__| |_|   \__,_| |_|\_\  \___| /_/ \_\ |____|                                  |
 |                                                                                  |
 | Hello! I'm traKCAL.                                                              |
-| Please do input 'help' for the commands and their respective input format.       |
+| Please input 'help' for the commands and their respective input format.          |
 ====================================================================================
 ```
    * Tip: 
      Increase your windows length if the greeting message appears congested like this:
      ![Congested opening message](diagrams/openingMessageError.png)
 
-6. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window
+6. You can type in a command in the command box and press Enter to execute it. For example, typing `help` and pressing Enter will display the help message.
 
    Some example commands you can try:
-    * `list`: Lists all entries for today
-    * `add f/ apple c/ 30`: Adds a food entry named `apple` and of calories `30` to today's list **trakCAL**.
-    * `delete 3`: Deletes the 3rd contact shown in the current list.
+    * `list`: Lists all entries for today.
+    * `add f/ apple c/ 30`: Adds a food entry named `apple` and of calories `30` to today's list **traKCAL**.
+    * `delete 3`: Deletes the 3rd entry shown in the current list.
     * `bye`: Exits the application.
     
-7. Refer to the [Features](#features) below for details of each command
+7. You can refer to the [Features](#features) below for more details of each command.
 
 <br>
 
@@ -72,15 +72,13 @@ This section gives you a detailed description of each feature available in **tra
 >* Input format should adhere to the one in the help list or in this user guide.
 >* All features such as `add`, `edit`, `list`, etc. are not case-sensitive, but it is recommended for you to follow the format stated in help list or this user guide.
 
->IMPORTANT:
->* If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
 
 <br>
 <br>
 
-## 1.0 Viewing help - Puah Siew Wen
+## 1.0 Viewing help [Puah Siew Wen]
 
-Do you need help? Do you need a reminder of what the features available, and their respective input format? Well this section solves it for you!
+Do you need a reminder of what are the available features, and their respective input format? Well, this section solves it for you!
 
 Format: `help`
 
@@ -180,22 +178,22 @@ bye                    - Terminates the application
 <br>
 <br>
 
-## 2.0 User Profile - Jenny Lin
+## 2.0 User Profile [Jenny Lin]
 
 ### 2.1 Creating a new user profile
 
-If this is your first time using **traKCAL**, you will be automatically prompted to create a user profile and there is no need for you to input any command. **traKCAL** will then use these details from your user profile to calculate the following: 
+If this is your first time using **traKCAL**, you will be automatically prompted to create a user profile. **traKCAL** will then use these details from your user profile to calculate the following: 
 
 * BMI
-* Recommended daily calorie
-* Calorie goal to reach weight goal
+* Recommended daily calorie intake
+* Calories needed to reach your weight goal
 
 Format: `user c/`
 
 Example of usage:
 * `user c/`
 
-> For this section only, words that look like `*this*` is user input
+> For this section only, words that are enclosed within star brackets (*) like `*this*` are user inputs.
 
 ```
 Hey there! We do not have a record of your profile. Please create one now! :)
@@ -235,138 +233,22 @@ To gain weight, you should consume 2076.65 calories instead.
 ```
 
 <br>
-
-### 2.1.1 Possible errors when creating a new user profile
-An error will occur if any of the conditions below are met. <br>
-The respective error message will also be shown to you.
-> `Any text in this format is an example of a command that will produce the respective error.`
-```
-Any text in this format is the error message that you will be shown.
-```
-
-#### Empty descriptions
-
-* Empty input to any questions.
-
-```
-=====================================================================================================
-Please do not enter an empty input
-=====================================================================================================
-```
-
-#### Invalid parameters
-
-* Gender entered is not specified as female or male.
-> `tree`
-
-```
-=====================================================================================================
-Sorry this is an invalid gender format! 
-Please input gender as female or male only!
-=====================================================================================================
-```
-
-* Weight is not between 30 and 650 kg. 
-> `1000`
-
-```
-=====================================================================================================
-Please enter a weight range from 30kg to 650kg
-=====================================================================================================
-```
-
-* Weight is not of a convertible type.
-> `thirty-three`
-
-```
-=====================================================================================================
-Please enter a valid weight format!
-=====================================================================================================
-```
-
-* Height is not between 90 and 300 cm.
-> `350`
-
-```
-=====================================================================================================
-Please enter a height range from 90cm to 300cm
-=====================================================================================================
-```
-
-* Height is not of a convertible type.
-> `one-hundred-meters`
-
-```
-=====================================================================================================
-Please enter a valid height format!
-=====================================================================================================
-```
-
-* Age is not between 10 and 120 years old.
-> `200`
-
-```
-=====================================================================================================
-Please enter an age range from 10 to 120 years old
-=====================================================================================================
-```
-
-* If age is not of a convertible type.
-> `two-hundred-years-old`
-
-```
-=====================================================================================================
-Please enter a valid age format!
-=====================================================================================================
-```
-    
-* Activity level is not between 1 and 5.
-> `8`
-
-```
-====================================================================================
-Please enter an activity level from 1 to 5 only
-====================================================================================
-```
-
-* Weight goals is not specified as lose or maintain or gain only.
-> `cut`
-
-```
-=====================================================================================================
-Please input lose/maintain/gain as weight goal only!
-=====================================================================================================
-```
-
-#### Corrupted user profile
-
-* If the text file containing the user profile is of an unreadable format, the following error message will be shown in the subsequent run, and the user will be directed to create a new user profile automatically
-
-```
-====================================================================================
-Corrupted user profile!
-Please do not edit the text file unnecessarily.
-You are being directed to create a new user profile.
-This is to ensure that all features can be used properly.
-====================================================================================
-``` 
-
 <br>
 
 ### 2.2 Editing user profile
 
 This feature allows you to edit an existing user profile easily.
 
-Format: `user e/ <n/ **NAME**>,<g/ **GENDER**>,<w/ **WEIGHT**>,<h/ **HEIGHT**>,<age/ **AGE**><al/ **ACTIVITY_FACTOR**>,<goal/ **WEIGHT_GOALS**>`
+Format: `user e/ <n/ **NAME**>, <g/ **GENDER**>, <w/ **WEIGHT**>, <h/ **HEIGHT**>, <age/ **AGE**>, <al/ **ACTIVITY_FACTOR**>, <goal/ **WEIGHT_GOALS**>`
 
 Parameters: 
-* `**NAME**`: Name of user.
-* `**GENDER**`: Gender of user.
-* `**WEIGHT_KG**`: Weight of user in kg.
-* `**HEIGHT_CM**`: Height of user in cm.
-* `**AGE**`: Age of user.
-* `**ACTIVITY_FACTOR**`: How active user is, with 1 being most active and 5 being least active.
-* `**WEIGHT_GOALS**`: Whether user wants to lose/maintain/gain weight.
+* `**NAME**`: Your name.
+* `**GENDER**`: Your gender.
+* `**WEIGHT_KG**`: Your weight in kg.
+* `**HEIGHT_CM**`: Your height in cm.
+* `**AGE**`: Your age.
+* `**ACTIVITY_FACTOR**`: How active you are, with 1 being most active and 5 being least active.
+* `**WEIGHT_GOALS**`: Whether you want to lose/maintain/gain weight.
 
 Example of usage: 
 * `user e/ n/ Tom, w/ 90`
@@ -377,18 +259,11 @@ Your weight has been updated to 90kg.
 ```
 
 <br>
-
-### 2.2.1 Possible errors when editing a user profile
-
-#### Invalid parameters
-
-* The [error messages](#211-possible-errors-when-creating-a-new-user-profile) for edit user profile feature are the same as those found when creating a new user profile. 
-
 <br>
 
-### 2.3 View current user profile
+### 2.3 Viewing your profile
 
-Want to see your current user profile? This feature will be just right for you!
+Do you want to view your profile? This feature will be just right for you!
 
 Format: `user l/`
 
@@ -409,7 +284,7 @@ Weight Goal : gain
 <br>
 <br>
 
-## 3.0 Shortcut - Jenny Lin
+## 3.0 Shortcut [Jenny Lin]
 
 ### 3.1 Creating a shortcut for a set of entries 
 
@@ -418,9 +293,9 @@ This command helps you create a shortcut for a set of commonly used exercise and
 Format: `createSet **SHORTCUT_NAME** ...`
 
 Examples of formats accepted:
->`createSet **SHORTCUT_NAME** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
->`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
->`createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+>* `createSet **SHORTCUT_NAME** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+>* `createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+>* `createSet **SHORTCUT_NAME** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** + f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 Parameters:
 * `**FOOD_DESCRIPTION**`: Description of food consumed.
@@ -440,95 +315,12 @@ You have created a shortcut containing:
 ```
 
 <br>
-
-### 3.1.1 Possible errors when creating shortcut
-An error will occur if any of the conditions below are met. <br>
-The respective error message will also be shown to you.
-> `Any text in this format is an example of a command that will produce the respective error.`
-
-```
-Any text in this format is the error message that you will be shown.
-```
-
-#### Missing keywords
-
-* Name of shortcut not specified.
-> `createSet f/ fish c/ 100`
-
-```
-====================================================================================
-You did not specify a short cut name in your createSet command.
-As such, no shortcut was created. Please try again!
-====================================================================================
-```
-
-* Empty description for activity description or calories.
-> `createSet fishy lunch f/ fish c/`
-
-```
-====================================================================================
-This shortcut has an empty description or calorie tag or both.
-====================================================================================
-====================================================================================
-This shortcut was not been successfully created as there was an error in your input.
-Please try again!
-====================================================================================
-```
-
-*There are no calorie and/or activity tag.
-> `createSet healthy lunch` or `createSet healthy f/ oatmeal`
-
-```
-====================================================================================
-You are missing an activity tag or calorie tag or both
-====================================================================================
-====================================================================================
-This shortcut was not been successfully created as there was an error in your input.
-Please try again!
-====================================================================================
-```
-
-#### Invalid parameters
-* Shortcut name given already exist within the database. For example if a set named `morning routine` already exists, the following command would produce the error:
-> `createSet morning routine f/ beans c/ 100000`
-
-```
-====================================================================================
-There is a shortcut with this name already. Please choose another name
-====================================================================================
-```
-* Calorie entered is not between 0 and 3000 kcal.
-> `createSet dinner f/ beans c/ 100000`
-
-```
-====================================================================================
-Please enter a valid calorie range.
-====================================================================================
-====================================================================================
-This shortcut was not successfully created as there was an error in your input.
-Please try again!
-====================================================================================
-```
-
-* Calorie entered is not of integer type or exceeds the threshold of integer conversion.
-> `createSet dinner f/ beans c/ 1000000000000000` or <br>
-> `createSet dinner f/ beans c/ test`
-
-```
-====================================================================================
-Please enter calorie as integer.
-====================================================================================
-====================================================================================
-This shortcut was not successfully created as there was an error in your input.
-Please try again!
-====================================================================================
-```
-
 <br>
+
 
 ### 3.2 Adding a shortcut of repeated task to today's list
 
-Want to add in a set of entries all at once? This feature teaches you how to do so!
+Do you want to add in a set of entries all at once? This feature teaches you how to do so!
 
 Format: `addSet **SHORTCUT_NAME**`
 
@@ -554,58 +346,13 @@ The current activity list has been saved.
 ```
 
 <br>
-
-### 3.2.1 Possible errors when adding shortcut
-An error will occur if any of the conditions below are met. <br>
-The respective error message will also be shown to you.
-> Any text in this format is an example of a command that will produce the respective error.
-
-```
-Any text in this format is the error message that you will be shown.
-```
-
-#### Wrong keywords
-* Using a shortcut that has not been created yet. For example, if a set named 'dinner' has not yet been created, the following command will produce an error:
-> `addset dinner`
-
-```
-====================================================================================
-This shortcut does not exists!
-Please create a shortcut before adding it!
-====================================================================================
-```
-
-#### Missing keywords 
-* Name of the shortcut not specified.
-> `addSet `
-
-```
-Index 1 out of bounds for length 1
-====================================================================================
-Invalid command!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-#### Corrupted text file for shortcut
-* If a user edits the text file containing the shortcut to an unreadable format and calls the shortcut in a subsequent run, the following error message will be shown:
-  
-```
-====================================================================================
-Your shortcut text file is corrupted!
-As such, it will now be deleted. Please avoid editing the text file to the wrong format in the future.
-Items in the shortcut may have been added partially only.
-====================================================================================
-```
-
-<br>
 <br>
 
-## 4.0 Add - Puah Siew Wen
+## 4.0 Add [Puah Siew Wen]
 
 ### 4.1 Adding a food entry
 
-Want to add a food entry? This feature solves it for you by adding a food entry with its respective calories to the list!
+Do you want to add a food entry? This feature solves it for you by adding a food entry with its respective calories gained to the list!
 
 Format: `add f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT** <d/ **DATE**>`
 
@@ -615,12 +362,12 @@ Parameters:
 * `<**DATE**>`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 > REMINDER: 
->* `d/ **DATE**` is optional, if you enter add command without it, it will add to the current date list. 
+>* `d/ **DATE**` is optional, if you entered an `add` command without the date, it will be added to today's list. 
 
 Examples of usage: 
 
-Adding a food entry without date specified:
-* `list` before adding
+Adding a food entry without the date specified:
+* `list` before adding:
 
 ```
 -----------------------------------------
@@ -656,7 +403,7 @@ No.        Type                        Description                        Calori
 2          Food           mushroom soup_____________________________________________77
 ```
 
-Adding a food entry with date specified:
+Adding a food entry with the date specified:
 * `list 2020-11-05` before adding
 
 ```
@@ -694,10 +441,11 @@ No.        Type                        Description                        Calori
 ```
 
 <br>
+<br>
 
 ### 4.2 Adding an exercise entry
 
-Want to add an exercise entry? This feature solves it for you by adding an exercise entry with its respective calories to the list.
+Do you want to add an exercise entry? This feature solves it for you by adding an exercise entry with its respective calories lost to the list.
 
 Format: `add e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT** <d/ **DATE**>`
 
@@ -707,11 +455,11 @@ Parameters:
 * `<**DATE**>`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 > REMINDER: 
->* `d/ **DATE**` is optional, if you enter add command without it, it will add to the current date list. 
+>* `d/ **DATE**` is optional, if you entered an `add` command without the date, it will be added to today's list. 
 
 Examples of usage: 
 
-Adding an exercise entry without date specified:
+Adding an exercise entry without the date specified:
 * `list` before adding
 
 ```
@@ -756,7 +504,7 @@ No.        Type                        Description                        Calori
 4        Exercise         jumping___________________________________________________65
 ```
 
-Adding an exercise entry with date specified:
+Adding an exercise entry with the date specified:
 * `list 2020-11-05` before adding
 
 ```
@@ -798,78 +546,13 @@ No.        Type                        Description                        Calori
 ```
 
 <br>
-
-### 4.3 Possible errors when adding an entry into activity list
-An error will occur if any of the conditions below are met. <br> 
-The respective error message will also be shown to you.
-> Any text in this format is an example of a command that will produce the respective error.
-
-```
-Any text in this format is the error message that you will be shown.
-```
-
-#### Missing tags
-* When you input command with missing calorie tag.
-> `add f/ jelly 90 `
-
-```
-====================================================================================
-Calorie count tag[c/] is missing in your input!
-====================================================================================
-```
-
-#### Activity date is before application launch date or after today's date
-* When you input command that is before 2020-10-14 or after today's date.
-> `add f/ jelly c/ 90 d/ 2020-10-13`
-
-```
-====================================================================================
-You have exceeded the accepted date range!
-Date input has to be from 2020-10-14 to current date!
-====================================================================================
-```
-
-#### Calorie count exceeds acceptable range
-* When you input calorie count that is <= 0 or > 3000.
-> `add e/ jump c/ -30`
-
-```
-====================================================================================
-Calorie count should be > 0 and <= 3000!
-Please input a valid calorie count that is within the range!
-====================================================================================
-```
-
-
-#### Description length exceeds acceptable range
-* When you input description with more than 40 characters.
-> `add e/ jumping up and down in a merry round in Singapore c/ 80`
-
-```
-====================================================================================
-Maximum description length is 40 characters only!
-====================================================================================
-```
-
-#### Empty inputs will not be accepted
-* When you have empty input parameters.
-> `add e/ c/ `
-
-```
-====================================================================================
-Current description is empty!
-Please input a valid description that is not empty!
-====================================================================================
-```
-
-<br>
 <br>
 
-## 5.0 List - Owen Chew Yang
+## 5.0 List [Owen Chew Yang]
 
 ### 5.1 Listing entries
 
-You can view your entries for a specific day by using this `list` command.
+Do you want to view your entries for a specific day? You can do this by using this `list` command.
 
 Format: `list <**DATE**>`
 
@@ -877,11 +560,12 @@ Parameters:
 * `<**DATE**>`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 >REMINDER: 
->* The `**DATE**` parameter is optional, if were to you enter list command without it, it will print out the list of entries for today's date.
+>* The `**DATE**` parameter is optional, if were to you enter list command without the date, it will print out the list of entries for today's date.
+
 
 Examples of usage: 
 
-Listing without date specified:
+Listing without the date specified:
 * `list`
 
 ```
@@ -897,7 +581,7 @@ No.        Type                        Description                        Calori
 3          Food           ice cream_________________________________________________90
 ```
 
-Listing with date specified:
+Listing with the date specified:
 * `list 2020-10-11`
 
 ```
@@ -920,79 +604,36 @@ No.        Type                        Description                        Calori
 ```
 
 <br>
-
-### 5.1.1 Possible errors when listing
-An error will occur if any of the conditions below are met. 
-
 <br>
 
-The respective error message will also be shown to you.
-> Any text in this format is an example of a command that will produce the respective error.
-
-```
-Any text in this format is the error message that you will be shown.
-```
-
-#### Accessing a list with no entries
-* If there are no entries for 2020-10-31, the following command will produce an error: 
-> `list 2020-10-31`
-
-```
-====================================================================================
-List is empty!
-====================================================================================
-```
-
-#### Using an invalid date format
-* **DATE** format you entered is not of YYYY-MM-DD format.
-> `list 2020/31/10`
-
-```
-====================================================================================
-Wrong format of date entered!
-The accepted format is YYYY-MM-DD!
-Also, ensure that the date input actually exists!
-Please do input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-<br>
-<br>
-
-## 6.0 Edit - Puah Siew Wen
+## 6.0 Edit [Puah Siew Wen]
 
 ### 6.1 Editing an entry in list
 
-A typo when entering input? Do you want to edit attributes of a particular entry in the list? This feature solves it for you!
+Made a typographical error when entering input? Do you want to edit attributes of a particular entry in the list? This feature solves it for you!
 
 Format: `edit **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**` OR `edit **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
 
 Examples of formats accepted:
-1. Editing an entry in list from food to food: `edit **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
-2. Editing an entry in list from food to exercise: `edit **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
-3. Editing an entry in list from exercise to exercise: `edit **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
-4. Editing an entry in list from exercise to food: `edit **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+1. Editing an entry to food: `edit **LIST_INDEX** f/ **FOOD_DESCRIPTION** c/ **CALORIE_COUNT**`
+2. Editing an entry to exercise: `edit **LIST_INDEX** e/ **EXERCISE_DESCRIPTION** c/ **CALORIE_COUNT**`
+
 
 Parameters:
-* `**LIST_INDEX**`: Index of entry to be edited in the latest pull out list.
+* `**LIST_INDEX**`: Index of entry to be edited in the latest list pulled out.
 * `**FOOD_DESCRIPTION**`: New description of food consumed.
 * `**EXERCISE_DESCRIPTION**`: New description of exercise done.
 * `**CALORIE_COUNT**`: New amount of calories gained/lost.
 
->Things you should take note of:
->* This feature allows the changing of a food activity to exercise activity in the list. Vice versa.
->* The list in which you want to edit to have to be pulled out first before being able to edit on it.
->* This command edits the latest list pulled out. For example, if `list 2020-10-21` is the latest list to be pulled out, then `edit` will edit index stated in date 2020-10-21's list.
 
 >IMPORTANT:
->* If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
-
->IMPORTANT:
->* This feature cannot be exercised on find feature!
+>* Please ensure that you have pulled out the list you want by using `list` command before performing any `edit` commands.
+>* This command edits the latest list pulled out. For example, if `list 2020-10-21` is the latest list pulled out, then `edit` will edit according to the index as shown in the list for 2020-10-21.
+>* This feature cannot be exercised on the list pulled from the `find` feature.
 
 Example of usage:
 
-Editing from activity type food to food:
+Editing an entry to food:
 * `list` before editing
 
 ```
@@ -1043,7 +684,7 @@ No.        Type                        Description                        Calori
 5        Exercise         brisk walking_____________________________________________20
 ```
 
-Editing from activity type food to exercise: 
+Editing an entry to exercise: 
 * `list 2020-11-05` before editing
 
 ```
@@ -1095,65 +736,18 @@ No.        Type                        Description                        Calori
 ```
 
 <br>
-
-### 6.1.1 Possible errors when editing
-
-An error will occur if any of the conditions below are met. 
-
 <br>
 
-The respective error message will also be shown to you.
-> Any text in this format is an example of a command that will produce the respective error.
-
-```
-Any text in this format is the error message that you will be shown.
-```
-
-#### Calorie count exceeds acceptable range
-* When you input calorie count that is <= 0 or > 3000.
-> `edit 1 f/ jelly c/ -30`
-
-```
-====================================================================================
-Calorie count should be > 0 and <= 3000!
-Please input a valid calorie count that is within the range!
-====================================================================================
-```
-
-#### Description length exceeds acceptable range
-* When you input description with more than 40 characters.
-> `edit 2 e/ jumping up and down in a merry round in Singapore c/ 80`
-
-```
-====================================================================================
-Maximum description length is 40 characters only!
-====================================================================================
-```
-
-#### Empty inputs will not be accepted
-* When you have empty input parameters.
-> `edit 3 e/ c/ `
-
-```
-====================================================================================
-Current description is empty!
-Please input a valid description that is not empty!
-====================================================================================
-```
-
-<br>
-<br>
-
-## 7.0 Find - Poon Chuan An
+## 7.0 Find [Poon Chuan An]
 
 ### 7.1.1 Finding entries via description
 
-Finds entry/entries based on your keywords entered and list them out. Allows user to search by activity description.
+Do you want to find specific entry/entries? You can search for them based on keywords entered. This feature searches through the descriptions of your entries and lists them out for you.
 
 Format: `find d/ **DESCRIPTION**`
 
 Parameters:
-* `**DESCRIPTION**`: Keyword to look for from the list.
+* `**DESCRIPTION**`: Keyword that the entry/entries should contain.
 
 Example of usage:
 * `find d/ rice with veg`
@@ -1171,12 +765,13 @@ No.        Date                Type                                Description  
 
 ### 7.1.2 Finding entries via calories
 
-Finds entry/entries based on your keywords entered and list them out. Allows user to search by calories.
+Do you want to find specific entry/entries? You can search for them based on keywords entered. This feature searches through the calories of your entries and lists them out for you.
+
 
 Format: `find c/ **CALORIES**`
 
 Parameters:
-* `**CALORIES**`: Keyword to look for from the list.
+* `**CALORIES**`: Number of calories that the entry/entries should contain.
 
 Example of usage:
 * `find c/ 100` 
@@ -1189,58 +784,17 @@ No.        Date                Type                                Description  
 ```
 
 <br>
-
-### 7.2 Possible errors when finding entries via description or calories
-
-An error will occur if any of the conditions below are met. <br>
-The respective error message will also be shown to you.
-> Any text in this format is an example of a command that will produce the respective error.
-
-```
-Any text in this format is the error message that you will be shown.
-```
-
-#### Wrong find command tag/format
-* Command tag you entered is not `d/` or `c/` or the format is not correct.
-> `find p/ something`
-
-```
-====================================================================================
-I do not understand what you mean!
-The input format for finding food or exercise activity
-	via keyword is 'find d/ DESCRIPTION' - where keyword is DESCRIPTION
-The input format for finding calorie count via keyword is 'find c/ CALORIE_COUNT'
-	- where calories count is CALORIE_COUNT
-The input format for finding (all) is 'find a/ KEYWORD1 / KEYWORD2...'
-	- where KEYWORDS are all the words that matches the search result
-The input format for finding (either) is 'find e/ KEYWORD1 / KEYWORD2...'
-	- where just one KEYWORD has to match the search result
-Please input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-#### Empty keyword input
-* Searching with empty keyword(s).
-> `find d/`
-
-```
-====================================================================================
-Current keyword is empty!
-Please input a valid keyword that is not empty!
-====================================================================================
-```
-
 <br>
 
 ### 7.3.1 Finding entries via keywords - all
 
-For users who want to perform more complex find operations, you can make use of this advanced find command to achieve your needs.
-This command will search of entries matching ALL description keywords you have typed. 
-
-You can make use of this feature to 
+You can make use of this advanced find command to perform more complex find operations.
+This command will search through your entries and return entry/entries matching ALL the description keywords you have entered. 
 
 Format for find by all descriptions: `find a/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
-> There is no limit to the number of descriptions allowed.
+
+> IMPORTANT
+>* There is no limit to the number of descriptions allowed.
 
 Parameters:
 * `**DESCRIPTION1**`: Keyword to look for from the list.
@@ -1257,13 +811,16 @@ No.        Date                Type                                Description  
 ```
 
 <br>
+<br>
 
 ### 7.3.2 Finding entries via keywords - either
 
-Want to show even more search results? As long as just one of your description keyword matches a description in the entry, the entry will be listed. 
+Do you want to show even more search results? As long as just one of your entry has a description containing the keyword(s), that entry will be listed. 
 
 Format for find by just one matching description: `find e/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
->There is no limit to the number of descriptions allowed.
+
+> IMPORTANT
+>* There is no limit to the number of keywords allowed.
 
 Parameters:
 * `**DESCRIPTION1**`: Keyword to look for from the list.
@@ -1280,57 +837,13 @@ No.        Date                Type                                Description  
 ```
 
 <br>
-
-### 7.4 Possible error messages when finding entries - all and either
-
-#### Wrong find command tag/format
-* Command tag you input is not `a/` or `e/` or the format is not correct.
-> `find p/ KEYWORD`
-
-```
-====================================================================================
-I do not understand what you mean!
-The input format for finding food or exercise activity
-	via keyword is 'find d/ DESCRIPTION' - where keyword is DESCRIPTION
-The input format for finding calorie count via keyword is 'find c/ CALORIE_COUNT'
-	- where calories count is CALORIE_COUNT
-The input format for finding (all) is 'find a/ KEYWORD1 / KEYWORD2...'
-	- where KEYWORDS are all the words that matches the search result
-The input format for finding (either) is 'find e/ KEYWORD1 / KEYWORD2...'
-	- where just one KEYWORD has to match the search result
-Please input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-#### Empty keyword input
-* Searching with empty keyword(s).
-> `find d/`
-
-```
-====================================================================================
-Current keyword is empty!
-Please input a valid keyword that is not empty!
-====================================================================================
-```
-
-#### Consecutive slashes present
-* Slashes are used as delimiters for this function. If there are 2 or more '/' in your input, an error would occur.
-> `find a//`
-
-```
-====================================================================================
-There are consecutive slashes in your input!
-====================================================================================
-```
-
-<br>
 <br>
 
-## 8.0 Move - Owen Chew Yang
+## 8.0 Move [Owen Chew Yang]
 
-### 8.1 Moving an entry to another position
-
-Want to see list out your calories in an interesting order? You can use the `move` command to move an entry to another position in the last shown list to create your desired list!
+### 8.1 Moving an entry to another position in the list
+Have you entered the entries in the wrong order?
+You can use this `move` command to move an entry to another position in the list to organize your entries!
 
 Format: `move from/ **INDEX_1** below/ **INDEX_2**`
 
@@ -1339,11 +852,8 @@ Parameters:
 * `**INDEX_2**`: Index of the entry to be inserted below.
 
 Examples of usage:
-* After a `list 2020-10-11` command,
- `move from/ 3 below/ 1` moves the 3rd entry in the list to a position below the 1st entry as shown below.
 
-Example of usage: 
-*`list 2020-10-11` before moving
+*`list 2020-10-11` before moving.
 
 ```
 ------------------------------------------
@@ -1366,7 +876,7 @@ Activity has been successfully moved!
 ====================================================================================
 ```
 
-*`list 2020-10-11` after `move from/ 3 below/ 1` 
+*`list 2020-10-11` after `move from/ 3 below/ 1`. You will notice that the entry 'tea break' has been moved from index 3 to index 2.
 
 ```
 ------------------------------------------
@@ -1383,98 +893,21 @@ No.        Type                        Description                        Calori
 ```
 
 <br>
-
-### 8.2 Possible errors when moving
-An error will occur if any of the conditions below are met. <br>
-The respective error message will also be shown to you.
-> Any text in this format is an example of a command that will produce the respective error.
-
-```
-Any text in this format is the error message that you will be shown.
-```
-
-#### Missing keywords
-* The appropriate keywords `from/` and `below/` are missing from your command.
-> `move 1 2`
-
-```
-====================================================================================
-'from/' and 'below/' keyword is missing!
-Please do input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-* Only the `from/` keyword is missing.
-> `move 1 below/ 2`
-
-```
-====================================================================================
-'from/' keyword is missing!
-Please do input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-* Only the `below/` keyword is missing.
-> `move from/ 1 below 2`
-
-```
-====================================================================================
-'below/' keyword is missing!
-Please do input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-#### Index of invalid range used
-* Any of the `**INDEX_1**` or `**INDEX_2**` parameters you entered for the respective keywords are not of valid range.
-* For example, a list with only 3 entries will result in an error if a command similar to the one below is entered:
-> `move from/ 5 below/ 2`
-
-```
-====================================================================================
-The index entered is not within the range!
-Please do input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-#### Invalid index used
-* Any of the `**INDEX_1` or `**INDEX_2**` entered for the respective keywords are invalid.
-* For example if the user enters a character instead of a number similar to the example command below 
-> `move from/ a below/ ~`
-
-```
-====================================================================================
-Index is not a number!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-#### Moving which results in no change
-* Any of the `**INDEX_1` or `**INDEX_2**` entered for the respective keyword will not result in any changes to the list.
-> `move from/ 1 below/ 0` OR <br>
-> `move from/ 2 below/ 2`
-
-```
-====================================================================================
-The indexes entered for this move command does not result in any change!
-====================================================================================
-```
- 
-<br>
 <br>
 
-## 9.0 Delete - Rani Karthigeyan Rajendrakumar
+## 9.0 Delete [Rani Karthigeyan Rajendrakumar]
 
 ### 9.1 Deleting an entry in list
 
 You can delete an entry in the list using the `delete` command.
 
 >IMPORTANT:
->* If you want to edit or delete on a list, PLEASE ensure that you have pulled out the list you want.
+>* Please ensure that you have pulled out the list you want by using `list` command before performing any `delete` commands.
 
 Format: `delete **INDEX**`
 
 Parameters:
-* `**INDEX**`: Index of entry to be deleted in the last shown list.
+* `**INDEX**`: Index of entry to be deleted in the latest list pulled out.
 
 Example of usage:
 * `list` before deleting
@@ -1523,57 +956,11 @@ No.        Type                        Description                        Calori
 ```
 
 <br>
-
-### 9.1.1 Possible errors when deleting an entry in list
-An error will occur if any of the conditions below are met. <br>
-The respective error message will also be shown to you.
-> Any text in this format is an example of a command that will produce the respective error.
-
-```
-Any text in this format is the error message that you will be shown.
-```
-
-#### Delete command has missing description
-* Entering `delete` without its **INDEX** parameter.
-> `delete`
-
-```
-====================================================================================
-This command has missing description!
-====================================================================================
-```
-
-### Delete command has invalid description
-* Delete command is followed by any other combinations of letters/symbols other than "all/".
-> `delete abc`
-
-```
-====================================================================================
-Index is not a number!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
-```
-
-#### Deleting when index is not in range
-The following scenarios will result in the same error message as shown below:
-* Index is negative number or 0.
-> `delete -1`
-* Index is bigger than the number of items in the list. For example, if a list contains only 5 entries, the following command will produce an error:
-> `delete 10`
-* Attempting to delete an item on an empty list.
-> `delete 2`
-
-```
-====================================================================================
-Invalid Index!
-====================================================================================
-```
-
 <br>
 
 ### 9.2.1 Deleting all entries in list
 
-You can delete all your entries at once with this feature!
+You can delete all your entries from today's list at once with this feature!
 
 Format : `delete all/`
 
@@ -1599,7 +986,7 @@ No.        Type                        Description                        Calori
 Are you sure you want to delete all activities in today's list? [yes/no]
 ```
 
-* `yes`
+* `yes` to confirm deletion
 
 ```
 ====================================================================================
@@ -1615,26 +1002,15 @@ List is empty!
 ====================================================================================
 ```
 
-### 9.2.2 Possible errors when deleting all entries from list
-
-#### Deleting all on an empty list
-* Performing `delete all/` on a list that does not have any entries. 
-
-```
-====================================================================================
-There is no index to remove!
-Please input 'help' for the commands and their respective input format.
-====================================================================================
-```
 
 <br>
 <br>
 
-## 10.0 Graph - Rani Karthigeyan Rajendrakumar
+## 10.0 Graph [Rani Karthigeyan Rajendrakumar]
 
 ### 10.1 Showing past net calories
 
-Want to see you calorie story all at once? You can view a graphical representation of your recent net calories relative to your target calories for up to 7 days using this feature.
+Want to see your calorie progress all at once? You can view a graphical representation of your recent net calories relative to your target calories for up to 7 days using this feature.
 
 Format: `graph`
 
@@ -1659,26 +1035,13 @@ Example of usage:
 
 > Things to take note of:
 >* `***` shows the target calories.
->* If less than 7 days are stored in storage file, all the days will be displayed
+>* If less than 7 days are stored in storage file, all the days will be displayed.
 
-<br>
-
-### 10.1.1 Possible errors when graphing
-
-#### Adding extra inputs after graph command
-
-* graph 123
-
-```
-====================================================================================
-This command has no description!
-====================================================================================
-```
 
 <br>
 <br>
 
-## 11.0 Chaining - Puah Siew Wen
+## 11.0 Chaining [Puah Siew Wen]
 
 ### 11.1 Chaining of features
 
@@ -1687,7 +1050,7 @@ Chaining is the right feature for your needs!
 
 >IMPORTANT
 >* Chaining is only available to 4 features:
->* [list](#50-list---owen-chew-yang), [add](#40-add---puah-siew-wen), [edit](#60-edit---puah-siew-wen) and [graph](#100-graph---rani-karthigeyan-rajendrakumar).
+>* [list](#50-list-owen-chew-yang), [add](#40-add-puah-siew-wen), [edit](#60-edit-puah-siew-wen) and [graph](#100-graph-rani-karthigeyan-rajendrakumar).
 >* The respective formats to adhere to for each feature still applies.
 
 Format: *not extensive, there is a lot of combinations available*
@@ -1834,12 +1197,6 @@ Any text in this format is the error message that you will be shown.
 ====================================================================================
 ```
 
-#### Other errors
-*The possible errors follows the errors for adding, listing, editing and graphing*
->* Possible errors for adding: [errors for add](#43-possible-errors-when-adding-an-entry-into-activity-list)
->* Possible errors for listing: [errors for list](#511-possible-errors-when-listing)
->* Possible errors for editing: [errors for edit](#611-possible-errors-when-editing)
->* Possible errors for graphing: [errors for graph](#1011-possible-errors-when-graphing)
 
 <br>
 <br>
