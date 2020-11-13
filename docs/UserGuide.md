@@ -865,7 +865,7 @@ Please input a valid description that is not empty!
 <br>
 <br>
 
-## 5.0 List - Owen Chew Yang
+## 5.0 List [Owen Chew Yang]
 
 ### 5.1 Listing entries
 
@@ -877,11 +877,11 @@ Parameters:
 * `<**DATE**>`: Date in the format YYYY-MM-DD, where YYYY = year, MM = month, DD = day.
 
 >REMINDER: 
->*The `**DATE**` parameter is optional, if were to you enter list command without it, it will print out the list of entries for today's date.
+>*The `**DATE**` parameter is optional, if were to you enter list command without it, trakCAL will print out the list of entries for today's date.
 
 Examples of usage: 
 
-Listing without date specified:
+Listing without the date specified:
 * `list`
 
 ```
@@ -897,7 +897,7 @@ No.        Type                        Description                        Calori
 3          Food           ice cream_________________________________________________90
 ```
 
-Listing with date specified:
+Listing with the date specified:
 * `list 2020-10-11`
 
 ```
@@ -1326,11 +1326,11 @@ There are consecutive slashes in your input!
 <br>
 <br>
 
-## 8.0 Move - Owen Chew Yang
+## 8.0 Move [Owen Chew Yang]
 
-### 8.1 Moving an entry to another position
-
-Want to see list out your calories in an interesting order? You can use the `move` command to move an entry to another position in the last shown list to create your desired list!
+### 8.1 Moving an entry to another position in the list
+Have you entered the entries in the wrong order?
+You can use the `move` command to move an entry to another position in the list to organize your data!
 
 Format: `move from/ **INDEX_1** below/ **INDEX_2**`
 
@@ -1339,11 +1339,11 @@ Parameters:
 * `**INDEX_2**`: Index of the entry to be inserted below.
 
 Examples of usage:
-* After a `list 2020-10-11` command,
- `move from/ 3 below/ 1` moves the 3rd entry in the list to a position below the 1st entry as shown below.
+* After viewing the list from 2020-10-11 using this `list 2020-10-11` command,
+ this`move from/ 3 below/ 1` command moves the 3rd entry in the list to a position below the 1st entry as shown below.
 
 Example of usage: 
-*`list 2020-10-11` before moving
+*`list 2020-10-11` before moving.
 
 ```
 ------------------------------------------
@@ -1366,7 +1366,7 @@ Activity has been successfully moved!
 ====================================================================================
 ```
 
-*`list 2020-10-11` after `move from/ 3 below/ 1` 
+*`list 2020-10-11` after `move from/ 3 below/ 1`. You will notice that the entry 'tea break' has been moved from index 3 to index 2.
 
 ```
 ------------------------------------------
@@ -1384,7 +1384,7 @@ No.        Type                        Description                        Calori
 
 <br>
 
-### 8.2 Possible errors when moving
+### 8.2 Possible errors when moving entries
 An error will occur if any of the conditions below are met. <br>
 The respective error message will also be shown to you.
 > Any text in this format is an example of a command that will produce the respective error.
@@ -1426,7 +1426,7 @@ Please do input 'help' for the commands and their respective input format.
 
 #### Index of invalid range used
 * Any of the `**INDEX_1**` or `**INDEX_2**` parameters you entered for the respective keywords are not of valid range.
-* For example, a list with only 3 entries will result in an error if a command similar to the one below is entered:
+* For example, a list with only 3 entries will result in an error if the command below is entered:
 > `move from/ 5 below/ 2`
 
 ```
@@ -1438,7 +1438,7 @@ Please do input 'help' for the commands and their respective input format.
 
 #### Invalid index used
 * Any of the `**INDEX_1` or `**INDEX_2**` entered for the respective keywords are invalid.
-* For example if the user enters a character instead of a number similar to the example command below 
+* For example if the user enters a character instead of a number similar to the example command below: 
 > `move from/ a below/ ~`
 
 ```
@@ -1448,8 +1448,8 @@ Please input 'help' for the commands and their respective input format.
 ====================================================================================
 ```
 
-#### Moving which results in no change
-* Any of the `**INDEX_1` or `**INDEX_2**` entered for the respective keyword will not result in any changes to the list.
+#### Moving entries which results in no changes
+* Any of the `**INDEX_1` or `**INDEX_2**` entered for the respective keyword that does not result in any changes to the list.
 > `move from/ 1 below/ 0` OR <br>
 > `move from/ 2 below/ 2`
 
